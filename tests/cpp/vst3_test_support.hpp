@@ -10,6 +10,7 @@
 #include <array>
 #include <cstddef>
 #include <cstdint>
+#include <memory>
 #include <span>
 #include <stdexcept>
 #include <string>
@@ -28,7 +29,7 @@ inline void require(bool condition, std::string_view message) {
 }
 
 // Host-owned, fixed-lifetime objects. Reference counting deliberately does not
-// delete their stack storage; queryInterface still obeys the SDK interface IDs.
+// delete their storage; queryInterface still obeys the SDK interface IDs.
 template <class Interface>
 class FixedHostObject : public Interface {
 public:
@@ -247,7 +248,15 @@ struct ProcessorHost {
     static_assert(std::is_same_v<Sample, float> || std::is_same_v<Sample, double>);
     static constexpr sdk::int32 sample_size = std::is_same_v<Sample, float> ?
         vst::kSample32 : vst::kSample64;
-    RhodesProcessor processor;
+
+private:
+    // Construction belongs to host setup, outside the measured audio callback.
+    // Keep the processor's growing fixed DSP storage off the test thread stack.
+    std::unique_ptr<RhodesProcessor> processor_storage_ =
+        std::make_unique<RhodesProcessor>();
+
+public:
+    RhodesProcessor& processor = *processor_storage_;
     std::array<Sample, Frames> left{};
     std::array<Sample, Frames> right{};
     std::array<Sample*, 2> channels{left.data(), right.data()};
@@ -314,14 +323,19 @@ inline void same_mechanics(const Actual& actual, const Expected& expected) {
 }
 
 struct ProcessorSnapshot {
-    HostEventProcessor engine;
+private:
+    std::unique_ptr<const HostEventProcessor> engine_storage_;
+
+public:
+    const HostEventProcessor& engine;
     NoteTracker notes;
     InstrumentState live;
     InstrumentState published;
     bool fault;
 
     explicit ProcessorSnapshot(const RhodesProcessor& processor)
-        : engine(processor.engine_processor()), notes(processor.note_tracker()),
+        : engine_storage_(std::make_unique<const HostEventProcessor>(processor.engine_processor())),
+          engine(*engine_storage_), notes(processor.note_tracker()),
           live(processor.current_state()), published(processor.published_state()),
           fault(processor.requires_reset()) {}
 
@@ -340,10 +354,13 @@ struct ProcessorSnapshot {
         same_mechanics(processor.engine_processor().engine(), engine.engine());
         // A matching present state alone would miss a changed damping/held
         // flag. Copy both engines and compare their subsequent trajectories.
-        auto actual = processor.engine_processor().engine();
-        auto expected = engine.engine();
+        // Snapshot validation runs after the allocation-probed callback. These
+        // independent continuation copies can contain large prepared DSP plans.
+        using Engine = std::remove_cvref_t<decltype(engine.engine())>;
+        const auto actual = std::make_unique<Engine>(processor.engine_processor().engine());
+        const auto expected = std::make_unique<Engine>(engine.engine());
         std::array<double, 17> actual_output{}, expected_output{};
-        require(actual.process(actual_output) && expected.process(expected_output),
+        require(actual->process(actual_output) && expected->process(expected_output),
                 "snapshot continuation failed");
         require(actual_output == expected_output, "rejected call changed future trajectory");
     }

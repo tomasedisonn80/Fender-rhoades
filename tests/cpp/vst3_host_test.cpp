@@ -6,6 +6,7 @@
 #include <cstdlib>
 #include <iostream>
 #include <limits>
+#include <memory>
 #include <new>
 #include <type_traits>
 #include <utility>
@@ -175,7 +176,8 @@ void scalar_at_rate(double rate) {
     host.output.silenceFlags = std::numeric_limits<sdk::uint64>::max();
     require(process(host.processor, host.data) == sdk::kResultOk, "scalar host render");
 
-    ScalarEngine reference;
+    const auto reference_storage = std::make_unique<ScalarEngine>();
+    auto& reference = *reference_storage;
     require(reference.prepare(rate), "scalar reference prepare");
     // This schedule does not use NoteTracker, EventProcessor, or translated
     // plugin events. It independently drives the underlying scalar model.
@@ -215,7 +217,8 @@ void overlapping_notes() {
     require(host.processor.note_tracker().active_count() == 1 &&
             host.processor.note_tracker().held_count(40) == 1,
             "overlap release removed another channel's holder");
-    ScalarEngine reference;
+    const auto reference_storage = std::make_unique<ScalarEngine>();
+    auto& reference = *reference_storage;
     for (std::size_t frame = 0; frame < 16; ++frame) {
         if (frame == 0) { require(reference.note_on(40, 0.75), "overlap first strike"); }
         if (frame == 4) { require(reference.note_on(40, 0.5), "overlap second strike"); }
@@ -266,7 +269,9 @@ void linear_automation() {
     events.count = 2;
     events.values[0] = note_on(0, 1);
     events.values[1] = note_off(4, 1);
-    ParameterQueue gain, pedal;
+    const auto queue_storage = std::make_unique<std::array<ParameterQueue, 2>>();
+    auto& gain = (*queue_storage)[0];
+    auto& pedal = (*queue_storage)[1];
     gain.count = 3;
     gain.values[0] = {7, 0.75};
     gain.values[1] = {7, 0.25};
@@ -282,7 +287,8 @@ void linear_automation() {
     host.data.inputEvents = &events;
     host.data.inputParameterChanges = &parameters;
     require(process(host.processor, host.data) == sdk::kResultOk, "linear automation render");
-    ScalarEngine reference;
+    const auto reference_storage = std::make_unique<ScalarEngine>();
+    auto& reference = *reference_storage;
     require(reference.note_on(40, 0.75), "automation reference strike");
     for (std::size_t frame = 0; frame < host.left.size(); ++frame) {
         if (frame == 4) {
@@ -315,12 +321,15 @@ void linear_automation() {
 void dense_automation() {
     static_assert(kMaximumHostFrames == 8192);
     static_assert(maximum_block_frames == 4096);
-    ProcessorHost<double, kMaximumHostFrames + 3> host;
+    const auto host_storage = std::make_unique<ProcessorHost<double, kMaximumHostFrames + 3>>();
+    auto& host = *host_storage;
     EventList events;
     events.count = 2;
     events.values[0] = note_on(0, 1);
     events.values[1] = note_off(8191, 1);
-    ParameterQueue gain, pedal;
+    const auto queue_storage = std::make_unique<std::array<ParameterQueue, 2>>();
+    auto& gain = (*queue_storage)[0];
+    auto& pedal = (*queue_storage)[1];
     gain.count = static_cast<sdk::int32>(kMaximumHostFrames);
     pedal.id = kSustainId;
     pedal.count = gain.count;
@@ -407,7 +416,8 @@ void invalid_atomicity() {
     require(process(host.processor, host.data) == sdk::kResultOk, "atomicity initial note");
     const ProcessorSnapshot before{host.processor};
     events.count = 0;
-    ParameterQueue gain;
+    const auto gain_storage = std::make_unique<ParameterQueue>();
+    auto& gain = *gain_storage;
     gain.count = 2;
     gain.values[0] = {0, 0.75};
     gain.values[1] = {15, 0.25};
@@ -529,9 +539,12 @@ void parameter_flush() {
     events.values[0] = note_on(0, 1);
     host.data.inputEvents = &events;
     require(process(host.processor, host.data) == sdk::kResultOk, "flush initial note");
-    const auto before = host.processor.engine_processor();
+    const auto before_storage = std::make_unique<const HostEventProcessor>(host.processor.engine_processor());
+    const auto& before = *before_storage;
     events.count = 0;
-    ParameterQueue gain, pedal;
+    const auto queue_storage = std::make_unique<std::array<ParameterQueue, 2>>();
+    auto& gain = (*queue_storage)[0];
+    auto& pedal = (*queue_storage)[1];
     gain.count = 2;
     gain.values[0] = {0, 0.25};
     gain.values[1] = {0, 0.8};
@@ -578,14 +591,16 @@ void parameter_flush() {
     events.count = 1;
     events.values[0] = note_off(0, 1);
     require(process(host.processor, host.data) == sdk::kResultOk, "render after flush");
-    auto reference = before.engine();
+    const auto reference_storage = std::make_unique<ScalarEngine>(before.engine());
+    auto& reference = *reference_storage;
     reference.set_sustain(true);
     require(reference.note_off(40), "flush reference release");
     for (std::size_t frame = 0; frame < 16; ++frame) {
         expect_sample(host, frame, (32.0 * static_cast<double>(0.8F)) * scalar_sample(reference));
     }
 
-    RhodesProcessor unconfigured;
+    const auto unconfigured_storage = std::make_unique<RhodesProcessor>();
+    auto& unconfigured = *unconfigured_storage;
     require(unconfigured.initialize(nullptr) == sdk::kResultOk, "unconfigured flush initialize");
     vst::ProcessData flush{};
     require(process(unconfigured, flush) == sdk::kResultOk, "flush before processing setup");
@@ -680,7 +695,8 @@ void deferred_state() {
     events.values[0] = note_on(0, 1);
     host.data.inputEvents = &events;
     require(process(host.processor, host.data) == sdk::kResultOk, "deferred initial render");
-    const auto before = host.processor.engine_processor();
+    const auto before_storage = std::make_unique<const HostEventProcessor>(host.processor.engine_processor());
+    const auto& before = *before_storage;
     MemoryStream stream;
     stream.load({0.125F, true}, 0, kStateModel);
     stream.transfer_limit = 1;
@@ -763,7 +779,8 @@ void recall_abort() {
     events.values[0] = note_on(0, 77, 61);
     require(process(host.processor, host.data) == sdk::kResultOk,
             "new recall incorrectly validated against stale ownership");
-    ScalarEngine reference;
+    const auto reference_storage = std::make_unique<ScalarEngine>();
+    auto& reference = *reference_storage;
     require(reference.note_on(33, 0.75), "recall fresh reference strike");
     for (std::size_t frame = 0; frame < 16; ++frame) {
         expect_sample(host, frame, 8.0 * scalar_sample(reference));
@@ -1034,7 +1051,8 @@ void allocation_guard_at_rate(double rate) {
     EventList events;
     events.count = 1;
     events.values[0] = note_on(0, 1);
-    ParameterQueue gain;
+    const auto gain_storage = std::make_unique<ParameterQueue>();
+    auto& gain = *gain_storage;
     gain.count = 2;
     gain.values[0] = {0, 0.25};
     gain.values[1] = {63, 0.75};

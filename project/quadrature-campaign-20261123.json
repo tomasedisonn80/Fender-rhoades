@@ -1,0 +1,194 @@
+{
+  "schema_version": 1,
+  "baseline_commit": "60be432d2353accd753226356476db47be7335fd",
+  "requested_assignments": 100,
+  "requested_waves": 5,
+  "assignments_per_wave": 20,
+  "maximum_concurrent_workers": 3,
+  "scope": "Actual spawned workers for this quadrature/portability continuation; root integration is not counted.",
+  "completed_waves": [
+    1
+  ],
+  "assignments": [
+    {
+      "assignment": 1,
+      "wave": 1,
+      "agent": "/root/w1_a01_audio_diagnosis",
+      "scope": "audio diagnosis",
+      "status": "completed",
+      "report": "docs/agents/transient-campaign/w1_a01.md",
+      "report_sha256": "0c9b95dce844bae858c20e2c1a9e0273b00e0092379e2cd947b7c66b035da54d"
+    },
+    {
+      "assignment": 2,
+      "wave": 1,
+      "agent": "/root/w1_a02_ci_audit",
+      "scope": "ci audit",
+      "status": "completed",
+      "report": "docs/agents/transient-campaign/w1_a02.md",
+      "report_sha256": "0ab78e008a6ce775aca820909b049e52f7a340b0bc705855b0d519febaa92108"
+    },
+    {
+      "assignment": 3,
+      "wave": 1,
+      "agent": "/root/w1_a03_reference_audit",
+      "scope": "reference audit",
+      "status": "completed",
+      "report": "docs/agents/transient-campaign/w1_a03.md",
+      "report_sha256": "2f7d4752818ea66e2f8bc29840ecba3b9d79ed0a3852537c2bd3cc962d7f2cb6"
+    },
+    {
+      "assignment": 4,
+      "wave": 1,
+      "agent": "/root/w1_a04_windows_cpp",
+      "scope": "windows cpp",
+      "status": "completed",
+      "report": "docs/agents/transient-campaign/w1_a04.md",
+      "report_sha256": "6c9747659c2f133536754f71cfe04f870d3b87e8b17da446511ac82bdb272bb5"
+    },
+    {
+      "assignment": 5,
+      "wave": 1,
+      "agent": "/root/w1_a05_windows_python",
+      "scope": "windows python",
+      "status": "completed",
+      "report": "docs/agents/transient-campaign/w1_a05.md",
+      "report_sha256": "5b4ffd81c17621da1b4125b4476c7421ba66a8bd0b29a9388ae96473be8cc7a5"
+    },
+    {
+      "assignment": 6,
+      "wave": 1,
+      "agent": "/root/w1_a06_quadrature_design",
+      "scope": "quadrature design",
+      "status": "completed",
+      "report": "docs/agents/transient-campaign/w1_a06.md",
+      "report_sha256": "f4aeb29275956b90010b1462873aad5c2d51ab8908dc5cbc57622e8bca5d7b11"
+    },
+    {
+      "assignment": 7,
+      "wave": 1,
+      "agent": "/root/w1_a07_host_identity",
+      "scope": "host identity",
+      "status": "completed",
+      "report": "docs/agents/transient-campaign/w1_a07.md",
+      "report_sha256": "b71ba661460a29d66efe41241f94ff727179cbfdf814bae5c4006dd411e0a939"
+    },
+    {
+      "assignment": 8,
+      "wave": 1,
+      "agent": "/root/w1_a08_modal_api_design",
+      "scope": "modal api design",
+      "status": "completed",
+      "report": "docs/agents/transient-campaign/w1_a08.md",
+      "report_sha256": "91eec4cc975502cd6d1e5c163d0edfb1ad1d43795b069cc0a62a634a8a0214a1"
+    },
+    {
+      "assignment": 9,
+      "wave": 1,
+      "agent": "/root/w1_a09_public_basis",
+      "scope": "public basis",
+      "status": "completed",
+      "report": "docs/agents/transient-campaign/w1_a09.md",
+      "report_sha256": "b83ce80e0d696ffdc8c4beaad7f8e8b7334b6f94eaef2b7a092b6211ebd1d9df"
+    },
+    {
+      "assignment": 10,
+      "wave": 1,
+      "agent": "/root/w1_a10_coefficient_contract",
+      "scope": "coefficient contract",
+      "status": "completed",
+      "report": "docs/agents/transient-campaign/w1_a10.md",
+      "report_sha256": "061e00caa4db99221b275ff18c7c855a3c69d89d3c40f0d44979ddea618ab64b"
+    },
+    {
+      "assignment": 11,
+      "wave": 1,
+      "agent": "/root/w1_a11_runtime_budget",
+      "scope": "runtime budget",
+      "status": "completed",
+      "report": "docs/agents/transient-campaign/w1_a11.md",
+      "report_sha256": "cd7aa4938c2381de198b52a3e8209ef2011efa651214b828d149b516ee958437"
+    },
+    {
+      "assignment": 12,
+      "wave": 1,
+      "agent": "/root/w1_a12_coefficient_generation",
+      "scope": "coefficient generation",
+      "status": "completed",
+      "report": "docs/agents/transient-campaign/w1_a12.md",
+      "report_sha256": "e3f6e00993c3cbbe4b69503b0615ed41a7092683105d32aaa3d9cbe19e6444f1"
+    },
+    {
+      "assignment": 13,
+      "wave": 1,
+      "agent": "/root/w1_a13_probe_contract",
+      "scope": "probe contract",
+      "status": "completed",
+      "report": "docs/agents/transient-campaign/w1_a13.md",
+      "report_sha256": "9d6a261349f61766776f95c986cbb05e93fbf0edd03f87551105a8da286ebdaa"
+    },
+    {
+      "assignment": 14,
+      "wave": 1,
+      "agent": "/root/w1_a14_event_contract",
+      "scope": "event contract",
+      "status": "completed",
+      "report": "docs/agents/transient-campaign/w1_a14.md",
+      "report_sha256": "972cae052402eff244de6909a26d3b2f20e4458eb2d25e89dadf1e131d4c8469"
+    },
+    {
+      "assignment": 15,
+      "wave": 1,
+      "agent": "/root/w1_a15_packaging_review",
+      "scope": "packaging review",
+      "status": "completed",
+      "report": "docs/agents/transient-campaign/w1_a15.md",
+      "report_sha256": "fccc5a5860a535bf36f02385c8f502cf3f5cbf2fe70dd43fff2a3f14806fa243"
+    },
+    {
+      "assignment": 16,
+      "wave": 1,
+      "agent": "/root/w1_a16_state_tests_design",
+      "scope": "state tests design",
+      "status": "completed",
+      "report": "docs/agents/transient-campaign/w1_a16.md",
+      "report_sha256": "3c0dcb3c701d889a085861db7f75db4683d8afd865c85336ecc8d1d4abd5423b"
+    },
+    {
+      "assignment": 17,
+      "wave": 1,
+      "agent": "/root/w1_a17_legacy_baseline",
+      "scope": "legacy baseline",
+      "status": "completed",
+      "report": "docs/agents/transient-campaign/w1_a17.md",
+      "report_sha256": "127ab5f933fb9963122f6239b750c70df54e0cce06fac2ce1bb74441e1172e00"
+    },
+    {
+      "assignment": 18,
+      "wave": 1,
+      "agent": "/root/w1_a18_generator_tests",
+      "scope": "generator tests",
+      "status": "completed",
+      "report": "docs/agents/transient-campaign/w1_a18.md",
+      "report_sha256": "d58ec2bcbc02183e6c5eba8c5bb881b1ba74f61e82155ade75caa0f361aa638c"
+    },
+    {
+      "assignment": 19,
+      "wave": 1,
+      "agent": "/root/w1_a19_heap_fixtures",
+      "scope": "heap fixtures",
+      "status": "completed",
+      "report": "docs/agents/transient-campaign/w1_a19.md",
+      "report_sha256": "787cfbec46d61a0ded7533acd562a46a79735980b2a092f3b0f4a54c5b615302"
+    },
+    {
+      "assignment": 20,
+      "wave": 1,
+      "agent": "/root/w1_a20_contract_review",
+      "scope": "contract review",
+      "status": "completed",
+      "report": "docs/agents/transient-campaign/w1_a20.md",
+      "report_sha256": "0accbc234a41b7c270e80ee67bef1a14627ba88c7101dd6a68ad553270a426db"
+    }
+  ]
+}
