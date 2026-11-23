@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "requested_agents": 100,
+  "waves": 5,
+  "agents_per_wave": 20,
+  "agents": [
+    {
+      "id": "A001",
+      "wave": 1,
+      "task_name": "/root/w1_a001",
+      "scope": "Public primary-source contact mechanics review",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W1-A001.md",
+      "report_sha256": "878510c5b4acdbd20287447375b6c94caea599d6809783775f703321d3a08086"
+    },
+    {
+      "id": "A002",
+      "wave": 1,
+      "task_name": "/root/w1_a002",
+      "scope": "Current mechanics API and reference architecture audit",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W1-A002.md",
+      "report_sha256": "1051951d030156c5761ead2147b29e51aae9e230e05a286165b27b36d781b20a"
+    },
+    {
+      "id": "A003",
+      "wave": 1,
+      "task_name": "/root/w1_a003",
+      "scope": "Runtime baseline and host readiness audit",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W1-A003.md",
+      "report_sha256": "88ceca2d5b73ffabe08f877a157ee4c9cc2ca42c8df38989ed02408ee5f9944c"
+    },
+    {
+      "id": "A004",
+      "wave": 1,
+      "task_name": "/root/w1_a004",
+      "scope": "Independent five-wave campaign tooling",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W1-A004.md",
+      "report_sha256": "610beb15dd78cdd49e9cb7ee3b5411cfddee93168771681295c28eba81aac716"
+    },
+    {
+      "id": "A005",
+      "wave": 1,
+      "task_name": "/root/w1_a005",
+      "scope": "Predeclared contact numerical fixtures",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W1-A005.md",
+      "report_sha256": "9125a28bdf9dee4338136ef575820d4295032c8596ab300bb888d0b97a182b04"
+    },
+    {
+      "id": "A006",
+      "wave": 1,
+      "task_name": "/root/w1_a006",
+      "scope": "Public VST3 SDK and host integration plan",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W1-A006.md",
+      "report_sha256": "78b11f14f57c488a861b51855539e4294b5e1d965b91532c10f6539909cc7808"
+    },
+    {
+      "id": "A007",
+      "wave": 1,
+      "task_name": "/root/w1_a007",
+      "scope": "Damper equilibrium and actuator work derivation",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W1-A007.md",
+      "report_sha256": "433a01787061188532630cee8907494d99a3db8e6535ac1a8e11b2ffe907d037"
+    },
+    {
+      "id": "A008",
+      "wave": 1,
+      "task_name": "/root/w1_a008",
+      "scope": "Reference integration and rollback design review",
+      "status": "running",
+      "report": "docs/agents/development-20261123/W1-A008.md",
+      "report_sha256": null
+    },
+    {
+      "id": "A009",
+      "wave": 1,
+      "task_name": "/root/w1_a009",
+      "scope": "Bounded event API independent audit",
+      "status": "running",
+      "report": "docs/agents/development-20261123/W1-A009.md",
+      "report_sha256": null
+    },
+    {
+      "id": "A010",
+      "wave": 1,
+      "task_name": "/root/w1_a010",
+      "scope": "MIDI note ownership and overlap contract",
+      "status": "running",
+      "report": "docs/agents/development-20261123/W1-A010.md",
+      "report_sha256": null
+    }
+  ]
+}
