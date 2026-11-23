@@ -49,6 +49,8 @@ jobs:
         run: python tools/validate_continuation_campaign.py
       - name: Reject stale audio filter coefficients
         run: python tools/generate_audio_filter.py --check
+      - name: Reject stale quadrature filter coefficients
+        run: python tools/generate_quadrature_filter.py --check
       - name: Check agent tooling
         run: python -m unittest discover -s tests/python -v
 

@@ -20,7 +20,10 @@ using namespace rhodes::vst3;
 using namespace rhodes::vst3::test_host;
 
 using ScalarEngine = std::remove_cvref_t<decltype(std::declval<const HostEventProcessor&>().engine())>;
-#if defined(RHODES_FILTERED_VST3)
+#if defined(RHODES_QUADRATURE_VST3)
+static_assert(kQuadratureAudio && !kFilteredAudio && kStateModel == 3);
+static_assert(std::is_same_v<ScalarEngine, QuadratureEngine>);
+#elif defined(RHODES_FILTERED_VST3)
 static_assert(kStateModel == 2);
 #else
 static_assert(kStateModel == 1);

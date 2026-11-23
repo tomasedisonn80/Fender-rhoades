@@ -11,12 +11,19 @@
 #include <stdexcept>
 #include <string>
 #include <string_view>
+#include <type_traits>
+#include <utility>
 
 namespace {
 namespace host = rhodes::vst3::test_host;
 namespace sdk = Steinberg;
 namespace vst = Steinberg::Vst;
-#if defined(RHODES_FILTERED_VST3)
+using ScalarEngine = std::remove_cvref_t<decltype(
+    std::declval<rhodes::vst3::HostEventProcessor&>().engine())>;
+#if defined(RHODES_QUADRATURE_VST3)
+static_assert(rhodes::vst3::kQuadratureAudio && !rhodes::vst3::kFilteredAudio &&
+              rhodes::vst3::kStateModel == 3);
+#elif defined(RHODES_FILTERED_VST3)
 static_assert(rhodes::vst3::kFilteredAudio && rhodes::vst3::kStateModel == 2);
 #else
 static_assert(!rhodes::vst3::kFilteredAudio && rhodes::vst3::kStateModel == 1);
@@ -199,12 +206,12 @@ void prepare_pending(Rig& rig) {
 
 void expect_unchanged(const host::ProcessorSnapshot& snapshot, const Rig& rig) {
     snapshot.expect_unchanged(rig.audio->processor);
-    // The selected engine copy includes the filtered path's private FIR state.
+    // The selected engine copy includes either filtered path's private FIR state.
     // Continue beyond its complete 96-frame history, not just the group delay.
-    auto actual = rig.audio->processor.engine_processor().engine();
-    auto expected = snapshot.engine.engine();
+    auto actual = std::make_unique<ScalarEngine>(rig.audio->processor.engine_processor().engine());
+    auto expected = std::make_unique<ScalarEngine>(snapshot.engine.engine());
     std::array<double, 128> actual_output{}, expected_output{};
-    check(actual.process(actual_output) && expected.process(expected_output),
+    check(actual->process(actual_output) && expected->process(expected_output),
           "state I/O continuation failed");
     check(actual_output == expected_output, "state I/O changed future output history");
 }
@@ -217,9 +224,9 @@ void consume_preserved_pending(Rig& rig) {
           rig.audio->processor.note_tracker().active_count() == 0 &&
           rig.audio->processor.engine_processor().engine().mechanical_energy_joules() == 0.0,
           "failed state I/O lost the pending reset");
-    auto reset_engine = rig.audio->processor.engine_processor().engine();
+    auto reset_engine = std::make_unique<ScalarEngine>(rig.audio->processor.engine_processor().engine());
     std::array<double, 128> output{};
-    check(reset_engine.process(output), "recalled engine continuation failed");
+    check(reset_engine->process(output), "recalled engine continuation failed");
     check(std::all_of(output.begin(), output.end(), [](double value) { return value == 0.0; }),
           "preserved recall did not clear future output history");
 }
@@ -444,17 +451,21 @@ void malformed_state() {
                                        0x7f800000U, 0xff800000U, 0x7fc12345U, 0x7f812345U};
     constexpr std::array invalid_pedal{1U, 0x80000001U, 0x3f000000U, 0x3f7fffffU,
                                         0x3f800001U, 0x7f800000U, 0x7fc12345U, 0x7f812345U};
-    std::array<Packet, 25> malformed{};
+    std::array<Packet, 26> malformed{};
     for (std::size_t index = 0; index < 8; ++index) {
         malformed[index] = valid;
         malformed[index][index] ^= 0x80U;
         malformed[index + 8] = packet(invalid_gain[index], 0U);
         malformed[index + 16] = packet(retry_gain, invalid_pedal[index]);
     }
-    // Preserve the 24 corrupt packets above and reject the other valid model
-    // separately: model 2 is supported here when this is the filtered build.
-    malformed.back() = valid;
-    malformed.back()[6] = rhodes::vst3::kStateModel == 1 ? 2 : 1;
+    // Preserve the 24 corrupt packets and reject both other supported models.
+    std::size_t next_model = 24;
+    for (const auto model : std::array<std::uint8_t, 3>{1, 2, 3}) {
+        if (model == rhodes::vst3::kStateModel) { continue; }
+        malformed[next_model] = valid;
+        malformed[next_model++][6] = model;
+    }
+    check(next_model == malformed.size(), "cross-model packet inventory differs");
     for (const auto& bytes : malformed) {
         for (const sdk::int32 chunk : {1, 7, 16}) {
             for (const auto reader : readers) {

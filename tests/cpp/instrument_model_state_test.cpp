@@ -23,13 +23,24 @@ constexpr Bytes model1_golden{
     0x52, 0x48, 0x53, 0x54, 1, 0, 1, 0, 0, 0, 0, 0x3f, 0, 0, 0x80, 0x3f};
 constexpr Bytes model2_golden{
     0x52, 0x48, 0x53, 0x54, 1, 0, 2, 0, 0, 0, 0, 0x3f, 0, 0, 0x80, 0x3f};
-constexpr std::array<std::uint16_t, 2> models{1, 2};
+constexpr Bytes model3_golden{
+    0x52, 0x48, 0x53, 0x54, 1, 0, 3, 0, 0, 0, 0, 0x3f, 0, 0, 0x80, 0x3f};
+constexpr std::array<std::uint16_t, 3> models{1, 2, 3};
 constexpr std::uint32_t one = 0x3f800000U;
 std::size_t checks = 0;
 
 void require(bool condition, std::string_view message) {
     ++checks;
     if (!condition) { throw std::runtime_error(std::string{message}); }
+}
+
+const Bytes& golden_for_model(std::uint16_t model) {
+    switch (model) {
+    case 1: return model1_golden;
+    case 2: return model2_golden;
+    case 3: return model3_golden;
+    default: throw std::runtime_error("unknown golden model fixture");
+    }
 }
 
 // This independent fixture uses literal headers and arithmetic base-256 digits;
@@ -65,31 +76,34 @@ void model1_bytes() {
     expect_state(rhodes::decode_instrument_state(model1_golden, 1), 0x3f000000U, true);
 }
 
-void model2_roundtrip() {
-    require(packet(2, 0x3f000000U, one) == model2_golden,
-            "independent model-2 fixture differs from literal golden");
-    require(rhodes::encode_instrument_state({0.5F, true}, 2) == model2_golden,
-            "model-2 golden bytes differ");
-    expect_state(rhodes::decode_instrument_state(model2_golden, 2), 0x3f000000U, true);
+void model_roundtrip(std::uint16_t model, const Bytes& golden) {
+    require(packet(model, 0x3f000000U, one) == golden,
+            "independent model fixture differs from literal golden");
+    require(rhodes::encode_instrument_state({0.5F, true}, model) == golden,
+            "model golden bytes differ");
+    expect_state(rhodes::decode_instrument_state(golden, model), 0x3f000000U, true);
     constexpr std::array<std::uint32_t, 11> gains{
         0U, 0x80000000U, 1U, 0x007fffffU, 0x00800000U, 0x3a83126fU,
         0x3e800000U, 0x3eaaaaabU, 0x3f000000U, 0x3f7fffffU, one};
     for (const auto gain : gains) {
         const auto canonical = gain == 0x80000000U ? 0U : gain;
         for (const bool sustain : {false, true}) {
-            const auto wanted = packet(2, canonical, sustain ? one : 0U);
+            const auto wanted = packet(model, canonical, sustain ? one : 0U);
             const auto encoded = rhodes::encode_instrument_state(
-                {std::bit_cast<float>(gain), sustain}, 2);
-            require(encoded == wanted, "model-2 encoder changed exact payload bytes");
-            expect_state(rhodes::decode_instrument_state(*encoded, 2), canonical, sustain);
-            const auto raw = packet(2, gain, sustain ? one : 0x80000000U);
-            const auto decoded = rhodes::decode_instrument_state(raw, 2);
+                {std::bit_cast<float>(gain), sustain}, model);
+            require(encoded == wanted, "model encoder changed exact payload bytes");
+            expect_state(rhodes::decode_instrument_state(*encoded, model), canonical, sustain);
+            const auto raw = packet(model, gain, sustain ? one : 0x80000000U);
+            const auto decoded = rhodes::decode_instrument_state(raw, model);
             expect_state(decoded, canonical, sustain);
-            require(rhodes::encode_instrument_state(*decoded, 2) == wanted,
-                    "model-2 signed-zero canonicalization changed");
+            require(rhodes::encode_instrument_state(*decoded, model) == wanted,
+                    "model signed-zero canonicalization changed");
         }
     }
 }
+
+void model2_roundtrip() { model_roundtrip(2, model2_golden); }
+void model3_roundtrip() { model_roundtrip(3, model3_golden); }
 
 void cross_model_rejection() {
     require(!rhodes::decode_instrument_state(model1_golden, 2),
@@ -98,28 +112,37 @@ void cross_model_rejection() {
             "direct model accepted filtered state");
     require(!rhodes::decode_instrument_state(model2_golden),
             "default decoder no longer expects model 1");
+    require(!rhodes::decode_instrument_state(model3_golden),
+            "default decoder accepted quadrature state");
+    std::size_t rejected_payloads = 0;
     for (const auto model : models) {
         for (const bool sustain : {false, true}) {
             for (const float gain : {0.0F, 0.25F, 0.75F, 1.0F}) {
                 const auto bytes = rhodes::encode_instrument_state({gain, sustain}, model);
                 require(bytes.has_value(), "cross-model fixture failed to encode");
                 const auto before = *bytes;
-                const auto other = static_cast<std::uint16_t>(3U - model);
-                require(!rhodes::decode_instrument_state(*bytes, other),
-                        "cross-model recall accepted");
-                require(*bytes == before, "rejected decoder altered caller storage");
-                expect_state(rhodes::decode_instrument_state(*bytes, model),
-                             std::bit_cast<std::uint32_t>(gain), sustain);
+                for (const auto other : models) {
+                    if (other == model) { continue; }
+                    require(!rhodes::decode_instrument_state(*bytes, other),
+                            "cross-model recall accepted");
+                    require(*bytes == before, "rejected decoder altered caller storage");
+                    expect_state(rhodes::decode_instrument_state(*bytes, model),
+                                 std::bit_cast<std::uint32_t>(gain), sustain);
+                    ++rejected_payloads;
+                }
             }
         }
     }
+    require(rejected_payloads == 48, "cross-model rejection did not cover all six ordered pairs");
 }
 
 void invalid_model() {
     // Exhaust the actual 16-bit argument/wire domain, including high-byte tags
     // whose low byte looks valid. An unknown tag must fail even when expected.
+    std::size_t unsupported_tags = 0;
     for (std::uint32_t word = 0; word <= std::numeric_limits<std::uint16_t>::max(); ++word) {
-        if (word == 1 || word == 2) { continue; }
+        if (word == 1 || word == 2 || word == 3) { continue; }
+        ++unsupported_tags;
         const auto model = static_cast<std::uint16_t>(word);
         const auto bytes = packet(model, 0x3f000000U, one);
         require(!rhodes::encode_instrument_state({0.5F, true}, model),
@@ -129,11 +152,12 @@ void invalid_model() {
         for (const auto expected : models) {
             require(!rhodes::decode_instrument_state(bytes, expected),
                     "unsupported wire model accepted");
-            const auto& valid = expected == 1 ? model1_golden : model2_golden;
+            const auto& valid = golden_for_model(expected);
             require(!rhodes::decode_instrument_state(valid, model),
                     "unsupported decoder model argument accepted");
         }
     }
+    require(unsupported_tags == 65533, "unsupported model-tag domain was not exhausted");
 }
 
 void malformed_models() {
@@ -280,7 +304,7 @@ void stream_roundtrip() {
     default_reader.load(model1_golden);
     expect_state(read_state_stream(&default_reader), 0x3f000000U, true);
     for (const auto model : models) {
-        const auto& golden = model == 1 ? model1_golden : model2_golden;
+        const auto& golden = golden_for_model(model);
         for (sdk::int32 chunk = 1; chunk <= 16; ++chunk) {
             MemoryStream writer;
             writer.chunk = chunk;
@@ -305,32 +329,33 @@ void stream_roundtrip() {
 
 void stream_invalid_model() {
     using namespace rhodes::vst3;
+    std::size_t unsupported_tags = 0;
     for (std::uint32_t word = 0; word <= std::numeric_limits<std::uint16_t>::max(); ++word) {
-        if (word == 1 || word == 2) { continue; }
+        if (word == 1 || word == 2 || word == 3) { continue; }
+        ++unsupported_tags;
         const auto model = static_cast<std::uint16_t>(word);
-        MemoryStream stream;
-        stream.load(model2_golden);
-        const auto before = stream.bytes;
-        require(!write_state_stream(&stream, {0.5F, true}, model),
-                "unsupported model stream write accepted");
-        require(!read_state_stream(&stream, model), "unsupported model stream read accepted");
-        require(stream.writes == 0 && stream.reads == 0 && stream.tells == 0 &&
-                stream.seeks == 0 && stream.bytes == before && stream.position == 5 &&
-                stream.extent == 21, "unsupported model touched the stream");
+        for (const auto supported : models) {
+            MemoryStream stream;
+            stream.load(golden_for_model(supported));
+            const auto before = stream.bytes;
+            require(!write_state_stream(&stream, {0.5F, true}, model),
+                    "unsupported model stream write accepted");
+            require(!read_state_stream(&stream, model), "unsupported model stream read accepted");
+            require(stream.writes == 0 && stream.reads == 0 && stream.tells == 0 &&
+                    stream.seeks == 0 && stream.bytes == before && stream.position == 5 &&
+                    stream.extent == 21, "unsupported model touched the stream");
+        }
     }
+    require(unsupported_tags == 65533, "unsupported stream model-tag domain was not exhausted");
 }
 
 void stream_rejection() {
     using namespace rhodes::vst3;
+    std::size_t rejected_cross_pairs = 0;
     for (const auto model : models) {
         require(!read_state_stream(nullptr, model) &&
                 !write_state_stream(nullptr, {0.5F, true}, model), "null model stream accepted");
-        const auto other = static_cast<std::uint16_t>(3U - model);
-        const std::array<Bytes, 6> bad_packets{
-            packet(other, 0x3f000000U, one), packet(0, 0x3f000000U, one),
-            packet(0x0102, 0x3f000000U, one), packet(model, 0x7fc12345U, one),
-            packet(model, 0x3f000000U, 0x3f000000U), packet(model, 0x3f800001U, one)};
-        for (const auto& bytes : bad_packets) {
+        const auto reject_packet = [model](const Bytes& bytes) {
             MemoryStream reader;
             reader.load(bytes);
             reader.chunk = 1;
@@ -338,11 +363,23 @@ void stream_rejection() {
             require(!read_state_stream(&reader, model), "malformed/cross-model stream accepted");
             require(reader.bytes == before && reader.reads == 16,
                     "malformed model reader changed bytes or exceeded bounds");
+        };
+        for (const auto other : models) {
+            if (other == model) { continue; }
+            reject_packet(packet(other, 0x3f000000U, one));
+            ++rejected_cross_pairs;
+        }
+        const std::array<Bytes, 5> bad_packets{
+            packet(0, 0x3f000000U, one), packet(0x0102, 0x3f000000U, one),
+            packet(model, 0x7fc12345U, one), packet(model, 0x3f000000U, 0x3f000000U),
+            packet(model, 0x3f800001U, one)};
+        for (const auto& bytes : bad_packets) {
+            reject_packet(bytes);
         }
         for (sdk::int64 size = 0; size <= 17; ++size) {
             if (size == 16) { continue; }
             MemoryStream reader;
-            reader.load(model == 1 ? model1_golden : model2_golden);
+            reader.load(golden_for_model(model));
             reader.extent = 5 + size;
             require(!read_state_stream(&reader, model) && reader.reads == 0,
                     "partial/extended model stream was read or accepted");
@@ -354,15 +391,18 @@ void stream_rejection() {
         require(writer.writes == 0 && writer.position == 5 && writer.extent == 64 &&
                 writer.bytes == before, "invalid model state touched writer");
     }
-    MemoryStream default_reader;
-    default_reader.load(model2_golden);
-    require(!read_state_stream(&default_reader), "default stream read accepted filtered state");
+    require(rejected_cross_pairs == 6, "cross-model stream rejection omitted an ordered pair");
+    for (const auto model : {2U, 3U}) {
+        MemoryStream default_reader;
+        default_reader.load(golden_for_model(static_cast<std::uint16_t>(model)));
+        require(!read_state_stream(&default_reader), "default stream read accepted a foreign model");
+    }
 }
 
 void stream_transfers() {
     using namespace rhodes::vst3;
     for (const auto model : models) {
-        const auto& golden = model == 1 ? model1_golden : model2_golden;
+        const auto& golden = golden_for_model(model);
         for (const auto fault : {Fault::result_error, Fault::zero_progress,
                                  Fault::negative_count, Fault::excessive_count}) {
             for (const std::size_t fail_at : {1U, 2U}) {
@@ -406,6 +446,7 @@ int main(int argc, char** argv) {
         };
         run("model1_golden", model1_bytes);
         run("model2_roundtrip", model2_roundtrip);
+        run("model3_roundtrip", model3_roundtrip);
         run("cross_model_rejection", cross_model_rejection);
         run("invalid_model", invalid_model);
         run("malformed_models", malformed_models);

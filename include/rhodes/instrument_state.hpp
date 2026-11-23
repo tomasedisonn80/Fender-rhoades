@@ -27,7 +27,7 @@ using EncodedInstrumentState = std::array<std::uint8_t, instrument_state_bytes>;
 
 namespace state_detail {
 inline constexpr bool valid_model(std::uint16_t model) noexcept {
-    return model == 1 || model == 2;
+    return model == 1 || model == 2 || model == 3;
 }
 // Positive binary32 encodings are ordered from +0 through +1. The only
 // permitted sign-bit encoding is -0. Integer tests keep the wire protocol
@@ -71,8 +71,9 @@ encode_instrument_state(InstrumentState state, std::uint16_t model = 1) noexcept
     if (!state_detail::valid_model(model) || !valid_instrument_state(state)) {
         return std::nullopt;
     }
-    // RHST wire version 1 is shared by the direct (1) and filtered (2)
-    // instruments. The selected immutable model occupies little-endian bytes 6–7.
+    // RHST wire version 1 is shared by the direct (1), filtered (2), and
+    // quadrature (3) instruments. The selected immutable model occupies
+    // little-endian bytes 6–7.
     EncodedInstrumentState bytes{'R', 'H', 'S', 'T', 1, 0,
         static_cast<std::uint8_t>(model), static_cast<std::uint8_t>(model >> 8U)};
     state_detail::write_u32(bytes, 8, state_detail::gain_bits(state.monitoring_gain));

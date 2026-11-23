@@ -50,8 +50,15 @@ set(public_sdk_SOURCE_DIR "${RHODES_VST3_SDK_ROOT}/public.sdk")
 set(pluginterfaces_SOURCE_DIR "${RHODES_VST3_SDK_ROOT}/pluginterfaces")
 add_subdirectory("${RHODES_VST3_SDK_ROOT}" "${CMAKE_BINARY_DIR}/vst3-sdk" EXCLUDE_FROM_ALL)
 
+# The optional fifth argument selects the quadrature variant.
 function(rhodes_add_plugin target package filtered bundle_id)
-    if(filtered)
+    if(ARGC GREATER 4 AND ARGV4)
+        # Local SDK metadata scope; existing bundles keep their versions.
+        set(PROJECT_VERSION "0.3.0")
+        set(PROJECT_VERSION_MAJOR 0)
+        set(PROJECT_VERSION_MINOR 3)
+        set(PROJECT_VERSION_PATCH 0)
+    elseif(filtered)
         # Local SDK metadata scope; the original bundle keeps its version.
         set(PROJECT_VERSION "0.2.0")
         set(PROJECT_VERSION_MAJOR 0)
@@ -66,7 +73,9 @@ function(rhodes_add_plugin target package filtered bundle_id)
     target_compile_features(${target} PRIVATE cxx_std_20)
     # All variant-sensitive TUs belong to this target. The common core and SDK
     # never inherit this definition; only platform/factory entry points export.
-    if(filtered)
+    if(ARGC GREATER 4 AND ARGV4)
+        target_compile_definitions(${target} PRIVATE RHODES_QUADRATURE_VST3=1)
+    elseif(filtered)
         target_compile_definitions(${target} PRIVATE RHODES_FILTERED_VST3=1)
     endif()
     set_target_properties(${target} PROPERTIES
@@ -80,7 +89,7 @@ function(rhodes_add_plugin target package filtered bundle_id)
             COMPANY_NAME "Independent Rhodes Research")
     endif()
     # The pinned SDK associates copy commands with MAIN_DEPENDENCY source
-    # paths. Reusing one source for two bundles in a directory collides, so each
+    # paths. Reusing a source across bundles in a directory collides, so each
     # target gets distinct configure-tracked inputs with the original basenames.
     set(resource_inputs "${CMAKE_CURRENT_BINARY_DIR}/rhodes-resources/${target}")
     file(MAKE_DIRECTORY "${resource_inputs}")
@@ -93,6 +102,7 @@ function(rhodes_add_plugin target package filtered bundle_id)
 endfunction()
 rhodes_add_plugin(rhodes_vst3 "RhodesResearch" FALSE "org.rhodesresearch.experimental")
 rhodes_add_plugin(rhodes_vst3_filtered "RhodesResearchFiltered" TRUE "org.rhodesresearch.filtered")
+rhodes_add_plugin(rhodes_vst3_quadrature "RhodesResearchQuadrature" FALSE "org.rhodesresearch.quadrature" TRUE)
 
 add_executable(rhodes_vst3_benchmark
     "${PROJECT_SOURCE_DIR}/apps/vst3_benchmark.cpp"
@@ -117,11 +127,25 @@ target_compile_definitions(rhodes_vst3_filtered_benchmark PRIVATE
     RHODES_FILTERED_VST3=1 RHODES_BUILD_CONFIGURATION="$<CONFIG>")
 rhodes_target_options(rhodes_vst3_filtered_benchmark)
 
+add_executable(rhodes_vst3_quadrature_benchmark
+    "${PROJECT_SOURCE_DIR}/apps/vst3_benchmark.cpp"
+    "${PROJECT_SOURCE_DIR}/plugins/vst3/processor.cpp"
+    "${PROJECT_SOURCE_DIR}/plugins/vst3/state_stream.cpp")
+target_compile_features(rhodes_vst3_quadrature_benchmark PRIVATE cxx_std_20)
+target_include_directories(rhodes_vst3_quadrature_benchmark PRIVATE "${PROJECT_SOURCE_DIR}")
+target_include_directories(rhodes_vst3_quadrature_benchmark SYSTEM PRIVATE "${RHODES_VST3_SDK_ROOT}")
+target_link_libraries(rhodes_vst3_quadrature_benchmark PRIVATE rhodes_core sdk)
+target_compile_definitions(rhodes_vst3_quadrature_benchmark PRIVATE
+    RHODES_QUADRATURE_VST3=1 RHODES_BUILD_CONFIGURATION="$<CONFIG>")
+rhodes_target_options(rhodes_vst3_quadrature_benchmark)
+
 if(BUILD_TESTING)
     # One explicit build target keeps CI and documented test builds complete.
     add_custom_target(rhodes_vst3_checks)
     add_dependencies(rhodes_vst3_checks rhodes_vst3 rhodes_vst3_benchmark
-        rhodes_vst3_filtered rhodes_vst3_filtered_benchmark)
+        rhodes_vst3_filtered rhodes_vst3_filtered_benchmark
+        rhodes_vst3_quadrature rhodes_vst3_quadrature_benchmark)
+    # Optional third/fourth arguments select filtered/quadrature respectively.
     function(rhodes_add_vst3_test target source)
         add_executable(${target}
             "${PROJECT_SOURCE_DIR}/${source}"
@@ -132,7 +156,9 @@ if(BUILD_TESTING)
         target_include_directories(${target} PRIVATE "${PROJECT_SOURCE_DIR}")
         target_include_directories(${target} SYSTEM PRIVATE "${RHODES_VST3_SDK_ROOT}")
         target_link_libraries(${target} PRIVATE rhodes_core sdk)
-        if(ARGC GREATER 2 AND ARGV2)
+        if(ARGC GREATER 3 AND ARGV3)
+            target_compile_definitions(${target} PRIVATE RHODES_QUADRATURE_VST3=1)
+        elseif(ARGC GREATER 2 AND ARGV2)
             target_compile_definitions(${target} PRIVATE RHODES_FILTERED_VST3=1)
         endif()
         rhodes_target_options(${target})
@@ -153,6 +179,10 @@ if(BUILD_TESTING)
     foreach(sample_format IN ITEMS 32 64)
         add_test(NAME vst3.filtered_benchmark_smoke_${sample_format}
             COMMAND rhodes_vst3_filtered_benchmark --blocks 5 --warmup-blocks 2
+                --block-size 64 --sample-rate 48000 --active-keys 73 --workload pedal
+                --sample-format ${sample_format} --machine ci-smoke)
+        add_test(NAME vst3.quadrature_benchmark_smoke_${sample_format}
+            COMMAND rhodes_vst3_quadrature_benchmark --blocks 5 --warmup-blocks 2
                 --block-size 64 --sample-rate 48000 --active-keys 73 --workload pedal
                 --sample-format ${sample_format} --machine ci-smoke)
     endforeach()
@@ -176,62 +206,86 @@ if(BUILD_TESTING)
         "-DBENCHMARK=$<TARGET_FILE:rhodes_vst3_filtered_benchmark>"
         -DEXPECT_FILTERED=ON
         -P "${PROJECT_SOURCE_DIR}/tests/cpp/vst3_benchmark_json.cmake")
+    add_test(NAME vst3.quadrature_benchmark_help COMMAND rhodes_vst3_quadrature_benchmark --help)
+    add_test(NAME vst3.quadrature_benchmark_json COMMAND ${CMAKE_COMMAND}
+        "-DBENCHMARK=$<TARGET_FILE:rhodes_vst3_quadrature_benchmark>"
+        -DEXPECT_AUDIO_PATH=quadrature
+        -P "${PROJECT_SOURCE_DIR}/tests/cpp/vst3_benchmark_json.cmake")
     rhodes_add_vst3_test(rhodes_vst3_host_tests tests/cpp/vst3_host_test.cpp)
     rhodes_add_vst3_test(rhodes_vst3_filtered_regression_tests tests/cpp/vst3_host_test.cpp TRUE)
+    rhodes_add_vst3_test(rhodes_vst3_quadrature_regression_tests tests/cpp/vst3_host_test.cpp FALSE TRUE)
     foreach(test_name IN ITEMS scalar_output overlapping_notes linear_automation
             dense_automation invalid_atomicity parameter_flush lifecycle deferred_state
             recall_abort stream_errors controller_mapping allocation_guard)
         add_test(NAME vst3.${test_name} COMMAND rhodes_vst3_host_tests ${test_name})
         add_test(NAME vst3.filtered_regression_${test_name}
             COMMAND rhodes_vst3_filtered_regression_tests ${test_name})
+        add_test(NAME vst3.quadrature_regression_${test_name}
+            COMMAND rhodes_vst3_quadrature_regression_tests ${test_name})
     endforeach()
     rhodes_add_vst3_test(rhodes_vst3_fp_tests tests/cpp/vst3_fp_environment_test.cpp)
     rhodes_add_vst3_test(rhodes_vst3_filtered_fp_tests tests/cpp/vst3_fp_environment_test.cpp TRUE)
+    rhodes_add_vst3_test(rhodes_vst3_quadrature_fp_tests tests/cpp/vst3_fp_environment_test.cpp FALSE TRUE)
     foreach(test_name IN ITEMS baseline ftz daz ftz_daz)
         add_test(NAME vst3.fp_${test_name} COMMAND rhodes_vst3_fp_tests ${test_name})
         set_tests_properties(vst3.fp_${test_name} PROPERTIES SKIP_RETURN_CODE 77)
         add_test(NAME vst3.filtered_fp_${test_name} COMMAND rhodes_vst3_filtered_fp_tests ${test_name})
         set_tests_properties(vst3.filtered_fp_${test_name} PROPERTIES SKIP_RETURN_CODE 77)
+        add_test(NAME vst3.quadrature_fp_${test_name} COMMAND rhodes_vst3_quadrature_fp_tests ${test_name})
+        set_tests_properties(vst3.quadrature_fp_${test_name} PROPERTIES SKIP_RETURN_CODE 77)
     endforeach()
     rhodes_add_vst3_test(rhodes_vst3_buffer_tests tests/cpp/vst3_buffer_contract_test.cpp)
     rhodes_add_vst3_test(rhodes_vst3_filtered_buffer_tests tests/cpp/vst3_buffer_contract_test.cpp TRUE)
+    rhodes_add_vst3_test(rhodes_vst3_quadrature_buffer_tests tests/cpp/vst3_buffer_contract_test.cpp FALSE TRUE)
     foreach(test_name IN ITEMS inactive_buffers flush_matrix rejected_buffers setup_rollback)
         add_test(NAME vst3.${test_name} COMMAND rhodes_vst3_buffer_tests ${test_name})
         add_test(NAME vst3.filtered_buffer_${test_name} COMMAND rhodes_vst3_filtered_buffer_tests ${test_name})
+        add_test(NAME vst3.quadrature_buffer_${test_name} COMMAND rhodes_vst3_quadrature_buffer_tests ${test_name})
     endforeach()
     rhodes_add_vst3_test(rhodes_vst3_stream_tests tests/cpp/vst3_stream_contract_test.cpp)
     rhodes_add_vst3_test(rhodes_vst3_filtered_stream_tests tests/cpp/vst3_stream_contract_test.cpp TRUE)
+    rhodes_add_vst3_test(rhodes_vst3_quadrature_stream_tests tests/cpp/vst3_stream_contract_test.cpp FALSE TRUE)
     foreach(test_name IN ITEMS partial_roundtrip read_failures write_failures malformed_state)
         add_test(NAME vst3.${test_name} COMMAND rhodes_vst3_stream_tests ${test_name})
         add_test(NAME vst3.filtered_stream_${test_name} COMMAND rhodes_vst3_filtered_stream_tests ${test_name})
+        add_test(NAME vst3.quadrature_stream_${test_name} COMMAND rhodes_vst3_quadrature_stream_tests ${test_name})
     endforeach()
     rhodes_add_vst3_test(rhodes_vst3_automation_tests tests/cpp/vst3_automation_contract_test.cpp)
     rhodes_add_vst3_test(rhodes_vst3_filtered_automation_tests tests/cpp/vst3_automation_contract_test.cpp TRUE)
+    rhodes_add_vst3_test(rhodes_vst3_quadrature_automation_tests tests/cpp/vst3_automation_contract_test.cpp FALSE TRUE)
     foreach(test_name IN ITEMS automation_model automation_ties automation_flush automation_rejection)
         add_test(NAME vst3.${test_name} COMMAND rhodes_vst3_automation_tests ${test_name})
         add_test(NAME vst3.filtered_automation_${test_name} COMMAND rhodes_vst3_filtered_automation_tests ${test_name})
+        add_test(NAME vst3.quadrature_automation_${test_name} COMMAND rhodes_vst3_quadrature_automation_tests ${test_name})
     endforeach()
     rhodes_add_vst3_test(rhodes_vst3_note_model_tests tests/cpp/vst3_note_model_test.cpp)
     rhodes_add_vst3_test(rhodes_vst3_filtered_note_model_tests tests/cpp/vst3_note_model_test.cpp TRUE)
+    rhodes_add_vst3_test(rhodes_vst3_quadrature_note_model_tests tests/cpp/vst3_note_model_test.cpp FALSE TRUE)
     foreach(test_name IN ITEMS identity_model capacity_model recall_model random_note_model)
         add_test(NAME vst3.${test_name} COMMAND rhodes_vst3_note_model_tests ${test_name})
         add_test(NAME vst3.filtered_note_${test_name} COMMAND rhodes_vst3_filtered_note_model_tests ${test_name})
+        add_test(NAME vst3.quadrature_note_${test_name} COMMAND rhodes_vst3_quadrature_note_model_tests ${test_name})
     endforeach()
     rhodes_add_vst3_test(rhodes_vst3_state_concurrency_tests tests/cpp/vst3_state_concurrency_test.cpp)
     rhodes_add_vst3_test(rhodes_vst3_filtered_state_concurrency_tests tests/cpp/vst3_state_concurrency_test.cpp TRUE)
+    rhodes_add_vst3_test(rhodes_vst3_quadrature_state_concurrency_tests tests/cpp/vst3_state_concurrency_test.cpp FALSE TRUE)
     target_link_libraries(rhodes_vst3_state_concurrency_tests PRIVATE Threads::Threads)
     target_link_libraries(rhodes_vst3_filtered_state_concurrency_tests PRIVATE Threads::Threads)
+    target_link_libraries(rhodes_vst3_quadrature_state_concurrency_tests PRIVATE Threads::Threads)
     foreach(test_name IN ITEMS state_preflight_race state_callback_stress)
         add_test(NAME vst3.${test_name} COMMAND rhodes_vst3_state_concurrency_tests ${test_name})
         add_test(NAME vst3.filtered_state_${test_name} COMMAND rhodes_vst3_filtered_state_concurrency_tests ${test_name})
+        add_test(NAME vst3.quadrature_state_${test_name} COMMAND rhodes_vst3_quadrature_state_concurrency_tests ${test_name})
     endforeach()
     add_dependencies(rhodes_vst3 validator)
     add_dependencies(rhodes_vst3_filtered validator)
+    add_dependencies(rhodes_vst3_quadrature validator)
     get_target_property(rhodes_plugin_bundle rhodes_vst3 SMTG_PLUGIN_PACKAGE_PATH)
     add_test(NAME vst3.sdk_validator
         COMMAND $<TARGET_FILE:validator> "${rhodes_plugin_bundle}")
     set_tests_properties(vst3.sdk_validator PROPERTIES TIMEOUT 180)
     get_target_property(rhodes_filtered_bundle rhodes_vst3_filtered SMTG_PLUGIN_PACKAGE_PATH)
+    get_target_property(rhodes_quadrature_bundle rhodes_vst3_quadrature SMTG_PLUGIN_PACKAGE_PATH)
     if(SMTG_LINUX)
         # The host exercises independently loaded production modules. Keep SDK
         # loader sources under SDK options and strict warnings on our test.
@@ -257,9 +311,13 @@ if(BUILD_TESTING)
     add_test(NAME vst3.filtered_sdk_validator
         COMMAND $<TARGET_FILE:validator> "${rhodes_filtered_bundle}")
     set_tests_properties(vst3.filtered_sdk_validator PROPERTIES TIMEOUT 180)
+    add_test(NAME vst3.quadrature_sdk_validator
+        COMMAND $<TARGET_FILE:validator> "${rhodes_quadrature_bundle}")
+    set_tests_properties(vst3.quadrature_sdk_validator PROPERTIES TIMEOUT 180)
     add_test(NAME vst3.bundle_resources COMMAND ${CMAKE_COMMAND}
         "-DDIRECT_BUNDLE=${rhodes_plugin_bundle}"
         "-DFILTERED_BUNDLE=${rhodes_filtered_bundle}"
+        "-DQUADRATURE_BUNDLE=${rhodes_quadrature_bundle}"
         "-DSDK_LICENSE=${RHODES_VST3_SDK_ROOT}/LICENSE.txt"
         "-DTHIRD_PARTY_NOTICES=${PROJECT_SOURCE_DIR}/plugins/vst3/THIRD_PARTY_NOTICES.md"
         -P "${PROJECT_SOURCE_DIR}/tests/cpp/vst3_bundle_resources.cmake")

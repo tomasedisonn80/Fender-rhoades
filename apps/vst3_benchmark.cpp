@@ -42,8 +42,9 @@ namespace plugin = rhodes::vst3;
 using Clock = std::chrono::steady_clock;
 constexpr std::uint64_t hash_basis = 14695981039346656037ULL;
 constexpr float intensity = 0.7F;
-constexpr std::string_view executable_name = plugin::kFilteredAudio ?
-    "rhodes_vst3_filtered_benchmark" : "rhodes_vst3_benchmark";
+constexpr std::string_view executable_name = plugin::kQuadratureAudio ?
+    "rhodes_vst3_quadrature_benchmark" : (plugin::kFilteredAudio ?
+    "rhodes_vst3_filtered_benchmark" : "rhodes_vst3_benchmark");
 
 struct Options {
     std::size_t blocks = 1000;
@@ -427,7 +428,12 @@ template<class Sample> int run(const Options& options) {
     const auto cursor = host->processor.engine_processor().frame_cursor();
     const auto owners = host->processor.note_tracker().active_count();
     const auto expected_owners = options.workload == "pedal" ? std::size_t{0} : options.keys;
-    const bool nonzero_expected = options.keys != 0;
+    // Quadrature emits only completed host cells. The phase reset leaves no
+    // completed cell for its first sample; every longer excited measurement
+    // must still contain nonzero output, irrespective of the 48-frame delay.
+    const bool initial_quadrature_frame = plugin::kQuadratureAudio &&
+        options.blocks == 1 && options.frames == 1;
+    const bool nonzero_expected = options.keys != 0 && !initial_quadrature_frame;
     const bool expected_output = (nonzero_samples != 0) == nonzero_expected;
     const bool complete = warmup_ok && measured == options.blocks && failed == 0 && finite &&
         stereo_equal && silence_flags && expected_output && !host->processor.requires_reset() &&
@@ -443,7 +449,11 @@ template<class Sample> int run(const Options& options) {
     std::cout << ",\"plugin_name\":"; json_string(plugin::kPluginName);
     std::cout << ",\"state_model\":" << plugin::kStateModel
         << ",\"latency_frames\":" << host->processor.getLatencySamples();
-    if constexpr (plugin::kFilteredAudio) {
+    if constexpr (plugin::kQuadratureAudio) {
+        std::cout << ",\"quadrature_nodes\":"
+            << host->processor.engine_processor().engine().node_count()
+            << ",\"observation_scheme\":\"gauss-legendre-host-cell\"";
+    } else if constexpr (plugin::kFilteredAudio) {
         std::cout << ",\"oversampling_factor\":"
             << host->processor.engine_processor().engine().oversampling_factor()
             << ",\"internal_sample_rate_hz\":"

@@ -105,7 +105,7 @@ Steinberg::uint32 PLUGIN_API RhodesProcessor::getTailSamples() {
 }
 
 Steinberg::uint32 PLUGIN_API RhodesProcessor::getLatencySamples() {
-    return kFilteredAudio ? static_cast<Steinberg::uint32>(AudioEngine::latency_frames()) : 0U;
+    return kLatencyFrames;
 }
 
 Steinberg::tresult PLUGIN_API RhodesProcessor::setState(Steinberg::IBStream* stream) {

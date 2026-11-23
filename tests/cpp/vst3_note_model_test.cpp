@@ -23,7 +23,10 @@ using namespace rhodes::vst3::test_host;
 // action scheduling remain independent of the production note tracker.
 using ScalarEngine = std::remove_cvref_t<
     decltype(std::declval<const HostEventProcessor&>().engine())>;
-#if defined(RHODES_FILTERED_VST3)
+#if defined(RHODES_QUADRATURE_VST3)
+static_assert(kQuadratureAudio && !kFilteredAudio && kStateModel == 3);
+static_assert(std::is_same_v<ScalarEngine, QuadratureEngine>);
+#elif defined(RHODES_FILTERED_VST3)
 static_assert(kFilteredAudio && kStateModel == 2);
 static_assert(std::is_same_v<ScalarEngine, AudioEngine>);
 #else
@@ -238,10 +241,10 @@ struct Fixture {
             state_matches();
             // Inspect future trajectories too: a wrong hidden held/damping flag
             // can preserve the current q/v while changing the next samples.
-            auto observed = host.processor.engine_processor().engine();
-            auto expected = reference;
+            auto observed = std::make_unique<ScalarEngine>(host.processor.engine_processor().engine());
+            auto expected = std::make_unique<ScalarEngine>(reference);
             std::array<double, 17> a{}, b{};
-            check(observed.process(a) && expected.process(b) && a == b,
+            check(observed->process(a) && expected->process(b) && a == b,
                   "rejection changed future mechanical trajectory");
             return false;
         }

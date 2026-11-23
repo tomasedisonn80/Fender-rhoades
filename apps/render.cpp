@@ -1,4 +1,5 @@
 #include "rhodes/audio_engine.hpp"
+#include "rhodes/quadrature_engine.hpp"
 #include "rhodes/research_engine.hpp"
 
 #include <algorithm>
@@ -27,7 +28,7 @@
 #endif
 
 namespace {
-enum class AudioPath { direct, filtered };
+enum class AudioPath { direct, filtered, quadrature };
 
 struct Options {
     std::filesystem::path output = "research-note.wav";
@@ -46,12 +47,13 @@ void usage() {
         "Usage: rhodes_render [--output PATH] [--seconds 0.01..60]\n"
         "                     [--sample-rate 32000..192000] [--key 0..72]\n"
         "                     [--velocity 0..1] [--gain 0..100] [--force]\n"
-        "                     [--audio-path direct|filtered]\n"
+        "                     [--audio-path direct|filtered|quadrature]\n"
         "Writes mono 32-bit IEEE-float WAV. Key 0 maps to synthetic MIDI 28.\n"
         "Existing entries are refused; --force replaces regular files only, never symlinks.\n"
         "The note releases after min(1 second, 65% of duration).\n"
         "Audio path defaults to direct (0 latency frames). Filtered retains its causal\n"
         "48-frame FIR delay within the requested duration; no trim or tail extension.\n"
+        "Quadrature uses 6 fractional observations per host cell and retains 48 frames of delay.\n"
         "One output unit represents one modeled volt times the explicit monitoring gain.\n"
         "No normalization, clipping, measured parameters, or recorded samples are used.\n";
 }
@@ -211,6 +213,7 @@ struct AudioPathInfo {
     std::string_view name;
     double internal_rate_hz;
     std::size_t latency_frames;
+    std::size_t quadrature_nodes = 0;
 };
 
 AudioPathInfo audio_path_info(const rhodes::ResearchEngine& engine) noexcept {
@@ -219,6 +222,11 @@ AudioPathInfo audio_path_info(const rhodes::ResearchEngine& engine) noexcept {
 
 AudioPathInfo audio_path_info(const rhodes::AudioEngine& engine) noexcept {
     return {"filtered", engine.internal_sample_rate_hz(), engine.latency_frames()};
+}
+
+AudioPathInfo audio_path_info(const rhodes::QuadratureEngine& engine) noexcept {
+    // There is no uniformly sampled internal stream in the quadrature path.
+    return {"quadrature", 0.0, engine.latency_frames(), engine.node_count()};
 }
 
 template<typename Engine>
@@ -279,9 +287,14 @@ void render(const Options& options) {
     std::cout << "Wrote " << output_name << ": " << frames
               << " frames at " << options.sample_rate << " Hz, peak=" << peak
               << ", explicit monitoring gain=" << options.gain
-              << ", audio-path=" << path_info.name
-              << ", internal rate=" << path_info.internal_rate_hz
-              << " Hz, latency=" << path_info.latency_frames
+              << ", audio-path=" << path_info.name;
+    if (path_info.quadrature_nodes != 0) {
+        std::cout << ", quadrature nodes=" << path_info.quadrature_nodes
+                  << " per host cell, host rate=" << options.sample_rate << " Hz";
+    } else {
+        std::cout << ", internal rate=" << path_info.internal_rate_hz << " Hz";
+    }
+    std::cout << ", latency=" << path_info.latency_frames
               << " frames. Synthetic parameters; no hardware fidelity result.\n";
 }
 }
@@ -319,7 +332,8 @@ int main(int argc, char** argv) {
             else if (flag == "--audio-path") {
                 if (value == "direct") { options.audio_path = AudioPath::direct; }
                 else if (value == "filtered") { options.audio_path = AudioPath::filtered; }
-                else { throw std::runtime_error("Invalid value for --audio-path; expected direct or filtered"); }
+                else if (value == "quadrature") { options.audio_path = AudioPath::quadrature; }
+                else { throw std::runtime_error("Invalid value for --audio-path; expected direct, filtered or quadrature"); }
             }
         }
         if (!std::isfinite(options.seconds) || options.seconds < 0.01 || options.seconds > 60.0 ||
@@ -332,7 +346,9 @@ int main(int argc, char** argv) {
             throw std::runtime_error("Arguments are outside the documented ranges; see --help");
         }
         replace_existing_output(options.output, options.force);
-        if (options.audio_path == AudioPath::filtered) {
+        if (options.audio_path == AudioPath::quadrature) {
+            render<rhodes::QuadratureEngine>(options);
+        } else if (options.audio_path == AudioPath::filtered) {
             render<rhodes::AudioEngine>(options);
         } else {
             render<rhodes::ResearchEngine>(options);

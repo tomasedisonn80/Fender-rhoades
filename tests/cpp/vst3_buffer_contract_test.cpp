@@ -18,9 +18,13 @@ namespace {
 using namespace rhodes;
 using namespace rhodes::vst3;
 using namespace rhodes::vst3::test_host;
+using ScalarEngine = std::remove_cvref_t<decltype(std::declval<HostEventProcessor&>().engine())>;
 
 static_assert(kMaximumHostFrames == 8192, "Review the declared host-bound contract");
-#if defined(RHODES_FILTERED_VST3)
+#if defined(RHODES_QUADRATURE_VST3)
+static_assert(kQuadratureAudio && !kFilteredAudio && kStateModel == 3,
+              "Quadrature buffer tests require model 3");
+#elif defined(RHODES_FILTERED_VST3)
 static_assert(kFilteredAudio && kStateModel == 2, "Filtered buffer tests require model 2");
 #else
 static_assert(!kFilteredAudio && kStateModel == 1, "Direct buffer tests require model 1");
@@ -30,7 +34,8 @@ constexpr sdk::int32 configured_frames = 64;
 constexpr std::size_t history_frames = 96;
 static_assert(audio_filter::coefficients_l1.size() == history_frames + 1 &&
               audio_filter::coefficients_l2.size() == 2 * history_frames + 1 &&
-              audio_filter::coefficients_l4.size() == 4 * history_frames + 1,
+              audio_filter::coefficients_l4.size() == 4 * history_frames + 1 &&
+              quadrature_filter::history_frames == history_frames,
               "Review full FIR-history continuation coverage");
 constexpr sdk::uint64 untouched_flags = 0x5a5a5a5a5a5a5a5aULL;
 std::size_t checks = 0;
@@ -47,10 +52,10 @@ void expect_unchanged_history(const ProcessorSnapshot& before, const RhodesProce
     // Compare copied histories before any pending recall can reset the next
     // live block. Include every 96-frame FIR memory position and its boundary;
     // retain the shared snapshot's immediate-state and 17-frame assertions.
-    auto actual = processor.engine_processor().engine();
-    auto expected = before.engine.engine();
+    auto actual = std::make_unique<ScalarEngine>(processor.engine_processor().engine());
+    auto expected = std::make_unique<ScalarEngine>(before.engine.engine());
     std::array<double, history_frames + 1> actual_output{}, expected_output{};
-    check(actual.process(actual_output) && expected.process(expected_output),
+    check(actual->process(actual_output) && expected->process(expected_output),
           "extended snapshot continuation failed");
     check(actual_output == expected_output, "rejected call changed FIR history or future trajectory");
 }
@@ -298,8 +303,11 @@ void flush_cases() {
                     actual->restore(0);
                     reference->restore(0);
                     const auto cursor = actual->processor.engine_processor().frame_cursor();
-                    const auto mechanics = actual->processor.engine_processor().engine();
-                    ParameterQueue gain, sustain;
+                    const auto mechanics = std::make_unique<const ScalarEngine>(
+                        actual->processor.engine_processor().engine());
+                    auto queues = std::make_unique<std::array<ParameterQueue, 2>>();
+                    auto& gain = (*queues)[0];
+                    auto& sustain = (*queues)[1];
                     gain.count = 1;
                     gain.values[0] = {0, 0.3125};
                     sustain.id = kSustainId;
@@ -323,7 +331,7 @@ void flush_cases() {
                     check(invoke(reference->processor, reference->data) == sdk::kResultOk, "canonical control flush failed");
                     actual->buffers.unchanged();
                     check(actual->processor.engine_processor().frame_cursor() == cursor, "flush advanced audio time");
-                    same_mechanics(actual->processor.engine_processor().engine(), mechanics);
+                    same_mechanics(actual->processor.engine_processor().engine(), *mechanics);
                     const auto packet = saved_state(actual->processor);
                     constexpr EncodedInstrumentState expected{
                         'R', 'H', 'S', 'T', 1, 0, static_cast<std::uint8_t>(kStateModel), 0,

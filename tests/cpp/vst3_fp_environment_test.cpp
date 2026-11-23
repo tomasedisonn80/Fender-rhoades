@@ -3,6 +3,9 @@
 #include <bit>
 #include <cstring>
 #include <iostream>
+#include <memory>
+#include <type_traits>
+#include <utility>
 
 #if defined(__SSE__) || defined(_M_X64) || (defined(_M_IX86_FP) && _M_IX86_FP >= 1)
 #define RHODES_TEST_MXCSR 1
@@ -26,7 +29,12 @@ namespace {
 namespace host = rhodes::vst3::test_host;
 namespace sdk = Steinberg;
 namespace vst = Steinberg::Vst;
-#if defined(RHODES_FILTERED_VST3)
+using ScalarEngine = std::remove_cvref_t<decltype(
+    std::declval<rhodes::vst3::HostEventProcessor&>().engine())>;
+#if defined(RHODES_QUADRATURE_VST3)
+static_assert(rhodes::vst3::kQuadratureAudio && !rhodes::vst3::kFilteredAudio &&
+              rhodes::vst3::kStateModel == 3);
+#elif defined(RHODES_FILTERED_VST3)
 static_assert(rhodes::vst3::kFilteredAudio && rhodes::vst3::kStateModel == 2);
 #else
 static_assert(!rhodes::vst3::kFilteredAudio && rhodes::vst3::kStateModel == 1);
@@ -184,9 +192,9 @@ void positive_note_cases() {
         host::EventList events;
         seed(instance, events);
         for (const auto id : {7, 8}) {
-            auto expected = instance.processor.engine_processor().engine();
+            auto expected = std::make_unique<ScalarEngine>(instance.processor.engine_processor().engine());
             std::array<double, 4> output{};
-            check(expected.process(output), "held-key reference render failed");
+            check(expected->process(output), "held-key reference render failed");
             events.values[0] = host::note_on(0, id, 68, input_float(bits));
             instance.data.inputEvents = &events;
             check(process(instance.processor, instance.data) == sdk::kResultOk,
@@ -195,7 +203,7 @@ void positive_note_cases() {
             check(instance.processor.note_tracker().active_count() == wanted &&
                   instance.processor.note_tracker().held_count(40) == wanted,
                   "positive tiny host note lost a holder");
-            host::same_mechanics(instance.processor.engine_processor().engine(), expected);
+            host::same_mechanics(instance.processor.engine_processor().engine(), *expected);
         }
         events.values[0] = host::note_off(0, 7);
         check(process(instance.processor, instance.data) == sdk::kResultOk &&
@@ -284,9 +292,9 @@ void recall_history_cases() {
     seed(instance, events);
     // A zero/subnormal host output could hide retained FIR samples under FTZ.
     // Probe pre-gain audio directly, over more than the 96-frame FIR support.
-    auto before = instance.processor.engine_processor().engine();
+    auto before = std::make_unique<ScalarEngine>(instance.processor.engine_processor().engine());
     std::array<double, 128> tail{};
-    check(before.process(tail), "warm recall history probe failed");
+    check(before->process(tail), "warm recall history probe failed");
     const auto nonzero_bits = [](double value) {
         return (std::bit_cast<std::uint64_t>(value) & 0x7fffffffffffffffULL) != 0;
     };
@@ -305,8 +313,8 @@ void recall_history_cases() {
           "warm recall did not reset cursor and ownership");
     expect_gain(instance.processor, gain_bits, true);
 
-    auto after = instance.processor.engine_processor().engine();
-    check(after.process(tail), "recalled history probe failed");
+    auto after = std::make_unique<ScalarEngine>(instance.processor.engine_processor().engine());
+    check(after->process(tail), "recalled history probe failed");
     for (const double sample : tail) {
         check(!nonzero_bits(sample), "tiny-gain recall retained pre-gain audio history");
     }

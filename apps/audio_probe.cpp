@@ -2,6 +2,11 @@
 #include "rhodes/control_value.hpp"
 #include "rhodes/event_processor.hpp"
 
+#if defined(RHODES_QUADRATURE_PROBE)
+#include "rhodes/quadrature_engine.hpp"
+#include <memory>
+#endif
+
 #include <algorithm>
 #include <array>
 #include <charconv>
@@ -18,6 +23,19 @@
 #include <string_view>
 
 namespace {
+#if defined(RHODES_QUADRATURE_PROBE)
+using ProbeEngine = rhodes::QuadratureEngine;
+constexpr std::string_view probe_name = "rhodes_quadrature_probe";
+constexpr auto prepare_error = "QuadratureEngine prepare failed";
+constexpr auto event_error = "QuadratureEngine event application failed";
+constexpr auto process_error = "QuadratureEngine processing failed";
+#else
+using ProbeEngine = rhodes::AudioEngine;
+constexpr std::string_view probe_name = "rhodes_audio_probe";
+constexpr auto prepare_error = "AudioEngine prepare failed";
+constexpr auto event_error = "AudioEngine event application failed";
+constexpr auto process_error = "AudioEngine processing failed";
+#endif
 constexpr std::size_t maximum_frames = 4096;
 constexpr std::size_t maximum_events = 4096;
 constexpr std::size_t maximum_line_bytes = 128; // Excludes the newline byte.
@@ -160,7 +178,7 @@ Input preflight(int argc, char** argv) {
     return input;
 }
 
-bool apply(rhodes::AudioEngine& engine, const rhodes::EngineEvent& value) noexcept {
+bool apply(ProbeEngine& engine, const rhodes::EngineEvent& value) noexcept {
     switch (value.type) {
     case rhodes::EventType::note_on: return engine.note_on(value.key, value.value);
     case rhodes::EventType::note_off: return engine.note_off(value.key);
@@ -173,8 +191,15 @@ bool apply(rhodes::AudioEngine& engine, const rhodes::EngineEvent& value) noexce
 
 void run(const Input& input) {
     // No engine exists until every argument and input row has passed preflight.
-    rhodes::AudioEngine engine;
-    if (!engine.prepare(input.sample_rate)) { throw std::runtime_error("AudioEngine prepare failed"); }
+#if defined(RHODES_QUADRATURE_PROBE)
+    // The offline exporter may allocate after preflight; keep the prepared
+    // fractional observation plan off a native Windows thread's stack.
+    const auto engine_storage = std::make_unique<ProbeEngine>();
+    auto& engine = *engine_storage;
+#else
+    ProbeEngine engine;
+#endif
+    if (!engine.prepare(input.sample_rate)) { throw std::runtime_error(prepare_error); }
     std::array<double, maximum_frames> samples{};
     std::size_t next_event = 0;
     for (std::size_t block = 0; block < input.frames; block += processing_block_frames) {
@@ -184,11 +209,11 @@ void run(const Input& input) {
             // more than 256 same-offset rows, without a host ownership adapter.
             while (next_event < input.event_count && input.events[next_event].offset == frame) {
                 if (!apply(engine, input.events[next_event++])) {
-                    throw std::runtime_error("AudioEngine event application failed");
+                    throw std::runtime_error(event_error);
                 }
             }
             if (!engine.process(std::span<double>{samples}.subspan(frame, 1))) {
-                throw std::runtime_error("AudioEngine processing failed");
+                throw std::runtime_error(process_error);
             }
             if (!std::isfinite(samples[frame])) { throw std::runtime_error("Nonfinite audio sample"); }
         }
@@ -197,12 +222,21 @@ void run(const Input& input) {
     // monitoring gain, waveform normalization, latency removal, or file I/O.
     std::cout.imbue(std::locale::classic());
     std::cout << std::setprecision(std::numeric_limits<double>::max_digits10)
+#if defined(RHODES_QUADRATURE_PROBE)
+              << "{\"schema_version\":1,\"model\":\"synthetic-quadrature-audio\","
+                 "\"scope\":\"Uncalibrated synthetic loaded-harp voltage; causal Q6 convolution; "
+                 "no gain, normalization, time shift, or measured fidelity claim\","
+                 "\"sample_rate_hz\":" << engine.sample_rate_hz()
+              << ",\"quadrature_nodes\":" << engine.node_count()
+              << ",\"observation_scheme\":\"gauss-legendre-host-cell\""
+#else
               << "{\"schema_version\":1,\"model\":\"synthetic-filtered-audio\","
                  "\"scope\":\"Uncalibrated synthetic loaded-harp voltage; causal FIR; "
                  "no gain, normalization, time shift, or measured fidelity claim\","
                  "\"sample_rate_hz\":" << engine.sample_rate_hz()
               << ",\"internal_sample_rate_hz\":" << engine.internal_sample_rate_hz()
               << ",\"oversampling_factor\":" << engine.oversampling_factor()
+#endif
               << ",\"latency_frames\":" << engine.latency_frames()
               << ",\"frames\":" << input.frames
               << ",\"event_count\":" << input.event_count << ",\"samples_volts\":[";
@@ -218,9 +252,16 @@ void run(const Input& input) {
 int main(int argc, char** argv) {
     try {
         if (argc == 2 && std::string_view{argv[1]} == "--help") {
+#if defined(RHODES_QUADRATURE_PROBE)
+            std::cout << "rhodes_quadrature_probe --sample-rate Hz --frames N\n"
+                "Synthetic QuadratureEngine double-precision JSON probe; no measured fidelity claim.\n"
+                "Finite host rate 32000..192000 Hz; 1..4096 frames; 48-frame causal kernel delay.\n"
+                "Six Gauss-Legendre observations per host cell; no uniform internal sample rate.\n"
+#else
             std::cout << "rhodes_audio_probe --sample-rate Hz --frames N\n"
                 "Synthetic AudioEngine double-precision JSON probe; no measured fidelity claim.\n"
                 "Finite host rate 32000..192000 Hz; 1..4096 frames; 48-frame causal FIR delay.\n"
+#endif
                 "stdin: offset type key value, exactly four fields on each nonempty row.\n"
                 "Types: on (key 0..72, value 0..1; zero releases), off (key 0..72, value 0),\n"
                 "sustain (key 0, value 0/1), all_off/reset (key 0, value 0).\n"
@@ -236,7 +277,7 @@ int main(int argc, char** argv) {
         run(preflight(argc, argv));
         return 0;
     } catch (const std::exception& error) {
-        std::cerr << "rhodes_audio_probe: " << error.what() << '\n';
+        std::cerr << probe_name << ": " << error.what() << '\n';
         return 2;
     }
 }

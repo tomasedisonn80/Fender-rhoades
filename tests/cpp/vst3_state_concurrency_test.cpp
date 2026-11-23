@@ -15,7 +15,11 @@ using rhodes::InstrumentState;
 using rhodes::vst3::RhodesProcessor;
 using Packet = std::array<std::uint8_t, 16>;
 
-#if defined(RHODES_FILTERED_VST3)
+#if defined(RHODES_QUADRATURE_VST3)
+constexpr std::uint16_t expected_model = 3;
+static_assert(rhodes::vst3::kQuadratureAudio && !rhodes::vst3::kFilteredAudio &&
+              rhodes::vst3::kStateModel == expected_model);
+#elif defined(RHODES_FILTERED_VST3)
 constexpr std::uint16_t expected_model = 2;
 static_assert(rhodes::vst3::kFilteredAudio && rhodes::vst3::kStateModel == expected_model);
 #else

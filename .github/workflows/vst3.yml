@@ -94,15 +94,15 @@ jobs:
           -DSMTG_ENABLE_VST3_HOSTING_EXAMPLES=OFF
           -DSMTG_CREATE_PLUGIN_LINK=OFF
           ${{ matrix.configure_args }}
-      - name: Build both actual modules and retained host tests
+      - name: Build all three actual modules and retained host tests
         run: >-
           cmake --build build/vst3 --config Release
           --target rhodes_vst3_checks --parallel 2
-      - name: Run retained host tests and both official SDK validators
+      - name: Run retained host tests and all three official SDK validators
         run: >-
           ctest --test-dir build/vst3 -C Release -R '^vst3\.'
           --output-on-failure --no-tests=error
-      - name: Archive both validated experimental bundles
+      - name: Archive all three validated experimental bundles
         id: vst3-archive
         env:
           VST3_BUNDLE_ROOT: build/vst3/VST3/Release
@@ -120,7 +120,8 @@ jobs:
           artifact_name = os.environ['VST3_ARTIFACT_NAME']
           suffix = {'Linux': '.so', 'Windows': '.vst3', 'Darwin': ''}[platform.system()]
           bundles = [bundle_root / f'{name}.vst3' for name in
-                     ('RhodesResearch', 'RhodesResearchFiltered')]
+                     ('RhodesResearch', 'RhodesResearchFiltered',
+                      'RhodesResearchQuadrature')]
           sources = {}
           for bundle in bundles:
               if not bundle.is_dir() or bundle.is_symlink():
@@ -146,7 +147,7 @@ jobs:
                   archive.add(bundle, arcname=bundle.name)
           with tarfile.open(archive_path, 'r:gz') as archive:
               if set(archive.getnames()) != set(sources):
-                  raise SystemExit('Archive does not contain both complete bundles')
+                  raise SystemExit('Archive does not contain all three complete bundles')
               for name, source in sources.items():
                   member = archive.getmember(name)
                   if member.mode != stat.S_IMODE(source.lstat().st_mode):

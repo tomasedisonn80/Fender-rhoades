@@ -3,6 +3,7 @@
 #include "plugin_ids.hpp"
 #include "rhodes/event_processor.hpp"
 #include "rhodes/audio_engine.hpp"
+#include "rhodes/quadrature_engine.hpp"
 #include "rhodes/instrument_state.hpp"
 #include "rhodes/note_tracker.hpp"
 #include "public.sdk/source/vst/vstaudioeffect.h"
@@ -13,8 +14,12 @@
 
 namespace rhodes::vst3 {
 
-#if defined(RHODES_FILTERED_VST3)
+#if defined(RHODES_QUADRATURE_VST3)
+using HostEventProcessor = BasicEventProcessor<QuadratureEngine>;
+static_assert(QuadratureEngine::latency_frames() == kLatencyFrames);
+#elif defined(RHODES_FILTERED_VST3)
 using HostEventProcessor = BasicEventProcessor<AudioEngine>;
+static_assert(AudioEngine::latency_frames() == kLatencyFrames);
 #else
 using HostEventProcessor = EventProcessor;
 #endif

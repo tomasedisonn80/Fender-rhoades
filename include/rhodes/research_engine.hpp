@@ -11,6 +11,7 @@ inline constexpr double minimum_sample_rate_hz = 32000.0;
 inline constexpr double maximum_sample_rate_hz = 192000.0;
 inline constexpr std::size_t key_count = 73;
 inline constexpr std::size_t modes_per_key = 3;
+inline constexpr std::size_t observation_node_count = 6;
 
 struct ModalState {
     double displacement_m = 0.0;
@@ -84,6 +85,25 @@ private:
     double load_resistance_ohm_ = 1000000.0;
 };
 
+// Prepared, non-mutating observations inside one host-frame interval. Only a
+// ResearchEngine can populate this fixed-storage plan. Default construction is
+// invalid; successful preparation binds the plan to that engine's sample rate.
+// A plan can be reused after events/reset, or by another identical-rate engine.
+// It belongs to the optional quadrature path, not each legacy modal oscillator.
+class FractionalObservationPlan {
+public:
+    FractionalObservationPlan() noexcept = default;
+
+private:
+    friend class ResearchEngine;
+    using Transition = std::array<double, 4>;
+    using KeyTransitions = std::array<Transition, modes_per_key>;
+    using RegimeTransitions = std::array<KeyTransitions, key_count>;
+    using NodeTransitions = std::array<RegimeTransitions, 2>;
+    std::array<NodeTransitions, observation_node_count> transitions_{};
+    double sample_rate_hz_ = 0.0;
+};
+
 // Uncalibrated development engine; constants below are NOT specimen data.
 // Fixed 73-key storage, no allocation/locking/I/O in any core operation.
 // Sample output is the surrogate loaded harp voltage, in volts.
@@ -94,6 +114,18 @@ public:
     ResearchEngine() noexcept;
     // Successful prepare resets all mechanics/pedal. Invalid input is atomic.
     [[nodiscard]] bool prepare(double sample_rate_hz) noexcept;
+    // Fractions must be six finite, strictly increasing values inside (0,1).
+    // Computes both loss regimes without modifying this engine. Rejection
+    // preserves the caller's existing plan; preparation is outside processing.
+    [[nodiscard]] bool prepare_observation_plan(
+        const std::array<double, observation_node_count>& fractions,
+        FractionalObservationPlan& output) const noexcept;
+    // Loaded-harp voltage at fraction[node] of the next frame, observed from
+    // current boundary state without mutation. Invalid/rate-mismatched plans,
+    // invalid nodes or nonfinite arithmetic return no value. Uses only prepared
+    // matrices and fixed storage; no allocation, locking or transcendental work.
+    [[nodiscard]] std::optional<double> observe(
+        const FractionalObservationPlan& plan, std::size_t node) const noexcept;
     // key index 0..72 maps to MIDI 28..100 for synthetic equal temperament.
     // intensity 0..1 drives an impulse surrogate, NOT measured hammer velocity.
     // Zero intensity is release; retriggers preserve displacement and velocity.

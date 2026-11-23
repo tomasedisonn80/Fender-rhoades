@@ -135,6 +135,16 @@ using namespace rhodes::vst3::test_host;
 // event scheduling and gain automation independent of the VST3 adapter.
 using ScalarEngine = std::remove_cvref_t<
     decltype(std::declval<const HostEventProcessor&>().engine())>;
+#if defined(RHODES_QUADRATURE_VST3)
+static_assert(kQuadratureAudio && !kFilteredAudio && kStateModel == 3);
+static_assert(std::is_same_v<ScalarEngine, QuadratureEngine>);
+#elif defined(RHODES_FILTERED_VST3)
+static_assert(kFilteredAudio && !kQuadratureAudio && kStateModel == 2);
+static_assert(std::is_same_v<ScalarEngine, AudioEngine>);
+#else
+static_assert(!kFilteredAudio && !kQuadratureAudio && kStateModel == 1);
+static_assert(std::is_same_v<ScalarEngine, ResearchEngine>);
+#endif
 
 sdk::tresult process(RhodesProcessor& processor, vst::ProcessData& data) {
     sdk::tresult result = sdk::kResultFalse;
@@ -819,7 +829,7 @@ void stream_errors() {
             !write_state_stream(nullptr, state, kStateModel),
             "null state stream accepted");
 
-    // Shared helper defaults must keep model 1 even in a filtered executable.
+    // Shared helper defaults keep model 1 in every selected executable.
     // Variant expectations above and below always pass their model explicitly.
     auto direct_golden = golden;
     direct_golden[6] = 1;
@@ -834,10 +844,13 @@ void stream_errors() {
     default_loader.load(state);
     require(std::equal(direct_golden.begin(), direct_golden.end(), default_loader.bytes.begin()),
             "shared fixture loader default changed with the selected variant");
-    MemoryStream other_model;
-    other_model.load(state, 0, kStateModel == 1 ? 2 : 1);
-    require(!read_state_stream(&other_model, kStateModel),
-            "stream helper accepted the other variant's model");
+    for (const auto model : std::array<std::uint16_t, 3>{1, 2, 3}) {
+        if (model == kStateModel) { continue; }
+        MemoryStream other_model;
+        other_model.load(state, 0, model);
+        require(!read_state_stream(&other_model, kStateModel),
+                "stream helper accepted another variant's model");
+    }
 
     for (TransferFault fault : {TransferFault::result_error, TransferFault::zero_progress,
                                 TransferFault::negative_count, TransferFault::overreported_count}) {

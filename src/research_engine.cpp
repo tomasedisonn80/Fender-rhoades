@@ -1,7 +1,9 @@
 #include "rhodes/research_engine.hpp"
 #include "rhodes/control_value.hpp"
 
+#include <bit>
 #include <cmath>
+#include <cstdint>
 #include <numbers>
 
 namespace rhodes {
@@ -233,6 +235,89 @@ bool ResearchEngine::prepare(double rate) noexcept {
     sample_rate_hz_ = rate;
     sustain_ = false;
     return true;
+}
+
+bool ResearchEngine::prepare_observation_plan(
+    const std::array<double, observation_node_count>& fractions,
+    FractionalObservationPlan& output) const noexcept {
+    // Positive IEEE binary64 bit patterns have numeric ordering. Validate the
+    // control domain this way so DAZ/FTZ cannot change endpoint/order decisions.
+    std::uint64_t previous = 0;
+    for (const double fraction : fractions) {
+        const auto bits = std::bit_cast<std::uint64_t>(fraction);
+        if (bits <= previous || bits >= std::bit_cast<std::uint64_t>(1.0)) {
+            return false;
+        }
+        previous = bits;
+    }
+    if (!valid_sample_rate(sample_rate_hz_)) { return false; }
+
+    FractionalObservationPlan candidate;
+    for (std::size_t k = 0; k < key_count; ++k) {
+        const double midi = static_cast<double>(k) + 28.0;
+        const double frequency = 440.0 * std::exp2((midi - 69.0) / 12.0);
+        for (std::size_t m = 0; m < modes_per_key; ++m) {
+            // Keep the same frequency grouping as ModalOscillator::configure.
+            const double omega_0 = 2.0 * std::numbers::pi *
+                (frequency * frequency_ratios[m]);
+            for (std::size_t regime = 0; regime < 2; ++regime) {
+                const double decay = regime == 0 ? damped_decay[m] : free_decay[m];
+                const double omega_d = std::sqrt((omega_0 - decay) * (omega_0 + decay));
+                for (std::size_t node = 0; node < observation_node_count; ++node) {
+                    const double seconds = fractions[node] / sample_rate_hz_;
+                    const double angle = omega_d * seconds;
+                    const double sinc = std::abs(angle) < 1.0e-6
+                        ? 1.0 - angle * angle / 6.0
+                        : std::sin(angle) / angle;
+                    const double sine_over_omega_d = seconds * sinc;
+                    const double cosine = std::cos(angle);
+                    const double envelope = std::exp(-decay * seconds);
+                    const std::array<double, 4> transition{
+                        envelope * (cosine + decay * sine_over_omega_d),
+                        envelope * sine_over_omega_d,
+                        -envelope * omega_0 * omega_0 * sine_over_omega_d,
+                        envelope * (cosine - decay * sine_over_omega_d)};
+                    for (const double value : transition) {
+                        if (!std::isfinite(value)) { return false; }
+                    }
+                    candidate.transitions_[node][regime][k][m] = transition;
+                }
+            }
+        }
+    }
+    candidate.sample_rate_hz_ = sample_rate_hz_;
+    output = candidate;
+    return true;
+}
+
+std::optional<double> ResearchEngine::observe(
+    const FractionalObservationPlan& plan, std::size_t node) const noexcept {
+    if (node >= observation_node_count || plan.sample_rate_hz_ != sample_rate_hz_) {
+        return std::nullopt;
+    }
+    std::array<double, key_count> sources{};
+    for (std::size_t k = 0; k < key_count; ++k) {
+        const std::size_t regime = keys_[k].held || sustain_ ? 1U : 0U;
+        double x = 0.0;
+        double velocity = 0.0;
+        for (std::size_t m = 0; m < modes_per_key; ++m) {
+            const auto state = keys_[k].modes[m].state();
+            const auto& transition = plan.transitions_[node][regime][k][m];
+            const double q = transition[0] * state.displacement_m +
+                transition[1] * state.velocity_m_per_s;
+            const double v = transition[2] * state.displacement_m +
+                transition[3] * state.velocity_m_per_s;
+            if (!std::isfinite(q) || !std::isfinite(v)) { return std::nullopt; }
+            x += pickup_observation[m] * q;
+            velocity += pickup_observation[m] * v;
+        }
+        // As in the legacy sample path, combine motion before the nonlinear
+        // pickup and retain every electrical branch in the loaded network.
+        const auto voltage = pickup_.voltage(x, velocity);
+        if (!voltage) { return std::nullopt; }
+        sources[k] = *voltage;
+    }
+    return harp_.voltage(sources);
 }
 
 void ResearchEngine::update_damping(Key& key) noexcept {
