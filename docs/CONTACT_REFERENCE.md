@@ -62,6 +62,16 @@ does not widen root brackets or project positions. Interior samples, extrema
 checks, replay and root refinement identify onset, separation and clamp changes.
 Residuals are evaluated separately from the integrated physical quantities.
 
+The [reviewed event-step correction](agents/continuation-20261123/w3-041.md)
+shortens an accepted crossing trial once to the earliest eligible post-root
+bracket endpoint. It replays from the unchanged start state, checks the new
+error and event scan, and then continues. This reduces integration across a
+change of contact branch, where the smooth RK4 error estimate can understate
+the local error. It does not project mechanics onto a root or recursively chase
+an exact surface hit. All additional work uses the existing limits, and failure
+still rolls back the whole call. The independently located continuous-extrema
+gate remains separate.
+
 Default maximum internal step is **20 µs**, relative tolerance `1e-8`, and
 absolute tolerances are `1e-12 m`, `1e-9 m/s`, `1e-13 J` and `1e-13 N s`.
 Default event time and gap tolerances are **10 ns** and **5e-13 m**. These local

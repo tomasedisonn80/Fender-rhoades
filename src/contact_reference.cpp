@@ -1230,6 +1230,34 @@ Result ReferenceSolver::advance(double dt) {
         } else {
             accepted = false;
         }
+        if (accepted) {
+            // End a crossing interval at the first natural branch root's
+            // post-root bracket endpoint, then restart from its unprojected
+            // mechanical state. One additional replay per outer trial avoids
+            // repeatedly chasing a midpoint toward the same zero. All replay
+            // and scan work consumes the existing call-wide budgets.
+            double split_h = h;
+            for (const auto& event : found) {
+                const double offset = event.bracket_end_s - start.t;
+                if (event.before != event.after && offset >= floor &&
+                    h - offset >= floor) {
+                    split_h = std::min(split_h, offset);
+                }
+            }
+            if (split_h < h) {
+                h = split_h;
+                found.clear();
+                // Keep this diagnostic scoped to the interval being accepted,
+                // excluding evaluations from the abandoned longer trial.
+                trial_power_residual_ = 0.0;
+                accepted = trial(start.t, start.y, h, candidate);
+                if (accepted && candidate.error <= 1.0) {
+                    accepted = scan(start, candidate, h, points, found);
+                } else {
+                    accepted = false;
+                }
+            }
+        }
         if (!accepted) {
             if (status_ == Status::budget_exhausted || failure_ == Failure::unresolved_grazing) {
                 return result();

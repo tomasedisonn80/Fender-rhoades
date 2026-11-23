@@ -2,7 +2,7 @@
 
 This session resumes `d86135b` and records actual worker assignments, separately from earlier campaigns.
 
-Requested: **100 workers in five waves of 20**. Recorded: **40**. Completed: **40**.
+Requested: **100 workers in five waves of 20**. Recorded: **45**. Completed: **42**.
 
 Workers run in batches within three available worker slots. An assignment report records work performed and unresolved findings; it does not establish physical fidelity.
 
@@ -60,6 +60,11 @@ Workers run in batches within three available worker slots. An assignment report
 
 | ID | Actual task | Scope | Status |
 |---|---|---|---|
+| [041](continuation-20261123/w3-041.md) | `/root/w3_041_event_split_integration` | Integrate reviewed bounded event landing and verify combined peak behavior | completed |
+| 042 | `/root/w3_042_continuous_audio_reference` | Implement independent continuous-time convolution diagnostic and fixed case matrix | running |
+| [043](continuation-20261123/w3-043.md) | `/root/w3_043_audio_probe` | Export bounded float64 audio trajectories for independent numerical audits | completed |
+| 044 | `/root/w3_044_repaired_contact_matrix` | Audit repaired contact solver on the identical full338 configuration matrix | running |
+| 045 | `/root/w3_045_ci_runtime_compatibility` | Verify the new CI artifact action against current official runtime and API support | running |
 
 ## Wave 4
 

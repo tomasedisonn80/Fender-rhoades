@@ -364,6 +364,51 @@
       "status": "completed",
       "report": "docs/agents/continuation-20261123/w2-040.md",
       "report_sha256": "2695ef2d1b3d196d4d963784ecfa0ee1deb8e1bcd624337165cfb3f4b3e188e1"
+    },
+    {
+      "id": 41,
+      "wave": 3,
+      "task_name": "/root/w3_041_event_split_integration",
+      "scope": "Integrate reviewed bounded event landing and verify combined peak behavior",
+      "status": "completed",
+      "report": "docs/agents/continuation-20261123/w3-041.md",
+      "report_sha256": "59d14ce753912dfc04578d061cebf5d09da46fcd83147c8063f309312957c1f0"
+    },
+    {
+      "id": 42,
+      "wave": 3,
+      "task_name": "/root/w3_042_continuous_audio_reference",
+      "scope": "Implement independent continuous-time convolution diagnostic and fixed case matrix",
+      "status": "running",
+      "report": "docs/agents/continuation-20261123/w3-042.md",
+      "report_sha256": null
+    },
+    {
+      "id": 43,
+      "wave": 3,
+      "task_name": "/root/w3_043_audio_probe",
+      "scope": "Export bounded float64 audio trajectories for independent numerical audits",
+      "status": "completed",
+      "report": "docs/agents/continuation-20261123/w3-043.md",
+      "report_sha256": "4a341bb5dfa1ea9f6b85f12c655b2298aa1b7f4e7843c8f09b4b089e049b083d"
+    },
+    {
+      "id": 44,
+      "wave": 3,
+      "task_name": "/root/w3_044_repaired_contact_matrix",
+      "scope": "Audit repaired contact solver on the identical full338 configuration matrix",
+      "status": "running",
+      "report": "docs/agents/continuation-20261123/w3-044.md",
+      "report_sha256": null
+    },
+    {
+      "id": 45,
+      "wave": 3,
+      "task_name": "/root/w3_045_ci_runtime_compatibility",
+      "scope": "Verify the new CI artifact action against current official runtime and API support",
+      "status": "running",
+      "report": "docs/agents/continuation-20261123/w3-045.md",
+      "report_sha256": null
     }
   ]
 }
