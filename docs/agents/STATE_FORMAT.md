@@ -20,6 +20,11 @@ before its first evidence record was registered. All version 1 records now requi
 the complete field set below; missing fields are rejected rather than inferred
 from artifact names. No populated registry was migrated by this change.
 
+The optional task `revalidation` object was added before any canonical task had
+been reopened. It is absent from never-reopened tasks; no canonical state or
+evidence migration was needed. Imported state with recorded reopen events must
+include the corresponding gate rather than silently treating old evidence as new.
+
 ## State object
 
 | Field | Meaning |
@@ -51,6 +56,7 @@ These consistency rules cannot establish the truth or adequacy of the evidence.
 | `acceptance` | Nonempty array of concrete criteria; reviewers check actual satisfaction |
 | `required_evidence` | Nonempty array of required evidence kinds |
 | `evidence` | Evidence IDs attached to the task; done tasks require passing evidence of every required kind |
+| `revalidation` | Present only after a recorded reopen; binds the latest reopen revision to the evidence IDs already registered then |
 | `owner` | Agent/integrator identifier or `null` |
 | `claim` | Active/expired lease record or `null` |
 | `blockers` | Nonempty explanations only when status is `blocked` |
@@ -69,6 +75,37 @@ Revisions are sequential and timestamps cannot run backward. `claim`, `renew`,
 `complete`, `release`, `block`, `unblock`, and `reopen` append events. A completed
 task can be reopened after a discovered regression; completed dependents must be
 reopened first. Prior evidence stays in the registry.
+
+### Revalidation after reopening
+
+`reopen` adds or replaces the task's `revalidation` object:
+
+| Field | Meaning |
+| --- | --- |
+| `reopen_revision` | Positive integer equal to this task's latest `reopen` history revision |
+| `excluded_evidence` | Nonempty array of unique IDs of **all** records in the registry at that reopen, including records never attached to this task |
+
+The CLI stores the snapshot IDs in sorted order and preserves the existing
+registry and task evidence. The object stays present through claims, handoffs,
+blocking, and completion. A second reopen replaces the gate with its own revision
+and a snapshot of the entire registry at that point, so records used for the
+previous repair become historical for the next repair.
+
+For a reopened task to be `done`, every required evidence kind must be represented
+by at least one passing attached record whose ID is **absent** from
+`excluded_evidence`. Previously registered records may remain attached, but do
+not satisfy this requirement. Adding a new record of an unrelated kind is not
+enough, and failed or inconclusive records still cannot serve as completion
+evidence. Membership in the recorded snapshot, rather than a timestamp comparison,
+distinguishes registrations within the same UTC second.
+
+The executable validator applies this rule to loaded state as well as CLI
+completion. It rejects missing gates after recorded reopens, empty snapshots,
+unknown or duplicate snapshot IDs, malformed objects, and a revision that does
+not match the latest reopen event for that task. A gate without a recorded
+reopen is also invalid.
+The structural schema describes the object; the cross-record and history checks
+belong to `tools/project.py`.
 
 ## Evidence object
 
@@ -144,6 +181,14 @@ authentic, raw data match the manifest, or held-out conditions are statistically
 independent. Reviewers still assess relevance to acceptance criteria. Likewise,
 `source_commit` is format-checked only; reviewers verify the actual source object
 and which changes were tested.
+
+Revalidation establishes new registry IDs relative to a workflow-recorded
+snapshot. It does not prove that checks were rerun, that a report describes the
+corrected implementation, or that evidence addresses every acceptance criterion.
+The validator cannot reconstruct historical registrations after a repository
+editor rewrites the snapshot or registry. Reviewers still inspect the actual
+results and their relevance; registering old bytes under a new ID does not by
+itself supply new scientific evidence.
 
 Adding new tasks requires a reviewed JSON edit with stable IDs, complete
 acceptance, dependencies and evidence kinds. Validate, regenerate the dashboard,

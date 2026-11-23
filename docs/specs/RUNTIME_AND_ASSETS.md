@@ -17,8 +17,29 @@ control costs must be included in future full-callback measurements.
 
 One execution owner mutates each engine. Construction, asset parsing and
 preparation occur outside audio processing. No concurrent UI/control mutation is
-supported by the current unsynchronized state. Diagnostics use bounded status and
-counters; logging and presentation occur outside the callback.
+supported by the current unsynchronized state. The current process API returns
+only a Boolean status; no diagnostic counters or failing-sample/subsystem fields
+are implemented. Future diagnostics must use bounded status and counters, with
+logging and presentation outside the callback.
+
+Current tests do not induce an engine arithmetic fault and verify its partial
+state/output recovery. The proposed bounded fault fixture below remains work for
+the runtime/reference phase; successful invalid-input tests do not cover it.
+
+## First RT-001 handoff
+
+After PHY-001 passes, the first runtime slice is a synthetic, bounded full-call
+harness: include the declared event/control work with processing, freeze the
+workload and numerical-reference tolerances, and report observed maxima and
+nominal block-deadline misses. Keep the existing process-only benchmark as a
+separately named baseline. This harness is not an audio-device callback and
+cannot measure host wake-up lateness, device underruns or released-plugin behavior.
+
+RT-001 still requires both performance and numerical evidence, including the
+allocation/locking policy and timestep/antialiasing convergence in its acceptance
+criteria. Timing JSON or a smoke test alone cannot complete it. The integrator
+must record exactly which synthetic workload and approximations passed, and
+create explicit host/release tasks before claiming device or plugin coverage.
 
 ## Bounded event adapter
 

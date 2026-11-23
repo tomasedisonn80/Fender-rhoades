@@ -104,8 +104,10 @@ identify physical half-pedal behavior.
 | Damper engagement/partial travel | Continuous mechanical state and actuator-work balance |
 | Step refinement `h`, `h/2`, `h/4` | Converged impulse, rebound, event time and waveform |
 
-Before coding the acceptance tests, commit their synthetic fixture constants,
-supported domain, absolute/relative tolerances and the reason for those limits.
+Before coding the acceptance tests, the assigned worker proposes their synthetic
+fixture constants, supported domain, absolute/relative tolerances and the reason
+for those limits. The integrator reviews and freezes that definition in a commit
+before assigning implementation; a scoped worker does not acquire Git authority.
 Use a stated energy scale so near-zero residual normalization is meaningful.
 Record cumulative residual, force residual, impact timing, integrated impulse
 and rebound error; bounded output alone is insufficient. A failed fixture must

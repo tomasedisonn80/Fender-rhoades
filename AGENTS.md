@@ -45,6 +45,10 @@ CLI automatically regenerates `docs/PROJECT_STATE.md`. For incomplete work, use
 `release` with an actionable handoff or `block` with the exact missing input.
 For a regression, reopen completed dependents before reopening the prerequisite.
 
+Before completion or fidelity promotion, the integrator records a criterion-by-
+criterion review following `docs/agents/ACCEPTANCE_REVIEW.md`, bound to the actual
+tested source and inputs. Matching an evidence kind is insufficient by itself.
+
 Never edit a report already registered by hash. Add a new correction or result,
 preserving the old observation and its context. The state/evidence tool checks
 internal consistency; it cannot certify that a reported experiment really ran.

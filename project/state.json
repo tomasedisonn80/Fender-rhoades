@@ -4,8 +4,8 @@
   "goal": "Physically model a Fender Rhodes Mark I from evolving mechanical, electromagnetic and circuit states without recorded-note playback.",
   "target": "One documented 73-key Mark I Stage specimen at its specified loaded electrical output; identity and measurements pending.",
   "fidelity_status": "unvalidated",
-  "revision": 4,
-  "updated_at": "2026-11-23T12:19:41Z",
+  "revision": 9,
+  "updated_at": "2026-11-23T12:54:32Z",
   "tasks": [
     {
       "id": "FND-001",
@@ -37,7 +37,16 @@
         "tests",
         "docs",
         "project",
-        "schemas"
+        "schemas",
+        "include/rhodes",
+        "src",
+        "apps",
+        "CMakeLists.txt",
+        "CMakePresets.json",
+        ".github/workflows/ci.yml",
+        "README.md",
+        "AGENTS.md",
+        "CONTRIBUTING.md"
       ]
     },
     {
@@ -65,7 +74,12 @@
       ],
       "paths": [
         "profiles/mark-i-stage-73",
-        "data"
+        "data",
+        "schemas",
+        "tools/validate_data.py",
+        "tools/project.py",
+        "tests/python",
+        "docs/specs/DATA_INGESTION.md"
       ]
     },
     {
@@ -95,7 +109,13 @@
       ],
       "paths": [
         "data",
-        "profiles/mark-i-stage-73"
+        "profiles/mark-i-stage-73",
+        "schemas",
+        "tools/validate_data.py",
+        "tools/project.py",
+        "tools/verify_payloads.py",
+        "tests/python",
+        "docs/specs/DATA_INGESTION.md"
       ]
     },
     {
@@ -151,7 +171,9 @@
         "include/rhodes",
         "src",
         "tests/cpp",
-        "docs"
+        "docs",
+        "apps",
+        "CMakeLists.txt"
       ]
     },
     {
@@ -297,7 +319,11 @@
         "src",
         "apps",
         "tests",
-        "docs/validation"
+        "docs/validation",
+        "include/rhodes",
+        "CMakeLists.txt",
+        "docs/BENCHMARKING.md",
+        "docs/specs/RUNTIME_AND_ASSETS.md"
       ]
     },
     {
@@ -423,6 +449,46 @@
       "task": "DATA-001",
       "owner": "integration-root",
       "detail": "A046–A051: make unresolved calibration, payload and split-ancestry limits explicit acquisition acceptance requirements."
+    },
+    {
+      "revision": 5,
+      "at": "2026-11-23T12:53:27Z",
+      "action": "define_task",
+      "task": "FND-001",
+      "owner": "integration-root",
+      "detail": "A095 scope audit: explicitly authorize implementation and regression paths required by existing acceptance; no acceptance, dependency or blocker changes."
+    },
+    {
+      "revision": 6,
+      "at": "2026-11-23T12:53:27Z",
+      "action": "define_task",
+      "task": "SPEC-001",
+      "owner": "integration-root",
+      "detail": "A095 scope audit: explicitly authorize implementation and regression paths required by existing acceptance; no acceptance, dependency or blocker changes."
+    },
+    {
+      "revision": 7,
+      "at": "2026-11-23T12:53:27Z",
+      "action": "define_task",
+      "task": "DATA-001",
+      "owner": "integration-root",
+      "detail": "A095 scope audit: explicitly authorize implementation and regression paths required by existing acceptance; no acceptance, dependency or blocker changes."
+    },
+    {
+      "revision": 8,
+      "at": "2026-11-23T12:54:32Z",
+      "action": "define_task",
+      "task": "PHY-002",
+      "owner": "integration-root",
+      "detail": "A098 next-task audit: include public API, reference/benchmark harness build targets and guidance in implementation scope; preserve all numerical/performance acceptance gates."
+    },
+    {
+      "revision": 9,
+      "at": "2026-11-23T12:54:32Z",
+      "action": "define_task",
+      "task": "RT-001",
+      "owner": "integration-root",
+      "detail": "A098 next-task audit: include public API, reference/benchmark harness build targets and guidance in implementation scope; preserve all numerical/performance acceptance gates."
     }
   ]
 }

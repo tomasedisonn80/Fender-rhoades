@@ -12,7 +12,7 @@ compiler supplied by your operating system's normal development environment.
 ```sh
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 cmake --build build --config Release --parallel 2
-ctest --test-dir build -C Release --output-on-failure
+ctest --test-dir build -C Release --output-on-failure --no-tests=error
 python3 tools/project.py validate
 python3 tools/project.py sync --check
 python3 tools/validate_data.py
@@ -23,14 +23,30 @@ python3 -m unittest discover -s tests/python -v
 ```
 
 Ninja presets provide `dev`, `release`, and supported-compiler `sanitize` builds.
+The supplied `sanitize` preset is disabled on Windows, regardless of compiler.
 On Windows, the generic CMake commands work with Visual Studio's generator;
 executables normally appear under `build/Release/`. Substitute `python` for
 `python3` where appropriate.
 
+`RHODES_ENABLE_SANITIZERS=ON` requires a GNU, Clang or AppleClang compiler with a
+GNU-style driver and the corresponding sanitizer runtime. Unsupported families
+and MSVC-style drivers, including clang-cl, fail configuration explicitly. Normal
+MSVC builds do not request these flags. Successful configuration alone is not
+evidence that the resulting instrumented tests passed.
+
+All test presets reject an empty test selection. The sanitizer test preset also
+sets fail-on-UB and stack-trace options, matching CI's diagnostic policy. These
+[test-preset fields](https://cmake.org/cmake/help/v3.24/manual/cmake-presets.7.html#test-preset)
+are supported by the declared CMake minimum. Record any environment-specific
+sanitizer override and its reduced coverage in the evidence report.
+
 ## Automated checks
 
-`.github/workflows/ci.yml` runs project/data/campaign validation, Python tests,
-C++ builds on Linux/Windows/macOS, and an additional Linux sanitizer build.
+`.github/workflows/ci.yml` configures project/data/campaign validation and Python
+tests on Linux, Windows and macOS, C++ builds on the same three platforms, and an
+additional Linux sanitizer build. Symlink/FIFO fixtures explicitly skip only when
+the host lacks the needed facility or permission; a skipped case is not a pass
+for that facility. Inspect job summaries before claiming platform coverage.
 The workflow has read-only repository permissions and never commits or pushes.
 Actions are pinned by commit. Dependency update proposals are limited to the
 GitHub Actions ecosystem because the initial runtime has no external packages.
@@ -39,6 +55,19 @@ A configured CI job is not a completed test result. Read the Actions run for the
 specific commit before reporting a platform as passing. Local Linux verification
 cannot establish that Windows or macOS passed. There is no plugin binary release
 or installer pipeline in this foundation.
+
+The current C++ command-line interfaces use narrow process arguments. Arbitrary
+Unicode filesystem paths and non-ASCII machine labels have not been validated on
+Windows. Use simple portable paths/labels for reproducible baseline runs until
+native wide-argument conversion and dedicated fixtures are implemented.
+
+The renderer stages its WAV in an exclusively reserved sibling directory and
+checks flush/close before publication. Default publication never replaces an
+existing entry and requires hard-link support. `--force` permits atomic
+replacement of a regular file; final symlinks and nonregular destinations are
+refused. Use trusted, quiescent parent directories. Forced replacement is not an
+adversarial-path sandbox or a power-loss durability guarantee. A cleanup warning
+after successful publication does not mean the completed output was lost.
 
 ## Evidence records
 

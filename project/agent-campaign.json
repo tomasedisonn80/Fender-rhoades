@@ -422,9 +422,9 @@
     {
       "id": "A053",
       "task_name": "/root/a053_payload_verifier",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/reviews/A053.md",
-      "report_sha256": null,
+      "report_sha256": "4dfefa45690af8e8906c6b2001ebb3d0f056bebd322f4ef0b5e90b5c65a26f7b",
       "scope": "Opt-in raw artifact byte verification and failure fixtures"
     },
     {
@@ -446,18 +446,346 @@
     {
       "id": "A056",
       "task_name": "/root/a056_circuit_operating_points",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/reviews/A056.md",
-      "report_sha256": null,
+      "report_sha256": "dcf6a577f6dd0a341020001261aa71b0ec346292d252e1ef2cd4ebcca1ff2ee3",
       "scope": "Optional circuit operating points and state initialization"
     },
     {
       "id": "A057",
       "task_name": "/root/a057_stage_control_sweeps",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/reviews/A057.md",
-      "report_sha256": null,
+      "report_sha256": "201700002eb889ba358243e80380c55b3d74befdda2b4f7deb94d3baf447818a",
       "scope": "Passive Stage controls and coupled load sweeps"
+    },
+    {
+      "id": "A058",
+      "task_name": "/root/a058_circuit_multitone",
+      "status": "completed",
+      "report": "docs/agents/reviews/A058.md",
+      "report_sha256": "08ad83ae62edaae3f9035df5bbfac655bd66184fac5a25597f111d1fd0c48d18",
+      "scope": "Shared-circuit multitone and transient validation"
+    },
+    {
+      "id": "A059",
+      "task_name": "/root/a059_optical_motion_history",
+      "status": "completed",
+      "report": "docs/agents/reviews/A059.md",
+      "report_sha256": "3ed97aed4714958cb163bd30d0e14f3212b002f9f2b063784385827b20b63b2a",
+      "scope": "Optical and thermal history acquisition contracts"
+    },
+    {
+      "id": "A060",
+      "task_name": "/root/a060_acoustic_loading",
+      "status": "completed",
+      "report": "docs/agents/reviews/A060.md",
+      "report_sha256": "f7e3608e842b92081b704549cf71df5b9eb85323ba8c8965607238e429991903",
+      "scope": "Optional acoustic paths and electrical loading"
+    },
+    {
+      "id": "A061",
+      "task_name": "/root/a061_listening_statistics",
+      "status": "completed",
+      "report": "docs/agents/reviews/A061.md",
+      "report_sha256": "659537ad151c42ecd84d92f2d6b4e1102b04ae729a33b7aa688859d14be2dcb7",
+      "scope": "Listening experiment design and statistical interpretation"
+    },
+    {
+      "id": "A062",
+      "task_name": "/root/a062_level_and_timing",
+      "status": "completed",
+      "report": "docs/agents/reviews/A062.md",
+      "report_sha256": "0e2ba7020658304d407f7f82247fc6860b01b9ee865e7d832af65cb5a879e5a2",
+      "scope": "Absolute-level and common-timing evaluation"
+    },
+    {
+      "id": "A063",
+      "task_name": "/root/a063_frequency_decay_metrics",
+      "status": "completed",
+      "report": "docs/agents/reviews/A063.md",
+      "report_sha256": "dde0c6abe4415795913f610a3ec0337be9a88fc289460efcf88d4d8f085a298b",
+      "scope": "Frequency and decay metric interpretation"
+    },
+    {
+      "id": "A064",
+      "task_name": "/root/a064_transient_metrics",
+      "status": "completed",
+      "report": "docs/agents/reviews/A064.md",
+      "report_sha256": "76304d270008d2108a7a8a40714fdd2781bc40b032ddeeccee7da4a7a0f00c8e",
+      "scope": "Attack release and retrigger metric contracts"
+    },
+    {
+      "id": "A065",
+      "task_name": "/root/a065_identifiability",
+      "status": "completed",
+      "report": "docs/agents/reviews/A065.md",
+      "report_sha256": "38db709245077fccc458bee9d87ff04bea124a90d1e9d806b2512b588123b4ef",
+      "scope": "Parameter sensitivity identifiability and fit provenance"
+    },
+    {
+      "id": "A066",
+      "task_name": "/root/a066_uncertainty_acceptance",
+      "status": "completed",
+      "report": "docs/agents/reviews/A066.md",
+      "report_sha256": "cd63124a301505f05a153a18a72a90804f15268d0ba9ac86a8927d12d1a0c3a3",
+      "scope": "Repeatability uncertainty and condition-level acceptance"
+    },
+    {
+      "id": "A067",
+      "task_name": "/root/a067_claim_audit",
+      "status": "completed",
+      "report": "docs/agents/reviews/A067.md",
+      "report_sha256": "3f944a9d53a7e90633f5194005b3c31faf72e1d9e833a7212505936c9cc5b3a4",
+      "scope": "Independent synthetic-versus-measured claim audit"
+    },
+    {
+      "id": "A068",
+      "task_name": "/root/a068_crash_recovery",
+      "status": "completed",
+      "report": "docs/agents/reviews/A068.md",
+      "report_sha256": "811853cf557f8ca65b6fb558fb01005ac1563ed4d14cb4e8f34320269f05bd38",
+      "scope": "Crash recovery and publication durability"
+    },
+    {
+      "id": "A069",
+      "task_name": "/root/a069_generated_drift",
+      "status": "completed",
+      "report": "docs/agents/reviews/A069.md",
+      "report_sha256": "aa2834fdeb0115c6d43976e49e16d6f6c9abe811da602d0d15e83d97f07f8fbe",
+      "scope": "Deterministic generated documentation and drift recovery"
+    },
+    {
+      "id": "A070",
+      "task_name": "/root/a070_prompt_precision",
+      "status": "completed",
+      "report": "docs/agents/reviews/A070.md",
+      "report_sha256": "01143fbafe19dec7ad320ebc9e6956c447509f9a526cfffff0e56b037fcc08aa",
+      "scope": "Precise runnable continuation prompt and permission semantics"
+    },
+    {
+      "id": "A071",
+      "task_name": "/root/a071_handoff_clarity",
+      "status": "completed",
+      "report": "docs/agents/reviews/A071.md",
+      "report_sha256": "444fd7ec372715d6d7c2c6c972261ca3e19039d3f796e22d0828bd229940a0c8",
+      "scope": "Actionable handoff and ownership recovery"
+    },
+    {
+      "id": "A072",
+      "task_name": "/root/a072_acceptance_relevance",
+      "status": "completed",
+      "report": "docs/agents/reviews/A072.md",
+      "report_sha256": "f16cc9c83f7df887de6b2a54de4dc2fb7337c461ed8325c558b1854a7bcad355",
+      "scope": "Task acceptance relevance and evidence reuse boundaries"
+    },
+    {
+      "id": "A073",
+      "task_name": "/root/a073_regression_reopening",
+      "status": "completed",
+      "report": "docs/agents/reviews/A073.md",
+      "report_sha256": "5d179ef09f910de0773411dc7a466b2d080fde015740a153dc350ca4ffb4fb05",
+      "scope": "Regression reopening and evidence freshness"
+    },
+    {
+      "id": "A074",
+      "task_name": "/root/a074_campaign_integrity",
+      "status": "completed",
+      "report": "docs/agents/reviews/A074.md",
+      "report_sha256": "a00888a234cffc7bcfaa0b6909b7d79c1c2beb325d63ad420796b9468158abe2",
+      "scope": "Campaign integrity audit and isolated regression tests"
+    },
+    {
+      "id": "A075",
+      "task_name": "/root/a075_revalidation_gate",
+      "status": "completed",
+      "report": "docs/agents/reviews/A075.md",
+      "report_sha256": "81bb9191e779d593b50a533ec110d36f50835e733f37b74adbaae191e310fb79",
+      "scope": "Enforced fresh evidence after reopening a regression"
+    },
+    {
+      "id": "A076",
+      "task_name": "/root/a076_windows_portability",
+      "status": "completed",
+      "report": "docs/agents/reviews/A076.md",
+      "report_sha256": "afb9efc972383e7b404c97b5a5934d42e4a2b4a270665918da8daff236418f7c",
+      "scope": "Windows build and interface portability audit"
+    },
+    {
+      "id": "A077",
+      "task_name": "/root/a077_macos_portability",
+      "status": "completed",
+      "report": "docs/agents/reviews/A077.md",
+      "report_sha256": "7711358706141309893692cdcef1c5ef45dfaffa9da71120f7070752e7930f20",
+      "scope": "macOS compiler filesystem and Python portability"
+    },
+    {
+      "id": "A078",
+      "task_name": "/root/a078_linux_build_flags",
+      "status": "completed",
+      "report": "docs/agents/reviews/A078.md",
+      "report_sha256": "95693c2e2fe81d234b1ab3f29195856e28cf295d3cfa96c319f00c20a7fa4271",
+      "scope": "Compiler flags and explicit unsupported-sanitizer behavior"
+    },
+    {
+      "id": "A079",
+      "task_name": "/root/a079_test_independence",
+      "status": "completed",
+      "report": "docs/agents/reviews/A079.md",
+      "report_sha256": "f5758c30fcab15648e95c0d43855c85c4c938423df301353eb3babaa98c63f1e",
+      "scope": "Independent analytic and invariant test audit"
+    },
+    {
+      "id": "A080",
+      "task_name": "/root/a080_sanitizer_coverage",
+      "status": "completed",
+      "report": "docs/agents/reviews/A080.md",
+      "report_sha256": "26eabcde7326a04bb54d48b775a30fc29d305e97063098cfb4cba065a716ea2e",
+      "scope": "Sanitizer coverage limits and failure signals"
+    },
+    {
+      "id": "A081",
+      "task_name": "/root/a081_engine_output_oracle",
+      "status": "completed",
+      "report": "docs/agents/reviews/A081.md",
+      "report_sha256": "a3d064b5936dd989989b51d5b2d8bc1c1997f0fa635309b27c07c32a8f18df9b",
+      "scope": "Independent integrated modal pickup and network regression"
+    },
+    {
+      "id": "A082",
+      "task_name": "/root/a082_wav_and_cli_paths",
+      "status": "completed",
+      "report": "docs/agents/reviews/A082.md",
+      "report_sha256": "ce44c6592322d078548c54769a418d2c5b86059a36b94b122788581381a88f68",
+      "scope": "IEEE-float WAV and offline output-path safety"
+    },
+    {
+      "id": "A083",
+      "task_name": "/root/a083_benchmark_statistics",
+      "status": "completed",
+      "report": "docs/agents/reviews/A083.md",
+      "report_sha256": "5fb275ace6bb3a42dcc00c05f1ed1fd27cf96e422682819bede87f8dca9105df",
+      "scope": "Benchmark statistics and JSON boundary behavior"
+    },
+    {
+      "id": "A084",
+      "task_name": "/root/a084_atomic_wav_output",
+      "status": "completed",
+      "report": "docs/agents/reviews/A084.md",
+      "report_sha256": "ca6c40d2d0458889c46fcd0d3f69af1f334e64633b0560915eed188d0cfdc3f9",
+      "scope": "Atomic and non-overwriting offline WAV publication"
+    },
+    {
+      "id": "A085",
+      "task_name": "/root/a085_reproducibility_bias",
+      "status": "completed",
+      "report": "docs/agents/reviews/A085.md",
+      "report_sha256": "912307e2787c69dcf354eb7a625f9d32deda7536f7c357c0b5b85097b0cad870",
+      "scope": "Benchmark bias and build reproducibility boundaries"
+    },
+    {
+      "id": "A086",
+      "task_name": "/root/a086_rights_provenance",
+      "status": "completed",
+      "report": "docs/agents/reviews/A086.md",
+      "report_sha256": "187e806b1c7959ee9866ea4101e248cadb2a867fdae94470845da5dac312512e",
+      "scope": "Research input rights and source provenance audit"
+    },
+    {
+      "id": "A087",
+      "task_name": "/root/a087_ci_and_benchmark_contract",
+      "status": "completed",
+      "report": "docs/agents/reviews/A087.md",
+      "report_sha256": "06ae0e0aba0d30ed7861c1bb4eb2b634d0811f7553009471a15023a01ddf80d9",
+      "scope": "CI privileges and parsed benchmark JSON regression"
+    },
+    {
+      "id": "A088",
+      "task_name": "/root/a088_metadata_boundaries",
+      "status": "completed",
+      "report": "docs/agents/reviews/A088.md",
+      "report_sha256": "aab837a4ce8b056267d4d40b9cfadcf6928d73cf502873b5599f14322a6db4df",
+      "scope": "Malformed metadata and path boundary audit"
+    },
+    {
+      "id": "A089",
+      "task_name": "/root/a089_metadata_hardening",
+      "status": "completed",
+      "report": "docs/agents/reviews/A089.md",
+      "report_sha256": "d1ffa1329495a63b7eeb1455f0c9c889b1f365fc37c2fe5f3c7be4e65c620107",
+      "scope": "Controlled malformed-input errors and protected Git paths"
+    },
+    {
+      "id": "A090",
+      "task_name": "/root/a090_release_and_recovery",
+      "status": "completed",
+      "report": "docs/agents/reviews/A090.md",
+      "report_sha256": "15d55acb084b5d96d78f6f6ddc4ad525562214ebdefc07dbb8ef21a5a72821f8",
+      "scope": "Context recovery onboarding and release boundaries"
+    },
+    {
+      "id": "A091",
+      "task_name": "/root/a091_asset_migrations",
+      "status": "completed",
+      "report": "docs/agents/reviews/A091.md",
+      "report_sha256": "ff0d89f29c1e3ccab77a0540b4e218c3a00da816cc369ea506ba1f1515899b25",
+      "scope": "Immutable asset and configuration migration contracts"
+    },
+    {
+      "id": "A092",
+      "task_name": "/root/a092_numerical_fault_recovery",
+      "status": "completed",
+      "report": "docs/agents/reviews/A092.md",
+      "report_sha256": "9e17207118ff612542d5b73e037e2358b8c0c3df3f265607a0600ccd3d742767",
+      "scope": "Numerical fault output and state recovery audit"
+    },
+    {
+      "id": "A093",
+      "task_name": "/root/a093_units_signs",
+      "status": "completed",
+      "report": "docs/agents/reviews/A093.md",
+      "report_sha256": "460efc35dd1c2d5b64d59285f8f84f7b8fb333df2796f3cdfe49612faf95b6a8",
+      "scope": "Cross-system units polarity and energy consistency"
+    },
+    {
+      "id": "A094",
+      "task_name": "/root/a094_readme_state_accuracy",
+      "status": "completed",
+      "report": "docs/agents/reviews/A094.md",
+      "report_sha256": "856003f96e9677045b332f1f1e94c7e4421b236df08786be2dbf09dc2a5c014d",
+      "scope": "Fresh-reader README and live-state accuracy audit"
+    },
+    {
+      "id": "A095",
+      "task_name": "/root/a095_roadmap_scope",
+      "status": "completed",
+      "report": "docs/agents/reviews/A095.md",
+      "report_sha256": "9687b84d5eb021c5861b86db7b9f65322ef4c85d6bd6d53296d0fcc0ac96c3e4",
+      "scope": "Roadmap dependencies blockers and actual writable scopes"
+    },
+    {
+      "id": "A096",
+      "task_name": "/root/a096_cross_document_consistency",
+      "status": "completed",
+      "report": "docs/agents/reviews/A096.md",
+      "report_sha256": "fa08fe11a8b12646ae718b8e908c32603d36fba9a278e70eda571832456c3547",
+      "scope": "Cross-document model scope and workflow consistency"
+    },
+    {
+      "id": "A097",
+      "task_name": "/root/a097_research_coverage",
+      "status": "completed",
+      "report": "docs/agents/reviews/A097.md",
+      "report_sha256": "e3297b28d67e30ecc8543b1459ce40ea5bc5d7d1cc62433c98362c0453e4efc6",
+      "scope": "Audit supplied research coverage and current-versus-future physical-model boundaries"
+    },
+    {
+      "id": "A098",
+      "task_name": "/root/a098_next_task_readiness",
+      "status": "completed",
+      "report": "docs/agents/reviews/A098.md",
+      "report_sha256": "c04f48008ae9db8f9940b89aa0896b21036bc9c83c1379a893f2253ee08b6346",
+      "scope": "Audit actionable PHY-002 and RT-001 continuation and role-safe handoff"
     }
   ]
 }

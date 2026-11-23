@@ -10,10 +10,20 @@
 #include <fstream>
 #include <iostream>
 #include <limits>
+#include <random>
 #include <span>
 #include <stdexcept>
 #include <string>
 #include <string_view>
+#include <system_error>
+#include <utility>
+
+#ifdef _WIN32
+#ifndef NOMINMAX
+#define NOMINMAX
+#endif
+#include <windows.h>
+#endif
 
 namespace {
 struct Options {
@@ -33,6 +43,7 @@ void usage() {
         "                     [--sample-rate 32000..192000] [--key 0..72]\n"
         "                     [--velocity 0..1] [--gain 0..100] [--force]\n"
         "Writes mono 32-bit IEEE-float WAV. Key 0 maps to synthetic MIDI 28.\n"
+        "Existing entries are refused; --force replaces regular files only, never symlinks.\n"
         "The note releases after min(1 second, 65% of duration).\n"
         "One output unit represents one modeled volt times the explicit monitoring gain.\n"
         "No normalization, clipping, measured parameters, or recorded samples are used.\n";
@@ -47,6 +58,115 @@ T number(std::string_view text, std::string_view flag) {
     }
     return result;
 }
+
+bool replace_existing_output(const std::filesystem::path& path, bool force) {
+    std::error_code error;
+    const auto status = std::filesystem::symlink_status(path, error);
+    if (status.type() == std::filesystem::file_type::not_found &&
+        (!error || error == std::errc::no_such_file_or_directory)) {
+        return false;
+    }
+    if (error) {
+        throw std::filesystem::filesystem_error("Unable to inspect output path", path, error);
+    }
+    if (std::filesystem::is_symlink(status)) {
+        throw std::runtime_error("Output path is a symlink; choose a regular file path");
+    }
+    if (!force) {
+        throw std::runtime_error("Output already exists; choose another path or pass --force");
+    }
+    if (!std::filesystem::is_regular_file(status)) {
+        throw std::runtime_error("--force can replace only an existing regular file");
+    }
+    return true;
+}
+
+class StagedOutput {
+public:
+    explicit StagedOutput(const std::filesystem::path& destination) {
+        const auto parent = destination.has_parent_path() ? destination.parent_path()
+                                                        : std::filesystem::path{"."};
+        std::random_device random;
+        const auto prefix = ".rhodes-render-" + std::to_string(random()) + "-" +
+                            std::to_string(random()) + "-";
+        for (unsigned int attempt = 0; attempt < 128; ++attempt) {
+            auto directory = parent / (prefix + std::to_string(attempt) + ".tmp");
+            auto file = directory / "output.wav";
+            std::error_code error;
+            // C++20 has no exclusive ofstream open. Atomically reserve a sibling
+            // directory, then write only inside that newly created location.
+            if (std::filesystem::create_directory(directory, error)) {
+                directory_ = std::move(directory);
+                file_ = std::move(file);
+                return;
+            }
+            if (error && error != std::errc::file_exists) {
+                throw std::filesystem::filesystem_error(
+                    "Unable to reserve temporary output directory", directory, error);
+            }
+        }
+        throw std::runtime_error("Unable to reserve an unused temporary output directory");
+    }
+
+    StagedOutput(const StagedOutput&) = delete;
+    StagedOutput& operator=(const StagedOutput&) = delete;
+
+    ~StagedOutput() noexcept {
+        std::error_code file_error;
+        std::error_code directory_error;
+        std::filesystem::remove(file_, file_error);
+        std::filesystem::remove(directory_, directory_error);
+        if (file_error || directory_error) {
+            // Cleanup is best effort, including after publication. A complete
+            // published output must not be reported as a failed render.
+            try {
+                std::cerr << "rhodes_render: warning: temporary output cleanup failed at "
+                          << directory_.string() << ": "
+                          << (file_error ? file_error : directory_error).message();
+                if (published_) {
+                    std::cerr << "; completed output was published";
+                }
+                std::cerr << '\n';
+            } catch (...) {
+                // Destruction must not throw while unwinding a rendering error.
+            }
+        }
+    }
+
+    const std::filesystem::path& path() const noexcept { return file_; }
+
+    void publish(const std::filesystem::path& destination, bool force) {
+        // Parent directories must be trusted and quiescent. Recheck the final
+        // entry, but do not claim protection against hostile ancestor/entry swaps.
+        const bool replace = replace_existing_output(destination, force);
+        std::error_code error;
+        if (replace) {
+#ifdef _WIN32
+            // Same-volume replacement only: never request a copy/delete fallback.
+            if (!MoveFileExW(file_.c_str(), destination.c_str(), MOVEFILE_REPLACE_EXISTING)) {
+                error = std::error_code(static_cast<int>(GetLastError()), std::system_category());
+            }
+#else
+            std::filesystem::rename(file_, destination, error);
+#endif
+        } else {
+            // Linking publishes the closed file atomically and refuses every
+            // existing entry, including one created after the preceding check.
+            // If hard links are unsupported, fail safely without a copy fallback.
+            std::filesystem::create_hard_link(file_, destination, error);
+        }
+        if (error) {
+            throw std::filesystem::filesystem_error(
+                "Unable to publish completed output", file_, destination, error);
+        }
+        published_ = true;
+    }
+
+private:
+    std::filesystem::path directory_;
+    std::filesystem::path file_;
+    bool published_ = false;
+};
 
 void u16(std::ostream& output, std::uint16_t value) {
     const std::array<char, 2> bytes{static_cast<char>(value & 0xffU),
@@ -120,9 +240,8 @@ int main(int argc, char** argv) {
             options.output.empty()) {
             throw std::runtime_error("Arguments are outside the documented ranges; see --help");
         }
-        if (!options.force && std::filesystem::exists(options.output)) {
-            throw std::runtime_error("Output already exists; choose another path or pass --force");
-        }
+        replace_existing_output(options.output, options.force);
+        const auto output_name = options.output.string();
         rhodes::ResearchEngine engine;
         if (!engine.prepare(static_cast<double>(options.sample_rate)) ||
             !engine.note_on(options.key, options.velocity)) {
@@ -133,9 +252,10 @@ int main(int argc, char** argv) {
         const auto release_frame = static_cast<std::uint32_t>(
             std::llround(std::min(1.0, options.seconds * 0.65) *
                          static_cast<double>(options.sample_rate)));
-        std::ofstream output(options.output, std::ios::binary | std::ios::trunc);
+        StagedOutput staged_output(options.output);
+        std::ofstream output(staged_output.path(), std::ios::binary | std::ios::trunc);
         if (!output) {
-            throw std::runtime_error("Unable to open output file");
+            throw std::runtime_error("Unable to open temporary output file");
         }
         header(output, options.sample_rate, frames);
         double peak = 0.0;
@@ -164,9 +284,14 @@ int main(int argc, char** argv) {
         }
         output.flush();
         if (!output) {
-            throw std::runtime_error("Output write failed (file may be incomplete)");
+            throw std::runtime_error("Temporary output write failed; destination was not changed");
         }
-        std::cout << "Wrote " << options.output.string() << ": " << frames
+        output.close();
+        if (!output) {
+            throw std::runtime_error("Temporary output close failed; destination was not changed");
+        }
+        staged_output.publish(options.output, options.force);
+        std::cout << "Wrote " << output_name << ": " << frames
                   << " frames at " << options.sample_rate << " Hz, peak=" << peak
                   << ", explicit monitoring gain=" << options.gain
                   << ". Synthetic parameters; no hardware fidelity result.\n";

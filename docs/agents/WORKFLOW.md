@@ -49,7 +49,13 @@ relevant architecture and validation sections, and the selected task in
 not sufficient specification. Respect the user's requested branch and the
 integrator's file assignments; preserve other workers' uncommitted changes.
 
-Claim the task before making changes:
+Choose your coordination role before claiming. A scoped worker assigned by an
+integrator edits only assigned files and returns observations; it does not claim
+a second task, mutate canonical records or publish Git changes. The integrator
+owns those operations. The [continuation prompt](CONTINUE.md) gives the complete
+role branch and recovery procedure.
+
+For a new, available task owned by the integrator, claim before making changes:
 
 ```sh
 python3 tools/project.py claim PHY-002 --owner agent-unique-id --minutes 120
@@ -59,6 +65,11 @@ The JSON response contains the token and UTC expiry. The token coordinates state
 updates; it is not a credential or access-control secret. Only a matching active
 owner/token can complete, release, block, or renew that claim. A second claim on a
 live lease fails. An expired lease may be reclaimed and receives a new token.
+
+When resuming the same authorized assignment, recover its matching owner/token
+and expiry from canonical JSON and renew instead of claiming again. Before
+reacquiring an expired claim, confirm previous writers have stopped and reconcile
+their files. Possession of a token does not authorize taking another assignment.
 
 Renew before expiry if work continues:
 
@@ -93,11 +104,17 @@ Every worker handoff must state:
 
 ## Evidence and completion
 
-Save a durable report of the **already observed** check. Include the command,
+Workers return reports to the integrator; the integrator performs registration
+and completion. Save a durable report of the **already observed** check. Include the command,
 configuration, relevant source revision or working-tree description, result,
 limitations, and detailed output needed to evaluate the claim. Keep completed
 evidence artifacts immutable. If a result is corrected, append a new artifact and
 record; do not silently rewrite the old file.
+
+Before completion or fidelity promotion, use the
+[acceptance review](ACCEPTANCE_REVIEW.md) to map every frozen criterion to relevant
+observations and their tested source/input snapshot. Evidence kinds alone do not
+establish scientific sufficiency.
 
 ```sh
 python3 tools/project.py evidence-add PHY002-numerical-001 \
@@ -190,9 +207,10 @@ python3 tools/project.py sync --check
 
 Repeat `--evidence` when a task requires multiple kinds. Completion requires all
 dependencies done, all listed evidence passing, every required evidence kind
-present, and every artifact hash intact. Claiming a task or adding evidence does
-not complete it. Completing a synthetic or numerical task never promotes the
-scientific fidelity status.
+present, and every artifact hash intact. After a reopen, each required kind also
+needs a passing record registered after that reopen's registry snapshot. Claiming
+a task or adding evidence does not complete it. Completing a synthetic or
+numerical task never promotes the scientific fidelity status.
 
 ## Blockers, handoff, and regressions
 
@@ -222,8 +240,20 @@ python3 tools/project.py unblock PHY-002 --owner integration-root \
 regression invalidates completed work, use `reopen TASK --owner OWNER --reason
 REASON`. Reopen completed dependents first, working backward through the DAG.
 Previous evidence remains in the registry as historical evidence; create new
-evidence for the corrected implementation. Reopening a measured-fidelity gate
-also returns its corresponding fidelity claim to `unvalidated`.
+evidence for the corrected implementation. The task's `revalidation` gate records
+the reopen revision and **every** evidence ID registered at that point, including
+IDs never previously attached to the task. To complete it again, attach a passing
+newly registered record for every required kind. Reusing only older records,
+adding only a record of an unrelated kind, or submitting a failed new result is
+rejected. Registration later in the same second is valid because the gate checks
+IDs against the snapshot, not timestamp ordering.
+
+Keep this gate after completion; direct state validation enforces it too. Each
+later reopen replaces the snapshot with all IDs then registered and binds it to
+that task's latest reopen event. Preserve the older reports and records. New IDs
+do not prove reruns or acceptance-criterion coverage: review the corrected work
+and observed results before completion. Reopening a measured-fidelity gate also
+returns its corresponding fidelity claim to `unvalidated`.
 
 ## Recovery and deterministic checks
 

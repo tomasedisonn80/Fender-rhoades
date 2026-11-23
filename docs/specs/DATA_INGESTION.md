@@ -14,6 +14,15 @@ historical inputs. Never fill missing fields with invented observations merely t
 make a migration pass. The task integrator reviews these acceptance criteria in
 addition to the automated evidence-kind checks.
 
+Current discovery scans `profiles/*/specimen.json` and matching component inventories,
+rejects duplicate profile IDs, and treats JSON beneath `data` as session manifests
+except paths containing a `raw` component. Explicit evidence links do not change
+those rules. Do not place calibration records or verifier reports in that session
+tree, or archive same-ID profiles as active sibling profiles. The upgrade must
+coordinate an explicit discovery/index policy with distinct stable specimen
+identity, immutable configuration revisions/hashes and session bindings. Preserve
+old bound bytes and their meaning rather than overwriting them.
+
 ## 1. Reproducible specimen passport
 
 Bind the passport to a stable specimen ID and a configuration revision. Record
@@ -117,6 +126,13 @@ streamed digest against the manifest, require regular files, contain path traver
 and reject symlink escapes. Its concurrency model must be documented; a one-time
 pathname check cannot protect against an adversarial writer replacing components.
 
+The foundation now includes an opt-in local implementation,
+[`tools/verify_payloads.py`](../../tools/verify_payloads.py), with
+[usage and limitations](../../data/README.md). A053 verified its corruption,
+path, ordinary mutation and exclusive-publication behavior with 18 focused tests.
+This covers local byte integrity only; the versioned metadata upgrade, immutable
+importer and external-storage protocol below remain future work.
+
 Produce a new immutable report identifying manifest hash, verifier version,
 location, observed counts/digests and failures. Include missing, unreadable,
 truncated, corrupted and concurrently changed payload fixtures. Payload integrity
@@ -144,3 +160,49 @@ conditions and unresolved uncertainty alongside successful results.
 The next software step is a coordinated ingestion-schema change with independent
 negative fixtures. Actual specimen inspection and calibrated captures remain
 external inputs. No data in the current repository satisfies these physical gates.
+
+## 6. Pilot experiments and discriminating observations
+
+Reviews A051, A052, A054, A055 and A057 refine the acquisition sequence. These
+experiments are proposed, not executed; choose numeric levels and counts from an
+actual repeatability pilot before freezing the campaign.
+
+| Experiment | Record together | What it distinguishes |
+|---|---|---|
+| Native action across strike groups | Key travel, hammer free flight, pre-contact speed, local tine motion, voltage and common timebase | Controller velocity labels, launch speed and relative impact speed; force remains a separate identification problem |
+| Repetition before full return | Action state, continuing tine phase, retrigger interval, separation/recontact and loaded onset | Persistent mechanics versus phase-reset or memoryless excitation |
+| Pickup pose and return-to-baseline | Gap/orientation, equilibrium, local motion, voltage, branch current and support condition | Sensitivity changes versus magnet-induced mechanical changes and drift |
+| Spatial modal observation | Calibrated force-to-motion transfer at contact, pickup, tonebar and support locations | Contact participation versus pickup observability; a weak pickup signal does not imply an irrelevant contact mode |
+| Apparatus perturbation | Noncontact baseline, added reflective targets/sensors, attachment and cable forces | Observation-induced mass, stiffness and loss changes |
+| Complex impedance | Calibrated voltage/current, real/imaginary response, amplitude, temperature, fixture-plane standards | Coil/load dynamics beyond DC resistance and limits of a small-signal fit |
+| Connected Stage controls | Both pot positions/tapers, endpoint and near-endpoint behavior, cable/load, gain/phase and input impedance | Coupled passive behavior versus an independent gain/EQ approximation |
+
+Pair every MIDI label with the actual controller/sensing configuration. If no
+such bridge is calibrated, leave it unspecified. Impact speed is in m/s; the
+current normalized renderer intensity is neither that speed nor a measured force.
+
+Geometry experiments must declare how modal parameters contain magnetic effects.
+Either identify mechanics excluding the modeled contribution or apply a consistent
+change relative to the reference geometry/load. Do not add full magnetic stiffness
+and damping to effective modes that already include them. An isolated open coil
+and an open harp terminal are different electrical conditions; parallel branches
+may carry circulating current despite zero terminal load current.
+
+For impedance, calibrate fixtures at an explicit plane and retain both raw and
+corrected observations. Remove acquisition hardware effects only to the extent
+supported by their calibration; keep the instrument cable/load inside the chosen
+model boundary. Check a small-signal amplitude plateau and separately investigate
+the observed operating domain. Propagate de-embedding uncertainty and identify
+poorly conditioned frequencies.
+
+For Stage controls, acquire a combined volume/bass matrix, corners, endpoint
+neighborhoods, forward/reverse travel and held-out resistive/reactive loads.
+Avoid assuming exact mute or unity gain. Use absolute residual limits near nulls,
+where a relative ratio alone becomes ill-conditioned. Preserve stationary branches
+throughout every circuit comparison.
+
+Freeze required cells and exclusions before the final comparison. Randomize order
+within feasible blocks, repeat baseline conditions, and reserve a re-established
+session. Record uncovered combinations explicitly. Later keyboard claims require
+held-out keys around measured construction transitions and register extremes;
+one pilot key cannot establish those claims.

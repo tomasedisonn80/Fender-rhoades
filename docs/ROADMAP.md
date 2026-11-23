@@ -24,7 +24,7 @@ the one-note physical-model milestone.
 | Task | Scope | Prerequisites | Exit artifact and gate |
 |---|---|---|---|
 | `FND-001` | Buildable repository, agent workflow, data contracts, documented architecture | None | Reproducible build/tests, state validation, generated-doc drift check, traceable setup evidence |
-| `SPEC-001` | Identify one Stage specimen and configuration | Physical instrument access and authorized records | Resolved specimen passport, revision, regulation, key mapping, wiring/output boundary |
+| `SPEC-001` | Identify one Stage specimen and configuration | `FND-001`, physical instrument access and authorized records | Resolved specimen passport, revision, regulation, key mapping, wiring/output boundary |
 | `DATA-001` | Acquire calibrated pilot data and a real acquisition manifest | `FND-001`, `SPEC-001` | Actual immutable measurements, calibration/uncertainty, repeatability, condition split, rights and hashes |
 | `PHY-001` | Analytic mechanical and pickup/network primitives | `FND-001` | Independent analytic tests, persistent state behavior, supported ranges, explicit synthetic parameters |
 | `PHY-002` | Finite-mass hammer and damper reference with persistent note state | `PHY-001` | Contact/recontact/release tests, action state, energy accounting, convergence, declared synthetic/calibrated scope |
@@ -129,6 +129,13 @@ Start `RT-001` early with a representative synthetic kernel so computational ris
 is visible. Report the limited workload. Repeat the benchmark when coupling,
 contact, antialiasing, full keyboard data, and shared nonlinear circuits change
 cost or error. Early kernel numbers are not a final-polyphony guarantee.
+
+The first slice measures a declared synthetic full-call harness, including its
+control/event work, with process-only timing reported separately. Nominal
+block-period overruns are offline observations; device underruns and host timing
+require a later host task. RT-001 also needs independent numerical-reference,
+allocation/locking and timestep/antialiasing evidence before completion, as
+specified in the [first runtime handoff](specs/RUNTIME_AND_ASSETS.md).
 
 Specify callback constraints, supported sample rates, buffer/event semantics,
 asset preparation, state serialization, and latency before adding host adapters.

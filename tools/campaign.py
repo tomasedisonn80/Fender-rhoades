@@ -8,6 +8,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
 import os
 from pathlib import Path
 import re
@@ -17,6 +18,31 @@ import tempfile
 ROOT = Path(__file__).resolve().parents[1]
 LEDGER = ROOT / "project/agent-campaign.json"
 INDEX = ROOT / "docs/agents/CAMPAIGN.md"
+
+
+def load_json(path: Path):
+    def pairs(entries):
+        result = {}
+        for key, value in entries:
+            if key in result:
+                raise ValueError(f"duplicate JSON key {key!r}")
+            result[key] = value
+        return result
+
+    def invalid(value):
+        raise ValueError(f"nonfinite number {value}")
+
+    def finite_float(value):
+        number = float(value)
+        if not math.isfinite(number):
+            invalid(value)
+        return number
+
+    try:
+        return json.loads(path.read_text(encoding="utf-8"), object_pairs_hook=pairs,
+                          parse_constant=invalid, parse_float=finite_float)
+    except (OSError, ValueError, RecursionError) as exc:
+        raise ValueError(f"Cannot read {path}: {exc}") from exc
 
 
 def atomic(path: Path, content: str) -> None:
@@ -33,31 +59,49 @@ def atomic(path: Path, content: str) -> None:
 
 
 def validate(data: dict, require_complete: bool = False) -> None:
-    if data.get("schema_version") != 1 or type(data.get("requested_agents")) is not int:
+    if (type(data) is not dict or type(data.get("schema_version")) is not int or
+            data["schema_version"] != 1 or type(data.get("requested_agents")) is not int or
+            not 1 <= data["requested_agents"] <= 999 or type(data.get("agents")) is not list):
         raise ValueError("invalid campaign schema")
+    if len(data["agents"]) > data["requested_agents"]:
+        raise ValueError("more assignments than requested")
     ids, names = set(), set()
+    required = {"id", "task_name", "status", "scope", "report", "report_sha256"}
     for agent in data["agents"]:
+        if type(agent) is not dict or not required.issubset(agent):
+            raise ValueError("invalid campaign assignment")
         identifier = agent["id"]
-        if not re.fullmatch(r"A\d{3}", identifier) or identifier in ids:
+        if (not isinstance(identifier, str) or not re.fullmatch(r"A[0-9]{3}", identifier) or
+                not 1 <= int(identifier[1:]) <= data["requested_agents"] or identifier in ids):
             raise ValueError("invalid or duplicate agent ID")
-        if agent["task_name"] in names or not agent["task_name"].startswith("/root/"):
+        task_name = agent["task_name"]
+        if (not isinstance(task_name, str) or
+                not re.fullmatch(r"/root/[a-z0-9_]+(?:/[a-z0-9_]+)*", task_name) or task_name in names):
             raise ValueError("invalid or duplicate actual task name")
         ids.add(identifier)
-        names.add(agent["task_name"])
-        if agent["status"] not in ("running", "completed") or not agent["scope"].strip():
+        names.add(task_name)
+        if (agent["status"] not in ("running", "completed") or
+                not isinstance(agent["scope"], str) or not agent["scope"].strip()):
             raise ValueError(f"{identifier}: invalid status or empty scope")
         expected = f"docs/agents/reviews/{identifier}.md"
         if agent["report"] != expected:
             raise ValueError(f"{identifier}: report path mismatch")
+        path = ROOT / expected
+        try:
+            path.resolve().relative_to(ROOT.resolve())
+        except (OSError, ValueError, RuntimeError) as exc:
+            raise ValueError(f"{identifier}: report path escapes campaign root or cannot resolve") from exc
         if agent["status"] == "completed":
-            path = ROOT / expected
+            if (not isinstance(agent["report_sha256"], str) or
+                    not re.fullmatch(r"[0-9a-f]{64}", agent["report_sha256"])):
+                raise ValueError(f"{identifier}: invalid report SHA256")
             if not path.is_file() or path.is_symlink():
                 raise ValueError(f"{identifier}: missing regular report")
             digest = hashlib.sha256(path.read_bytes()).hexdigest()
             if digest != agent["report_sha256"]:
                 raise ValueError(f"{identifier}: report changed since assignment completion")
-    if len(ids) > data["requested_agents"]:
-        raise ValueError("more assignments than requested")
+        elif agent["report_sha256"] is not None:
+            raise ValueError(f"{identifier}: running assignment must not have a report SHA256")
     if require_complete and (len(ids) != data["requested_agents"] or
                              any(a["status"] != "completed" for a in data["agents"])):
         raise ValueError("campaign is not complete")
@@ -93,7 +137,7 @@ def main() -> int:
     sync.add_argument("--check", action="store_true")
     args = parser.parse_args()
     try:
-        data = json.loads(LEDGER.read_text(encoding="utf-8"))
+        data = load_json(LEDGER)
         validate(data)
         if args.command == "register":
             data["agents"].append({"id": args.id, "task_name": args.task_name,
@@ -120,7 +164,7 @@ def main() -> int:
             atomic(INDEX, expected)
         print(f"Campaign valid: {sum(a['status'] == 'completed' for a in data['agents'])}/{data['requested_agents']} completed.")
         return 0
-    except (OSError, ValueError, KeyError, TypeError) as exc:
+    except (OSError, ValueError, KeyError, TypeError, RecursionError) as exc:
         print(f"Campaign error: {exc}", file=sys.stderr)
         return 1
 

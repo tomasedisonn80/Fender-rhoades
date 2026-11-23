@@ -12,6 +12,7 @@ from datetime import datetime, timedelta, timezone
 import hashlib
 import importlib.util
 import json
+import math
 import os
 from pathlib import Path
 import re
@@ -50,9 +51,11 @@ def require(condition: bool, message: str) -> None:
         raise StateError(message)
 
 
-def exact_keys(value: Any, keys: set[str], context: str) -> None:
+def exact_keys(value: Any, keys: set[str], context: str, *, optional: set[str] | None = None) -> None:
     require(isinstance(value, dict), f"{context}: expected an object")
-    require(set(value) == keys, f"{context}: fields differ; missing={sorted(keys-set(value))}, unknown={sorted(set(value)-keys)}")
+    missing = keys - set(value)
+    unknown = set(value) - keys - (optional or set())
+    require(not missing and not unknown, f"{context}: fields differ; missing={sorted(missing)}, unknown={sorted(unknown)}")
 
 
 def nonempty(value: Any, context: str) -> None:
@@ -79,13 +82,29 @@ def now() -> str:
     return datetime.now(UTC).replace(microsecond=0).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
+def resolve_path(path: Path, context: str) -> Path:
+    require(not any(ord(character) < 32 or ord(character) == 127 for character in str(path)),
+            f"{context}: path contains control characters")
+    try:
+        return path.resolve()
+    except (OSError, RuntimeError, ValueError) as error:
+        raise StateError(f"{context}: cannot resolve path: {error}") from error
+
+
 def relative_path(root: Path, value: Any, context: str, *, exists: bool = False) -> Path:
     nonempty(value, context)
+    require(not any(ord(character) < 32 or ord(character) == 127 for character in value),
+            f"{context}: path contains control characters")
     require("\\" not in value and ":" not in value, f"{context}: use a portable repository-relative path")
     path = Path(value)
-    require(not path.is_absolute() and all(part not in {"..", ".git"} for part in path.parts), f"{context}: unsafe path {value!r}")
-    resolved = (root / path).resolve()
-    require(resolved.is_relative_to(root.resolve()) and resolved != root.resolve(), f"{context}: path escapes repository")
+    require(not path.is_absolute() and all(part != ".." and part.casefold() != ".git" for part in path.parts),
+            f"{context}: unsafe path {value!r}")
+    repository = resolve_path(root, "repository root")
+    resolved = resolve_path(repository / path, context)
+    require(resolved.is_relative_to(repository) and resolved != repository, f"{context}: path escapes repository")
+    require(all(part.casefold() != ".git" for part in resolved.relative_to(repository).parts)
+            and not resolved.is_relative_to(resolve_path(repository / ".git", "Git metadata boundary")),
+            f"{context}: resolved path enters Git metadata")
     if exists:
         require(resolved.is_file(), f"{context}: artifact missing or not a regular file: {value}")
     return resolved
@@ -103,9 +122,9 @@ def artifact_path(root: Path, value: Any, context: str) -> Path:
     path = relative_path(root, value, context, exists=True)
     mutable = {"project/state.json", "project/evidence.json", "docs/PROJECT_STATE.md",
                "project/agent-campaign.json", "docs/agents/CAMPAIGN.md"}
-    require(path not in {(root / item).resolve() for item in mutable},
+    require(path not in {resolve_path(root / item, "mutable artifact boundary") for item in mutable},
             f"{context}: tool-managed mutable files cannot be immutable evidence; write a separate report")
-    require(not path.is_relative_to((root / "project/.project.lock").resolve()),
+    require(not path.is_relative_to(resolve_path(root / "project/.project.lock", "state lock boundary")),
             f"{context}: transient lock files cannot be evidence")
     return path
 
@@ -118,10 +137,18 @@ def load_json(path: Path) -> Any:
             result[key] = value
         return result
 
+    def finite_float(value: str) -> float:
+        number = float(value)
+        require(math.isfinite(number), f"{path}: nonfinite number {value}")
+        return number
+
     try:
         return json.loads(path.read_text(encoding="utf-8"), object_pairs_hook=pairs,
+                          parse_float=finite_float,
                           parse_constant=lambda value: (_ for _ in ()).throw(StateError(f"{path}: nonfinite number {value}")))
-    except (OSError, json.JSONDecodeError) as error:
+    except StateError:
+        raise
+    except (OSError, ValueError, RecursionError) as error:
         raise StateError(f"Cannot read {path}: {error}") from error
 
 
@@ -293,7 +320,7 @@ def validate(root: Path, state: Any, registry: Any) -> None:
     require(isinstance(state["tasks"], list) and bool(state["tasks"]), "state.tasks: expected a nonempty array")
     tasks: dict[str, dict[str, Any]] = {}
     for task in state["tasks"]:
-        exact_keys(task, TASK_KEYS, "task")
+        exact_keys(task, TASK_KEYS, "task", optional={"revalidation"})
         require(isinstance(task["id"], str) and TASK_ID.fullmatch(task["id"]) is not None, "task: invalid ID")
         label = task["id"]
         require(label not in tasks, f"{label}: duplicate task ID")
@@ -321,11 +348,25 @@ def validate(root: Path, state: Any, registry: Any) -> None:
         require(task["status"] == "blocked" or not task["blockers"], f"{label}: clear blockers before changing status")
         for identifier in task["evidence"]:
             require(identifier in evidence, f"{label}: unknown evidence {identifier}")
+        if "revalidation" in task:
+            gate = task["revalidation"]
+            exact_keys(gate, {"reopen_revision", "excluded_evidence"}, f"{label}.revalidation")
+            require(type(gate["reopen_revision"]) is int and 1 <= gate["reopen_revision"] <= state["revision"],
+                    f"{label}.revalidation.reopen_revision: expected an existing positive revision")
+            strings(gate["excluded_evidence"], f"{label}.revalidation.excluded_evidence")
+            require(bool(gate["excluded_evidence"]), f"{label}.revalidation: a reopened completion requires a nonempty evidence snapshot")
+            for identifier in gate["excluded_evidence"]:
+                require(identifier in evidence, f"{label}.revalidation: unknown excluded evidence {identifier}")
         if task["status"] == "done":
             require(bool(task["evidence"]), f"{label}: done task requires evidence")
             require(all(evidence[identifier]["result"] == "pass" for identifier in task["evidence"]), f"{label}: completion evidence must pass")
             actual_kinds = {evidence[identifier]["kind"] for identifier in task["evidence"]}
             require(set(task["required_evidence"]) <= actual_kinds, f"{label}: missing evidence kinds {sorted(set(task['required_evidence'])-actual_kinds)}")
+            if "revalidation" in task:
+                excluded = set(task["revalidation"]["excluded_evidence"])
+                fresh_kinds = {evidence[identifier]["kind"] for identifier in task["evidence"] if identifier not in excluded}
+                require(set(task["required_evidence"]) <= fresh_kinds,
+                        f"{label}: revalidation requires passing evidence registered after reopen for kinds {sorted(set(task['required_evidence'])-fresh_kinds)}")
         tasks[label] = task
     for task in tasks.values():
         for dependency in task["dependencies"]:
@@ -353,6 +394,7 @@ def validate(root: Path, state: Any, registry: Any) -> None:
     require(isinstance(state["history"], list), "state.history: expected array")
     require(len(state["history"]) == state["revision"], "state.history: one event per revision is required")
     previous: datetime | None = None
+    latest_reopens: dict[str, int] = {}
     for index, event in enumerate(state["history"], start=1):
         exact_keys(event, {"revision", "at", "action", "task", "owner", "detail"}, "history event")
         require(type(event["revision"]) is int and event["revision"] == index, "history revisions must be sequential")
@@ -362,7 +404,15 @@ def validate(root: Path, state: Any, registry: Any) -> None:
         require(isinstance(event["task"], str) and event["task"] in tasks, "history: unknown task")
         for field in ("action", "owner", "detail"):
             nonempty(event[field], f"history.{field}")
+        if event["action"] == "reopen":
+            latest_reopens[event["task"]] = event["revision"]
         previous = moment
+    for label, task in tasks.items():
+        require(label not in latest_reopens or "revalidation" in task,
+                f"{label}: recorded reopen requires revalidation")
+        if "revalidation" in task:
+            require(task["revalidation"]["reopen_revision"] == latest_reopens.get(label),
+                    f"{label}.revalidation.reopen_revision: must match this task's latest reopen event")
 
 
 def read_project(root: Path) -> tuple[dict[str, Any], dict[str, Any]]:
@@ -494,7 +544,7 @@ def parser() -> argparse.ArgumentParser:
 
 
 def run(args: argparse.Namespace) -> int:
-    root = args.root.resolve()
+    root = resolve_path(args.root, "repository root")
     require((root / "project/state.json").is_file(), f"No canonical project state under {root}")
     with locked(root):
         state, registry = read_project(root)
@@ -557,6 +607,11 @@ def run(args: argparse.Namespace) -> int:
             task["status"] = "todo"
             task["owner"] = None
             event(state, task, action, args.owner, args.reason)
+            if action == "reopen":
+                # Snapshot the whole registry, including records never attached
+                # to this task. ID membership remains exact within one second.
+                task["revalidation"] = {"reopen_revision": state["revision"],
+                                        "excluded_evidence": sorted(record["id"] for record in registry["records"])}
         else:
             check_owner(task, args.owner, args.token)
             if action == "complete":
@@ -588,7 +643,7 @@ def run(args: argparse.Namespace) -> int:
 def main(argv: list[str] | None = None) -> int:
     try:
         return run(parser().parse_args(argv))
-    except (StateError, OSError) as error:
+    except (StateError, OSError, UnicodeError, RecursionError) as error:
         print(f"project: {error}", file=sys.stderr)
         return 2
 

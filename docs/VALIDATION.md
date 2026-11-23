@@ -1,6 +1,8 @@
 # Validation and acceptance contract
 
 The future coupled reference follows [the solver contract](specs/REFERENCE_SOLVERS.md), including explicit initialization, convergence and failure criteria.
+The [acceptance-metric contract](specs/ACCEPTANCE_METRICS.md) details future
+evaluators, uncertainty decisions and controlled listening prerequisites.
 
 ## Claims follow evidence
 
@@ -116,7 +118,8 @@ following are recorded and reviewed:
    and validity domains; unknowns and approximations remain visible.
 4. A numerical reference that passes analytic limits, energy accounting, and
    convergence checks without unexplained residuals.
-5. A frozen training/development/validation split by complete physical conditions.
+5. Frozen `fit`, `validation`, and final `test` partitions by complete physical
+   conditions; synthetic `development` records remain separate.
 6. Predictions for held-out strike strengths, releases, retriggers, pickup
    positions, and loads within the declared scope.
 7. Condition-level physical and electrical metrics with thresholds agreed before

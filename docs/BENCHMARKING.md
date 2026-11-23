@@ -96,12 +96,19 @@ microseconds:
 | `deadline_misses` | Count of measured durations strictly greater than that duration |
 
 Nearest rank uses sorted element `ceil(percentile * blocks / 100)`, with
-one-based indexing. For one block, every reported quantile equals the maximum.
+one-based indexing. For one block, every reported quantile equals the maximum;
+for fewer than 100 observations, p99 equals the maximum. The report supplies
+finite-sample ranks, not confidence intervals for tail latency.
 A very short run is suitable for a smoke check, not a credible tail estimate.
 Timing includes elapsed scheduling delays and timer overhead; no estimated
 overhead is subtracted. The loop runs offline as fast as possible, with no
 real-time wake-up schedule or audio device. It measures callback body time, not
 start-time jitter, complete host deadline compliance, or CPU utilization.
+
+Microseconds are output units, not a measured timer resolution. Warmup and the
+mechanical reset do not restore cache, processor-frequency or thermal state.
+Use independent repeated runs and a declared ordering protocol when comparing
+configurations, recording competing load and timer characteristics separately.
 
 For a useful comparison, record repository revision and uncommitted changes,
 complete build flags, compiler, operating system, CPU, power policy, competing

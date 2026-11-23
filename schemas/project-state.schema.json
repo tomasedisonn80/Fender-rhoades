@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/baabi-boo/Fender-rhoades/schemas/project-state.schema.json",
   "title": "Rhodes canonical project state v1",
-  "description": "Structural schema. tools/project.py additionally checks DAGs, completion gates, timestamps, evidence registry cross-references, artifact paths and SHA256 contents, and explicitly linked specimen/session data contracts.",
+  "description": "Structural schema. tools/project.py additionally checks DAGs, completion and reopen revalidation gates, timestamps, evidence registry cross-references, artifact paths and SHA256 contents, and explicitly linked specimen/session data contracts.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -99,6 +99,31 @@
         }
       }
     },
+    "revalidation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reopen_revision",
+        "excluded_evidence"
+      ],
+      "properties": {
+        "reopen_revision": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Revision of this task's latest reopen event; cross-checked by tools/project.py."
+        },
+        "excluded_evidence": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "description": "All evidence IDs registered when the task was reopened; none can satisfy its fresh-evidence requirement.",
+          "items": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,95}$(?![\\s\\S])"
+          }
+        }
+      }
+    },
     "task": {
       "type": "object",
       "additionalProperties": false,
@@ -187,6 +212,10 @@
             "pattern": "\\S"
           },
           "uniqueItems": true
+        },
+        "revalidation": {
+          "$ref": "#/$defs/revalidation",
+          "description": "Present exactly when history records a reopen for this task; retain after completion."
         },
         "owner": {
           "anyOf": [

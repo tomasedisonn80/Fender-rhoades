@@ -4,7 +4,7 @@
 
 A sample-free, component-informed model of a **Fender Rhodes Mark I**, built from
 mechanical motion, electromagnetic pickup conversion, and the connected electrical
-network. The first target is one identified **73-key Stage specimen** at a defined
+network. The first target is one **73-key Stage specimen, once identified**, at a defined
 loaded output. The repository name is retained for existing links.
 
 **Current stage: research foundation.** There is a buildable C++20 kernel, an
@@ -40,7 +40,7 @@ packages during its build.
 ```sh
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
 cmake --build build --config Release --parallel 2
-ctest --test-dir build -C Release --output-on-failure
+ctest --test-dir build -C Release --output-on-failure --no-tests=error
 ```
 
 Render a synthetic research note on Linux or macOS:
@@ -55,7 +55,9 @@ With a Visual Studio multi-configuration build, use
 `0..72`; index 40 maps to MIDI 68 in the synthetic E1–E7 mapping. `--velocity` is
 a normalized impulse intensity, **not measured hammer speed**. The renderer's
 float WAV is a diagnostic artifact with an explicit monitoring gain; it is not
-calibrated instrument output. Existing files require explicit `--force`.
+calibrated instrument output. Output is staged and published only after a
+successful render. Existing regular files require explicit `--force`; final
+symlinks are refused. New-file publication requires local hard-link support.
 
 Run the repository integrity checks:
 
@@ -70,7 +72,8 @@ python3 -m unittest discover -s tests/python -v
 ```
 
 On Windows, substitute `python` for `python3` where appropriate. Ninja users may
-use the `dev`, `release`, and `sanitize` CMake presets. See
+use the `dev`, `release`, and supported-platform `sanitize` CMake presets;
+the sanitizer preset excludes Windows. See
 [development instructions](docs/DEVELOPMENT.md) for platform and CI details.
 
 ## What exists, and what still needs research
@@ -136,8 +139,8 @@ interactions. A plausible electric-piano sound alone does not pass this gate.
 
 There are useful software tasks before hardware becomes available: finite-mass
 contact, reference-solver convergence, data tooling and documented benchmarks.
-The task graph makes these available without marking the measurement blockers
-as solved.
+The task graph makes these available once their software prerequisites pass,
+without marking the measurement blockers as solved.
 
 ## Rights
 

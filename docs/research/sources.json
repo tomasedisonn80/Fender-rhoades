@@ -153,6 +153,62 @@
       "status": "reviewed",
       "notes": "Manual distinguishes original 1–73 tonebar stamps from later 8–80 markings. Normalized piano-key positions 8–80 map to MIDI 28–100 under A0=MIDI21; observed stamps, physical index and MIDI are separate identities.",
       "redistribution": "link_only"
+    },
+    {
+      "id": "SRC-020",
+      "title": "David Morrin Rhodes Stage-circuit measurement lead",
+      "url": "https://sites.google.com/site/davidmorrinoldsite/home/trouble/trouble-keyboards/rhodes",
+      "status": "supplied_unreviewed",
+      "notes": "Supplied Stage-control/loading measurements; inspect source and experimental boundary before deriving values.",
+      "redistribution": "link_only"
+    },
+    {
+      "id": "SRC-021",
+      "title": "Modified nodal analysis reference linked in supplied research",
+      "url": "https://faculty.sist.shanghaitech.edu.cn/faculty/zhoupq/Teaching/Fall16/Assignments/Ref2-MNA.pdf",
+      "status": "supplied_unreviewed",
+      "notes": "Supplied numerical-method reference; publication details and full text not reviewed in this setup.",
+      "redistribution": "link_only"
+    },
+    {
+      "id": "SRC-022",
+      "title": "PLECS SPICE core concepts documentation",
+      "url": "https://docs.plexim.com/plecs/latest/spice/core_concepts/",
+      "status": "supplied_unreviewed",
+      "notes": "Supplied operating-point reference; exact applicable documentation version remains to be selected.",
+      "redistribution": "link_only"
+    },
+    {
+      "id": "SRC-023",
+      "title": "Energy-method paper linked in supplied research",
+      "url": "https://www.mdpi.com/2076-3417/6/10/273",
+      "status": "supplied_unreviewed",
+      "notes": "Supplied numerical-method lead; do not infer hardware fidelity from numerical stability.",
+      "redistribution": "link_only"
+    },
+    {
+      "id": "SRC-024",
+      "title": "DDSP research lead",
+      "url": "https://magenta.withgoogle.com/ddsp",
+      "status": "supplied_unreviewed",
+      "notes": "Supplied learned-estimation/reduction lead; no learned runtime or third-party implementation is included.",
+      "redistribution": "link_only"
+    },
+    {
+      "id": "SRC-025",
+      "title": "1979 service manual chapter 4: regulation lead",
+      "url": "https://www.fenderrhodes.com/service-manuals/1979/ch4.html",
+      "status": "supplied_unreviewed",
+      "notes": "Supplied hammer-tip/regulation reference; full chapter and hardness-scale interpretation not reviewed here.",
+      "redistribution": "link_only"
+    },
+    {
+      "id": "SRC-026",
+      "title": "1979 service manual chapter 2: action lead",
+      "url": "https://www.fenderrhodes.com/service-manuals/1979/ch2.html",
+      "status": "supplied_unreviewed",
+      "notes": "Supplied action/damper arrangement reference; not an identified contact law or specimen measurement.",
+      "redistribution": "link_only"
     }
   ]
 }

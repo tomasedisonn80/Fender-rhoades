@@ -5,6 +5,15 @@ include(CTest)
 option(RHODES_WARNINGS_AS_ERRORS "Treat project compiler warnings as errors" ON)
 option(RHODES_ENABLE_SANITIZERS "Enable address and undefined-behavior sanitizers" OFF)
 
+if(RHODES_ENABLE_SANITIZERS)
+    if(MSVC OR CMAKE_CXX_COMPILER_FRONTEND_VARIANT STREQUAL "MSVC"
+            OR NOT CMAKE_CXX_COMPILER_ID MATCHES "^(GNU|Clang|AppleClang)$")
+        message(FATAL_ERROR
+            "RHODES_ENABLE_SANITIZERS requires GCC or Clang with a GNU-style "
+            "driver; MSVC, clang-cl, and other compiler families are unsupported.")
+    endif()
+endif()
+
 add_library(rhodes_core src/research_engine.cpp)
 target_include_directories(rhodes_core PUBLIC
     $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>)
@@ -51,7 +60,7 @@ if(BUILD_TESTING)
     add_executable(rhodes_review_tests tests/cpp/review_regression.cpp)
     target_link_libraries(rhodes_review_tests PRIVATE rhodes_core)
     rhodes_target_options(rhodes_review_tests)
-    foreach(test_name IN ITEMS modal_boundaries rejected_updates engine_controls
+    foreach(test_name IN ITEMS modal_boundaries rejected_updates engine_controls engine_combined_pickup
             network_extreme_divider)
         add_test(NAME review.${test_name} COMMAND rhodes_review_tests ${test_name})
     endforeach()
@@ -59,8 +68,14 @@ if(BUILD_TESTING)
     add_test(NAME benchmark.help COMMAND rhodes_benchmark --help)
     add_test(NAME benchmark.smoke COMMAND rhodes_benchmark --blocks 5 --block-size 64
         --sample-rate 48000 --active-keys 73 --machine ci-smoke)
+    add_test(NAME benchmark.json COMMAND ${CMAKE_COMMAND}
+        "-DBENCHMARK=$<TARGET_FILE:rhodes_benchmark>"
+        -P "${CMAKE_CURRENT_SOURCE_DIR}/tests/cpp/benchmark_json.cmake")
     add_test(NAME cli.render COMMAND rhodes_render --output ${CMAKE_CURRENT_BINARY_DIR}/smoke.wav
         --seconds 0.05 --sample-rate 48000 --force)
+    add_test(NAME cli.render_output COMMAND ${CMAKE_COMMAND}
+        -DPROGRAM=$<TARGET_FILE:rhodes_render> -DTEST_ROOT=${CMAKE_CURRENT_BINARY_DIR}
+        -P ${CMAKE_CURRENT_SOURCE_DIR}/tests/cpp/render_output.cmake)
     add_test(NAME cli.reject_nan COMMAND ${CMAKE_COMMAND}
         -DPROGRAM=$<TARGET_FILE:rhodes_render> -DARG1=--seconds -DARG2=nan
         -P ${CMAKE_CURRENT_SOURCE_DIR}/tests/cpp/expect_cli_failure.cmake)

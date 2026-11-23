@@ -154,6 +154,120 @@ void engine_controls() {
     require(engine.mechanical_energy_joules() == 0.0, "prepare retained mechanical energy");
 }
 
+void engine_combined_pickup() {
+    // Independent contract from docs/NUMERICS.md: these are synthetic values,
+    // not specimen measurements or parameters read from the production helpers.
+    static_assert(rhodes::key_count == 73 && rhodes::modes_per_key == 3);
+    constexpr std::array<long double, 3> observation{1.0L, 0.3L, 0.08L};
+    constexpr long double branch_ohm = 200.0L;
+    constexpr long double load_ohm = 1000000.0L;
+    const auto emf = [](long double x, long double velocity) {
+        // -d(0.4*x + 800*x^2 + 400000*x^3)/dt, in volts.
+        return -(0.4L * velocity + 1600.0L * x * velocity +
+                 1200000.0L * x * x * velocity);
+    };
+
+    rhodes::ResearchEngine engine;
+    require(engine.prepare(48000.0), "prepare combined-pickup fixture");
+    // Two sources in the first four-branch group, one across its boundary,
+    // and two later three-branch groups leave 68 silent branches connected.
+    constexpr std::array<std::size_t, 5> excited_keys{0, 3, 4, 37, 72};
+    constexpr std::array<double, 5> intensities{0.81, 0.57, 0.69, 0.93, 0.76};
+    for (std::size_t i = 0; i < excited_keys.size(); ++i) {
+        require(engine.note_on(excited_keys[i], intensities[i]),
+                "excite combined-pickup fixture");
+    }
+
+    std::size_t observations = 0;
+    long double maximum_error = 0.0L;
+    long double minimum_separate_gap = std::numeric_limits<long double>::infinity();
+    const auto check_next_sample = [&] {
+        // Finish the entire snapshot before calling process: output observes
+        // these states at t, not the advanced states at t + 1/Fs.
+        std::array<std::array<rhodes::ModalState, 3>, 73> snapshot{};
+        for (std::size_t key = 0; key < snapshot.size(); ++key) {
+            for (std::size_t mode = 0; mode < observation.size(); ++mode) {
+                const auto state = engine.modal_state(key, mode);
+                require(state.has_value(), "read all pre-sample modal states");
+                snapshot[key][mode] = *state;
+            }
+        }
+        for (const auto key : excited_keys) {
+            for (const auto state : snapshot[key]) {
+                require(std::abs(state.displacement_m) > 1e-12 &&
+                        std::abs(state.velocity_m_per_s) > 1e-8,
+                        "fixture must exercise all three moving modes per excited key");
+            }
+        }
+
+        std::array<long double, 73> sources{}, separately_converted{};
+        for (std::size_t key = 0; key < snapshot.size(); ++key) {
+            long double x = 0.0L;
+            long double velocity = 0.0L;
+            for (std::size_t mode = 0; mode < observation.size(); ++mode) {
+                const long double modal_x = observation[mode] * snapshot[key][mode].displacement_m;
+                const long double modal_v = observation[mode] * snapshot[key][mode].velocity_m_per_s;
+                x += modal_x;
+                velocity += modal_v;
+                // Deliberately incorrect alternative: loses nonlinear cross terms.
+                separately_converted[key] += emf(modal_x, modal_v);
+            }
+            sources[key] = emf(x, velocity);
+        }
+
+        // Solve each parallel group by KCL, then connect the 24 Thevenin
+        // equivalents in series. Every branch contributes conductance even
+        // when its source is zero; neither production electrical helper is used.
+        long double open_circuit = 0.0L;
+        long double separate_open_circuit = 0.0L;
+        long double series_ohm = 0.0L;
+        std::size_t key = 0;
+        for (std::size_t group = 0; group < 24; ++group) {
+            const std::size_t branches = group == 0 ? 4 : 3;
+            long double conductance = 0.0L;
+            long double source_current = 0.0L;
+            long double separate_source_current = 0.0L;
+            for (std::size_t branch = 0; branch < branches; ++branch, ++key) {
+                conductance += 1.0L / branch_ohm;
+                source_current += sources[key] / branch_ohm;
+                separate_source_current += separately_converted[key] / branch_ohm;
+            }
+            open_circuit += source_current / conductance;
+            separate_open_circuit += separate_source_current / conductance;
+            series_ohm += 1.0L / conductance;
+        }
+        require(key == snapshot.size(), "network oracle must retain all 73 branches");
+        const long double expected = open_circuit * load_ohm / (series_ohm + load_ohm);
+        const long double separate = separate_open_circuit * load_ohm / (series_ohm + load_ohm);
+        const long double tolerance = 2e-14L + 2e-12L * std::abs(expected);
+        const long double separate_gap = std::abs(expected - separate);
+        require(separate_gap > 1e-6L && separate_gap > 1000000.0L * tolerance,
+                "fixture cannot distinguish conversion before modal summation");
+
+        std::array<double, 1> output{};
+        require(engine.process(output), "process observed combined-pickup sample");
+        near(output[0], expected, tolerance,
+             "engine output disagrees with combined-flux and loaded-network oracle");
+        const long double error = std::abs(static_cast<long double>(output[0]) - expected);
+        if (error > maximum_error) { maximum_error = error; }
+        if (separate_gap < minimum_separate_gap) { minimum_separate_gap = separate_gap; }
+        ++observations;
+    };
+
+    std::array<double, 257> warmup{};
+    for (const std::size_t frames : {31U, 113U, 257U}) {
+        require(engine.process(std::span<double>{warmup}.first(frames)),
+                "advance combined-pickup fixture to a different phase");
+        check_next_sample();
+        require(engine.note_on(3, 0.23) && engine.note_on(4, 0.31) &&
+                engine.note_on(72, 0.17), "retrigger moving combined-pickup fixture");
+        check_next_sample();
+    }
+    std::cout << "combined-pickup observations=" << observations
+              << " max_error_V=" << maximum_error
+              << " min_separate_conversion_gap_V=" << minimum_separate_gap << '\n';
+}
+
 void network_extreme_divider() {
     rhodes::SyntheticResistiveHarp harp;
     std::array<double, rhodes::key_count> sources{};
@@ -177,9 +291,10 @@ void network_extreme_divider() {
 }
 
 using Test = void (*)();
-constexpr std::array<std::pair<std::string_view, Test>, 4> tests{{
+constexpr std::array<std::pair<std::string_view, Test>, 5> tests{{
     {"modal_boundaries", modal_boundaries}, {"rejected_updates", rejected_updates},
-    {"engine_controls", engine_controls}, {"network_extreme_divider", network_extreme_divider}
+    {"engine_controls", engine_controls}, {"engine_combined_pickup", engine_combined_pickup},
+    {"network_extreme_divider", network_extreme_divider}
 }};
 }
 
