@@ -828,8 +828,62 @@
       "wave": 5,
       "task_name": "/root/w5_a092",
       "scope": "Audit actual callback bounds and plugin-owned allocation and synchronization policy",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/development-20261123/W5-A092.md",
+      "report_sha256": "fd0b0d3c1c619b10e664b02a7349bd8027f388c3b5959190895f5c3852756f62"
+    },
+    {
+      "id": "A093",
+      "wave": 5,
+      "task_name": "/root/w5_a093",
+      "scope": "Run and preserve final integrated source-bound Linux build and test verification",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W5-A093.md",
+      "report_sha256": "be9da1440d499e75facdeea8bc87f841f49471231ffb61e6074e80fd4e319608"
+    },
+    {
+      "id": "A094",
+      "wave": 5,
+      "task_name": "/root/w5_a094",
+      "scope": "Independently adjudicate all frozen HOST-001 acceptance criteria",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W5-A094.md",
+      "report_sha256": "41628ef15ec15324b25953ef638efc1ade7201eb3a143add03773767f5c50f31"
+    },
+    {
+      "id": "A095",
+      "wave": 5,
+      "task_name": "/root/w5_a095",
+      "scope": "Preserve compact exact failed contact trajectories for solver follow-up",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W5-A095.md",
+      "report_sha256": "c282f866ba74c0d05b19cdffaea774fc6bacb110b97ef8c3d030afecf44ae59f"
+    },
+    {
+      "id": "A096",
+      "wave": 5,
+      "task_name": "/root/w5_a096",
+      "scope": "Verify final module package, metadata, exports and provenance identities",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W5-A096.md",
+      "report_sha256": "faf2c573ec7c80c7a442c8a354a9414a3e04aa1932607db235a9c525b5b66b61"
+    },
+    {
+      "id": "A097",
+      "wave": 5,
+      "task_name": "/root/w5_a097",
+      "scope": "Audit five-wave campaign identity, immutable reports and final closure requirements",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W5-A097.md",
+      "report_sha256": "8f3c484be9eeb4704bf3c0f923a5985f048065551b7972514226c50323095c43"
+    },
+    {
+      "id": "A098",
+      "wave": 5,
+      "task_name": "/root/w5_a098",
+      "scope": "Review concrete integration evidence and task decisions before canonical acceptance",
+      "status": "running",
+      "report": "docs/agents/development-20261123/W5-A098.md",
       "report_sha256": null
     }
   ]
