@@ -139,7 +139,12 @@ void probe(std::uint32_t source_bits) {
     require(!mailbox.begin_block().apply_recall, "consumed recall remained pending");
 
     const bool pedal_allowed = bits == 0U || bits == negative_zero || bits == one;
-    const auto pedal = decode(packet(0x3f000000U, bits));
+    // Keep a named input across the noinline boundary, as for the gain probe.
+    // This also makes preservation of the caller's pedal bytes observable.
+    const auto pedal_input = packet(0x3f000000U, bits);
+    const auto pedal_before = pedal_input;
+    const auto pedal = decode(pedal_input);
+    require(pedal_input == pedal_before, "pedal decoder altered caller bytes");
     require(pedal.has_value() == pedal_allowed, "pedal must be exact encoded zero or one");
     if (pedal) {
         expect_state(*pedal, 0x3f000000U, bits == one);

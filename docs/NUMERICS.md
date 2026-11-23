@@ -47,6 +47,15 @@ for $|\omega_dh|<10^{-6}$ it uses $\mathrm{sinc}(z)\approx1-z^2/6$.
 The first omitted term is $z^4/120$. Critical and overdamped solutions are
 outside this API even though the underdamped transition has a finite limit.
 
+Each oscillator stores two exact transition matrices. Selecting either cached
+decay changes a slot index without changing mechanical state; a third decay
+computes the same formula and replaces the inactive entry only after validation.
+Configuration invalidates the cache. `ResearchEngine::prepare` computes both
+synthetic held and released regimes before audio processing, so ordinary pedal
+and note changes select prepared coefficients. This changes computational cost,
+not the equations or timestep. [A041](agents/development-20261123/W3-A041.md)
+records independent trajectory comparisons and the measured scope.
+
 ## Events, observation time, and energy
 
 A successful sample observes all modes at $t_n$, combines their motion into

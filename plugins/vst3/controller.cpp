@@ -1,9 +1,9 @@
 #include "controller.hpp"
 #include "state_stream.hpp"
 
-#include "pluginterfaces/vst/ivstmidicontrollers.h"
+#include "rhodes/control_value.hpp"
 
-#include <cmath>
+#include "pluginterfaces/vst/ivstmidicontrollers.h"
 
 namespace rhodes::vst3 {
 
@@ -39,9 +39,11 @@ Steinberg::tresult PLUGIN_API RhodesController::setComponentState(Steinberg::IBS
         getParameterObject(kSustainId) == nullptr) {
         return Steinberg::kResultFalse;
     }
+    const auto gain = control::widen(decoded->monitoring_gain);
+    if (!gain) { return Steinberg::kResultFalse; }
     // Both parameters and the entire chunk have been checked before either
     // parameter changes, so malformed recall leaves the controller unchanged.
-    (void)setParamNormalized(kGainId, decoded->monitoring_gain);
+    (void)setParamNormalized(kGainId, *gain);
     (void)setParamNormalized(kSustainId, decoded->sustain ? 1.0 : 0.0);
     return Steinberg::kResultOk;
 }
@@ -54,19 +56,19 @@ Steinberg::tresult PLUGIN_API RhodesController::getState(Steinberg::IBStream* st
     if (getParameterObject(kGainId) == nullptr || getParameterObject(kSustainId) == nullptr) {
         return Steinberg::kResultFalse;
     }
-    const InstrumentState state{static_cast<float>(getParamNormalized(kGainId)),
-                                getParamNormalized(kSustainId) >= 0.5};
+    const auto gain = control::quantize(getParamNormalized(kGainId));
+    if (!gain) { return Steinberg::kResultFalse; }
+    const InstrumentState state{*gain, getParamNormalized(kSustainId) >= 0.5};
     return write_state_stream(stream, state) ? Steinberg::kResultOk : Steinberg::kResultFalse;
 }
 
 Steinberg::tresult PLUGIN_API RhodesController::setParamNormalized(
     Steinberg::Vst::ParamID tag, Steinberg::Vst::ParamValue value) {
-    if ((tag != kGainId && tag != kSustainId) || !std::isfinite(value) ||
-        value < 0.0 || value > 1.0) {
+    if ((tag != kGainId && tag != kSustainId) || !control::valid_normalized(value)) {
         return Steinberg::kInvalidArgument;
     }
     const double canonical = tag == kSustainId ? (value >= 0.5 ? 1.0 : 0.0) :
-        static_cast<double>(value == 0.0 ? 0.0F : static_cast<float>(value));
+        *control::widen(*control::quantize(value));
     return EditController::setParamNormalized(tag, canonical);
 }
 

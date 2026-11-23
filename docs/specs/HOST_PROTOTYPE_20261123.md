@@ -22,7 +22,13 @@ controller maps MIDI CC64 to this parameter on all sixteen channels. There is no
 pitch bend, note expression, custom temperament, physical half-pedal, effects or
 extra historical circuit emulation in this version.
 
-Quantize each valid gain point to binary32. Interpolate monitoring-gain automation
+Quantize each valid gain point to binary32 using round-to-nearest, ties-to-even.
+Control-domain checks and binary32/binary64 conversions use integer IEEE-754
+representations, so host flush modes and rounding controls cannot erase a valid
+tiny control or admit a negative subnormal. Both signed zeros canonicalize to
+positive zero; a positive nonzero note retains ownership even when native audio
+arithmetic underflows its excitation. The plug-in does not change host FP controls.
+Interpolate monitoring-gain automation
 linearly from the previous block's final value at local sample `-1` to the first
 point, then between points; keep the final point constant afterward. Duplicate
 offsets within one queue use the last point, without division by zero. A point at
@@ -84,6 +90,10 @@ Adopt the exact sixteen-byte v1 encoding and bounded stream-transfer checks in
 ResearchEngine; it cannot load future identified assets under the same semantics.
 Gain is quantized to binary32, sustain to exact zero/one, and negative zero is
 canonicalized. Invalid, short, extended or incompatible chunks preserve state.
+Wire-domain checks and zero canonicalization use integer IEEE-754 encodings,
+so host FTZ/DAZ arithmetic controls do not change which state bytes are accepted
+or erase a valid positive subnormal gain. This serialization property is
+separate from audio arithmetic underflow.
 
 Recall is configuration plus explicit reset, not a ringing-state checkpoint.
 Clear note ownership, mechanical state, fault/cursor state and interpolation

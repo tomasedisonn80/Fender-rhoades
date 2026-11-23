@@ -1,6 +1,8 @@
 #include "processor.hpp"
 #include "state_stream.hpp"
 
+#include "rhodes/control_value.hpp"
+
 #include "pluginterfaces/vst/ivstevents.h"
 #include "pluginterfaces/vst/ivstparameterchanges.h"
 
@@ -16,10 +18,6 @@ namespace vst = Steinberg::Vst;
 
 bool valid_mode(Steinberg::int32 mode) noexcept {
     return mode == vst::kRealtime || mode == vst::kPrefetch || mode == vst::kOffline;
-}
-
-bool valid_normalized(double value) noexcept {
-    return std::isfinite(value) && value >= 0.0 && value <= 1.0;
 }
 
 bool valid_offset(Steinberg::int32 offset, Steinberg::int32 frames) noexcept {
@@ -188,11 +186,11 @@ bool RhodesProcessor::collect_parameters(const vst::ProcessData& data) noexcept 
             vst::ParamValue value = std::numeric_limits<double>::quiet_NaN();
             if (queue->getPoint(index, offset, value) != Steinberg::kResultOk ||
                 !valid_offset(offset, data.numSamples) || offset < previous_offset ||
-                !valid_normalized(value)) {
+                !control::valid_normalized(value)) {
                 return false;
             }
             const float canonical = id == kSustainId ? (value >= 0.5 ? 1.0F : 0.0F) :
-                (value == 0.0 ? 0.0F : static_cast<float>(value));
+                *control::quantize(value);
             // A duplicate offset replaces the complete prior point, including
             // the endpoint used by interpolation from an earlier sample.
             if (distinct_count > 0 && offset == previous_offset) {
@@ -223,24 +221,31 @@ bool RhodesProcessor::collect_notes(const vst::ProcessData& data) noexcept {
             return false;
         }
         MidiNote note;
+        float raw_velocity = 0.0F;
         float tuning = 0.0F;
         if (event.type == vst::Event::kNoteOnEvent) {
             note = {true, event.noteOn.channel, event.noteOn.pitch,
-                    event.noteOn.noteId, event.noteOn.velocity};
+                    event.noteOn.noteId, 0.0};
+            raw_velocity = event.noteOn.velocity;
             tuning = event.noteOn.tuning;
         } else if (event.type == vst::Event::kNoteOffEvent) {
             note = {false, event.noteOff.channel, event.noteOff.pitch,
-                    event.noteOff.noteId, event.noteOff.velocity};
+                    event.noteOff.noteId, 0.0};
+            raw_velocity = event.noteOff.velocity;
             tuning = event.noteOff.tuning;
         } else {
             // In particular, LegacyMIDICCOutEvent is an output-only SDK type.
             // Unsupported input event kinds are rejected, never guessed at.
             return false;
         }
+        // Validate the SDK's binary32 value before any widening instruction:
+        // DAZ would otherwise erase the sign and magnitude of tiny velocities.
+        const auto velocity = control::widen(raw_velocity);
         if (note.channel < 0 || note.channel > 15 || note.pitch < 0 || note.pitch > 127 ||
-            !valid_normalized(note.velocity) || !std::isfinite(tuning)) {
+            !velocity || !std::isfinite(tuning)) {
             return false;
         }
+        note.velocity = *velocity;
         // Finite tuning/PPQ/length metadata does not change this fixed synthetic
         // temperament. Only channel, pitch, ownership and velocity are used.
         host_notes_[host_note_count_++] = {event.sampleOffset, note};
@@ -356,24 +361,32 @@ Steinberg::tresult RhodesProcessor::render(vst::ProcessData& data,
     std::size_t pedal_index = 0;
     std::size_t note_index = 0;
     Steinberg::int32 left_offset = -1;
-    double left_gain = live_state_.monitoring_gain;
+    // Recall and parameter preflight guarantee normalized binary32 storage.
+    double left_gain = *control::widen(live_state_.monitoring_gain);
     bool any_nonzero = false;
     for (Steinberg::int32 frame = 0; frame < data.numSamples; ++frame) {
         double gain = left_gain;
         if (gain_index < gain_count_) {
             const auto& point = gain_points_[gain_index];
             if (point.offset == frame) {
-                gain = point.value;
+                gain = *control::widen(point.value);
                 left_gain = gain;
                 left_offset = frame;
                 ++gain_index;
             } else {
                 const double fraction = static_cast<double>(frame - left_offset) /
                                         static_cast<double>(point.offset - left_offset);
-                gain = left_gain + (static_cast<double>(point.value) - left_gain) * fraction;
+                gain = left_gain + (*control::widen(point.value) - left_gain) * fraction;
             }
         }
-        live_state_.monitoring_gain = gain == 0.0 ? 0.0F : static_cast<float>(gain);
+        const auto stored_gain = control::quantize(gain);
+        if (!stored_gain) {
+            conversion_fault_ = true;
+            (void)mailbox_.end_block(token, live_state_);
+            output.silenceFlags = any_nonzero ? 0 : 3;
+            return Steinberg::kResultFalse;
+        }
+        live_state_.monitoring_gain = *stored_gain;
 
         std::size_t dispatch_count = 0;
         if (pedal_index < sustain_count_ && sustain_points_[pedal_index].offset == frame) {

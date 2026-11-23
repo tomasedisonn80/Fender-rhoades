@@ -1,0 +1,117 @@
+{
+  "status": "fail",
+  "run_count": 208,
+  "run_status_counts": {
+    "incomplete": 208
+  },
+  "run_failure_count": 0,
+  "missing_run_gates": {
+    "independently located peak compression and force (extrema audit not yet implemented)": 208
+  },
+  "refinement_failure_count": 26,
+  "refinement_failures_by_fixture": {
+    "damped_impact": 4,
+    "event_after": 1,
+    "evolved_relaunch_scaled": 1,
+    "grazing_contact": 9,
+    "grazing_tangent": 1,
+    "relaunch_phase_minus": 1,
+    "supported_conservative": 4,
+    "supported_impact": 2,
+    "supported_impact_scaled": 3
+  },
+  "refinement_missing": [],
+  "refinement_failure_class_counts": {
+    "event_time_monotonicity": 6,
+    "waveform_or_energy_monotonicity": 20
+  },
+  "frozen_identifiers_unchanged": true,
+  "identities": {
+    "include/rhodes/contact_reference.hpp": "76455b059e94f5d602e43b4f7947c04f27675bc510f3ee1dcb3a96af5bf7c6fd",
+    "src/contact_reference.cpp": "47bc6d9a2121d97e44cb9352294905a765a07b84fc987b9e8859dcf42e7d8371",
+    "apps/contact_reference.cpp": "a7ba20c5db394e57795ad651edf1bb6e0838fd08965926630038289e9471ced0",
+    "tools/validate_contact_reference.py": "1c6d8c7d8bc74f8e87374b6047e6e0040a2ed177b3abdfc1ec5022488e500cde",
+    "tools/run_contact_sweep.py": "97da10c9d4d85e3794112cd9f5a404f3707bc0634d856b15b317aa6b4650d508",
+    "docs/specs/CONTACT_ACCEPTANCE_20261123.md": "c86669723c14c64864b04702780679f7a32f2416920f6fe198375acc4de34073",
+    "docs/agents/development-20261123/W1-A005.md": "9125a28bdf9dee4338136ef575820d4295032c8596ab300bb888d0b97a182b04",
+    "docs/agents/development-20261123/W1-A007.md": "433a01787061188532630cee8907494d99a3db8e6535ac1a8e11b2ffe907d037",
+    "build/contact-full-wave3/candidates.json": "dbe5f746ad7f1d4edf8543967a121b2556805477fa413b7c07fcff8badb1ddeb",
+    "build/contact-full-wave3/manifest.json": "b139422249f67b87624549a84f3c62b47d12255291ac4bf716573e36e0df3a3c",
+    "build/vst3/rhodes_contact_reference": "527294ce8a485c22f8400e5e2130d0b39b19f003e9d0bff13932e93529bd8b8b"
+  },
+  "audit_sha256": "2f9cf2eacaafae71abb9a1f5e7230b52c849a5b267b0ac39975341bbac2ca488",
+  "worst_sample_budget_fraction": {
+    "fraction": 0.006639535399281459,
+    "fixture": "evolved_relaunch_scaled",
+    "field": "v_m_per_s[1]",
+    "maximum_step_s": 2e-05,
+    "event_tolerance_s": 2.5e-09
+  },
+  "axis_maxima": {
+    "step": {
+      "fraction": 0.010216619828488243,
+      "comparison": "grazing_tangent:step",
+      "refinement_pair_index": 1,
+      "field": "event_time_s"
+    },
+    "event": {
+      "fraction": 0.12162622830339642,
+      "comparison": "grazing_tangent:event",
+      "refinement_pair_index": 0,
+      "field": "event_time_s"
+    },
+    "local": {
+      "fraction": 0.00418318578389672,
+      "comparison": "evolved_relaunch_scaled:local",
+      "refinement_pair_index": 0,
+      "field": "v_m_per_s[1]"
+    },
+    "scaling": {
+      "fraction": 2.963254645778257e-06,
+      "comparison": "supported_impact:scaling",
+      "refinement_pair_index": 0,
+      "field": "v_m_per_s[1]"
+    }
+  },
+  "scaling_maxima": {
+    "supported_impact:scaling": {
+      "fraction": 2.963254645778257e-06,
+      "field": "v_m_per_s[1]"
+    },
+    "moving_damper:scaling": {
+      "fraction": 2.2179995885768337e-07,
+      "field": "v_m_per_s[0]"
+    },
+    "evolved_relaunch:scaling": {
+      "fraction": 1.0658930621115183e-06,
+      "field": "v_m_per_s[1]"
+    }
+  },
+  "worst_oracle_event_time": {
+    "fraction": 0.02432527523903226,
+    "absolute_error_s": 4.882812498730946e-09,
+    "fixture": "grazing_tangent",
+    "kind": "grazing",
+    "maximum_step_s": 2.5e-06,
+    "event_tolerance_s": 1e-08
+  },
+  "oracle_event_count": 544,
+  "maximum_residuals": {
+    "maximum_sample_cumulative_residual_j": {
+      "value": 1.3216655417661038e-12,
+      "fixture": "damped_impact"
+    },
+    "sum_absolute_sample_interval_residual_j": {
+      "value": 1.3281401802997528e-12,
+      "fixture": "damped_impact"
+    },
+    "maximum_instantaneous_power_residual_w": {
+      "value": 4.446326491304012e-15,
+      "fixture": "evolved_relaunch_scaled"
+    },
+    "maximum_constitutive_residual_n": {
+      "value": 4.440892098500626e-15,
+      "fixture": "evolved_relaunch"
+    }
+  }
+}

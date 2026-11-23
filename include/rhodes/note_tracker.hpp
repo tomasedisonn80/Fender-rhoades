@@ -1,9 +1,9 @@
 #pragma once
 
 #include "rhodes/event_processor.hpp"
+#include "rhodes/control_value.hpp"
 
 #include <array>
-#include <cmath>
 #include <cstddef>
 #include <cstdint>
 #include <optional>
@@ -53,14 +53,14 @@ public:
 
     [[nodiscard]] NoteResult apply(const MidiNote& note) noexcept {
         if (!valid_channel(note.channel) || note.pitch < 0 || note.pitch > 127 ||
-            !std::isfinite(note.velocity) || note.velocity < 0.0 || note.velocity > 1.0) {
+            !control::valid_normalized(note.velocity)) {
             return {NoteStatus::invalid_input, std::nullopt};
         }
         // Valid pitches outside this keyboard are ignored before identity lookup.
         if (note.pitch < lowest_pitch || note.pitch > highest_pitch) { return {}; }
 
         const auto key = static_cast<std::size_t>(note.pitch - lowest_pitch);
-        const bool on = note.on && note.velocity > 0.0;
+        const bool on = note.on && !control::is_zero(note.velocity);
         std::size_t match = capacity;
         std::size_t free_slot = capacity;
         for (std::size_t index = 0; index < holders_.size(); ++index) {

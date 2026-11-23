@@ -84,6 +84,20 @@ if(BUILD_TESTING)
             recall_abort stream_errors controller_mapping allocation_guard)
         add_test(NAME vst3.${test_name} COMMAND rhodes_vst3_host_tests ${test_name})
     endforeach()
+    add_executable(rhodes_vst3_fp_tests
+        "${PROJECT_SOURCE_DIR}/tests/cpp/vst3_fp_environment_test.cpp"
+        "${PROJECT_SOURCE_DIR}/plugins/vst3/processor.cpp"
+        "${PROJECT_SOURCE_DIR}/plugins/vst3/controller.cpp"
+        "${PROJECT_SOURCE_DIR}/plugins/vst3/state_stream.cpp")
+    target_compile_features(rhodes_vst3_fp_tests PRIVATE cxx_std_20)
+    target_include_directories(rhodes_vst3_fp_tests PRIVATE "${PROJECT_SOURCE_DIR}")
+    target_include_directories(rhodes_vst3_fp_tests SYSTEM PRIVATE "${RHODES_VST3_SDK_ROOT}")
+    target_link_libraries(rhodes_vst3_fp_tests PRIVATE rhodes_core sdk)
+    rhodes_target_options(rhodes_vst3_fp_tests)
+    foreach(test_name IN ITEMS baseline ftz daz ftz_daz)
+        add_test(NAME vst3.fp_${test_name} COMMAND rhodes_vst3_fp_tests ${test_name})
+        set_tests_properties(vst3.fp_${test_name} PROPERTIES SKIP_RETURN_CODE 77)
+    endforeach()
     add_dependencies(rhodes_vst3 validator)
     get_target_property(rhodes_plugin_bundle rhodes_vst3 SMTG_PLUGIN_PACKAGE_PATH)
     add_test(NAME vst3.sdk_validator

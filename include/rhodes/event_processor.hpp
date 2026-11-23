@@ -1,9 +1,9 @@
 #pragma once
 
 #include "rhodes/research_engine.hpp"
+#include "rhodes/control_value.hpp"
 
 #include <algorithm>
-#include <cmath>
 #include <cstdint>
 #include <limits>
 #include <span>
@@ -115,17 +115,16 @@ public:
 
 private:
     static bool valid_event(const EngineEvent& event) noexcept {
-        if (!std::isfinite(event.value)) { return false; }
         switch (event.type) {
         case EventType::note_on:
-            return event.key < key_count && event.value >= 0.0 && event.value <= 1.0;
+            return event.key < key_count && control::valid_normalized(event.value);
         case EventType::note_off:
-            return event.key < key_count && event.value == 0.0;
+            return event.key < key_count && control::is_zero(event.value);
         case EventType::sustain:
-            return event.key == 0 && (event.value == 0.0 || event.value == 1.0);
+            return event.key == 0 && control::is_boolean(event.value);
         case EventType::all_notes_off:
         case EventType::reset:
-            return event.key == 0 && event.value == 0.0;
+            return event.key == 0 && control::is_zero(event.value);
         }
         return false;
     }
@@ -134,7 +133,7 @@ private:
         switch (event.type) {
         case EventType::note_on: return engine_.note_on(event.key, event.value);
         case EventType::note_off: return engine_.note_off(event.key);
-        case EventType::sustain: engine_.set_sustain(event.value == 1.0); return true;
+        case EventType::sustain: engine_.set_sustain(!control::is_zero(event.value)); return true;
         case EventType::all_notes_off: engine_.all_notes_off(); return true;
         case EventType::reset: engine_.reset(); return true;
         }

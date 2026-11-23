@@ -1,4 +1,5 @@
 #include "rhodes/research_engine.hpp"
+#include "rhodes/control_value.hpp"
 
 #include <cmath>
 #include <numbers>
@@ -243,10 +244,10 @@ void ResearchEngine::update_damping(Key& key) noexcept {
 }
 
 bool ResearchEngine::note_on(std::size_t key, double intensity) noexcept {
-    if (key >= key_count || !std::isfinite(intensity) || intensity < 0.0 || intensity > 1.0) {
+    if (key >= key_count || !control::valid_normalized(intensity)) {
         return false;
     }
-    if (intensity == 0.0) {
+    if (control::is_zero(intensity)) {
         return note_off(key);
     }
     Key candidate = keys_[key];

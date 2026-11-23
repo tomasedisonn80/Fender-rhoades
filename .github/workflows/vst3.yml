@@ -96,7 +96,7 @@ jobs:
       - name: Build the actual module and retained host tests
         run: >-
           cmake --build build/vst3 --config Release
-          --target rhodes_vst3 rhodes_vst3_host_tests --parallel 2
+          --target rhodes_vst3 rhodes_vst3_host_tests rhodes_vst3_fp_tests --parallel 2
       - name: Run retained host tests and the official SDK validator
         run: >-
           ctest --test-dir build/vst3 -C Release -R '^vst3\.'
