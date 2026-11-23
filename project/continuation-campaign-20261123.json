@@ -451,9 +451,9 @@
       "wave": 3,
       "task_name": "/root/w3_050_audio_full_matrix",
       "scope": "Execute frozen 2097-case independent continuous and discrete audio comparisons",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/continuation-20261123/w3-050.md",
-      "report_sha256": null
+      "report_sha256": "a7759b80d1c4dafe6a992f3535f2a6361f427f8fbf54a78488ce9983c56ebbf6"
     },
     {
       "id": 51,
@@ -478,9 +478,9 @@
       "wave": 3,
       "task_name": "/root/w3_053_diagnostic_stdout",
       "scope": "Reject buffered stdout publication failures in precise probe and contact CLI",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/continuation-20261123/w3-053.md",
-      "report_sha256": null
+      "report_sha256": "8c90e44c2ced5cd59480fbdf32ab2e8c559754b41ef6177a7b301b868f32235e"
     },
     {
       "id": 54,
@@ -489,6 +489,24 @@
       "scope": "Detect actual buffered stdout failures in kernel runtime and VST3 benchmark publishers",
       "status": "running",
       "report": "docs/agents/continuation-20261123/w3-054.md",
+      "report_sha256": null
+    },
+    {
+      "id": 55,
+      "wave": 3,
+      "task_name": "/root/w3_055_core_build_boundary",
+      "scope": "Verify fresh SDK-free and testing-disabled build boundaries",
+      "status": "running",
+      "report": "docs/agents/continuation-20261123/w3-055.md",
+      "report_sha256": null
+    },
+    {
+      "id": 56,
+      "wave": 3,
+      "task_name": "/root/w3_056_peak_full_generation",
+      "scope": "Generate optional peak diagnostics for full338 matrix and compare unchanged mechanics",
+      "status": "running",
+      "report": "docs/agents/continuation-20261123/w3-056.md",
       "report_sha256": null
     }
   ]

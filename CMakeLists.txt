@@ -102,6 +102,17 @@ if(BUILD_TESTING)
         "-DPROGRAM=$<TARGET_FILE:rhodes_audio_probe>"
         "-DTEST_ROOT=${CMAKE_CURRENT_BINARY_DIR}"
         -P "${CMAKE_CURRENT_SOURCE_DIR}/tests/cpp/audio_probe_cli.cmake")
+    if(CMAKE_SYSTEM_NAME STREQUAL "Linux" AND EXISTS "/dev/full")
+        add_test(NAME audio.probe_stdout COMMAND ${CMAKE_COMMAND}
+            "-DPROGRAM=$<TARGET_FILE:rhodes_audio_probe>" -DKIND=probe
+            "-DTEST_ROOT=${CMAKE_CURRENT_BINARY_DIR}"
+            -P "${CMAKE_CURRENT_SOURCE_DIR}/tests/cpp/diagnostic_stdout.cmake")
+        add_test(NAME contact.stdout COMMAND ${CMAKE_COMMAND}
+            "-DPROGRAM=$<TARGET_FILE:rhodes_contact_reference>" -DKIND=contact
+            "-DTEST_ROOT=${CMAKE_CURRENT_BINARY_DIR}"
+            -P "${CMAKE_CURRENT_SOURCE_DIR}/tests/cpp/diagnostic_stdout.cmake")
+        set_tests_properties(audio.probe_stdout contact.stdout PROPERTIES TIMEOUT 90)
+    endif()
     add_executable(rhodes_contact_tests tests/cpp/contact_reference_test.cpp)
     target_link_libraries(rhodes_contact_tests PRIVATE rhodes_contact)
     rhodes_target_options(rhodes_contact_tests)

@@ -23,6 +23,11 @@ constexpr std::size_t maximum_events = 4096;
 constexpr std::size_t maximum_line_bytes = 128; // Excludes the newline byte.
 constexpr std::size_t processing_block_frames = 64;
 
+void finish_stdout() {
+    std::cout.flush();
+    if (!std::cout) { throw std::runtime_error("Cannot write stdout"); }
+}
+
 struct Input {
     double sample_rate = 0.0;
     std::size_t frames = 0;
@@ -206,7 +211,7 @@ void run(const Input& input) {
         std::cout << samples[frame];
     }
     std::cout << "]}\n";
-    if (!std::cout) { throw std::runtime_error("Cannot write stdout"); }
+    finish_stdout();
 }
 } // namespace
 
@@ -225,7 +230,8 @@ int main(int argc, char** argv) {
                 "Processing uses 64-frame blocks and bounded physical-event dispatch.\n"
                 "JSON stdout contains volts with 17 significant digits; no gain or time shift.\n"
                 "Invalid input exits 2 with diagnostics on stderr and empty stdout.\n";
-            return std::cout ? 0 : 2;
+            finish_stdout();
+            return 0;
         }
         run(preflight(argc, argv));
         return 0;

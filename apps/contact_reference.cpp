@@ -18,6 +18,11 @@ namespace {
 namespace c = rhodes::contact;
 constexpr double grazing_time = 0.0010073;
 
+void finish_stdout() {
+    std::cout.flush();
+    if (!std::cout) { throw std::runtime_error("Cannot write stdout"); }
+}
+
 struct Fixture {
     c::Configuration config{};
     c::State initial{};
@@ -264,7 +269,7 @@ int main(int argc, char** argv) {
         double tolerance_scale = 1.0;
         for (int i = 1; i < argc; ++i) {
             const std::string_view flag = argv[i];
-            if (flag == "--help") { usage(); return 0; }
+            if (flag == "--help") { usage(); finish_stdout(); return 0; }
             if (flag == "--locate-peak-candidates") {
                 settings.locate_peak_candidates = true;
                 continue;
@@ -395,6 +400,7 @@ int main(int argc, char** argv) {
             << '}';
         if (settings.locate_peak_candidates) { emit_located_peaks(d); }
         std::cout << "}}]}\n";
+        finish_stdout();
         return result ? 0 : 2;
     } catch (const std::exception& error) {
         std::cerr << "Contact reference error: " << error.what() << '\n';

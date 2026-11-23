@@ -1,0 +1,61 @@
+cmake_minimum_required(VERSION 3.24)
+if(NOT CMAKE_HOST_SYSTEM_NAME STREQUAL "Linux" OR NOT EXISTS "/dev/full")
+    message(FATAL_ERROR "This write-failure regression requires Linux /dev/full")
+endif()
+if(NOT DEFINED PROGRAM OR NOT IS_ABSOLUTE "${PROGRAM}" OR NOT EXISTS "${PROGRAM}"
+        OR IS_DIRECTORY "${PROGRAM}" OR NOT DEFINED TEST_ROOT)
+    message(FATAL_ERROR "PROGRAM must be an absolute executable path; TEST_ROOT is required")
+endif()
+if(KIND STREQUAL "probe")
+    set(error_exit 2)
+    set(error_prefix "rhodes_audio_probe: Cannot write stdout")
+    set(model "synthetic-filtered-audio")
+    set(help_prefix "rhodes_audio_probe")
+    set(json_args --sample-rate 48000 --frames 1)
+elseif(KIND STREQUAL "contact")
+    set(error_exit 1)
+    set(error_prefix "Contact reference error: Cannot write stdout")
+    set(model "synthetic-contact-p1")
+    set(help_prefix "rhodes_contact_reference")
+    set(json_args --fixture conservative_impact --output-step 0.001)
+else()
+    message(FATAL_ERROR "KIND must be probe or contact")
+endif()
+string(RANDOM LENGTH 16 ALPHABET 0123456789abcdef suffix)
+set(work "${TEST_ROOT}/diagnostic-stdout-${suffix}")
+file(MAKE_DIRECTORY "${work}")
+file(WRITE "${work}/empty.stdin" "")
+
+function(check_output label)
+    # A healthy destination is a positive guard: a wrong argument or unrelated
+    # process error must not satisfy the expected write-failure exit status.
+    execute_process(COMMAND "${PROGRAM}" ${ARGN}
+        INPUT_FILE "${work}/empty.stdin" OUTPUT_VARIABLE output
+        ERROR_VARIABLE diagnostic RESULT_VARIABLE result TIMEOUT 30)
+    if(NOT "${result}" STREQUAL "0" OR NOT "${diagnostic}" STREQUAL "")
+        message(FATAL_ERROR "${label} failed with a healthy destination: ${result}: ${diagnostic}")
+    endif()
+    if(label STREQUAL "json")
+        string(JSON actual_model ERROR_VARIABLE error GET "${output}" model)
+        if(NOT "${error}" STREQUAL "NOTFOUND" OR NOT actual_model STREQUAL model)
+            message(FATAL_ERROR "${label} did not produce the expected JSON model")
+        endif()
+    elseif(NOT output MATCHES "^${help_prefix}")
+        message(FATAL_ERROR "Help did not begin with its executable identity")
+    endif()
+    # These outputs fit in a typical stdio buffer. Success must include flushing
+    # the final buffered bytes, rather than checking only the insertion state.
+    execute_process(COMMAND "${PROGRAM}" ${ARGN}
+        INPUT_FILE "${work}/empty.stdin" OUTPUT_FILE "/dev/full"
+        ERROR_VARIABLE diagnostic RESULT_VARIABLE result TIMEOUT 30)
+    if(NOT "${result}" STREQUAL "${error_exit}")
+        message(FATAL_ERROR "${label} expected write-failure exit ${error_exit}, got ${result}: ${diagnostic}")
+    endif()
+    if(NOT diagnostic MATCHES "^${error_prefix}")
+        message(FATAL_ERROR "${label} did not identify the stdout write failure: ${diagnostic}")
+    endif()
+endfunction()
+
+check_output(json ${json_args})
+check_output(help --help)
+message(STATUS "Verified ${KIND} JSON and help output failure exits")

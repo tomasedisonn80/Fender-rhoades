@@ -460,6 +460,33 @@
       "limitations": [
         "Linux GCC Debug isolated snapshot; LeakSanitizer startup limitation under ptrace retained, leak detection disabled only for successful scoped run. Does not cover host modules, data races, real-time deadlines, continuous extrema certification, or physical fidelity."
       ]
+    },
+    {
+      "id": "RT-20261123-filtered-full",
+      "kind": "numerical",
+      "result": "fail",
+      "summary": "Full2097-case matrix: every independent discrete comparison passes and every continuous reference resolves; exploratory continuous-prototype comparison passes12 and fails2085.",
+      "command": null,
+      "created_at": "2026-11-23T18:21:42Z",
+      "source_commit": "87267b16b07475abbe4e0dfcaf318340a6c426af",
+      "artifacts": [
+        {
+          "path": "docs/validation/filtered-audio-full-20261123.json",
+          "sha256": "68041ad5edef8a31998d8b441819c348b282b222d8255dc0229a494384679c07"
+        },
+        {
+          "path": "docs/agents/continuation-20261123/w3-050.md",
+          "sha256": "a7759b80d1c4dafe6a992f3535f2a6361f427f8fbf54a78488ce9983c56ebbf6"
+        }
+      ],
+      "specimen_id": null,
+      "profile_path": null,
+      "session_paths": [],
+      "independent": true,
+      "reference_evidence": [],
+      "limitations": [
+        "Observed continuous-prototype peak discrepancy reaches0.4473573821492792 V in all-key retrigger at192kHz; original gates and failed cases preserved. Not isolated alias voltage, audibility, physical fidelity, or RT-001 completion."
+      ]
     }
   ]
 }
