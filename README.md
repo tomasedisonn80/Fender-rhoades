@@ -40,6 +40,8 @@ The [live project state](docs/PROJECT_STATE.md) is generated from the
 ## Build and run
 
 Requirements: C++20 compiler, CMake 3.24+, and Python 3.11+ for project tooling.
+The test build needs `std::barrier` and `std::jthread` library support; see
+[toolchain requirements](docs/DEVELOPMENT.md) for the Apple build boundary.
 The initial core has **no third-party runtime dependencies** and downloads no
 packages during its build.
 

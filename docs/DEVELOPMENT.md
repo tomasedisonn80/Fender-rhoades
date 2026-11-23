@@ -6,6 +6,11 @@ The current equations, units and numerical failure behavior are specified in
 ## Local checks
 
 The core requires C++20 and CMake 3.24+. Project tooling requires Python 3.11+.
+Retained concurrency tests also require standard-library support for
+`std::barrier` and `std::jthread`. Use Xcode 26 or later for these tests with
+Apple's bundled library: its [release notes](https://developer.apple.com/documentation/xcode-release-notes/xcode-26-release-notes)
+document nonexperimental `std::jthread` support. The configured macOS deployment
+target is 11.0; this is build configuration, not an observed minimum-OS result.
 No compiler or third-party audio framework is downloaded by the build. Use a
 compiler supplied by your operating system's normal development environment.
 The optional [VST3 build](VST3.md) uses an explicitly supplied, pinned SDK and

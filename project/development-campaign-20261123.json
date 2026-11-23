@@ -765,26 +765,71 @@
       "wave": 5,
       "task_name": "/root/w5_a085",
       "scope": "Review explicit portability assumptions for configured host platforms",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/development-20261123/W5-A085.md",
-      "report_sha256": null
+      "report_sha256": "d46aa8477fc3aaefc1abb189562fd60c74514873538c38ce31444fd7482ba059"
     },
     {
       "id": "A086",
       "wave": 5,
       "task_name": "/root/w5_a086",
       "scope": "Verify a fresh standalone Release build and complete default tests without the SDK",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/development-20261123/W5-A086.md",
-      "report_sha256": null
+      "report_sha256": "7e2c54dbe9ef0b13b016b0b79541b265c3a08c778eb8f47323a5881379abc638"
     },
     {
       "id": "A087",
       "wave": 5,
       "task_name": "/root/w5_a087",
       "scope": "Reconcile current runtime and verification documentation with implemented behavior",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/development-20261123/W5-A087.md",
+      "report_sha256": "77d005944e5e091dc287ba571c8cd3e6619da0ca0a1c67be06ad802d3dab412d"
+    },
+    {
+      "id": "A088",
+      "wave": 5,
+      "task_name": "/root/w5_a088",
+      "scope": "Audit historical scientific evidence hashes and criterion source bindings",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W5-A088.md",
+      "report_sha256": "ec6dc60304a8b4e16a94f051275e890d13b83882a3561166e0aefc3d69897388"
+    },
+    {
+      "id": "A089",
+      "wave": 5,
+      "task_name": "/root/w5_a089",
+      "scope": "Verify optional VST3 module and benchmark build with testing disabled",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W5-A089.md",
+      "report_sha256": "b41e3eeb048a534ef09f7cf16e60abf5e281ef22ecd09d86d6690e04df669592"
+    },
+    {
+      "id": "A090",
+      "wave": 5,
+      "task_name": "/root/w5_a090",
+      "scope": "Complete public primary-source attribution for collision and physical-model research",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W5-A090.md",
+      "report_sha256": "9f85c18e5dbee5b111ff0e1a881df2cc0472c8d63c67e73aaedfed6ad1fee62e"
+    },
+    {
+      "id": "A091",
+      "wave": 5,
+      "task_name": "/root/w5_a091",
+      "scope": "Review current CI coverage, target wiring, and platform verification claims",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W5-A091.md",
+      "report_sha256": "ffb8b140bd55e1e548b56345f83b84b69d4f538c650bf68da36de7212e4fa21d"
+    },
+    {
+      "id": "A092",
+      "wave": 5,
+      "task_name": "/root/w5_a092",
+      "scope": "Audit actual callback bounds and plugin-owned allocation and synchronization policy",
+      "status": "running",
+      "report": "docs/agents/development-20261123/W5-A092.md",
       "report_sha256": null
     }
   ]

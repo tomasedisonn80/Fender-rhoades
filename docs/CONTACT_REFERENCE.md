@@ -161,6 +161,16 @@ when generation completes successfully. `--plan` previews the matrix;
 pass, `1` for fail and `2` for incomplete evidence. Its `--self-check` exercises
 the independent oracles; it does not accept candidate results.
 
+Self-check guards remain active under normal, `-O` and `-OO` Python. The
+[optimization repair](agents/development-20261123/W4-A076.md) replaced removable
+assertions; the subsequent [nonfinite-comparison repair](agents/development-20261123/W5-A083.md)
+requires every sampled Radau difference to be finite before taking its maximum.
+The latter prevents an interior NaN from disappearing in Python's `max()`
+reduction. Retained rejection tests and real numerical negative controls detect
+both defects; healthy self-check output is unchanged. Equations and frozen
+tolerances are unchanged, and neither repair constitutes a new full candidate
+sweep or closes the refinement/extrema gates below.
+
 Input auditing rejects nonfinite or malformed scalars, incorrect vector shapes,
 inconsistent diagnostic/status fields and explicit nonzero failure codes before
 numerical comparison. Relaunch evidence must cover the frozen actions, preserve

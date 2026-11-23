@@ -1,60 +1,90 @@
 # Runtime, host events and prepared assets
 
-**Status: a future integration contract.** The current fixed-storage engine has
-call-boundary controls, an arbitrary caller-owned span and a sample-rate-only
-`prepare`. It has no host event list, asset loader, state serializer or plugin.
-This specification consolidates setup reviews A031–A039; those reports remain
-available through [the campaign index](../agents/CAMPAIGN.md).
+**Status: implemented synthetic host foundation, with open runtime and prepared
+asset requirements.** The current fixed-storage engine is wrapped by bounded
+sample-offset events, MIDI ownership, versioned configuration state and an
+optional VST3 instrument. A generalized prepared-asset loader and ringing-state
+checkpoint are not implemented. The [host contract](HOST_PROTOTYPE_20261123.md)
+defines the implemented adapter; [VST3.md](../VST3.md) records build instructions
+and actual verification. The separate [contact reference](../CONTACT_REFERENCE.md)
+remains offline, with its own [frozen acceptance](CONTACT_ACCEPTANCE_20261123.md).
+
+This specification began with setup reviews A031–A039; their historical
+observations remain in [the setup campaign](../agents/CAMPAIGN.md). The sections
+below distinguish implemented behavior from future requirements without changing
+RT-001's numerical-error, convergence or measured-performance gates.
 
 ## Current verified boundary
 
-Static inspection finds fixed 73-key/three-mode storage and no core allocation,
-locking, I/O or explicit throws. This is source evidence, not an allocator trap,
-platform-library audit, or host deadline guarantee. The benchmark times only
-`process()`. Note events recompute three modal transitions; pedal, reset and
-all-notes-off can recompute 219; setup also calculates key frequencies. Those
-control costs must be included in future full-callback measurements.
+The synthetic audio engine retains 73 physical keys with three modes each.
+Preparation warms both free/damped transition matrices; ordinary note, pedal and
+reset operations select those prepared coefficients. [A041](../agents/development-20261123/W3-A041.md)
+records the implementation and matched observations. An arbitrary third decay
+requested through the modal primitive can still recalculate coefficients; the
+two-entry cache is not a general prepared-asset system.
 
-One execution owner mutates each engine. Construction, asset parsing and
-preparation occur outside audio processing. No concurrent UI/control mutation is
-supported by the current unsynchronized state. The current process API returns
-only a Boolean status; no diagnostic counters or failing-sample/subsystem fields
-are implemented. Future diagnostics must use bounded status and counters, with
-logging and presentation outside the callback.
+Plugin-owned processing uses fixed storage, without asset parsing, logging,
+I/O or locks. [A024](../agents/development-20261123/W2-A024.md) observed zero C++
+allocation attempts in 89 actual processor calls using calibrated interception.
+This finite observation and source inspection do not prove every library or
+foreign host getter allocation-free. Three [benchmark boundaries](../BENCHMARKING.md)
+are now available: raw engine processing, complete `EventProcessor` calls, and
+actual `RhodesProcessor` callbacks. Their costs must not be conflated.
 
-Current tests do not induce an engine arithmetic fault and verify its partial
-state/output recovery. The proposed bounded fault fixture below remains work for
-the runtime/reference phase; successful invalid-input tests do not cover it.
+One audio owner mutates mechanics and note ownership. Construction and preparation
+occur outside processing. Direct concurrent mutation of `ResearchEngine` remains
+unsupported; UI state callbacks instead exchange coherent configuration through
+the lock-free mailbox. [A049](../agents/development-20261123/W3-A049.md) tests that
+mailbox, and [A081](../agents/development-20261123/W5-A081.md) exercises concurrent
+state callbacks against the actual processor. Lifecycle operations are outside
+that concurrent-use contract.
 
-## First RT-001 handoff
+The underlying engine's process call still returns Boolean success, while
+`EventProcessor` returns bounded `ProcessResult` status, completed frames,
+failing sample/event, subsystem and reset requirement. Retained
+[event tests](../../tests/cpp/event_processor_test.cpp), reported by
+[A015](../agents/development-20261123/W1-A015.md), inject sample and event failures
+through a compile-time substitute engine and verify prefix preservation, suffix
+silence and explicit recovery. This exercises adapter semantics without adding
+a production fault switch or claiming exhaustive physical arithmetic coverage.
 
-After PHY-001 passes, the first runtime slice is a synthetic, bounded full-call
-harness: include the declared event/control work with processing, freeze the
-workload and numerical-reference tolerances, and report observed maxima and
-nominal block-deadline misses. Keep the existing process-only benchmark as a
-separately named baseline. This harness is not an audio-device callback and
-cannot measure host wake-up lateness, device underruns or released-plugin behavior.
+## Current RT-001 handoff
+
+The synthetic full-call harnesses now include their declared event/control work
+and report observed maxima and nominal block-period misses. Retain the raw data,
+source/build identity, workload and numerical-reference tolerances with each
+result. The process-only benchmark remains a separately named boundary. Neither
+callable harness measures host wake-up lateness, device underruns or released
+plugin behavior. The [historical raw archive](../validation/runtime-historical-raw-20261123.json)
+preserves the A038/A041 observations; the
+[actual VST3 matrix](../validation/vst3-callback-benchmark-20261123.json) is a
+separate experiment.
 
 RT-001 still requires both performance and numerical evidence, including the
 allocation/locking policy and timestep/antialiasing convergence in its acceptance
 criteria. Timing JSON or a smoke test alone cannot complete it. The integrator
-must record exactly which synthetic workload and approximations passed, and
-create explicit host/release tasks before claiming device or plugin coverage.
+must record exactly which synthetic workload and approximations passed. The
+separate HOST-001 prototype task does not waive runtime or physical-model gates;
+native host/device and release claims require their own actual evidence.
 
 ## Bounded event adapter
 
-Before adding a host, freeze maximum frames/events, all solver and coupling caps,
-and the supported parameter domain. An initial engineering proposal is up to
-4096 frames and 256 ordered events per adapter call; this is not implemented or
-a measured deadline guarantee. Larger host buffers require a specified bounded
-segmentation policy. Any revised limits need updated tests and timing evidence.
+The implemented physical `EventProcessor` accepts at most **4096 frames and 256
+ordered events per call**, with whole-block preflight. The VST3 adapter accepts
+up to **8192 host frames**, 256 raw note events, two parameter queues and 8192
+points per queue; it preflights the entire host block before issuing bounded
+one-sample physical dispatches. At most 256 combined physical note/pedal events
+may occur at one sample. These are storage/processing limits, not measured
+deadline guarantees. Any revised limits or future solver/coupling caps need
+updated tests and timing evidence; details remain in the host contract.
 
 Events have integer offsets `0 <= offset < N` and an explicit producer sequence.
 Preserve `(offset, sequence)` order; do not sort equal-time releases/retriggers by
 event type. Apply events before observing the sample at that offset. Offset `N`
 belongs to the following block; an empty block accepts no events and advances
-nothing. Keep an overflow-checked absolute frame cursor and a bounded future-event
-queue outside the physical core.
+nothing. The adapter maintains an overflow-checked absolute frame cursor; it has
+no future-event queue. Callers retain events belonging to later blocks. Any
+future queue must have an explicit bound and remain outside physical mechanics.
 
 Reject invalid order, late events, offsets or event overflow before mutating
 mechanics. Return a distinct input-failure status and zero rejected output; never
@@ -62,20 +92,29 @@ silently truncate releases. Arithmetic faults differ: the current core may have
 advanced part of the state and zeros the failed sample/remainder. A host must
 stop using that trajectory and follow explicit reset/recovery before resuming.
 
-An independent event fixture spans 130 frames at 48 kHz: key 17 on at 0; off then
-on at 63; pedal-down then release at 64; pedal-up at 128. Compare an independent
-scalar trajectory and final states for partitions `[130]`, `[64,64,2]` and single
-frames. Reverse the tie at 63 to prove ordering is observable. This is a proposed
-fixture, not an already supported event API.
+The retained `scalar_partitions` fixture spans 130 frames at 48 kHz: key 17 on
+at 0; off then on at 63; pedal-down then release at 64; pedal-up at 128. It compares
+an independent direct-call schedule and final states for partitions `[130]`,
+`[64,64,2]` and single frames. `equal_offset_order` reverses the tie at 63 and
+verifies the observable difference. These checks establish the stated event
+semantics within the synthetic engine.
 
 ## Musical release and overlapping inputs
 
-The current key has one held boolean. Zero-intensity note-on releases it;
-all-notes-off clears held keys while respecting sustain; hard reset clears all
-mechanics, held flags and pedal state. A future host must name its overlapping
-note/channel policy explicitly and test it. Multiple input sources must still
-drive one physical state per key. A controller-message mapping must not assume
-that an internal hard reset preserves external controller state.
+Each physical key retains one held flag and one mechanical state. `NoteTracker`
+translates up to 256 fixed holders across sixteen MIDI channels into that state
+for pitches 28–100. Identified notes use channel/note ID; the `-1` sentinel has
+distinct anonymous holders. Every accepted positive on strikes without resetting
+motion, and only removal of the last owner emits physical release. Zero-intensity
+note-on follows note-off semantics; valid pitches outside the instrument range
+are ignored. The [independent note model](../agents/development-20261123/W4-A074.md)
+tests ownership, capacity, recall and randomized sequences.
+
+Core all-notes-off clears held flags while respecting sustain; hard reset clears
+mechanics, held flags and pedal state. The VST3 adapter maps CC64, not CC120 or
+CC123. Its lifecycle reset and successful state recall clear ownership/mechanics
+and reinstall the preserved or recalled configuration. Do not infer an external
+controller-message mapping from an internal helper operation.
 
 Test pedal lift with one physically held and one released key. Check all modal
 coordinates across events. Reset during held/pedal activity and compare the next
@@ -98,19 +137,21 @@ transition matrices and assume the result is physically consistent.
 
 ## Compiled asset identity
 
-The future boundary needs four explicit types: immutable `PreparedModel`,
-exclusive per-instance `EngineState`, bounded `Event` data, and a fixed-size
-`ProcessResult`. Declare all vector dimensions and 73-pickup indexing. The result
-reports status, first failing sample, subsystem and whether reset is required;
-the host formats it later. Runtime depends on this prepared-data interface, not
-offline solvers, file parsers or a host SDK. These are future types, not current
-API exports.
+A generalized asset boundary still needs an immutable `PreparedModel` and an
+exclusive per-instance `EngineState` with declared vector dimensions and
+73-pickup indexing. Bounded `EngineEvent` and `ProcessResult` types now exist;
+their current synthetic contract is not an identified-model asset ABI. The
+physical core must continue to depend on prepared data, not offline solvers,
+file parsers or host SDK headers. Parsing and semantic validation stay outside
+the callback.
 
-Reject a candidate whose pickup-projection dimension mismatches its modal state
-without replacing the valid model. A future fault-injection fixture at sample
-17 of a 64-sample block must retain earlier output, zero samples 17–63 and return
-bounded reset-required diagnostics without callback logging or allocation. This
-consolidates [A040](../agents/reviews/A040.md) into this single boundary document.
+The future loader must reject a candidate whose pickup-projection dimension
+mismatches its modal state without replacing the valid model. The existing
+`sample_fault_reset` fixture injects failure at sample 17 of a 64-sample block,
+retains earlier output, zeros samples 17–63 and reports bounded reset-required
+diagnostics. Reuse that recovery discipline when introducing prepared assets;
+it does not validate a loader that is not yet implemented. These requirements
+retain the purpose of [A040](../agents/reviews/A040.md).
 
 An asset manifest records schema/model/ABI version, ID and revision, payload
 encoding/size/hash, specimen/configuration hashes, netlist/output identity, source
@@ -133,8 +174,11 @@ substitution is permitted.
 
 ## Persistence and determinism
 
-Session recall restores configuration with a declared reset/equilibrium policy.
-A ringing-state checkpoint additionally needs all dynamic mechanics, contact,
+The current host's sixteen-byte version-1/model-1 state restores monitoring gain
+and sustain with an explicit mechanical/ownership reset. Its validated numeric
+encoding and bounded stream handling are specified in the host contract;
+successful recall is not a ringing-state checkpoint. A future checkpoint
+additionally needs all dynamic mechanics, contact,
 electrical, thermal and scheduler states, event position, coordinate normalization,
 sample rate and model identity. Do not serialize a C++ object memory layout.
 Use explicit numeric encoding and independently versioned configuration/state
@@ -157,7 +201,9 @@ floating-point environment altered by an adapter.
 
 Measure uninterrupted tails, not just repeated attacks and exact-zero silence.
 Measure complete callback/event handling, wake-up lateness, completion deadlines
-and device underruns separately. A future stress fixture can use all 73 keys at
-192 kHz/64 frames with the full declared event and solver budgets. Include cap
-exhaustion and one-event overflow. Observed maxima and zero observed misses are
-finite observations, not worst-case guarantees or CPU-utilization percentages.
+and device underruns separately. The retained benchmark matrices already exercise
+all 73 keys at 192 kHz/64 frames with their declared synthetic event workloads.
+Longer uninterrupted tails, future solver/coupling budgets and device behavior
+still require their own experiments. Continue to include cap exhaustion and
+one-event overflow when limits evolve. Observed maxima and zero observed misses
+are finite observations, not worst-case guarantees or CPU-utilization percentages.

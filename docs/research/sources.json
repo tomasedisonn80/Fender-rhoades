@@ -31,7 +31,7 @@
       "title": "Real-time Physical Model of a Wurlitzer and Rhodes Electric Piano — Pfeifle, DAFx 2017",
       "url": "https://www.dafx.de/paper-archive/2017/papers/DAFx17_paper_79.pdf",
       "status": "reviewed",
-      "notes": "Physical-model feasibility; not a benchmark for this repository.",
+      "notes": "Florian Pfeifle; DAFx-17, Edinburgh, 5–9 September 2017. Sections 5.2 and 5.4 reviewed 2026-11-23: viscoelastic hammer contact and geometry-dependent pickup modeling inform research questions. This repository's synthetic clipped p=1 contact law, numerical method, calibration and CPU behavior require separate validation; no paper parameters, measurements or implementation imported.",
       "redistribution": "link_only"
     },
     {
@@ -208,6 +208,14 @@
       "url": "https://www.fenderrhodes.com/service-manuals/1979/ch2.html",
       "status": "supplied_unreviewed",
       "notes": "Supplied action/damper arrangement reference; not an identified contact law or specimen measurement.",
+      "redistribution": "link_only"
+    },
+    {
+      "id": "SRC-027",
+      "title": "Numerical Modeling of Collisions in Musical Instruments",
+      "url": "https://arxiv.org/abs/1405.2589v1",
+      "status": "reviewed",
+      "notes": "Stefan Bilbao, Alberto Torin and Vasileios Chatziioannou. Author preprint arXiv:1405.2589v1, submitted 2014-05-11 21:54:17 UTC; abstract and sections 2.1–2.4 reviewed 2026-11-23. Contact potential, dissipation and energy-compatible finite differences motivate complete energy-balance checks. This repository uses adaptive RK4 with step doubling and synthetic clipped p=1 forces; it does not implement that scheme or inherit its stability proofs. The PDF's draft 2012 header is not the arXiv submission date. No parameters, measurements or implementation copied.",
       "redistribution": "link_only"
     }
   ]

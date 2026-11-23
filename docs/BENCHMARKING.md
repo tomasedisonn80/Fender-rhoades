@@ -124,6 +124,15 @@ retain source identities and the uncontrolled-container limitations. These are
 historical matched core measurements, not a before/after comparison with the
 VST3 callback measurements below.
 
+[A082](agents/development-20261123/W5-A082.md) subsequently preserved all sixteen
+original A038/A041 timing JSONs in a
+[self-contained historical archive](validation/runtime-historical-raw-20261123.json),
+together with manifests, wrappers, reports and recorded trajectory comparisons.
+An embedded standard-library verifier recomputes 14,000 durations and 64
+quarter-window summaries without the original scratch files. Exact historical
+payloads and their hashes are retained; this preservation work did not rerun
+timings or DSP trajectories and adds no performance or numerical acceptance.
+
 ## Actual VST3 callback benchmark
 
 Configure the optional SDK build as described in [VST3.md](VST3.md). Its

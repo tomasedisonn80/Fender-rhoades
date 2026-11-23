@@ -19,6 +19,14 @@ environment: GCC/Clang on Linux, Apple's developer toolchain on macOS, or an
 x64 Visual Studio C++ environment on Windows. The default research build leaves
 `RHODES_BUILD_VST3=OFF` and does not download the SDK.
 
+The complete retained test build also requires a C++20 standard library with
+`std::barrier` and `std::jthread`/`std::stop_token`. With Apple's toolchain, use
+Xcode 26 or later: Apple's [Xcode 26 release notes](https://developer.apple.com/documentation/Xcode-Release-Notes/xcode-26-release-notes)
+record that `jthread` and stop-token support no longer require the experimental
+library flag. Selecting the C++20 language mode alone is insufficient with an
+older standard library. This requirement is distinct from a successful native
+macOS build or an established binary deployment baseline.
+
 From the repository root, obtain a separate SDK checkout. These Git commands
 work in a POSIX shell or PowerShell; the destination must not already exist:
 
@@ -174,9 +182,13 @@ retained host suites exercise concrete processor/controller classes and include:
 | Partial reads/writes, stream failures and transactional state recall | [A066](agents/development-20261123/W4-A066.md) |
 | Independent automation model, ties, flushes and rejection | [A073](agents/development-20261123/W4-A073.md) |
 | Independent note-ownership model, capacity, recall and randomized sequences | [A074](agents/development-20261123/W4-A074.md) |
+| Actual processor state callbacks concurrent with audio processing, including pending-recall preservation | [A081](agents/development-20261123/W5-A081.md); two Release/ThreadSanitizer scenarios, with plugin-owned sources instrumented and SDK archives uninstrumented |
 
 These are the scopes recorded by each report; the earlier allocation observation
 does not instrument every later test or prove a universal allocation bound.
+The concurrency checks use one audio owner and thread-local state streams;
+lifecycle changes remain outside concurrent processing. Executed interleavings
+do not establish exhaustive scheduling or native DAW coverage.
 Use `ctest --test-dir build/vst3 -C Release -N -R '^vst3\.'` to enumerate the
 tests configured in your own checkout.
 
