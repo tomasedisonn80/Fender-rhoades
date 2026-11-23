@@ -10,7 +10,7 @@ import tempfile
 import unittest
 from unittest.mock import patch
 
-from test_project import project
+from test_project import project, write_measurement_fixture
 
 
 class StateReviewTests(unittest.TestCase):
@@ -56,7 +56,8 @@ class StateReviewTests(unittest.TestCase):
             "id": identifier, "kind": kind, "result": "pass", "summary": "Synthetic audit fixture",
             "command": None, "created_at": "2020-01-01T00:00:00Z", "source_commit": None,
             "artifacts": [{"path": f"docs/{identifier}.txt", "sha256": project.sha256(artifact)}],
-            "specimen_id": None, "independent": False, "reference_evidence": [],
+            "specimen_id": None, "profile_path": None, "session_paths": [],
+            "independent": False, "reference_evidence": [],
             "limitations": ["Only a structural test fixture; not evidence of an instrument"],
         }
         record.update(fields)
@@ -143,8 +144,9 @@ class StateReviewTests(unittest.TestCase):
                 task.update(id=identifier, status="done", required_evidence=["hardware_validation"],
                             evidence=["heldout"], claim=None, owner="reviewer")
                 self.registry["records"] = []
-                self.add_record("measurement", "measurement", specimen_id="FIXTURE")
-                self.add_record("heldout", "hardware_validation", specimen_id="FIXTURE",
+                binding = write_measurement_fixture(self.root)
+                self.add_record("measurement", "measurement", **binding)
+                self.add_record("heldout", "hardware_validation", **binding,
                                 independent=True, reference_evidence=["measurement"])
                 self.save()
                 original_evidence = (self.root / "project/evidence.json").read_bytes()

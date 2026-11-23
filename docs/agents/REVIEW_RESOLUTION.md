@@ -52,3 +52,45 @@ work now depends on this explicit Stage gate.
 Subsequent review findings and integration outcomes are appended here or in the
 consolidated implementation specifications. Individual reports remain available
 through the campaign index.
+
+## Numerical and runtime specifications
+
+A026–A030 are consolidated in [the reference-solver contract](../specs/REFERENCE_SOLVERS.md):
+assembled equilibrium, separate timestep/solver/event refinement, grazing and
+branch-clamp cases, a cancellation-resistant energy ledger and nonlinear alias
+validation. They are future coupled-reference gates; the current exact modal
+primitive is not promoted into a completed contact solver.
+
+A031–A040 are consolidated in [the runtime/asset contract](../specs/RUNTIME_AND_ASSETS.md):
+bounded host events, explicit ordering, control costs, state ownership, fault
+reporting, immutable assets, migration/serialization and long-tail policies.
+Current call-boundary controls and Boolean process status are described honestly.
+No host event API, serializer, asset loader or deadline guarantee is claimed.
+
+A042 confirmed the scoped DAG ordering and the availability of PHY-002/RT-001
+once analytical prerequisites complete. A043 clarified that leases coordinate
+records within one authoritative checkout; they cannot stop a stale process or
+provide distributed fencing. Reassignment requires acknowledged stopped writers
+and preservation/reconciliation of their changes.
+
+## Evidence and acquisition contracts
+
+A041 showed that an arbitrary hashed artifact could be declared a measurement
+without binding its contents to the specimen/session contracts. A044 added typed
+profile/session paths, immutable linkage, an independent `specimen_identity`
+kind, measured-session checks and exact same-profile/session coverage for held-out
+validation. Its integrated run passed 88 Python tests. SPEC-001 now requires the
+identity kind; its physical-access blocker remains. Metadata consistency is not
+an attestation that an experiment actually occurred.
+
+A045 found that JSON Schema's end-of-string anchor admitted a trailing newline
+that the Python validators rejected. Data schemas now use an explicit absolute-end
+guard; focused regressions cover identifier and digest suffixes. Unknown values
+remain null rather than invented zeroes.
+
+A046–A050 are consolidated in [the acquisition contract](../specs/DATA_INGESTION.md).
+Version-1 metadata validation does not resolve calibration validity, raw payloads,
+configuration history or derived-data ancestry. These limitations are documented
+at the data entry point and remain explicit gates before real measured acceptance.
+A050 also corrected the source-ledger summary to distinguish historical tonebar
+stamp sequences from the project's normalized key mapping.

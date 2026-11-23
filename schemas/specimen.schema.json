@@ -11,7 +11,7 @@
     },
     "profile_id": {
       "type": "string",
-      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$(?![\\s\\S])"
     },
     "kind": {
       "const": "specimen"
@@ -108,7 +108,7 @@
     },
     "key_mapping_source": {
       "type": "string",
-      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$(?![\\s\\S])"
     },
     "reference_pitch_hz": {
       "type": "number",

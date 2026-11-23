@@ -23,6 +23,7 @@ released. The [live project state](docs/PROJECT_STATE.md) is generated from the
 | See completed work and blockers | [Generated project state](docs/PROJECT_STATE.md) |
 | Continue development with an agent | [Precise continuation prompt](docs/agents/CONTINUE.md) |
 | Follow the engineering sequence | [Roadmap and acceptance gates](docs/ROADMAP.md) |
+| Implement the next physical subsystem | [Detailed implementation contracts](docs/specs/README.md) |
 | Collect useful instrument data | [Measurement plan](docs/MEASUREMENT_PLAN.md) |
 | Evaluate accuracy and numerical behavior | [Validation specification](docs/VALIDATION.md) |
 | Build and contribute | [Development](docs/DEVELOPMENT.md) · [Contributing](CONTRIBUTING.md) |

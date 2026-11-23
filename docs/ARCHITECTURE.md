@@ -85,10 +85,10 @@ not silently delete an electrical branch.
 Use the following equation as a bookkeeping contract, not as a claim that all
 terms are currently implemented:
 
-\[
+$$
 M\ddot q+C\dot q+Kq+g(q,\dot q)
 =b_h F_h+b_d F_d+f_{\mathrm{mag}}+f_{\mathrm{harp}}.
-\]
+$$
 
 Choose the coordinate origin at the assembled resting equilibrium. Record whether
 measured modal properties include the pickup, its load, mounting preload, and
@@ -106,12 +106,12 @@ establishing accuracy.
 
 A candidate unilateral hammer law is
 
-\[
+$$
 F_h=\begin{cases}
 \max(0,k\delta^p+c\delta^p\dot\delta),&\delta>0,\\
 0,&\delta\leq 0.
 \end{cases}
-\]
+$$
 
 The reference must retain finite hammer mass, equal-and-opposite reaction,
 separation, possible recontact, and dissipation accounting. This expression is a
@@ -125,9 +125,9 @@ explicit surrogate until validated against the actual contact response.
 
 With a chosen polarity, the open-circuit motional source is
 
-\[
+$$
 e_m=-\nabla_q\lambda_{\mathrm{pm}}(q)\cdot\dot q.
-\]
+$$
 
 Flux linkage is measured in weber-turns; its numerical SI dimension is volt-second.
 It already includes turns. A map expressed as flux per turn must be multiplied by
@@ -158,10 +158,10 @@ Each pickup has a source, winding resistance, identified inductance, relevant
 parasitics, polarity, and node connections. In the linear frequency-domain limit,
 a parallel group satisfies
 
-\[
+$$
 Z_g=\left(\sum_i 1/Z_i\right)^{-1},\qquad
 E_g=Z_g\sum_i e_i/Z_i.
-\]
+$$
 
 For equal branches this is a source average and a divided impedance. Silent
 branches still load active sources. The research brief gives a later 73-key wiring

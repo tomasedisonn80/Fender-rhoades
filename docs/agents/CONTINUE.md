@@ -101,6 +101,15 @@ state tool. For measured evidence, include the identified specimen, acquisition
 manifest, calibration, uncertainty and split. For held-out validation, reference
 passing measurements from the same specimen and explain independence.
 
+Use `specimen_identity` for an inspected passport and `measurement` for acquired
+data. Supply `--profile` and repeatable `--session` paths as applicable, and include
+each linked file in `--artifact` so its exact hash is retained. Held-out hardware
+records must link validation/test manifests covered by passing measurements of
+the same profile snapshot and sessions. Read the examples in the workflow before
+registering evidence. These checks validate declared metadata; review the full
+[acquisition acceptance contract](../specs/DATA_INGESTION.md) for calibration,
+payload, configuration and partition requirements that version 1 cannot enforce.
+
 Complete the task only when every acceptance criterion and dependency is
 satisfied, using your owner/token and all required evidence IDs. Otherwise use
 `block` or `release` with a specific handoff reason. Record changed paths, remaining

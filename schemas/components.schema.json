@@ -11,7 +11,7 @@
     },
     "profile_id": {
       "type": "string",
-      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$(?![\\s\\S])"
     },
     "inventory_kind": {
       "const": "mechanism_requirements_not_bom"
@@ -24,7 +24,7 @@
         "properties": {
           "id": {
             "type": "string",
-            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$(?![\\s\\S])"
           },
           "domain": {
             "enum": [
@@ -87,7 +87,7 @@
             "type": "array",
             "items": {
               "type": "string",
-              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$(?![\\s\\S])"
             },
             "uniqueItems": true
           },
@@ -95,7 +95,7 @@
             "type": "array",
             "items": {
               "type": "string",
-              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$(?![\\s\\S])"
             },
             "uniqueItems": true
           },
@@ -120,7 +120,7 @@
           },
           "task_id": {
             "type": "string",
-            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$(?![\\s\\S])"
           }
         },
         "required": [

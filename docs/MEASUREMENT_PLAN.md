@@ -17,6 +17,11 @@ This plan operationalizes sections 1, 3–6, and 10–12 of the
 [user-supplied research](research/USER_RESEARCH.txt). It specifies future work;
 it does not assert that these measurements have occurred.
 
+The [acquisition acceptance contract](specs/DATA_INGESTION.md) defines the versioned
+passport, calibration, partition-ancestry and payload requirements. Current
+version-1 metadata checks implement only part of that contract; schema acceptance
+does not complete this measurement plan.
+
 ## 1. Specimen passport
 
 Create a stable specimen ID and keep personally identifying owner information
@@ -59,7 +64,7 @@ Each session and each record require an immutable identifier. Manifest schemas a
 | Environment | Temperature/humidity and any known mechanical disturbance |
 | Data integrity | File format, byte size, SHA-256, storage locator, no undocumented edits |
 | Processing | Raw-to-derived steps, software versions, filter settings, resampling, alignment, exclusions |
-| Partition | Training/development/validation label and complete held-out condition group |
+| Partition | `fit`, `validation`, or `test` label and complete held-out condition group; `development` is reserved for synthetic fixtures |
 | Rights | Owner/source, permission or license, redistribution constraints |
 
 Raw data remain immutable. Derived files reference their inputs and transformation
@@ -168,9 +173,12 @@ recorded before fitting; the table does not prescribe invented measurements.
 
 Split by **whole physical condition, acquisition session, or phrase**, not by
 adjacent time samples or randomly chopped windows of one recording. Use training
-data for parameter fitting and development data for model selection. Keep the
-final validation partition locked until the candidate and acceptance plan are
-frozen. If it is used to tune the model, relabel it and acquire a fresh holdout.
+data (`fit`) for parameter estimation and a separate `validation` partition for
+predeclared model-selection decisions. Keep the final `test` partition locked
+until the candidate and acceptance plan are frozen. Here “held-out validation” is
+the scientific activity; each report must name the exact manifest split it used.
+If final test data are used to tune the model, relabel them and acquire a fresh
+holdout. Synthetic `development` fixtures never become measured acquisitions.
 
 ## 6. Identification strategy
 
@@ -190,7 +198,7 @@ optimization method/version, convergence status, excluded records, source hashes
 and residual summaries by condition. Failed fits remain visible. Any stochastic
 method records a seed and repeatability procedure.
 
-## 7. Releaseable evidence bundle
+## 7. Releasable evidence bundle
 
 A milestone evidence bundle contains the specimen/configuration passport,
 acquisition manifest, rights information, immutable raw-file hashes, processing

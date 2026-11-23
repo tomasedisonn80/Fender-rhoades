@@ -1,5 +1,7 @@
 # Validation and acceptance contract
 
+The future coupled reference follows [the solver contract](specs/REFERENCE_SOLVERS.md), including explicit initialization, convergence and failure criteria.
+
 ## Claims follow evidence
 
 The current repository is a research foundation with synthetic development

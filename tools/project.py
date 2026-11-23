@@ -10,6 +10,7 @@ import argparse
 from contextlib import contextmanager
 from datetime import datetime, timedelta, timezone
 import hashlib
+import importlib.util
 import json
 import os
 from pathlib import Path
@@ -24,12 +25,20 @@ VERSION = 1
 TASK_ID = re.compile(r"^[A-Z][A-Z0-9]{1,11}-[0-9]{3}$")
 EVIDENCE_ID = re.compile(r"^[A-Za-z0-9][A-Za-z0-9_.-]{0,95}$")
 STATUSES = {"todo", "in_progress", "blocked", "done"}
-KINDS = {"documentary", "synthetic", "numerical", "measurement", "hardware_validation", "performance"}
+KINDS = {"documentary", "synthetic", "numerical", "specimen_identity", "measurement", "hardware_validation", "performance"}
+SPECIMEN_KINDS = {"specimen_identity", "measurement", "hardware_validation"}
 RESULTS = {"pass", "fail", "inconclusive"}
 STATE_KEYS = {"schema_version", "project", "goal", "target", "fidelity_status", "revision", "updated_at", "tasks", "history"}
 TASK_KEYS = {"id", "title", "milestone", "status", "priority", "dependencies", "acceptance", "required_evidence", "evidence", "owner", "claim", "blockers", "paths"}
-RECORD_KEYS = {"id", "kind", "result", "summary", "command", "created_at", "source_commit", "artifacts", "specimen_id", "independent", "reference_evidence", "limitations"}
+RECORD_KEYS = {"id", "kind", "result", "summary", "command", "created_at", "source_commit", "artifacts", "specimen_id", "profile_path", "session_paths", "independent", "reference_evidence", "limitations"}
 UTC = timezone.utc
+
+# Load the sibling contract implementation both for CLI and file-based imports.
+# Do not call validate_repository: it reads canonical task state independently.
+DATA_SPEC = importlib.util.spec_from_file_location("rhodes_data_contracts", Path(__file__).with_name("validate_data.py"))
+assert DATA_SPEC and DATA_SPEC.loader
+data_contracts = importlib.util.module_from_spec(DATA_SPEC)
+DATA_SPEC.loader.exec_module(data_contracts)
 
 
 class StateError(ValueError):
@@ -158,6 +167,68 @@ def locked(root: Path):
         lock.rmdir()
 
 
+def validate_specimen_links(root: Path, evidence: dict[str, dict[str, Any]]) -> None:
+    """Cross-check only explicitly linked metadata, without asserting authenticity.
+
+    Each linked path has already passed the immutable artifact checks. Session
+    identities include their manifest hash so a reference cannot silently cover
+    another version of an observation. Raw payloads are not opened here.
+    """
+    records = [record for record in evidence.values() if record["kind"] in SPECIMEN_KINDS]
+    if not records:
+        return
+    profile_hashes: dict[str, str] = {}
+    session_bindings: dict[str, set[tuple[str, str]]] = {}
+    observed_sessions: dict[tuple[str, str], dict[str, Any]] = {}
+    try:
+        sources = data_contracts.strict_load(relative_path(root, "docs/research/sources.json", "source registry", exists=True))
+        require(isinstance(sources.get("sources"), list), "source registry: sources must be an array")
+        source_ids: set[str] = set()
+        for source in sources["sources"]:
+            require(isinstance(source, dict) and "id" in source, "source registry: each source requires an ID")
+            data_contracts.identifier(source["id"], "source ID")
+            require(source["id"] not in source_ids, "source registry: duplicate source ID")
+            source_ids.add(source["id"])
+        for record in records:
+            label = f"evidence {record['id']}"
+            artifacts = {item["path"]: item["sha256"] for item in record["artifacts"]}
+            profile = data_contracts.strict_load(root / record["profile_path"])
+            data_contracts.validate_profile(profile, source_ids)
+            require(profile["identity_status"] == "identified", f"{label}: requires an identified specimen profile")
+            require(profile["profile_id"] == record["specimen_id"], f"{label}: specimen_id must match the linked profile_id")
+            profile_hashes[record["id"]] = artifacts[record["profile_path"]]
+            session_bindings[record["id"]] = set()
+            for path in record["session_paths"]:
+                session = data_contracts.strict_load(root / path)
+                data_contracts.validate_session(session, {profile["profile_id"]: profile})
+                require(session["kind"] == "measured", f"{label}: linked session {path} must declare kind measured; synthetic sessions cannot support specimen observations")
+                if record["kind"] == "hardware_validation":
+                    require(session["split"] in {"validation", "test"}, f"{label}: hardware validation requires validation/test sessions, not fit sessions")
+                binding = (session["session_id"], artifacts[path])
+                require(binding not in session_bindings[record["id"]], f"{label}: duplicate linked session")
+                session_bindings[record["id"]].add(binding)
+                observed_sessions[binding] = session
+        # Repeated references to the same immutable manifest are one observation.
+        # Different manifests that reuse an ID, condition, or cross-split payload
+        # still pass through the existing split-leakage checks.
+        data_contracts.validate_splits(list(observed_sessions.values()))
+    except (data_contracts.DataError, KeyError, TypeError) as error:
+        raise StateError(f"Evidence data contracts: {error}") from error
+
+    for record in records:
+        if record["kind"] != "hardware_validation":
+            continue
+        covered: set[tuple[str, str]] = set()
+        for ref in record["reference_evidence"]:
+            measurement = evidence[ref]
+            if (measurement["kind"] == "measurement" and measurement["result"] == "pass"
+                    and measurement["specimen_id"] == record["specimen_id"]
+                    and profile_hashes[ref] == profile_hashes[record["id"]]):
+                covered.update(session_bindings[ref])
+        require(session_bindings[record["id"]] <= covered,
+                f"evidence {record['id']}: requires passing measurement references from the same specimen and profile covering every observed session")
+
+
 def validate(root: Path, state: Any, registry: Any) -> None:
     exact_keys(state, STATE_KEYS, "state")
     require(type(state["schema_version"]) is int and state["schema_version"] == VERSION, "state: unsupported schema_version")
@@ -184,7 +255,8 @@ def validate(root: Path, state: Any, registry: Any) -> None:
         require(commit is None or isinstance(commit, str) and re.fullmatch(r"[0-9a-f]{40}|[0-9a-f]{64}", commit) is not None, f"{label}: source_commit must be a full Git object ID or null")
         require(type(record["independent"]) is bool, f"{label}: independent must be boolean")
         require(record["specimen_id"] is None or isinstance(record["specimen_id"], str) and bool(record["specimen_id"].strip()), f"{label}: invalid specimen_id")
-        for field in ("reference_evidence", "limitations"):
+        require(record["profile_path"] is None or isinstance(record["profile_path"], str) and bool(record["profile_path"].strip()), f"{label}: invalid profile_path")
+        for field in ("session_paths", "reference_evidence", "limitations"):
             strings(record[field], f"{label}.{field}")
         require(isinstance(record["artifacts"], list) and bool(record["artifacts"]), f"{label}: at least one immutable artifact is required")
         paths: set[str] = set()
@@ -195,8 +267,18 @@ def validate(root: Path, state: Any, registry: Any) -> None:
             paths.add(artifact["path"])
             require(isinstance(artifact["sha256"], str) and re.fullmatch(r"[0-9a-f]{64}", artifact["sha256"]) is not None, f"{label}: invalid artifact SHA256")
             require(sha256(path) == artifact["sha256"], f"{label}: artifact hash changed: {artifact['path']}; preserve evidence and append a new record")
-        if record["kind"] in {"measurement", "hardware_validation"}:
+        linked_paths = ([] if record["profile_path"] is None else [record["profile_path"]]) + record["session_paths"]
+        for path in linked_paths:
+            require(path in paths, f"{label}: typed linked file must also be an immutable artifact: {path}")
+        if record["kind"] in SPECIMEN_KINDS:
             nonempty(record["specimen_id"], f"{label}.specimen_id")
+            nonempty(record["profile_path"], f"{label}.profile_path")
+            if record["kind"] == "specimen_identity":
+                require(not record["session_paths"], f"{label}: specimen identity documents a profile without acquisition sessions")
+            else:
+                require(bool(record["session_paths"]), f"{label}: measurement/hardware evidence requires session_paths")
+        else:
+            require(record["profile_path"] is None and not record["session_paths"], f"{label}: typed profile/session links require specimen_identity, measurement, or hardware_validation kind")
         if record["kind"] == "hardware_validation":
             require(record["independent"], f"{label}: hardware validation requires held-out independent conditions")
             require(bool(record["reference_evidence"]), f"{label}: hardware validation requires measurement references")
@@ -206,8 +288,7 @@ def validate(root: Path, state: Any, registry: Any) -> None:
     for record in evidence.values():
         for ref in record["reference_evidence"]:
             require(ref in evidence and ref != record["id"], f"evidence {record['id']}: unknown or self reference {ref}")
-        if record["kind"] == "hardware_validation":
-            require(any(evidence[ref]["kind"] == "measurement" and evidence[ref]["result"] == "pass" and evidence[ref]["specimen_id"] == record["specimen_id"] for ref in record["reference_evidence"]), f"evidence {record['id']}: requires passing measurement from the same specimen")
+    validate_specimen_links(root, evidence)
 
     require(isinstance(state["tasks"], list) and bool(state["tasks"]), "state.tasks: expected a nonempty array")
     tasks: dict[str, dict[str, Any]] = {}
@@ -404,6 +485,8 @@ def parser() -> argparse.ArgumentParser:
     command.add_argument("--artifact", action="append", required=True)
     command.add_argument("--source-commit")
     command.add_argument("--specimen")
+    command.add_argument("--profile", help="Identified specimen profile path; also list it with --artifact")
+    command.add_argument("--session", action="append", default=[], help="Measured session manifest path; repeat as needed and also list each with --artifact")
     command.add_argument("--independent", action="store_true")
     command.add_argument("--reference-evidence", action="append", default=[])
     command.add_argument("--limitation", action="append", default=[])
@@ -440,7 +523,8 @@ def run(args: argparse.Namespace) -> int:
             require(not any(record["id"] == args.identifier for record in registry["records"]), "Evidence ID already exists; append a new record instead")
             artifacts = [{"path": path, "sha256": sha256(artifact_path(root, path, "artifact"))} for path in args.artifact]
             record = {"id": args.identifier, "kind": args.kind, "result": args.result, "summary": args.summary, "command": args.observed_command,
-                      "created_at": now(), "source_commit": args.source_commit, "artifacts": artifacts, "specimen_id": args.specimen, "independent": args.independent,
+                      "created_at": now(), "source_commit": args.source_commit, "artifacts": artifacts, "specimen_id": args.specimen,
+                      "profile_path": args.profile, "session_paths": args.session, "independent": args.independent,
                       "reference_evidence": args.reference_evidence, "limitations": args.limitation}
             registry["records"].append(record)
             validate(root, state, registry)

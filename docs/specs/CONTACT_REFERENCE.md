@@ -21,10 +21,10 @@ event conventions. Do not change instrument fidelity status for this task.
 Choose one positive contact normal. For hammer position `x_h`, rest clearance
 `g0`, modal coordinates `q`, and hammer participation vector `b_h`, define
 
-\[
+$$
 \delta=x_h-b_h^Tq-g_0,\qquad
 \dot\delta=v_h-b_h^T\dot q.
-\]
+$$
 
 Compression is positive. The hammer receives `-F`; the modal generalized force
 is `b_h F`. Use the same `b_h` in contact observation and force application.
@@ -50,10 +50,10 @@ observations; electrical spectra alone cannot identify structural poles.
 
 The research suggests a unilateral candidate, to be identified later:
 
-\[
+$$
 F=0\quad(\delta\le0),\qquad
 F=\max(0,k\delta^p+c\delta^p\dot\delta)\quad(\delta>0).
-\]
+$$
 
 Declare `m_h>0`, `k>0`, `c>=0`, `p>0`, their finite operating ranges and units:
 `m_h` kg, `k` N/m^p, `c` N·s/m^(p+1). Specify whether a zero clamped force at
@@ -110,6 +110,8 @@ Use a stated energy scale so near-zero residual normalization is meaningful.
 Record cumulative residual, force residual, impact timing, integrated impulse
 and rebound error; bounded output alone is insufficient. A failed fixture must
 not be made green by silently widening a tolerance.
+
+The detailed [reference-solver contract](REFERENCE_SOLVERS.md) specifies equilibrium, independent timestep/solver/event refinement, grazing fixtures and bounded failure recovery.
 
 ## What must be measured later
 

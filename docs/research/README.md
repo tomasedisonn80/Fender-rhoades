@@ -4,6 +4,8 @@ The project starts from the user-supplied [research brief](USER_RESEARCH.txt).
 That attachment is an engineering proposal, not experimental evidence for this
 repository. The separate PDF mentioned within it was not supplied during setup.
 Its private link was removed from the public archive.
+The [input manifest](input-manifest.json) records both text hashes and the exact
+archival transformations.
 
 The [source registry](sources.json) distinguishes pages opened during setup from
 research leads carried over from the brief. `reviewed` means the relevant source

@@ -2,7 +2,7 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://github.com/baabi-boo/Fender-rhoades/schemas/project-state.schema.json",
   "title": "Rhodes canonical project state v1",
-  "description": "Structural schema. tools/project.py additionally checks DAGs, completion gates, timestamps, evidence registry cross-references, artifact paths and SHA256 contents.",
+  "description": "Structural schema. tools/project.py additionally checks DAGs, completion gates, timestamps, evidence registry cross-references, artifact paths and SHA256 contents, and explicitly linked specimen/session data contracts.",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -49,7 +49,7 @@
     },
     "updated_at": {
       "type": "string",
-      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$",
+      "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$(?![\\s\\S])",
       "format": "date-time"
     },
     "tasks": {
@@ -89,12 +89,12 @@
         },
         "claimed_at": {
           "type": "string",
-          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$(?![\\s\\S])",
           "format": "date-time"
         },
         "expires_at": {
           "type": "string",
-          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$(?![\\s\\S])",
           "format": "date-time"
         }
       }
@@ -120,7 +120,7 @@
       "properties": {
         "id": {
           "type": "string",
-          "pattern": "^[A-Z][A-Z0-9]{1,11}-[0-9]{3}$"
+          "pattern": "^[A-Z][A-Z0-9]{1,11}-[0-9]{3}$(?![\\s\\S])"
         },
         "title": {
           "type": "string",
@@ -149,7 +149,7 @@
           "type": "array",
           "items": {
             "type": "string",
-            "pattern": "^[A-Z][A-Z0-9]{1,11}-[0-9]{3}$"
+            "pattern": "^[A-Z][A-Z0-9]{1,11}-[0-9]{3}$(?![\\s\\S])"
           },
           "uniqueItems": true
         },
@@ -171,6 +171,7 @@
               "documentary",
               "synthetic",
               "numerical",
+              "specimen_identity",
               "measurement",
               "hardware_validation",
               "performance"
@@ -291,7 +292,7 @@
         },
         "at": {
           "type": "string",
-          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$(?![\\s\\S])",
           "format": "date-time"
         },
         "action": {
@@ -301,7 +302,7 @@
         },
         "task": {
           "type": "string",
-          "pattern": "^[A-Z][A-Z0-9]{1,11}-[0-9]{3}$"
+          "pattern": "^[A-Z][A-Z0-9]{1,11}-[0-9]{3}$(?![\\s\\S])"
         },
         "owner": {
           "type": "string",
@@ -328,6 +329,8 @@
         "source_commit",
         "artifacts",
         "specimen_id",
+        "profile_path",
+        "session_paths",
         "independent",
         "reference_evidence",
         "limitations"
@@ -335,13 +338,14 @@
       "properties": {
         "id": {
           "type": "string",
-          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,95}$"
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]{0,95}$(?![\\s\\S])"
         },
         "kind": {
           "enum": [
             "documentary",
             "synthetic",
             "numerical",
+            "specimen_identity",
             "measurement",
             "hardware_validation",
             "performance"
@@ -373,14 +377,14 @@
         },
         "created_at": {
           "type": "string",
-          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z$(?![\\s\\S])",
           "format": "date-time"
         },
         "source_commit": {
           "anyOf": [
             {
               "type": "string",
-              "pattern": "^([0-9a-f]{40}|[0-9a-f]{64})$"
+              "pattern": "^([0-9a-f]{40}|[0-9a-f]{64})$(?![\\s\\S])"
             },
             {
               "type": "null"
@@ -405,7 +409,7 @@
               },
               "sha256": {
                 "type": "string",
-                "pattern": "^[0-9a-f]{64}$"
+                "pattern": "^[0-9a-f]{64}$(?![\\s\\S])"
               }
             }
           }
@@ -421,6 +425,27 @@
               "type": "null"
             }
           ]
+        },
+        "profile_path": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "session_paths": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "uniqueItems": true
         },
         "independent": {
           "type": "boolean"
@@ -443,7 +468,115 @@
           },
           "uniqueItems": true
         }
-      }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "enum": [
+                  "specimen_identity",
+                  "measurement",
+                  "hardware_validation"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "specimen_id": {
+                "type": "string"
+              },
+              "profile_path": {
+                "type": "string"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "profile_path": {
+                "type": "null"
+              },
+              "session_paths": {
+                "maxItems": 0
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "specimen_identity"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "session_paths": {
+                "maxItems": 0
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "enum": [
+                  "measurement",
+                  "hardware_validation"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "session_paths": {
+                "minItems": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "const": "hardware_validation"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "independent": {
+                "const": true
+              },
+              "reference_evidence": {
+                "minItems": 1
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "kind": {
+                "enum": [
+                  "synthetic",
+                  "numerical"
+                ]
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "specimen_id": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
     },
     "evidence_registry": {
       "type": "object",

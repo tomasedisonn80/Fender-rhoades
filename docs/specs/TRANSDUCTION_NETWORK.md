@@ -30,9 +30,9 @@ numerical fixture, not a measurement.
 For one reversible candidate, use passive signs `v=V_A-V_B`, current entering A,
 and force along positive `q`. A compatible co-energy model is
 
-\[
+$$
 W'(q,i)=-U_0(q)+i\lambda_0(q)+\tfrac12 L(q)i^2.
-\]
+$$
 
 Then `lambda=partial W'/partial i`, `F=partial W'/partial q`, and
 `v=R*i+d(lambda)/dt`. The magnetic stored energy is
@@ -50,9 +50,9 @@ required by evidence, needs additional states and an explicit loss model.
 A synthetic mass–spring–damper with a coil terminated by `R_L` must satisfy
 `v=-R_L*i`. With no external excitation, define
 
-\[
+$$
 \rho(t)=E(t)-E(0)+\int_0^t[(R+R_L)i^2+c\dot q^2]\,d\tau.
-\]
+$$
 
 Check the residual under step refinement and independently verify
 `partial F/partial i = partial lambda/partial q`. Record a nonzero perturbation
@@ -89,9 +89,9 @@ membership of all 73 pickups. Mechanical silence does not remove a branch.
 
 For a linear parallel group,
 
-\[
+$$
 Z_g=(\sum_i1/Z_i)^{-1},\qquad E_g=Z_g\sum_i e_i/Z_i.
-\]
+$$
 
 The current equal-resistance reduction cannot distinguish permutations among
 three-pickup groups. Matching its output therefore cannot verify physical group

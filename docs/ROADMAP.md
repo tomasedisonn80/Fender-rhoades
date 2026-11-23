@@ -71,6 +71,11 @@ motion, pickup voltage, wiring, known loads, timing, calibration, and repeatabil
 for a representative key. Freeze complete held-out conditions before fitting.
 Select a manageable pilot that exposes identification problems early.
 
+The [specimen/acquisition contract](specs/DATA_INGESTION.md) specifies the coordinated
+metadata upgrade needed for configuration history, calibration validity, payload
+verification and derived-data ancestry. `specimen_identity` and `measurement` are
+separate evidence gates. Neither is satisfied by a renamed synthetic fixture.
+
 **Exit:** another contributor can understand the specimen and reproduce the
 measurement configuration from the passport and manifests. All used records have
 immutable hashes and rights. Unknown quantities and observational effects are
@@ -127,6 +132,8 @@ cost or error. Early kernel numbers are not a final-polyphony guarantee.
 
 Specify callback constraints, supported sample rates, buffer/event semantics,
 asset preparation, state serialization, and latency before adding host adapters.
+The [runtime and asset contract](specs/RUNTIME_AND_ASSETS.md) records the proposed
+interfaces, bounded event semantics and rejection/continuation fixtures.
 Choose plug-in SDKs or UI dependencies only after reviewing their requirements
 and licenses. The initial dependency-free CLI does not select a final commercial
 framework or grant any SDK rights.

@@ -5,7 +5,8 @@
 Both canonical JSON files use integer `schema_version: 1`. The structural task
 schema is `schemas/project-state.schema.json`. The executable validator in
 `tools/project.py` additionally checks dependency cycles, cross-record references,
-completion gates, artifact contents, history ordering, and path safety. It rejects
+completion gates, artifact contents, typed profile/session links, history ordering,
+and path safety. It rejects
 unknown object fields, duplicate JSON keys, nonfinite JSON constants, invalid UTC
 timestamps, unsupported statuses, and unsafe repository-relative paths.
 
@@ -13,6 +14,11 @@ Use Python 3.11 or newer. The tool is standard-library-only. It does not downloa
 schemas or dependencies. Changes to the format require synchronized schema,
 validator, fixtures, documentation and migration review. Do not reinterpret a
 field silently under the same schema version.
+
+The foundation added `profile_path`, `session_paths`, and `specimen_identity`
+before its first evidence record was registered. All version 1 records now require
+the complete field set below; missing fields are rejected rather than inferred
+from artifact names. No populated registry was migrated by this change.
 
 ## State object
 
@@ -71,29 +77,59 @@ The registry contains `schema_version` and `records`. Each record has:
 | Field | Meaning |
 | --- | --- |
 | `id` | Unique stable evidence ID; 1–96 letters/digits/dot/underscore/hyphen |
-| `kind` | `documentary`, `synthetic`, `numerical`, `measurement`, `hardware_validation`, or `performance` |
+| `kind` | `documentary`, `synthetic`, `numerical`, `specimen_identity`, `measurement`, `hardware_validation`, or `performance` |
 | `result` | `pass`, `fail`, or `inconclusive` |
 | `summary` | What was observed and which claim it supports |
 | `command` | Already-executed command text or `null`; never executed by this tool |
 | `created_at` | UTC registration timestamp |
-| `source_commit` | Full lowercase Git SHA-1/SHA-256 object ID or `null` |
+| `source_commit` | Full lowercase Git SHA-1/SHA-256 object-ID syntax or `null`; object existence and association with tested source are not checked |
 | `artifacts` | Nonempty array of `{path, sha256}` objects referencing immutable local evidence |
-| `specimen_id` | Actual specimen identity for measurement/hardware evidence; otherwise `null` when inapplicable |
+| `specimen_id` | For the three specimen evidence kinds, exactly the linked profile's `profile_id`; this is not the serial-number field |
+| `profile_path` | Explicit repository-relative specimen-profile path for `specimen_identity`, `measurement`, and `hardware_validation`; `null` for other kinds |
+| `session_paths` | Unique explicit acquisition-manifest paths for `measurement` and `hardware_validation`; `[]` for other kinds |
 | `independent` | Whether validation conditions are held out; human-reviewed declaration |
-| `reference_evidence` | Supporting registry IDs; hardware validation must reference passing same-specimen measurement |
+| `reference_evidence` | Supporting registry IDs; hardware validation requires passing measurements covering every linked observation and the same specimen/profile snapshot |
 | `limitations` | Explicit scope and uncertainty statements |
 
-`synthetic` and `numerical` records cannot claim a measured specimen. Hardware
-validation requires `independent: true` and at least one passing measurement
-reference for that specimen. A synthetic render cannot satisfy a measurement
-gate by being assigned a convincing filename.
+`synthetic` and `numerical` records cannot claim a measured specimen. The explicit
+profile/session fields are reserved for the three specimen evidence kinds; other
+kinds can include metadata files as ordinary opaque artifacts. The validator does
+not guess a JSON file's role from its extension, name, or contents.
+
+| Kind | Required declared metadata |
+| --- | --- |
+| `specimen_identity` | A valid `identified` profile whose `profile_id` equals `specimen_id`; no acquisition sessions. Identity documentation has its own gate and does not require completed acquisition. |
+| `measurement` | The same identified-profile requirement plus at least one valid `measured` session that references that profile. A measurement may have `fit`, `validation`, or `test` split; registration alone does not authorize using held-out data to estimate parameters. |
+| `hardware_validation` | The same profile/session checks, every session in `validation` or `test`, `independent: true`, and passing measurement references that collectively cover all linked sessions. |
+
+Every `profile_path` and entry of `session_paths` must also occur in the same
+record's immutable `artifacts` list, using the same path spelling. Profiles and
+sessions are checked by the existing data-contract functions with a strictly read
+source registry. Profile identity, revisions, wiring declaration, output boundary,
+calibration, acquisition fields, rights declarations, and session/profile agreement
+must satisfy those contracts. A manifest explicitly declaring `synthetic` is
+rejected as measurement or hardware-validation evidence even when its hash is
+valid and its filename sounds like an acquisition.
+
+Hardware reference coverage uses the profile's SHA-256 and each session's
+`session_id` plus manifest SHA-256, along with the same `specimen_id`. A measurement
+of another session or a different profile snapshot does not cover a validation
+observation. Identical immutable manifests may be referenced by several records;
+they count once when checking duplicate session IDs, declared condition leakage,
+and identical payload hashes across splits. Those split checks cover explicitly
+linked sessions. Run `tools/validate_data.py` separately for the repository's full
+profile, session, and component inventory contracts.
 
 Artifacts use portable relative paths, must exist, and must match SHA-256 on every
 validation run. Paths cannot leave the checkout, enter `.git`, or follow a symlink
 outside the checkout. Hashes detect changed files; they do not prove when a file
 was produced or what generated it. Store large measurement payloads using the
 project's data policy and commit an immutable manifest/report that identifies and
-hashes the external payload. The state tool does not fetch external data.
+hashes the external payload. The state tool does not fetch external data or open
+the raw payload paths named inside a session manifest. Tool-managed mutable state,
+evidence registries, generated dashboards, and transient locks cannot serve as
+immutable artifacts. Freeze linked profile/session snapshots; a correction needs
+a new artifact path and record instead of changing already registered bytes.
 
 ## Trust boundary and maintenance
 
@@ -102,6 +138,12 @@ documented. A repository editor can still falsify an artifact, label an observat
 incorrectly, or rewrite JSON and its matching hash. Peer review, acquisition
 records, CI provenance and hardware inspection supply the evidentiary trust that
 the state validator cannot. Do not describe this as tamper-proof certification.
+Typed links check agreement between declarations. They do not establish that the
+instrument exists, an acquisition occurred, calibration/rights references are
+authentic, raw data match the manifest, or held-out conditions are statistically
+independent. Reviewers still assess relevance to acceptance criteria. Likewise,
+`source_commit` is format-checked only; reviewers verify the actual source object
+and which changes were tested.
 
 Adding new tasks requires a reviewed JSON edit with stable IDs, complete
 acceptance, dependencies and evidence kinds. Validate, regenerate the dashboard,

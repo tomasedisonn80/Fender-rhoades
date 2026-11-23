@@ -4,8 +4,8 @@
   "goal": "Physically model a Fender Rhodes Mark I from evolving mechanical, electromagnetic and circuit states without recorded-note playback.",
   "target": "One documented 73-key Mark I Stage specimen at its specified loaded electrical output; identity and measurements pending.",
   "fidelity_status": "unvalidated",
-  "revision": 1,
-  "updated_at": "2026-11-23T12:02:30Z",
+  "revision": 4,
+  "updated_at": "2026-11-23T12:19:41Z",
   "tasks": [
     {
       "id": "FND-001",
@@ -25,7 +25,12 @@
       ],
       "evidence": [],
       "owner": "integration-root",
-      "claim": null,
+      "claim": {
+        "owner": "integration-root",
+        "token": "dcf6ec191f307578350acbbcb6b1c5a3",
+        "claimed_at": "2026-11-23T12:05:12Z",
+        "expires_at": "2026-11-24T12:05:12Z"
+      },
       "blockers": [],
       "paths": [
         "tools",
@@ -46,10 +51,11 @@
       ],
       "acceptance": [
         "Record specimen identity, construction dates or uncertainty, action and pickup condition, and selected loaded-output boundary.",
-        "Inspect actual wiring and revision-specific components; reconcile discrepancies with documentary sources."
+        "Inspect actual wiring and revision-specific components; reconcile discrepancies with documentary sources.",
+        "Use a versioned passport with configuration/replacement history, resolvable inspection artifacts and observed-versus-normalized key identities; retain unknown markings honestly."
       ],
       "required_evidence": [
-        "measurement"
+        "specimen_identity"
       ],
       "evidence": [],
       "owner": null,
@@ -75,7 +81,8 @@
       "acceptance": [
         "Acquire synchronized mechanical motion and electrical output with measured geometry, excitation, loads and calibration.",
         "Record units, uncertainty, specimen identity, acquisition conditions, hashes, rights, and independent train/validation splits.",
-        "Retain retriggers, release, velocity, pickup-position and loading conditions not used for fitting."
+        "Retain retriggers, release, velocity, pickup-position and loading conditions not used for fitting.",
+        "Implement and validate the versioned ingestion contract for calibration validity, raw-byte verification, acquisition groups and derivation ancestry before accepting measured datasets."
       ],
       "required_evidence": [
         "measurement"
@@ -392,6 +399,30 @@
       "task": "STG-001",
       "owner": "integration-root",
       "detail": "A021/A022 review: make passive Stage-jack completeness an explicit measured gate before optional Suitcase circuit families; see ADR 0004."
+    },
+    {
+      "revision": 2,
+      "at": "2026-11-23T12:05:12Z",
+      "action": "claim",
+      "task": "FND-001",
+      "owner": "integration-root",
+      "detail": "Lease until 2026-11-24T12:05:12Z"
+    },
+    {
+      "revision": 3,
+      "at": "2026-11-23T12:19:41Z",
+      "action": "define_task",
+      "task": "SPEC-001",
+      "owner": "integration-root",
+      "detail": "A041/A044/A050: separate specimen identity from acquisition and bind exact metadata; apply docs/specs/DATA_INGESTION.md before scientific acceptance."
+    },
+    {
+      "revision": 4,
+      "at": "2026-11-23T12:19:41Z",
+      "action": "define_task",
+      "task": "DATA-001",
+      "owner": "integration-root",
+      "detail": "A046–A051: make unresolved calibration, payload and split-ancestry limits explicit acquisition acceptance requirements."
     }
   ]
 }

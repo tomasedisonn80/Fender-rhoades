@@ -19,6 +19,45 @@ project = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(project)
 
 
+def write_measurement_fixture(root, *, specimen_id="TEST-ONLY-SPECIMEN", session_id="test-only-heldout",
+                              split="validation", raw_hash="a" * 64):
+    """Write invented metadata for binding tests, never a hardware observation.
+
+    This mirrors the complete metadata fixture in test_data.py. The payload hash,
+    identity, calibration, and acquisition fields are deliberately test-only.
+    """
+    source_path = root / "docs/research/sources.json"
+    source_path.parent.mkdir(parents=True, exist_ok=True)
+    source_path.write_bytes((ROOT / "docs/research/sources.json").read_bytes())
+    profile = json.loads((ROOT / "profiles/mark-i-stage-73/specimen.json").read_text())
+    profile.update(profile_id=specimen_id, identity_status="identified",
+                   serial_number="TEST-ONLY-NOT-HARDWARE", action_revision="test-only",
+                   tine_revision="test-only", pickup_revision="test-only", wiring_verified=True,
+                   instrument_evidence=["test-only-identity-record"],
+                   load={"resistance_ohm": 1000000, "capacitance_farad": 100e-12},
+                   notes="Invented metadata fixture; no identified physical instrument.")
+    session = json.loads((ROOT / "data/examples/synthetic-session.json").read_text())
+    session.update(session_id=session_id, specimen_profile=specimen_id, kind="measured", split=split,
+                   condition_id=f"{session_id}-condition", acquired_at="2026-01-01T00:00:00Z",
+                   operator="test-only-fixture", temperature_celsius=20.0,
+                   pickup_geometry_m={"gap": 0.002, "vertical_offset": 0.0},
+                   calibration=[{"id": "test-cal", "method": "test only", "reference": "test-only-record",
+                                 "uncertainty": 0.001, "unit": "V"}],
+                   artifacts=[{"path": f"data/raw/{session_id}.wav", "sha256": raw_hash, "bytes": 64}],
+                   rights={"status": "owned", "permission_reference": "test-only-rights"},
+                   notes="Invented acquisition metadata; no raw observation exists or is claimed by this test.")
+    session["excitation"].update(type="native_hammer", hammer_velocity_m_per_s=0.1)
+    session["channels"][0]["calibration_id"] = "test-cal"
+    profile_path = f"profiles/{specimen_id}/specimen.json"
+    session_path = f"data/{session_id}.json"
+    for path, value in ((profile_path, profile), (session_path, session)):
+        (root / path).parent.mkdir(parents=True, exist_ok=True)
+        (root / path).write_text(project.encode(value), encoding="utf-8")
+    return {"specimen_id": specimen_id, "profile_path": profile_path, "session_paths": [session_path],
+            "artifacts": [{"path": path, "sha256": project.sha256(root / path)}
+                          for path in (profile_path, session_path)]}
+
+
 class ProjectTests(unittest.TestCase):
     def setUp(self):
         self.temporary = tempfile.TemporaryDirectory()
@@ -56,7 +95,8 @@ class ProjectTests(unittest.TestCase):
         record = {"id": identifier, "kind": kind, "result": "pass", "summary": "Unit test fixture", "command": None,
                   "created_at": "2026-01-01T00:00:00Z", "source_commit": None,
                   "artifacts": [{"path": f"docs/{identifier}.txt", "sha256": project.sha256(path)}],
-                  "specimen_id": None, "independent": False, "reference_evidence": [], "limitations": ["Synthetic test fixture"]}
+                  "specimen_id": None, "profile_path": None, "session_paths": [],
+                  "independent": False, "reference_evidence": [], "limitations": ["Synthetic test fixture"]}
         record.update(overrides)
         self.registry["records"].append(record)
         return record
@@ -150,10 +190,12 @@ class ProjectTests(unittest.TestCase):
 
     def test_hardware_validation_cannot_use_synthetic_reference(self):
         synthetic = self.record()
-        validation = self.record("heldout", "hardware_validation", specimen_id="SPECIMEN-TEST", independent=True, reference_evidence=[synthetic["id"]])
+        binding = write_measurement_fixture(self.root)
+        validation = self.record("heldout", "hardware_validation", **binding,
+                                 independent=True, reference_evidence=[synthetic["id"]])
         with self.assertRaisesRegex(project.StateError, "same specimen"):
             self.assertValid()
-        measurement = self.record("measurement", "measurement", specimen_id="SPECIMEN-TEST")
+        measurement = self.record("measurement", "measurement", **binding)
         validation["reference_evidence"] = [measurement["id"]]
         self.assertValid()
         validation["independent"] = False
@@ -235,6 +277,8 @@ class ProjectTests(unittest.TestCase):
         self.assertEqual(self.cli(*arguments)[0], 2)
         self.reload()
         self.assertEqual(self.registry["records"][0]["command"], "THIS_IS_NOT_EXECUTED")
+        self.assertIsNone(self.registry["records"][0]["profile_path"])
+        self.assertEqual(self.registry["records"][0]["session_paths"], [])
         self.assertEqual(self.state["revision"], 0)
 
     def test_duplicate_json_keys_and_nonfinite_values_rejected(self):

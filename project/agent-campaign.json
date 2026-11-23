@@ -214,26 +214,250 @@
     {
       "id": "A027",
       "task_name": "/root/a027_solver_convergence",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/reviews/A027.md",
-      "report_sha256": null,
+      "report_sha256": "090a203b36dd23906c495d9eaf692584301ec10bbc4ff7f2c8d8d0a147727377",
       "scope": "Reference convergence, residual scaling and independent stop rules"
     },
     {
       "id": "A028",
       "task_name": "/root/a028_contact_solver_events",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/reviews/A028.md",
-      "report_sha256": null,
+      "report_sha256": "2411269c86fa3cb9fa5cdffc81d9a034b60a6afd68694c70be6c541f723cb077",
       "scope": "Contact event localization, grazing and bounded solver failures"
     },
     {
       "id": "A029",
       "task_name": "/root/a029_aliasing_rates",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/reviews/A029.md",
-      "report_sha256": null,
+      "report_sha256": "61f580661974b8356d28fd663d2aa88984778399e5afe4d3b17dfaa0340cacb9",
       "scope": "Nonlinear aliasing, coupled oversampling and rate conversion"
+    },
+    {
+      "id": "A030",
+      "task_name": "/root/a030_energy_audit",
+      "status": "completed",
+      "report": "docs/agents/reviews/A030.md",
+      "report_sha256": "eb98e0f5df004672a26f5d3745fdde0cd2f839d40ff99c2db9915048e3eea3b9",
+      "scope": "Passivity, external work and accumulated energy residuals"
+    },
+    {
+      "id": "A031",
+      "task_name": "/root/a031_callback_bounds",
+      "status": "completed",
+      "report": "docs/agents/reviews/A031.md",
+      "report_sha256": "6fe1c7990c1483f8bebe6a60d689c1acae50393dd2649bffdbe893ea36da5df4",
+      "scope": "Callback workload bounds, event budgets and deadline interpretation"
+    },
+    {
+      "id": "A032",
+      "task_name": "/root/a032_realtime_audit",
+      "status": "completed",
+      "report": "docs/agents/reviews/A032.md",
+      "report_sha256": "5a6cdd2e700c7b074d3c62b35f6f7acf7a3a9c631875200b1459c2f20a084eed",
+      "scope": "Audio-core allocation, blocking and control-path audit"
+    },
+    {
+      "id": "A033",
+      "task_name": "/root/a033_denormals",
+      "status": "completed",
+      "report": "docs/agents/reviews/A033.md",
+      "report_sha256": "4fda8e364f9cadc179fb692858fd1675cd8535b949dad8dd251591c48e3fc3aa",
+      "scope": "Subnormal behavior, long tails and bounded state-sleep policy"
+    },
+    {
+      "id": "A034",
+      "task_name": "/root/a034_event_timing",
+      "status": "completed",
+      "report": "docs/agents/reviews/A034.md",
+      "report_sha256": "c5442b57ea3d3cb40de9e3ffe20af1469d5b2759130d9cab70e37a4f2b6a4478",
+      "scope": "Sample-accurate event ordering and block-partition semantics"
+    },
+    {
+      "id": "A035",
+      "task_name": "/root/a035_retrigger_audit",
+      "status": "completed",
+      "report": "docs/agents/reviews/A035.md",
+      "report_sha256": "4b2c7368ce744b31e5701a76c9a21afda24ed6dd0c252be03d888826ba8afa78",
+      "scope": "Persistent retrigger state and phase-dependent strike work"
+    },
+    {
+      "id": "A036",
+      "task_name": "/root/a036_sustain_reset",
+      "status": "completed",
+      "report": "docs/agents/reviews/A036.md",
+      "report_sha256": "6f469a4cad379044516f14ae8d6e24f952830e6d93c4cd737d1227955dcff0bd",
+      "scope": "Sustain, note release, panic and reset semantics"
+    },
+    {
+      "id": "A037",
+      "task_name": "/root/a037_parameter_changes",
+      "status": "completed",
+      "report": "docs/agents/reviews/A037.md",
+      "report_sha256": "2a7ea9e8e20ea4168093a8164b5b11fba27089c257e89c716a2d7ee66df27641",
+      "scope": "Parameter changes, state continuity and prepared configuration"
+    },
+    {
+      "id": "A038",
+      "task_name": "/root/a038_asset_contract",
+      "status": "completed",
+      "report": "docs/agents/reviews/A038.md",
+      "report_sha256": "4ff9f123b89799b2dde00cdeda1697bc53af53f654a4ba35b76fc99871462e80",
+      "scope": "Reduced-model asset validity, provenance and deterministic export"
+    },
+    {
+      "id": "A039",
+      "task_name": "/root/a039_serialization_determinism",
+      "status": "completed",
+      "report": "docs/agents/reviews/A039.md",
+      "report_sha256": "01011f58180a351a3b59997f5226ad8ee2a7f0d904ee6d25f24060a18393e964",
+      "scope": "Determinism and future configuration/ringing-state serialization"
+    },
+    {
+      "id": "A040",
+      "task_name": "/root/a040_layer_interfaces",
+      "status": "completed",
+      "report": "docs/agents/reviews/A040.md",
+      "report_sha256": "17392d63e52dbc341bb5a4bf89b1711524ddc145c0075b9388109f9213cfef81",
+      "scope": "Offline reference, asset compiler, runtime and host interfaces"
+    },
+    {
+      "id": "A041",
+      "task_name": "/root/a041_evidence_trust",
+      "status": "completed",
+      "report": "docs/agents/reviews/A041.md",
+      "report_sha256": "0371bc320ec370a24cb016e324a5feaab7f433c6fc17ec0f41b60a2e37f01970",
+      "scope": "Evidence provenance, relevance and form-versus-truth boundary"
+    },
+    {
+      "id": "A042",
+      "task_name": "/root/a042_dag_audit",
+      "status": "completed",
+      "report": "docs/agents/reviews/A042.md",
+      "report_sha256": "a86d534aa64d7bfc244f1120bb5204cd9c89485767d1c520fd34094299d91c4f",
+      "scope": "Task DAG, scientific prerequisites and available-work selection"
+    },
+    {
+      "id": "A043",
+      "task_name": "/root/a043_lease_scope",
+      "status": "completed",
+      "report": "docs/agents/reviews/A043.md",
+      "report_sha256": "80cf1628485ab64c2a5e478141a04d4e3361eaae110f903936222a45c5b8864b",
+      "scope": "Lease ownership, file scopes and shared-checkout coordination"
+    },
+    {
+      "id": "A044",
+      "task_name": "/root/a044_evidence_binding",
+      "status": "completed",
+      "report": "docs/agents/reviews/A044.md",
+      "report_sha256": "d68df6d5b8b3c8b84ca2dd1899655dd4a8d88b55ad6cf7b1d39692d45c65ccc1",
+      "scope": "Bind scientific evidence to validated profiles and acquisition sessions"
+    },
+    {
+      "id": "A045",
+      "task_name": "/root/a045_schema_agreement",
+      "status": "completed",
+      "report": "docs/agents/reviews/A045.md",
+      "report_sha256": "cedc5e1ffe3abe09a220de5dc7dda39e8d40898f939933ac09555ec4081ed86e",
+      "scope": "Data schema and executable validator agreement"
+    },
+    {
+      "id": "A046",
+      "task_name": "/root/a046_split_leakage",
+      "status": "completed",
+      "report": "docs/agents/reviews/A046.md",
+      "report_sha256": "2791655b7a85c6d8c5e0c3ace5e883ec29a49cd975ea417627d1494ee23121de",
+      "scope": "Data split leakage, observation identity and fit-only provenance"
+    },
+    {
+      "id": "A047",
+      "task_name": "/root/a047_units_provenance",
+      "status": "completed",
+      "report": "docs/agents/reviews/A047.md",
+      "report_sha256": "e2d1c49c6c68859d8d6fe84aee3eb08293cdb00879bb5331668b763d38e38192",
+      "scope": "Unknown parameters, SI units, uncertainty and provenance"
+    },
+    {
+      "id": "A048",
+      "task_name": "/root/a048_raw_artifacts",
+      "status": "completed",
+      "report": "docs/agents/reviews/A048.md",
+      "report_sha256": "a360c4d38f41645dd0a4e1bba0bc8d1fe5fb7df06ee40413ffced150d427cfe1",
+      "scope": "Raw payload hashes, locations and ingestion verification"
+    },
+    {
+      "id": "A049",
+      "task_name": "/root/a049_calibration_contract",
+      "status": "completed",
+      "report": "docs/agents/reviews/A049.md",
+      "report_sha256": "92fcefdaa3f1484c44c83a5f1c4ec5573a2ca71610d9822dfbb4f98e02867b49",
+      "scope": "Calibration uncertainty, traceability and validity contract"
+    },
+    {
+      "id": "A050",
+      "task_name": "/root/a050_specimen_identity",
+      "status": "completed",
+      "report": "docs/agents/reviews/A050.md",
+      "report_sha256": "5acd5dc6111affe41fc3152107751a0c4be78152602df13b524afa65e8913c71",
+      "scope": "Specimen identity, construction revisions and key mapping"
+    },
+    {
+      "id": "A051",
+      "task_name": "/root/a051_heldout_design",
+      "status": "completed",
+      "report": "docs/agents/reviews/A051.md",
+      "report_sha256": "593a0d8985578482af224b949ec912f98e4552e68630c8f94c769345708ed5aa",
+      "scope": "Whole-condition held-out experiment design"
+    },
+    {
+      "id": "A052",
+      "task_name": "/root/a052_action_calibration",
+      "status": "completed",
+      "report": "docs/agents/reviews/A052.md",
+      "report_sha256": "8c226b03417381a0685434b0d5ae6100f7a75cf3bd9aa2200eb7e3dc17ebe066",
+      "scope": "Native action and hammer calibration"
+    },
+    {
+      "id": "A053",
+      "task_name": "/root/a053_payload_verifier",
+      "status": "running",
+      "report": "docs/agents/reviews/A053.md",
+      "report_sha256": null,
+      "scope": "Opt-in raw artifact byte verification and failure fixtures"
+    },
+    {
+      "id": "A054",
+      "task_name": "/root/a054_impedance_acquisition",
+      "status": "completed",
+      "report": "docs/agents/reviews/A054.md",
+      "report_sha256": "416094e9a7774cd784fa7cf41812edea9d494a932fbf20c096671bbb179cd8dc",
+      "scope": "Complex impedance acquisition and de-embedding"
+    },
+    {
+      "id": "A055",
+      "task_name": "/root/a055_geometry_identification",
+      "status": "completed",
+      "report": "docs/agents/reviews/A055.md",
+      "report_sha256": "b30fca79c1533d3cc5890504a888487672de8b70dca1d00ed09a5df994a19783",
+      "scope": "Geometry perturbation and magnetic double-counting control"
+    },
+    {
+      "id": "A056",
+      "task_name": "/root/a056_circuit_operating_points",
+      "status": "running",
+      "report": "docs/agents/reviews/A056.md",
+      "report_sha256": null,
+      "scope": "Optional circuit operating points and state initialization"
+    },
+    {
+      "id": "A057",
+      "task_name": "/root/a057_stage_control_sweeps",
+      "status": "running",
+      "report": "docs/agents/reviews/A057.md",
+      "report_sha256": null,
+      "scope": "Passive Stage controls and coupled load sweeps"
     }
   ]
 }

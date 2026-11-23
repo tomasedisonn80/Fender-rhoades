@@ -112,14 +112,71 @@ This command hashes the artifact and records the supplied metadata. It never
 executes `--command`. Use `--source-commit` with a full Git object ID when the
 artifact refers to a committed source snapshot; otherwise leave it absent and
 explain the exact working-tree state in the artifact. Do not claim a source commit
-that excludes the tested changes.
+that excludes the tested changes. The tool checks object-ID syntax, not Git object
+existence or whether that source produced the reported result.
 
-Use `--kind measurement --specimen SPECIMEN_ID` for actual calibrated observations.
-For held-out hardware validation use `--kind hardware_validation --specimen
-SPECIMEN_ID --independent --reference-evidence MEASUREMENT_ID`. The tool requires a
-passing measurement reference for the same specimen. It cannot establish the
-statistical independence or authenticity of the underlying observations; reviewers
-must inspect the manifest and acquisition method.
+### Link identity and acquisition evidence explicitly
+
+`specimen_identity` records document an identified profile without requiring an
+acquisition session. `SPEC-001` should use that kind; calibrated acquisition remains
+the separate `DATA-001` obligation. For the three specimen evidence kinds,
+`--specimen` must equal the linked profile's `profile_id`. Supply the profile with
+`--profile` and every observed manifest with repeatable `--session`. Each typed
+path must also be supplied with `--artifact`, which records its immutable hash.
+Keep the supporting report and identity/acquisition documentation in the artifact
+list as appropriate to the claim.
+
+These command patterns require actual identified profiles and observed data;
+replace the illustrative IDs and paths with the reviewed immutable artifacts:
+
+```sh
+python3 tools/project.py evidence-add SPEC001-identity-001 \
+  --kind specimen_identity --result pass --summary "Reviewed specimen identity and configuration" \
+  --specimen PROFILE_ID --profile profiles/REFERENCE/specimen.json \
+  --artifact profiles/REFERENCE/specimen.json \
+  --artifact docs/validation/SPEC001-identity-001.md
+
+python3 tools/project.py evidence-add DATA001-observation-001 \
+  --kind measurement --result pass --summary "Calibrated held-out observation acquired" \
+  --specimen PROFILE_ID --profile profiles/REFERENCE/specimen.json \
+  --session data/sessions/heldout-001.json \
+  --artifact profiles/REFERENCE/specimen.json \
+  --artifact data/sessions/heldout-001.json \
+  --artifact docs/validation/DATA001-observation-001.md
+
+python3 tools/project.py evidence-add VAL001-heldout-001 \
+  --kind hardware_validation --result pass --summary "Frozen model prediction evaluated on the linked observation" \
+  --specimen PROFILE_ID --profile profiles/REFERENCE/specimen.json \
+  --session data/sessions/heldout-001.json \
+  --artifact profiles/REFERENCE/specimen.json \
+  --artifact data/sessions/heldout-001.json \
+  --artifact docs/validation/VAL001-heldout-001.md \
+  --independent --reference-evidence DATA001-observation-001
+```
+
+Identity records require a valid `identified` profile and no sessions. Measurement
+records require valid `measured` sessions referencing that profile. Hardware
+validation additionally requires `validation`/`test` splits and passing
+measurement references covering every linked session, with matching profile and
+manifest hashes. Repeat `--reference-evidence` if several acquisition records
+jointly cover the observations. A `measurement` record may describe acquisition
+of held-out data; that does not make those data available for fitting.
+
+The linked documents must pass the existing profile/session contracts. Across
+linked sessions, declared conditions and raw-payload hashes cannot leak between
+splits. An explicitly synthetic manifest cannot be registered as a measured
+observation. Run `python3 tools/validate_data.py` as well to check the repository's
+full data and component inventory. Project validation reads only the declared
+metadata links and source IDs; it does not reread canonical task state through the
+data validator, scan unrelated JSON reports for acquisition data, or inspect raw
+payloads.
+
+Once a linked profile or session is registered, preserve its bytes. Publish a new
+snapshot path and evidence record for a correction. Keep `profile_path: null` and
+`session_paths: []` for documentary, synthetic, numerical, and performance records;
+the CLI supplies those defaults. Typed links enforce declared agreement, while
+reviewers still establish authenticity, relevance, calibrated uncertainty, and
+statistical independence. No metadata field proves that an experiment ran.
 
 After every acceptance criterion is satisfied:
 

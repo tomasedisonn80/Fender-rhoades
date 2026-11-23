@@ -6,7 +6,7 @@
 
 **Fidelity status:** `unvalidated`. Task completion is not a realism percentage.
 
-**State revision:** 1 · **Last state change:** 2026-11-23T12:02:30Z
+**State revision:** 4 · **Last state change:** 2026-11-23T12:19:41Z
 
 blocked: **2** | done: **0** | in_progress: **1** | todo: **10**
 
@@ -32,7 +32,7 @@ blocked: **2** | done: **0** | in_progress: **1** | todo: **10**
 
 Run `python3 tools/project.py next` for lease-aware available work. The list below includes claimed work and is deterministic:
 
-- **FND-001 — Establish reproducible research and agent foundation**.
+- **FND-001 — Establish reproducible research and agent foundation**. Claimed by `integration-root` until `2026-11-24T12:05:12Z`; check current lease before starting.
 
 ## Explicit blockers
 

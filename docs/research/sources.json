@@ -151,7 +151,7 @@
       "title": "1979 manual chapter 6, key numbering",
       "url": "https://www.fenderrhodes.com/service-manuals/1979/ch6.html",
       "status": "reviewed",
-      "notes": "Manual key numbers 8 through 80 for 73-key instrument map to MIDI 28 through 100 under A0=MIDI21 convention; do not confuse stamped tonebar number with octave.",
+      "notes": "Manual distinguishes original 1–73 tonebar stamps from later 8–80 markings. Normalized piano-key positions 8–80 map to MIDI 28–100 under A0=MIDI21; observed stamps, physical index and MIDI are separate identities.",
       "redistribution": "link_only"
     }
   ]

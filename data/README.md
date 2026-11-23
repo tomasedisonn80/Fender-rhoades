@@ -17,3 +17,9 @@ part of the observation. Hashes establish identity; they do not establish accura
 Run `python3 tools/validate_data.py` for committed contracts and fixtures. An
 unidentified profile may contain null values. A measured manifest requires an
 identified specimen and complete acquisition/calibration metadata.
+
+The current version-1 checks are structural. They do not verify raw payload bytes,
+resolve calibration certificates, enforce calibration validity dates, or discover
+derived-data ancestry. The [specimen and acquisition acceptance contract](../docs/specs/DATA_INGESTION.md)
+specifies the coordinated schema upgrade and review gates required before actual
+measurement tasks can be completed.
