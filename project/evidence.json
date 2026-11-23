@@ -122,6 +122,62 @@
         "Synthetic offline finite-mass p=1 model; no calibrated physical specimen. Eight tracked audited inputs exactly match the recorded commit; execution/source/input/binary hashes retained.",
         "No independent continuous-time force/compression extrema acceptance. Twenty waveform or energy and six event-time refinement monotonicity failures remain under the frozen matrix."
       ]
+    },
+    {
+      "id": "RT-20261123-vst3-callbacks",
+      "kind": "performance",
+      "result": "pass",
+      "summary": "Reproducible actual VST3 callback observation matrix: 3600 successful calls, 433 independent accounting checks, two nominal block-period overruns; this records observed performance and does not complete RT-001.",
+      "command": "/workspace/scratch/af088a9f3cc9/Fender-rhoades/build/vst3/rhodes_vst3_benchmark --blocks 300 --warmup-blocks 32 --block-size 64 --sample-rate 48000 --active-keys 73 --workload pedal --sample-format 64 --machine a069-shared-linux-container",
+      "created_at": "2026-11-23T15:20:18Z",
+      "source_commit": "301558122aa8e61100dc6857555789e8c5b887a9",
+      "artifacts": [
+        {
+          "path": "docs/validation/vst3-callback-benchmark-20261123.json",
+          "sha256": "5f079c4e89fead8c2d74881bdc7d988435506d87fe77cb76d79a66ba17d95f2e"
+        },
+        {
+          "path": "docs/agents/development-20261123/W4-A069.md",
+          "sha256": "765cc4241f7aaa07cb032781b511924fc038809adbc04029290c9b9863953cc2"
+        }
+      ],
+      "specimen_id": null,
+      "profile_path": null,
+      "session_paths": [],
+      "independent": true,
+      "reference_evidence": [],
+      "limitations": [
+        "One shuffled 12-cell matrix in an uncontrolled Linux x86-64 container; 48/192 kHz, 64 frames, 73 keys, three workloads, both formats, 300 measured callbacks per cell. No causal format comparison or worst-case deadline guarantee.",
+        "Direct callable adapter measurements exclude module loading, commercial DAWs, audio-device scheduling and allocation/locking verification. Exact source, binary, archive, compiler flags and available hardware metadata are retained."
+      ]
+    },
+    {
+      "id": "RT-20261123-alias-diagnostic",
+      "kind": "numerical",
+      "result": "inconclusive",
+      "summary": "Five-key synthetic resampling diagnostic observes a predicted folded high-register component, but filter/onset/export limits prevent a complete timestep or antialiasing acceptance bound. RT-001 remains incomplete.",
+      "command": "build/a068/rhodes_render --output build/a068/key72-fs192000.wav --seconds 1 --sample-rate 192000 --key 72 --velocity 0.7 --gain 1",
+      "created_at": "2026-11-23T15:22:09Z",
+      "source_commit": "301558122aa8e61100dc6857555789e8c5b887a9",
+      "artifacts": [
+        {
+          "path": "docs/validation/aliasing-observations-20261123.json",
+          "sha256": "bde596bcb9046a47f523a0d526e61527f9992e3b12861604c4123dacdf0683eb"
+        },
+        {
+          "path": "docs/agents/development-20261123/W4-A068.md",
+          "sha256": "ce199617359d3b271635951691215a6a89a77478a5f581015bd852bd6adc3633"
+        }
+      ],
+      "specimen_id": null,
+      "profile_path": null,
+      "session_paths": [],
+      "independent": true,
+      "reference_evidence": [],
+      "limitations": [
+        "Five single-note keys at velocity0.7, 48/96/192 kHz and declared onset/held windows only. Synthetic volts and coefficients; no specimen calibration or audibility claim.",
+        "Finite-rate FIR reference, zero-extension at onset and float32 WAV export affect differences. A fitted folded component is diagnostic evidence, not a certified alias-only bound or proof over the supported operating domain."
+      ]
     }
   ]
 }

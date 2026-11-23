@@ -139,6 +139,7 @@ class ContactAuditorValidationTests(unittest.TestCase):
         self.assertIn("trajectory samples", result["missing"])
         self.assertIn("Candidate reported explicit failure", result["failures"][0])
         self.run["success"] = True
+        self.run["failure_code"] = 0
         result = audit.audit_run(self.run)
         self.assertEqual(result["status"], "incomplete")
         self.assertEqual(result["failures"], [])

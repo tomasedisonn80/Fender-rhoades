@@ -91,6 +91,9 @@ if(BUILD_TESTING)
             --active-keys 73 --workload pedal --sample-format ${sample_format}
             --machine ci-smoke)
     endforeach()
+    add_test(NAME vst3.benchmark_json COMMAND ${CMAKE_COMMAND}
+        "-DBENCHMARK=$<TARGET_FILE:rhodes_vst3_benchmark>"
+        -P "${PROJECT_SOURCE_DIR}/tests/cpp/vst3_benchmark_json.cmake")
     add_executable(rhodes_vst3_host_tests
         "${PROJECT_SOURCE_DIR}/tests/cpp/vst3_host_test.cpp"
         "${PROJECT_SOURCE_DIR}/plugins/vst3/processor.cpp"
@@ -132,6 +135,19 @@ if(BUILD_TESTING)
     rhodes_target_options(rhodes_vst3_buffer_tests)
     foreach(test_name IN ITEMS inactive_buffers flush_matrix rejected_buffers setup_rollback)
         add_test(NAME vst3.${test_name} COMMAND rhodes_vst3_buffer_tests ${test_name})
+    endforeach()
+    add_executable(rhodes_vst3_stream_tests
+        "${PROJECT_SOURCE_DIR}/tests/cpp/vst3_stream_contract_test.cpp"
+        "${PROJECT_SOURCE_DIR}/plugins/vst3/processor.cpp"
+        "${PROJECT_SOURCE_DIR}/plugins/vst3/controller.cpp"
+        "${PROJECT_SOURCE_DIR}/plugins/vst3/state_stream.cpp")
+    target_compile_features(rhodes_vst3_stream_tests PRIVATE cxx_std_20)
+    target_include_directories(rhodes_vst3_stream_tests PRIVATE "${PROJECT_SOURCE_DIR}")
+    target_include_directories(rhodes_vst3_stream_tests SYSTEM PRIVATE "${RHODES_VST3_SDK_ROOT}")
+    target_link_libraries(rhodes_vst3_stream_tests PRIVATE rhodes_core sdk)
+    rhodes_target_options(rhodes_vst3_stream_tests)
+    foreach(test_name IN ITEMS partial_roundtrip read_failures write_failures malformed_state)
+        add_test(NAME vst3.${test_name} COMMAND rhodes_vst3_stream_tests ${test_name})
     endforeach()
     add_dependencies(rhodes_vst3 validator)
     get_target_property(rhodes_plugin_bundle rhodes_vst3 SMTG_PLUGIN_PACKAGE_PATH)

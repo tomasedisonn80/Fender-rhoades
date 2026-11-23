@@ -20,6 +20,9 @@ time_s, bracket_lo_s and bracket_hi_s. Grazing rows also need
 gap_uncertainty_m. Full acceptance additionally requires accepted-interval
 diagnostics and independently located peaks; missing data are reported as
 incomplete, never silently treated as passing.
+Relaunch snapshots additionally identify time, requested velocity, success,
+failure code and work, with before/after states at that same time. Missing
+snapshot evidence is incomplete; an explicit list must cover every frozen action.
 
 All constants and budgets below are from CONTACT_ACCEPTANCE_20261123 and
 W1-A005/A007/A012. They are engineering fixtures, not Rhodes measurements.
@@ -266,6 +269,9 @@ class Oracle:
     state: Callable[[float], Any]
     events: list[dict[str, Any]]
     evaluation_count: int = 0
+    # Exact left/right states already produced by the independent action solver.
+    # Capturing them avoids sampling across a right-continuous velocity jump.
+    relaunch_states: tuple[tuple[float, Any, Any], ...] = ()
 
     def sample(self, time: float) -> dict[str, Any]:
         return observe(self.fixture, time, self.state(time))
@@ -396,6 +402,7 @@ def exact_relaunch_impact(f: Fixture) -> Oracle:
     active = True
     events = [{"contact": "hammer", "kind": "onset", "time_s": 0.0}]
     segments: list[tuple[float, float, Any, bool]] = []
+    relaunch_states: list[tuple[float, Any, Any]] = []
     def propagate(state: Any, dt: float, compressed: bool, root: bool = False) -> Any:
         result = state.copy()
         delta = state[4]-state[0]
@@ -437,8 +444,10 @@ def exact_relaunch_impact(f: Fixture) -> Oracle:
             if dt <= 0:
                 raise RuntimeError("Analytic action oracle lost progress")
         if launch is not None:
+            before = y.copy()
             y[10] += f.hammer_mass*(launch**2-y[5]**2)/2
             y[5] = launch
+            relaunch_states.append((end, before, y.copy()))
             events.append({"contact": "hammer", "kind": "relaunch", "time_s": end})
             if not active and y[4] == y[0] and y[5] > y[2]:
                 active = True
@@ -448,13 +457,15 @@ def exact_relaunch_impact(f: Fixture) -> Oracle:
             if begin-1e-15 <= time <= end+1e-15:
                 return propagate(state, time-begin, compressed)
         raise ValueError("Time outside analytic action trajectory")
-    return Oracle(f, "piecewise analytic impact with exact action ordering", trajectory, events)
+    return Oracle(f, "piecewise analytic impact with exact action ordering", trajectory, events,
+                  relaunch_states=tuple(relaunch_states))
 
 
 def radau_oracle(f: Fixture, *, tight: bool = True) -> Oracle:
     np, solve_ivp, _, _ = numerics()
     segments: list[tuple[float, float, Any]] = []
     events: list[dict[str, Any]] = []
+    relaunch_states: list[tuple[float, Any, Any]] = []
     y, start, nfev = initial_vector(f), 0.0, 0
     def geometric(contact: str) -> Callable[[float, Any], float]:
         def event(t: float, state: Any) -> float:
@@ -474,8 +485,10 @@ def radau_oracle(f: Fixture, *, tight: bool = True) -> Oracle:
     launches = list(f.relaunch)
     if launches and launches[0][0] == 0:
         _, velocity = launches.pop(0)
+        before = y.copy()
         y[10] += f.hammer_mass*(velocity**2-y[5]**2)/2
         y[5] = velocity
+        relaunch_states.append((0.0, before, y.copy()))
         events.append({"contact": "hammer", "kind": "relaunch", "time_s": 0.0})
     for end, launch_velocity in [*launches, (f.duration, None)]:
         if end <= start:
@@ -507,8 +520,10 @@ def radau_oracle(f: Fixture, *, tight: bool = True) -> Oracle:
         y = solution.y[:, -1].copy()
         start = end
         if launch_velocity is not None:
+            before = y.copy()
             y[10] += f.hammer_mass*(launch_velocity**2-y[5]**2)/2
             y[5] = launch_velocity
+            relaunch_states.append((start, before, y.copy()))
             events.append({"contact": "hammer", "kind": "relaunch", "time_s": start})
     # A tangent has no sign change: solve the independent free turning point
     # explicitly. Tiny integration excursions must never reclassify it as a hit.
@@ -530,7 +545,8 @@ def radau_oracle(f: Fixture, *, tight: bool = True) -> Oracle:
                     result = y.copy()
                 return result
         raise ValueError("Time outside independent Radau trajectory")
-    return Oracle(f, "SciPy Radau (independently assembled)", trajectory, deduplicated, nfev)
+    return Oracle(f, "SciPy Radau (independently assembled)", trajectory, deduplicated, nfev,
+                  tuple(relaunch_states))
 
 
 @lru_cache(maxsize=64)
@@ -764,13 +780,97 @@ def validate_run_input(run: Any) -> list[str]:
                 failures.append(where + " must be an object")
                 continue
             for side in ("before", "after"):
-                sample_values(snapshot.get(side), where + "." + side)
+                value = snapshot.get(side)
+                if sample_values(value, where + "." + side) and "time_s" in value:
+                    time = value["time_s"]
+                    if number(time, where + "." + side + ".time_s") and not 0 <= time <= duration + 1e-12:
+                        failures.append(where + "." + side + ".time_s lies outside the frozen duration")
             for key in ("time_s", "requested_velocity_m_per_s", "work_j"):
                 if key in snapshot:
                     number(snapshot[key], where + "." + key)
+            if ("time_s" in snapshot and finite_number(snapshot["time_s"]) and
+                    not 0 <= snapshot["time_s"] <= duration + 1e-12):
+                failures.append(where + ".time_s lies outside the frozen duration")
             if "success" in snapshot and type(snapshot["success"]) is not bool:
                 failures.append(where + ".success must be a boolean")
+            if "failure_code" in snapshot and (type(snapshot["failure_code"]) is not int or
+                                               snapshot["failure_code"] < 0):
+                failures.append(where + ".failure_code must be a nonnegative integer")
     return failures
+
+
+def validate_action_evidence(run: dict[str, Any]) -> tuple[list[str], list[str]]:
+    """Check declared success and instantaneous actions after input preflight.
+
+    This check is backend-free. It uses the frozen action schedule and the
+    existing event-work budget, without trusting a candidate's success flag or
+    its duplicated work/energy fields as an independent reference.
+    """
+    failures: list[str] = []
+    missing: list[str] = []
+    if run.get("success") is False:
+        failures.append("Candidate reported explicit failure before completing the requested interval; code="+
+                        str(run.get("failure_code", "unspecified")))
+    if run.get("failure_code", 0) != 0:
+        failures.append("Candidate reported nonzero failure_code=" + str(run["failure_code"]))
+    fixture = fixtures()[run["fixture"]]
+    if "relaunch_snapshots" not in run:
+        if fixture.relaunch:
+            missing.append("before/after relaunch snapshots for exact state preservation")
+        return failures, missing
+    snapshots = run["relaunch_snapshots"]
+    if len(snapshots) != len(fixture.relaunch):
+        failures.append("relaunch snapshot count differs from frozen action count")
+    for index, (snapshot, (time, velocity)) in enumerate(zip(snapshots, fixture.relaunch)):
+        where = f"relaunch_snapshots[{index}]"
+        before, after = snapshot["before"], snapshot["after"]
+        for key in ("time_s", "requested_velocity_m_per_s", "success", "failure_code", "work_j"):
+            if key not in snapshot:
+                missing.append(where + "." + key)
+        if snapshot.get("success") is False:
+            failures.append(where + " reports explicit action failure")
+        if snapshot.get("failure_code", 0) != 0:
+            failures.append(where + " reports nonzero failure_code=" + str(snapshot["failure_code"]))
+        if "time_s" in snapshot and abs(snapshot["time_s"] - time) > tolerance("time", time):
+            failures.append(where + " time differs from frozen action")
+        if ("requested_velocity_m_per_s" in snapshot and
+                abs(snapshot["requested_velocity_m_per_s"] - velocity) > tolerance("velocity", velocity)):
+            failures.append(where + " requested velocity differs from frozen action")
+        if ("requested_velocity_m_per_s" in snapshot and
+                after["hammer_velocity_m_per_s"] != snapshot["requested_velocity_m_per_s"]):
+            failures.append(where + " final hammer velocity does not equal the requested value")
+        for side, sample in (("before", before), ("after", after)):
+            if "time_s" not in sample:
+                missing.append(where + "." + side + ".time_s")
+            elif "time_s" in snapshot and sample["time_s"] != snapshot["time_s"]:
+                failures.append(where + "." + side + " time differs from instantaneous action time")
+        for key in ("q_m", "v_m_per_s", "hammer_position_m", "modal_loss_j", "hammer_loss_j",
+                    "damper_loss_j", "actuator_work_j", "hammer_impulse_ns", "damper_impulse_ns"):
+            if before[key] != after[key]:
+                failures.append(where + " relaunch changed preserved " + key)
+        for key in ("hammer_clipped_loss_j", "damper_clipped_loss_j"):
+            if key in before and key in after and before[key] != after[key]:
+                failures.append(where + " relaunch changed preserved " + key)
+        try:
+            kinetic_work = fixture.hammer_mass * (after["hammer_velocity_m_per_s"]**2 -
+                                                  before["hammer_velocity_m_per_s"]**2) / 2
+        except OverflowError:
+            failures.append(where + " kinetic work overflows")
+            continue
+        if not math.isfinite(kinetic_work):
+            failures.append(where + " kinetic work is non-finite")
+            continue
+        # This is the predeclared event-work budget already used below for the
+        # total launch ledger, applied to each instantaneous action identity.
+        budget = 1e-12 + 1e-10 * abs(kinetic_work)
+        quantities = {"launch ledger jump": after["launch_work_j"] - before["launch_work_j"],
+                      "stored energy jump": after["energy_j"] - before["energy_j"]}
+        if "work_j" in snapshot:
+            quantities["declared work"] = snapshot["work_j"]
+        for label, value in quantities.items():
+            if not math.isfinite(value) or abs(value - kinetic_work) > budget:
+                failures.append(where + " " + label + " disagrees with hammer kinetic work")
+    return failures, missing
 
 
 def normalize_sample(s: dict[str, Any]) -> dict[str, Any]:
@@ -782,10 +882,15 @@ def normalize_sample(s: dict[str, Any]) -> dict[str, Any]:
     for old, new in aliases.items():
         if new not in s and old in s:
             s[new] = s[old]
+    def component(key: str) -> float:
+        value = s[key]
+        if not finite_number(value):
+            raise ValueError("Legacy component " + key + " must be a finite number")
+        return float(value)
     if "q_m" not in s:
-        s["q_m"] = [float(s["q0_m"]), float(s["q1_m"])]
+        s["q_m"] = [component("q0_m"), component("q1_m")]
     if "v_m_per_s" not in s:
-        s["v_m_per_s"] = [float(s["v0_m_per_s"]), float(s["v1_m_per_s"])]
+        s["v_m_per_s"] = [component("v0_m_per_s"), component("v1_m_per_s")]
     return s
 
 
@@ -842,15 +947,16 @@ def audit_run(run: dict[str, Any]) -> dict[str, Any]:
     if failures:
         return {"fixture": name if isinstance(name, str) else None, "status": "fail",
                 "failures": failures[:80], "failure_count": len(failures), "missing": []}
-    missing: list[str] = []
-    if run.get("success") is False:
-        failures.append("Candidate reported explicit failure before completing the requested interval; code="+
-                        str(run.get("failure_code", "unspecified")))
+    action_failures, missing = validate_action_evidence(run)
+    failures.extend(action_failures)
     worst: dict[str, float] = {}
     samples = run.get("samples", [])
     if not samples:
         return {"fixture": name, "status": "fail" if failures else "incomplete",
-                "failures": failures, "failure_count": len(failures), "missing": ["trajectory samples"]}
+                "failures": failures, "failure_count": len(failures), "missing": missing + ["trajectory samples"]}
+    if failures:
+        return {"fixture": name, "status": "fail", "failures": failures[:80],
+                "failure_count": len(failures), "missing": missing}
     oracle = oracle_for(name)
     f = oracle.fixture
     times = [float(s["time_s"]) for s in samples]
@@ -967,13 +1073,20 @@ def audit_run(run: dict[str, Any]) -> dict[str, Any]:
         work = oracle.sample(f.duration)["launch_work_j"]
         if abs(float(samples[-1]["launch_work_j"])-work) > 1e-12+1e-10*abs(work):
             failures.append("launch work exceeds frozen event-work budget")
-        if "relaunch_snapshots" not in run:
-            missing.append("before/after relaunch snapshots for exact state preservation")
-        else:
-            for snapshot in run["relaunch_snapshots"]:
-                before, after = snapshot["before"], snapshot["after"]
-                if any(before[key] != after[key] for key in ("q_m", "v_m_per_s", "hammer_position_m")):
-                    failures.append("relaunch changed a position or modal velocity")
+        for index, (snapshot, (time, before_state, after_state)) in enumerate(zip(
+                run.get("relaunch_snapshots", []), oracle.relaunch_states)):
+            oracle_work = f.hammer_mass * (after_state[5]**2 - before_state[5]**2) / 2
+            if "work_j" in snapshot and abs(snapshot["work_j"] - oracle_work) > 1e-12+1e-10*abs(oracle_work):
+                failures.append(f"relaunch_snapshots[{index}].work_j differs from independent action work")
+            for side, reference_state in (("before", before_state), ("after", after_state)):
+                reference = observe(f, time, reference_state)
+                _, errors = compare_samples(snapshot[side], reference, f)
+                failures.extend(f"relaunch_snapshots[{index}].{side}: {error}" for error in errors)
+                ledger = reference["launch_work_j"]
+                if abs(snapshot[side]["launch_work_j"] - ledger) > 1e-12+1e-10*abs(ledger):
+                    failures.append(f"relaunch_snapshots[{index}].{side} launch ledger differs from independent action work")
+        if len(oracle.relaunch_states) != len(f.relaunch):
+            raise RuntimeError("Independent oracle omitted frozen action states")
     # The current export contains sampled diagnostic maxima only. A complete
     # future extrema audit must bracket stationary points independently; the
     # mere presence of a dictionary named "peaks" is not that evidence.
@@ -1029,6 +1142,10 @@ def refinement_gates(runs: list[dict[str, Any]]) -> dict[str, Any]:
                  for failure in validate_run_input(run)]
     if malformed:
         return {"status": "fail", "failures": malformed[:80], "missing": [], "comparisons": {}}
+    contradictory = [f"run {index}: {failure}" for index, run in enumerate(runs)
+                     for failure in validate_action_evidence(run)[0]]
+    if contradictory:
+        return {"status": "fail", "failures": contradictory[:80], "missing": [], "comparisons": {}}
     by_name: dict[str, list[dict[str, Any]]] = {}
     for run in runs:
         by_name.setdefault(run["fixture"], []).append(run)

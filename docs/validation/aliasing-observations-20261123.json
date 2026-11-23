@@ -1,0 +1,4429 @@
+{
+  "schema_version": 1,
+  "status": "diagnostic_only_not_an_acceptance_result",
+  "scope": "Five synthetic single-note renders; finite-rate low-pass differences are not pure alias measurements.",
+  "environment": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "numpy": "2.3.5",
+    "scipy": "1.17.0",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41"
+  },
+  "source": {
+    "head": "301558122aa8e61100dc6857555789e8c5b887a9",
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+    "source_sha256": {
+      "apps/render.cpp": "75076be6bd21ebf0d24dff6db67247f7939a0f9da32283664e7d8655f1d19147",
+      "src/research_engine.cpp": "c30f3cbba73632312a1b88cbc3449d73cae4dd1383ad41b70b7bbbb3a7e8123c",
+      "include/rhodes/research_engine.hpp": "2f00f75a418ab5988107fcc7a3ddc4503c4f5d72c71b925515a72c7cb9136bf5",
+      "include/rhodes/control_value.hpp": "7d940dcbca66f07f9db6c5caf605da57fbe77d66b78641139e078f06d7441919",
+      "tools/audit_aliasing.py": "13645e0b335a1b9910a86839dcb4f1d0bda7748f4cf9e037686e707479410713"
+    }
+  },
+  "source_unchanged_after_execution": true,
+  "build_argv": [
+    "c++",
+    "-O3",
+    "-DNDEBUG",
+    "-std=c++20",
+    "-Wall",
+    "-Wextra",
+    "-Wpedantic",
+    "-Wconversion",
+    "-Wshadow",
+    "-Werror",
+    "-Ibuild/a068/snapshot/include",
+    "build/a068/snapshot/src/research_engine.cpp",
+    "build/a068/snapshot/apps/render.cpp",
+    "-o",
+    "build/a068/rhodes_render"
+  ],
+  "compiler": "c++ (Debian 14.2.0-19) 14.2.0",
+  "executable_sha256": "a270eab1631a976f38c3e005d4c267ca258c1fbd41074b7d7953ee0c4118eaf4",
+  "render_parameters": {
+    "seconds": 1.0,
+    "velocity": 0.7,
+    "gain": 1.0
+  },
+  "sample_time_rule": "sample n observes state at n/fs, before advancing; decimation begins at index zero",
+  "release_time_s": 0.65,
+  "edge_handling": "Centered odd-FIR same-mode FFT convolution, with zero extension outside each one-second render. Onset window explicitly includes the leading-edge effect. Other windows exclude 21.333333 ms on each side of discontinuities.",
+  "windows": {
+    "onset_edge_sensitive": [
+      0.0,
+      0.02
+    ],
+    "early_held_edge_excluded": [
+      0.025,
+      0.05
+    ],
+    "later_held_edge_excluded": [
+      0.15,
+      0.5
+    ]
+  },
+  "inputs": [
+    {
+      "key": 20,
+      "midi": 48,
+      "sample_rate_hz": 48000,
+      "argv": [
+        "build/a068/rhodes_render",
+        "--output",
+        "build/a068/key20-fs48000.wav",
+        "--seconds",
+        "1",
+        "--sample-rate",
+        "48000",
+        "--key",
+        "20",
+        "--velocity",
+        "0.7",
+        "--gain",
+        "1"
+      ],
+      "exit_code": 0,
+      "stdout": "Wrote build/a068/key20-fs48000.wav: 48000 frames at 48000 Hz, peak=0.00651501, explicit monitoring gain=1. Synthetic parameters; no hardware fidelity result.",
+      "stderr": "",
+      "wav_sha256": "f54a87bdea67c3436344c98cf658502f5cbf12898060eef6e6d0c489610b962f",
+      "wav_bytes": 192058,
+      "first_sample_v": -0.006435410585254431
+    },
+    {
+      "key": 20,
+      "midi": 48,
+      "sample_rate_hz": 96000,
+      "argv": [
+        "build/a068/rhodes_render",
+        "--output",
+        "build/a068/key20-fs96000.wav",
+        "--seconds",
+        "1",
+        "--sample-rate",
+        "96000",
+        "--key",
+        "20",
+        "--velocity",
+        "0.7",
+        "--gain",
+        "1"
+      ],
+      "exit_code": 0,
+      "stdout": "Wrote build/a068/key20-fs96000.wav: 96000 frames at 96000 Hz, peak=0.00651501, explicit monitoring gain=1. Synthetic parameters; no hardware fidelity result.",
+      "stderr": "",
+      "wav_sha256": "6c2cc015dba73acbe9997a575ac98c8a08b08f84a00393fb00fde0f043f4c975",
+      "wav_bytes": 384058,
+      "first_sample_v": -0.006435410585254431
+    },
+    {
+      "key": 20,
+      "midi": 48,
+      "sample_rate_hz": 192000,
+      "argv": [
+        "build/a068/rhodes_render",
+        "--output",
+        "build/a068/key20-fs192000.wav",
+        "--seconds",
+        "1",
+        "--sample-rate",
+        "192000",
+        "--key",
+        "20",
+        "--velocity",
+        "0.7",
+        "--gain",
+        "1"
+      ],
+      "exit_code": 0,
+      "stdout": "Wrote build/a068/key20-fs192000.wav: 192000 frames at 192000 Hz, peak=0.00651506, explicit monitoring gain=1. Synthetic parameters; no hardware fidelity result.",
+      "stderr": "",
+      "wav_sha256": "2ab9d7f353c175faa047ac6ce6727e69b38c0ff9b9f18cf79a9f07781ce94aa8",
+      "wav_bytes": 768058,
+      "first_sample_v": -0.006435410585254431
+    },
+    {
+      "key": 61,
+      "midi": 89,
+      "sample_rate_hz": 48000,
+      "argv": [
+        "build/a068/rhodes_render",
+        "--output",
+        "build/a068/key61-fs48000.wav",
+        "--seconds",
+        "1",
+        "--sample-rate",
+        "48000",
+        "--key",
+        "61",
+        "--velocity",
+        "0.7",
+        "--gain",
+        "1"
+      ],
+      "exit_code": 0,
+      "stdout": "Wrote build/a068/key61-fs48000.wav: 48000 frames at 48000 Hz, peak=0.00643541, explicit monitoring gain=1. Synthetic parameters; no hardware fidelity result.",
+      "stderr": "",
+      "wav_sha256": "c4fa24d97f6602f8c843cb1698e113120c22a387901e9e7da4a377230840f617",
+      "wav_bytes": 192058,
+      "first_sample_v": -0.006435410585254431
+    },
+    {
+      "key": 61,
+      "midi": 89,
+      "sample_rate_hz": 96000,
+      "argv": [
+        "build/a068/rhodes_render",
+        "--output",
+        "build/a068/key61-fs96000.wav",
+        "--seconds",
+        "1",
+        "--sample-rate",
+        "96000",
+        "--key",
+        "61",
+        "--velocity",
+        "0.7",
+        "--gain",
+        "1"
+      ],
+      "exit_code": 0,
+      "stdout": "Wrote build/a068/key61-fs96000.wav: 96000 frames at 96000 Hz, peak=0.00643541, explicit monitoring gain=1. Synthetic parameters; no hardware fidelity result.",
+      "stderr": "",
+      "wav_sha256": "0e01faf86f08c23f91ac907574b563145f858fd7edc8f39877714331d78f4b0e",
+      "wav_bytes": 384058,
+      "first_sample_v": -0.006435410585254431
+    },
+    {
+      "key": 61,
+      "midi": 89,
+      "sample_rate_hz": 192000,
+      "argv": [
+        "build/a068/rhodes_render",
+        "--output",
+        "build/a068/key61-fs192000.wav",
+        "--seconds",
+        "1",
+        "--sample-rate",
+        "192000",
+        "--key",
+        "61",
+        "--velocity",
+        "0.7",
+        "--gain",
+        "1"
+      ],
+      "exit_code": 0,
+      "stdout": "Wrote build/a068/key61-fs192000.wav: 192000 frames at 192000 Hz, peak=0.00643541, explicit monitoring gain=1. Synthetic parameters; no hardware fidelity result.",
+      "stderr": "",
+      "wav_sha256": "54c61a09de8672997f1fa3503cee1cd1f6aff0710d5bf26461b93b6aaceae003",
+      "wav_bytes": 768058,
+      "first_sample_v": -0.006435410585254431
+    },
+    {
+      "key": 62,
+      "midi": 90,
+      "sample_rate_hz": 48000,
+      "argv": [
+        "build/a068/rhodes_render",
+        "--output",
+        "build/a068/key62-fs48000.wav",
+        "--seconds",
+        "1",
+        "--sample-rate",
+        "48000",
+        "--key",
+        "62",
+        "--velocity",
+        "0.7",
+        "--gain",
+        "1"
+      ],
+      "exit_code": 0,
+      "stdout": "Wrote build/a068/key62-fs48000.wav: 48000 frames at 48000 Hz, peak=0.00643541, explicit monitoring gain=1. Synthetic parameters; no hardware fidelity result.",
+      "stderr": "",
+      "wav_sha256": "e525d1ee2ba926af7c0be35e6f6cf272f799be8439f7423dc1780bc95a9183f3",
+      "wav_bytes": 192058,
+      "first_sample_v": -0.006435410585254431
+    },
+    {
+      "key": 62,
+      "midi": 90,
+      "sample_rate_hz": 96000,
+      "argv": [
+        "build/a068/rhodes_render",
+        "--output",
+        "build/a068/key62-fs96000.wav",
+        "--seconds",
+        "1",
+        "--sample-rate",
+        "96000",
+        "--key",
+        "62",
+        "--velocity",
+        "0.7",
+        "--gain",
+        "1"
+      ],
+      "exit_code": 0,
+      "stdout": "Wrote build/a068/key62-fs96000.wav: 96000 frames at 96000 Hz, peak=0.00643541, explicit monitoring gain=1. Synthetic parameters; no hardware fidelity result.",
+      "stderr": "",
+      "wav_sha256": "b497cb7363ea30b2dc4b87516c2e398d9957b11b21c7b3882044e33154b9f385",
+      "wav_bytes": 384058,
+      "first_sample_v": -0.006435410585254431
+    },
+    {
+      "key": 62,
+      "midi": 90,
+      "sample_rate_hz": 192000,
+      "argv": [
+        "build/a068/rhodes_render",
+        "--output",
+        "build/a068/key62-fs192000.wav",
+        "--seconds",
+        "1",
+        "--sample-rate",
+        "192000",
+        "--key",
+        "62",
+        "--velocity",
+        "0.7",
+        "--gain",
+        "1"
+      ],
+      "exit_code": 0,
+      "stdout": "Wrote build/a068/key62-fs192000.wav: 192000 frames at 192000 Hz, peak=0.00643541, explicit monitoring gain=1. Synthetic parameters; no hardware fidelity result.",
+      "stderr": "",
+      "wav_sha256": "d933355fd743adc2199119c7f367a243441622672eeb48e2560e2339d5f76d6f",
+      "wav_bytes": 768058,
+      "first_sample_v": -0.006435410585254431
+    },
+    {
+      "key": 68,
+      "midi": 96,
+      "sample_rate_hz": 48000,
+      "argv": [
+        "build/a068/rhodes_render",
+        "--output",
+        "build/a068/key68-fs48000.wav",
+        "--seconds",
+        "1",
+        "--sample-rate",
+        "48000",
+        "--key",
+        "68",
+        "--velocity",
+        "0.7",
+        "--gain",
+        "1"
+      ],
+      "exit_code": 0,
+      "stdout": "Wrote build/a068/key68-fs48000.wav: 48000 frames at 48000 Hz, peak=0.00643541, explicit monitoring gain=1. Synthetic parameters; no hardware fidelity result.",
+      "stderr": "",
+      "wav_sha256": "77d7864c138af412d388c2f0b5240ad4c3fe9c789a0d74962bd91cfd26536ab0",
+      "wav_bytes": 192058,
+      "first_sample_v": -0.006435410585254431
+    },
+    {
+      "key": 68,
+      "midi": 96,
+      "sample_rate_hz": 96000,
+      "argv": [
+        "build/a068/rhodes_render",
+        "--output",
+        "build/a068/key68-fs96000.wav",
+        "--seconds",
+        "1",
+        "--sample-rate",
+        "96000",
+        "--key",
+        "68",
+        "--velocity",
+        "0.7",
+        "--gain",
+        "1"
+      ],
+      "exit_code": 0,
+      "stdout": "Wrote build/a068/key68-fs96000.wav: 96000 frames at 96000 Hz, peak=0.00643541, explicit monitoring gain=1. Synthetic parameters; no hardware fidelity result.",
+      "stderr": "",
+      "wav_sha256": "0cfcd1142d9bf21d920d966a2fe9972d321c950eafe1e6b86b100e0922ec89a2",
+      "wav_bytes": 384058,
+      "first_sample_v": -0.006435410585254431
+    },
+    {
+      "key": 68,
+      "midi": 96,
+      "sample_rate_hz": 192000,
+      "argv": [
+        "build/a068/rhodes_render",
+        "--output",
+        "build/a068/key68-fs192000.wav",
+        "--seconds",
+        "1",
+        "--sample-rate",
+        "192000",
+        "--key",
+        "68",
+        "--velocity",
+        "0.7",
+        "--gain",
+        "1"
+      ],
+      "exit_code": 0,
+      "stdout": "Wrote build/a068/key68-fs192000.wav: 192000 frames at 192000 Hz, peak=0.00643541, explicit monitoring gain=1. Synthetic parameters; no hardware fidelity result.",
+      "stderr": "",
+      "wav_sha256": "8c27b5a300f9bc5deae45db1545167e6b334308aec1a3f77d4f42a1bd39e969d",
+      "wav_bytes": 768058,
+      "first_sample_v": -0.006435410585254431
+    },
+    {
+      "key": 72,
+      "midi": 100,
+      "sample_rate_hz": 48000,
+      "argv": [
+        "build/a068/rhodes_render",
+        "--output",
+        "build/a068/key72-fs48000.wav",
+        "--seconds",
+        "1",
+        "--sample-rate",
+        "48000",
+        "--key",
+        "72",
+        "--velocity",
+        "0.7",
+        "--gain",
+        "1"
+      ],
+      "exit_code": 0,
+      "stdout": "Wrote build/a068/key72-fs48000.wav: 48000 frames at 48000 Hz, peak=0.00643541, explicit monitoring gain=1. Synthetic parameters; no hardware fidelity result.",
+      "stderr": "",
+      "wav_sha256": "5a61f43f563675058c0e40556a474313018684026e9b31fb119c6b10d6ba8ab5",
+      "wav_bytes": 192058,
+      "first_sample_v": -0.006435410585254431
+    },
+    {
+      "key": 72,
+      "midi": 100,
+      "sample_rate_hz": 96000,
+      "argv": [
+        "build/a068/rhodes_render",
+        "--output",
+        "build/a068/key72-fs96000.wav",
+        "--seconds",
+        "1",
+        "--sample-rate",
+        "96000",
+        "--key",
+        "72",
+        "--velocity",
+        "0.7",
+        "--gain",
+        "1"
+      ],
+      "exit_code": 0,
+      "stdout": "Wrote build/a068/key72-fs96000.wav: 96000 frames at 96000 Hz, peak=0.00643541, explicit monitoring gain=1. Synthetic parameters; no hardware fidelity result.",
+      "stderr": "",
+      "wav_sha256": "52dd0f3bb0f2521c8e395033cac7884f5020bb9b7f15ae2fcedc6d5907e4e6de",
+      "wav_bytes": 384058,
+      "first_sample_v": -0.006435410585254431
+    },
+    {
+      "key": 72,
+      "midi": 100,
+      "sample_rate_hz": 192000,
+      "argv": [
+        "build/a068/rhodes_render",
+        "--output",
+        "build/a068/key72-fs192000.wav",
+        "--seconds",
+        "1",
+        "--sample-rate",
+        "192000",
+        "--key",
+        "72",
+        "--velocity",
+        "0.7",
+        "--gain",
+        "1"
+      ],
+      "exit_code": 0,
+      "stdout": "Wrote build/a068/key72-fs192000.wav: 192000 frames at 192000 Hz, peak=0.00643541, explicit monitoring gain=1. Synthetic parameters; no hardware fidelity result.",
+      "stderr": "",
+      "wav_sha256": "983271c3d4d8b566817014ddeb24ea7da63376b44c0cd209da85d9f00a99428a",
+      "wav_bytes": 768058,
+      "first_sample_v": -0.006435410585254431
+    }
+  ],
+  "filters": [
+    {
+      "id": "96000_to_48000_short",
+      "input_hz": 96000,
+      "output_hz": 48000,
+      "fir_design": "scipy.signal.firwin",
+      "window": [
+        "kaiser",
+        14.0
+      ],
+      "taps": 2049,
+      "cutoff_hz": 24000.0,
+      "half_support_s": 0.010666666666666666,
+      "response_grid_bins": 262144,
+      "reported_passband_hz": [
+        0,
+        23500.0
+      ],
+      "reported_stopband_hz": [
+        24500.0,
+        48000.0
+      ],
+      "max_passband_magnitude_error": 6.900348037408577e-08,
+      "max_stopband_magnitude": 7.139976072974363e-08,
+      "coefficient_float64_le_sha256": "23fb6f83776b3d13bbb415e37b3acba1747beadd5fbd7acf40fea3b958f973c2",
+      "impulse_centering_max_error": 1.1102230246251565e-16,
+      "carrier_responses": [
+        {
+          "key": 20,
+          "highest_carrier_hz": 2123.08883165925,
+          "gain_at_highest_carrier": 1.0000000038376944,
+          "nearest_cutoff_carrier_hz": 2123.08883165925,
+          "gain_at_nearest_cutoff_carrier": 1.0000000038376944
+        },
+        {
+          "key": 61,
+          "highest_carrier_hz": 22671.896538275825,
+          "gain_at_highest_carrier": 0.999999974859423,
+          "nearest_cutoff_carrier_hz": 22671.896538275825,
+          "gain_at_nearest_cutoff_carrier": 0.999999974859423
+        },
+        {
+          "key": 62,
+          "highest_carrier_hz": 24020.03768991135,
+          "gain_at_highest_carrier": 0.36091695992984085,
+          "nearest_cutoff_carrier_hz": 24020.03768991135,
+          "gain_at_nearest_cutoff_carrier": 0.36091695992984085
+        },
+        {
+          "key": 68,
+          "highest_carrier_hz": 33969.46323420763,
+          "gain_at_highest_carrier": 1.697912428326019e-09,
+          "nearest_cutoff_carrier_hz": 24739.31334133712,
+          "gain_at_nearest_cutoff_carrier": 4.5901686382428125e-08
+        },
+        {
+          "key": 72,
+          "highest_carrier_hz": 42798.841859065134,
+          "gain_at_highest_carrier": 2.530076210186017e-09,
+          "nearest_cutoff_carrier_hz": 24102.36689906112,
+          "gain_at_nearest_cutoff_carrier": 0.030238959065906595
+        }
+      ]
+    },
+    {
+      "id": "96000_to_48000_long",
+      "input_hz": 96000,
+      "output_hz": 48000,
+      "fir_design": "scipy.signal.firwin",
+      "window": [
+        "kaiser",
+        14.0
+      ],
+      "taps": 4097,
+      "cutoff_hz": 24000.0,
+      "half_support_s": 0.021333333333333333,
+      "response_grid_bins": 262144,
+      "reported_passband_hz": [
+        0,
+        23500.0
+      ],
+      "reported_stopband_hz": [
+        24500.0,
+        48000.0
+      ],
+      "max_passband_magnitude_error": 3.764470357658922e-08,
+      "max_stopband_magnitude": 3.644445861508597e-08,
+      "coefficient_float64_le_sha256": "4bbc88583b29392143e23cccfe188491b2ef4cecf69ba3f56fad97c713248171",
+      "impulse_centering_max_error": 5.551115123125783e-17,
+      "carrier_responses": [
+        {
+          "key": 20,
+          "highest_carrier_hz": 2123.08883165925,
+          "gain_at_highest_carrier": 1.0000000015284507,
+          "nearest_cutoff_carrier_hz": 2123.08883165925,
+          "gain_at_nearest_cutoff_carrier": 1.0000000015284507
+        },
+        {
+          "key": 61,
+          "highest_carrier_hz": 22671.896538275825,
+          "gain_at_highest_carrier": 1.0000000007167786,
+          "nearest_cutoff_carrier_hz": 22671.896538275825,
+          "gain_at_nearest_cutoff_carrier": 1.0000000007167786
+        },
+        {
+          "key": 62,
+          "highest_carrier_hz": 24020.03768991135,
+          "gain_at_highest_carrier": 0.2374596827812819,
+          "nearest_cutoff_carrier_hz": 24020.03768991135,
+          "gain_at_nearest_cutoff_carrier": 0.2374596827812819
+        },
+        {
+          "key": 68,
+          "highest_carrier_hz": 33969.46323420763,
+          "gain_at_highest_carrier": 9.325394342419632e-10,
+          "nearest_cutoff_carrier_hz": 24739.31334133712,
+          "gain_at_nearest_cutoff_carrier": 1.888472313654806e-08
+        },
+        {
+          "key": 72,
+          "highest_carrier_hz": 42798.841859065134,
+          "gain_at_highest_carrier": 1.234818379744653e-09,
+          "nearest_cutoff_carrier_hz": 24102.36689906112,
+          "gain_at_nearest_cutoff_carrier": 1.4356922312786437e-06
+        }
+      ]
+    },
+    {
+      "id": "192000_to_48000_short",
+      "input_hz": 192000,
+      "output_hz": 48000,
+      "fir_design": "scipy.signal.firwin",
+      "window": [
+        "kaiser",
+        14.0
+      ],
+      "taps": 4097,
+      "cutoff_hz": 24000.0,
+      "half_support_s": 0.010666666666666666,
+      "response_grid_bins": 262144,
+      "reported_passband_hz": [
+        0,
+        23500.0
+      ],
+      "reported_stopband_hz": [
+        24500.0,
+        96000.0
+      ],
+      "max_passband_magnitude_error": 6.821609899176906e-08,
+      "max_stopband_magnitude": 7.199575229158195e-08,
+      "coefficient_float64_le_sha256": "36ce66b37ecbbad86c53f618bcbffba5f53a586bfa0e0e2748584c57c0051883",
+      "impulse_centering_max_error": 2.7755575615628914e-17,
+      "carrier_responses": [
+        {
+          "key": 20,
+          "highest_carrier_hz": 2123.08883165925,
+          "gain_at_highest_carrier": 1.000000004636155,
+          "nearest_cutoff_carrier_hz": 2123.08883165925,
+          "gain_at_nearest_cutoff_carrier": 1.000000004636155
+        },
+        {
+          "key": 61,
+          "highest_carrier_hz": 22671.896538275825,
+          "gain_at_highest_carrier": 0.9999999750506289,
+          "nearest_cutoff_carrier_hz": 22671.896538275825,
+          "gain_at_nearest_cutoff_carrier": 0.9999999750506289
+        },
+        {
+          "key": 62,
+          "highest_carrier_hz": 24020.03768991135,
+          "gain_at_highest_carrier": 0.3609169599878418,
+          "nearest_cutoff_carrier_hz": 24020.03768991135,
+          "gain_at_nearest_cutoff_carrier": 0.3609169599878418
+        },
+        {
+          "key": 68,
+          "highest_carrier_hz": 33969.46323420763,
+          "gain_at_highest_carrier": 1.275648924687233e-09,
+          "nearest_cutoff_carrier_hz": 24739.31334133712,
+          "gain_at_nearest_cutoff_carrier": 4.636995129683105e-08
+        },
+        {
+          "key": 72,
+          "highest_carrier_hz": 42798.841859065134,
+          "gain_at_highest_carrier": 1.5780701255761257e-09,
+          "nearest_cutoff_carrier_hz": 24102.36689906112,
+          "gain_at_nearest_cutoff_carrier": 0.03023895858528175
+        }
+      ]
+    },
+    {
+      "id": "192000_to_48000_long",
+      "input_hz": 192000,
+      "output_hz": 48000,
+      "fir_design": "scipy.signal.firwin",
+      "window": [
+        "kaiser",
+        14.0
+      ],
+      "taps": 8193,
+      "cutoff_hz": 24000.0,
+      "half_support_s": 0.021333333333333333,
+      "response_grid_bins": 262144,
+      "reported_passband_hz": [
+        0,
+        23500.0
+      ],
+      "reported_stopband_hz": [
+        24500.0,
+        96000.0
+      ],
+      "max_passband_magnitude_error": 3.792608604946679e-08,
+      "max_stopband_magnitude": 3.641852012283579e-08,
+      "coefficient_float64_le_sha256": "8fcf2eec94e219bf714eb8cfe6cdd0e2bd58984c7f7ae676212102f88abe55f7",
+      "impulse_centering_max_error": 1.3877787807814457e-16,
+      "carrier_responses": [
+        {
+          "key": 20,
+          "highest_carrier_hz": 2123.08883165925,
+          "gain_at_highest_carrier": 1.00000000184305,
+          "nearest_cutoff_carrier_hz": 2123.08883165925,
+          "gain_at_nearest_cutoff_carrier": 1.00000000184305
+        },
+        {
+          "key": 61,
+          "highest_carrier_hz": 22671.896538275825,
+          "gain_at_highest_carrier": 1.0000000011088193,
+          "nearest_cutoff_carrier_hz": 22671.896538275825,
+          "gain_at_nearest_cutoff_carrier": 1.0000000011088193
+        },
+        {
+          "key": 62,
+          "highest_carrier_hz": 24020.03768991135,
+          "gain_at_highest_carrier": 0.23745968311155305,
+          "nearest_cutoff_carrier_hz": 24020.03768991135,
+          "gain_at_nearest_cutoff_carrier": 0.23745968311155305
+        },
+        {
+          "key": 68,
+          "highest_carrier_hz": 33969.46323420763,
+          "gain_at_highest_carrier": 7.856961684408613e-10,
+          "nearest_cutoff_carrier_hz": 24739.31334133712,
+          "gain_at_nearest_cutoff_carrier": 1.8930404617255535e-08
+        },
+        {
+          "key": 72,
+          "highest_carrier_hz": 42798.841859065134,
+          "gain_at_highest_carrier": 7.707444454906818e-10,
+          "nearest_cutoff_carrier_hz": 24102.36689906112,
+          "gain_at_nearest_cutoff_carrier": 1.435574121752968e-06
+        }
+      ]
+    },
+    {
+      "id": "192000_to_96000_short",
+      "input_hz": 192000,
+      "output_hz": 96000,
+      "fir_design": "scipy.signal.firwin",
+      "window": [
+        "kaiser",
+        14.0
+      ],
+      "taps": 4097,
+      "cutoff_hz": 48000.0,
+      "half_support_s": 0.010666666666666666,
+      "response_grid_bins": 262144,
+      "reported_passband_hz": [
+        0,
+        47500.0
+      ],
+      "reported_stopband_hz": [
+        48500.0,
+        96000.0
+      ],
+      "max_passband_magnitude_error": 7.021149339703214e-08,
+      "max_stopband_magnitude": 7.141173768088396e-08,
+      "coefficient_float64_le_sha256": "4bbc88583b29392143e23cccfe188491b2ef4cecf69ba3f56fad97c713248171",
+      "impulse_centering_max_error": 5.551115123125783e-17,
+      "carrier_responses": [
+        {
+          "key": 20,
+          "highest_carrier_hz": 2123.08883165925,
+          "gain_at_highest_carrier": 1.0000000019267177,
+          "nearest_cutoff_carrier_hz": 2123.08883165925,
+          "gain_at_nearest_cutoff_carrier": 1.0000000019267177
+        },
+        {
+          "key": 61,
+          "highest_carrier_hz": 22671.896538275825,
+          "gain_at_highest_carrier": 1.0000000003224807,
+          "nearest_cutoff_carrier_hz": 22671.896538275825,
+          "gain_at_nearest_cutoff_carrier": 1.0000000003224807
+        },
+        {
+          "key": 62,
+          "highest_carrier_hz": 24020.03768991135,
+          "gain_at_highest_carrier": 1.0000000008970509,
+          "nearest_cutoff_carrier_hz": 24020.03768991135,
+          "gain_at_nearest_cutoff_carrier": 1.0000000008970509
+        },
+        {
+          "key": 68,
+          "highest_carrier_hz": 33969.46323420763,
+          "gain_at_highest_carrier": 1.000000002880366,
+          "nearest_cutoff_carrier_hz": 33969.46323420763,
+          "gain_at_nearest_cutoff_carrier": 1.000000002880366
+        },
+        {
+          "key": 72,
+          "highest_carrier_hz": 42798.841859065134,
+          "gain_at_highest_carrier": 1.00000000768954,
+          "nearest_cutoff_carrier_hz": 42798.841859065134,
+          "gain_at_nearest_cutoff_carrier": 1.00000000768954
+        }
+      ]
+    },
+    {
+      "id": "192000_to_96000_long",
+      "input_hz": 192000,
+      "output_hz": 96000,
+      "fir_design": "scipy.signal.firwin",
+      "window": [
+        "kaiser",
+        14.0
+      ],
+      "taps": 8193,
+      "cutoff_hz": 48000.0,
+      "half_support_s": 0.021333333333333333,
+      "response_grid_bins": 262144,
+      "reported_passband_hz": [
+        0,
+        47500.0
+      ],
+      "reported_stopband_hz": [
+        48500.0,
+        96000.0
+      ],
+      "max_passband_magnitude_error": 3.7051585577430046e-08,
+      "max_stopband_magnitude": 3.645119944288278e-08,
+      "coefficient_float64_le_sha256": "dfa7dba87d64d4b5feca80ca97f271292c59d0c8187f253a91e72ce708b391b8",
+      "impulse_centering_max_error": 3.3306690738754696e-16,
+      "carrier_responses": [
+        {
+          "key": 20,
+          "highest_carrier_hz": 2123.08883165925,
+          "gain_at_highest_carrier": 1.000000000760303,
+          "nearest_cutoff_carrier_hz": 2123.08883165925,
+          "gain_at_nearest_cutoff_carrier": 1.000000000760303
+        },
+        {
+          "key": 61,
+          "highest_carrier_hz": 22671.896538275825,
+          "gain_at_highest_carrier": 1.00000000098981,
+          "nearest_cutoff_carrier_hz": 22671.896538275825,
+          "gain_at_nearest_cutoff_carrier": 1.00000000098981
+        },
+        {
+          "key": 62,
+          "highest_carrier_hz": 24020.03768991135,
+          "gain_at_highest_carrier": 1.00000000137205,
+          "nearest_cutoff_carrier_hz": 24020.03768991135,
+          "gain_at_nearest_cutoff_carrier": 1.00000000137205
+        },
+        {
+          "key": 68,
+          "highest_carrier_hz": 33969.46323420763,
+          "gain_at_highest_carrier": 1.0000000011018164,
+          "nearest_cutoff_carrier_hz": 33969.46323420763,
+          "gain_at_nearest_cutoff_carrier": 1.0000000011018164
+        },
+        {
+          "key": 72,
+          "highest_carrier_hz": 42798.841859065134,
+          "gain_at_highest_carrier": 0.9999999973417276,
+          "nearest_cutoff_carrier_hz": 42798.841859065134,
+          "gain_at_nearest_cutoff_carrier": 0.9999999973417276
+        }
+      ]
+    }
+  ],
+  "unfiltered_time_alignment_checks": [
+    {
+      "key": 20,
+      "native_hz": 48000,
+      "reference_hz": 96000,
+      "equal_float32_samples": 47999,
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 960,
+          "error_rms_v": 0.0,
+          "error_peak_v": 0.0,
+          "reference_rms_v": 0.004081543967939814,
+          "reference_peak_v": 0.006515005603432655,
+          "rms_relative_to_reference": 0.0,
+          "peak_relative_to_reference_peak": 0.0,
+          "rms_relative_db": null
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 1200,
+          "error_rms_v": 0.0,
+          "error_peak_v": 0.0,
+          "reference_rms_v": 0.003970697421509354,
+          "reference_peak_v": 0.006312139797955751,
+          "rms_relative_to_reference": 0.0,
+          "peak_relative_to_reference_peak": 0.0,
+          "rms_relative_db": null
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 16800,
+          "error_rms_v": 5.4819562209506466e-17,
+          "error_peak_v": 7.105427357601002e-15,
+          "reference_rms_v": 0.0030846735868354804,
+          "reference_peak_v": 0.005366998724639416,
+          "rms_relative_to_reference": 1.7771592574157908e-14,
+          "peak_relative_to_reference_peak": 1.3239107594679713e-12,
+          "rms_relative_db": -275.005473036266
+        }
+      }
+    },
+    {
+      "key": 20,
+      "native_hz": 48000,
+      "reference_hz": 192000,
+      "equal_float32_samples": 47999,
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 960,
+          "error_rms_v": 0.0,
+          "error_peak_v": 0.0,
+          "reference_rms_v": 0.004081543967939814,
+          "reference_peak_v": 0.006515005603432655,
+          "rms_relative_to_reference": 0.0,
+          "peak_relative_to_reference_peak": 0.0,
+          "rms_relative_db": null
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 1200,
+          "error_rms_v": 0.0,
+          "error_peak_v": 0.0,
+          "reference_rms_v": 0.003970697421509354,
+          "reference_peak_v": 0.006312139797955751,
+          "rms_relative_to_reference": 0.0,
+          "peak_relative_to_reference_peak": 0.0,
+          "rms_relative_db": null
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 16800,
+          "error_rms_v": 0.0,
+          "error_peak_v": 0.0,
+          "reference_rms_v": 0.0030846735868354804,
+          "reference_peak_v": 0.005366998724639416,
+          "rms_relative_to_reference": 0.0,
+          "peak_relative_to_reference_peak": 0.0,
+          "rms_relative_db": null
+        }
+      }
+    },
+    {
+      "key": 20,
+      "native_hz": 96000,
+      "reference_hz": 192000,
+      "equal_float32_samples": 95998,
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 1920,
+          "error_rms_v": 0.0,
+          "error_peak_v": 0.0,
+          "reference_rms_v": 0.004080545984918353,
+          "reference_peak_v": 0.006515005603432655,
+          "rms_relative_to_reference": 0.0,
+          "peak_relative_to_reference_peak": 0.0,
+          "rms_relative_db": null
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 2400,
+          "error_rms_v": 0.0,
+          "error_peak_v": 0.0,
+          "reference_rms_v": 0.0039712490351127595,
+          "reference_peak_v": 0.006312139797955751,
+          "rms_relative_to_reference": 0.0,
+          "peak_relative_to_reference_peak": 0.0,
+          "rms_relative_db": null
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 33600,
+          "error_rms_v": 3.876328418001982e-17,
+          "error_peak_v": 7.105427357601002e-15,
+          "reference_rms_v": 0.0030846737415120735,
+          "reference_peak_v": 0.005366998724639416,
+          "rms_relative_to_reference": 1.2566412991546548e-14,
+          "peak_relative_to_reference_peak": 1.3239107594679713e-12,
+          "rms_relative_db": -278.01577342844746
+        }
+      }
+    },
+    {
+      "key": 61,
+      "native_hz": 48000,
+      "reference_hz": 96000,
+      "equal_float32_samples": 47998,
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 960,
+          "error_rms_v": 0.0,
+          "error_peak_v": 0.0,
+          "reference_rms_v": 0.003956326975194482,
+          "reference_peak_v": 0.006435410585254431,
+          "rms_relative_to_reference": 0.0,
+          "peak_relative_to_reference_peak": 0.0,
+          "rms_relative_db": null
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 1200,
+          "error_rms_v": 0.0,
+          "error_peak_v": 0.0,
+          "reference_rms_v": 0.0038652247088632142,
+          "reference_peak_v": 0.006201441865414381,
+          "rms_relative_to_reference": 0.0,
+          "peak_relative_to_reference_peak": 0.0,
+          "rms_relative_db": null
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 16800,
+          "error_rms_v": 8.981637072405539e-13,
+          "error_peak_v": 1.1641532182693481e-10,
+          "reference_rms_v": 0.0030761431177507665,
+          "reference_peak_v": 0.005420037545263767,
+          "rms_relative_to_reference": 2.919772172034957e-10,
+          "peak_relative_to_reference_peak": 2.1478692878919798e-08,
+          "rms_relative_db": -190.69302069903318
+        }
+      }
+    },
+    {
+      "key": 61,
+      "native_hz": 48000,
+      "reference_hz": 192000,
+      "equal_float32_samples": 47995,
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 960,
+          "error_rms_v": 0.0,
+          "error_peak_v": 0.0,
+          "reference_rms_v": 0.003956326975194482,
+          "reference_peak_v": 0.006435410585254431,
+          "rms_relative_to_reference": 0.0,
+          "peak_relative_to_reference_peak": 0.0,
+          "rms_relative_db": null
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 1200,
+          "error_rms_v": 0.0,
+          "error_peak_v": 0.0,
+          "reference_rms_v": 0.0038652247088632142,
+          "reference_peak_v": 0.006201441865414381,
+          "rms_relative_to_reference": 0.0,
+          "peak_relative_to_reference_peak": 0.0,
+          "rms_relative_db": null
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 16800,
+          "error_rms_v": 2.0083551043130988e-12,
+          "error_peak_v": 2.3283064365386963e-10,
+          "reference_rms_v": 0.003076143117765972,
+          "reference_peak_v": 0.005420037545263767,
+          "rms_relative_to_reference": 6.528809055450102e-10,
+          "peak_relative_to_reference_peak": 4.2957385757839596e-08,
+          "rms_relative_db": -183.7033206557159
+        }
+      }
+    },
+    {
+      "key": 61,
+      "native_hz": 96000,
+      "reference_hz": 192000,
+      "equal_float32_samples": 95996,
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 1920,
+          "error_rms_v": 0.0,
+          "error_peak_v": 0.0,
+          "reference_rms_v": 0.003955795693793779,
+          "reference_peak_v": 0.006435410585254431,
+          "rms_relative_to_reference": 0.0,
+          "peak_relative_to_reference_peak": 0.0,
+          "rms_relative_db": null
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 2400,
+          "error_rms_v": 0.0,
+          "error_peak_v": 0.0,
+          "reference_rms_v": 0.0038648519040030637,
+          "reference_peak_v": 0.006201441865414381,
+          "rms_relative_to_reference": 0.0,
+          "peak_relative_to_reference_peak": 0.0,
+          "rms_relative_db": null
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 33600,
+          "error_rms_v": 1.2701952960108895e-12,
+          "error_peak_v": 2.3283064365386963e-10,
+          "reference_rms_v": 0.0030761266996967825,
+          "reference_peak_v": 0.005420037545263767,
+          "rms_relative_to_reference": 4.129203443200484e-10,
+          "peak_relative_to_reference_peak": 4.2957385757839596e-08,
+          "rms_relative_db": -187.68267438376176
+        }
+      }
+    },
+    {
+      "key": 62,
+      "native_hz": 48000,
+      "reference_hz": 96000,
+      "equal_float32_samples": 47998,
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 960,
+          "error_rms_v": 0.0,
+          "error_peak_v": 0.0,
+          "reference_rms_v": 0.003965370157265645,
+          "reference_peak_v": 0.006435410585254431,
+          "rms_relative_to_reference": 0.0,
+          "peak_relative_to_reference_peak": 0.0,
+          "rms_relative_db": null
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 1200,
+          "error_rms_v": 0.0,
+          "error_peak_v": 0.0,
+          "reference_rms_v": 0.0038670941734273052,
+          "reference_peak_v": 0.006217211950570345,
+          "rms_relative_to_reference": 0.0,
+          "peak_relative_to_reference_peak": 0.0,
+          "rms_relative_db": null
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 16800,
+          "error_rms_v": 1.0963912441901293e-16,
+          "error_peak_v": 1.4210854715202004e-14,
+          "reference_rms_v": 0.003076370111220671,
+          "reference_peak_v": 0.005445159040391445,
+          "rms_relative_to_reference": 3.563912027981227e-14,
+          "peak_relative_to_reference_peak": 2.6098144443142665e-12,
+          "rms_relative_db": -268.9614604935666
+        }
+      }
+    },
+    {
+      "key": 62,
+      "native_hz": 48000,
+      "reference_hz": 192000,
+      "equal_float32_samples": 47998,
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 960,
+          "error_rms_v": 0.0,
+          "error_peak_v": 0.0,
+          "reference_rms_v": 0.003965370157265645,
+          "reference_peak_v": 0.006435410585254431,
+          "rms_relative_to_reference": 0.0,
+          "peak_relative_to_reference_peak": 0.0,
+          "rms_relative_db": null
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 1200,
+          "error_rms_v": 0.0,
+          "error_peak_v": 0.0,
+          "reference_rms_v": 0.0038670941734273052,
+          "reference_peak_v": 0.006217211950570345,
+          "rms_relative_to_reference": 0.0,
+          "peak_relative_to_reference_peak": 0.0,
+          "rms_relative_db": null
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 16800,
+          "error_rms_v": 1.0963912441901293e-16,
+          "error_peak_v": 1.4210854715202004e-14,
+          "reference_rms_v": 0.003076370111220671,
+          "reference_peak_v": 0.005445159040391445,
+          "rms_relative_to_reference": 3.563912027981227e-14,
+          "peak_relative_to_reference_peak": 2.6098144443142665e-12,
+          "rms_relative_db": -268.9614604935666
+        }
+      }
+    },
+    {
+      "key": 62,
+      "native_hz": 96000,
+      "reference_hz": 192000,
+      "equal_float32_samples": 95994,
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 1920,
+          "error_rms_v": 0.0,
+          "error_peak_v": 0.0,
+          "reference_rms_v": 0.003964630591305787,
+          "reference_peak_v": 0.006435410585254431,
+          "rms_relative_to_reference": 0.0,
+          "peak_relative_to_reference_peak": 0.0,
+          "rms_relative_db": null
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 2400,
+          "error_rms_v": 0.0,
+          "error_peak_v": 0.0,
+          "reference_rms_v": 0.0038670182603000145,
+          "reference_peak_v": 0.006217211950570345,
+          "rms_relative_to_reference": 0.0,
+          "peak_relative_to_reference_peak": 0.0,
+          "rms_relative_db": null
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 33600,
+          "error_rms_v": 1.2825395636748068e-12,
+          "error_peak_v": 2.3283064365386963e-10,
+          "reference_rms_v": 0.003076333441904154,
+          "reference_peak_v": 0.005445159040391445,
+          "rms_relative_to_reference": 4.169052503232403e-10,
+          "peak_relative_to_reference_peak": 4.275919985564494e-08,
+          "rms_relative_db": -187.5992527104722
+        }
+      }
+    },
+    {
+      "key": 68,
+      "native_hz": 48000,
+      "reference_hz": 96000,
+      "equal_float32_samples": 47994,
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 960,
+          "error_rms_v": 0.0,
+          "error_peak_v": 0.0,
+          "reference_rms_v": 0.003956197681687333,
+          "reference_peak_v": 0.006435410585254431,
+          "rms_relative_to_reference": 0.0,
+          "peak_relative_to_reference_peak": 0.0,
+          "rms_relative_db": null
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 1200,
+          "error_rms_v": 0.0,
+          "error_peak_v": 0.0,
+          "reference_rms_v": 0.003871676717646213,
+          "reference_peak_v": 0.006193546578288078,
+          "rms_relative_to_reference": 0.0,
+          "peak_relative_to_reference_peak": 0.0,
+          "rms_relative_db": null
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 16800,
+          "error_rms_v": 1.7963282710365634e-12,
+          "error_peak_v": 2.3283064365386963e-10,
+          "reference_rms_v": 0.003076419686962416,
+          "reference_peak_v": 0.0054243444465100765,
+          "rms_relative_to_reference": 5.83902215503703e-10,
+          "peak_relative_to_reference_peak": 4.292327781722427e-08,
+          "rms_relative_db": -184.67319753798822
+        }
+      }
+    },
+    {
+      "key": 68,
+      "native_hz": 48000,
+      "reference_hz": 192000,
+      "equal_float32_samples": 47997,
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 960,
+          "error_rms_v": 0.0,
+          "error_peak_v": 0.0,
+          "reference_rms_v": 0.003956197681687333,
+          "reference_peak_v": 0.006435410585254431,
+          "rms_relative_to_reference": 0.0,
+          "peak_relative_to_reference_peak": 0.0,
+          "rms_relative_db": null
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 1200,
+          "error_rms_v": 0.0,
+          "error_peak_v": 0.0,
+          "reference_rms_v": 0.003871676717646213,
+          "reference_peak_v": 0.006193546578288078,
+          "rms_relative_to_reference": 0.0,
+          "peak_relative_to_reference_peak": 0.0,
+          "rms_relative_db": null
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 16800,
+          "error_rms_v": 1.7963274144811079e-12,
+          "error_peak_v": 2.3283064365386963e-10,
+          "reference_rms_v": 0.003076419686962416,
+          "reference_peak_v": 0.0054243444465100765,
+          "rms_relative_to_reference": 5.83901937077629e-10,
+          "peak_relative_to_reference_peak": 4.292327781722427e-08,
+          "rms_relative_db": -184.67320167974117
+        }
+      }
+    },
+    {
+      "key": 68,
+      "native_hz": 96000,
+      "reference_hz": 192000,
+      "equal_float32_samples": 95994,
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 1920,
+          "error_rms_v": 0.0,
+          "error_peak_v": 0.0,
+          "reference_rms_v": 0.003955158532182049,
+          "reference_peak_v": 0.006435410585254431,
+          "rms_relative_to_reference": 0.0,
+          "peak_relative_to_reference_peak": 0.0,
+          "rms_relative_db": null
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 2400,
+          "error_rms_v": 0.0,
+          "error_peak_v": 0.0,
+          "reference_rms_v": 0.0038719538448536857,
+          "reference_peak_v": 0.006193546578288078,
+          "rms_relative_to_reference": 0.0,
+          "peak_relative_to_reference_peak": 0.0,
+          "rms_relative_db": null
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 33600,
+          "error_rms_v": 1.2428454377084716e-15,
+          "error_peak_v": 2.2737367544323206e-13,
+          "reference_rms_v": 0.0030763899367240734,
+          "reference_peak_v": 0.005425428505986929,
+          "rms_relative_to_reference": 4.0399476765677137e-13,
+          "peak_relative_to_reference_peak": 4.190888796936989e-11,
+          "rms_relative_db": -247.87248519246646
+        }
+      }
+    },
+    {
+      "key": 72,
+      "native_hz": 48000,
+      "reference_hz": 96000,
+      "equal_float32_samples": 47986,
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 960,
+          "error_rms_v": 0.0,
+          "error_peak_v": 0.0,
+          "reference_rms_v": 0.00396029773129503,
+          "reference_peak_v": 0.006435410585254431,
+          "rms_relative_to_reference": 0.0,
+          "peak_relative_to_reference_peak": 0.0,
+          "rms_relative_db": null
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 1200,
+          "error_rms_v": 0.0,
+          "error_peak_v": 0.0,
+          "reference_rms_v": 0.0038675285812656396,
+          "reference_peak_v": 0.006199601572006941,
+          "rms_relative_to_reference": 0.0,
+          "peak_relative_to_reference_peak": 0.0,
+          "rms_relative_db": null
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 16800,
+          "error_rms_v": 1.6855181721327905e-13,
+          "error_peak_v": 1.4551915228366852e-11,
+          "reference_rms_v": 0.003076122166047483,
+          "reference_peak_v": 0.005461312364786863,
+          "rms_relative_to_reference": 5.479360315193583e-11,
+          "peak_relative_to_reference_peak": 2.664545489504291e-09,
+          "rms_relative_db": -205.22540280037623
+        }
+      }
+    },
+    {
+      "key": 72,
+      "native_hz": 48000,
+      "reference_hz": 192000,
+      "equal_float32_samples": 47992,
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 960,
+          "error_rms_v": 0.0,
+          "error_peak_v": 0.0,
+          "reference_rms_v": 0.00396029773129503,
+          "reference_peak_v": 0.006435410585254431,
+          "rms_relative_to_reference": 0.0,
+          "peak_relative_to_reference_peak": 0.0,
+          "rms_relative_db": null
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 1200,
+          "error_rms_v": 0.0,
+          "error_peak_v": 0.0,
+          "reference_rms_v": 0.0038675285812656396,
+          "reference_peak_v": 0.006199601572006941,
+          "rms_relative_to_reference": 0.0,
+          "peak_relative_to_reference_peak": 0.0,
+          "rms_relative_db": null
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 16800,
+          "error_rms_v": 1.2571816946133776e-13,
+          "error_peak_v": 1.4551915228366852e-11,
+          "reference_rms_v": 0.0030761221660474476,
+          "reference_peak_v": 0.005461312364786863,
+          "rms_relative_to_reference": 4.086904312479722e-11,
+          "peak_relative_to_reference_peak": 2.664545489504291e-09,
+          "rms_relative_db": -207.77211060788474
+        }
+      }
+    },
+    {
+      "key": 72,
+      "native_hz": 96000,
+      "reference_hz": 192000,
+      "equal_float32_samples": 95990,
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 1920,
+          "error_rms_v": 0.0,
+          "error_peak_v": 0.0,
+          "reference_rms_v": 0.003958931463052706,
+          "reference_peak_v": 0.006435410585254431,
+          "rms_relative_to_reference": 0.0,
+          "peak_relative_to_reference_peak": 0.0,
+          "rms_relative_db": null
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 2400,
+          "error_rms_v": 0.0,
+          "error_peak_v": 0.0,
+          "reference_rms_v": 0.0038670905733777555,
+          "reference_peak_v": 0.006219926755875349,
+          "rms_relative_to_reference": 0.0,
+          "peak_relative_to_reference_peak": 0.0,
+          "rms_relative_db": null
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 33600,
+          "error_rms_v": 7.938720600068059e-14,
+          "error_peak_v": 1.4551915228366852e-11,
+          "reference_rms_v": 0.0030761090984162192,
+          "reference_peak_v": 0.005461312364786863,
+          "rms_relative_to_reference": 2.5807669188831528e-11,
+          "peak_relative_to_reference_peak": 2.664545489504291e-09,
+          "rms_relative_db": -211.765024336971
+        }
+      }
+    }
+  ],
+  "filtered_comparisons": [
+    {
+      "key": 20,
+      "midi": 48,
+      "native_hz": 48000,
+      "reference_hz": 96000,
+      "filter_id": "96000_to_48000_short",
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 960,
+          "error_rms_v": 5.5263018854387665e-05,
+          "error_peak_v": 0.0016068138239262956,
+          "reference_rms_v": 0.004079759699420704,
+          "reference_peak_v": 0.0068983309468217,
+          "rms_relative_to_reference": 0.013545655363533938,
+          "peak_relative_to_reference_peak": 0.232927912028722,
+          "rms_relative_db": -37.36399956325327,
+          "float32_export_one_ulp_envelope_rms_v": 1.2876656619157715e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.656390750069339e-09
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 1200,
+          "error_rms_v": 7.288952564591402e-11,
+          "error_peak_v": 2.5044904691795544e-10,
+          "reference_rms_v": 0.003970697436345244,
+          "reference_peak_v": 0.00631213987317527,
+          "rms_relative_to_reference": 1.835685715530213e-08,
+          "peak_relative_to_reference_peak": 3.9677360126680634e-08,
+          "rms_relative_db": -154.72403343104614,
+          "float32_export_one_ulp_envelope_rms_v": 1.2618021708876271e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.65160704533179e-09
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 16800,
+          "error_rms_v": 5.882177941533657e-11,
+          "error_peak_v": 2.812972580562567e-10,
+          "reference_rms_v": 0.003084673599353244,
+          "reference_peak_v": 0.005366998632340578,
+          "rms_relative_to_reference": 1.9069044915374382e-08,
+          "peak_relative_to_reference_peak": 5.241239607575257e-08,
+          "rms_relative_db": -154.39342116621145,
+          "float32_export_one_ulp_envelope_rms_v": 1.0055295983971674e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.627789220471706e-09
+        }
+      }
+    },
+    {
+      "key": 20,
+      "midi": 48,
+      "native_hz": 48000,
+      "reference_hz": 96000,
+      "filter_id": "96000_to_48000_long",
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 960,
+          "error_rms_v": 5.52787303708755e-05,
+          "error_peak_v": 0.0016068138466308031,
+          "reference_rms_v": 0.004079759905288143,
+          "reference_peak_v": 0.0068983408268212506,
+          "rms_relative_to_reference": 0.013549505768519314,
+          "peak_relative_to_reference_peak": 0.2329275817140542,
+          "rms_relative_db": -37.361530916336804,
+          "float32_export_one_ulp_envelope_rms_v": 1.3453068712243507e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.7259168607303757e-09
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 1200,
+          "error_rms_v": 7.142298147891243e-11,
+          "error_peak_v": 2.556302964445978e-10,
+          "reference_rms_v": 0.003970697423400736,
+          "reference_peak_v": 0.00631213985393401,
+          "rms_relative_to_reference": 1.7987515507475166e-08,
+          "peak_relative_to_reference_peak": 4.049819908303798e-08,
+          "rms_relative_db": -154.90057637278656,
+          "float32_export_one_ulp_envelope_rms_v": 1.3243842223295386e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.7201429141249108e-09
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 16800,
+          "error_rms_v": 5.75268455831558e-11,
+          "error_peak_v": 2.70584919921657e-10,
+          "reference_rms_v": 0.003084673589011346,
+          "reference_peak_v": 0.005366998616373713,
+          "rms_relative_to_reference": 1.8649248915050835e-08,
+          "peak_relative_to_reference_peak": 5.041643183885921e-08,
+          "rms_relative_db": -154.58677308795558,
+          "float32_export_one_ulp_envelope_rms_v": 1.054904512997931e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.6913277588249477e-09
+        }
+      }
+    },
+    {
+      "key": 20,
+      "midi": 48,
+      "native_hz": 48000,
+      "reference_hz": 192000,
+      "filter_id": "192000_to_48000_short",
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 960,
+          "error_rms_v": 8.124230073965229e-05,
+          "error_peak_v": 0.0024108178570379944,
+          "reference_rms_v": 0.0040789892629767,
+          "reference_peak_v": 0.007000963749908976,
+          "rms_relative_to_reference": 0.01991726270943027,
+          "peak_relative_to_reference_peak": 0.3443551406860718,
+          "rms_relative_db": -34.01540696470785,
+          "float32_export_one_ulp_envelope_rms_v": 1.4080331389572961e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.81081083541547e-09
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 1200,
+          "error_rms_v": 9.001518944387587e-11,
+          "error_peak_v": 3.1324642879582143e-10,
+          "reference_rms_v": 0.003970697439142794,
+          "reference_peak_v": 0.006312139910493989,
+          "rms_relative_to_reference": 2.2669868662495882e-08,
+          "peak_relative_to_reference_peak": 4.962602750218614e-08,
+          "rms_relative_db": -152.89101991887992,
+          "float32_export_one_ulp_envelope_rms_v": 1.3801232332182112e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.8053886047922945e-09
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 16800,
+          "error_rms_v": 7.222267657766633e-11,
+          "error_peak_v": 3.259944189593078e-10,
+          "reference_rms_v": 0.0030846736024111106,
+          "reference_peak_v": 0.005366998679750996,
+          "rms_relative_to_reference": 2.341339340448015e-08,
+          "peak_relative_to_reference_peak": 6.074054390757414e-08,
+          "rms_relative_db": -152.61071275123805,
+          "float32_export_one_ulp_envelope_rms_v": 1.0993031539895379e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.7768665886414857e-09
+        }
+      }
+    },
+    {
+      "key": 20,
+      "midi": 48,
+      "native_hz": 48000,
+      "reference_hz": 192000,
+      "filter_id": "192000_to_48000_long",
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 960,
+          "error_rms_v": 8.12578774413962e-05,
+          "error_peak_v": 0.0024108178807686256,
+          "reference_rms_v": 0.0040789895648156976,
+          "reference_peak_v": 0.007000975673290723,
+          "rms_relative_to_reference": 0.019921080000376932,
+          "peak_relative_to_reference_peak": 0.3443545576034619,
+          "rms_relative_db": -34.01374240912018,
+          "float32_export_one_ulp_envelope_rms_v": 1.4778815343383343e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.894768195141506e-09
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 1200,
+          "error_rms_v": 8.837285014873268e-11,
+          "error_peak_v": 2.9428615100357547e-10,
+          "reference_rms_v": 0.00397069742351174,
+          "reference_peak_v": 0.006312139888803403,
+          "rms_relative_to_reference": 2.2256253932986538e-08,
+          "peak_relative_to_reference_peak": 4.6622247952011645e-08,
+          "rms_relative_db": -153.05095864471699,
+          "float32_export_one_ulp_envelope_rms_v": 1.4559401090152356e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.8881160698504196e-09
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 16800,
+          "error_rms_v": 7.059038984015907e-11,
+          "error_peak_v": 3.377522974842839e-10,
+          "reference_rms_v": 0.003084673589923111,
+          "reference_peak_v": 0.005366998660231235,
+          "rms_relative_to_reference": 2.288423322025415e-08,
+          "peak_relative_to_reference_peak": 6.29313176444378e-08,
+          "rms_relative_db": -152.80927269710543,
+          "float32_export_one_ulp_envelope_rms_v": 1.1591831062237343e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.8536087748037026e-09
+        }
+      }
+    },
+    {
+      "key": 20,
+      "midi": 48,
+      "native_hz": 96000,
+      "reference_hz": 192000,
+      "filter_id": "192000_to_96000_short",
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 1920,
+          "error_rms_v": 3.9110710707301275e-05,
+          "error_peak_v": 0.0016078332035444655,
+          "reference_rms_v": 0.004079652989641713,
+          "reference_peak_v": 0.006887175984483723,
+          "rms_relative_to_reference": 0.009586773876749772,
+          "peak_relative_to_reference_peak": 0.23345318998190112,
+          "rms_relative_db": -40.36655032425045,
+          "float32_export_one_ulp_envelope_rms_v": 1.3681563828107915e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.7588477857035108e-09
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 2400,
+          "error_rms_v": 7.24019187595394e-11,
+          "error_peak_v": 2.652532794106266e-10,
+          "reference_rms_v": 0.003971249042854248,
+          "reference_peak_v": 0.006312139893654492,
+          "rms_relative_to_reference": 1.8231523124901305e-08,
+          "peak_relative_to_reference_peak": 4.202271874190908e-08,
+          "rms_relative_db": -154.78354094713333,
+          "float32_export_one_ulp_envelope_rms_v": 1.3400415848661882e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.7545662541272422e-09
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 33600,
+          "error_rms_v": 5.808453522670463e-11,
+          "error_peak_v": 2.859027146973059e-10,
+          "reference_rms_v": 0.0030846737484271284,
+          "reference_peak_v": 0.0053669987655310305,
+          "rms_relative_to_reference": 1.8830041671772216e-08,
+          "peak_relative_to_reference_peak": 5.327050129645737e-08,
+          "rms_relative_db": -154.50297437736114,
+          "float32_export_one_ulp_envelope_rms_v": 1.067910629702826e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.7310708624706425e-09
+        }
+      }
+    },
+    {
+      "key": 20,
+      "midi": 48,
+      "native_hz": 96000,
+      "reference_hz": 192000,
+      "filter_id": "192000_to_96000_long",
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 1920,
+          "error_rms_v": 3.9116273579581294e-05,
+          "error_peak_v": 0.0016078332104504144,
+          "reference_rms_v": 0.004079653037962581,
+          "reference_peak_v": 0.006887178449006163,
+          "rms_relative_to_reference": 0.009588137328246019,
+          "peak_relative_to_reference_peak": 0.23345310744524542,
+          "rms_relative_db": -40.36531508627551,
+          "float32_export_one_ulp_envelope_rms_v": 1.4256928250686425e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.8284191380768378e-09
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 2400,
+          "error_rms_v": 7.20289670717984e-11,
+          "error_peak_v": 2.7521657609136385e-10,
+          "reference_rms_v": 0.003971249036369532,
+          "reference_peak_v": 0.006312139885753277,
+          "rms_relative_to_reference": 1.813761021082838e-08,
+          "peak_relative_to_reference_peak": 4.360115286933634e-08,
+          "rms_relative_db": -154.82839871224564,
+          "float32_export_one_ulp_envelope_rms_v": 1.4024666278674846e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.8230943100644774e-09
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 33600,
+          "error_rms_v": 5.77037987765785e-11,
+          "error_peak_v": 2.9091900156236195e-10,
+          "reference_rms_v": 0.003084673743247226,
+          "reference_peak_v": 0.005366998757655731,
+          "rms_relative_to_reference": 1.8706613269199064e-08,
+          "peak_relative_to_reference_peak": 5.420515537615541e-08,
+          "rms_relative_db": -154.56009664084337,
+          "float32_export_one_ulp_envelope_rms_v": 1.1171446911792282e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.7946738480286666e-09
+        }
+      }
+    },
+    {
+      "key": 61,
+      "midi": 89,
+      "native_hz": 48000,
+      "reference_hz": 96000,
+      "filter_id": "96000_to_48000_short",
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 960,
+          "error_rms_v": 5.5308946867919324e-05,
+          "error_peak_v": 0.0016067885871769074,
+          "reference_rms_v": 0.0039544842365850565,
+          "reference_peak_v": 0.006676165334963031,
+          "rms_relative_to_reference": 0.013986386987265384,
+          "peak_relative_to_reference_peak": 0.24067537374518977,
+          "rms_relative_db": -37.085889189999676,
+          "float32_export_one_ulp_envelope_rms_v": 1.205141973588939e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.5422584217389622e-09
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 1200,
+          "error_rms_v": 7.503358441462632e-11,
+          "error_peak_v": 2.773562360683379e-10,
+          "reference_rms_v": 0.00386522471007037,
+          "reference_peak_v": 0.006201441756086017,
+          "rms_relative_to_reference": 1.94124766457007e-08,
+          "peak_relative_to_reference_peak": 4.4724476497121655e-08,
+          "rms_relative_db": -154.2383810748743,
+          "float32_export_one_ulp_envelope_rms_v": 1.200770439972773e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.539091821443697e-09
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 16800,
+          "error_rms_v": 5.78956136970067e-11,
+          "error_peak_v": 2.650635049991634e-10,
+          "reference_rms_v": 0.0030761431177199995,
+          "reference_peak_v": 0.005420037457560303,
+          "rms_relative_to_reference": 1.882084528626166e-08,
+          "peak_relative_to_reference_peak": 4.8904367741856026e-08,
+          "rms_relative_db": -154.5072175066819,
+          "float32_export_one_ulp_envelope_rms_v": 9.59287863854584e-10,
+          "float32_export_one_ulp_envelope_peak_v": 1.4968695641793291e-09
+        }
+      }
+    },
+    {
+      "key": 61,
+      "midi": 89,
+      "native_hz": 48000,
+      "reference_hz": 96000,
+      "filter_id": "96000_to_48000_long",
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 960,
+          "error_rms_v": 5.532493479899498e-05,
+          "error_peak_v": 0.0016067886001481391,
+          "reference_rms_v": 0.003954484464679965,
+          "reference_peak_v": 0.006676175317831493,
+          "rms_relative_to_reference": 0.013990429167983192,
+          "peak_relative_to_reference_peak": 0.24067501580681147,
+          "rms_relative_db": -37.08337925922975,
+          "float32_export_one_ulp_envelope_rms_v": 1.2626837826329876e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.6105893199496751e-09
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 1200,
+          "error_rms_v": 7.511475626695337e-11,
+          "error_peak_v": 2.784570733715963e-10,
+          "reference_rms_v": 0.00386522471144659,
+          "reference_peak_v": 0.006201441757124238,
+          "rms_relative_to_reference": 1.943347719073262e-08,
+          "peak_relative_to_reference_peak": 4.4901989614222183e-08,
+          "rms_relative_db": -154.22898970119226,
+          "float32_export_one_ulp_envelope_rms_v": 1.2659209187742754e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.6070391206607776e-09
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 16800,
+          "error_rms_v": 5.792061033812993e-11,
+          "error_peak_v": 2.6423897098171167e-10,
+          "reference_rms_v": 0.0030761431188706507,
+          "reference_peak_v": 0.005420037460076993,
+          "rms_relative_to_reference": 1.8828971247408805e-08,
+          "peak_relative_to_reference_peak": 4.8752240723066535e-08,
+          "rms_relative_db": -154.5034681549282,
+          "float32_export_one_ulp_envelope_rms_v": 1.0106517603066007e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.5606168789103995e-09
+        }
+      }
+    },
+    {
+      "key": 61,
+      "midi": 89,
+      "native_hz": 48000,
+      "reference_hz": 192000,
+      "filter_id": "192000_to_48000_short",
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 960,
+          "error_rms_v": 8.128181204462823e-05,
+          "error_peak_v": 0.0024107919534463573,
+          "reference_rms_v": 0.003953688207427647,
+          "reference_peak_v": 0.0067789200981498016,
+          "rms_relative_to_reference": 0.020558478003381026,
+          "peak_relative_to_reference_peak": 0.3556306784179894,
+          "rms_relative_db": -33.740180808321284,
+          "float32_export_one_ulp_envelope_rms_v": 1.3155046397116182e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.672822822115516e-09
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 1200,
+          "error_rms_v": 9.152764985943783e-11,
+          "error_peak_v": 3.606448230331072e-10,
+          "reference_rms_v": 0.0038652247127903294,
+          "reference_peak_v": 0.006201441784612963,
+          "rms_relative_to_reference": 2.3679774569526503e-08,
+          "peak_relative_to_reference_peak": 5.8154996137823986e-08,
+          "rms_relative_db": -152.5124487278985,
+          "float32_export_one_ulp_envelope_rms_v": 1.3122185251377702e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.6686807239244711e-09
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 16800,
+          "error_rms_v": 7.123089427800939e-11,
+          "error_peak_v": 3.198700002787769e-10,
+          "reference_rms_v": 0.0030761431174590945,
+          "reference_peak_v": 0.005420037538671795,
+          "rms_relative_to_reference": 2.315591035856822e-08,
+          "peak_relative_to_reference_peak": 5.9016196474012336e-08,
+          "rms_relative_db": -152.70676280695744,
+          "float32_export_one_ulp_envelope_rms_v": 1.046390369827487e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.6209702284807906e-09
+        }
+      }
+    },
+    {
+      "key": 61,
+      "midi": 89,
+      "native_hz": 48000,
+      "reference_hz": 192000,
+      "filter_id": "192000_to_48000_long",
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 960,
+          "error_rms_v": 8.129762576748003e-05,
+          "error_peak_v": 0.0024107919656489417,
+          "reference_rms_v": 0.003953688537924213,
+          "reference_peak_v": 0.006778932129742855,
+          "rms_relative_to_reference": 0.02056247602401259,
+          "peak_relative_to_reference_peak": 0.3556300490266732,
+          "rms_relative_db": -33.738491821919716,
+          "float32_export_one_ulp_envelope_rms_v": 1.3855282494649479e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.7556296771829153e-09
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 1200,
+          "error_rms_v": 9.163886260960398e-11,
+          "error_peak_v": 3.628186180312798e-10,
+          "reference_rms_v": 0.003865224714441427,
+          "reference_peak_v": 0.006201441785599129,
+          "rms_relative_to_reference": 2.370854720741558e-08,
+          "peak_relative_to_reference_peak": 5.8505526710548235e-08,
+          "rms_relative_db": -152.5019011508314,
+          "float32_export_one_ulp_envelope_rms_v": 1.3914072111584063e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.7512934296403218e-09
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 16800,
+          "error_rms_v": 7.12461621498185e-11,
+          "error_peak_v": 3.2154237519094186e-10,
+          "reference_rms_v": 0.003076143118840019,
+          "reference_peak_v": 0.005420037540698316,
+          "rms_relative_to_reference": 2.3160873664644275e-08,
+          "peak_relative_to_reference_peak": 5.932475057165646e-08,
+          "rms_relative_db": -152.70490124727058,
+          "float32_export_one_ulp_envelope_rms_v": 1.1088240450847784e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.6980546274764098e-09
+        }
+      }
+    },
+    {
+      "key": 61,
+      "midi": 89,
+      "native_hz": 96000,
+      "reference_hz": 192000,
+      "filter_id": "192000_to_96000_short",
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 1920,
+          "error_rms_v": 3.9118783332367674e-05,
+          "error_peak_v": 0.0016078302351909147,
+          "reference_rms_v": 0.0039548742821047846,
+          "reference_peak_v": 0.006830716252569974,
+          "rms_relative_to_reference": 0.009891283652017543,
+          "peak_relative_to_reference_peak": 0.23538237803187742,
+          "rms_relative_db": -40.094946874199266,
+          "float32_export_one_ulp_envelope_rms_v": 1.2822319014420684e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.6444070093987313e-09
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 2400,
+          "error_rms_v": 7.013816213433867e-11,
+          "error_peak_v": 2.7653432668750533e-10,
+          "reference_rms_v": 0.003864851907274288,
+          "reference_peak_v": 0.0062014419735036625,
+          "rms_relative_to_reference": 1.8147697199555587e-08,
+          "peak_relative_to_reference_peak": 4.4591939724507365e-08,
+          "rms_relative_db": -154.82356951390753,
+          "float32_export_one_ulp_envelope_rms_v": 1.2785735139111583e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.6409408134596957e-09
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 33600,
+          "error_rms_v": 5.741822913301518e-11,
+          "error_peak_v": 2.855777819082972e-10,
+          "reference_rms_v": 0.00307612669984389,
+          "reference_peak_v": 0.005420037554078154,
+          "rms_relative_to_reference": 1.8665755586702292e-08,
+          "peak_relative_to_reference_peak": 5.26892625851683e-08,
+          "rms_relative_db": -154.5790885042594,
+          "float32_export_one_ulp_envelope_rms_v": 1.0205695066595655e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.6035226992279025e-09
+        }
+      }
+    },
+    {
+      "key": 61,
+      "midi": 89,
+      "native_hz": 96000,
+      "reference_hz": 192000,
+      "filter_id": "192000_to_96000_long",
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 1920,
+          "error_rms_v": 3.9124369968877135e-05,
+          "error_peak_v": 0.0016078302376732623,
+          "reference_rms_v": 0.003954874337932298,
+          "reference_peak_v": 0.006830718728677168,
+          "rms_relative_to_reference": 0.009892696107591697,
+          "peak_relative_to_reference_peak": 0.2353822930701516,
+          "rms_relative_db": -40.09370663503549,
+          "float32_export_one_ulp_envelope_rms_v": 1.3397863339036752e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.7131963461813949e-09
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 2400,
+          "error_rms_v": 7.017489865646832e-11,
+          "error_peak_v": 2.774127273383331e-10,
+          "reference_rms_v": 0.0038648519079402224,
+          "reference_peak_v": 0.006201441973289611,
+          "rms_relative_to_reference": 1.815720248227263e-08,
+          "peak_relative_to_reference_peak": 4.473358430719574e-08,
+          "rms_relative_db": -154.81902126619062,
+          "float32_export_one_ulp_envelope_rms_v": 1.3436423696265227e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.7095743360922925e-09
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 33600,
+          "error_rms_v": 5.74279526291764e-11,
+          "error_peak_v": 2.8410872005696364e-10,
+          "reference_rms_v": 0.0030761267004021623,
+          "reference_peak_v": 0.0054200375551454304,
+          "rms_relative_to_reference": 1.866891653769283e-08,
+          "peak_relative_to_reference_peak": 5.241821983082928e-08,
+          "rms_relative_db": -154.57761771745677,
+          "float32_export_one_ulp_envelope_rms_v": 1.0717572129702017e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.6672830164222253e-09
+        }
+      }
+    },
+    {
+      "key": 62,
+      "midi": 90,
+      "native_hz": 48000,
+      "reference_hz": 96000,
+      "filter_id": "96000_to_48000_short",
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 960,
+          "error_rms_v": 5.531480504671437e-05,
+          "error_peak_v": 0.0016067852876605632,
+          "reference_rms_v": 0.003963531374265413,
+          "reference_peak_v": 0.006649481224543526,
+          "rms_relative_to_reference": 0.013955939747535421,
+          "peak_relative_to_reference_peak": 0.24164069848484548,
+          "rms_relative_db": -37.10481828429134,
+          "float32_export_one_ulp_envelope_rms_v": 1.2061637155192426e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.5424824434524467e-09
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 1200,
+          "error_rms_v": 7.210859428327976e-11,
+          "error_peak_v": 2.7252177337705463e-10,
+          "reference_rms_v": 0.0038670941783714957,
+          "reference_peak_v": 0.0062172119907697625,
+          "rms_relative_to_reference": 1.8646712740170714e-08,
+          "peak_relative_to_reference_peak": 4.383343752499475e-08,
+          "rms_relative_db": -154.58795439199858,
+          "float32_export_one_ulp_envelope_rms_v": 1.1996281752569158e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.5372007020654926e-09
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 16800,
+          "error_rms_v": 5.768862585380532e-11,
+          "error_peak_v": 2.7262405527528344e-10,
+          "reference_rms_v": 0.0030763701173231756,
+          "reference_peak_v": 0.005445159182619211,
+          "rms_relative_to_reference": 1.8752173390632723e-08,
+          "peak_relative_to_reference_peak": 5.006723332267153e-08,
+          "rms_relative_db": -154.53896779941022,
+          "float32_export_one_ulp_envelope_rms_v": 9.586674560970035e-10,
+          "float32_export_one_ulp_envelope_peak_v": 1.499784472039154e-09
+        }
+      }
+    },
+    {
+      "key": 62,
+      "midi": 90,
+      "native_hz": 48000,
+      "reference_hz": 96000,
+      "filter_id": "96000_to_48000_long",
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 960,
+          "error_rms_v": 5.53308285897296e-05,
+          "error_peak_v": 0.0016067852993431235,
+          "reference_rms_v": 0.003963531601207338,
+          "reference_peak_v": 0.0066494912193407274,
+          "rms_relative_to_reference": 0.013959981692305714,
+          "peak_relative_to_reference_peak": 0.2416403370335498,
+          "rms_relative_db": -37.10230302528268,
+          "float32_export_one_ulp_envelope_rms_v": 1.2636527838381402e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.6107343179022417e-09
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 1200,
+          "error_rms_v": 7.2260004912307e-11,
+          "error_peak_v": 2.7587683266300234e-10,
+          "reference_rms_v": 0.0038670941801096613,
+          "reference_peak_v": 0.006217211993444208,
+          "rms_relative_to_reference": 1.868586632411882e-08,
+          "peak_relative_to_reference_peak": 4.437307798960418e-08,
+          "rms_relative_db": -154.56973524709502,
+          "float32_export_one_ulp_envelope_rms_v": 1.2647254503925839e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.605474240391525e-09
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 16800,
+          "error_rms_v": 5.787625958294017e-11,
+          "error_peak_v": 2.7531328865987303e-10,
+          "reference_rms_v": 0.0030763701187106964,
+          "reference_peak_v": 0.005445159184506273,
+          "rms_relative_to_reference": 1.881316530508886e-08,
+          "peak_relative_to_reference_peak": 5.0561109295620425e-08,
+          "rms_relative_db": -154.51076256971223,
+          "float32_export_one_ulp_envelope_rms_v": 1.0100818993923859e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.5633052819482617e-09
+        }
+      }
+    },
+    {
+      "key": 62,
+      "midi": 90,
+      "native_hz": 48000,
+      "reference_hz": 192000,
+      "filter_id": "192000_to_48000_short",
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 960,
+          "error_rms_v": 8.128684279934368e-05,
+          "error_peak_v": 0.002410788541303998,
+          "reference_rms_v": 0.0039627370113442155,
+          "reference_peak_v": 0.006752251074366274,
+          "rms_relative_to_reference": 0.020512802784197395,
+          "peak_relative_to_reference_peak": 0.35703478954687123,
+          "rms_relative_db": -33.75949990765147,
+          "float32_export_one_ulp_envelope_rms_v": 1.3165409646480553e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.6690146253492506e-09
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 1200,
+          "error_rms_v": 8.648086524592838e-11,
+          "error_peak_v": 3.1408222984224965e-10,
+          "reference_rms_v": 0.0038670941787477178,
+          "reference_peak_v": 0.006217212078521028,
+          "rms_relative_to_reference": 2.2363268451334563e-08,
+          "peak_relative_to_reference_peak": 5.0518178546189244e-08,
+          "rms_relative_db": -153.0092944569965,
+          "float32_export_one_ulp_envelope_rms_v": 1.3100527565963715e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.6654440805683506e-09
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 16800,
+          "error_rms_v": 7.123467572300793e-11,
+          "error_peak_v": 3.2650120541238836e-10,
+          "reference_rms_v": 0.003076370118852408,
+          "reference_peak_v": 0.005445159203936668,
+          "rms_relative_to_reference": 2.3155430904257033e-08,
+          "peak_relative_to_reference_peak": 5.996173723925996e-08,
+          "rms_relative_db": -152.70694265436072,
+          "float32_export_one_ulp_envelope_rms_v": 1.0453580289206996e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.6151075431784382e-09
+        }
+      }
+    },
+    {
+      "key": 62,
+      "midi": 90,
+      "native_hz": 48000,
+      "reference_hz": 192000,
+      "filter_id": "192000_to_48000_long",
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 960,
+          "error_rms_v": 8.130268699283995e-05,
+          "error_peak_v": 0.0024107885520975583,
+          "reference_rms_v": 0.00396273734033104,
+          "reference_peak_v": 0.006752263118414288,
+          "rms_relative_to_reference": 0.02051679937637453,
+          "peak_relative_to_reference_peak": 0.35703415430050833,
+          "rms_relative_db": -33.75780776554622,
+          "float32_export_one_ulp_envelope_rms_v": 1.3865028414176455e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.7506088573148414e-09
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 1200,
+          "error_rms_v": 8.664181390086042e-11,
+          "error_peak_v": 3.177791805739072e-10,
+          "reference_rms_v": 0.003867094180825161,
+          "reference_peak_v": 0.006217212081580264,
+          "rms_relative_to_reference": 2.240488848977885e-08,
+          "peak_relative_to_reference_peak": 5.111281011554868e-08,
+          "rms_relative_db": -152.99314426500692,
+          "float32_export_one_ulp_envelope_rms_v": 1.3891837974328809e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.7479699973450971e-09
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 16800,
+          "error_rms_v": 7.143968158736206e-11,
+          "error_peak_v": 3.2873150035417353e-10,
+          "reference_rms_v": 0.003076370120510909,
+          "reference_peak_v": 0.005445159206482339,
+          "rms_relative_to_reference": 2.32220697734178e-08,
+          "peak_relative_to_reference_peak": 6.037132944851752e-08,
+          "rms_relative_db": -152.68198148771629,
+          "float32_export_one_ulp_envelope_rms_v": 1.1078334744867104e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.692238396875816e-09
+        }
+      }
+    },
+    {
+      "key": 62,
+      "midi": 90,
+      "native_hz": 96000,
+      "reference_hz": 192000,
+      "filter_id": "192000_to_96000_short",
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 1920,
+          "error_rms_v": 3.9119788575169535e-05,
+          "error_peak_v": 0.0016078298856478709,
+          "reference_rms_v": 0.003963711201360215,
+          "reference_peak_v": 0.006823790386844305,
+          "rms_relative_to_reference": 0.009869485083006278,
+          "peak_relative_to_reference_peak": 0.23562123021065126,
+          "rms_relative_db": -40.11411010049273,
+          "float32_export_one_ulp_envelope_rms_v": 1.2834899742836751e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.641148611562493e-09
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 2400,
+          "error_rms_v": 7.099016452134306e-11,
+          "error_peak_v": 2.8674834208486377e-10,
+          "reference_rms_v": 0.003867018262695147,
+          "reference_peak_v": 0.006217212064832169,
+          "rms_relative_to_reference": 1.835785602726012e-08,
+          "peak_relative_to_reference_peak": 4.612169234291744e-08,
+          "rms_relative_db": -154.7235608089914,
+          "float32_export_one_ulp_envelope_rms_v": 1.2757092270883363e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.6384225733322558e-09
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 33600,
+          "error_rms_v": 5.776628469671128e-11,
+          "error_peak_v": 2.899385523336129e-10,
+          "reference_rms_v": 0.0030763334450990215,
+          "reference_peak_v": 0.005445159109596344,
+          "rms_relative_to_reference": 1.877764089219265e-08,
+          "peak_relative_to_reference_peak": 5.3247030343454254e-08,
+          "rms_relative_db": -154.52717941483712,
+          "float32_export_one_ulp_envelope_rms_v": 1.019563537115744e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.5981815551243994e-09
+        }
+      }
+    },
+    {
+      "key": 62,
+      "midi": 90,
+      "native_hz": 96000,
+      "reference_hz": 192000,
+      "filter_id": "192000_to_96000_long",
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 1920,
+          "error_rms_v": 3.912537813934718e-05,
+          "error_peak_v": 0.0016078298872263756,
+          "reference_rms_v": 0.003963711256528462,
+          "reference_peak_v": 0.0068237928635094935,
+          "rms_relative_to_reference": 0.00987089513013982,
+          "peak_relative_to_reference_peak": 0.23562114492430017,
+          "rms_relative_db": -40.1128692415351,
+          "float32_export_one_ulp_envelope_rms_v": 1.3410005437372836e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.7088560541503082e-09
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 2400,
+          "error_rms_v": 7.102751510938115e-11,
+          "error_peak_v": 2.873241436440743e-10,
+          "reference_rms_v": 0.003867018263520515,
+          "reference_peak_v": 0.00621721206540177,
+          "rms_relative_to_reference": 1.8367514779906427e-08,
+          "peak_relative_to_reference_peak": 4.6214306448224204e-08,
+          "rms_relative_db": -154.71899204033815,
+          "float32_export_one_ulp_envelope_rms_v": 1.3407228382478978e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.7067507959572445e-09
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 33600,
+          "error_rms_v": 5.7814185047718444e-11,
+          "error_peak_v": 2.911664572641248e-10,
+          "reference_rms_v": 0.003076333445757961,
+          "reference_peak_v": 0.005445159110365877,
+          "rms_relative_to_reference": 1.879321148604355e-08,
+          "peak_relative_to_reference_peak": 5.347253429377943e-08,
+          "rms_relative_db": -154.5199799791592,
+          "float32_export_one_ulp_envelope_rms_v": 1.0707675815830725e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.6620608767808326e-09
+        }
+      }
+    },
+    {
+      "key": 68,
+      "midi": 96,
+      "native_hz": 48000,
+      "reference_hz": 96000,
+      "filter_id": "96000_to_48000_short",
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 960,
+          "error_rms_v": 5.5370646157427735e-05,
+          "error_peak_v": 0.0016067532422402052,
+          "reference_rms_v": 0.003954352253468601,
+          "reference_peak_v": 0.006412339170506172,
+          "rms_relative_to_reference": 0.014002456687782128,
+          "peak_relative_to_reference_peak": 0.25057209226089217,
+          "rms_relative_db": -37.07591524022434,
+          "float32_export_one_ulp_envelope_rms_v": 1.1978816978470583e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.5226279070019266e-09
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 1200,
+          "error_rms_v": 7.173997614571866e-11,
+          "error_peak_v": 3.03931648945599e-10,
+          "reference_rms_v": 0.0038716767303788816,
+          "reference_peak_v": 0.006193546771179387,
+          "rms_relative_to_reference": 1.8529433406155838e-08,
+          "peak_relative_to_reference_peak": 4.907231028913724e-08,
+          "rms_relative_db": -154.64275720708358,
+          "float32_export_one_ulp_envelope_rms_v": 1.196431074600778e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.5209749235874759e-09
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 16800,
+          "error_rms_v": 5.878645122992731e-11,
+          "error_peak_v": 2.794715483339649e-10,
+          "reference_rms_v": 0.00307641969768736,
+          "reference_peak_v": 0.0054243444375869695,
+          "rms_relative_to_reference": 1.910872280336747e-08,
+          "peak_relative_to_reference_peak": 5.1521718716352095e-08,
+          "rms_relative_db": -154.37536679054426,
+          "float32_export_one_ulp_envelope_rms_v": 9.537927221706131e-10,
+          "float32_export_one_ulp_envelope_peak_v": 1.4862104834475792e-09
+        }
+      }
+    },
+    {
+      "key": 68,
+      "midi": 96,
+      "native_hz": 48000,
+      "reference_hz": 96000,
+      "filter_id": "96000_to_48000_long",
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 960,
+          "error_rms_v": 5.5387015778390195e-05,
+          "error_peak_v": 0.0016067532601534984,
+          "reference_rms_v": 0.003954352480701459,
+          "reference_peak_v": 0.00641234927019172,
+          "rms_relative_to_reference": 0.01400659552953285,
+          "peak_relative_to_reference_peak": 0.25057170039420806,
+          "rms_relative_db": -37.073348247049495,
+          "float32_export_one_ulp_envelope_rms_v": 1.2557844527424757e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.5911574045811255e-09
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 1200,
+          "error_rms_v": 7.089113147374813e-11,
+          "error_peak_v": 2.9747347727454576e-10,
+          "reference_rms_v": 0.0038716767241902274,
+          "reference_peak_v": 0.00619354676262662,
+          "rms_relative_to_reference": 1.831018871767379e-08,
+          "peak_relative_to_reference_peak": 4.8029584449022595e-08,
+          "rms_relative_db": -154.74614359062144,
+          "float32_export_one_ulp_envelope_rms_v": 1.2618568926168e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.5891117783620711e-09
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 16800,
+          "error_rms_v": 5.8091303910450784e-11,
+          "error_peak_v": 2.7277361879657347e-10,
+          "reference_rms_v": 0.0030764196927110282,
+          "reference_peak_v": 0.005424344428305723,
+          "rms_relative_to_reference": 1.8882762988446184e-08,
+          "peak_relative_to_reference_peak": 5.0286928199685406e-08,
+          "rms_relative_db": -154.47868915961377,
+          "float32_export_one_ulp_envelope_rms_v": 1.005449991221717e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.5500314178858434e-09
+        }
+      }
+    },
+    {
+      "key": 68,
+      "midi": 96,
+      "native_hz": 48000,
+      "reference_hz": 192000,
+      "filter_id": "192000_to_48000_short",
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 960,
+          "error_rms_v": 8.133472410805412e-05,
+          "error_peak_v": 0.0024107556803788267,
+          "reference_rms_v": 0.0039535546610090415,
+          "reference_peak_v": 0.006515248260642535,
+          "rms_relative_to_reference": 0.02057255585971728,
+          "peak_relative_to_reference_peak": 0.3700174703919997,
+          "rms_relative_db": -33.73423499564567,
+          "float32_export_one_ulp_envelope_rms_v": 1.3078526806030857e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.6492380975225736e-09
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 1200,
+          "error_rms_v": 9.048602655961867e-11,
+          "error_peak_v": 3.624597358364845e-10,
+          "reference_rms_v": 0.003871676735368744,
+          "reference_peak_v": 0.006193546767182707,
+          "rms_relative_to_reference": 2.3371276256874957e-08,
+          "peak_relative_to_reference_peak": 5.85221601549896e-08,
+          "rms_relative_db": -152.62635142080399,
+          "float32_export_one_ulp_envelope_rms_v": 1.306138361373118e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.6460706428396883e-09
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 16800,
+          "error_rms_v": 7.190316562935183e-11,
+          "error_peak_v": 3.2431636196039726e-10,
+          "reference_rms_v": 0.0030764196990669948,
+          "reference_peak_v": 0.0054243444313644956,
+          "rms_relative_to_reference": 2.3372352495063777e-08,
+          "peak_relative_to_reference_peak": 5.978904290906457e-08,
+          "rms_relative_db": -152.62595144817098,
+          "float32_export_one_ulp_envelope_rms_v": 1.040478227126569e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.5942340856288625e-09
+        }
+      }
+    },
+    {
+      "key": 68,
+      "midi": 96,
+      "native_hz": 48000,
+      "reference_hz": 192000,
+      "filter_id": "192000_to_48000_long",
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 960,
+          "error_rms_v": 8.135086420021399e-05,
+          "error_peak_v": 0.0024107556984455996,
+          "reference_rms_v": 0.003953554990651064,
+          "reference_peak_v": 0.006515260410829576,
+          "rms_relative_to_reference": 0.020576636569513678,
+          "peak_relative_to_reference_peak": 0.37001678312634667,
+          "rms_relative_db": -33.73251225976872,
+          "float32_export_one_ulp_envelope_rms_v": 1.3782855158286166e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.7312333828557716e-09
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 1200,
+          "error_rms_v": 8.9277319883676e-11,
+          "error_peak_v": 3.545406824026487e-10,
+          "reference_rms_v": 0.0038716767279188156,
+          "reference_peak_v": 0.006193546756768606,
+          "rms_relative_to_reference": 2.305908425667197e-08,
+          "peak_relative_to_reference_peak": 5.724356274782128e-08,
+          "rms_relative_db": -152.74315887592704,
+          "float32_export_one_ulp_envelope_rms_v": 1.3856496029254373e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.7286090445245617e-09
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 16800,
+          "error_rms_v": 7.114087092959043e-11,
+          "error_peak_v": 3.1487834128290926e-10,
+          "reference_rms_v": 0.0030764196930770146,
+          "reference_peak_v": 0.005424344420888773,
+          "rms_relative_to_reference": 2.312456622536953e-08,
+          "peak_relative_to_reference_peak": 5.8049105449560814e-08,
+          "rms_relative_db": -152.71852810167724,
+          "float32_export_one_ulp_envelope_rms_v": 1.1033081411743419e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.6713781666452954e-09
+        }
+      }
+    },
+    {
+      "key": 68,
+      "midi": 96,
+      "native_hz": 96000,
+      "reference_hz": 192000,
+      "filter_id": "192000_to_96000_short",
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 1920,
+          "error_rms_v": 3.9129078221094245e-05,
+          "error_peak_v": 0.0016078263879878742,
+          "reference_rms_v": 0.003954236669919074,
+          "reference_peak_v": 0.0067608060123864056,
+          "rms_relative_to_reference": 0.009895482108787141,
+          "peak_relative_to_reference_peak": 0.23781578484017904,
+          "rms_relative_db": -40.09126084151064,
+          "float32_export_one_ulp_envelope_rms_v": 1.2759602470683684e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.627886549450177e-09
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 2400,
+          "error_rms_v": 7.186467817767748e-11,
+          "error_peak_v": 2.668982101300399e-10,
+          "reference_rms_v": 0.0038719538537629584,
+          "reference_peak_v": 0.006193546673936427,
+          "rms_relative_to_reference": 1.8560313705142894e-08,
+          "peak_relative_to_reference_peak": 4.3092952096929566e-08,
+          "rms_relative_db": -154.6282937527945,
+          "float32_export_one_ulp_envelope_rms_v": 1.2721724209004194e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.6237753674840586e-09
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 33600,
+          "error_rms_v": 5.7402508782526176e-11,
+          "error_peak_v": 3.030685797808519e-10,
+          "reference_rms_v": 0.0030763899412501626,
+          "reference_peak_v": 0.005425428515534313,
+          "rms_relative_to_reference": 1.865904839072492e-08,
+          "peak_relative_to_reference_peak": 5.586076360845845e-08,
+          "rms_relative_db": -154.5822101798456,
+          "float32_export_one_ulp_envelope_rms_v": 1.0152433364840213e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.5775179767308634e-09
+        }
+      }
+    },
+    {
+      "key": 68,
+      "midi": 96,
+      "native_hz": 96000,
+      "reference_hz": 192000,
+      "filter_id": "192000_to_96000_long",
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 1920,
+          "error_rms_v": 3.913469540990593e-05,
+          "error_peak_v": 0.0016078263927510415,
+          "reference_rms_v": 0.003954236722816679,
+          "reference_peak_v": 0.006760808492403362,
+          "rms_relative_to_reference": 0.009896902525863331,
+          "peak_relative_to_reference_peak": 0.23781569830851462,
+          "rms_relative_db": -40.090014141205174,
+          "float32_export_one_ulp_envelope_rms_v": 1.3338151374662615e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.6960052593855862e-09
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 2400,
+          "error_rms_v": 7.15384793786473e-11,
+          "error_peak_v": 2.711494822074667e-10,
+          "reference_rms_v": 0.0038719538507116223,
+          "reference_peak_v": 0.006193546669255774,
+          "rms_relative_to_reference": 1.8476067158057507e-08,
+          "peak_relative_to_reference_peak": 4.3779355624044796e-08,
+          "rms_relative_db": -154.6678093563938,
+          "float32_export_one_ulp_envelope_rms_v": 1.3374742033049733e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.6919726045446696e-09
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 33600,
+          "error_rms_v": 5.726813827972836e-11,
+          "error_peak_v": 2.996455739784354e-10,
+          "reference_rms_v": 0.003076389938798056,
+          "reference_peak_v": 0.005425428511396752,
+          "rms_relative_to_reference": 1.8615370424109172e-08,
+          "peak_relative_to_reference_peak": 5.5229844674756023e-08,
+          "rms_relative_db": -154.60256634814255,
+          "float32_export_one_ulp_envelope_rms_v": 1.0667609981828205e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.6408139205010702e-09
+        }
+      }
+    },
+    {
+      "key": 72,
+      "midi": 100,
+      "native_hz": 48000,
+      "reference_hz": 96000,
+      "filter_id": "96000_to_48000_short",
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 960,
+          "error_rms_v": 5.5442212835552915e-05,
+          "error_peak_v": 0.0016067092727520289,
+          "reference_rms_v": 0.003958451131173509,
+          "reference_peak_v": 0.006316595773978234,
+          "rms_relative_to_reference": 0.014006036956964202,
+          "peak_relative_to_reference_peak": 0.2543631617794837,
+          "rms_relative_db": -37.07369464074806,
+          "float32_export_one_ulp_envelope_rms_v": 1.1984549697424711e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.5216003974506909e-09
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 1200,
+          "error_rms_v": 5.75082358410395e-10,
+          "error_peak_v": 1.0594198018853973e-09,
+          "reference_rms_v": 0.00386752858598953,
+          "reference_peak_v": 0.006199601285742443,
+          "rms_relative_to_reference": 1.4869505050167762e-07,
+          "peak_relative_to_reference_peak": 1.708851510050819e-07,
+          "rms_relative_db": -136.55406974530862,
+          "float32_export_one_ulp_envelope_rms_v": 1.1918589663545528e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.5146957217970206e-09
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 16800,
+          "error_rms_v": 6.841577689188936e-11,
+          "error_peak_v": 3.6069692545270815e-10,
+          "reference_rms_v": 0.0030761221684510918,
+          "reference_peak_v": 0.005461312277624153,
+          "rms_relative_to_reference": 2.2240916694910886e-08,
+          "peak_relative_to_reference_peak": 6.604583424583494e-08,
+          "rms_relative_db": -153.05694633160465,
+          "float32_export_one_ulp_envelope_rms_v": 9.504034001416975e-10,
+          "float32_export_one_ulp_envelope_peak_v": 1.4631238364282843e-09
+        }
+      }
+    },
+    {
+      "key": 72,
+      "midi": 100,
+      "native_hz": 48000,
+      "reference_hz": 96000,
+      "filter_id": "96000_to_48000_long",
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 960,
+          "error_rms_v": 5.54590447181646e-05,
+          "error_peak_v": 0.0016067092861829155,
+          "reference_rms_v": 0.003958451371784205,
+          "reference_peak_v": 0.006317544644577673,
+          "rms_relative_to_reference": 0.014010288243901648,
+          "peak_relative_to_reference_peak": 0.25432495954926865,
+          "rms_relative_db": -37.071058591289244,
+          "float32_export_one_ulp_envelope_rms_v": 1.256637812853566e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.590302540131183e-09
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 1200,
+          "error_rms_v": 5.751660151819865e-10,
+          "error_peak_v": 1.0628091948183815e-09,
+          "reference_rms_v": 0.0038675285880089153,
+          "reference_peak_v": 0.006199601290554686,
+          "rms_relative_to_reference": 1.487166809743206e-07,
+          "peak_relative_to_reference_peak": 1.714318623098568e-07,
+          "rms_relative_db": -136.55280631230553,
+          "float32_export_one_ulp_envelope_rms_v": 1.257568165860275e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.5828295416424805e-09
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 16800,
+          "error_rms_v": 6.85096027978473e-11,
+          "error_peak_v": 3.6457357618924213e-10,
+          "reference_rms_v": 0.0030761221700501456,
+          "reference_peak_v": 0.005461312280376528,
+          "rms_relative_to_reference": 2.2271418042128827e-08,
+          "peak_relative_to_reference_peak": 6.67556728992078e-08,
+          "rms_relative_db": -153.04504260295153,
+          "float32_export_one_ulp_envelope_rms_v": 1.0022288396886295e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.5266279790114375e-09
+        }
+      }
+    },
+    {
+      "key": 72,
+      "midi": 100,
+      "native_hz": 48000,
+      "reference_hz": 192000,
+      "filter_id": "192000_to_48000_short",
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 960,
+          "error_rms_v": 8.139584721439647e-05,
+          "error_peak_v": 0.002410710675526893,
+          "reference_rms_v": 0.003957652638760031,
+          "reference_peak_v": 0.006316645060057165,
+          "rms_relative_to_reference": 0.020566698152644985,
+          "peak_relative_to_reference_peak": 0.3816441564479921,
+          "rms_relative_db": -33.73670851631236,
+          "float32_export_one_ulp_envelope_rms_v": 1.3071684960877423e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.639945510899285e-09
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 1200,
+          "error_rms_v": 5.77540778683415e-10,
+          "error_peak_v": 1.1008567443043793e-09,
+          "reference_rms_v": 0.0038675285857553447,
+          "reference_peak_v": 0.006199601376035294,
+          "rms_relative_to_reference": 1.4933070716285833e-07,
+          "peak_relative_to_reference_peak": 1.7756895605575017e-07,
+          "rms_relative_db": -136.51701756550733,
+          "float32_export_one_ulp_envelope_rms_v": 1.300931695910106e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.6322359538912159e-09
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 16800,
+          "error_rms_v": 7.963858552216305e-11,
+          "error_peak_v": 3.9486910616282067e-10,
+          "reference_rms_v": 0.003076122168645793,
+          "reference_peak_v": 0.005461312206958349,
+          "rms_relative_to_reference": 2.5889279149541222e-08,
+          "peak_relative_to_reference_peak": 7.2302972472387e-08,
+          "rms_relative_db": -151.73760083428044,
+          "float32_export_one_ulp_envelope_rms_v": 1.0363549138885496e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.5788954619657505e-09
+        }
+      }
+    },
+    {
+      "key": 72,
+      "midi": 100,
+      "native_hz": 48000,
+      "reference_hz": 192000,
+      "filter_id": "192000_to_48000_long",
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 960,
+          "error_rms_v": 8.141238063277126e-05,
+          "error_peak_v": 0.0024107106875015495,
+          "reference_rms_v": 0.003957652984629109,
+          "reference_peak_v": 0.006317784353111788,
+          "rms_relative_to_reference": 0.020570873936892376,
+          "peak_relative_to_reference_peak": 0.38157533602965854,
+          "rms_relative_db": -33.7349451452913,
+          "float32_export_one_ulp_envelope_rms_v": 1.3778464650498573e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.7229687679721582e-09
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 1200,
+          "error_rms_v": 5.776325754580317e-10,
+          "error_peak_v": 1.1026157183471885e-09,
+          "reference_rms_v": 0.0038675285881851094,
+          "reference_peak_v": 0.006199601381809436,
+          "rms_relative_to_reference": 1.4935444232335815e-07,
+          "peak_relative_to_reference_peak": 1.778526796226656e-07,
+          "rms_relative_db": -136.51563710862536,
+          "float32_export_one_ulp_envelope_rms_v": 1.3806775225194697e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.7150278673335993e-09
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 16800,
+          "error_rms_v": 7.973480147543782e-11,
+          "error_peak_v": 3.9137035192510217e-10,
+          "reference_rms_v": 0.0030761221705712704,
+          "reference_peak_v": 0.005461312210213799,
+          "rms_relative_to_reference": 2.5920557459728646e-08,
+          "peak_relative_to_reference_peak": 7.16623289166947e-08,
+          "rms_relative_db": -151.72711325118271,
+          "float32_export_one_ulp_envelope_rms_v": 1.0993516046715609e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.6561036035949613e-09
+        }
+      }
+    },
+    {
+      "key": 72,
+      "midi": 100,
+      "native_hz": 96000,
+      "reference_hz": 192000,
+      "filter_id": "192000_to_96000_short",
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 1920,
+          "error_rms_v": 3.9140181112926266e-05,
+          "error_peak_v": 0.0016078220186254094,
+          "reference_rms_v": 0.003958010139849752,
+          "reference_peak_v": 0.006687944845949765,
+          "rms_relative_to_reference": 0.009888853168630854,
+          "peak_relative_to_reference_peak": 0.2404059925223681,
+          "rms_relative_db": -40.09708143077606,
+          "float32_export_one_ulp_envelope_rms_v": 1.2746501337409664e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.61666292548284e-09
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 2400,
+          "error_rms_v": 7.098834138007477e-11,
+          "error_peak_v": 2.4884673228281473e-10,
+          "reference_rms_v": 0.003867090574042747,
+          "reference_peak_v": 0.006219926611963904,
+          "rms_relative_to_reference": 1.8357041300395996e-08,
+          "peak_relative_to_reference_peak": 4.000798527174952e-08,
+          "rms_relative_db": -154.7239462997945,
+          "float32_export_one_ulp_envelope_rms_v": 1.2670379632243945e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.6139767687711352e-09
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 33600,
+          "error_rms_v": 5.74574434133684e-11,
+          "error_peak_v": 2.896514738129352e-10,
+          "reference_rms_v": 0.003076109099276848,
+          "reference_peak_v": 0.005461312250030229,
+          "rms_relative_to_reference": 1.8678610400026407e-08,
+          "peak_relative_to_reference_peak": 5.303697363419057e-08,
+          "rms_relative_db": -154.5731087270528,
+          "float32_export_one_ulp_envelope_rms_v": 1.0113951802384574e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.5682282349313802e-09
+        }
+      }
+    },
+    {
+      "key": 72,
+      "midi": 100,
+      "native_hz": 96000,
+      "reference_hz": 192000,
+      "filter_id": "192000_to_96000_long",
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 1920,
+          "error_rms_v": 3.914583136459854e-05,
+          "error_peak_v": 0.0016078220199445183,
+          "reference_rms_v": 0.003958010196327957,
+          "reference_peak_v": 0.00668794733682312,
+          "rms_relative_to_reference": 0.009890280576062203,
+          "peak_relative_to_reference_peak": 0.24040590318228477,
+          "rms_relative_db": -40.095827755706274,
+          "float32_export_one_ulp_envelope_rms_v": 1.332640590154651e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.6854461131734e-09
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 2400,
+          "error_rms_v": 7.101473845284675e-11,
+          "error_peak_v": 2.5037291771085046e-10,
+          "reference_rms_v": 0.0038670905750358693,
+          "reference_peak_v": 0.006219926614141643,
+          "rms_relative_to_reference": 1.8363867376493514e-08,
+          "peak_relative_to_reference_peak": 4.025335558487168e-08,
+          "rms_relative_db": -154.7207170472262,
+          "float32_export_one_ulp_envelope_rms_v": 1.3324624238174855e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.6823454709915168e-09
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 33600,
+          "error_rms_v": 5.7487327785955096e-11,
+          "error_peak_v": 2.88760736676108e-10,
+          "reference_rms_v": 0.0030761091000663307,
+          "reference_peak_v": 0.005461312251686923,
+          "rms_relative_to_reference": 1.8688325386351053e-08,
+          "peak_relative_to_reference_peak": 5.2873874147539144e-08,
+          "rms_relative_db": -154.56859225819193,
+          "float32_export_one_ulp_envelope_rms_v": 1.0630150814289557e-09,
+          "float32_export_one_ulp_envelope_peak_v": 1.632271092645285e-09
+        }
+      }
+    }
+  ],
+  "sensitivity_checks": [
+    {
+      "kind": "filter_length",
+      "key": 20,
+      "native_hz": 48000,
+      "reference_hz": 96000,
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 960,
+          "error_rms_v": 5.411201442241608e-07,
+          "error_peak_v": 1.1033170955777882e-06,
+          "reference_rms_v": 0.004079759905288143,
+          "reference_peak_v": 0.0068983408268212506,
+          "rms_relative_to_reference": 0.00013263529148437546,
+          "peak_relative_to_reference_peak": 0.00015993948737470483,
+          "rms_relative_db": -77.54681807704758
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 1200,
+          "error_rms_v": 1.3190365805837838e-11,
+          "error_peak_v": 1.975685413879713e-11,
+          "reference_rms_v": 0.003970697423400736,
+          "reference_peak_v": 0.00631213985393401,
+          "rms_relative_to_reference": 3.321926704387574e-09,
+          "peak_relative_to_reference_peak": 3.129977249550922e-09,
+          "rms_relative_db": -169.5721990826726
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 16800,
+          "error_rms_v": 1.043417343358015e-11,
+          "error_peak_v": 1.8198050705242608e-11,
+          "reference_rms_v": 0.003084673589011346,
+          "reference_peak_v": 0.005366998616373713,
+          "rms_relative_to_reference": 3.382585914681611e-09,
+          "peak_relative_to_reference_peak": 3.3907313949595116e-09,
+          "rms_relative_db": -169.4150232779133
+        }
+      }
+    },
+    {
+      "kind": "filter_length",
+      "key": 20,
+      "native_hz": 48000,
+      "reference_hz": 192000,
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 960,
+          "error_rms_v": 6.531817338266779e-07,
+          "error_peak_v": 1.3318047227218674e-06,
+          "reference_rms_v": 0.0040789895648156976,
+          "reference_peak_v": 0.007000975673290723,
+          "rms_relative_to_reference": 0.0001601332201143277,
+          "peak_relative_to_reference_peak": 0.00019023130273153324,
+          "rms_relative_db": -75.91037126095907
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 1200,
+          "error_rms_v": 1.590682374097157e-11,
+          "error_peak_v": 2.3666549622824995e-11,
+          "reference_rms_v": 0.00397069742351174,
+          "reference_peak_v": 0.006312139888803403,
+          "rms_relative_to_reference": 4.006052852776516e-09,
+          "peak_relative_to_reference_peak": 3.749370267412036e-09,
+          "rms_relative_db": -167.9456665051535
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 16800,
+          "error_rms_v": 1.259068419789853e-11,
+          "error_peak_v": 2.1493725202437197e-11,
+          "reference_rms_v": 0.003084673589923111,
+          "reference_peak_v": 0.005366998660231235,
+          "rms_relative_to_reference": 4.081690924780267e-09,
+          "peak_relative_to_reference_peak": 4.004794217986846e-09,
+          "rms_relative_db": -167.78319768345426
+        }
+      }
+    },
+    {
+      "kind": "filter_length",
+      "key": 20,
+      "native_hz": 96000,
+      "reference_hz": 192000,
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 1920,
+          "error_rms_v": 2.705431454694968e-07,
+          "error_peak_v": 5.516236803414232e-07,
+          "reference_rms_v": 0.004079653037962581,
+          "reference_peak_v": 0.006887178449006163,
+          "rms_relative_to_reference": 6.631523390641297e-05,
+          "peak_relative_to_reference_peak": 8.009429179536125e-05,
+          "rms_relative_db": -83.567733883934
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 2400,
+          "error_rms_v": 6.639338157353327e-12,
+          "error_peak_v": 1.0757912789760571e-11,
+          "reference_rms_v": 0.003971249036369532,
+          "reference_peak_v": 0.006312139885753277,
+          "rms_relative_to_reference": 1.6718513738496062e-09,
+          "peak_relative_to_reference_peak": 1.7043210360469926e-09,
+          "rms_relative_db": -175.53604667174397
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 33600,
+          "error_rms_v": 5.2319098900993694e-12,
+          "error_peak_v": 8.904921071362093e-12,
+          "reference_rms_v": 0.003084673743247226,
+          "reference_peak_v": 0.005366998757655731,
+          "rms_relative_to_reference": 1.6960982993915444e-09,
+          "peak_relative_to_reference_peak": 1.6591993912164985e-09,
+          "rms_relative_db": -175.410979625947
+        }
+      }
+    },
+    {
+      "kind": "reference_rate",
+      "key": 20,
+      "native_hz": 48000,
+      "shorter_reference_hz": 96000,
+      "longer_reference_hz": 192000,
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 960,
+          "error_rms_v": 2.6301017926658362e-05,
+          "error_peak_v": 0.0008040040341378224,
+          "reference_rms_v": 0.0040789895648156976,
+          "reference_peak_v": 0.007000975673290723,
+          "rms_relative_to_reference": 0.006447924788414292,
+          "peak_relative_to_reference_peak": 0.1148417123066377,
+          "rms_relative_db": -43.81160073971425
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 1200,
+          "error_rms_v": 5.2334302785827066e-11,
+          "error_peak_v": 2.17739914640247e-10,
+          "reference_rms_v": 0.00397069742351174,
+          "reference_peak_v": 0.006312139888803403,
+          "rms_relative_to_reference": 1.3180128628270516e-08,
+          "peak_relative_to_reference_peak": 3.4495419695383864e-08,
+          "rms_relative_db": -157.60160702659206
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 16800,
+          "error_rms_v": 4.079146805451576e-11,
+          "error_peak_v": 2.2752875711989917e-10,
+          "reference_rms_v": 0.003084673589923111,
+          "reference_peak_v": 0.005366998660231235,
+          "rms_relative_to_reference": 1.3223917171583959e-08,
+          "peak_relative_to_reference_peak": 4.239404023068942e-08,
+          "rms_relative_db": -157.5727975929014
+        }
+      }
+    },
+    {
+      "kind": "filter_length",
+      "key": 61,
+      "native_hz": 48000,
+      "reference_hz": 96000,
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 960,
+          "error_rms_v": 5.461026521159718e-07,
+          "error_peak_v": 1.1134652420320343e-06,
+          "reference_rms_v": 0.003954484464679965,
+          "reference_peak_v": 0.006676175317831493,
+          "rms_relative_to_reference": 0.00013809705335640195,
+          "peak_relative_to_reference_peak": 0.00016678190566057544,
+          "rms_relative_db": -77.19631176147699
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 1200,
+          "error_rms_v": 1.7380671976999172e-12,
+          "error_peak_v": 4.336870272625415e-12,
+          "reference_rms_v": 0.00386522471144659,
+          "reference_peak_v": 0.006201441757124238,
+          "rms_relative_to_reference": 4.496678272165533e-10,
+          "peak_relative_to_reference_peak": 6.993325814345033e-10,
+          "rms_relative_db": -186.94216368347134
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 16800,
+          "error_rms_v": 1.3561779870375788e-12,
+          "error_peak_v": 4.71149941977389e-12,
+          "reference_rms_v": 0.0030761431188706507,
+          "reference_peak_v": 0.005420037460076993,
+          "rms_relative_to_reference": 4.4086960022051076e-10,
+          "peak_relative_to_reference_peak": 8.692743278027016e-10,
+          "rms_relative_db": -187.11379693078382
+        }
+      }
+    },
+    {
+      "kind": "filter_length",
+      "key": 61,
+      "native_hz": 48000,
+      "reference_hz": 192000,
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 960,
+          "error_rms_v": 6.583112848947624e-07,
+          "error_peak_v": 1.3422502197629749e-06,
+          "reference_rms_v": 0.003953688537924213,
+          "reference_peak_v": 0.006778932129742855,
+          "rms_relative_to_reference": 0.00016650560067647425,
+          "peak_relative_to_reference_peak": 0.00019800319490938617,
+          "rms_relative_db": -75.57142307474729
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 1200,
+          "error_rms_v": 2.0155783110604364e-12,
+          "error_peak_v": 4.68142018206219e-12,
+          "reference_rms_v": 0.003865224714441427,
+          "reference_peak_v": 0.006201441785599129,
+          "rms_relative_to_reference": 5.214647167937589e-10,
+          "peak_relative_to_reference_peak": 7.548922240846146e-10,
+          "rms_relative_db": -185.65550142720974
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 16800,
+          "error_rms_v": 1.5271719118499117e-12,
+          "error_peak_v": 4.0648673663157275e-12,
+          "reference_rms_v": 0.003076143118840019,
+          "reference_peak_v": 0.005420037540698316,
+          "rms_relative_to_reference": 4.964567163655871e-10,
+          "peak_relative_to_reference_peak": 7.499703342999376e-10,
+          "rms_relative_db": -186.08237219062292
+        }
+      }
+    },
+    {
+      "kind": "filter_length",
+      "key": 61,
+      "native_hz": 96000,
+      "reference_hz": 192000,
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 1920,
+          "error_rms_v": 2.711504062542325e-07,
+          "error_peak_v": 5.528562048214697e-07,
+          "reference_rms_v": 0.003954874337932298,
+          "reference_peak_v": 0.006830718728677168,
+          "rms_relative_to_reference": 6.856106745378827e-05,
+          "peak_relative_to_reference_peak": 8.09367545029241e-05,
+          "rms_relative_db": -83.27844858666771
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 2400,
+          "error_rms_v": 8.500487740084091e-13,
+          "error_peak_v": 2.1829578075727163e-12,
+          "reference_rms_v": 0.0038648519079402224,
+          "reference_peak_v": 0.006201441973289611,
+          "rms_relative_to_reference": 2.1994342713675763e-10,
+          "peak_relative_to_reference_peak": 3.5200810020878847e-10,
+          "rms_relative_db": -193.1537802419069
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 33600,
+          "error_rms_v": 6.771899250120675e-13,
+          "error_peak_v": 1.8730425196955558e-12,
+          "reference_rms_v": 0.0030761267004021623,
+          "reference_peak_v": 0.0054200375551454304,
+          "rms_relative_to_reference": 2.2014370374391082e-10,
+          "peak_relative_to_reference_peak": 3.455774061781936e-10,
+          "rms_relative_db": -193.1458746227472
+        }
+      }
+    },
+    {
+      "kind": "reference_rate",
+      "key": 61,
+      "native_hz": 48000,
+      "shorter_reference_hz": 96000,
+      "longer_reference_hz": 192000,
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 960,
+          "error_rms_v": 2.6301856777423925e-05,
+          "error_peak_v": 0.0008040033655008025,
+          "reference_rms_v": 0.003953688537924213,
+          "reference_peak_v": 0.006778932129742855,
+          "rms_relative_to_reference": 0.0066524857800845045,
+          "peak_relative_to_reference_peak": 0.11860324754885852,
+          "rms_relative_db": -43.540320901897296
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 1200,
+          "error_rms_v": 4.8411129772391e-11,
+          "error_peak_v": 1.8014113898484618e-10,
+          "reference_rms_v": 0.003865224714441427,
+          "reference_peak_v": 0.006201441785599129,
+          "rms_relative_to_reference": 1.2524790497047987e-08,
+          "peak_relative_to_reference_peak": 2.904826735665995e-08,
+          "rms_relative_db": -158.04459059741706
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 16800,
+          "error_rms_v": 4.033701007783145e-11,
+          "error_peak_v": 2.1383405376246278e-10,
+          "reference_rms_v": 0.003076143118840019,
+          "reference_peak_v": 0.005420037540698316,
+          "rms_relative_to_reference": 1.3112852204692646e-08,
+          "peak_relative_to_reference_peak": 3.9452504185960396e-08,
+          "rms_relative_db": -157.64605667415606
+        }
+      }
+    },
+    {
+      "kind": "filter_length",
+      "key": 62,
+      "native_hz": 48000,
+      "reference_hz": 96000,
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 960,
+          "error_rms_v": 5.46743231387878e-07,
+          "error_peak_v": 1.1147653017910993e-06,
+          "reference_rms_v": 0.003963531601207338,
+          "reference_peak_v": 0.0066494912193407274,
+          "rms_relative_to_reference": 0.00013794345205203702,
+          "peak_relative_to_reference_peak": 0.00016764670634479372,
+          "rms_relative_db": -77.20597819875367
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 1200,
+          "error_rms_v": 1.804508730242011e-12,
+          "error_peak_v": 3.649098384572724e-12,
+          "reference_rms_v": 0.0038670941801096613,
+          "reference_peak_v": 0.006217211993444208,
+          "rms_relative_to_reference": 4.66631699720031e-10,
+          "peak_relative_to_reference_peak": 5.869348493216166e-10,
+          "rms_relative_db": -186.6205152317258
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 16800,
+          "error_rms_v": 1.5347072887584647e-12,
+          "error_peak_v": 4.48067104252825e-12,
+          "reference_rms_v": 0.0030763701187106964,
+          "reference_peak_v": 0.005445159184506273,
+          "rms_relative_to_reference": 4.988695213960988e-10,
+          "peak_relative_to_reference_peak": 8.228723698799496e-10,
+          "rms_relative_db": -186.04026057240225
+        }
+      }
+    },
+    {
+      "kind": "filter_length",
+      "key": 62,
+      "native_hz": 48000,
+      "reference_hz": 192000,
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 960,
+          "error_rms_v": 6.58969677279417e-07,
+          "error_peak_v": 1.343585592009349e-06,
+          "reference_rms_v": 0.00396273734033104,
+          "reference_peak_v": 0.006752263118414288,
+          "rms_relative_to_reference": 0.00016629153554355126,
+          "peak_relative_to_reference_peak": 0.0001989830029498138,
+          "rms_relative_db": -75.58259712748992
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 1200,
+          "error_rms_v": 2.143989820911752e-12,
+          "error_peak_v": 4.087481221548561e-12,
+          "reference_rms_v": 0.003867094180825161,
+          "reference_peak_v": 0.006217212081580264,
+          "rms_relative_to_reference": 5.544188273310341e-10,
+          "peak_relative_to_reference_peak": 6.574460011841229e-10,
+          "rms_relative_db": -185.1232406015779
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 16800,
+          "error_rms_v": 1.7171319095486556e-12,
+          "error_peak_v": 3.9193145257021555e-12,
+          "reference_rms_v": 0.003076370120510909,
+          "reference_peak_v": 0.005445159206482339,
+          "rms_relative_to_reference": 5.581681794723329e-10,
+          "peak_relative_to_reference_peak": 7.197796018592625e-10,
+          "rms_relative_db": -185.06469851543883
+        }
+      }
+    },
+    {
+      "kind": "filter_length",
+      "key": 62,
+      "native_hz": 96000,
+      "reference_hz": 192000,
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 1920,
+          "error_rms_v": 2.7122594020457843e-07,
+          "error_peak_v": 5.530106455364607e-07,
+          "reference_rms_v": 0.003963711256528462,
+          "reference_peak_v": 0.0068237928635094935,
+          "rms_relative_to_reference": 6.842726996267793e-05,
+          "peak_relative_to_reference_peak": 8.104153461247445e-05,
+          "rms_relative_db": -83.29541573340586
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 2400,
+          "error_rms_v": 8.937590718587583e-13,
+          "error_peak_v": 2.1397033450609726e-12,
+          "reference_rms_v": 0.003867018263520515,
+          "reference_peak_v": 0.00621721206540177,
+          "rms_relative_to_reference": 2.3112357143229115e-10,
+          "peak_relative_to_reference_peak": 3.441580120723613e-10,
+          "rms_relative_db": -192.72311520370704
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 33600,
+          "error_rms_v": 7.939363513314957e-13,
+          "error_peak_v": 2.1854879017624285e-12,
+          "reference_rms_v": 0.003076333445757961,
+          "reference_peak_v": 0.005445159110365877,
+          "rms_relative_to_reference": 2.5807876985060767e-10,
+          "peak_relative_to_reference_peak": 4.013634601791423e-10,
+          "rms_relative_db": -191.76495440086654
+        }
+      }
+    },
+    {
+      "kind": "reference_rate",
+      "key": 62,
+      "native_hz": 48000,
+      "shorter_reference_hz": 96000,
+      "longer_reference_hz": 192000,
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 960,
+          "error_rms_v": 2.6301959622215435e-05,
+          "error_peak_v": 0.0008040032527544348,
+          "reference_rms_v": 0.00396273734033104,
+          "reference_peak_v": 0.006752263118414288,
+          "rms_relative_to_reference": 0.006637320963598918,
+          "peak_relative_to_reference_peak": 0.11907167103157085,
+          "rms_relative_db": -43.560143609945
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 1200,
+          "error_rms_v": 4.922575299808818e-11,
+          "error_peak_v": 1.9643385529288793e-10,
+          "reference_rms_v": 0.003867094180825161,
+          "reference_peak_v": 0.006217212081580264,
+          "rms_relative_to_reference": 1.2729390776716067e-08,
+          "peak_relative_to_reference_peak": 3.159516720924843e-08,
+          "rms_relative_db": -157.90384762000113
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 16800,
+          "error_rms_v": 4.1265709032551594e-11,
+          "error_peak_v": 2.300495028847993e-10,
+          "reference_rms_v": 0.003076370120510909,
+          "reference_peak_v": 0.005445159206482339,
+          "rms_relative_to_reference": 1.3413766034659827e-08,
+          "peak_relative_to_reference_peak": 4.2248443830793884e-08,
+          "rms_relative_db": -157.4489854594486
+        }
+      }
+    },
+    {
+      "kind": "filter_length",
+      "key": 68,
+      "native_hz": 48000,
+      "reference_hz": 96000,
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 960,
+          "error_rms_v": 5.529095105733532e-07,
+          "error_peak_v": 1.1273394087503094e-06,
+          "reference_rms_v": 0.003954352480701459,
+          "reference_peak_v": 0.00641234927019172,
+          "rms_relative_to_reference": 0.00013982302115750518,
+          "peak_relative_to_reference_peak": 0.00017580754903523892,
+          "rms_relative_db": -77.08842636600284
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 1200,
+          "error_rms_v": 6.269969520749829e-12,
+          "error_peak_v": 1.0299953598358336e-11,
+          "reference_rms_v": 0.0038716767241902274,
+          "reference_peak_v": 0.00619354676262662,
+          "rms_relative_to_reference": 1.619445518675429e-09,
+          "peak_relative_to_reference_peak": 1.663013777583917e-09,
+          "rms_relative_db": -175.8126731585299
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 16800,
+          "error_rms_v": 5.025096087027791e-12,
+          "error_peak_v": 9.315446851398956e-12,
+          "reference_rms_v": 0.0030764196927110282,
+          "reference_peak_v": 0.005424344428305723,
+          "rms_relative_to_reference": 1.6334234561473418e-09,
+          "peak_relative_to_reference_peak": 1.7173405882540183e-09,
+          "rms_relative_db": -175.73802424368776
+        }
+      }
+    },
+    {
+      "kind": "filter_length",
+      "key": 68,
+      "native_hz": 48000,
+      "reference_hz": 192000,
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 960,
+          "error_rms_v": 6.653037723992292e-07,
+          "error_peak_v": 1.3565024583701499e-06,
+          "reference_rms_v": 0.003953554990651064,
+          "reference_peak_v": 0.006515260410829576,
+          "rms_relative_to_reference": 0.0001682798832879439,
+          "peak_relative_to_reference_peak": 0.00020820387410998802,
+          "rms_relative_db": -75.47935595727714
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 1200,
+          "error_rms_v": 7.533672350701521e-12,
+          "error_peak_v": 1.1727180858345232e-11,
+          "reference_rms_v": 0.0038716767279188156,
+          "reference_peak_v": 0.006193546756768606,
+          "rms_relative_to_reference": 1.945842300411062e-09,
+          "peak_relative_to_reference_peak": 1.8934515745003788e-09,
+          "rms_relative_db": -174.21784719539738
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 16800,
+          "error_rms_v": 6.025767465405613e-12,
+          "error_peak_v": 1.054088240304285e-11,
+          "reference_rms_v": 0.0030764196930770146,
+          "reference_peak_v": 0.005424344420888773,
+          "rms_relative_to_reference": 1.9586948682475376e-09,
+          "peak_relative_to_reference_peak": 1.9432546286055592e-09,
+          "rms_relative_db": -174.16066429039398
+        }
+      }
+    },
+    {
+      "kind": "filter_length",
+      "key": 68,
+      "native_hz": 96000,
+      "reference_hz": 192000,
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 1920,
+          "error_rms_v": 2.719268272989724e-07,
+          "error_peak_v": 5.5444369471188e-07,
+          "reference_rms_v": 0.003954236722816679,
+          "reference_peak_v": 0.006760808492403362,
+          "rms_relative_to_reference": 6.876847451491819e-05,
+          "peak_relative_to_reference_peak": 8.200848986254658e-05,
+          "rms_relative_db": -83.25221218935597
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 2400,
+          "error_rms_v": 3.0910624332067365e-12,
+          "error_peak_v": 4.92570133986403e-12,
+          "reference_rms_v": 0.0038719538507116223,
+          "reference_peak_v": 0.006193546669255774,
+          "rms_relative_to_reference": 7.983210937905764e-10,
+          "peak_relative_to_reference_peak": 7.952957494152393e-10,
+          "rms_relative_db": -181.9564479069798
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 33600,
+          "error_rms_v": 2.4917192067137664e-12,
+          "error_peak_v": 4.5770011045109804e-12,
+          "reference_rms_v": 0.003076389938798056,
+          "reference_peak_v": 0.005425428511396752,
+          "rms_relative_to_reference": 8.099490819708245e-10,
+          "peak_relative_to_reference_peak": 8.436202034358116e-10,
+          "rms_relative_db": -181.83084564993746
+        }
+      }
+    },
+    {
+      "kind": "reference_rate",
+      "key": 68,
+      "native_hz": 48000,
+      "shorter_reference_hz": 96000,
+      "longer_reference_hz": 192000,
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 960,
+          "error_rms_v": 2.630291735792653e-05,
+          "error_peak_v": 0.0008040024382921012,
+          "reference_rms_v": 0.003953554990651064,
+          "reference_peak_v": 0.006515260410829576,
+          "rms_relative_to_reference": 0.006652978754595497,
+          "peak_relative_to_reference_peak": 0.12340296282796301,
+          "rms_relative_db": -43.53967726827028
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 1200,
+          "error_rms_v": 5.115546438019092e-11,
+          "error_peak_v": 2.380863093481844e-10,
+          "reference_rms_v": 0.0038716767279188156,
+          "reference_peak_v": 0.006193546756768606,
+          "rms_relative_to_reference": 1.3212741655651884e-08,
+          "peak_relative_to_reference_peak": 3.8441028815676935e-08,
+          "rms_relative_db": -157.5801411308614
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 16800,
+          "error_rms_v": 4.048242879701163e-11,
+          "error_peak_v": 2.2446105737983224e-10,
+          "reference_rms_v": 0.0030764196930770146,
+          "reference_peak_v": 0.005424344420888773,
+          "rms_relative_to_reference": 1.3158942158675812e-08,
+          "peak_relative_to_reference_peak": 4.1380310681498824e-08,
+          "rms_relative_db": -157.61558044106042
+        }
+      }
+    },
+    {
+      "kind": "filter_length",
+      "key": 72,
+      "native_hz": 48000,
+      "reference_hz": 96000,
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 960,
+          "error_rms_v": 5.610534386536168e-07,
+          "error_peak_v": 1.1439448387223425e-06,
+          "reference_rms_v": 0.003958451371784205,
+          "reference_peak_v": 0.006317544644577673,
+          "rms_relative_to_reference": 0.0001417355894915873,
+          "peak_relative_to_reference_peak": 0.00018107427854968726,
+          "rms_relative_db": -76.97042171359365
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 1200,
+          "error_rms_v": 2.3304470978196072e-12,
+          "error_peak_v": 5.484981392689381e-12,
+          "reference_rms_v": 0.0038675285880089153,
+          "reference_peak_v": 0.006199601290554686,
+          "rms_relative_to_reference": 6.025675169008564e-10,
+          "peak_relative_to_reference_peak": 8.847313134549388e-10,
+          "rms_relative_db": -184.3998856779778
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 16800,
+          "error_rms_v": 1.690790376139546e-12,
+          "error_peak_v": 4.294322709930132e-12,
+          "reference_rms_v": 0.0030761221700501456,
+          "reference_peak_v": 0.005461312280376528,
+          "rms_relative_to_reference": 5.496499432309555e-10,
+          "peak_relative_to_reference_peak": 7.863170039480074e-10,
+          "rms_relative_db": -185.19827625098748
+        }
+      }
+    },
+    {
+      "kind": "filter_length",
+      "key": 72,
+      "native_hz": 48000,
+      "reference_hz": 192000,
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 960,
+          "error_rms_v": 6.736467002594528e-07,
+          "error_peak_v": 1.3735131289553844e-06,
+          "reference_rms_v": 0.003957652984629109,
+          "reference_peak_v": 0.006317784353111788,
+          "rms_relative_to_reference": 0.0001702136854534212,
+          "peak_relative_to_reference_peak": 0.00021740424366951816,
+          "rms_relative_db": -75.38011049748894
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 1200,
+          "error_rms_v": 2.6921331982212377e-12,
+          "error_peak_v": 5.780560925761069e-12,
+          "reference_rms_v": 0.0038675285881851094,
+          "reference_peak_v": 0.006199601381809436,
+          "rms_relative_to_reference": 6.960861792839541e-10,
+          "peak_relative_to_reference_peak": 9.324084839909394e-10,
+          "rms_relative_db": -183.14673978047455
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 16800,
+          "error_rms_v": 1.982556893035961e-12,
+          "error_peak_v": 4.446722504103384e-12,
+          "reference_rms_v": 0.0030761221705712704,
+          "reference_peak_v": 0.005461312210213799,
+          "rms_relative_to_reference": 6.444987497579714e-10,
+          "peak_relative_to_reference_peak": 8.142223577306349e-10,
+          "rms_relative_db": -183.81555841566822
+        }
+      }
+    },
+    {
+      "kind": "filter_length",
+      "key": 72,
+      "native_hz": 96000,
+      "reference_hz": 192000,
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 1920,
+          "error_rms_v": 2.7276797025342196e-07,
+          "error_peak_v": 5.561544692165785e-07,
+          "reference_rms_v": 0.003958010196327957,
+          "reference_peak_v": 0.00668794733682312,
+          "rms_relative_to_reference": 6.891542889568157e-05,
+          "peak_relative_to_reference_peak": 8.315772257273194e-05,
+          "rms_relative_db": -83.23367073336549
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 2400,
+          "error_rms_v": 1.0927801781545282e-12,
+          "error_peak_v": 2.479398630850227e-12,
+          "reference_rms_v": 0.0038670905750358693,
+          "reference_peak_v": 0.006219926614141643,
+          "rms_relative_to_reference": 2.825845831512214e-10,
+          "peak_relative_to_reference_peak": 3.98621846311347e-10,
+          "rms_relative_db": -190.97703070926727
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 33600,
+          "error_rms_v": 9.28983960890206e-13,
+          "error_peak_v": 2.9768756903969518e-12,
+          "reference_rms_v": 0.0030761091000663307,
+          "reference_peak_v": 0.005461312251686923,
+          "rms_relative_to_reference": 3.0199967903289715e-10,
+          "peak_relative_to_reference_peak": 5.450843228159013e-10,
+          "rms_relative_db": -190.39987037226862
+        }
+      }
+    },
+    {
+      "kind": "reference_rate",
+      "key": 72,
+      "native_hz": 48000,
+      "shorter_reference_hz": 96000,
+      "longer_reference_hz": 192000,
+      "windows": {
+        "onset_edge_sensitive": {
+          "time_interval_s": [
+            0.0,
+            0.02
+          ],
+          "samples": 960,
+          "error_rms_v": 2.6304052498755036e-05,
+          "error_peak_v": 0.0008040014013186341,
+          "reference_rms_v": 0.003957652984629109,
+          "reference_peak_v": 0.006317784353111788,
+          "rms_relative_to_reference": 0.006646376678530373,
+          "peak_relative_to_reference_peak": 0.1272600260441982,
+          "rms_relative_db": -43.54830098076262
+        },
+        "early_held_edge_excluded": {
+          "time_interval_s": [
+            0.025,
+            0.05
+          ],
+          "samples": 1200,
+          "error_rms_v": 5.1307479742100725e-11,
+          "error_peak_v": 2.1407973137266278e-10,
+          "reference_rms_v": 0.0038675285881851094,
+          "reference_peak_v": 0.006199601381809436,
+          "rms_relative_to_reference": 1.3266218612795688e-08,
+          "peak_relative_to_reference_peak": 3.4531209054957136e-08,
+          "rms_relative_db": -157.54505700559747
+        },
+        "later_held_edge_excluded": {
+          "time_interval_s": [
+            0.15,
+            0.5
+          ],
+          "samples": 16800,
+          "error_rms_v": 4.048071249033286e-11,
+          "error_peak_v": 2.320040895509301e-10,
+          "reference_rms_v": 0.0030761221705712704,
+          "reference_peak_v": 0.005461312210213799,
+          "rms_relative_to_reference": 1.3159656946529904e-08,
+          "peak_relative_to_reference_peak": 4.248138187687454e-08,
+          "rms_relative_db": -157.61510864023302
+        }
+      }
+    }
+  ],
+  "limits": [
+    "No interpolation or one-sample shift was used to improve agreement.",
+    "Gain=1 makes exported units synthetic loaded-harp volts; constants are uncalibrated.",
+    "Both native and reference files are float32 exports of a double-precision core.",
+    "The one-ULP envelope estimates export rounding only; it excludes core accumulation and analysis roundoff.",
+    "Filters attenuate legitimate components in their transition region and remove above-Nyquist content; differences are not alias-only estimates.",
+    "The 192 kHz reference is finite, and impulsive excitation is not band-limited even where ideal damped carriers lie below Nyquist.",
+    "The onset window includes chosen zero-extension/filter-boundary behavior; post-onset and later windows exclude that edge.",
+    "No full-keyboard, velocity/retrigger/release/pedal, subjective audibility, hardware fidelity or antialiasing acceptance claim."
+  ],
+  "elapsed_seconds": 2.6127421855926514,
+  "reproduction": {
+    "script_sha256": "62d99725907cac1739e579e78d8d1c5fda4161f821d1f90caeb3369ce8328fab",
+    "script_utf8": "#!/usr/bin/env python3\n\"\"\"A068 finite rendered-rate comparison; diagnostic, not alias acceptance.\"\"\"\nfrom pathlib import Path\nimport hashlib\nimport importlib.util\nimport json\nimport math\nimport platform\nimport subprocess\nimport sys\nimport time\n\nimport numpy as np\nimport scipy\nfrom scipy.io import wavfile\nfrom scipy.signal import fftconvolve, firwin, freqz\n\nROOT = Path(__file__).resolve().parents[2]\nOUT = ROOT / \"build/a068\"\nEXE = OUT / \"rhodes_render\"\nKEYS = [20, 61, 62, 68, 72]\nRATES = [48000, 96000, 192000]\nWINDOWS = {\"onset_edge_sensitive\": [0.0, 0.02],\n           \"early_held_edge_excluded\": [0.025, 0.05],\n           \"later_held_edge_excluded\": [0.15, 0.50]}\nPARAMETERS = {\"seconds\": 1.0, \"velocity\": 0.7, \"gain\": 1.0}\n\n\ndef digest(data):\n    return hashlib.sha256(data).hexdigest()\n\n\ndef metrics(actual, reference, rate):\n    result = {}\n    for name, (start, stop) in WINDOWS.items():\n        lo, hi = int(round(start*rate)), int(round(stop*rate))\n        a, r = actual[lo:hi], reference[lo:hi]\n        assert len(a) == len(r) == hi-lo and len(r) > 0\n        difference = a-r\n        rms = float(np.sqrt(np.mean(difference*difference)))\n        rrms = float(np.sqrt(np.mean(r*r)))\n        peak = float(np.max(np.abs(difference)))\n        rpeak = float(np.max(np.abs(r)))\n        relative = rms/rrms\n        result[name] = {\"time_interval_s\": [start, stop], \"samples\": len(r),\n                       \"error_rms_v\": rms, \"error_peak_v\": peak,\n                       \"reference_rms_v\": rrms, \"reference_peak_v\": rpeak,\n                       \"rms_relative_to_reference\": relative,\n                       \"peak_relative_to_reference_peak\": peak/rpeak,\n                       \"rms_relative_db\": 20*math.log10(relative) if relative else None}\n    return result\n\n\ndef main():\n    started = time.time()\n    source = json.loads((OUT/\"source-manifest.json\").read_text())\n    spec = importlib.util.spec_from_file_location(\"a068_alias_catalog\", ROOT/\"tools/audit_aliasing.py\")\n    catalog_module = importlib.util.module_from_spec(spec)\n    spec.loader.exec_module(catalog_module)\n    model = catalog_module.read_model(ROOT)\n    catalog = catalog_module.products(model[\"pickup_observation\"], model[\"pickup_coefficients\"])\n    carriers = {key: catalog_module.key_audit(model, catalog, key,\n                \"held_or_sustained\", RATES) for key in KEYS}\n    input_records = []\n    audio = {}\n    for key in KEYS:\n        for rate in RATES:\n            path = OUT/f\"key{key}-fs{rate}.wav\"\n            command = [str(EXE.relative_to(ROOT)), \"--output\", str(path.relative_to(ROOT)),\n                       \"--seconds\", \"1\", \"--sample-rate\", str(rate), \"--key\", str(key),\n                       \"--velocity\", \"0.7\", \"--gain\", \"1\"]\n            run = subprocess.run(command, cwd=ROOT, capture_output=True, text=True)\n            assert run.returncode == 0, (command, run.stdout, run.stderr)\n            actual_rate, wave = wavfile.read(path)\n            assert actual_rate == rate and wave.shape == (rate,) and wave.dtype == np.float32\n            assert np.isfinite(wave).all()\n            audio[key, rate] = wave.astype(np.float64)\n            input_records.append({\"key\": key, \"midi\": key+28, \"sample_rate_hz\": rate,\n                                  \"argv\": command, \"exit_code\": run.returncode,\n                                  \"stdout\": run.stdout.strip(), \"stderr\": run.stderr,\n                                  \"wav_sha256\": digest(path.read_bytes()), \"wav_bytes\": path.stat().st_size,\n                                  \"first_sample_v\": float(wave[0])})\n    # The public sample() contract observes the current state before advancing.\n    # Thus sample n is at n/fs, not (n+1)/fs; high[::ratio] matches native times.\n    unfiltered = []\n    for key in KEYS:\n        for lower, higher in [(48000, 96000), (48000, 192000), (96000, 192000)]:\n            matched = audio[key, higher][::(higher//lower)]\n            unfiltered.append({\"key\": key, \"native_hz\": lower, \"reference_hz\": higher,\n                               \"equal_float32_samples\": int(np.count_nonzero(audio[key, lower] == matched)),\n                               \"windows\": metrics(audio[key, lower], matched, lower)})\n\n    filters = {}\n    filter_records = []\n    for lower, higher in [(48000, 96000), (48000, 192000), (96000, 192000)]:\n        for variant, base_taps in [(\"short\", 4097), (\"long\", 8193)]:\n            taps = (base_taps-1)*higher//192000+1\n            cutoff = lower/2\n            h = firwin(taps, cutoff=cutoff, window=(\"kaiser\", 14.0),\n                       pass_zero=\"lowpass\", scale=True, fs=higher)\n            assert taps % 2 == 1 and np.array_equal(h, h[::-1])\n            frequencies, response = freqz(h, worN=262144, fs=higher)\n            magnitude = np.abs(response)\n            passband = magnitude[frequencies <= cutoff-500]\n            stopband = magnitude[frequencies >= cutoff+500]\n            identity = f\"{higher}_to_{lower}_{variant}\"\n            filters[identity] = h\n            # A finite impulse validates centering of same-mode convolution.\n            probe = np.zeros(taps*3)\n            center = taps+2\n            probe[center] = 1.0\n            centered = fftconvolve(probe, h, mode=\"same\")\n            phase_error = float(np.max(np.abs(centered[center-taps//2:center+taps//2+1]-h)))\n            assert phase_error < 2e-15\n            key_responses = []\n            for key in KEYS:\n                vectors = catalog_module.support(catalog)\n                damped = carriers[key][\"damped_carriers_hz\"]\n                locations = sorted(set(abs(sum(n*f for n, f in zip(vector, damped))) for vector in vectors))\n                _, gain = freqz(h, worN=np.asarray(locations)*2*np.pi/higher)\n                nearest = min(range(len(locations)), key=lambda i: abs(locations[i]-cutoff))\n                key_responses.append({\"key\": key,\n                                      \"highest_carrier_hz\": locations[-1],\n                                      \"gain_at_highest_carrier\": float(abs(gain[-1])),\n                                      \"nearest_cutoff_carrier_hz\": locations[nearest],\n                                      \"gain_at_nearest_cutoff_carrier\": float(abs(gain[nearest]))})\n            filter_records.append({\"id\": identity, \"input_hz\": higher, \"output_hz\": lower,\n                                   \"fir_design\": \"scipy.signal.firwin\", \"window\": [\"kaiser\", 14.0],\n                                   \"taps\": taps, \"cutoff_hz\": cutoff,\n                                   \"half_support_s\": (taps-1)/(2*higher),\n                                   \"response_grid_bins\": 262144,\n                                   \"reported_passband_hz\": [0, cutoff-500],\n                                   \"reported_stopband_hz\": [cutoff+500, higher/2],\n                                   \"max_passband_magnitude_error\": float(np.max(np.abs(passband-1))),\n                                   \"max_stopband_magnitude\": float(np.max(stopband)),\n                                   \"coefficient_float64_le_sha256\": digest(h.astype('<f8').tobytes()),\n                                   \"impulse_centering_max_error\": phase_error,\n                                   \"carrier_responses\": key_responses})\n\n    filtered = {}\n    comparisons = []\n    for key in KEYS:\n        for lower, higher in [(48000, 96000), (48000, 192000), (96000, 192000)]:\n            for variant in (\"short\", \"long\"):\n                identity = f\"{higher}_to_{lower}_{variant}\"\n                h = filters[identity]\n                high = audio[key, higher]\n                reference = fftconvolve(high, h, mode=\"same\")[::(higher//lower)]\n                assert len(reference) == lower and np.isfinite(reference).all()\n                filtered[key, lower, higher, variant] = reference\n                row = {\"key\": key, \"midi\": key+28, \"native_hz\": lower, \"reference_hz\": higher,\n                       \"filter_id\": identity, \"windows\": metrics(audio[key, lower], reference, lower)}\n                # Conservatively estimate float32 export uncertainty by one ULP\n                # per stored value, propagated through |h|; excludes core and\n                # filter arithmetic error and is not a certified alias bound.\n                native_ulp = np.abs(np.spacing(np.abs(audio[key, lower]).astype(np.float32))).astype(np.float64)\n                high_ulp = np.abs(np.spacing(np.abs(high).astype(np.float32))).astype(np.float64)\n                envelope = native_ulp + fftconvolve(high_ulp, np.abs(h), mode=\"same\")[::(higher//lower)]\n                for name, (start, stop) in WINDOWS.items():\n                    section = envelope[int(round(start*lower)):int(round(stop*lower))]\n                    row[\"windows\"][name][\"float32_export_one_ulp_envelope_rms_v\"] = float(np.sqrt(np.mean(section*section)))\n                    row[\"windows\"][name][\"float32_export_one_ulp_envelope_peak_v\"] = float(np.max(section))\n                comparisons.append(row)\n\n    sensitivity = []\n    for key in KEYS:\n        for lower, higher in [(48000, 96000), (48000, 192000), (96000, 192000)]:\n            sensitivity.append({\"kind\": \"filter_length\", \"key\": key, \"native_hz\": lower,\n                                \"reference_hz\": higher,\n                                \"windows\": metrics(filtered[key, lower, higher, \"short\"],\n                                                   filtered[key, lower, higher, \"long\"], lower)})\n        sensitivity.append({\"kind\": \"reference_rate\", \"key\": key, \"native_hz\": 48000,\n                            \"shorter_reference_hz\": 96000, \"longer_reference_hz\": 192000,\n                            \"windows\": metrics(filtered[key, 48000, 96000, \"long\"],\n                                               filtered[key, 48000, 192000, \"long\"], 48000)})\n    source_unchanged = all(digest((ROOT/p).read_bytes()) == h for p, h in source[\"source_sha256\"].items())\n    assert source_unchanged\n    report = {\"schema_version\": 1,\n              \"status\": \"diagnostic_only_not_an_acceptance_result\",\n              \"scope\": \"Five synthetic single-note renders; finite-rate low-pass differences are not pure alias measurements.\",\n              \"environment\": {\"python\": sys.version, \"numpy\": np.__version__, \"scipy\": scipy.__version__,\n                              \"platform\": platform.platform()},\n              \"source\": source, \"source_unchanged_after_execution\": source_unchanged,\n              \"build_argv\": [\"c++\", \"-O3\", \"-DNDEBUG\", \"-std=c++20\", \"-Wall\", \"-Wextra\", \"-Wpedantic\",\n                             \"-Wconversion\", \"-Wshadow\", \"-Werror\", \"-Ibuild/a068/snapshot/include\",\n                             \"build/a068/snapshot/src/research_engine.cpp\", \"build/a068/snapshot/apps/render.cpp\",\n                             \"-o\", \"build/a068/rhodes_render\"],\n              \"compiler\": subprocess.check_output([\"c++\", \"--version\"], text=True).splitlines()[0],\n              \"executable_sha256\": digest(EXE.read_bytes()), \"render_parameters\": PARAMETERS,\n              \"sample_time_rule\": \"sample n observes state at n/fs, before advancing; decimation begins at index zero\",\n              \"release_time_s\": 0.65,\n              \"edge_handling\": \"Centered odd-FIR same-mode FFT convolution, with zero extension outside each one-second render. Onset window explicitly includes the leading-edge effect. Other windows exclude 21.333333 ms on each side of discontinuities.\",\n              \"windows\": WINDOWS, \"inputs\": input_records, \"filters\": filter_records,\n              \"unfiltered_time_alignment_checks\": unfiltered,\n              \"filtered_comparisons\": comparisons, \"sensitivity_checks\": sensitivity,\n              \"limits\": [\"No interpolation or one-sample shift was used to improve agreement.\",\n                         \"Gain=1 makes exported units synthetic loaded-harp volts; constants are uncalibrated.\",\n                         \"Both native and reference files are float32 exports of a double-precision core.\",\n                         \"The one-ULP envelope estimates export rounding only; it excludes core accumulation and analysis roundoff.\",\n                         \"Filters attenuate legitimate components in their transition region and remove above-Nyquist content; differences are not alias-only estimates.\",\n                         \"The 192 kHz reference is finite, and impulsive excitation is not band-limited even where ideal damped carriers lie below Nyquist.\",\n                         \"The onset window includes chosen zero-extension/filter-boundary behavior; post-onset and later windows exclude that edge.\",\n                         \"No full-keyboard, velocity/retrigger/release/pedal, subjective audibility, hardware fidelity or antialiasing acceptance claim.\"],\n              \"elapsed_seconds\": time.time()-started,\n              \"reproduction\": {\"script_sha256\": digest(Path(__file__).read_bytes()),\n                               \"script_utf8\": Path(__file__).read_text(),\n                               \"instructions\": \"At the recorded source revision (or verified file hashes), copy the source files into build/a068/snapshot preserving paths, run build_argv, save script_utf8 as build/a068/experiment.py, and execute it in the repository. Outputs must not already exist. source-manifest.json is the source object above.\"}}\n    (OUT/\"results.json\").write_text(json.dumps(report, indent=2, allow_nan=False)+\"\\n\")\n    print(json.dumps({\"render_count\": len(input_records), \"filtered_comparisons\": len(comparisons),\n                      \"filters\": len(filters), \"elapsed_seconds\": report[\"elapsed_seconds\"]}))\n\n\nif __name__ == \"__main__\":\n    main()\n",
+    "instructions": "At the recorded source revision (or verified file hashes), copy the source files into build/a068/snapshot preserving paths, run build_argv, save script_utf8 as build/a068/experiment.py, and execute it in the repository. Outputs must not already exist. source-manifest.json is the source object above. Then save supplement_script_utf8 as build/a068/line_fit.py and run it; it updates results.json without rerendering inputs.",
+    "supplement_script_sha256": "70b61892d4c3195fb79dc10cf89d92cabe936b5302aecd0290db11e9b751d3c8",
+    "supplement_script_utf8": "#!/usr/bin/env python3\n\"\"\"Supplement A068 with a predicted folded-line fit; no acceptance threshold.\"\"\"\nfrom pathlib import Path\nimport hashlib\nimport importlib.util\nimport json\nimport math\nimport re\n\nimport numpy as np\nfrom scipy.io import wavfile\nfrom scipy.signal import fftconvolve, firwin\n\nROOT = Path(__file__).resolve().parents[2]\nOUT = ROOT / \"build/a068\"\nreport = json.loads((OUT/\"results.json\").read_text())\nspec = importlib.util.spec_from_file_location(\"a068_line_model\", ROOT/\"tools/audit_aliasing.py\")\nmodule = importlib.util.module_from_spec(spec)\nspec.loader.exec_module(module)\nmodel = module.read_model(ROOT)\nsource = (ROOT/\"src/research_engine.cpp\").read_text()\nheader = (ROOT/\"include/rhodes/research_engine.hpp\").read_text()\ncoupling = [float(value) for value in re.search(\n    r\"strike_coupling\\{([^}]+)\\}\", source).group(1).split(',')]\nmaximum_velocity = float(re.search(\n    r\"synthetic_max_velocity_change_m_per_s\\s*=\\s*([^;]+);\", source).group(1))\ncompact_source = re.sub(r\"\\s+\", \"\", source)\ncompact_header = re.sub(r\"\\s+\", \"\", header)\nassert \"source_voltage+=sources[i]/(i<4?4.0:3.0);\" in compact_source\nassert \"source_resistance_ohm_=200.0*(0.25+23.0/3.0);\" in compact_header\nassert \"load_resistance_ohm_=1000000.0;\" in compact_header\n\nkey = 72\nvelocity = report[\"render_parameters\"][\"velocity\"]\nf0 = model[\"reference_hz\"]*2**((key+model[\"midi_start\"]-model[\"reference_midi\"])\n                                  /model[\"semitones_per_octave\"])\nbeta = model[\"free_decay\"][2]\nomega0 = 2*math.pi*f0*model[\"frequency_ratios\"][2]\nomega = math.sqrt((omega0-beta)*(omega0+beta))\ndisplacement_amplitude = maximum_velocity*velocity*coupling[2]*model[\"pickup_observation\"][2]/omega\na2 = model[\"pickup_coefficients\"][1]\nnetwork_gain = (1/3)/(1+200*(0.25+23/3)/1000000)\ncarrier_hz = omega/math.pi\nfolded_hz = 48000-carrier_hz\nassert 24000 < carrier_hz < 48000 and 0 < folded_hz < 24000\n# x=A exp(-beta*t) sin(omega*t). The a2*x^2 contribution to -d(lambda)/dt\n# has cosine coefficient -a2*A^2*beta and sine coefficient -a2*A^2*omega.\n# Folding carrier fs-f to f reverses its sine sign on the 48 kHz sample grid.\nexpected = np.array([-a2*displacement_amplitude**2*beta*network_gain,\n                     a2*displacement_amplitude**2*omega*network_gain])\nfits = []\nfor rate in (48000, 96000):\n    low = wavfile.read(OUT/f\"key72-fs{rate}.wav\")[1].astype(np.float64)\n    high = wavfile.read(OUT/\"key72-fs192000.wav\")[1].astype(np.float64)\n    h = firwin(8193, rate/2, window=(\"kaiser\", 14.0), fs=192000, scale=True)\n    reference = fftconvolve(high, h, mode=\"same\")[::(192000//rate)]\n    for name in (\"early_held_edge_excluded\", \"later_held_edge_excluded\"):\n        start, stop = report[\"windows\"][name]\n        lo, hi = round(start*rate), round(stop*rate)\n        t = np.arange(lo, hi)/rate\n        matrix = np.exp(-2*beta*t)[:, None]*np.column_stack(\n            [np.cos(2*np.pi*folded_hz*t), np.sin(2*np.pi*folded_hz*t)])\n        residual = low[lo:hi]-reference[lo:hi]\n        coefficients = np.linalg.lstsq(matrix, residual, rcond=None)[0]\n        remainder = residual-matrix@coefficients\n        fits.append({\"native_hz\": rate, \"window\": name, \"time_interval_s\": [start, stop],\n                     \"basis_condition_number\": float(np.linalg.cond(matrix)),\n                     \"cos_sin_coefficients_at_t0_v\": coefficients.tolist(),\n                     \"fitted_amplitude_at_t0_v\": float(np.linalg.norm(coefficients)),\n                     \"amplitude_ratio_to_predicted_48khz_fold\": float(np.linalg.norm(coefficients)/np.linalg.norm(expected)),\n                     \"fraction_of_residual_squared_norm_explained\": float(1-np.sum(remainder**2)/np.sum(residual**2)),\n                     \"remaining_residual_rms_v\": float(np.sqrt(np.mean(remainder**2))),\n                     \"role\": \"predicted folded-line diagnostic\" if rate == 48000 else \"96 kHz negative control at the same fitted frequency\"})\nreport[\"predicted_folded_line_diagnostic\"] = {\n    \"key\": key, \"midi_pitch\": key+28, \"velocity\": velocity,\n    \"synthetic_quadratic_term\": \"a2*x_mode2^2 in linkage, differentiated to voltage, with all other modal terms retained in the measured render\",\n    \"modal_natural_hz\": f0*model[\"frequency_ratios\"][2],\n    \"modal_beta_per_s\": beta, \"carrier_hz\": carrier_hz, \"folded_48khz_hz\": folded_hz,\n    \"line_envelope_decay_per_s\": 2*beta, \"pickup_displacement_amplitude_m\": displacement_amplitude,\n    \"synthetic_network_voltage_gain\": network_gain,\n    \"predicted_cos_sin_coefficients_at_t0_v\": expected.tolist(),\n    \"predicted_amplitude_at_t0_v\": float(np.linalg.norm(expected)),\n    \"fits\": fits,\n    \"limitation\": \"Fitting one preselected line is supporting diagnostic evidence, not a full alias spectrum, statistical confidence interval, audibility result or certified error bound. t0 amplitudes are fitted/extrapolated coefficients, not measured instantaneous peaks.\"}\nreport[\"reproduction\"][\"supplement_script_sha256\"] = hashlib.sha256(Path(__file__).read_bytes()).hexdigest()\nreport[\"reproduction\"][\"supplement_script_utf8\"] = Path(__file__).read_text()\nreport[\"reproduction\"][\"instructions\"] += \" Then save supplement_script_utf8 as build/a068/line_fit.py and run it; it updates results.json without rerendering inputs.\"\nfor path, expected_hash in report[\"source\"][\"source_sha256\"].items():\n    assert hashlib.sha256((ROOT/path).read_bytes()).hexdigest() == expected_hash, path\n(OUT/\"results.json\").write_text(json.dumps(report, indent=2, allow_nan=False)+\"\\n\")\nprint(json.dumps({\"carrier_hz\": carrier_hz, \"folded_hz\": folded_hz,\n                  \"predicted_amplitude_at_t0_v\": float(np.linalg.norm(expected)), \"fits\": fits}, indent=2))\n"
+  },
+  "predicted_folded_line_diagnostic": {
+    "key": 72,
+    "midi_pitch": 100,
+    "velocity": 0.7,
+    "synthetic_quadratic_term": "a2*x_mode2^2 in linkage, differentiated to voltage, with all other modal terms retained in the measured render",
+    "modal_natural_hz": 14266.280663189013,
+    "modal_beta_per_s": 7.0,
+    "carrier_hz": 28532.561239376762,
+    "folded_48khz_hz": 19467.438760623238,
+    "line_envelope_decay_per_s": 14.0,
+    "pickup_displacement_amplitude_m": 7.496846908377288e-09,
+    "synthetic_network_voltage_gain": 0.33280638988268574,
+    "predicted_cos_sin_coefficients_at_t0_v": [
+      -1.0474588434273008e-13,
+      1.3413112232111255e-09
+    ],
+    "predicted_amplitude_at_t0_v": 1.3413112273010415e-09,
+    "fits": [
+      {
+        "native_hz": 48000,
+        "window": "early_held_edge_excluded",
+        "time_interval_s": [
+          0.025,
+          0.05
+        ],
+        "basis_condition_number": 1.0014425950766126,
+        "cos_sin_coefficients_at_t0_v": [
+          -7.981845339938999e-12,
+          1.3486295093842892e-09
+        ],
+        "fitted_amplitude_at_t0_v": 1.3486531293987863e-09,
+        "amplitude_ratio_to_predicted_48khz_fold": 1.0054736752726048,
+        "fraction_of_residual_squared_norm_explained": 0.9730267040698479,
+        "remaining_residual_rms_v": 9.486776863878482e-11,
+        "role": "predicted folded-line diagnostic"
+      },
+      {
+        "native_hz": 48000,
+        "window": "later_held_edge_excluded",
+        "time_interval_s": [
+          0.15,
+          0.5
+        ],
+        "basis_condition_number": 1.0005218205483533,
+        "cos_sin_coefficients_at_t0_v": [
+          1.2069270767193866e-11,
+          1.3057852148528057e-09
+        ],
+        "fitted_amplitude_at_t0_v": 1.3058409913251458e-09,
+        "amplitude_ratio_to_predicted_48khz_fold": 0.9735555512740558,
+        "fraction_of_residual_squared_norm_explained": 0.20516119361489027,
+        "remaining_residual_rms_v": 7.108655181880518e-11,
+        "role": "predicted folded-line diagnostic"
+      },
+      {
+        "native_hz": 96000,
+        "window": "early_held_edge_excluded",
+        "time_interval_s": [
+          0.025,
+          0.05
+        ],
+        "basis_condition_number": 1.0004214889677996,
+        "cos_sin_coefficients_at_t0_v": [
+          -5.89164257327397e-12,
+          9.600839771578521e-14
+        ],
+        "fitted_amplitude_at_t0_v": 5.8924247830283145e-12,
+        "amplitude_ratio_to_predicted_48khz_fold": 0.004393033222337912,
+        "fraction_of_residual_squared_norm_explained": 0.0012291657426140024,
+        "remaining_residual_rms_v": 7.097108059117124e-11,
+        "role": "96 kHz negative control at the same fitted frequency"
+      },
+      {
+        "native_hz": 96000,
+        "window": "later_held_edge_excluded",
+        "time_interval_s": [
+          0.15,
+          0.5
+        ],
+        "basis_condition_number": 1.00015251219392,
+        "cos_sin_coefficients_at_t0_v": [
+          -1.1901518976967734e-11,
+          -2.456469621685515e-12
+        ],
+        "fitted_amplitude_at_t0_v": 1.215238235743868e-11,
+        "amplitude_ratio_to_predicted_48khz_fold": 0.009060076520712832,
+        "fraction_of_residual_squared_norm_explained": 3.419320426290007e-05,
+        "remaining_residual_rms_v": 5.7486344939582596e-11,
+        "role": "96 kHz negative control at the same fitted frequency"
+      }
+    ],
+    "limitation": "Fitting one preselected line is supporting diagnostic evidence, not a full alias spectrum, statistical confidence interval, audibility result or certified error bound. t0 amplitudes are fitted/extrapolated coefficients, not measured instantaneous peaks."
+  },
+  "analysis_software_documentation": [
+    {
+      "url": "https://docs.scipy.org/doc/scipy-1.17.0/reference/generated/scipy.signal.firwin.html",
+      "relevance": "Odd-tap linear phase; scalar cutoff is a half-amplitude point rather than an ideal brick-wall edge."
+    },
+    {
+      "url": "https://docs.scipy.org/doc/scipy-1.17.0/reference/generated/scipy.signal.fftconvolve.html",
+      "relevance": "Same-mode convolution centers the full result; boundary effects remain."
+    }
+  ],
+  "recorded_result_note": "The documentation links and this note annotate the observed results; the retained two-script procedure reproduces numerical fields and source/input/filter identities."
+}

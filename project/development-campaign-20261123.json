@@ -585,26 +585,89 @@
       "wave": 4,
       "task_name": "/root/w4_a065",
       "scope": "Offline contact domain boundaries and rollback tests",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/development-20261123/W4-A065.md",
-      "report_sha256": null
+      "report_sha256": "4af79f3121494f0e19873582420a7cdccf844db82688bca252570b40716e502e"
     },
     {
       "id": "A066",
       "wave": 4,
       "task_name": "/root/w4_a066",
       "scope": "VST3 partial state transfer and retry invariants",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/development-20261123/W4-A066.md",
-      "report_sha256": null
+      "report_sha256": "a03b2a56e4060747b77d63ab29a45fd68c01d7887d5df598f20cae7146b8f83d"
     },
     {
       "id": "A067",
       "wave": 4,
       "task_name": "/root/w4_a067",
       "scope": "Independent adversarial review of hardened contact evidence inputs",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/development-20261123/W4-A067.md",
+      "report_sha256": "7d320311c7e5602277e6f583619c5a307c699ac4eef3368668bfbfa61688fcf7"
+    },
+    {
+      "id": "A068",
+      "wave": 4,
+      "task_name": "/root/w4_a068",
+      "scope": "Quantify synthetic resampling and aliasing residuals",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W4-A068.md",
+      "report_sha256": "ce199617359d3b271635951691215a6a89a77478a5f581015bd852bd6adc3633"
+    },
+    {
+      "id": "A069",
+      "wave": 4,
+      "task_name": "/root/w4_a069",
+      "scope": "Independently audit and measure actual host callback benchmark",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W4-A069.md",
+      "report_sha256": "765cc4241f7aaa07cb032781b511924fc038809adbc04029290c9b9863953cc2"
+    },
+    {
+      "id": "A070",
+      "wave": 4,
+      "task_name": "/root/w4_a070",
+      "scope": "Repair legacy and relaunch evidence consistency checks",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W4-A070.md",
+      "report_sha256": "0dff4b7b1b1ce32ad4143f78395eb2f66105d6bc99e6bc5c5ba87cb3edfe5115"
+    },
+    {
+      "id": "A071",
+      "wave": 4,
+      "task_name": "/root/w4_a071",
+      "scope": "Exercise pinned SDK rejection and default-build isolation",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W4-A071.md",
+      "report_sha256": "2e624705587506066ddca9eac0347b99e8ed720612c713817ee347587548221f"
+    },
+    {
+      "id": "A072",
+      "wave": 4,
+      "task_name": "/root/w4_a072",
+      "scope": "Audit public header and optional dependency boundaries",
+      "status": "running",
+      "report": "docs/agents/development-20261123/W4-A072.md",
+      "report_sha256": null
+    },
+    {
+      "id": "A073",
+      "wave": 4,
+      "task_name": "/root/w4_a073",
+      "scope": "Independent VST3 automation trajectory and tie-order tests",
+      "status": "running",
+      "report": "docs/agents/development-20261123/W4-A073.md",
+      "report_sha256": null
+    },
+    {
+      "id": "A074",
+      "wave": 4,
+      "task_name": "/root/w4_a074",
+      "scope": "Independent MIDI identity model through the VST3 processor",
+      "status": "running",
+      "report": "docs/agents/development-20261123/W4-A074.md",
       "report_sha256": null
     }
   ]
