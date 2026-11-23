@@ -807,6 +807,8 @@ void stream_errors() {
 }
 
 void controller_mapping() {
+    // Keep a nonnull host context alive through controller destruction.
+    MemoryStream host_context;
     ControllerHost host;
     auto& controller = host.controller;
     require(controller.getParameterCount() == 2, "controller parameter count");
@@ -891,6 +893,44 @@ void controller_mapping() {
     saved.position = 0;
     require(read_state_stream(&saved) == InstrumentState{0.25F, false},
             "controller state round-trip differs");
+
+    const auto reject_duplicate = [&](sdk::FUnknown* context) {
+        auto* gain = controller.getParameterObject(kGainId);
+        auto* pedal = controller.getParameterObject(kSustainId);
+        const auto gain_value = controller.getParamNormalized(kGainId);
+        const auto pedal_value = controller.getParamNormalized(kSustainId);
+        require(controller.initialize(context) != sdk::kResultOk,
+                "duplicate controller initialization succeeded");
+        require(controller.getParameterCount() == 2 &&
+                controller.getParameterObject(kGainId) == gain &&
+                controller.getParameterObject(kSustainId) == pedal &&
+                controller.getParamNormalized(kGainId) == gain_value &&
+                controller.getParamNormalized(kSustainId) == pedal_value,
+                "duplicate initialization changed parameter objects or values");
+    };
+    require(controller.setParamNormalized(kSustainId, 1.0) == sdk::kResultOk,
+            "controller lifecycle pedal setup");
+    reject_duplicate(nullptr);
+    reject_duplicate(&host_context);
+
+    require(controller.terminate() == sdk::kResultOk &&
+            controller.getParameterCount() == 0, "controller termination retained parameters");
+    require(controller.initialize(&host_context) == sdk::kResultOk &&
+            controller.getParameterCount() == 2 &&
+            controller.getParamNormalized(kGainId) == 0.5 &&
+            controller.getParamNormalized(kSustainId) == 0.0,
+            "controller nonnull-context reinitialization failed");
+    require(controller.setParamNormalized(kGainId, 0.75) == sdk::kResultOk &&
+            controller.setParamNormalized(kSustainId, 1.0) == sdk::kResultOk,
+            "reinitialized controller lifecycle setup");
+    reject_duplicate(&host_context);
+    reject_duplicate(nullptr);
+    require(controller.terminate() == sdk::kResultOk &&
+            controller.initialize(nullptr) == sdk::kResultOk &&
+            controller.getParameterCount() == 2 &&
+            controller.getParamNormalized(kGainId) == 0.5 &&
+            controller.getParamNormalized(kSustainId) == 0.0,
+            "controller null-context reinitialization failed");
 }
 
 void allocation_guard() {

@@ -4,7 +4,6 @@
 #include <atomic>
 #include <bit>
 #include <climits>
-#include <cmath>
 #include <cstdint>
 #include <limits>
 #include <optional>
@@ -12,7 +11,8 @@
 
 namespace rhodes {
 
-static_assert(CHAR_BIT == 8 && sizeof(float) == 4 && std::numeric_limits<float>::is_iec559);
+static_assert(CHAR_BIT == 8 && sizeof(float) == 4 && std::numeric_limits<float>::is_iec559 &&
+              std::numeric_limits<float>::radix == 2 && std::numeric_limits<float>::digits == 24);
 static_assert(std::atomic<std::uint64_t>::is_always_lock_free,
               "The experimental host adapter requires lock-free 64-bit atomics");
 
@@ -25,12 +25,16 @@ struct InstrumentState {
 inline constexpr std::size_t instrument_state_bytes = 16;
 using EncodedInstrumentState = std::array<std::uint8_t, instrument_state_bytes>;
 
-[[nodiscard]] inline bool valid_instrument_state(InstrumentState state) noexcept {
-    return std::isfinite(state.monitoring_gain) && state.monitoring_gain >= 0.0F &&
-           state.monitoring_gain <= 1.0F;
-}
-
 namespace state_detail {
+// Positive binary32 encodings are ordered from +0 through +1. The only
+// permitted sign-bit encoding is -0. Integer tests keep the wire protocol
+// independent of a host's denormals-are-zero/flush-to-zero arithmetic mode.
+inline constexpr bool valid_gain_bits(std::uint32_t bits) noexcept {
+    return bits <= 0x3f800000U || bits == 0x80000000U;
+}
+inline constexpr std::uint32_t canonical_gain_bits(std::uint32_t bits) noexcept {
+    return (bits & 0x7fffffffU) == 0U ? 0U : bits;
+}
 inline std::uint32_t read_u32(std::span<const std::uint8_t> bytes, std::size_t at) noexcept {
     return static_cast<std::uint32_t>(bytes[at]) |
            (static_cast<std::uint32_t>(bytes[at + 1]) << 8U) |
@@ -43,7 +47,7 @@ inline void write_u32(EncodedInstrumentState& bytes, std::size_t at, std::uint32
     }
 }
 inline std::uint32_t gain_bits(float gain) noexcept {
-    return std::bit_cast<std::uint32_t>(gain == 0.0F ? 0.0F : gain);
+    return canonical_gain_bits(std::bit_cast<std::uint32_t>(gain));
 }
 inline std::uint64_t pack(InstrumentState state) noexcept {
     return static_cast<std::uint64_t>(gain_bits(state.monitoring_gain)) |
@@ -54,6 +58,10 @@ inline InstrumentState unpack(std::uint64_t packed) noexcept {
             ((packed >> 32U) & 1U) != 0};
 }
 } // namespace state_detail
+
+[[nodiscard]] inline bool valid_instrument_state(InstrumentState state) noexcept {
+    return state_detail::valid_gain_bits(std::bit_cast<std::uint32_t>(state.monitoring_gain));
+}
 
 [[nodiscard]] inline std::optional<EncodedInstrumentState>
 encode_instrument_state(InstrumentState state) noexcept {
@@ -71,13 +79,14 @@ decode_instrument_state(std::span<const std::uint8_t> bytes) noexcept {
         bytes[6] != 1 || bytes[7] != 0) {
         return std::nullopt;
     }
-    const float gain = std::bit_cast<float>(state_detail::read_u32(bytes, 8));
-    const float pedal = std::bit_cast<float>(state_detail::read_u32(bytes, 12));
-    InstrumentState state{gain == 0.0F ? 0.0F : gain, pedal == 1.0F};
-    if (!valid_instrument_state(state) || (pedal != 0.0F && pedal != 1.0F)) {
+    const auto gain = state_detail::read_u32(bytes, 8);
+    const auto pedal = state_detail::read_u32(bytes, 12);
+    if (!state_detail::valid_gain_bits(gain) ||
+        (pedal != 0U && pedal != 0x80000000U && pedal != 0x3f800000U)) {
         return std::nullopt;
     }
-    return state;
+    return InstrumentState{std::bit_cast<float>(state_detail::canonical_gain_bits(gain)),
+                           pedal == 0x3f800000U};
 }
 
 // UI writes configuration recalls; one audio owner consumes at block boundaries.

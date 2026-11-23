@@ -369,26 +369,134 @@
       "wave": 3,
       "task_name": "/root/w3_a041",
       "scope": "Cache and prewarm exact modal damping transitions to address measured pedal event cost",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/development-20261123/W3-A041.md",
-      "report_sha256": null
+      "report_sha256": "ff3fa452553342270e7b44f06bc06a11b7a38a1ef8df831aa21fd232dfbead3c"
     },
     {
       "id": "A042",
       "wave": 3,
       "task_name": "/root/w3_a042",
       "scope": "Repair duplicate controller initialization and retain lifecycle regression coverage",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/development-20261123/W3-A042.md",
-      "report_sha256": null
+      "report_sha256": "0e49884285168b823ac88dce0fbede3869a1eb6b533fb7c7e4a4f0e99e4b712b"
     },
     {
       "id": "A043",
       "wave": 3,
       "task_name": "/root/w3_a043",
       "scope": "Retain portable contact CLI JSON relaunch and malformed-input regression checks",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/development-20261123/W3-A043.md",
+      "report_sha256": "2b000af6cbfcc5b521d0aa45908d50f7239956a0d03ac6e9e68b0409bba2073f"
+    },
+    {
+      "id": "A044",
+      "wave": 3,
+      "task_name": "/root/w3_a044",
+      "scope": "Retain deterministic sweep planning no-clobber and candidate failure evidence tests",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W3-A044.md",
+      "report_sha256": "bcc149ceaa9bdddd92fb8705aafb3b90a0007bc4993a99857401ac2647fb80f5"
+    },
+    {
+      "id": "A045",
+      "wave": 3,
+      "task_name": "/root/w3_a045",
+      "scope": "Exercise portable state format with independent float-bit and malformed-chunk properties",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W3-A045.md",
+      "report_sha256": "2b22f4a246c2413eada81de16de17c546bc85a1f49eca42bec2ae7311d078b5e"
+    },
+    {
+      "id": "A046",
+      "wave": 3,
+      "task_name": "/root/w3_a046",
+      "scope": "Compare MIDI ownership and physical transitions against an independent deterministic holder model",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W3-A046.md",
+      "report_sha256": "843fee14e845224e9db6051a6c27a6f542b7248f0220789d3765e7b05e193bec"
+    },
+    {
+      "id": "A047",
+      "wave": 3,
+      "task_name": "/root/w3_a047",
+      "scope": "Compare bounded event ordering and partition behavior with an independent deterministic schedule model",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W3-A047.md",
+      "report_sha256": "c27604d988e7547cc3770f821bc579d28377f3ae2137e3bf9d699c60345f556f"
+    },
+    {
+      "id": "A048",
+      "wave": 3,
+      "task_name": "/root/w3_a048",
+      "scope": "Audit portable state bytes and mailbox domain validation under floating point flush modes",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W3-A048.md",
+      "report_sha256": "4512c625d82dc7878b1f795a3eec75331d333395e5984022ac0104448bd4a51d"
+    },
+    {
+      "id": "A049",
+      "wave": 3,
+      "task_name": "/root/w3_a049",
+      "scope": "Run ThreadSanitizer on actual concurrent mailbox tests and classify observed limits",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W3-A049.md",
+      "report_sha256": "b976242ceaf26f165ddad09e94dd16c927335258136850d0e9cdcb7184a119e9"
+    },
+    {
+      "id": "A050",
+      "wave": 3,
+      "task_name": "/root/w3_a050",
+      "scope": "Make serialized state domain validation and canonicalization independent of floating point flush modes",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W3-A050.md",
+      "report_sha256": "2ee8ce33dcc5a4f016153d28f8bcb0416356cfdc89436c77ff675a73e3daeafd"
+    },
+    {
+      "id": "A051",
+      "wave": 3,
+      "task_name": "/root/w3_a051",
+      "scope": "Probe normalized host and core controls for flush-mode-dependent validation and state changes",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W3-A051.md",
+      "report_sha256": "2800ec6e701bc640f378849cfe1cda9e8538613ab4dc0947c42a0026da91dd02"
+    },
+    {
+      "id": "A052",
+      "wave": 3,
+      "task_name": "/root/w3_a052",
+      "scope": "Retain independent polynomial-support folding and source-drift tests for the alias auditor",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W3-A052.md",
+      "report_sha256": "570dce38eb9777c61ae3c18b774c6fe046d78b2be824f38c48ca1330b4fee37a"
+    },
+    {
+      "id": "A054",
+      "wave": 3,
+      "task_name": "/root/w3_a054",
+      "scope": "Run the complete independent contact refinement and coordinate-invariance audit without changing budgets",
+      "status": "running",
+      "report": "docs/agents/development-20261123/W3-A054.md",
+      "report_sha256": null
+    },
+    {
+      "id": "A053",
+      "wave": 3,
+      "task_name": "/root/w3_a053",
+      "scope": "Repair normalized control validation and gain conversion under host flush modes",
+      "status": "running",
+      "report": "docs/agents/development-20261123/W3-A053.md",
+      "report_sha256": null
+    },
+    {
+      "id": "A055",
+      "wave": 3,
+      "task_name": "/root/w3_a055",
+      "scope": "Independently retain real host and core control regressions across floating point flush modes",
+      "status": "running",
+      "report": "docs/agents/development-20261123/W3-A055.md",
       "report_sha256": null
     }
   ]

@@ -12,6 +12,7 @@ public:
     static Steinberg::FUnknown* createInstance(void* context);
 
     Steinberg::tresult PLUGIN_API initialize(Steinberg::FUnknown* context) override;
+    Steinberg::tresult PLUGIN_API terminate() override;
     Steinberg::tresult PLUGIN_API setComponentState(Steinberg::IBStream* state) override;
     Steinberg::tresult PLUGIN_API setState(Steinberg::IBStream* state) override;
     Steinberg::tresult PLUGIN_API getState(Steinberg::IBStream* state) override;
@@ -24,6 +25,9 @@ public:
 
     DELEGATE_REFCOUNT(Steinberg::Vst::EditController)
     Steinberg::tresult PLUGIN_API queryInterface(const char* iid, void** obj) override;
+
+private:
+    bool initialized_ = false;
 };
 
 } // namespace rhodes::vst3

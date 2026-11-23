@@ -60,13 +60,30 @@ bool ModalOscillator::update_transition(double decay) noexcept {
             return false;
         }
     }
-    transition_ = next;
+    transitions_[alternate_active_] = next;
     parameters_.decay_per_s = decay;
     return true;
 }
 
 bool ModalOscillator::set_decay(double decay) noexcept {
-    return configured_ && update_transition(decay);
+    if (!configured_) { return false; }
+    if (decay == parameters_.decay_per_s) { return true; }
+    if (alternate_transition_valid_ && decay == alternate_decay_per_s_) {
+        alternate_active_ = !alternate_active_;
+        alternate_decay_per_s_ = parameters_.decay_per_s;
+        parameters_.decay_per_s = decay;
+        return true;
+    }
+    // A cache miss retains the original calculation and validation. Store the
+    // old transition only after success, so invalid updates leave both entries
+    // and the mechanical state unchanged. No allocation or retry is involved.
+    const auto previous_transition = transitions_[alternate_active_];
+    const double previous_decay = parameters_.decay_per_s;
+    if (!update_transition(decay)) { return false; }
+    transitions_[!alternate_active_] = previous_transition;
+    alternate_decay_per_s_ = previous_decay;
+    alternate_transition_valid_ = true;
+    return true;
 }
 
 bool ModalOscillator::valid_state(ModalState s) const noexcept {
@@ -99,10 +116,11 @@ bool ModalOscillator::advance() noexcept {
     if (!configured_) {
         return false;
     }
-    return set_state({transition_[0] * state_.displacement_m +
-                          transition_[1] * state_.velocity_m_per_s,
-                      transition_[2] * state_.displacement_m +
-                          transition_[3] * state_.velocity_m_per_s});
+    const auto& transition = transitions_[alternate_active_];
+    return set_state({transition[0] * state_.displacement_m +
+                          transition[1] * state_.velocity_m_per_s,
+                      transition[2] * state_.displacement_m +
+                          transition[3] * state_.velocity_m_per_s});
 }
 
 void ModalOscillator::reset() noexcept { state_ = {}; }
@@ -199,11 +217,15 @@ bool ResearchEngine::prepare(double rate) noexcept {
         const double midi = static_cast<double>(k) + 28.0;
         const double frequency = 440.0 * std::exp2((midi - 69.0) / 12.0);
         for (std::size_t m = 0; m < modes_per_key; ++m) {
-            if (!candidate[k].modes[m].configure(
+            auto& mode = candidate[k].modes[m];
+            if (!mode.configure(
                     {frequency * frequency_ratios[m], damped_decay[m],
-                     synthetic_modal_mass_kg}, rate)) {
+                     synthetic_modal_mass_kg}, rate) ||
+                !mode.set_decay(free_decay[m]) || !mode.set_decay(damped_decay[m])) {
                 return false;
             }
+            // Both loss regimes are prepared before publishing the new engine.
+            // Later note/pedal changes only select fixed validated coefficients.
         }
     }
     keys_ = candidate;
@@ -251,6 +273,7 @@ bool ResearchEngine::note_off(std::size_t key) noexcept {
 }
 
 void ResearchEngine::set_sustain(bool down) noexcept {
+    if (sustain_ == down) { return; }
     sustain_ = down;
     for (auto& key : keys_) {
         update_damping(key);

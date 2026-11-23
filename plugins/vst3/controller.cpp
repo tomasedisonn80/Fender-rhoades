@@ -12,6 +12,9 @@ Steinberg::FUnknown* RhodesController::createInstance(void* /*context*/) {
 }
 
 Steinberg::tresult PLUGIN_API RhodesController::initialize(Steinberg::FUnknown* context) {
+    // The SDK's host-context guard does not detect a prior null-context init.
+    // Reject before adding parameters or replacing their current values.
+    if (initialized_) { return Steinberg::kResultFalse; }
     const auto result = EditController::initialize(context);
     if (result != Steinberg::kResultOk) { return result; }
     parameters.addParameter(new Steinberg::Vst::RangeParameter(
@@ -20,7 +23,14 @@ Steinberg::tresult PLUGIN_API RhodesController::initialize(Steinberg::FUnknown* 
     sustain->appendString(STR16("Off"));
     sustain->appendString(STR16("On"));
     parameters.addParameter(sustain);
+    initialized_ = true;
     return Steinberg::kResultOk;
+}
+
+Steinberg::tresult PLUGIN_API RhodesController::terminate() {
+    const auto result = EditController::terminate();
+    if (result == Steinberg::kResultOk) { initialized_ = false; }
+    return result;
 }
 
 Steinberg::tresult PLUGIN_API RhodesController::setComponentState(Steinberg::IBStream* stream) {

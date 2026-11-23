@@ -29,7 +29,9 @@ class ModalOscillator {
 public:
     // Successful configuration resets state; rejected input leaves it unchanged.
     [[nodiscard]] bool configure(ModalParameters parameters, double sample_rate_hz) noexcept;
-    [[nodiscard]] bool set_decay(double decay_per_s) noexcept; // Preserves q and v.
+    // Preserves q and v. The active and most recent alternate transition are
+    // cached in fixed storage; other supported decay values compute normally.
+    [[nodiscard]] bool set_decay(double decay_per_s) noexcept;
     [[nodiscard]] bool set_state(ModalState state) noexcept;
     [[nodiscard]] bool add_impulse(double impulse_newton_seconds) noexcept;
     [[nodiscard]] bool advance() noexcept;
@@ -44,7 +46,10 @@ private:
     ModalState state_{};
     double sample_rate_hz_ = 48000.0;
     double omega_0_ = 0.0;
-    std::array<double, 4> transition_{};
+    std::array<std::array<double, 4>, 2> transitions_{};
+    double alternate_decay_per_s_ = 0.0;
+    bool alternate_active_ = false;
+    bool alternate_transition_valid_ = false;
     bool configured_ = false;
 };
 

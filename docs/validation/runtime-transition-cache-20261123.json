@@ -1,0 +1,256 @@
+{
+  "scope": "matched short offline full-call observations; no device or realtime guarantee",
+  "environment": {
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+    "compiler": "c++ (Debian 14.2.0-19) 14.2.0",
+    "affinity": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "scheduler": 0,
+    "cpu_models": [
+      "INTEL(R) XEON(R) PLATINUM 8573C"
+    ],
+    "competing_load": "uncontrolled shared development container"
+  },
+  "build": {
+    "core_flags": "-O3 -DNDEBUG -std=c++20 -fPIC -Wall -Wextra -Wpedantic -Wconversion -Wshadow -Werror -Iinclude",
+    "benchmark_flags": "-O3 -DNDEBUG -std=gnu++20 -Wall -Wextra -Wpedantic -Wconversion -Wshadow -Werror -DRHODES_BUILD_CONFIGURATION=\"Release\" -Iinclude",
+    "link_flags": "-O3 -DNDEBUG",
+    "fast_math": false,
+    "lto": false,
+    "sanitizers": false
+  },
+  "runs": [
+    {
+      "rate": 48000,
+      "variant": "before",
+      "command": [
+        "/tmp/rhodes_runtime_before_a041",
+        "--blocks",
+        "500",
+        "--warmup-blocks",
+        "32",
+        "--block-size",
+        "64",
+        "--sample-rate",
+        "48000",
+        "--active-keys",
+        "73",
+        "--workload",
+        "pedal256",
+        "--offsets",
+        "distributed",
+        "--machine",
+        "a041-shared-linux-x86_64"
+      ],
+      "summary": {
+        "observations": 500,
+        "mean_us": 1484.0851480000006,
+        "p50_us": 1400.686,
+        "p95_us": 1751.822,
+        "p99_us": 3320.436,
+        "max_us": 7047.572,
+        "deadline_us": 1333.3333333333333,
+        "deadline_misses": 399
+      },
+      "integrity": {
+        "initial_condition_success": true,
+        "warmup_success": true,
+        "finite_output_and_checksum": true,
+        "checksum_sum_squares": 22.601585012342973,
+        "peak_abs_synthetic_volts": 0.4579410283691668,
+        "status_counts": {
+          "ok": 500,
+          "invalid_input": 0,
+          "arithmetic_fault": 0,
+          "reset_required": 0
+        },
+        "last_failure_sample": null,
+        "observed_subnormal_output_samples": 0,
+        "observed_subnormal_modal_values_at_block_ends": 0,
+        "allocation_evidence": "not measured by this executable"
+      },
+      "raw_file": "build/a041/48000-before.json",
+      "raw_sha256": "ba8b7bc3dbaa24c47deff2556626aa180328e463dd39e45575a994fcbfab7f36"
+    },
+    {
+      "rate": 48000,
+      "variant": "after",
+      "command": [
+        "build/a041/runtime_benchmark",
+        "--blocks",
+        "500",
+        "--warmup-blocks",
+        "32",
+        "--block-size",
+        "64",
+        "--sample-rate",
+        "48000",
+        "--active-keys",
+        "73",
+        "--workload",
+        "pedal256",
+        "--offsets",
+        "distributed",
+        "--machine",
+        "a041-shared-linux-x86_64"
+      ],
+      "summary": {
+        "observations": 500,
+        "mean_us": 263.58508799999987,
+        "p50_us": 229.495,
+        "p95_us": 365.389,
+        "p99_us": 727.218,
+        "max_us": 2103.222,
+        "deadline_us": 1333.3333333333333,
+        "deadline_misses": 2
+      },
+      "integrity": {
+        "initial_condition_success": true,
+        "warmup_success": true,
+        "finite_output_and_checksum": true,
+        "checksum_sum_squares": 22.601585012342973,
+        "peak_abs_synthetic_volts": 0.4579410283691668,
+        "status_counts": {
+          "ok": 500,
+          "invalid_input": 0,
+          "arithmetic_fault": 0,
+          "reset_required": 0
+        },
+        "last_failure_sample": null,
+        "observed_subnormal_output_samples": 0,
+        "observed_subnormal_modal_values_at_block_ends": 0,
+        "allocation_evidence": "not measured by this executable"
+      },
+      "raw_file": "build/a041/48000-after.json",
+      "raw_sha256": "23f776314632b724e2782ca6eb5603ae806542e1a53245e36dbf3cb2ff2e8c21"
+    },
+    {
+      "rate": 192000,
+      "variant": "after",
+      "command": [
+        "build/a041/runtime_benchmark",
+        "--blocks",
+        "500",
+        "--warmup-blocks",
+        "32",
+        "--block-size",
+        "64",
+        "--sample-rate",
+        "192000",
+        "--active-keys",
+        "73",
+        "--workload",
+        "pedal256",
+        "--offsets",
+        "distributed",
+        "--machine",
+        "a041-shared-linux-x86_64"
+      ],
+      "summary": {
+        "observations": 500,
+        "mean_us": 243.4794740000002,
+        "p50_us": 229.063,
+        "p95_us": 324.018,
+        "p99_us": 380.917,
+        "max_us": 517.27,
+        "deadline_us": 333.3333333333333,
+        "deadline_misses": 19
+      },
+      "integrity": {
+        "initial_condition_success": true,
+        "warmup_success": true,
+        "finite_output_and_checksum": true,
+        "checksum_sum_squares": 33.08452373841355,
+        "peak_abs_synthetic_volts": 0.4633394798094121,
+        "status_counts": {
+          "ok": 500,
+          "invalid_input": 0,
+          "arithmetic_fault": 0,
+          "reset_required": 0
+        },
+        "last_failure_sample": null,
+        "observed_subnormal_output_samples": 0,
+        "observed_subnormal_modal_values_at_block_ends": 0,
+        "allocation_evidence": "not measured by this executable"
+      },
+      "raw_file": "build/a041/192000-after.json",
+      "raw_sha256": "9fd1d44fa9d9e6cdc388ff4d966a87404fe5381a1c6d65f287edb0fe93f7e328"
+    },
+    {
+      "rate": 192000,
+      "variant": "before",
+      "command": [
+        "/tmp/rhodes_runtime_before_a041",
+        "--blocks",
+        "500",
+        "--warmup-blocks",
+        "32",
+        "--block-size",
+        "64",
+        "--sample-rate",
+        "192000",
+        "--active-keys",
+        "73",
+        "--workload",
+        "pedal256",
+        "--offsets",
+        "distributed",
+        "--machine",
+        "a041-shared-linux-x86_64"
+      ],
+      "summary": {
+        "observations": 500,
+        "mean_us": 1568.0715680000003,
+        "p50_us": 1367.17,
+        "p95_us": 2320.82,
+        "p99_us": 2635.114,
+        "max_us": 5986.321,
+        "deadline_us": 333.3333333333333,
+        "deadline_misses": 500
+      },
+      "integrity": {
+        "initial_condition_success": true,
+        "warmup_success": true,
+        "finite_output_and_checksum": true,
+        "checksum_sum_squares": 33.08452373841355,
+        "peak_abs_synthetic_volts": 0.4633394798094121,
+        "status_counts": {
+          "ok": 500,
+          "invalid_input": 0,
+          "arithmetic_fault": 0,
+          "reset_required": 0
+        },
+        "last_failure_sample": null,
+        "observed_subnormal_output_samples": 0,
+        "observed_subnormal_modal_values_at_block_ends": 0,
+        "allocation_evidence": "not measured by this executable"
+      },
+      "raw_file": "build/a041/192000-before.json",
+      "raw_sha256": "1437847a2f851d5304aef1606493c5967472431480f47e6b72c6a494657e4ff4"
+    }
+  ],
+  "executables": {
+    "before": {
+      "path": "/tmp/rhodes_runtime_before_a041",
+      "sha256": "fd69fc4cc35f1724004aaace85bd3bee916d518a0d15fe10329fbfe54e7399b6"
+    },
+    "after": {
+      "path": "build/a041/runtime_benchmark",
+      "sha256": "d15f8cca51c218de43b3c5514ac11c700a3dec4ccea81ebfb8db26d1678db5fd"
+    }
+  },
+  "sources": {
+    "include/rhodes/research_engine.hpp": "2f00f75a418ab5988107fcc7a3ddc4503c4f5d72c71b925515a72c7cb9136bf5",
+    "src/research_engine.cpp": "e4e29de12de93f13607ae879a72b9d9f390b15359ff374a256ca55293c3fed5d",
+    "tests/cpp/modal_transition_cache_test.cpp": "50cbca48f767189f17419424d13dcfedc810e998fa6ac436a7bbf7eb95a3fa21"
+  }
+}
