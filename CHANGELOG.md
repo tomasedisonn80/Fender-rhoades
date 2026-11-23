@@ -13,6 +13,14 @@
   optional SciPy oracle and explicit unfinished refinement/extrema gates.
 - Complete event-processor callback benchmark with bounded stress schedules and
   retained raw timing observations; no audio-device deadline guarantee.
+- Cached modal transition matrices with matched historical timing and trajectory
+  evidence, plus an actual VST3 callback benchmark for both sample formats.
+- Floating-point-environment-independent state/control validation and conversion;
+  retained host buffer, stream, automation and note-ownership model checks.
+- Strict independent-auditor input/action validation and always-active numerical
+  self-checks under optimized Python; failed contact convergence remains visible.
+- Pinned SDK content verification, explicit plugin symbol visibility and a
+  complete optional host-test build target.
 - Five-wave development campaign with actual assignments and immutable reports.
 
 - Original C++20 modal, pickup, and passive-network research primitives.

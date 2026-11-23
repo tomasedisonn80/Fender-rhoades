@@ -74,6 +74,8 @@ python3 tools/validate_data.py
 python3 tools/check_docs.py
 python3 tools/campaign.py validate
 python3 tools/campaign.py sync --check
+python3 tools/development_campaign.py validate
+python3 tools/development_campaign.py sync --check
 python3 -m unittest discover -s tests/python -v
 ```
 

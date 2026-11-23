@@ -10,6 +10,7 @@ on:
       - include/rhodes/**
       - src/**
       - plugins/vst3/**
+      - apps/vst3_benchmark.cpp
       - tests/cpp/**
       - docs/DEPENDENCIES.md
   workflow_dispatch:

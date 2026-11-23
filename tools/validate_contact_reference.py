@@ -1302,8 +1302,11 @@ def self_check() -> dict[str, Any]:
                                         "radau_loss_j": end["modal_loss_j"]}
     coarse = radau_oracle(fixtures()["preload_plus"], tight=False)
     fine = radau_oracle(fixtures()["preload_plus"], tight=True)
-    delta = max(float(np.max(np.abs(coarse.state(float(t))-fine.state(float(t)))))
-                for t in np.linspace(0, p.duration, 1001))
+    differences = [float(np.max(np.abs(coarse.state(float(t))-fine.state(float(t)))))
+                   for t in np.linspace(0, p.duration, 1001)]
+    require_self_check(all(math.isfinite(value) for value in differences),
+                       "independent Radau refinement differences must be finite at every sample")
+    delta = max(differences)
     require_self_check(delta < 1e-10,
                        "independent Radau refinement must differ by less than 1e-10 in state or ledger coordinates")
     checks["independent_radau_refinement"] = {"maximum_state_or_ledger_difference": delta,

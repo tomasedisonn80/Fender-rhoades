@@ -729,26 +729,62 @@
       "wave": 5,
       "task_name": "/root/w5_a081",
       "scope": "Exercise actual VST3 state recall concurrently with audio processing",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/development-20261123/W5-A081.md",
-      "report_sha256": null
+      "report_sha256": "9f537e81d98a1d477f4570a6cebd5d346c66b4156a02f7bb6dd9eb0f91fedd07"
     },
     {
       "id": "A082",
       "wave": 5,
       "task_name": "/root/w5_a082",
       "scope": "Preserve and independently recompute historical runtime raw measurements",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/development-20261123/W5-A082.md",
-      "report_sha256": null
+      "report_sha256": "3e36b10bd61f21d886be5b683cb7756940f18f1892a420c7b5daa9f7b14cebb4"
     },
     {
       "id": "A083",
       "wave": 5,
       "task_name": "/root/w5_a083",
       "scope": "Challenge matrix and refinement oracle self-checks under optimized Python",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/development-20261123/W5-A083.md",
+      "report_sha256": "8a156b35a4d19bb87f4ce9aacaeee205627d290e4a003c6581fb4ba39aea580b"
+    },
+    {
+      "id": "A084",
+      "wave": 5,
+      "task_name": "/root/w5_a084",
+      "scope": "Independently audit retained aliasing measurements and method limitations",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W5-A084.md",
+      "report_sha256": "685180440aeb1a43bddb9078bbd0ca94bdf0563181060ffed24da3c742955575"
+    },
+    {
+      "id": "A085",
+      "wave": 5,
+      "task_name": "/root/w5_a085",
+      "scope": "Review explicit portability assumptions for configured host platforms",
+      "status": "running",
+      "report": "docs/agents/development-20261123/W5-A085.md",
+      "report_sha256": null
+    },
+    {
+      "id": "A086",
+      "wave": 5,
+      "task_name": "/root/w5_a086",
+      "scope": "Verify a fresh standalone Release build and complete default tests without the SDK",
+      "status": "running",
+      "report": "docs/agents/development-20261123/W5-A086.md",
+      "report_sha256": null
+    },
+    {
+      "id": "A087",
+      "wave": 5,
+      "task_name": "/root/w5_a087",
+      "scope": "Reconcile current runtime and verification documentation with implemented behavior",
+      "status": "running",
+      "report": "docs/agents/development-20261123/W5-A087.md",
       "report_sha256": null
     }
   ]
