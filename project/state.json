@@ -4,8 +4,8 @@
   "goal": "Physically model a Fender Rhodes Mark I from evolving mechanical, electromagnetic and circuit states without recorded-note playback.",
   "target": "One documented 73-key Mark I Stage specimen at its specified loaded electrical output; identity and measurements pending.",
   "fidelity_status": "unvalidated",
-  "revision": 12,
-  "updated_at": "2026-11-23T13:00:31Z",
+  "revision": 16,
+  "updated_at": "2026-11-23T13:08:44Z",
   "tasks": [
     {
       "id": "FND-001",
@@ -150,7 +150,7 @@
       "id": "PHY-002",
       "title": "Implement finite-mass hammer and damper contact reference",
       "milestone": "One-note mechanics",
-      "status": "todo",
+      "status": "in_progress",
       "priority": 40,
       "dependencies": [
         "PHY-001"
@@ -164,8 +164,13 @@
         "numerical"
       ],
       "evidence": [],
-      "owner": null,
-      "claim": null,
+      "owner": "development-root",
+      "claim": {
+        "owner": "development-root",
+        "token": "6dabebffe18f7ab38eeebc9052d01dfc",
+        "claimed_at": "2026-11-23T13:06:34Z",
+        "expires_at": "2026-11-24T13:06:34Z"
+      },
       "blockers": [],
       "paths": [
         "include/rhodes",
@@ -297,7 +302,7 @@
       "id": "RT-001",
       "title": "Measure runtime cost and numerical approximation errors",
       "milestone": "Runtime engineering",
-      "status": "todo",
+      "status": "in_progress",
       "priority": 45,
       "dependencies": [
         "PHY-001"
@@ -312,8 +317,13 @@
         "numerical"
       ],
       "evidence": [],
-      "owner": null,
-      "claim": null,
+      "owner": "development-root",
+      "claim": {
+        "owner": "development-root",
+        "token": "bc88c7c1031310a98cdee53215295340",
+        "claimed_at": "2026-11-23T13:06:35Z",
+        "expires_at": "2026-11-24T13:06:35Z"
+      },
       "blockers": [],
       "paths": [
         "src",
@@ -415,6 +425,49 @@
         "data",
         "docs"
       ]
+    },
+    {
+      "id": "HOST-001",
+      "title": "Build and validate an experimental VST3 instrument adapter",
+      "milestone": "Host engineering prototype",
+      "status": "in_progress",
+      "priority": 46,
+      "dependencies": [
+        "PHY-001"
+      ],
+      "acceptance": [
+        "Bounded sample-offset event processing preserves producer order and physical key state; invalid blocks reject without mutation.",
+        "An optional VST3 instrument builds against an explicitly identified public SDK and passes the available SDK validator with bounded audio processing and documented output scaling.",
+        "Host configuration round-trips through a versioned validated state format; MIDI range, sustain, overlapping notes, reset and unsupported host conditions are explicit and tested.",
+        "Document the actual tested platform and synthetic sound boundary without claiming measured fidelity or an untested release."
+      ],
+      "required_evidence": [
+        "numerical",
+        "documentary"
+      ],
+      "evidence": [],
+      "owner": "development-root",
+      "claim": {
+        "owner": "development-root",
+        "token": "d88330d6b1e5f189cdd744b2a8902596",
+        "claimed_at": "2026-11-23T13:08:44Z",
+        "expires_at": "2026-11-24T13:08:44Z"
+      },
+      "blockers": [],
+      "paths": [
+        "include/rhodes",
+        "src",
+        "plugins",
+        "tests",
+        "apps",
+        "cmake",
+        "CMakeLists.txt",
+        ".github/workflows",
+        "docs",
+        "README.md",
+        "RIGHTS.md",
+        "CHANGELOG.md"
+      ]
     }
   ],
   "history": [
@@ -513,6 +566,38 @@
       "task": "PHY-001",
       "owner": "integration-root",
       "detail": "Evidence: PHY-20261123-numerical"
+    },
+    {
+      "revision": 13,
+      "at": "2026-11-23T13:06:34Z",
+      "action": "claim",
+      "task": "PHY-002",
+      "owner": "development-root",
+      "detail": "Lease until 2026-11-24T13:06:34Z"
+    },
+    {
+      "revision": 14,
+      "at": "2026-11-23T13:06:35Z",
+      "action": "claim",
+      "task": "RT-001",
+      "owner": "development-root",
+      "detail": "Lease until 2026-11-24T13:06:35Z"
+    },
+    {
+      "revision": 15,
+      "at": "2026-11-23T13:08:44Z",
+      "action": "define_task",
+      "task": "HOST-001",
+      "owner": "development-root",
+      "detail": "Authorized development continuation: independent host-engineering prototype using synthetic core; does not bypass measured physical-model or RT-001 numerical gates. See docs/agents/DEVELOPMENT_PLAN.md."
+    },
+    {
+      "revision": 16,
+      "at": "2026-11-23T13:08:44Z",
+      "action": "claim",
+      "task": "HOST-001",
+      "owner": "development-root",
+      "detail": "Lease until 2026-11-24T13:08:44Z"
     }
   ]
 }

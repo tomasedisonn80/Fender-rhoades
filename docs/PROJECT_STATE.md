@@ -6,9 +6,9 @@
 
 **Fidelity status:** `unvalidated`. Task completion is not a realism percentage.
 
-**State revision:** 12 · **Last state change:** 2026-11-23T13:00:31Z
+**State revision:** 16 · **Last state change:** 2026-11-23T13:08:44Z
 
-blocked: **2** | done: **2** | in_progress: **0** | todo: **9**
+blocked: **2** | done: **2** | in_progress: **3** | todo: **7**
 
 ## Task ledger
 
@@ -18,8 +18,9 @@ blocked: **2** | done: **2** | in_progress: **0** | todo: **9**
 | SPEC-001 | Identify the reference Mark I Stage specimen | blocked | FND-001 | — |
 | DATA-001 | Acquire calibrated specimen data and held-out manifest | blocked | FND-001, SPEC-001 | — |
 | PHY-001 | Validate analytic mechanical and pickup primitives | done | FND-001 | PHY-20261123-numerical |
-| PHY-002 | Implement finite-mass hammer and damper contact reference | todo | PHY-001 | — |
-| RT-001 | Measure runtime cost and numerical approximation errors | todo | PHY-001 | — |
+| PHY-002 | Implement finite-mass hammer and damper contact reference | in_progress | PHY-001 | — |
+| RT-001 | Measure runtime cost and numerical approximation errors | in_progress | PHY-001 | — |
+| HOST-001 | Build and validate an experimental VST3 instrument adapter | in_progress | PHY-001 | — |
 | MAG-001 | Identify magnetic linkage and reciprocal force reference | todo | SPEC-001, DATA-001 | — |
 | ELEC-001 | Identify and solve the specimen pickup network | todo | SPEC-001, DATA-001 | — |
 | VAL-001 | Predict held-out behavior of one measured note | todo | PHY-002, MAG-001, ELEC-001 | — |
@@ -32,8 +33,9 @@ blocked: **2** | done: **2** | in_progress: **0** | todo: **9**
 
 Run `python3 tools/project.py next` for lease-aware available work. The list below includes claimed work and is deterministic:
 
-- **PHY-002 — Implement finite-mass hammer and damper contact reference**.
-- **RT-001 — Measure runtime cost and numerical approximation errors**.
+- **PHY-002 — Implement finite-mass hammer and damper contact reference**. Claimed by `development-root` until `2026-11-24T13:06:34Z`; check current lease before starting.
+- **RT-001 — Measure runtime cost and numerical approximation errors**. Claimed by `development-root` until `2026-11-24T13:06:35Z`; check current lease before starting.
+- **HOST-001 — Build and validate an experimental VST3 instrument adapter**. Claimed by `development-root` until `2026-11-24T13:08:44Z`; check current lease before starting.
 
 ## Explicit blockers
 
