@@ -26,6 +26,9 @@ inline constexpr std::size_t instrument_state_bytes = 16;
 using EncodedInstrumentState = std::array<std::uint8_t, instrument_state_bytes>;
 
 namespace state_detail {
+inline constexpr bool valid_model(std::uint16_t model) noexcept {
+    return model == 1 || model == 2;
+}
 // Positive binary32 encodings are ordered from +0 through +1. The only
 // permitted sign-bit encoding is -0. Integer tests keep the wire protocol
 // independent of a host's denormals-are-zero/flush-to-zero arithmetic mode.
@@ -64,19 +67,26 @@ inline InstrumentState unpack(std::uint64_t packed) noexcept {
 }
 
 [[nodiscard]] inline std::optional<EncodedInstrumentState>
-encode_instrument_state(InstrumentState state) noexcept {
-    if (!valid_instrument_state(state)) { return std::nullopt; }
-    EncodedInstrumentState bytes{'R', 'H', 'S', 'T', 1, 0, 1, 0};
+encode_instrument_state(InstrumentState state, std::uint16_t model = 1) noexcept {
+    if (!state_detail::valid_model(model) || !valid_instrument_state(state)) {
+        return std::nullopt;
+    }
+    // RHST wire version 1 is shared by the direct (1) and filtered (2)
+    // instruments. The selected immutable model occupies little-endian bytes 6–7.
+    EncodedInstrumentState bytes{'R', 'H', 'S', 'T', 1, 0,
+        static_cast<std::uint8_t>(model), static_cast<std::uint8_t>(model >> 8U)};
     state_detail::write_u32(bytes, 8, state_detail::gain_bits(state.monitoring_gain));
     state_detail::write_u32(bytes, 12, std::bit_cast<std::uint32_t>(state.sustain ? 1.0F : 0.0F));
     return bytes;
 }
 
 [[nodiscard]] inline std::optional<InstrumentState>
-decode_instrument_state(std::span<const std::uint8_t> bytes) noexcept {
-    if (bytes.size() != instrument_state_bytes || bytes[0] != 'R' || bytes[1] != 'H' ||
+decode_instrument_state(std::span<const std::uint8_t> bytes,
+                        std::uint16_t model = 1) noexcept {
+    if (!state_detail::valid_model(model) || bytes.size() != instrument_state_bytes ||
+        bytes[0] != 'R' || bytes[1] != 'H' ||
         bytes[2] != 'S' || bytes[3] != 'T' || bytes[4] != 1 || bytes[5] != 0 ||
-        bytes[6] != 1 || bytes[7] != 0) {
+        bytes[6] != static_cast<std::uint8_t>(model) || bytes[7] != model >> 8U) {
         return std::nullopt;
     }
     const auto gain = state_detail::read_u32(bytes, 8);

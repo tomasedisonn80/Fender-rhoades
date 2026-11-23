@@ -129,8 +129,8 @@ struct MemoryStream final : FixedHostObject<sdk::IBStream> {
     bool fail_seek_set = false;
     bool wrong_restored_position = false;
 
-    void load(InstrumentState state, std::size_t prefix = 0) {
-        const auto encoded = encode_instrument_state(state);
+    void load(InstrumentState state, std::size_t prefix = 0, std::uint16_t model = 1) {
+        const auto encoded = encode_instrument_state(state, model);
         require(encoded.has_value() && prefix + encoded->size() <= bytes.size(),
                 "invalid state-stream fixture");
         std::copy(encoded->begin(), encoded->end(), bytes.begin() +
@@ -296,7 +296,8 @@ struct ControllerHost {
     ~ControllerHost() { (void)controller.terminate(); }
 };
 
-inline void same_mechanics(const ResearchEngine& actual, const ResearchEngine& expected) {
+template<class Actual, class Expected>
+inline void same_mechanics(const Actual& actual, const Expected& expected) {
     require(actual.sample_rate_hz() == expected.sample_rate_hz(), "sample rate changed");
     require(actual.mechanical_energy_joules() == expected.mechanical_energy_joules(),
             "mechanical energy changed");
@@ -313,7 +314,7 @@ inline void same_mechanics(const ResearchEngine& actual, const ResearchEngine& e
 }
 
 struct ProcessorSnapshot {
-    EventProcessor engine;
+    HostEventProcessor engine;
     NoteTracker notes;
     InstrumentState live;
     InstrumentState published;

@@ -50,27 +50,49 @@ set(public_sdk_SOURCE_DIR "${RHODES_VST3_SDK_ROOT}/public.sdk")
 set(pluginterfaces_SOURCE_DIR "${RHODES_VST3_SDK_ROOT}/pluginterfaces")
 add_subdirectory("${RHODES_VST3_SDK_ROOT}" "${CMAKE_BINARY_DIR}/vst3-sdk" EXCLUDE_FROM_ALL)
 
-smtg_add_vst3plugin(rhodes_vst3 PACKAGE_NAME "RhodesResearch" SOURCES_LIST
-    "${PROJECT_SOURCE_DIR}/plugins/vst3/processor.cpp"
-    "${PROJECT_SOURCE_DIR}/plugins/vst3/controller.cpp"
-    "${PROJECT_SOURCE_DIR}/plugins/vst3/state_stream.cpp"
-    "${PROJECT_SOURCE_DIR}/plugins/vst3/factory.cpp")
-target_compile_features(rhodes_vst3 PRIVATE cxx_std_20)
-# SDK directory defaults do not reach this parent target. SDK factory/platform
-# entry points carry their own explicit export annotations.
-set_target_properties(rhodes_vst3 PROPERTIES
-    CXX_VISIBILITY_PRESET hidden VISIBILITY_INLINES_HIDDEN ON)
-target_include_directories(rhodes_vst3 PRIVATE "${PROJECT_SOURCE_DIR}")
-target_include_directories(rhodes_vst3 SYSTEM PRIVATE "${RHODES_VST3_SDK_ROOT}")
-target_link_libraries(rhodes_vst3 PRIVATE rhodes_core sdk)
-rhodes_target_options(rhodes_vst3)
-if(SMTG_MAC)
-    smtg_target_set_bundle(rhodes_vst3 BUNDLE_IDENTIFIER "org.rhodesresearch.experimental"
-        COMPANY_NAME "Independent Rhodes Research")
-endif()
-smtg_target_add_plugin_resources(rhodes_vst3 RESOURCES
-    "${RHODES_VST3_SDK_ROOT}/LICENSE.txt"
-    "${PROJECT_SOURCE_DIR}/plugins/vst3/THIRD_PARTY_NOTICES.md")
+function(rhodes_add_plugin target package filtered bundle_id)
+    if(filtered)
+        # Local SDK metadata scope; the original bundle keeps its version.
+        set(PROJECT_VERSION "0.2.0")
+        set(PROJECT_VERSION_MAJOR 0)
+        set(PROJECT_VERSION_MINOR 2)
+        set(PROJECT_VERSION_PATCH 0)
+    endif()
+    smtg_add_vst3plugin(${target} PACKAGE_NAME "${package}" SOURCES_LIST
+        "${PROJECT_SOURCE_DIR}/plugins/vst3/processor.cpp"
+        "${PROJECT_SOURCE_DIR}/plugins/vst3/controller.cpp"
+        "${PROJECT_SOURCE_DIR}/plugins/vst3/state_stream.cpp"
+        "${PROJECT_SOURCE_DIR}/plugins/vst3/factory.cpp")
+    target_compile_features(${target} PRIVATE cxx_std_20)
+    # All variant-sensitive TUs belong to this target. The common core and SDK
+    # never inherit this definition; only platform/factory entry points export.
+    if(filtered)
+        target_compile_definitions(${target} PRIVATE RHODES_FILTERED_VST3=1)
+    endif()
+    set_target_properties(${target} PROPERTIES
+        CXX_VISIBILITY_PRESET hidden VISIBILITY_INLINES_HIDDEN ON)
+    target_include_directories(${target} PRIVATE "${PROJECT_SOURCE_DIR}")
+    target_include_directories(${target} SYSTEM PRIVATE "${RHODES_VST3_SDK_ROOT}")
+    target_link_libraries(${target} PRIVATE rhodes_core sdk)
+    rhodes_target_options(${target})
+    if(SMTG_MAC)
+        smtg_target_set_bundle(${target} BUNDLE_IDENTIFIER "${bundle_id}"
+            COMPANY_NAME "Independent Rhodes Research")
+    endif()
+    # The pinned SDK associates copy commands with MAIN_DEPENDENCY source
+    # paths. Reusing one source for two bundles in a directory collides, so each
+    # target gets distinct configure-tracked inputs with the original basenames.
+    set(resource_inputs "${CMAKE_CURRENT_BINARY_DIR}/rhodes-resources/${target}")
+    file(MAKE_DIRECTORY "${resource_inputs}")
+    configure_file("${RHODES_VST3_SDK_ROOT}/LICENSE.txt"
+        "${resource_inputs}/LICENSE.txt" COPYONLY)
+    configure_file("${PROJECT_SOURCE_DIR}/plugins/vst3/THIRD_PARTY_NOTICES.md"
+        "${resource_inputs}/THIRD_PARTY_NOTICES.md" COPYONLY)
+    smtg_target_add_plugin_resources(${target} RESOURCES
+        "${resource_inputs}/LICENSE.txt" "${resource_inputs}/THIRD_PARTY_NOTICES.md")
+endfunction()
+rhodes_add_plugin(rhodes_vst3 "RhodesResearch" FALSE "org.rhodesresearch.experimental")
+rhodes_add_plugin(rhodes_vst3_filtered "RhodesResearchFiltered" TRUE "org.rhodesresearch.filtered")
 
 add_executable(rhodes_vst3_benchmark
     "${PROJECT_SOURCE_DIR}/apps/vst3_benchmark.cpp"
@@ -83,10 +105,23 @@ target_link_libraries(rhodes_vst3_benchmark PRIVATE rhodes_core sdk)
 target_compile_definitions(rhodes_vst3_benchmark PRIVATE RHODES_BUILD_CONFIGURATION="$<CONFIG>")
 rhodes_target_options(rhodes_vst3_benchmark)
 
+add_executable(rhodes_vst3_filtered_benchmark
+    "${PROJECT_SOURCE_DIR}/apps/vst3_benchmark.cpp"
+    "${PROJECT_SOURCE_DIR}/plugins/vst3/processor.cpp"
+    "${PROJECT_SOURCE_DIR}/plugins/vst3/state_stream.cpp")
+target_compile_features(rhodes_vst3_filtered_benchmark PRIVATE cxx_std_20)
+target_include_directories(rhodes_vst3_filtered_benchmark PRIVATE "${PROJECT_SOURCE_DIR}")
+target_include_directories(rhodes_vst3_filtered_benchmark SYSTEM PRIVATE "${RHODES_VST3_SDK_ROOT}")
+target_link_libraries(rhodes_vst3_filtered_benchmark PRIVATE rhodes_core sdk)
+target_compile_definitions(rhodes_vst3_filtered_benchmark PRIVATE
+    RHODES_FILTERED_VST3=1 RHODES_BUILD_CONFIGURATION="$<CONFIG>")
+rhodes_target_options(rhodes_vst3_filtered_benchmark)
+
 if(BUILD_TESTING)
     # One explicit build target keeps CI and documented test builds complete.
     add_custom_target(rhodes_vst3_checks)
-    add_dependencies(rhodes_vst3_checks rhodes_vst3 rhodes_vst3_benchmark)
+    add_dependencies(rhodes_vst3_checks rhodes_vst3 rhodes_vst3_benchmark
+        rhodes_vst3_filtered rhodes_vst3_filtered_benchmark)
     function(rhodes_add_vst3_test target source)
         add_executable(${target}
             "${PROJECT_SOURCE_DIR}/${source}"
@@ -97,9 +132,34 @@ if(BUILD_TESTING)
         target_include_directories(${target} PRIVATE "${PROJECT_SOURCE_DIR}")
         target_include_directories(${target} SYSTEM PRIVATE "${RHODES_VST3_SDK_ROOT}")
         target_link_libraries(${target} PRIVATE rhodes_core sdk)
+        if(ARGC GREATER 2 AND ARGV2)
+            target_compile_definitions(${target} PRIVATE RHODES_FILTERED_VST3=1)
+        endif()
         rhodes_target_options(${target})
         add_dependencies(rhodes_vst3_checks ${target})
     endfunction()
+    add_executable(rhodes_model_stream_tests
+        "${PROJECT_SOURCE_DIR}/tests/cpp/instrument_model_state_test.cpp"
+        "${PROJECT_SOURCE_DIR}/plugins/vst3/state_stream.cpp")
+    target_compile_definitions(rhodes_model_stream_tests PRIVATE RHODES_TEST_STATE_STREAM=1)
+    target_include_directories(rhodes_model_stream_tests PRIVATE "${PROJECT_SOURCE_DIR}")
+    target_include_directories(rhodes_model_stream_tests SYSTEM PRIVATE "${RHODES_VST3_SDK_ROOT}")
+    target_link_libraries(rhodes_model_stream_tests PRIVATE rhodes_core)
+    rhodes_target_options(rhodes_model_stream_tests)
+    add_dependencies(rhodes_vst3_checks rhodes_model_stream_tests)
+    foreach(test_name IN ITEMS stream_roundtrip stream_invalid_model stream_rejection stream_transfers)
+        add_test(NAME vst3.model_${test_name} COMMAND rhodes_model_stream_tests ${test_name})
+    endforeach()
+    foreach(sample_format IN ITEMS 32 64)
+        add_test(NAME vst3.filtered_benchmark_smoke_${sample_format}
+            COMMAND rhodes_vst3_filtered_benchmark --blocks 5 --warmup-blocks 2
+                --block-size 64 --sample-rate 48000 --active-keys 73 --workload pedal
+                --sample-format ${sample_format} --machine ci-smoke)
+    endforeach()
+    rhodes_add_vst3_test(rhodes_vst3_filtered_tests tests/cpp/vst3_filtered_test.cpp TRUE)
+    foreach(test_name IN ITEMS scalar_output rate_contract state_contract reset_and_flush rejected_calls)
+        add_test(NAME vst3.filtered_${test_name} COMMAND rhodes_vst3_filtered_tests ${test_name})
+    endforeach()
     add_test(NAME vst3.benchmark_help COMMAND rhodes_vst3_benchmark --help)
     foreach(sample_format IN ITEMS 32 64)
         add_test(NAME vst3.benchmark_smoke_${sample_format} COMMAND rhodes_vst3_benchmark
@@ -111,10 +171,13 @@ if(BUILD_TESTING)
         "-DBENCHMARK=$<TARGET_FILE:rhodes_vst3_benchmark>"
         -P "${PROJECT_SOURCE_DIR}/tests/cpp/vst3_benchmark_json.cmake")
     rhodes_add_vst3_test(rhodes_vst3_host_tests tests/cpp/vst3_host_test.cpp)
+    rhodes_add_vst3_test(rhodes_vst3_filtered_regression_tests tests/cpp/vst3_host_test.cpp TRUE)
     foreach(test_name IN ITEMS scalar_output overlapping_notes linear_automation
             dense_automation invalid_atomicity parameter_flush lifecycle deferred_state
             recall_abort stream_errors controller_mapping allocation_guard)
         add_test(NAME vst3.${test_name} COMMAND rhodes_vst3_host_tests ${test_name})
+        add_test(NAME vst3.filtered_regression_${test_name}
+            COMMAND rhodes_vst3_filtered_regression_tests ${test_name})
     endforeach()
     rhodes_add_vst3_test(rhodes_vst3_fp_tests tests/cpp/vst3_fp_environment_test.cpp)
     foreach(test_name IN ITEMS baseline ftz daz ftz_daz)
@@ -143,8 +206,13 @@ if(BUILD_TESTING)
         add_test(NAME vst3.${test_name} COMMAND rhodes_vst3_state_concurrency_tests ${test_name})
     endforeach()
     add_dependencies(rhodes_vst3 validator)
+    add_dependencies(rhodes_vst3_filtered validator)
     get_target_property(rhodes_plugin_bundle rhodes_vst3 SMTG_PLUGIN_PACKAGE_PATH)
     add_test(NAME vst3.sdk_validator
         COMMAND $<TARGET_FILE:validator> "${rhodes_plugin_bundle}")
     set_tests_properties(vst3.sdk_validator PROPERTIES TIMEOUT 180)
+    get_target_property(rhodes_filtered_bundle rhodes_vst3_filtered SMTG_PLUGIN_PACKAGE_PATH)
+    add_test(NAME vst3.filtered_sdk_validator
+        COMMAND $<TARGET_FILE:validator> "${rhodes_filtered_bundle}")
+    set_tests_properties(vst3.filtered_sdk_validator PROPERTIES TIMEOUT 180)
 endif()

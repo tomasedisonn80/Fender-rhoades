@@ -4,8 +4,9 @@
 
 namespace rhodes::vst3 {
 
-std::optional<InstrumentState> read_state_stream(Steinberg::IBStream* stream) noexcept {
-    if (stream == nullptr) { return std::nullopt; }
+std::optional<InstrumentState> read_state_stream(Steinberg::IBStream* stream,
+                                                std::uint16_t model) noexcept {
+    if (stream == nullptr || !state_detail::valid_model(model)) { return std::nullopt; }
     Steinberg::int64 start = -1;
     Steinberg::int64 end = -1;
     Steinberg::int64 restored = -1;
@@ -31,12 +32,13 @@ std::optional<InstrumentState> read_state_stream(Steinberg::IBStream* stream) no
         transferred += static_cast<std::size_t>(received);
     }
     if (transferred != bytes.size()) { return std::nullopt; }
-    return decode_instrument_state(bytes);
+    return decode_instrument_state(bytes, model);
 }
 
-bool write_state_stream(Steinberg::IBStream* stream, InstrumentState state) noexcept {
+bool write_state_stream(Steinberg::IBStream* stream, InstrumentState state,
+                        std::uint16_t model) noexcept {
     if (stream == nullptr) { return false; }
-    auto encoded = encode_instrument_state(state);
+    auto encoded = encode_instrument_state(state, model);
     if (!encoded) { return false; }
     std::size_t transferred = 0;
     for (std::size_t attempt = 0; attempt < instrument_state_bytes &&

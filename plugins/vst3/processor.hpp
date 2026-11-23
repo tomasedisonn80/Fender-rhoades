@@ -2,6 +2,7 @@
 
 #include "plugin_ids.hpp"
 #include "rhodes/event_processor.hpp"
+#include "rhodes/audio_engine.hpp"
 #include "rhodes/instrument_state.hpp"
 #include "rhodes/note_tracker.hpp"
 #include "public.sdk/source/vst/vstaudioeffect.h"
@@ -11,6 +12,12 @@
 #include <cstdint>
 
 namespace rhodes::vst3 {
+
+#if defined(RHODES_FILTERED_VST3)
+using HostEventProcessor = BasicEventProcessor<AudioEngine>;
+#else
+using HostEventProcessor = EventProcessor;
+#endif
 
 // This adapter intentionally uses the synthetic impulse ResearchEngine. The
 // offline contact reference is not part of its real-time signal path.
@@ -30,12 +37,13 @@ public:
     Steinberg::tresult PLUGIN_API setProcessing(Steinberg::TBool state) override;
     Steinberg::tresult PLUGIN_API process(Steinberg::Vst::ProcessData& data) override;
     Steinberg::uint32 PLUGIN_API getTailSamples() override;
+    Steinberg::uint32 PLUGIN_API getLatencySamples() override;
     Steinberg::tresult PLUGIN_API setState(Steinberg::IBStream* state) override;
     Steinberg::tresult PLUGIN_API getState(Steinberg::IBStream* state) override;
 
     // Read-only diagnostics for a suspended processor/test host. Only the audio
     // owner may inspect these while processing; published_state() is thread safe.
-    [[nodiscard]] const EventProcessor& engine_processor() const noexcept { return engine_; }
+    [[nodiscard]] const HostEventProcessor& engine_processor() const noexcept { return engine_; }
     [[nodiscard]] const NoteTracker& note_tracker() const noexcept { return notes_; }
     [[nodiscard]] InstrumentState current_state() const noexcept { return live_state_; }
     [[nodiscard]] InstrumentState published_state() const noexcept { return mailbox_.snapshot(); }
@@ -68,7 +76,7 @@ private:
                                            const StateMailbox::BlockToken& token) noexcept;
     static void silence_outputs(Steinberg::Vst::ProcessData& data) noexcept;
 
-    EventProcessor engine_{};
+    HostEventProcessor engine_{};
     NoteTracker notes_{};
     StateMailbox mailbox_{};
     InstrumentState live_state_{};

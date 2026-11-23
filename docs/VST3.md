@@ -1,11 +1,24 @@
 # Experimental VST3 instrument
 
-**Rhodes Research Prototype 0.1.0** wraps the sample-free synthetic
-`ResearchEngine` in a VST3 instrument. It provides ordinary host parameter
+**Rhodes Research Prototype 0.1.0** and **Rhodes Research Filtered 0.2.0** wrap
+the sample-free synthetic `ResearchEngine` in separate VST3 instruments. Both provide ordinary host parameter
 controls; there is no custom editor. Its sound uses impulse excitation,
 switched-loss release, a polynomial pickup and a synthetic resistive network.
 The separate finite-mass contact reference is offline and does not run inside
-this plug-in. No specimen calibration or measured fidelity is established.
+either plug-in. No specimen calibration or measured fidelity is established.
+
+| Variant | Bundle / build target | Audio and saved-state contract |
+|---|---|---|
+| Direct research model | `RhodesResearch.vst3` / `rhodes_vst3` | Original class IDs, model-1 state, zero reported latency |
+| Filtered research model | `RhodesResearchFiltered.vst3` / `rhodes_vst3_filtered` | Separate class IDs, model-2 state, 48-frame FIR delay |
+
+The filtered variant uses 4x internal rate through 48 kHz, 2x above 48 through
+96 kHz, and 1x above 96 kHz. A 385/193/97-tap Kaiser FIR processes the combined
+loaded harp after nonlinear pickup conversion. Mechanics and filter history
+persist across note releases/retriggers. Coefficients, timing and numerical
+limits are fixed in the [filtered audio contract](specs/FILTERED_AUDIO_20261123.md).
+The current measured filter response is not a guarantee for every transient or
+internal-rate alias, and it does not establish audibility or Rhodes fidelity.
 
 The implementation contract is [HOST_PROTOTYPE_20261123](specs/HOST_PROTOTYPE_20261123.md).
 The [dependency inventory](DEPENDENCIES.md) records the official SDK revision,
@@ -65,7 +78,8 @@ ctest --test-dir build/vst3 -C Release -R '^vst3\.' \
 `rhodes_vst3_checks` exists when `BUILD_TESTING=ON` and builds the bundle,
 SDK validator, callback benchmark and every retained host-test executable. It
 keeps the test command complete as coverage grows. For a plug-in-only build,
-use `--target rhodes_vst3`; tests can be disabled with `-DBUILD_TESTING=OFF`.
+use `--target rhodes_vst3` or `--target rhodes_vst3_filtered`; tests can be
+disabled with `-DBUILD_TESTING=OFF`.
 
 On macOS, add `-DCMAKE_OSX_DEPLOYMENT_TARGET=11.0` to the configure command to
 match the configured CI job. Leave `CMAKE_OSX_ARCHITECTURES` unset for the native
@@ -94,14 +108,16 @@ Windows verification is still required before claiming Windows compatibility.
 
 ## Find and inspect the bundle
 
-With the Release configurations above, the complete bundle is:
+With the Release configurations above, the complete bundles are:
 
 ```text
 build/vst3/VST3/Release/RhodesResearch.vst3
+build/vst3/VST3/Release/RhodesResearchFiltered.vst3
 ```
 
-The observed Linux x86_64 module is
-`Contents/x86_64-linux/RhodesResearch.so` inside that bundle. The pinned SDK uses
+The observed Linux x86_64 modules are
+`Contents/x86_64-linux/RhodesResearch.so` and
+`Contents/x86_64-linux/RhodesResearchFiltered.so` inside their respective bundles. The pinned SDK uses
 the platform's bundle layout on macOS and Windows; retain the whole `.vst3`
 directory, including `Contents/Resources/LICENSE.txt`, `THIRD_PARTY_NOTICES.md`
 and `moduleinfo.json`.
@@ -110,7 +126,8 @@ project-wide license for this repository's original code; see [RIGHTS.md](../RIG
 
 The build disables automatic links into user plug-in directories. To evaluate
 the result in a DAW, use that host's normal installation/scanning procedure for
-the complete bundle, then insert **Rhodes Research Prototype** on an instrument
+the complete bundle, then insert **Rhodes Research Prototype** or
+**Rhodes Research Filtered** on an instrument
 track. Its category is `Instrument|Synth|Stereo`. A host may show its generic
 parameter editor because the prototype supplies no custom view.
 
@@ -126,7 +143,7 @@ parameter editor because the prototype supplies no custom view.
 | Processing | Float32 or float64; sample rates 32–192 kHz inclusive; at most **8192 frames** per host call |
 | Monitoring Gain | Host parameter `0`, displayed multiplier `0..32x`, default `16x`; normalized value `0..1`, default `0.5` |
 | Sustain | Host parameter `1`, `Off`/`On`; normalized values at least `0.5` select `On`; MIDI CC64 maps to it on all channels |
-| Latency and tail | Zero advertised latency; asymptotically decaying resonators advertise an infinite tail |
+| Latency and tail | Direct: 0 frames; filtered: 48 frames (1 ms at 48 kHz); both advertise an infinite asymptotic tail |
 
 Monitoring gain multiplies synthetic harp voltage; it is not a calibrated
 instrument amplifier. Gain automation is linearly interpolated and sustain is
@@ -154,9 +171,11 @@ octaves differs, so use the MIDI pitch numbers when checking the range.
 ## Saving and resetting state
 
 The exact 16-byte version-1 state stores monitoring gain and sustain for
-synthetic model ID `1`. It does not store ringing notes. A valid recall is
+synthetic model ID `1` in the direct variant and `2` in the filtered variant.
+Each rejects the other's state. The format version remains 1; the model field
+identifies the separate sound path. It does not store ringing notes. A valid recall is
 queued through a lock-free mailbox and installed at a valid audio boundary:
-mechanics, note holders, cursor and interpolation history reset before the
+mechanics, note holders, cursor, FIR history when present, and interpolation history reset before the
 recalled configuration is applied. A malformed, short, extended or incompatible
 chunk is rejected. Saving takes a coherent configuration snapshot without
 resetting the sound.
@@ -188,6 +207,8 @@ retained host suites exercise concrete processor/controller classes and include:
 | Inactive buses, zero-frame flushes, malformed buffers and setup rollback | [A063](agents/development-20261123/W4-A063.md) |
 | Bounded rejected-output cleanup, unchanged unsupported output declarations and preserved state | [W1-004](agents/continuation-20261123/w1-004.md); supersedes the earlier oversized-rejection clearing policy |
 | Dense-automation rejection assertions and allocation-guarded host regression after the bounded cleanup change | [W1-010](agents/continuation-20261123/w1-010.md) |
+| Model-1/model-2 wire and stream isolation, unchanged original golden bytes | [W1-015](agents/continuation-20261123/w1-015.md) |
+| Independent filtered adapter event/control samples, rate/latency, recall and reset behavior | [W1-017](agents/continuation-20261123/w1-017.md) |
 | Partial reads/writes, stream failures and transactional state recall | [A066](agents/development-20261123/W4-A066.md) |
 | Independent automation model, ties, flushes and rejection | [A073](agents/development-20261123/W4-A073.md) |
 | Independent note-ownership model, capacity, recall and randomized sequences | [A074](agents/development-20261123/W4-A074.md) |

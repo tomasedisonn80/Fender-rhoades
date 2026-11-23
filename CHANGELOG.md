@@ -2,6 +2,15 @@
 
 ## Unreleased — experimental VST3 and research foundation
 
+- Separate filtered VST3 variant with 4x/2x/1x internal processing, reproducible
+  Kaiser FIR coefficients and explicit 48-frame latency; direct-model identities
+  and state remain available. Cross-model state is rejected transactionally.
+- Bounded rejected-output cleanup: unsupported shapes remain untouched; supported
+  stereo cleanup visits at most two channels and 8192 frames.
+- Independent FIR/wrapper/host tests, model-tag codec/stream regressions and
+  variant-identified complete-callback measurements.
+- Deterministic contact evidence selection using complete settings, explicit
+  duplicate conflict detection and preserved original refinement failures.
 - Optional VST3 instrument using the pinned official SDK, with generic gain and
   sustain controls, mono signal on a stereo bus, and float32/float64 processing.
 - Bounded sample-offset events, overlapping MIDI note ownership, validated

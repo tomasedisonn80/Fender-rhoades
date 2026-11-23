@@ -100,9 +100,9 @@
       "wave": 1,
       "task_name": "/root/w1_011_filter_coefficients",
       "scope": "Implement reproducible antialias FIR coefficient generation",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/continuation-20261123/w1-011.md",
-      "report_sha256": null
+      "report_sha256": "1c4212f07b1c3955ab6e4798aa397ece7ffb7d95e5242a8afae1c5bbf5eaeb06"
     },
     {
       "id": 12,
@@ -118,17 +118,116 @@
       "wave": 1,
       "task_name": "/root/w1_013_fir_independent_tests",
       "scope": "Implement independent convolution, ring-wrap and FIR phase tests",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/continuation-20261123/w1-013.md",
-      "report_sha256": null
+      "report_sha256": "fc8c6a242d06f3b42d064416be7be4791c868809a0484815e533ecb152f9642b"
     },
     {
       "id": 14,
       "wave": 1,
       "task_name": "/root/w1_014_contact_selection_fix",
       "scope": "Fix deterministic complete-setting selection for contact evidence",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/continuation-20261123/w1-014.md",
+      "report_sha256": "f089bd6f218936e5167028503ab9b9287e157bd87482295e742e8848a1828ac5"
+    },
+    {
+      "id": 15,
+      "wave": 1,
+      "task_name": "/root/w1_015_state_model_codec",
+      "scope": "Implement explicit model-tag state codec and stream isolation",
+      "status": "completed",
+      "report": "docs/agents/continuation-20261123/w1-015.md",
+      "report_sha256": "d628a59825e410c33a95ca1f7e9a781bc52f117bb88f50ad45631acb2e513bea"
+    },
+    {
+      "id": 16,
+      "wave": 1,
+      "task_name": "/root/w1_016_audio_engine_tests",
+      "scope": "Test filtered wrapper against independent high-rate convolution and faults",
+      "status": "completed",
+      "report": "docs/agents/continuation-20261123/w1-016.md",
+      "report_sha256": "e29e0b3686c9ddbf0b78483c5a588be08f1a54e1ac3ed7e1d5554489f8f2cb1c"
+    },
+    {
+      "id": 17,
+      "wave": 1,
+      "task_name": "/root/w1_017_filtered_host_tests",
+      "scope": "Implement filtered VST3 audio, state and lifecycle integration tests",
+      "status": "completed",
+      "report": "docs/agents/continuation-20261123/w1-017.md",
+      "report_sha256": "d4be2beb2d6aae11ea5e0b2b0676b8def25d82809bb8fa4d2a123c6227eaeb1e"
+    },
+    {
+      "id": 18,
+      "wave": 1,
+      "task_name": "/root/w1_018_callback_measurement",
+      "scope": "Measure direct and filtered complete callback cost without deadline guarantees",
+      "status": "completed",
+      "report": "docs/agents/continuation-20261123/w1-018.md",
+      "report_sha256": "8ec18d4d2283d8bb4521037fe85387eaf816d66ac8b955ee8ea0c60e4a2e441e"
+    },
+    {
+      "id": 19,
+      "wave": 1,
+      "task_name": "/root/w1_019_campaign_validation",
+      "scope": "Validate current campaign identities, report hashes and wave ordering",
+      "status": "completed",
+      "report": "docs/agents/continuation-20261123/w1-019.md",
+      "report_sha256": "decf8adbafcba5e7535468e5be0906f322b2572a59ffecc69dfecf854118b9a5"
+    },
+    {
+      "id": 20,
+      "wave": 1,
+      "task_name": "/root/w1_020_dual_bundle_audit",
+      "scope": "Audit simultaneous bundle loading, identities and symbol isolation",
+      "status": "completed",
+      "report": "docs/agents/continuation-20261123/w1-020.md",
+      "report_sha256": "27513842bcf90f7449513e3e7e3c8d9931210d9b81bd18d6f9c79ed705ce3541"
+    },
+    {
+      "id": 21,
+      "wave": 2,
+      "task_name": "/root/w2_021_refinement_extension",
+      "scope": "Implement explicit uniform contact refinement extension and preserve original gate results",
+      "status": "running",
+      "report": "docs/agents/continuation-20261123/w2-021.md",
+      "report_sha256": null
+    },
+    {
+      "id": 22,
+      "wave": 2,
+      "task_name": "/root/w2_022_filtered_renderer",
+      "scope": "Expose filtered offline rendering with safe output publication",
+      "status": "completed",
+      "report": "docs/agents/continuation-20261123/w2-022.md",
+      "report_sha256": "76e5d7531e67da6d7599c27602358e27bae385abb9a02046a9e550ef9c95d70e"
+    },
+    {
+      "id": 23,
+      "wave": 2,
+      "task_name": "/root/w2_023_filtered_allocation_host",
+      "scope": "Exercise both VST3 variants with allocation and scalar host regressions",
+      "status": "completed",
+      "report": "docs/agents/continuation-20261123/w2-023.md",
+      "report_sha256": "dff96557a879e7a42e93147e5124938e9322b24af70041ee4217ac31e7111021"
+    },
+    {
+      "id": 24,
+      "wave": 2,
+      "task_name": "/root/w2_024_bundle_resources",
+      "scope": "Independently verify both VST3 bundles retain exact third-party resources",
+      "status": "running",
+      "report": "docs/agents/continuation-20261123/w2-024.md",
+      "report_sha256": null
+    },
+    {
+      "id": 25,
+      "wave": 2,
+      "task_name": "/root/w2_025_spectral_scope",
+      "scope": "Derive synthetic pickup spectral limits and a bounded independent alias experiment",
+      "status": "running",
+      "report": "docs/agents/continuation-20261123/w2-025.md",
       "report_sha256": null
     }
   ]

@@ -171,8 +171,24 @@ Accepted rates express the implemented numerical domain. The modal frequency
 guard does not band-limit the pickup: cubic conversion generates harmonics and
 sum/difference products, potentially above Nyquist. Strikes and damping switches
 also introduce broadband changes. Exact oscillator propagation therefore supplies
-no aliasing bound. Oversampling, reconstruction filtering, and convergence studies
-are future work; higher supported rates alone do not certify sufficient quality.
+no aliasing bound for the direct `ResearchEngine`. The separate `AudioEngine`
+adds integer oversampling and a causal FIR under the
+[filtered audio contract](specs/FILTERED_AUDIO_20261123.md); higher rates and
+filter response alone do not certify a complete transient/alias error budget.
+
+`AudioEngine` keeps all original physical constants and evaluates the pickup at
+the internal rate before filtering the combined harp. Its 4x/2x/1x factors keep
+the internal rate at or below 192 kHz. The 48-host-frame group delay is explicit;
+sample n is the FIR output at internal index L*n, followed by the remaining
+L-1 state advances. The mechanical state therefore remains at the current
+physical time while the electrical signal is filtered/delayed. An odd tap-count
+ring wrap is never used as the decimation clock. Explicit reset clears filter
+history; release and retrigger preserve it.
+
+The [independent convolution test](agents/continuation-20261123/w1-016.md)
+uses a separately generated long-double FIR recipe and a high-rate original-core
+stream. This verifies wrapper arithmetic/phase for the recorded cases, not the
+physical assumptions or unbounded spectral content of every possible event.
 
 Existing tests encode scalar closed-form trajectories, energy behavior, preserved
 state, pickup derivatives/cross terms, loading, rate endpoints, atomic rejection,

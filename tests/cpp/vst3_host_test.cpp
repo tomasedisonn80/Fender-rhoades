@@ -7,6 +7,7 @@
 #include <iostream>
 #include <limits>
 #include <new>
+#include <type_traits>
 #include <utility>
 #if defined(_MSC_VER)
 #include <malloc.h>
@@ -29,7 +30,7 @@ void* allocate(std::size_t bytes) {
 }
 
 // Keep the replacement deallocator opaque to GCC's mismatched-new-delete
-// heuristic, which otherwise treats our legitimate new-to-malloc bridge as a
+// heuristic, which otherwise treats our legitimate new-to-C-allocation bridge as a
 // mismatch when it inlines the explicit counter-calibration calls below.
 #if defined(_MSC_VER)
 __declspec(noinline)
@@ -59,7 +60,7 @@ void free_aligned(void* memory) noexcept {
 #if defined(_MSC_VER)
     _aligned_free(memory);
 #else
-    std::free(memory);
+    deallocate(memory);
 #endif
 }
 
@@ -129,6 +130,11 @@ using namespace rhodes;
 using namespace rhodes::vst3;
 using namespace rhodes::vst3::test_host;
 
+// Use the selected variant's physical/audio model while keeping note ownership,
+// event scheduling and gain automation independent of the VST3 adapter.
+using ScalarEngine = std::remove_cvref_t<
+    decltype(std::declval<const HostEventProcessor&>().engine())>;
+
 sdk::tresult process(RhodesProcessor& processor, vst::ProcessData& data) {
     sdk::tresult result = sdk::kResultFalse;
     std::size_t allocations = 0;
@@ -150,7 +156,7 @@ void expect_sample(const ProcessorHost<Sample, Frames>& host, std::size_t frame,
             "host output differs from independent scalar schedule");
 }
 
-double scalar_sample(ResearchEngine& engine) {
+double scalar_sample(ScalarEngine& engine) {
     double volts = 0.0;
     require(engine.process(std::span<double>{&volts, 1}), "scalar engine process");
     return volts;
@@ -169,7 +175,7 @@ void scalar_at_rate(double rate) {
     host.output.silenceFlags = std::numeric_limits<sdk::uint64>::max();
     require(process(host.processor, host.data) == sdk::kResultOk, "scalar host render");
 
-    ResearchEngine reference;
+    ScalarEngine reference;
     require(reference.prepare(rate), "scalar reference prepare");
     // This schedule does not use NoteTracker, EventProcessor, or translated
     // plugin events. It independently drives the underlying scalar model.
@@ -190,7 +196,7 @@ void scalar_at_rate(double rate) {
 }
 
 void scalar_output() {
-    for (double rate : {32000.0, 48000.0, 192000.0}) {
+    for (double rate : {32000.0, 48000.0, 96000.0, 192000.0}) {
         scalar_at_rate<double>(rate);
         scalar_at_rate<float>(rate);
     }
@@ -209,7 +215,7 @@ void overlapping_notes() {
     require(host.processor.note_tracker().active_count() == 1 &&
             host.processor.note_tracker().held_count(40) == 1,
             "overlap release removed another channel's holder");
-    ResearchEngine reference;
+    ScalarEngine reference;
     for (std::size_t frame = 0; frame < 16; ++frame) {
         if (frame == 0) { require(reference.note_on(40, 0.75), "overlap first strike"); }
         if (frame == 4) { require(reference.note_on(40, 0.5), "overlap second strike"); }
@@ -276,7 +282,7 @@ void linear_automation() {
     host.data.inputEvents = &events;
     host.data.inputParameterChanges = &parameters;
     require(process(host.processor, host.data) == sdk::kResultOk, "linear automation render");
-    ResearchEngine reference;
+    ScalarEngine reference;
     require(reference.note_on(40, 0.75), "automation reference strike");
     for (std::size_t frame = 0; frame < host.left.size(); ++frame) {
         if (frame == 4) {
@@ -340,6 +346,26 @@ void dense_automation() {
             "dense output is nonfinite or stereo differs");
     const ProcessorSnapshot before{host.processor};
     events.count = 0;
+    const auto unchanged = [](double value) { return value == 7.0; };
+
+    // Fail only after visiting all 8192 points of each queue. The snapshot's
+    // continuation comparison includes the filtered variant's FIR history.
+    pedal.failed_index = 8191;
+    const auto gain_calls = gain.get_calls;
+    const auto pedal_calls = pedal.get_calls;
+    host.fill(7.0);
+    require(process(host.processor, host.data) != sdk::kResultOk,
+            "late dense-queue read failure was accepted");
+    require(gain.get_calls - gain_calls == kMaximumHostFrames &&
+            pedal.get_calls - pedal_calls == kMaximumHostFrames,
+            "late failure did not reach the final dense-queue point");
+    before.expect_unchanged(host.processor);
+    host.expect_silence(kMaximumHostFrames);
+    require(std::all_of(host.left.begin() + kMaximumHostFrames, host.left.end(), unchanged) &&
+            std::all_of(host.right.begin() + kMaximumHostFrames, host.right.end(), unchanged),
+            "late rejection wrote beyond the declared frame count");
+    pedal.failed_index = -1;
+
     host.data.numSamples = 8193;
     host.fill(7.0);
     // Real storage for every declared sample, with a guard on each side.
@@ -349,7 +375,6 @@ void dense_automation() {
     host.output.silenceFlags = sentinel_flags;
     require(process(host.processor, host.data) != sdk::kResultOk, "8193 frames accepted");
     before.expect_unchanged(host.processor);
-    const auto unchanged = [](double value) { return value == 7.0; };
     require(std::all_of(host.left.begin(), host.left.end(), unchanged) &&
             std::all_of(host.right.begin(), host.right.end(), unchanged),
             "unsupported frame count changed output samples or guards");
@@ -657,7 +682,7 @@ void deferred_state() {
     require(process(host.processor, host.data) == sdk::kResultOk, "deferred initial render");
     const auto before = host.processor.engine_processor();
     MemoryStream stream;
-    stream.load({0.125F, true});
+    stream.load({0.125F, true}, 0, kStateModel);
     stream.transfer_limit = 1;
     require(host.processor.setState(&stream) == sdk::kResultOk && stream.read_calls == 16,
             "processor short-read recall");
@@ -672,9 +697,9 @@ void deferred_state() {
     require(host.processor.getState(&saved) == sdk::kResultOk && saved.write_calls == 16,
             "processor short-write save");
     saved.position = 0;
-    require(read_state_stream(&saved) == InstrumentState{0.125F, true},
+    require(read_state_stream(&saved, kStateModel) == InstrumentState{0.125F, true},
             "save omitted the pending published recall");
-    stream.load({0.875F, false});
+    stream.load({0.875F, false}, 0, kStateModel);
     require(host.processor.setState(&stream) == sdk::kResultOk, "newer pending recall");
     const ProcessorSnapshot pending{host.processor};
     stream.position = 0;
@@ -692,7 +717,7 @@ void deferred_state() {
             "newest recall did not reset mechanics and ownership");
     host.expect_silence();
 
-    stream.load({0.25F, true});
+    stream.load({0.25F, true}, 0, kStateModel);
     require(host.processor.setState(&stream) == sdk::kResultOk, "flush-boundary recall");
     host.data.numSamples = 0;
     host.data.numOutputs = 0;
@@ -711,7 +736,7 @@ void recall_abort() {
     host.data.inputEvents = &events;
     require(process(host.processor, host.data) == sdk::kResultOk, "abort initial render");
     MemoryStream stream;
-    stream.load({0.125F, true});
+    stream.load({0.125F, true}, 0, kStateModel);
     require(host.processor.setState(&stream) == sdk::kResultOk, "abort pending recall");
     const ProcessorSnapshot before{host.processor};
     events.count = 2;
@@ -733,12 +758,12 @@ void recall_abort() {
     events.count = 1;
     events.values[0] = note_on(0, 77, 60);
     require(process(host.processor, host.data) == sdk::kResultOk, "recall old identity");
-    stream.load({0.25F, false});
+    stream.load({0.25F, false}, 0, kStateModel);
     require(host.processor.setState(&stream) == sdk::kResultOk, "identity-reset recall");
     events.values[0] = note_on(0, 77, 61);
     require(process(host.processor, host.data) == sdk::kResultOk,
             "new recall incorrectly validated against stale ownership");
-    ResearchEngine reference;
+    ScalarEngine reference;
     require(reference.note_on(33, 0.75), "recall fresh reference strike");
     for (std::size_t frame = 0; frame < 16; ++frame) {
         expect_sample(host, frame, 8.0 * scalar_sample(reference));
@@ -751,50 +776,74 @@ void recall_abort() {
 void stream_errors() {
     constexpr InstrumentState state{0.125F, true};
     constexpr EncodedInstrumentState golden{
-        'R', 'H', 'S', 'T', 1, 0, 1, 0, 0, 0, 0, 0x3e, 0, 0, 0x80, 0x3f};
+        'R', 'H', 'S', 'T', 1, 0, static_cast<std::uint8_t>(kStateModel), 0,
+        0, 0, 0, 0x3e, 0, 0, 0x80, 0x3f};
     for (sdk::int32 chunk : {1, 3, 16}) {
         MemoryStream stream;
         stream.transfer_limit = chunk;
-        require(write_state_stream(&stream, state), "short-write stream helper");
+        require(write_state_stream(&stream, state, kStateModel), "short-write stream helper");
         require(std::equal(golden.begin(), golden.end(), stream.bytes.begin()),
                 "stream output differs from independent golden bytes");
         const auto expected_calls = static_cast<std::size_t>((16 + chunk - 1) / chunk);
         require(stream.write_calls == expected_calls && stream.extent == 16,
                 "short writes did not finish in a bounded number of calls");
         stream.position = 0;
-        require(read_state_stream(&stream) == state && stream.read_calls == expected_calls &&
+        require(read_state_stream(&stream, kStateModel) == state &&
+                stream.read_calls == expected_calls &&
                 stream.position == 16, "short reads did not reconstruct the state");
     }
     MemoryStream prefixed;
     std::copy(golden.begin(), golden.end(), prefixed.bytes.begin() + 3);
     prefixed.position = 3;
     prefixed.extent = 19;
-    require(read_state_stream(&prefixed) == state && prefixed.position == 19,
+    require(read_state_stream(&prefixed, kStateModel) == state && prefixed.position == 19,
             "state stream at a nonzero starting position failed");
-    require(!read_state_stream(nullptr) && !write_state_stream(nullptr, state),
+    require(!read_state_stream(nullptr, kStateModel) &&
+            !write_state_stream(nullptr, state, kStateModel),
             "null state stream accepted");
+
+    // Shared helper defaults must keep model 1 even in a filtered executable.
+    // Variant expectations above and below always pass their model explicitly.
+    auto direct_golden = golden;
+    direct_golden[6] = 1;
+    MemoryStream default_writer;
+    require(write_state_stream(&default_writer, state) &&
+            std::equal(direct_golden.begin(), direct_golden.end(), default_writer.bytes.begin()),
+            "default stream write no longer encodes the original model");
+    default_writer.position = 0;
+    require(read_state_stream(&default_writer) == state,
+            "default stream read no longer accepts the original model");
+    MemoryStream default_loader;
+    default_loader.load(state);
+    require(std::equal(direct_golden.begin(), direct_golden.end(), default_loader.bytes.begin()),
+            "shared fixture loader default changed with the selected variant");
+    MemoryStream other_model;
+    other_model.load(state, 0, kStateModel == 1 ? 2 : 1);
+    require(!read_state_stream(&other_model, kStateModel),
+            "stream helper accepted the other variant's model");
 
     for (TransferFault fault : {TransferFault::result_error, TransferFault::zero_progress,
                                 TransferFault::negative_count, TransferFault::overreported_count}) {
         for (std::size_t fail_at : {1U, 3U}) {
             MemoryStream reader;
-            reader.load(state);
+            reader.load(state, 0, kStateModel);
             reader.transfer_limit = 1;
             reader.read_fault = fault;
             reader.read_fault_at = fail_at;
-            require(!read_state_stream(&reader) && reader.read_calls == fail_at,
+            require(!read_state_stream(&reader, kStateModel) && reader.read_calls == fail_at,
                     "invalid read transfer was accepted or retried");
             MemoryStream writer;
             writer.transfer_limit = 1;
             writer.write_fault = fault;
             writer.write_fault_at = fail_at;
-            require(!write_state_stream(&writer, state) && writer.write_calls == fail_at,
+            require(!write_state_stream(&writer, state, kStateModel) &&
+                    writer.write_calls == fail_at,
                     "invalid write transfer was accepted or retried");
         }
     }
     for (int failure = 0; failure < 8; ++failure) {
         MemoryStream stream;
-        stream.load(state);
+        stream.load(state, 0, kStateModel);
         if (failure == 0) { stream.fail_tell = true; }
         if (failure == 1) { stream.fail_seek_end = true; }
         if (failure == 2) { stream.fail_seek_set = true; }
@@ -803,18 +852,19 @@ void stream_errors() {
         if (failure == 5) { stream.position = 17; }
         if (failure == 6) { stream.extent = 15; }
         if (failure == 7) { stream.extent = 17; }
-        require(!read_state_stream(&stream) && stream.read_calls == 0,
+        require(!read_state_stream(&stream, kStateModel) && stream.read_calls == 0,
                 "invalid stream bounds/seek were read or accepted");
     }
     for (std::size_t byte : {0U, 4U, 6U, 12U}) {
         MemoryStream stream;
-        stream.load(state);
+        stream.load(state, 0, kStateModel);
         stream.bytes[byte] = 0xff;
-        require(!read_state_stream(&stream), "corrupt state payload accepted");
+        require(!read_state_stream(&stream, kStateModel), "corrupt state payload accepted");
     }
     MemoryStream writer;
     require(!write_state_stream(&writer,
-                {std::numeric_limits<float>::quiet_NaN(), false}) && writer.write_calls == 0,
+                {std::numeric_limits<float>::quiet_NaN(), false}, kStateModel) &&
+            writer.write_calls == 0,
             "invalid state was written before validation");
 }
 
@@ -885,7 +935,7 @@ void controller_mapping() {
     }
 
     MemoryStream stream;
-    stream.load({0.125F, true});
+    stream.load({0.125F, true}, 0, kStateModel);
     stream.transfer_limit = 1;
     require(controller.setComponentState(&stream) == sdk::kResultOk &&
             controller.getParamNormalized(kGainId) == 0.125 &&
@@ -897,13 +947,13 @@ void controller_mapping() {
             controller.getParamNormalized(kGainId) == 0.125 &&
             controller.getParamNormalized(kSustainId) == 1.0,
             "malformed component state partially changed controller");
-    stream.load({0.25F, false});
+    stream.load({0.25F, false}, 0, kStateModel);
     require(controller.setState(&stream) == sdk::kResultOk, "controller own-state recall");
     MemoryStream saved;
     saved.transfer_limit = 1;
     require(controller.getState(&saved) == sdk::kResultOk, "controller save");
     saved.position = 0;
-    require(read_state_stream(&saved) == InstrumentState{0.25F, false},
+    require(read_state_stream(&saved, kStateModel) == InstrumentState{0.25F, false},
             "controller state round-trip differs");
 
     const auto reject_duplicate = [&](sdk::FUnknown* context) {
@@ -945,7 +995,7 @@ void controller_mapping() {
             "controller null-context reinitialization failed");
 }
 
-void allocation_guard() {
+void calibrate_allocation_probe() {
     // Direct replacement-operator calls prevent compiler allocation elision
     // from making this counter calibration vacuous in an optimized build.
     std::array<void*, 8> pointers{};
@@ -963,6 +1013,8 @@ void allocation_guard() {
         pointers[7] = ::operator new[](8, alignment, std::nothrow);
         observed = allocation_probe::attempts;
     }
+    const bool all_allocated = std::all_of(pointers.begin(), pointers.end(),
+                                          [](const void* p) { return p != nullptr; });
     ::operator delete(pointers[0]);
     ::operator delete[](pointers[1]);
     ::operator delete(pointers[2], std::nothrow);
@@ -972,8 +1024,13 @@ void allocation_guard() {
     ::operator delete(pointers[6], alignment, std::nothrow);
     ::operator delete[](pointers[7], alignment, std::nothrow);
     require(observed == pointers.size(), "allocation trap failed its Release self-check");
+    require(all_allocated,
+            "allocation calibration could not allocate all eight forms");
+}
 
-    ProcessorHost<double, 64> host;
+template<class Sample>
+void allocation_guard_at_rate(double rate) {
+    ProcessorHost<Sample, 64> host{rate};
     EventList events;
     events.count = 1;
     events.values[0] = note_on(0, 1);
@@ -1000,9 +1057,18 @@ void allocation_guard() {
     host.data.outputs = nullptr;
     require(process(host.processor, host.data) == sdk::kResultOk, "guarded flush failed");
     MemoryStream stream;
-    stream.load({0.125F, true});
+    stream.load({0.125F, true}, 0, kStateModel);
     require(host.processor.setState(&stream) == sdk::kResultOk, "guarded recall setup");
     require(process(host.processor, host.data) == sdk::kResultOk, "guarded recall boundary failed");
+}
+
+void allocation_guard() {
+    // Exercise both negotiated output formats and every filtered rate branch.
+    // Construction and stream I/O are outside the measured process() interval.
+    for (double rate : {48000.0, 96000.0, 192000.0}) {
+        allocation_guard_at_rate<float>(rate);
+        allocation_guard_at_rate<double>(rate);
+    }
 }
 
 using Fixture = std::pair<std::string_view, void (*)()>;
@@ -1036,9 +1102,10 @@ int main(int argc, char** argv) {
     for (const auto& [name, run] : fixtures) {
         if (name != requested) { continue; }
         try {
+            calibrate_allocation_probe();
             run();
             std::cout << "PASS " << name << " (" << allocation_probe::process_calls
-                      << " allocation-guarded process calls)\n";
+                      << " allocation-guarded process calls; 8 allocation forms calibrated)\n";
             return 0;
         } catch (const std::exception& error) {
             std::cerr << "FAIL " << name << ": " << error.what() << '\n';

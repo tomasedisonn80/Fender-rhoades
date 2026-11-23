@@ -15,7 +15,7 @@ DEF_CLASS2(INLINE_UID_FROM_FUID(rhodes::vst3::kProcessorUID),
 
 DEF_CLASS2(INLINE_UID_FROM_FUID(rhodes::vst3::kControllerUID),
            Steinberg::PClassInfo::kManyInstances, kVstComponentControllerClass,
-           "Rhodes Research Controller", 0, "", rhodes::vst3::kPluginVersion,
+           rhodes::vst3::kControllerName, 0, "", rhodes::vst3::kPluginVersion,
            kVstVersionString, rhodes::vst3::RhodesController::createInstance)
 
 END_FACTORY

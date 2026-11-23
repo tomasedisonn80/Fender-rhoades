@@ -1,0 +1,1006 @@
+{
+  "schema_version": 1,
+  "scope": "Synthetic direct and filtered C++ integration; Linux x86_64 only",
+  "baseline_commit": "e860167400d945191fb957caa05d59a589cc28d6",
+  "tested_source": "Uncommitted working source identified by the explicit C++/CMake/test-file manifest; Python contact tools excluded and being developed independently. No clean-commit claim.",
+  "source_sha256": {
+    "CMakeLists.txt": "5c12fd40f259445387d81953dbcc7d9b08830016f7207c4e563d569f5c3abfbd",
+    "apps/benchmark.cpp": "f05cefbe22b93274bc51f6b3fedad532d333b8c577196059c04e0559530e5705",
+    "apps/contact_reference.cpp": "a7ba20c5db394e57795ad651edf1bb6e0838fd08965926630038289e9471ced0",
+    "apps/render.cpp": "0137fcd9e2175ddd8f391ee6d47fb04e64ea581835975e5928e03102d436bf48",
+    "apps/runtime_benchmark.cpp": "514955b4245ba5ec6c18fb2379cb790185e029df1d4c387588d2547621c476c0",
+    "apps/vst3_benchmark.cpp": "c5d0e3051dbe85a93892792f32bf190028a438abb13d24182f1d3322fec42347",
+    "cmake/Vst3.cmake": "2d762a20e69c975856a52b390914812b279df7ae2a8db7b4926034295a467c78",
+    "include/rhodes/audio_engine.hpp": "10efac8150c07e69ef41eed415a6e7403b4339179af902f91cd17ef498da7b97",
+    "include/rhodes/audio_filter_coefficients.hpp": "c1ab39356d7e44348f9dc56f9120ff2598889d1fa144e5294b084585655eb76d",
+    "include/rhodes/contact_reference.hpp": "76455b059e94f5d602e43b4f7947c04f27675bc510f3ee1dcb3a96af5bf7c6fd",
+    "include/rhodes/control_value.hpp": "7d940dcbca66f07f9db6c5caf605da57fbe77d66b78641139e078f06d7441919",
+    "include/rhodes/event_processor.hpp": "36e4b64f3278b0079b20e94a333a657c900e4118dc24433ec9d8c58442651351",
+    "include/rhodes/fir_decimator.hpp": "e54faeb397bcbccb9ed9834cfc264d84550c4ef375d8e5273a720eb1f190071b",
+    "include/rhodes/instrument_state.hpp": "16df2b4743db66b1cc19f11fcb7bd1dfa7cf8b541a1db2c0be16dee26d92f182",
+    "include/rhodes/note_tracker.hpp": "76931b326daae3a112b56420f9be9ea5b03b1c30307f1dc68b6c13c710cd830f",
+    "include/rhodes/research_engine.hpp": "2f00f75a418ab5988107fcc7a3ddc4503c4f5d72c71b925515a72c7cb9136bf5",
+    "plugins/vst3/controller.cpp": "47293f5ac5ea84a903c1168dc06d00e472ce507562f45098b6543bc853854747",
+    "plugins/vst3/controller.hpp": "0bf865fe388b5f8a0bc6c40899186512803bb68ef90bf4fd43d10e2d0f07d7ff",
+    "plugins/vst3/factory.cpp": "c233a281539fca494fe0e24f1511634731078aeaddb931dcac562be6c1d411a2",
+    "plugins/vst3/plugin_ids.hpp": "962a9af41ec16c95870a52e76e8553de685834093faaa37cbb3c30ccb9744c5c",
+    "plugins/vst3/processor.cpp": "dd029dde15ff66cb28743a6ad94c56aeb858c574d804a75c69562fc50745fc5e",
+    "plugins/vst3/processor.hpp": "bdfb62fb5a55cdc2484779a02b85579fef5e7f13ecdf6814321b01ebec999255",
+    "plugins/vst3/state_stream.cpp": "b5f0dd71c5523f80359027168f0df3307c85d70b3d5654f3f936144f3307d172",
+    "plugins/vst3/state_stream.hpp": "ab18ecc644b2c23cc731d44dcc22a8c2f44ad12d0e413c5905f6809383c7383c",
+    "src/contact_reference.cpp": "47bc6d9a2121d97e44cb9352294905a765a07b84fc987b9e8859dcf42e7d8371",
+    "src/research_engine.cpp": "c30f3cbba73632312a1b88cbc3449d73cae4dd1383ad41b70b7bbbb3a7e8123c",
+    "tests/cpp/audio_engine_test.cpp": "9afba0e6e596db01b2b2627613bb808682ce1ab850b22f11a546eb329d58b601",
+    "tests/cpp/audio_fir_test.cpp": "77a2529473b2b6a797d910636aff38d61785a78ccb55e891d3c4226124675746",
+    "tests/cpp/benchmark_json.cmake": "6bfadcd834b377cc887d08a6b3fb9bfbe85d51821d29aeaf6904215bcafb7cea",
+    "tests/cpp/contact_cli.cmake": "6017cc26ce81943c72d85c2203bc9d7f969238c508298a6f8b5ab0cc3201d5a6",
+    "tests/cpp/contact_domain_test.cpp": "e0154c3d7a1e66431d5cb1db4b9430b4a2760f06bbf26fbae55a120558bf241a",
+    "tests/cpp/contact_grazing_test.cpp": "520b8a77673959d26420df31c952492307d5ec670dca65785e7b2138ea7bbd24",
+    "tests/cpp/contact_reference_test.cpp": "e1d77debc7fc563b6c8b2425b25cd5fdc802ef065f4438d24612f1e43bf174b5",
+    "tests/cpp/control_fp_environment_test.cpp": "ce9dd0cdd386d9e5f84622c131202de4bf4ec8c9bd5d78ce85acb6a1683e8b3a",
+    "tests/cpp/control_value_test.cpp": "31a387adc7238592b48dfbd86613d5e0c2c9677e4867aa6f104892efb7c0b663",
+    "tests/cpp/event_model_test.cpp": "f6ba26ff7f79a370d730abe4b98a819dcab7a46de7995352468027c8e5186ee2",
+    "tests/cpp/event_processor_test.cpp": "f1d9383ad34843dabcca0c58edaecf7cba56b2e19e57b2e065e37c2b5f60793e",
+    "tests/cpp/expect_cli_failure.cmake": "9cf60b2d1888b8aa9bd11d28d375a721b228ab0e82debbab46e53fbb35500ce4",
+    "tests/cpp/filtered_render.cmake": "b410fc5c51ec4a32cf0a80b7d7725719490c8aa621bd77f61a7b370b59687b27",
+    "tests/cpp/instrument_model_state_test.cpp": "6b63a99a0e3b07bd21bb7f4024fef0b1de5b9064fcbde6a1e552e09258a03864",
+    "tests/cpp/instrument_state_test.cpp": "be54581bb3efab5096bfada65e20eec230716f7c2ff110231157d569c080cecc",
+    "tests/cpp/modal_transition_cache_test.cpp": "50cbca48f767189f17419424d13dcfedc810e998fa6ac436a7bbf7eb95a3fa21",
+    "tests/cpp/note_model_test.cpp": "ce14509e1933ca22aed32b3dab23be11ec3466bf7b2e901f5d58b7d8595135fd",
+    "tests/cpp/note_tracker_test.cpp": "96f00bf3fa5a1b54352fae347e8f6cbdfb7f543bed53c15a8885be4400f365e1",
+    "tests/cpp/render_output.cmake": "cb2804175b965c352a911e8cea6c8d0eac0e1e200370e6476b8f1aa78538f024",
+    "tests/cpp/research_engine_test.cpp": "cb8c580baea9bd516b8686bffb7fe5b9285f56ce001035c2979374d8a10a1b16",
+    "tests/cpp/review_regression.cpp": "48f9ff033a8f2bff7f0bfd69d86a23493c685e86afa0eca95a770f879cc23b51",
+    "tests/cpp/runtime_benchmark_json.cmake": "37773c8805f235c045e1aab8896765bb7ccf593c09be600e42bcd3e735eb21de",
+    "tests/cpp/state_concurrency_test.cpp": "53d36fc67e34c42296fbbfd70d134521225958ae57ce7cb6c3b2ca2362d571ca",
+    "tests/cpp/state_fp_environment_test.cpp": "90e29f5903c3b67afd5f28f0b8958cf2c6bca04a3f2420655296b6fd7ab81a4d",
+    "tests/cpp/state_property_test.cpp": "338ba2e214a99de3f9ad4533e8f191298f5facb06150b2eb8f00de9e514465b9",
+    "tests/cpp/vst3_automation_contract_test.cpp": "514c341c549964bd36f8a6cf98c8fb16ff91ed7910b715e5c58842e2286c691a",
+    "tests/cpp/vst3_benchmark_json.cmake": "af08e85afc6f8bac4c641e2f161502f3509a68d1a206e611e3e25261def7f612",
+    "tests/cpp/vst3_buffer_contract_test.cpp": "66cacf227cccf1873060e846bad08ea586ab09197161f0504c0a78ad9aaf4776",
+    "tests/cpp/vst3_filtered_test.cpp": "6445c2df88ff1ec21e546c414e9000d2650ee1c66df4ace44e4838519a9a0582",
+    "tests/cpp/vst3_fp_environment_test.cpp": "502e1ed296c110f7dac5f44d0f279273c5bae2d2f68128cc34fc77308a8224e7",
+    "tests/cpp/vst3_host_test.cpp": "cb5002ab8fe9e5a7f306c67613095404a87137bf0c56c6e104330a033afced11",
+    "tests/cpp/vst3_note_model_test.cpp": "54c4a73a55a4df7d20c5f9899d6fdc6fbb00a06082e22ec881f833732260bcc3",
+    "tests/cpp/vst3_state_concurrency_test.cpp": "d027ab888ff67d634d768a3707870e948f9c72b96046e632bcabd93f77524bf5",
+    "tests/cpp/vst3_stream_contract_test.cpp": "63bc7b254c056a7758bf2d90e392d2484063a1a43d1c0bf6233bf852cb9ebaa2",
+    "tests/cpp/vst3_test_support.hpp": "9ca53f32d94fc3b46ab464bac202743880580809f0d53c08a8642b4c9d29e9b2"
+  },
+  "commands": [
+    "cmake -S . -B build/main -DCMAKE_BUILD_TYPE=Release -DRHODES_BUILD_VST3=ON -DRHODES_VST3_SDK_ROOT=/workspace/scratch/af088a9f3cc9/vst3sdk",
+    "cmake --build build/main --parallel 3",
+    "ctest --test-dir build/main -C Release --output-on-failure --no-tests=error --parallel 2 --output-junit /tmp/rhodes-wave2-audio-ctest.xml"
+  ],
+  "environment": {
+    "system": "Linux x86_64",
+    "compiler": "GCC 14.2.0",
+    "configuration": "Release",
+    "sdk_commit": "3cdf9ca5d1f5b1b21e0a86832aa4abe55607bd96"
+  },
+  "result": {
+    "ctest_total": 182,
+    "ctest_failures": 0,
+    "build_exit_code": 0,
+    "ctest_exit_code": 0,
+    "ctest_log_sha256": "f5fd016f9865c7b5dcdfbe82a541aaa218ada8180a3b0d6074fc94a243d6a0ad",
+    "ctest_xml_sha256": "431cf27b89c4c8367c43b13deff48072c2a9c418aab4db968ddfe8bf412691ba",
+    "tests": [
+      {
+        "name": "audio.fir_coefficients_dc",
+        "status": "run",
+        "seconds": 0.00333439
+      },
+      {
+        "name": "audio.fir_impulse_phases",
+        "status": "run",
+        "seconds": 0.196675
+      },
+      {
+        "name": "audio.fir_direct_convolution",
+        "status": "run",
+        "seconds": 0.0293896
+      },
+      {
+        "name": "audio.fir_group_delay",
+        "status": "run",
+        "seconds": 0.00368766
+      },
+      {
+        "name": "audio.fir_transactional_rejection",
+        "status": "run",
+        "seconds": 0.00497575
+      },
+      {
+        "name": "audio.fir_overflow_reset",
+        "status": "run",
+        "seconds": 0.00332349
+      },
+      {
+        "name": "model_state.model1_golden",
+        "status": "run",
+        "seconds": 0.00464891
+      },
+      {
+        "name": "model_state.model2_roundtrip",
+        "status": "run",
+        "seconds": 0.00384084
+      },
+      {
+        "name": "model_state.cross_model_rejection",
+        "status": "run",
+        "seconds": 0.00377925
+      },
+      {
+        "name": "model_state.invalid_model",
+        "status": "run",
+        "seconds": 0.00468762
+      },
+      {
+        "name": "model_state.malformed_models",
+        "status": "run",
+        "seconds": 0.00324984
+      },
+      {
+        "name": "audio.high_rate_oracle",
+        "status": "run",
+        "seconds": 0.922482
+      },
+      {
+        "name": "audio.rate_boundaries",
+        "status": "run",
+        "seconds": 0.0159981
+      },
+      {
+        "name": "audio.persistent_events",
+        "status": "run",
+        "seconds": 0.0165007
+      },
+      {
+        "name": "audio.partition_invariance",
+        "status": "run",
+        "seconds": 0.0442504
+      },
+      {
+        "name": "audio.prepare_atomicity",
+        "status": "run",
+        "seconds": 0.0446495
+      },
+      {
+        "name": "audio.reset_flush",
+        "status": "run",
+        "seconds": 0.0315132
+      },
+      {
+        "name": "audio.event_timing",
+        "status": "run",
+        "seconds": 0.0267327
+      },
+      {
+        "name": "audio.fault_substeps",
+        "status": "run",
+        "seconds": 0.00579657
+      },
+      {
+        "name": "contact.conservative_impact",
+        "status": "run",
+        "seconds": 0.0145002
+      },
+      {
+        "name": "contact.damped_impact",
+        "status": "run",
+        "seconds": 0.014581
+      },
+      {
+        "name": "contact.forced_clamp",
+        "status": "run",
+        "seconds": 0.00401662
+      },
+      {
+        "name": "contact.separated_oscillator",
+        "status": "run",
+        "seconds": 0.236607
+      },
+      {
+        "name": "contact.preload",
+        "status": "run",
+        "seconds": 0.392447
+      },
+      {
+        "name": "contact.moving_damper",
+        "status": "run",
+        "seconds": 0.239386
+      },
+      {
+        "name": "contact.relaunch",
+        "status": "run",
+        "seconds": 0.0450242
+      },
+      {
+        "name": "contact.event_order",
+        "status": "run",
+        "seconds": 0.0250781
+      },
+      {
+        "name": "contact.scaling",
+        "status": "run",
+        "seconds": 0.744129
+      },
+      {
+        "name": "contact.invalid_inputs",
+        "status": "run",
+        "seconds": 0.00498611
+      },
+      {
+        "name": "contact.cap_exhaustion",
+        "status": "run",
+        "seconds": 0.0052042
+      },
+      {
+        "name": "contact.grazing_miss",
+        "status": "run",
+        "seconds": 0.00554461
+      },
+      {
+        "name": "contact.grazing_tangent",
+        "status": "run",
+        "seconds": 0.00600573
+      },
+      {
+        "name": "contact.grazing_contact",
+        "status": "run",
+        "seconds": 0.00551489
+      },
+      {
+        "name": "contact.cli_help",
+        "status": "run",
+        "seconds": 0.0431892
+      },
+      {
+        "name": "contact.cli_json",
+        "status": "run",
+        "seconds": 0.328065
+      },
+      {
+        "name": "grazing.generalized_harmonics",
+        "status": "run",
+        "seconds": 0.0350485
+      },
+      {
+        "name": "grazing.envelope_sign",
+        "status": "run",
+        "seconds": 0.00522657
+      },
+      {
+        "name": "grazing.partitions",
+        "status": "run",
+        "seconds": 0.00485203
+      },
+      {
+        "name": "grazing.relaunch_invalidation",
+        "status": "run",
+        "seconds": 0.00776287
+      },
+      {
+        "name": "contact.configuration_bounds",
+        "status": "run",
+        "seconds": 0.00809271
+      },
+      {
+        "name": "contact.settings_bounds",
+        "status": "run",
+        "seconds": 0.00505763
+      },
+      {
+        "name": "contact.state_actions",
+        "status": "run",
+        "seconds": 0.004472
+      },
+      {
+        "name": "contact.trajectory_guards",
+        "status": "run",
+        "seconds": 0.00442402
+      },
+      {
+        "name": "core.exact_solution",
+        "status": "run",
+        "seconds": 0.0358482
+      },
+      {
+        "name": "core.energy_loss",
+        "status": "run",
+        "seconds": 0.00361224
+      },
+      {
+        "name": "core.energy_conservation",
+        "status": "run",
+        "seconds": 0.00464521
+      },
+      {
+        "name": "core.retrigger",
+        "status": "run",
+        "seconds": 0.00374374
+      },
+      {
+        "name": "core.pickup_derivative",
+        "status": "run",
+        "seconds": 0.0036402
+      },
+      {
+        "name": "core.pickup_intermodulation",
+        "status": "run",
+        "seconds": 0.0155033
+      },
+      {
+        "name": "core.network_loading",
+        "status": "run",
+        "seconds": 0.0032934
+      },
+      {
+        "name": "core.invalid_input",
+        "status": "run",
+        "seconds": 0.00367041
+      },
+      {
+        "name": "core.silence",
+        "status": "run",
+        "seconds": 0.0133573
+      },
+      {
+        "name": "core.block_partition",
+        "status": "run",
+        "seconds": 0.00780374
+      },
+      {
+        "name": "core.pedal_release",
+        "status": "run",
+        "seconds": 0.022716
+      },
+      {
+        "name": "core.supported_rates",
+        "status": "run",
+        "seconds": 0.0129506
+      },
+      {
+        "name": "review.modal_boundaries",
+        "status": "run",
+        "seconds": 0.0046577
+      },
+      {
+        "name": "review.rejected_updates",
+        "status": "run",
+        "seconds": 0.00252508
+      },
+      {
+        "name": "review.engine_controls",
+        "status": "run",
+        "seconds": 0.00505544
+      },
+      {
+        "name": "review.engine_combined_pickup",
+        "status": "run",
+        "seconds": 0.00480393
+      },
+      {
+        "name": "review.network_extreme_divider",
+        "status": "run",
+        "seconds": 0.00339128
+      },
+      {
+        "name": "transition_cache.cached_vs_fresh",
+        "status": "run",
+        "seconds": 0.00342538
+      },
+      {
+        "name": "transition_cache.invalid_cache_updates",
+        "status": "run",
+        "seconds": 0.00344595
+      },
+      {
+        "name": "transition_cache.reconfigure_cache",
+        "status": "run",
+        "seconds": 0.00327762
+      },
+      {
+        "name": "transition_cache.redundant_pedal",
+        "status": "run",
+        "seconds": 0.0357433
+      },
+      {
+        "name": "runtime.scalar_partitions",
+        "status": "run",
+        "seconds": 0.00508889
+      },
+      {
+        "name": "runtime.equal_offset_order",
+        "status": "run",
+        "seconds": 0.00392562
+      },
+      {
+        "name": "runtime.preflight_atomicity",
+        "status": "run",
+        "seconds": 0.0034853
+      },
+      {
+        "name": "runtime.invalid_events",
+        "status": "run",
+        "seconds": 0.00920398
+      },
+      {
+        "name": "runtime.block_limits",
+        "status": "run",
+        "seconds": 0.00526182
+      },
+      {
+        "name": "runtime.sample_fault_reset",
+        "status": "run",
+        "seconds": 0.00389199
+      },
+      {
+        "name": "runtime.event_fault_reset",
+        "status": "run",
+        "seconds": 0.00290773
+      },
+      {
+        "name": "runtime.control_order",
+        "status": "run",
+        "seconds": 0.03683
+      },
+      {
+        "name": "runtime.random_partitions",
+        "status": "run",
+        "seconds": 0.0571034
+      },
+      {
+        "name": "runtime.transaction_rejection",
+        "status": "run",
+        "seconds": 0.00336585
+      },
+      {
+        "name": "runtime.capacity_and_cursor",
+        "status": "run",
+        "seconds": 0.00521841
+      },
+      {
+        "name": "midi.range_and_validation",
+        "status": "run",
+        "seconds": 0.00343754
+      },
+      {
+        "name": "midi.identified_overlap",
+        "status": "run",
+        "seconds": 0.00333137
+      },
+      {
+        "name": "midi.anonymous_and_zero_velocity",
+        "status": "run",
+        "seconds": 0.00356182
+      },
+      {
+        "name": "midi.conflict_atomicity",
+        "status": "run",
+        "seconds": 0.00330058
+      },
+      {
+        "name": "midi.capacity_and_reuse",
+        "status": "run",
+        "seconds": 0.00266771
+      },
+      {
+        "name": "midi.channel_release_and_reset",
+        "status": "run",
+        "seconds": 0.00594566
+      },
+      {
+        "name": "midi.boundary_model",
+        "status": "run",
+        "seconds": 0.0133162
+      },
+      {
+        "name": "midi.capacity_model",
+        "status": "run",
+        "seconds": 0.00676895
+      },
+      {
+        "name": "midi.random_model",
+        "status": "run",
+        "seconds": 0.0283834
+      },
+      {
+        "name": "state.codec_golden",
+        "status": "run",
+        "seconds": 0.00347447
+      },
+      {
+        "name": "state.codec_rejection",
+        "status": "run",
+        "seconds": 0.104708
+      },
+      {
+        "name": "state.mailbox_recall",
+        "status": "run",
+        "seconds": 0.00381834
+      },
+      {
+        "name": "state.mailbox_races",
+        "status": "run",
+        "seconds": 0.00327888
+      },
+      {
+        "name": "state.mailbox_abort",
+        "status": "run",
+        "seconds": 0.0034763
+      },
+      {
+        "name": "state.gain_bit_domain",
+        "status": "run",
+        "seconds": 0.00684367
+      },
+      {
+        "name": "state.pedal_bit_domain",
+        "status": "run",
+        "seconds": 0.00337949
+      },
+      {
+        "name": "state.header_lengths",
+        "status": "run",
+        "seconds": 0.00330285
+      },
+      {
+        "name": "state.invalid_recall",
+        "status": "run",
+        "seconds": 0.00282663
+      },
+      {
+        "name": "state_fp.baseline",
+        "status": "run",
+        "seconds": 0.00283844
+      },
+      {
+        "name": "state_fp.ftz",
+        "status": "run",
+        "seconds": 0.00344779
+      },
+      {
+        "name": "state_fp.daz",
+        "status": "run",
+        "seconds": 0.00364716
+      },
+      {
+        "name": "state_fp.ftz_daz",
+        "status": "run",
+        "seconds": 0.00340114
+      },
+      {
+        "name": "control.domains",
+        "status": "run",
+        "seconds": 0.00507255
+      },
+      {
+        "name": "control.quantize",
+        "status": "run",
+        "seconds": 0.00547821
+      },
+      {
+        "name": "control.widen",
+        "status": "run",
+        "seconds": 0.00461118
+      },
+      {
+        "name": "control.rounding_modes",
+        "status": "run",
+        "seconds": 0.018923
+      },
+      {
+        "name": "control_fp.baseline",
+        "status": "run",
+        "seconds": 0.00551536
+      },
+      {
+        "name": "control_fp.ftz",
+        "status": "run",
+        "seconds": 0.00531531
+      },
+      {
+        "name": "control_fp.daz",
+        "status": "run",
+        "seconds": 0.00583714
+      },
+      {
+        "name": "control_fp.ftz_daz",
+        "status": "run",
+        "seconds": 0.00566414
+      },
+      {
+        "name": "state.ordered_races",
+        "status": "run",
+        "seconds": 0.00451063
+      },
+      {
+        "name": "state.concurrent_stress",
+        "status": "run",
+        "seconds": 0.00646187
+      },
+      {
+        "name": "cli.help",
+        "status": "run",
+        "seconds": 0.00300046
+      },
+      {
+        "name": "benchmark.help",
+        "status": "run",
+        "seconds": 0.00331514
+      },
+      {
+        "name": "runtime_benchmark.help",
+        "status": "run",
+        "seconds": 0.00346451
+      },
+      {
+        "name": "runtime_benchmark.smoke",
+        "status": "run",
+        "seconds": 0.00450679
+      },
+      {
+        "name": "runtime_benchmark.json",
+        "status": "run",
+        "seconds": 0.607651
+      },
+      {
+        "name": "benchmark.smoke",
+        "status": "run",
+        "seconds": 0.00700432
+      },
+      {
+        "name": "benchmark.json",
+        "status": "run",
+        "seconds": 0.0209431
+      },
+      {
+        "name": "cli.render",
+        "status": "run",
+        "seconds": 0.00820677
+      },
+      {
+        "name": "cli.render_output",
+        "status": "run",
+        "seconds": 0.0424661
+      },
+      {
+        "name": "cli.filtered_render",
+        "status": "run",
+        "seconds": 0.174399
+      },
+      {
+        "name": "cli.reject_nan",
+        "status": "run",
+        "seconds": 0.0141622
+      },
+      {
+        "name": "cli.reject_unknown",
+        "status": "run",
+        "seconds": 0.0109882
+      },
+      {
+        "name": "vst3.model_stream_roundtrip",
+        "status": "run",
+        "seconds": 0.00586732
+      },
+      {
+        "name": "vst3.model_stream_invalid_model",
+        "status": "run",
+        "seconds": 0.00480241
+      },
+      {
+        "name": "vst3.model_stream_rejection",
+        "status": "run",
+        "seconds": 0.00344414
+      },
+      {
+        "name": "vst3.model_stream_transfers",
+        "status": "run",
+        "seconds": 0.00384036
+      },
+      {
+        "name": "vst3.filtered_benchmark_smoke_32",
+        "status": "run",
+        "seconds": 0.00788298
+      },
+      {
+        "name": "vst3.filtered_benchmark_smoke_64",
+        "status": "run",
+        "seconds": 0.00670157
+      },
+      {
+        "name": "vst3.filtered_scalar_output",
+        "status": "run",
+        "seconds": 0.0329982
+      },
+      {
+        "name": "vst3.filtered_rate_contract",
+        "status": "run",
+        "seconds": 0.00477677
+      },
+      {
+        "name": "vst3.filtered_state_contract",
+        "status": "run",
+        "seconds": 0.0121173
+      },
+      {
+        "name": "vst3.filtered_reset_and_flush",
+        "status": "run",
+        "seconds": 0.0720451
+      },
+      {
+        "name": "vst3.filtered_rejected_calls",
+        "status": "run",
+        "seconds": 0.138027
+      },
+      {
+        "name": "vst3.benchmark_help",
+        "status": "run",
+        "seconds": 0.00470677
+      },
+      {
+        "name": "vst3.benchmark_smoke_32",
+        "status": "run",
+        "seconds": 0.00517807
+      },
+      {
+        "name": "vst3.benchmark_smoke_64",
+        "status": "run",
+        "seconds": 0.00527916
+      },
+      {
+        "name": "vst3.benchmark_json",
+        "status": "run",
+        "seconds": 1.18104
+      },
+      {
+        "name": "vst3.scalar_output",
+        "status": "run",
+        "seconds": 0.00652977
+      },
+      {
+        "name": "vst3.filtered_regression_scalar_output",
+        "status": "run",
+        "seconds": 0.009738
+      },
+      {
+        "name": "vst3.overlapping_notes",
+        "status": "run",
+        "seconds": 0.00312829
+      },
+      {
+        "name": "vst3.filtered_regression_overlapping_notes",
+        "status": "run",
+        "seconds": 0.00501281
+      },
+      {
+        "name": "vst3.linear_automation",
+        "status": "run",
+        "seconds": 0.0038517
+      },
+      {
+        "name": "vst3.filtered_regression_linear_automation",
+        "status": "run",
+        "seconds": 0.0423779
+      },
+      {
+        "name": "vst3.dense_automation",
+        "status": "run",
+        "seconds": 0.115415
+      },
+      {
+        "name": "vst3.filtered_regression_dense_automation",
+        "status": "run",
+        "seconds": 0.0596421
+      },
+      {
+        "name": "vst3.invalid_atomicity",
+        "status": "run",
+        "seconds": 0.00447935
+      },
+      {
+        "name": "vst3.filtered_regression_invalid_atomicity",
+        "status": "run",
+        "seconds": 0.010407
+      },
+      {
+        "name": "vst3.parameter_flush",
+        "status": "run",
+        "seconds": 0.00476942
+      },
+      {
+        "name": "vst3.filtered_regression_parameter_flush",
+        "status": "run",
+        "seconds": 0.00459782
+      },
+      {
+        "name": "vst3.lifecycle",
+        "status": "run",
+        "seconds": 0.00399795
+      },
+      {
+        "name": "vst3.filtered_regression_lifecycle",
+        "status": "run",
+        "seconds": 0.00689079
+      },
+      {
+        "name": "vst3.deferred_state",
+        "status": "run",
+        "seconds": 0.00369221
+      },
+      {
+        "name": "vst3.filtered_regression_deferred_state",
+        "status": "run",
+        "seconds": 0.00629748
+      },
+      {
+        "name": "vst3.recall_abort",
+        "status": "run",
+        "seconds": 0.00403702
+      },
+      {
+        "name": "vst3.filtered_regression_recall_abort",
+        "status": "run",
+        "seconds": 0.00610638
+      },
+      {
+        "name": "vst3.stream_errors",
+        "status": "run",
+        "seconds": 0.00379215
+      },
+      {
+        "name": "vst3.filtered_regression_stream_errors",
+        "status": "run",
+        "seconds": 0.00309992
+      },
+      {
+        "name": "vst3.controller_mapping",
+        "status": "run",
+        "seconds": 0.00381356
+      },
+      {
+        "name": "vst3.filtered_regression_controller_mapping",
+        "status": "run",
+        "seconds": 0.00369269
+      },
+      {
+        "name": "vst3.allocation_guard",
+        "status": "run",
+        "seconds": 0.0131824
+      },
+      {
+        "name": "vst3.filtered_regression_allocation_guard",
+        "status": "run",
+        "seconds": 0.0271332
+      },
+      {
+        "name": "vst3.fp_baseline",
+        "status": "run",
+        "seconds": 0.00771596
+      },
+      {
+        "name": "vst3.fp_ftz",
+        "status": "run",
+        "seconds": 0.00664055
+      },
+      {
+        "name": "vst3.fp_daz",
+        "status": "run",
+        "seconds": 0.006083
+      },
+      {
+        "name": "vst3.fp_ftz_daz",
+        "status": "run",
+        "seconds": 0.00645367
+      },
+      {
+        "name": "vst3.inactive_buffers",
+        "status": "run",
+        "seconds": 0.0112851
+      },
+      {
+        "name": "vst3.flush_matrix",
+        "status": "run",
+        "seconds": 0.0970414
+      },
+      {
+        "name": "vst3.rejected_buffers",
+        "status": "run",
+        "seconds": 0.377666
+      },
+      {
+        "name": "vst3.setup_rollback",
+        "status": "run",
+        "seconds": 0.113818
+      },
+      {
+        "name": "vst3.partial_roundtrip",
+        "status": "run",
+        "seconds": 0.00423916
+      },
+      {
+        "name": "vst3.read_failures",
+        "status": "run",
+        "seconds": 0.0755525
+      },
+      {
+        "name": "vst3.write_failures",
+        "status": "run",
+        "seconds": 0.0907325
+      },
+      {
+        "name": "vst3.malformed_state",
+        "status": "run",
+        "seconds": 0.0493826
+      },
+      {
+        "name": "vst3.automation_model",
+        "status": "run",
+        "seconds": 0.0854727
+      },
+      {
+        "name": "vst3.automation_ties",
+        "status": "run",
+        "seconds": 0.0301594
+      },
+      {
+        "name": "vst3.automation_flush",
+        "status": "run",
+        "seconds": 0.023903
+      },
+      {
+        "name": "vst3.automation_rejection",
+        "status": "run",
+        "seconds": 0.0773508
+      },
+      {
+        "name": "vst3.identity_model",
+        "status": "run",
+        "seconds": 0.00632761
+      },
+      {
+        "name": "vst3.capacity_model",
+        "status": "run",
+        "seconds": 0.00792517
+      },
+      {
+        "name": "vst3.recall_model",
+        "status": "run",
+        "seconds": 0.0076851
+      },
+      {
+        "name": "vst3.random_note_model",
+        "status": "run",
+        "seconds": 0.182121
+      },
+      {
+        "name": "vst3.state_preflight_race",
+        "status": "run",
+        "seconds": 0.00855485
+      },
+      {
+        "name": "vst3.state_callback_stress",
+        "status": "run",
+        "seconds": 0.165128
+      },
+      {
+        "name": "vst3.sdk_validator",
+        "status": "run",
+        "seconds": 1.64757
+      },
+      {
+        "name": "vst3.filtered_sdk_validator",
+        "status": "run",
+        "seconds": 7.83699
+      }
+    ]
+  },
+  "limitations": [
+    "Synthetic uncalibrated instrument; no measured fidelity validation.",
+    "SDK validators exercise the built modules; native DAW/device testing was not run.",
+    "No Windows/macOS execution claimed.",
+    "Separate numerical/oracle and timing evidence remain scoped to their own reports."
+  ]
+}

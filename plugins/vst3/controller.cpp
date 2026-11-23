@@ -34,7 +34,7 @@ Steinberg::tresult PLUGIN_API RhodesController::terminate() {
 }
 
 Steinberg::tresult PLUGIN_API RhodesController::setComponentState(Steinberg::IBStream* stream) {
-    const auto decoded = read_state_stream(stream);
+    const auto decoded = read_state_stream(stream, kStateModel);
     if (!decoded || getParameterObject(kGainId) == nullptr ||
         getParameterObject(kSustainId) == nullptr) {
         return Steinberg::kResultFalse;
@@ -59,7 +59,7 @@ Steinberg::tresult PLUGIN_API RhodesController::getState(Steinberg::IBStream* st
     const auto gain = control::quantize(getParamNormalized(kGainId));
     if (!gain) { return Steinberg::kResultFalse; }
     const InstrumentState state{*gain, getParamNormalized(kSustainId) >= 0.5};
-    return write_state_stream(stream, state) ? Steinberg::kResultOk : Steinberg::kResultFalse;
+    return write_state_stream(stream, state, kStateModel) ? Steinberg::kResultOk : Steinberg::kResultFalse;
 }
 
 Steinberg::tresult PLUGIN_API RhodesController::setParamNormalized(

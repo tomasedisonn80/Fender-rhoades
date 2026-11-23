@@ -104,14 +104,18 @@ Steinberg::uint32 PLUGIN_API RhodesProcessor::getTailSamples() {
     return vst::kInfiniteTail;
 }
 
+Steinberg::uint32 PLUGIN_API RhodesProcessor::getLatencySamples() {
+    return kFilteredAudio ? static_cast<Steinberg::uint32>(AudioEngine::latency_frames()) : 0U;
+}
+
 Steinberg::tresult PLUGIN_API RhodesProcessor::setState(Steinberg::IBStream* stream) {
-    const auto decoded = read_state_stream(stream);
+    const auto decoded = read_state_stream(stream, kStateModel);
     return decoded && mailbox_.request_recall(*decoded) ?
         Steinberg::kResultOk : Steinberg::kResultFalse;
 }
 
 Steinberg::tresult PLUGIN_API RhodesProcessor::getState(Steinberg::IBStream* stream) {
-    return write_state_stream(stream, mailbox_.snapshot()) ?
+    return write_state_stream(stream, mailbox_.snapshot(), kStateModel) ?
         Steinberg::kResultOk : Steinberg::kResultFalse;
 }
 

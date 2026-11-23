@@ -2,7 +2,7 @@
 
 This session resumes `d86135b` and records actual worker assignments, separately from earlier campaigns.
 
-Requested: **100 workers in five waves of 20**. Recorded: **14**. Completed: **11**.
+Requested: **100 workers in five waves of 20**. Recorded: **25**. Completed: **22**.
 
 Workers run in batches within three available worker slots. An assignment report records work performed and unresolved findings; it does not establish physical fidelity.
 
@@ -20,15 +20,26 @@ Workers run in batches within three available worker slots. An assignment report
 | [008](continuation-20261123/w1-008.md) | `/root/w1_008_state_variant_design` | Review filtered VST3 identity and model-state compatibility | completed |
 | [009](continuation-20261123/w1-009.md) | `/root/w1_009_contact_extrema_design` | Design bounded continuous peak localization | completed |
 | [010](continuation-20261123/w1-010.md) | `/root/w1_010_host_contract_integration` | Align current host contract and retained rejection tests | completed |
-| 011 | `/root/w1_011_filter_coefficients` | Implement reproducible antialias FIR coefficient generation | running |
+| [011](continuation-20261123/w1-011.md) | `/root/w1_011_filter_coefficients` | Implement reproducible antialias FIR coefficient generation | completed |
 | [012](continuation-20261123/w1-012.md) | `/root/w1_012_contact_selection_audit` | Audit contact refinement evidence selection for order dependence | completed |
-| 013 | `/root/w1_013_fir_independent_tests` | Implement independent convolution, ring-wrap and FIR phase tests | running |
-| 014 | `/root/w1_014_contact_selection_fix` | Fix deterministic complete-setting selection for contact evidence | running |
+| [013](continuation-20261123/w1-013.md) | `/root/w1_013_fir_independent_tests` | Implement independent convolution, ring-wrap and FIR phase tests | completed |
+| [014](continuation-20261123/w1-014.md) | `/root/w1_014_contact_selection_fix` | Fix deterministic complete-setting selection for contact evidence | completed |
+| [015](continuation-20261123/w1-015.md) | `/root/w1_015_state_model_codec` | Implement explicit model-tag state codec and stream isolation | completed |
+| [016](continuation-20261123/w1-016.md) | `/root/w1_016_audio_engine_tests` | Test filtered wrapper against independent high-rate convolution and faults | completed |
+| [017](continuation-20261123/w1-017.md) | `/root/w1_017_filtered_host_tests` | Implement filtered VST3 audio, state and lifecycle integration tests | completed |
+| [018](continuation-20261123/w1-018.md) | `/root/w1_018_callback_measurement` | Measure direct and filtered complete callback cost without deadline guarantees | completed |
+| [019](continuation-20261123/w1-019.md) | `/root/w1_019_campaign_validation` | Validate current campaign identities, report hashes and wave ordering | completed |
+| [020](continuation-20261123/w1-020.md) | `/root/w1_020_dual_bundle_audit` | Audit simultaneous bundle loading, identities and symbol isolation | completed |
 
 ## Wave 2
 
 | ID | Actual task | Scope | Status |
 |---|---|---|---|
+| 021 | `/root/w2_021_refinement_extension` | Implement explicit uniform contact refinement extension and preserve original gate results | running |
+| [022](continuation-20261123/w2-022.md) | `/root/w2_022_filtered_renderer` | Expose filtered offline rendering with safe output publication | completed |
+| [023](continuation-20261123/w2-023.md) | `/root/w2_023_filtered_allocation_host` | Exercise both VST3 variants with allocation and scalar host regressions | completed |
+| 024 | `/root/w2_024_bundle_resources` | Independently verify both VST3 bundles retain exact third-party resources | running |
+| 025 | `/root/w2_025_spectral_scope` | Derive synthetic pickup spectral limits and a bounded independent alias experiment | running |
 
 ## Wave 3
 

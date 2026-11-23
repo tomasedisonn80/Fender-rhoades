@@ -9,7 +9,10 @@ loaded output. The repository name is retained for existing links.
 
 **Current stage: experimental VST3 instrument and physical-model research.**
 The C++20 synthetic core now has bounded sample-offset events, MIDI note ownership,
-versioned state recall, and an optional headless VST3 adapter. A separate offline
+versioned state recall, and two optional headless VST3 variants. The filtered
+variant runs the synthetic core at an integer multiple of host rate, applies a
+fixed FIR, and reports 48 frames of latency; the original direct model retains
+its identity and state interpretation. A separate offline
 finite-mass hammer/damper reference includes energy and event diagnostics.
 Parameters remain synthetic; no physical specimen has been measured, no fidelity
 claim has been established, and no plug-in release has been published.
@@ -33,6 +36,8 @@ The [live project state](docs/PROJECT_STATE.md) is generated from the
 | Inspect the supplied research | [Research and source provenance](docs/research/README.md) |
 | Audit the setup agents | [Actual-agent campaign](docs/agents/CAMPAIGN.md) |
 | Audit the current development campaign | [Five waves of development](docs/agents/DEVELOPMENT_CAMPAIGN.md) |
+| Audit this continuation session | [Five-wave continuation](docs/agents/CONTINUATION_CAMPAIGN.md) |
+| Inspect the filtered audio design | [Timing, response and compatibility contract](docs/specs/FILTERED_AUDIO_20261123.md) |
 | Inspect the VST3 prototype contract | [Host behavior and limits](docs/specs/HOST_PROTOTYPE_20261123.md) |
 | Build and try the VST3 instrument | [VST3 setup and controls](docs/VST3.md) |
 | Run the separate hammer/damper experiments | [Offline contact reference](docs/CONTACT_REFERENCE.md) |
@@ -58,6 +63,11 @@ Render a synthetic research note on Linux or macOS:
   --sample-rate 48000 --key 40 --velocity 0.7
 ```
 
+For the oversampled, filtered path, add `--audio-path filtered`. The default is
+`--audio-path direct`. Both retain the requested file duration; filtered output
+includes its causal 48-frame delay. The success message reports the selected path,
+internal sample rate and latency.
+
 With a Visual Studio multi-configuration build, use
 `build/Release/rhodes_render.exe`. `--key` is a zero-based physical-key index
 `0..72`; index 40 maps to MIDI 68 in the synthetic E1–E7 mapping. `--velocity` is
@@ -78,6 +88,8 @@ python3 tools/campaign.py validate
 python3 tools/campaign.py sync --check
 python3 tools/development_campaign.py validate
 python3 tools/development_campaign.py sync --check
+python3 tools/validate_continuation_campaign.py
+python3 tools/generate_audio_filter.py --check
 python3 -m unittest discover -s tests/python -v
 ```
 
@@ -96,8 +108,8 @@ the sanitizer preset excludes Windows. See
 | Harp circuit | Synthetic resistive series/parallel network retaining all 73 branches | Verified specimen topology, complex coil impedance, parasitics and load |
 | Stage controls | Architecture and component requirements | Revision-specific connected passive circuit |
 | Instrument identity | Unidentified profile with units and provenance fields | Actual specimen, construction revisions and measurements |
-| Runtime | Bounded event processing, deterministic rendering and complete-call benchmark | Independent error and antialiasing budgets, representative host/device timing |
-| Host product | Optional VST3 instrument, generic host controls, note ownership and portable state | Native DAW/platform validation, product UI and release packaging |
+| Runtime | Bounded events, optional 4x/2x/1x core with 48-frame FIR and independent convolution tests | Broader transient/internal-rate error budgets and representative host/device timing |
+| Host product | Direct and filtered VST3 variants, isolated model state, generic controls and bounded rejection cleanup | Native DAW/platform validation, product UI and release packaging |
 
 Peterson/Janus Suitcase electronics, amplifiers, loudspeakers and room acoustics
 belong to separately identified future profiles. They do not silently become part

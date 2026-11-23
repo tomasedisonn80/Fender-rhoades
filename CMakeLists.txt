@@ -74,6 +74,27 @@ target_compile_definitions(rhodes_runtime_benchmark PRIVATE RHODES_BUILD_CONFIGU
 rhodes_target_options(rhodes_runtime_benchmark)
 
 if(BUILD_TESTING)
+    add_executable(rhodes_audio_fir_tests tests/cpp/audio_fir_test.cpp)
+    target_link_libraries(rhodes_audio_fir_tests PRIVATE rhodes_core)
+    rhodes_target_options(rhodes_audio_fir_tests)
+    foreach(test_name IN ITEMS fir_coefficients_dc fir_impulse_phases
+            fir_direct_convolution fir_group_delay fir_transactional_rejection fir_overflow_reset)
+        add_test(NAME audio.${test_name} COMMAND rhodes_audio_fir_tests ${test_name})
+    endforeach()
+    add_executable(rhodes_model_state_tests tests/cpp/instrument_model_state_test.cpp)
+    target_link_libraries(rhodes_model_state_tests PRIVATE rhodes_core)
+    rhodes_target_options(rhodes_model_state_tests)
+    foreach(test_name IN ITEMS model1_golden model2_roundtrip cross_model_rejection
+            invalid_model malformed_models)
+        add_test(NAME model_state.${test_name} COMMAND rhodes_model_state_tests ${test_name})
+    endforeach()
+    add_executable(rhodes_audio_engine_tests tests/cpp/audio_engine_test.cpp)
+    target_link_libraries(rhodes_audio_engine_tests PRIVATE rhodes_core)
+    rhodes_target_options(rhodes_audio_engine_tests)
+    foreach(test_name IN ITEMS high_rate_oracle rate_boundaries persistent_events
+            partition_invariance prepare_atomicity reset_flush event_timing fault_substeps)
+        add_test(NAME audio.${test_name} COMMAND rhodes_audio_engine_tests ${test_name})
+    endforeach()
     add_executable(rhodes_contact_tests tests/cpp/contact_reference_test.cpp)
     target_link_libraries(rhodes_contact_tests PRIVATE rhodes_contact)
     rhodes_target_options(rhodes_contact_tests)
@@ -203,6 +224,9 @@ if(BUILD_TESTING)
     add_test(NAME cli.render_output COMMAND ${CMAKE_COMMAND}
         -DPROGRAM=$<TARGET_FILE:rhodes_render> -DTEST_ROOT=${CMAKE_CURRENT_BINARY_DIR}
         -P ${CMAKE_CURRENT_SOURCE_DIR}/tests/cpp/render_output.cmake)
+    add_test(NAME cli.filtered_render COMMAND ${CMAKE_COMMAND}
+        -DPROGRAM=$<TARGET_FILE:rhodes_render> -DTEST_ROOT=${CMAKE_CURRENT_BINARY_DIR}
+        -P ${CMAKE_CURRENT_SOURCE_DIR}/tests/cpp/filtered_render.cmake)
     add_test(NAME cli.reject_nan COMMAND ${CMAKE_COMMAND}
         -DPROGRAM=$<TARGET_FILE:rhodes_render> -DARG1=--seconds -DARG2=nan
         -P ${CMAKE_CURRENT_SOURCE_DIR}/tests/cpp/expect_cli_failure.cmake)

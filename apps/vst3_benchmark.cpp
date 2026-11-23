@@ -439,6 +439,17 @@ template<class Sample> int run(const Options& options) {
         << "{\n\"schema_version\":1,\"benchmark\":\"synthetic_vst3_process\",\"complete\":" << complete
         << ",\n\"identity\":{\"source_revision\":"; json_string(RHODES_SOURCE_REVISION);
     std::cout << ",\"source_diff_hash\":"; json_string(RHODES_SOURCE_DIFF_HASH);
+    std::cout << ",\"plugin_name\":"; json_string(plugin::kPluginName);
+    std::cout << ",\"state_model\":" << plugin::kStateModel
+        << ",\"latency_frames\":" << host->processor.getLatencySamples();
+    if constexpr (plugin::kFilteredAudio) {
+        std::cout << ",\"oversampling_factor\":"
+            << host->processor.engine_processor().engine().oversampling_factor()
+            << ",\"internal_sample_rate_hz\":"
+            << host->processor.engine_processor().engine().internal_sample_rate_hz();
+    } else {
+        std::cout << ",\"oversampling_factor\":1,\"internal_sample_rate_hz\":" << options.rate;
+    }
     std::cout << ",\"timing_scope\":\"RhodesProcessor::process including host getters, validation, ownership, automation, output clearing, rendering and mailbox publication\"},\n"
         "\"environment\":{\"machine_label\":"; json_string(options.machine);
     std::cout << ",\"platform\":"; json_string(platform());

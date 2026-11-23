@@ -45,6 +45,10 @@ jobs:
         run: python tools/development_campaign.py validate
       - name: Reject stale development campaign index
         run: python tools/development_campaign.py sync --check
+      - name: Validate continuation assignments and immutable report hashes
+        run: python tools/validate_continuation_campaign.py
+      - name: Reject stale audio filter coefficients
+        run: python tools/generate_audio_filter.py --check
       - name: Check agent tooling
         run: python -m unittest discover -s tests/python -v
 
