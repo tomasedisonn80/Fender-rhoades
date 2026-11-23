@@ -8,13 +8,34 @@ if(NOT EXISTS "${RHODES_VST3_SDK_ROOT}/pluginterfaces/vst/ivstaudioprocessor.h"
     message(FATAL_ERROR "Set RHODES_VST3_SDK_ROOT to the complete pinned SDK checkout; see docs/DEPENDENCIES.md")
 endif()
 find_package(Git REQUIRED)
-execute_process(COMMAND "${GIT_EXECUTABLE}" -C "${RHODES_VST3_SDK_ROOT}" rev-parse HEAD
-    OUTPUT_VARIABLE rhodes_sdk_commit OUTPUT_STRIP_TRAILING_WHITESPACE
-    RESULT_VARIABLE rhodes_sdk_git_result ERROR_QUIET)
-if(NOT rhodes_sdk_git_result EQUAL 0 OR NOT rhodes_sdk_commit STREQUAL
-        "3cdf9ca5d1f5b1b21e0a86832aa4abe55607bd96")
-    message(FATAL_ERROR "VST3 SDK must be the documented v3.8.1_build_84 commit (3cdf9ca5...)")
-endif()
+function(rhodes_verify_sdk_checkout component expected_revision)
+    set(checkout "${RHODES_VST3_SDK_ROOT}/${component}")
+    # A missing submodule must not inherit the enclosing SDK's Git repository.
+    if(NOT EXISTS "${checkout}/.git")
+        message(FATAL_ERROR "VST3 SDK ${component}: missing Git checkout. Initialize the four documented submodules; see docs/VST3.md")
+    endif()
+    execute_process(COMMAND "${GIT_EXECUTABLE}" -C "${checkout}" rev-parse --verify HEAD
+        OUTPUT_VARIABLE actual_revision OUTPUT_STRIP_TRAILING_WHITESPACE
+        RESULT_VARIABLE revision_result ERROR_QUIET)
+    if(NOT revision_result EQUAL 0 OR NOT actual_revision STREQUAL expected_revision)
+        message(FATAL_ERROR "VST3 SDK ${component}: expected ${expected_revision}, found '${actual_revision}'. Use the documented pinned checkout; see docs/DEPENDENCIES.md")
+    endif()
+    # Check built tracked contents, including staged edits, against the pinned
+    # commit. Ignore gitlinks here: each required submodule is checked separately.
+    # Untracked build directories and unused optional submodules are permitted.
+    execute_process(COMMAND "${GIT_EXECUTABLE}" -C "${checkout}"
+        diff --quiet --ignore-submodules=all HEAD --
+        RESULT_VARIABLE contents_result ERROR_QUIET)
+    if(NOT contents_result EQUAL 0)
+        message(FATAL_ERROR "VST3 SDK ${component}: tracked contents differ from the pinned commit or cannot be checked. Use a clean separate checkout; local files are never modified by this build.")
+    endif()
+endfunction()
+
+rhodes_verify_sdk_checkout("." "3cdf9ca5d1f5b1b21e0a86832aa4abe55607bd96")
+rhodes_verify_sdk_checkout("base" "fcf9da0bd27a16f7f03773a3a39822f28f5c8477")
+rhodes_verify_sdk_checkout("cmake" "054c9143cbb8d47fc4694e473f2ee3b4d951a8f5")
+rhodes_verify_sdk_checkout("pluginterfaces" "4f547e8e102b47de4a8b8aaf343c73b700786372")
+rhodes_verify_sdk_checkout("public.sdk" "586dc5e6c8012c3e4b01c79389375cbe96bdb1da")
 
 set(SMTG_ENABLE_VSTGUI_SUPPORT OFF CACHE BOOL "Headless instrument" FORCE)
 set(SMTG_ENABLE_VST3_PLUGIN_EXAMPLES OFF CACHE BOOL "No SDK plugin examples" FORCE)
@@ -44,7 +65,8 @@ if(SMTG_MAC)
         COMPANY_NAME "Independent Rhodes Research")
 endif()
 smtg_target_add_plugin_resources(rhodes_vst3 RESOURCES
-    "${RHODES_VST3_SDK_ROOT}/LICENSE.txt")
+    "${RHODES_VST3_SDK_ROOT}/LICENSE.txt"
+    "${PROJECT_SOURCE_DIR}/plugins/vst3/THIRD_PARTY_NOTICES.md")
 
 if(BUILD_TESTING)
     add_executable(rhodes_vst3_host_tests

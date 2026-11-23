@@ -33,6 +33,7 @@ the one-note physical-model milestone.
 | `VAL-001` | One-note integrated prediction | `PHY-002`, `MAG-001`, `ELEC-001` | Frozen model predicts held-out strikes, retriggers, release, pickup positions, and loads with justified thresholds |
 | `KEY-001` | Construction zones and full keyboard calibration | `VAL-001` | Per-key/zone provenance, register transition checks, held-out keys or explicitly limited coverage |
 | `RT-001` | Representative runtime benchmark and numerical error budget | `PHY-001` | Reproducible workload/hardware record, timing distribution/maxima, deadline accounting, reference-error report |
+| `HOST-001` | Experimental synthetic VST3 instrument | `PHY-001` | Bounded event/ownership/state behavior, pinned SDK module build and validator, explicit tested-platform and synthetic scope |
 | `STG-001` | Connected passive Stage output controls | `VAL-001` | Verified volume/bass graph, measured tapers/endpoints, loaded transfer and held-out control/load validation |
 | `CIR-001` | Optional revision-specific Suitcase circuits | `STG-001` | Verified graph and identified device/supply dynamics for each explicitly named profile |
 | `ACO-001` | Optional acoustic output boundary | `CIR-001` | Defined driver/cabinet/listening geometry, terminal and acoustic validation, separate scope decision |
@@ -145,10 +146,11 @@ Choose plug-in SDKs or UI dependencies only after reviewing their requirements
 and licenses. The initial dependency-free CLI does not select a final commercial
 framework or grant any SDK rights.
 
-Host adapters and distributable plug-ins need explicit future tasks in canonical
-state once the scope is chosen. Do not label a renderer build as a plug-in
-release. Windows, Linux, and macOS claims require their own observed build/host
-results.
+`HOST-001` defines the optional synthetic VST3 engineering prototype separately
+from measured-model and runtime-error acceptance. Its [host contract](specs/HOST_PROTOTYPE_20261123.md)
+and [build guide](VST3.md) specify the selected SDK, events, state and controls.
+Distributable plug-ins need a separate release scope. Windows, Linux, and macOS
+claims require their own observed build/host results.
 
 **Exit:** documented reference error and aliasing bounds over the supported
 operating domain; callback timing and deadline behavior under recorded stress;

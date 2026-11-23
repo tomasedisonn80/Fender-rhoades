@@ -34,6 +34,8 @@ The [live project state](docs/PROJECT_STATE.md) is generated from the
 | Audit the setup agents | [Actual-agent campaign](docs/agents/CAMPAIGN.md) |
 | Audit the current development campaign | [Five waves of development](docs/agents/DEVELOPMENT_CAMPAIGN.md) |
 | Inspect the VST3 prototype contract | [Host behavior and limits](docs/specs/HOST_PROTOTYPE_20261123.md) |
+| Build and try the VST3 instrument | [VST3 setup and controls](docs/VST3.md) |
+| Run the separate hammer/damper experiments | [Offline contact reference](docs/CONTACT_REFERENCE.md) |
 
 ## Build and run
 

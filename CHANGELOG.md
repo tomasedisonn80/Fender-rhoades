@@ -1,6 +1,19 @@
 # Change log
 
-## Unreleased — research foundation
+## Unreleased — experimental VST3 and research foundation
+
+- Optional VST3 instrument using the pinned official SDK, with generic gain and
+  sustain controls, mono signal on a stereo bus, and float32/float64 processing.
+- Bounded sample-offset events, overlapping MIDI note ownership, validated
+  versioned configuration state and lock-free recall handoff to the audio owner.
+- Retained processor/controller host tests and an SDK-validator CTest target.
+- Separate offline finite-mass hammer/compliant-damper reference, reciprocal
+  contact, energy/loss/work ledgers, typed failure and whole-call rollback.
+- Independent contact fixtures, exact grazing specialization, relaunch snapshots,
+  optional SciPy oracle and explicit unfinished refinement/extrema gates.
+- Complete event-processor callback benchmark with bounded stress schedules and
+  retained raw timing observations; no audio-device deadline guarantee.
+- Five-wave development campaign with actual assignments and immutable reports.
 
 - Original C++20 modal, pickup, and passive-network research primitives.
 - Deterministic synthetic WAV renderer and analytical regression tests.

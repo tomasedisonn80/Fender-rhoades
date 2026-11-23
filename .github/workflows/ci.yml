@@ -41,6 +41,10 @@ jobs:
         run: python tools/campaign.py validate --require-complete
       - name: Reject stale campaign index
         run: python tools/campaign.py sync --check
+      - name: Validate development assignments and report hashes
+        run: python tools/development_campaign.py validate
+      - name: Reject stale development campaign index
+        run: python tools/development_campaign.py sync --check
       - name: Check agent tooling
         run: python -m unittest discover -s tests/python -v
 

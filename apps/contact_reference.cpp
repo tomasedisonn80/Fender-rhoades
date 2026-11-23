@@ -172,6 +172,13 @@ struct Sample {
     c::Ledger ledger;
 };
 
+struct RelaunchSnapshot {
+    Sample before;
+    Sample after;
+    double requested_velocity_m_per_s;
+    c::Result result;
+};
+
 std::string_view event_kind(c::EventKind kind) {
     switch (kind) {
     case c::EventKind::onset: return "onset";
@@ -247,10 +254,20 @@ int main(int argc, char** argv) {
         auto result = reference.initialize(input.config, input.initial, settings);
         if (!result) { throw std::runtime_error("Reference rejected fixture or solver settings"); }
         std::vector<Sample> samples;
-        const auto record = [&] { samples.push_back({reference.state(), reference.observation(), reference.ledger()}); };
+        std::vector<RelaunchSnapshot> relaunch_snapshots;
+        const auto snapshot = [&] {
+            return Sample{reference.state(), reference.observation(), reference.ledger()};
+        };
+        const auto record = [&] { samples.push_back(snapshot()); };
+        const auto relaunch = [&](double velocity_m_per_s) {
+            const auto before = snapshot();
+            const auto action_result = reference.relaunch_hammer(velocity_m_per_s);
+            relaunch_snapshots.push_back({before, snapshot(), velocity_m_per_s, action_result});
+            return action_result;
+        };
         bool relaunched = input.relaunch_time < 0.0;
         if (input.relaunch_time == 0.0) {
-            result = reference.relaunch_hammer(1.0);
+            result = relaunch(1.0);
             relaunched = true;
         }
         record();
@@ -269,7 +286,7 @@ int main(int argc, char** argv) {
             result = reference.advance(dt);
             if (!result) { break; }
             if (!relaunched && target == input.relaunch_time) {
-                result = reference.relaunch_hammer(1.0);
+                result = relaunch(1.0);
                 relaunched = true;
             }
             record();
@@ -289,6 +306,21 @@ int main(int argc, char** argv) {
             << ",\"impulse_absolute_tolerance\":" << settings.impulse_absolute_tolerance_ns
             << ",\"output_step_s\":" << output_step << ",\"samples\":[";
         for (std::size_t i = 0; i < samples.size(); ++i) { if (i) { std::cout << ','; } emit_sample(samples[i], input); }
+        std::cout << "],\"relaunch_snapshots\":[";
+        for (std::size_t i = 0; i < relaunch_snapshots.size(); ++i) {
+            if (i) { std::cout << ','; }
+            const auto& action = relaunch_snapshots[i];
+            std::cout << "{\"time_s\":" << action.before.state.time_s
+                << ",\"requested_velocity_m_per_s\":" << action.requested_velocity_m_per_s
+                << ",\"success\":" << (action.result ? "true" : "false")
+                << ",\"failure_code\":" << static_cast<int>(action.result.failure)
+                << ",\"work_j\":" << action.after.ledger.relaunch_work_j - action.before.ledger.relaunch_work_j
+                << ",\"before\":";
+            emit_sample(action.before, input);
+            std::cout << ",\"after\":";
+            emit_sample(action.after, input);
+            std::cout << '}';
+        }
         std::cout << "],\"events\":[";
         for (std::size_t i = 0; i < reference.events().size(); ++i) {
             if (i) { std::cout << ','; }
@@ -308,9 +340,20 @@ int main(int argc, char** argv) {
             << ",\"maximum_accepted_step_s\":" << d.maximum_accepted_step_s
             << ",\"accepted_steps\":" << d.work.accepted_steps << ",\"rejected_steps\":" << d.work.rejected_steps
             << ",\"rhs_evaluations\":" << d.work.rhs_evaluations
+            << ",\"analytic_free_evaluations\":" << d.work.analytic_free_evaluations
             << ",\"event_subdivisions\":" << d.work.event_subdivisions
             << ",\"root_iterations\":" << d.work.root_iterations
-            << ",\"grazing_candidates\":" << d.grazing_candidates << "}}]}\n";
+            << ",\"grazing_candidates\":" << d.grazing_candidates
+            << ",\"sampled_maxima\":{\"scope\":\"accepted endpoints and checked interior samples; not continuous-time extrema\""
+            << ",\"hammer_compression_m\":" << d.sampled_maximum_hammer_compression_m
+            << ",\"hammer_compression_time_s\":" << d.sampled_maximum_hammer_compression_time_s
+            << ",\"hammer_force_n\":" << d.sampled_maximum_hammer_force_n
+            << ",\"hammer_force_time_s\":" << d.sampled_maximum_hammer_force_time_s
+            << ",\"damper_compression_m\":" << d.sampled_maximum_damper_compression_m
+            << ",\"damper_compression_time_s\":" << d.sampled_maximum_damper_compression_time_s
+            << ",\"damper_force_n\":" << d.sampled_maximum_damper_force_n
+            << ",\"damper_force_time_s\":" << d.sampled_maximum_damper_force_time_s
+            << "}}}]}\n";
         return result ? 0 : 2;
     } catch (const std::exception& error) {
         std::cerr << "Contact reference error: " << error.what() << '\n';

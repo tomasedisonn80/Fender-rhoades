@@ -7,18 +7,18 @@ no packages during its build. Its build requirements remain a C++20 compiler
 and CMake 3.24 or later; repository tooling uses Python 3.11 or later. See
 [development instructions](DEVELOPMENT.md) and the [root build](../CMakeLists.txt).
 
-No third-party source is vendored into this repository by the optional SDK plan
+No third-party source is vendored into this repository by the optional SDK integration
 below. The project-wide software license remains an owner decision; recording
 the SDK's license does not select a license for this project's original code.
 See [rights and attribution](../RIGHTS.md).
 
 ## Optional official VST3 SDK
 
-The planned experimental VST3 adapter uses a separately supplied local checkout
+The experimental VST3 adapter uses a separately supplied local checkout
 of Steinberg's official SDK. It is optional and must remain outside the default
 core's dependency graph. This document records the inspected dependency and
-packaging requirements; it does not claim that an adapter build, validator run,
-or released binary has passed.
+packaging requirements. Actual build and validator observations, along with the
+remaining platform and release limits, are recorded in [VST3.md](VST3.md).
 
 | Item | Pinned value |
 |---|---|
@@ -68,13 +68,59 @@ All five files have the same SHA-256:
 | `pluginterfaces/LICENSE.txt` | [Plug-in interfaces notice](https://github.com/steinbergmedia/vst3_pluginterfaces/blob/4f547e8e102b47de4a8b8aaf343c73b700786372/LICENSE.txt) |
 | `public.sdk/LICENSE.txt` | [Public SDK notice](https://github.com/steinbergmedia/vst3_public_sdk/blob/586dc5e6c8012c3e4b01c79389375cbe96bdb1da/LICENSE.txt) |
 
-Any future binary bundle built with this SDK must include these unmodified
+Every binary bundle built with this SDK must include these unmodified
 official copyright and permission notices in its third-party notice resources,
 with their source paths identifiable. Packaging verification must compare the
-bundled notices against the pinned files. This is a requirement for the future
-bundle, not a claim that this documentation change creates one.
+bundled notices against the pinned files. The optional target currently copies
+the common SDK notice into its resources; the five inspected notices are byte
+identical. A distributable package still requires its own packaging review.
 
 The observations above apply to the named files and headless integration scope.
 Optional GUI components and example-specific third-party code are outside that
 scope; adding them requires recording their own sources and notices. The SDK
 pin and notice inventory must be updated together if the dependency changes.
+
+The [resource notice index](../plugins/vst3/THIRD_PARTY_NOTICES.md) identifies all
+five source paths and revisions for packaging beside the common `LICENSE.txt`.
+On 2026-11-23 the existing Linux bundle's
+`build/vst3/VST3/Release/RhodesResearch.vst3/Contents/Resources/LICENSE.txt`
+was compared byte-for-byte with all five pinned source files: all six copies
+were identical, 1094 bytes, with the SHA-256 above. This observation verifies
+the common notice already in that bundle; inclusion of the new index requires
+the integrator's resource-list update and a subsequent packaging check.
+
+## Optional independent Python audit
+
+[`tools/validate_contact_reference.py`](../tools/validate_contact_reference.py)
+uses NumPy arrays and SciPy's independent Radau, matrix-exponential, root and
+quadrature routines. These are developer-side numerical audit dependencies.
+They are not dependencies of the C++ core, offline C++ reference, VST3 audio
+callback, ordinary CTests, or standard-library candidate-sweep runner. No
+Python package or third-party source is vendored by this documentation change.
+
+The following installed versions and metadata were inspected in the Linux
+Python 3.12 environment on 2026-11-23. These are observed audit versions, not a
+complete environment lock or a claim about other available releases.
+
+| Distribution | Observed version | Primary source | Upstream project license |
+| --- | --- | --- | --- |
+| NumPy | `2.3.5` | [numpy/numpy](https://github.com/numpy/numpy), [official license](https://numpy.org/doc/stable/license.html) | BSD 3-Clause |
+| SciPy | `1.17.0` | [scipy/scipy](https://github.com/scipy/scipy), [official project](https://scipy.org/) | BSD 3-Clause |
+
+Installed `METADATA` identifies both distributions as BSD licensed and points
+to those upstream repositories. Their installed license files retain the
+project notices and additional bundled-component notices. The inspected files
+list OpenBLAS, LAPACK, GCC runtime and libquadmath notices; NumPy also lists
+source/build components. Do not reduce a redistributed binary distribution's
+complete notice set to the project-level BSD label. These Python distributions
+are not packaged in the VST3 bundle.
+
+| Installed file, relative to `site-packages` | Bytes | SHA-256 of complete installed notice file |
+| --- | --- | --- |
+| `numpy-2.3.5.dist-info/LICENSE.txt` | 47768 | `2046a3130e50b11c01659b3a0d963e6ae0b7436ff8e89cbcfd9e87bc6112d595` |
+| `scipy-1.17.0.dist-info/LICENSE.txt` | 46838 | `4daf14e37432e7026165979ecb7a39930707a3e89bef4876cfaf9dad36ed364a` |
+
+These hashes identify the observed notice bytes, not a wheel, source archive or
+all transitive dependencies. A new audit environment should record its actual
+versions and retain its distribution notices. The repository's original-code
+license remains a separate owner decision.

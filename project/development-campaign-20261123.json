@@ -243,26 +243,152 @@
       "wave": 2,
       "task_name": "/root/w2_a027",
       "scope": "Configure pinned SDK VST3 build and validator CI across Linux Windows and macOS",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/development-20261123/W2-A027.md",
-      "report_sha256": null
+      "report_sha256": "3058bb22b2b9df27d48b67fd3078d90da662bd423d98bd44f41e8350a94b9241"
     },
     {
       "id": "A028",
       "wave": 2,
       "task_name": "/root/w2_a028",
       "scope": "Document reproducible VST3 SDK setup build controls and tested prototype limits",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/development-20261123/W2-A028.md",
-      "report_sha256": null
+      "report_sha256": "2052dcc670aaa9822c15f8e7cab2121f86ec3b373b555ee10311c1c1f944b376"
     },
     {
       "id": "A029",
       "wave": 2,
       "task_name": "/root/w2_a029",
       "scope": "Export exact contact relaunch snapshots and transparent numerical diagnostics",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/development-20261123/W2-A029.md",
+      "report_sha256": "6f30e5ea6abc15856450055aae04dd5f08c9d0e918dcdc81375e35bb45331b72"
+    },
+    {
+      "id": "A030",
+      "wave": 2,
+      "task_name": "/root/w2_a030",
+      "scope": "Exercise state recall mailbox with real concurrent threads and deterministic races",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W2-A030.md",
+      "report_sha256": "dc08f1615f1a52fa82862770aa99af8aa3c492600c7bd0cca0a63c54281bd23c"
+    },
+    {
+      "id": "A031",
+      "wave": 2,
+      "task_name": "/root/w2_a031",
+      "scope": "Retain generalized analytic grazing and certificate invalidation regressions",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W2-A031.md",
+      "report_sha256": "32eaefe3f7c56652b82ef40093534d484f2834e5693d3ca98b4bd492dcbdd2b7"
+    },
+    {
+      "id": "A032",
+      "wave": 2,
+      "task_name": "/root/w2_a032",
+      "scope": "Enforce complete SDK pins and align macOS build instructions with actual SDK behavior",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W2-A032.md",
+      "report_sha256": "97bc7e565dd140156ab0fb312d11631dfbf27e04e9fa98a26c03e490bb4af00d"
+    },
+    {
+      "id": "A033",
+      "wave": 2,
+      "task_name": "/root/w2_a033",
+      "scope": "Create reproducible contact step event and local tolerance sweep runner",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W2-A033.md",
+      "report_sha256": "fb5610b0fd8942e5aaa2c3ad9f9a27646b02d3d933b11e0e34c2eb8e98797fe6"
+    },
+    {
+      "id": "A034",
+      "wave": 2,
+      "task_name": "/root/w2_a034",
+      "scope": "Retain portable runtime benchmark JSON schedule and CLI regression checks",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W2-A034.md",
+      "report_sha256": "cf63c3a515cd07ed7126148aaa0066e71d8e219399dd725697ceea5ee2c4412a"
+    },
+    {
+      "id": "A035",
+      "wave": 2,
+      "task_name": "/root/w2_a035",
+      "scope": "Quantify possible nonlinear pickup Nyquist crossings across key and sample rate",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W2-A035.md",
+      "report_sha256": "d02714a88f1c809632258c2e689b0afa09c7ae3d0c6af86ff397ac710fd61ea0"
+    },
+    {
+      "id": "A036",
+      "wave": 2,
+      "task_name": "/root/w2_a036",
+      "scope": "Document the separate contact reference and current event processor numerical contract",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W2-A036.md",
+      "report_sha256": "b0a6989367618fa9066f65f349e03ce56b35e22ddf2a4254447dd96992b290dc"
+    },
+    {
+      "id": "A037",
+      "wave": 2,
+      "task_name": "/root/w2_a037",
+      "scope": "Package SDK source and notice provenance and document optional numerical audit dependencies",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W2-A037.md",
+      "report_sha256": "7c70fae45982886b1570be4c03cdb1502c43bc7c2f2a934b4b25c22711a1ce58"
+    },
+    {
+      "id": "A038",
+      "wave": 2,
+      "task_name": "/root/w2_a038",
+      "scope": "Measure representative full-call runtime workloads with reproducible environment and timing records",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W2-A038.md",
+      "report_sha256": "efdc674a92e5ab1ec80620726a988b6793f10b689a71aeb0fd0cab04331e408d"
+    },
+    {
+      "id": "A039",
+      "wave": 2,
+      "task_name": "/root/w2_a039",
+      "scope": "Independently audit VST3 preflight recall ownership buffer and failure semantics",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W2-A039.md",
+      "report_sha256": "28a5c4a0ca8962bcc631806ec4c266d14e814070958f3ea3bc9559d28531cacf"
+    },
+    {
+      "id": "A040",
+      "wave": 2,
+      "task_name": "/root/w2_a040",
+      "scope": "Review integrated wave-two evidence and remaining physical runtime and host acceptance gates",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W2-A040.md",
+      "report_sha256": "2f3dc810d8a58d6898c73dd890ee263110a1cb14959f4bd62625898e38ee71ea"
+    },
+    {
+      "id": "A041",
+      "wave": 3,
+      "task_name": "/root/w3_a041",
+      "scope": "Cache and prewarm exact modal damping transitions to address measured pedal event cost",
+      "status": "running",
+      "report": "docs/agents/development-20261123/W3-A041.md",
+      "report_sha256": null
+    },
+    {
+      "id": "A042",
+      "wave": 3,
+      "task_name": "/root/w3_a042",
+      "scope": "Repair duplicate controller initialization and retain lifecycle regression coverage",
+      "status": "running",
+      "report": "docs/agents/development-20261123/W3-A042.md",
+      "report_sha256": null
+    },
+    {
+      "id": "A043",
+      "wave": 3,
+      "task_name": "/root/w3_a043",
+      "scope": "Retain portable contact CLI JSON relaunch and malformed-input regression checks",
+      "status": "running",
+      "report": "docs/agents/development-20261123/W3-A043.md",
       "report_sha256": null
     }
   ]

@@ -8,6 +8,9 @@ The current equations, units and numerical failure behavior are specified in
 The core requires C++20 and CMake 3.24+. Project tooling requires Python 3.11+.
 No compiler or third-party audio framework is downloaded by the build. Use a
 compiler supplied by your operating system's normal development environment.
+The optional [VST3 build](VST3.md) uses an explicitly supplied, pinned SDK and
+requires CMake 3.25 or later. The offline contact reference and runtime benchmark
+are included in the ordinary dependency-free C++ build.
 
 ```sh
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Release
@@ -19,6 +22,8 @@ python3 tools/validate_data.py
 python3 tools/check_docs.py
 python3 tools/campaign.py validate
 python3 tools/campaign.py sync --check
+python3 tools/development_campaign.py validate
+python3 tools/development_campaign.py sync --check
 python3 -m unittest discover -s tests/python -v
 ```
 
@@ -51,10 +56,16 @@ The workflow has read-only repository permissions and never commits or pushes.
 Actions are pinned by commit. Dependency update proposals are limited to the
 GitHub Actions ecosystem because the initial runtime has no external packages.
 
+A separate `.github/workflows/vst3.yml` configures the optional module, retained
+host harness and official SDK validator on the same three platforms. It checks
+the SDK root and all four initialized submodule revisions, and leaves plugin
+installation links disabled. The development campaign has its own ledger;
+unfinished assignments remain visible until their actual reports are complete.
+
 A configured CI job is not a completed test result. Read the Actions run for the
 specific commit before reporting a platform as passing. Local Linux verification
 cannot establish that Windows or macOS passed. There is no plugin binary release
-or installer pipeline in this foundation.
+or installer pipeline in this prototype.
 
 The current C++ command-line interfaces use narrow process arguments. Arbitrary
 Unicode filesystem paths and non-ASCII machine labels have not been validated on
