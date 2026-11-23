@@ -86,6 +86,12 @@ if(BUILD_TESTING)
     foreach(test_name IN ITEMS qfir_convolution qfir_impulses qfir_delay qfir_rejection qfir_overflow)
         add_test(NAME quadrature.${test_name} COMMAND rhodes_quadrature_fir_tests ${test_name})
     endforeach()
+    add_executable(rhodes_quadrature_engine_tests tests/cpp/quadrature_engine_test.cpp)
+    target_link_libraries(rhodes_quadrature_engine_tests PRIVATE rhodes_core)
+    rhodes_target_options(rhodes_quadrature_engine_tests)
+    foreach(test_name IN ITEMS qengine_events qengine_partitions qengine_prepare qengine_faults qengine_allocations)
+        add_test(NAME quadrature.${test_name} COMMAND rhodes_quadrature_engine_tests ${test_name})
+    endforeach()
     add_executable(rhodes_audio_fir_tests tests/cpp/audio_fir_test.cpp)
     target_link_libraries(rhodes_audio_fir_tests PRIVATE rhodes_core)
     rhodes_target_options(rhodes_audio_fir_tests)
@@ -118,16 +124,25 @@ if(BUILD_TESTING)
         "-DPROGRAM=$<TARGET_FILE:rhodes_audio_probe>"
         "-DTEST_ROOT=${CMAKE_CURRENT_BINARY_DIR}"
         -P "${CMAKE_CURRENT_SOURCE_DIR}/tests/cpp/audio_probe_cli.cmake")
+    add_test(NAME quadrature.cli COMMAND ${CMAKE_COMMAND}
+        "-DPROBE=$<TARGET_FILE:rhodes_quadrature_probe>"
+        "-DRENDERER=$<TARGET_FILE:rhodes_render>"
+        "-DTEST_ROOT=${CMAKE_CURRENT_BINARY_DIR}"
+        -P "${CMAKE_CURRENT_SOURCE_DIR}/tests/cpp/quadrature_cli.cmake")
     if(CMAKE_SYSTEM_NAME STREQUAL "Linux" AND EXISTS "/dev/full")
         add_test(NAME audio.probe_stdout COMMAND ${CMAKE_COMMAND}
             "-DPROGRAM=$<TARGET_FILE:rhodes_audio_probe>" -DKIND=probe
+            "-DTEST_ROOT=${CMAKE_CURRENT_BINARY_DIR}"
+            -P "${CMAKE_CURRENT_SOURCE_DIR}/tests/cpp/diagnostic_stdout.cmake")
+        add_test(NAME quadrature.probe_stdout COMMAND ${CMAKE_COMMAND}
+            "-DPROGRAM=$<TARGET_FILE:rhodes_quadrature_probe>" -DKIND=quadrature_probe
             "-DTEST_ROOT=${CMAKE_CURRENT_BINARY_DIR}"
             -P "${CMAKE_CURRENT_SOURCE_DIR}/tests/cpp/diagnostic_stdout.cmake")
         add_test(NAME contact.stdout COMMAND ${CMAKE_COMMAND}
             "-DPROGRAM=$<TARGET_FILE:rhodes_contact_reference>" -DKIND=contact
             "-DTEST_ROOT=${CMAKE_CURRENT_BINARY_DIR}"
             -P "${CMAKE_CURRENT_SOURCE_DIR}/tests/cpp/diagnostic_stdout.cmake")
-        set_tests_properties(audio.probe_stdout contact.stdout PROPERTIES TIMEOUT 90)
+        set_tests_properties(audio.probe_stdout quadrature.probe_stdout contact.stdout PROPERTIES TIMEOUT 90)
     endif()
     add_executable(rhodes_contact_tests tests/cpp/contact_reference_test.cpp)
     target_link_libraries(rhodes_contact_tests PRIVATE rhodes_contact)

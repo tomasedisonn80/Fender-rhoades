@@ -1,14 +1,15 @@
 cmake_minimum_required(VERSION 3.24)
 
-# Inspect both complete bundles after their module targets have been built.
+# Inspect all three complete bundles after their module targets have been built.
 # Use the SDK/project originals, not the generated staging copies, as oracles.
-foreach(argument IN ITEMS DIRECT_BUNDLE FILTERED_BUNDLE SDK_LICENSE THIRD_PARTY_NOTICES)
+foreach(argument IN ITEMS DIRECT_BUNDLE FILTERED_BUNDLE QUADRATURE_BUNDLE
+        SDK_LICENSE THIRD_PARTY_NOTICES)
     if(NOT DEFINED ${argument} OR NOT IS_ABSOLUTE "${${argument}}")
         message(FATAL_ERROR "${argument} must name an absolute path")
     endif()
 endforeach()
 
-foreach(argument IN ITEMS DIRECT_BUNDLE FILTERED_BUNDLE)
+foreach(argument IN ITEMS DIRECT_BUNDLE FILTERED_BUNDLE QUADRATURE_BUNDLE)
     if(NOT IS_DIRECTORY "${${argument}}")
         message(FATAL_ERROR "${argument} must name an existing bundle directory: ${${argument}}")
     endif()
@@ -21,8 +22,15 @@ endforeach()
 
 file(REAL_PATH "${DIRECT_BUNDLE}" direct_real)
 file(REAL_PATH "${FILTERED_BUNDLE}" filtered_real)
+file(REAL_PATH "${QUADRATURE_BUNDLE}" quadrature_real)
 if("${direct_real}" STREQUAL "${filtered_real}")
     message(FATAL_ERROR "DIRECT_BUNDLE and FILTERED_BUNDLE must be distinct bundles")
+endif()
+if("${direct_real}" STREQUAL "${quadrature_real}")
+    message(FATAL_ERROR "DIRECT_BUNDLE and QUADRATURE_BUNDLE must be distinct bundles")
+endif()
+if("${filtered_real}" STREQUAL "${quadrature_real}")
+    message(FATAL_ERROR "FILTERED_BUNDLE and QUADRATURE_BUNDLE must be distinct bundles")
 endif()
 
 function(expect_resource bundle name original)
@@ -37,9 +45,9 @@ function(expect_resource bundle name original)
     endif()
 endfunction()
 
-foreach(bundle IN ITEMS "${DIRECT_BUNDLE}" "${FILTERED_BUNDLE}")
+foreach(bundle IN ITEMS "${DIRECT_BUNDLE}" "${FILTERED_BUNDLE}" "${QUADRATURE_BUNDLE}")
     expect_resource("${bundle}" LICENSE.txt "${SDK_LICENSE}")
     expect_resource("${bundle}" THIRD_PARTY_NOTICES.md "${THIRD_PARTY_NOTICES}")
 endforeach()
 
-message(STATUS "Both VST3 bundles contain byte-identical SDK license and third-party notices")
+message(STATUS "All three VST3 bundles contain byte-identical SDK license and third-party notices")
