@@ -178,6 +178,52 @@
         "Five single-note keys at velocity0.7, 48/96/192 kHz and declared onset/held windows only. Synthetic volts and coefficients; no specimen calibration or audibility claim.",
         "Finite-rate FIR reference, zero-extension at onset and float32 WAV export affect differences. A fitted folded component is diagnostic evidence, not a certified alias-only bound or proof over the supported operating domain."
       ]
+    },
+    {
+      "id": "HOST-20261123-historical-review",
+      "kind": "documentary",
+      "result": "pass",
+      "summary": "Recovered prior criterion-by-criterion HOST-001 acceptance, independently checked by continuation agent 003; historical Linux synthetic prototype scope.",
+      "command": null,
+      "created_at": "2026-11-23T16:22:12Z",
+      "source_commit": "3dceefcce823bd9a9d331739b76446c8d1d39d4f",
+      "artifacts": [
+        {
+          "path": "docs/validation/host-acceptance-20261123.md",
+          "sha256": "d38980da6963c56e1d7bd470bb2d6e0458b9c9ece74be9e36f409d25a8f3d56f"
+        }
+      ],
+      "specimen_id": null,
+      "profile_path": null,
+      "session_paths": [],
+      "independent": false,
+      "reference_evidence": [],
+      "limitations": [
+        "Historical evidence before new continuation changes; accepted-call domain only, no native DAW or Windows/macOS result."
+      ]
+    },
+    {
+      "id": "HOST-20261123-historical-run",
+      "kind": "numerical",
+      "result": "pass",
+      "summary": "Recovered prior source-bound 138-case CTest and 275-case Python integration record, including 47 SDK validator checks.",
+      "command": null,
+      "created_at": "2026-11-23T16:22:13Z",
+      "source_commit": "3dceefcce823bd9a9d331739b76446c8d1d39d4f",
+      "artifacts": [
+        {
+          "path": "docs/validation/development-final-validation-20261123.json",
+          "sha256": "69fca59fc991cd8a722ecab562c4d6eae3ab251a2b363a0c9db59f530a0a200d"
+        }
+      ],
+      "specimen_id": null,
+      "profile_path": null,
+      "session_paths": [],
+      "independent": false,
+      "reference_evidence": [],
+      "limitations": [
+        "Historical Linux synthetic prototype; does not certify later code or complete physical/runtime gates."
+      ]
     }
   ]
 }

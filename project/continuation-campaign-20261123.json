@@ -1,0 +1,45 @@
+{
+  "schema_version": 1,
+  "requested_agents": 100,
+  "waves": 5,
+  "agents_per_wave": 20,
+  "baseline_commit": "d86135b938b183c0945549adc35a3a275188c67f",
+  "agents": [
+    {
+      "id": 1,
+      "wave": 1,
+      "task_name": "/root/w1_001_contact_diagnosis",
+      "scope": "Diagnose archived contact refinement failures",
+      "status": "running",
+      "report": "docs/agents/continuation-20261123/w1-001.md",
+      "report_sha256": null
+    },
+    {
+      "id": 2,
+      "wave": 1,
+      "task_name": "/root/w1_002_runtime_design",
+      "scope": "Design bounded antialiasing improvement",
+      "status": "running",
+      "report": "docs/agents/continuation-20261123/w1-002.md",
+      "report_sha256": null
+    },
+    {
+      "id": 3,
+      "wave": 1,
+      "task_name": "/root/w1_003_host_audit",
+      "scope": "Audit host rejection bounds and previous acceptance",
+      "status": "completed",
+      "report": "docs/agents/continuation-20261123/w1-003.md",
+      "report_sha256": "1e0f874ae0edbc315addf4a1719274dd8844c044742b2124cd93e5f3847138c7"
+    },
+    {
+      "id": 4,
+      "wave": 1,
+      "task_name": "/root/w1_004_bounded_rejection",
+      "scope": "Implement bounded rejected-output cleanup with sentinel and recall regressions",
+      "status": "running",
+      "report": "docs/agents/continuation-20261123/w1-004.md",
+      "report_sha256": null
+    }
+  ]
+}
