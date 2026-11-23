@@ -2,7 +2,7 @@
 
 This session resumes `d86135b` and records actual worker assignments, separately from earlier campaigns.
 
-Requested: **100 workers in five waves of 20**. Recorded: **35**. Completed: **32**.
+Requested: **100 workers in five waves of 20**. Recorded: **40**. Completed: **40**.
 
 Workers run in batches within three available worker slots. An assignment report records work performed and unresolved findings; it does not establish physical fidelity.
 
@@ -47,9 +47,14 @@ Workers run in batches within three available worker slots. An assignment report
 | [030](continuation-20261123/w2-030.md) | `/root/w2_030_event_after_diagnosis` | Diagnose five remaining post-event contact refinement failures without changing gates | completed |
 | [031](continuation-20261123/w2-031.md) | `/root/w2_031_peak_candidates` | Implement bounded optional contact stationary-peak diagnostics | completed |
 | [032](continuation-20261123/w2-032.md) | `/root/w2_032_peak_cli_tests` | Expose optional peak diagnostics and independently test their numerical behavior | completed |
-| 033 | `/root/w2_033_contact_event_split` | Prototype bounded event-root step splitting in isolated contact source | running |
-| 034 | `/root/w2_034_filtered_buffers` | Validate bounded rejected-buffer cleanup and retained history in filtered VST3 | running |
-| 035 | `/root/w2_035_filtered_automation` | Verify independent sample-accurate controls across all filtered rate branches | running |
+| [033](continuation-20261123/w2-033.md) | `/root/w2_033_contact_event_split` | Prototype bounded event-root step splitting in isolated contact source | completed |
+| [034](continuation-20261123/w2-034.md) | `/root/w2_034_filtered_buffers` | Validate bounded rejected-buffer cleanup and retained history in filtered VST3 | completed |
+| [035](continuation-20261123/w2-035.md) | `/root/w2_035_filtered_automation` | Verify independent sample-accurate controls across all filtered rate branches | completed |
+| [036](continuation-20261123/w2-036.md) | `/root/w2_036_filtered_note_model` | Check filtered note ownership against independent identity and capacity models | completed |
+| [037](continuation-20261123/w2-037.md) | `/root/w2_037_benchmark_identity` | Validate benchmark identity, rate metadata, and CLI contracts for both plugin variants | completed |
+| [038](continuation-20261123/w2-038.md) | `/root/w2_038_ci_artifacts` | Archive complete experimental VST3 bundles from successful native CI builds | completed |
+| [039](continuation-20261123/w2-039.md) | `/root/w2_039_split_review` | Review general event-split correctness and adversarial contact boundaries before integration | completed |
+| [040](continuation-20261123/w2-040.md) | `/root/w2_040_readiness_review` | Review second-wave integration coverage, source bindings, and remaining acceptance gates | completed |
 
 ## Wave 3
 

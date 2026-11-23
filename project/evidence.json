@@ -348,6 +348,37 @@
       "limitations": [
         "Synthetic p=1 offline reference. No tolerance or acceptance changes; the5 ratios around0.825 exceed the frozen0.8 rule, and338 independent comparisons remain incomplete for continuous extrema. Exact input/source/binary hashes are retained."
       ]
+    },
+    {
+      "id": "PHY-20261123-peak-candidates",
+      "kind": "numerical",
+      "result": "pass",
+      "summary": "Optional bounded peak candidates pass independent analytic force/compression, damper acceleration, action-side and rollback checks;7 new plus24 existing scoped tests pass and7 default CLI fixtures remain byte-identical.",
+      "command": null,
+      "created_at": "2026-11-23T17:25:20Z",
+      "source_commit": "ab201d17d030fa032be9e85f2f1ae50378cf797c",
+      "artifacts": [
+        {
+          "path": "docs/agents/continuation-20261123/w2-031.md",
+          "sha256": "f796cd051a759259a70e19eff27883c9d21830a1744b804c3381cbf316752263"
+        },
+        {
+          "path": "docs/agents/continuation-20261123/w2-032.md",
+          "sha256": "28102de35b7e7b2fbc7292cf4ad498745fd38aa26563f520a8f705b33f7448c9"
+        },
+        {
+          "path": "docs/specs/CONTACT_PEAK_DIAGNOSTICS_20261123.md",
+          "sha256": "208e3b555824f5e5ff3377b67a4110ccaf2b18007a48f49b69314e147f6e41f1"
+        }
+      ],
+      "specimen_id": null,
+      "profile_path": null,
+      "session_paths": [],
+      "independent": true,
+      "reference_evidence": [],
+      "limitations": [
+        "Uncertified finite sign-change search on numerical replay. This does not close the independent continuous-extrema gate, alter refinement budgets, or establish physical fidelity."
+      ]
     }
   ]
 }

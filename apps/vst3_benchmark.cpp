@@ -42,6 +42,8 @@ namespace plugin = rhodes::vst3;
 using Clock = std::chrono::steady_clock;
 constexpr std::uint64_t hash_basis = 14695981039346656037ULL;
 constexpr float intensity = 0.7F;
+constexpr std::string_view executable_name = plugin::kFilteredAudio ?
+    "rhodes_vst3_filtered_benchmark" : "rhodes_vst3_benchmark";
 
 struct Options {
     std::size_t blocks = 1000;
@@ -55,9 +57,8 @@ struct Options {
 };
 
 void usage() {
-    std::cout <<
-        "rhodes_vst3_benchmark: synthetic VST3 process() full-call observations\n"
-        "Usage: rhodes_vst3_benchmark [--blocks 1..1000000] [--block-size 1..8192]\n"
+    std::cout << executable_name << ": synthetic VST3 process() full-call observations\n"
+        "Usage: " << executable_name << " [--blocks 1..1000000] [--block-size 1..8192]\n"
         "  [--sample-rate 32000..192000] [--active-keys 0..73] [--warmup-blocks 0..10000]\n"
         "  [--workload held|pedal|gain] [--sample-format 32|64] [--machine ASCII_LABEL]\n"
         "Defaults: 1000 blocks, 128 frames, 48000 Hz, 73 keys, 32 warmup blocks, held, 64.\n"
@@ -524,7 +525,7 @@ int main(int argc, char** argv) {
         const auto options = parse(argc, argv);
         return options.sample_format == 32 ? run<float>(options) : run<double>(options);
     } catch (const std::exception& error) {
-        std::cerr << "rhodes_vst3_benchmark: " << error.what() << '\n';
+        std::cerr << executable_name << ": " << error.what() << '\n';
         return 2;
     }
 }

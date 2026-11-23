@@ -132,6 +132,18 @@ analytic evaluations and **sampled maxima**, explicitly not continuous-time
 extrema. Successful execution returns 0; a solver failure emits `success=false`
 and returns 2; CLI/setup exceptions return 1 with an error on stderr.
 
+Add `--locate-peak-candidates` to opt into a separate bounded search for
+compression and positive-force stationary points. It reports
+`diagnostics.located_peak_candidates`, including SI values, time brackets,
+sample/root/action origins, and coverage `uncertified_sign_change_search`.
+The existing sampled maxima remain separate. The collector uses replay from
+each accepted interval's fixed anchor and charges its additional work to the
+existing limits; an exhausted call rolls back in full. The option is off by
+default. Its [design contract](specs/CONTACT_PEAK_DIAGNOSTICS_20261123.md) and
+[independent analytic tests](agents/continuation-20261123/w2-032.md) explain the
+scope. Finite sign-change sampling can miss roots and does not complete the
+independent continuous-extrema gate.
+
 ## Generate and independently audit a sweep
 
 The optional [independent auditor](../tools/validate_contact_reference.py) uses
@@ -160,6 +172,17 @@ when generation completes successfully. `--plan` previews the matrix;
 `--force` replaces only the run's named outputs. The auditor returns `0` for
 pass, `1` for fail and `2` for incomplete evidence. Its `--self-check` exercises
 the independent oracles; it does not accept candidate results.
+
+Both commands also accept an explicitly chosen `--extra-step-levels 1` or `2`.
+The [bounded extension policy](specs/CONTACT_REFINEMENT_EXTENSION_20261123.md)
+retains the original 208 configurations and adds uniform finer steps and the
+required finest-step event/local axes: 338 configurations for depth 1 or 364
+for depth 2. Pass the same declared depth to generation and auditing. Reports
+retain the original frozen-grid result separately, reject conflicting duplicate
+settings, and enumerate missing required slots. The recorded
+[depth-1 experiment](agents/continuation-20261123/w2-026.md) still fails five
+post-event decrease checks and remains incomplete for continuous extrema;
+it does not supersede the original failure record or authorize changing budgets.
 
 Self-check guards remain active under normal, `-O` and `-OO` Python. The
 [optimization repair](agents/development-20261123/W4-A076.md) replaced removable

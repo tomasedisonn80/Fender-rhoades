@@ -298,27 +298,72 @@
       "wave": 2,
       "task_name": "/root/w2_033_contact_event_split",
       "scope": "Prototype bounded event-root step splitting in isolated contact source",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/continuation-20261123/w2-033.md",
-      "report_sha256": null
+      "report_sha256": "8879a85093d01f9aca2448aecc18fbabd6ccfaa5dc227d48a5bb4ca4a2815b9c"
     },
     {
       "id": 34,
       "wave": 2,
       "task_name": "/root/w2_034_filtered_buffers",
       "scope": "Validate bounded rejected-buffer cleanup and retained history in filtered VST3",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/continuation-20261123/w2-034.md",
-      "report_sha256": null
+      "report_sha256": "5ce9bebe5203fd291a94f989ab046775cc0faaa0eea62d7b8c47cd4e87fac9f1"
     },
     {
       "id": 35,
       "wave": 2,
       "task_name": "/root/w2_035_filtered_automation",
       "scope": "Verify independent sample-accurate controls across all filtered rate branches",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/continuation-20261123/w2-035.md",
-      "report_sha256": null
+      "report_sha256": "ba84941c9a87d52b58f5a23022589ace91973f443ee100d58ca7ef4f6217aca5"
+    },
+    {
+      "id": 36,
+      "wave": 2,
+      "task_name": "/root/w2_036_filtered_note_model",
+      "scope": "Check filtered note ownership against independent identity and capacity models",
+      "status": "completed",
+      "report": "docs/agents/continuation-20261123/w2-036.md",
+      "report_sha256": "8c9deaad6426f8f6966870029a61960bc28d580bfadd549a9968cbb0382bf269"
+    },
+    {
+      "id": 37,
+      "wave": 2,
+      "task_name": "/root/w2_037_benchmark_identity",
+      "scope": "Validate benchmark identity, rate metadata, and CLI contracts for both plugin variants",
+      "status": "completed",
+      "report": "docs/agents/continuation-20261123/w2-037.md",
+      "report_sha256": "e8f2a69f7307ee119690d6e2ac9b25051463cc2834d20df017f3ab2109d4a4b9"
+    },
+    {
+      "id": 38,
+      "wave": 2,
+      "task_name": "/root/w2_038_ci_artifacts",
+      "scope": "Archive complete experimental VST3 bundles from successful native CI builds",
+      "status": "completed",
+      "report": "docs/agents/continuation-20261123/w2-038.md",
+      "report_sha256": "9433d0a464acc6ade796c44a2a82e9f26b9ff14289bc2d1ea19e1ee7db830881"
+    },
+    {
+      "id": 39,
+      "wave": 2,
+      "task_name": "/root/w2_039_split_review",
+      "scope": "Review general event-split correctness and adversarial contact boundaries before integration",
+      "status": "completed",
+      "report": "docs/agents/continuation-20261123/w2-039.md",
+      "report_sha256": "d187344bba07b96a113ac2fe31fff51aa2b9df621a54e41f4042b580cd189581"
+    },
+    {
+      "id": 40,
+      "wave": 2,
+      "task_name": "/root/w2_040_readiness_review",
+      "scope": "Review second-wave integration coverage, source bindings, and remaining acceptance gates",
+      "status": "completed",
+      "report": "docs/agents/continuation-20261123/w2-040.md",
+      "report_sha256": "2695ef2d1b3d196d4d963784ecfa0ee1deb8e1bcd624337165cfb3f4b3e188e1"
     }
   ]
 }

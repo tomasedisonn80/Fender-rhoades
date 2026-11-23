@@ -10,6 +10,7 @@
 #include <memory>
 #include <string>
 #include <string_view>
+#include <type_traits>
 #include <utility>
 #include <vector>
 
@@ -17,6 +18,13 @@ namespace {
 using namespace rhodes;
 using namespace rhodes::vst3;
 using namespace rhodes::vst3::test_host;
+
+using ScalarEngine = std::remove_cvref_t<decltype(std::declval<const HostEventProcessor&>().engine())>;
+#if defined(RHODES_FILTERED_VST3)
+static_assert(kStateModel == 2);
+#else
+static_assert(kStateModel == 1);
+#endif
 
 std::size_t checks = 0;
 std::size_t cases = 0;
@@ -52,7 +60,7 @@ long double curve(const Points& points, float initial, sdk::int32 frame) {
 }
 
 struct ScalarModel {
-    ResearchEngine engine;
+    ScalarEngine engine;
     float gain = 0.5F;
     bool sustain = false;
     std::uint64_t cursor = 0;
@@ -186,6 +194,8 @@ void accepted(Fixture<Sample>& fixture, sdk::int32 frames) {
         const auto normalized = curve(gains, initial_gain, frame);
         double volts = 0.0;
         check(model.engine.process(std::span<double>{&volts, 1}), "reference sample failed");
+        // Monitoring gain scales this host-rate output after any FIR. Notes and
+        // controls keep their original host offsets, with no latency shift.
         const auto expected = static_cast<Sample>(32.0L * normalized * static_cast<long double>(volts));
         const auto at = static_cast<std::size_t>(frame);
         const double observed = static_cast<double>(host.left[at]);
@@ -260,7 +270,7 @@ void model_at_rate(double rate) {
 }
 
 void automation_model() {
-    for (double rate : {32000.0, 48000.0, 192000.0}) {
+    for (double rate : {32000.0, 48000.0, 96000.0, 192000.0}) {
         model_at_rate<float>(rate);
         model_at_rate<double>(rate);
     }
@@ -312,7 +322,7 @@ void ties_at_rate(double rate) {
 }
 
 void automation_ties() {
-    for (double rate : {32000.0, 48000.0, 192000.0}) {
+    for (double rate : {32000.0, 48000.0, 96000.0, 192000.0}) {
         ties_at_rate<float>(rate);
         ties_at_rate<double>(rate);
     }
@@ -362,7 +372,7 @@ void flush_at_rate(double rate) {
 }
 
 void automation_flush() {
-    for (double rate : {32000.0, 48000.0, 192000.0}) {
+    for (double rate : {32000.0, 48000.0, 96000.0, 192000.0}) {
         flush_at_rate<float>(rate);
         flush_at_rate<double>(rate);
     }
@@ -381,7 +391,7 @@ void rejection_at_rate(double rate) {
                 const InstrumentState recalled{0.625F, true};
                 if (pending) {
                     MemoryStream stream;
-                    stream.load(recalled);
+                    stream.load(recalled, 0, kStateModel);
                     check(fixture->host.processor.setState(&stream) == sdk::kResultOk, "pending recall rejected");
                 }
                 auto before = std::make_unique<ProcessorSnapshot>(fixture->host.processor);
@@ -442,7 +452,7 @@ void rejection_at_rate(double rate) {
 }
 
 void automation_rejection() {
-    for (double rate : {32000.0, 48000.0, 192000.0}) {
+    for (double rate : {32000.0, 48000.0, 96000.0, 192000.0}) {
         rejection_at_rate<float>(rate);
         rejection_at_rate<double>(rate);
     }

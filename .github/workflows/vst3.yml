@@ -94,11 +94,80 @@ jobs:
           -DSMTG_ENABLE_VST3_HOSTING_EXAMPLES=OFF
           -DSMTG_CREATE_PLUGIN_LINK=OFF
           ${{ matrix.configure_args }}
-      - name: Build the actual module and retained host tests
+      - name: Build both actual modules and retained host tests
         run: >-
           cmake --build build/vst3 --config Release
           --target rhodes_vst3_checks --parallel 2
-      - name: Run retained host tests and the official SDK validator
+      - name: Run retained host tests and both official SDK validators
         run: >-
           ctest --test-dir build/vst3 -C Release -R '^vst3\.'
           --output-on-failure --no-tests=error
+      - name: Archive both validated experimental bundles
+        id: vst3-archive
+        env:
+          VST3_BUNDLE_ROOT: build/vst3/VST3/Release
+          VST3_ARTIFACT_NAME: experimental-vst3-${{ runner.os }}-${{ runner.arch }}-${{ github.sha }}
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          import hashlib
+          import os
+          import platform
+          import stat
+          import tarfile
+
+          bundle_root = Path(os.environ['VST3_BUNDLE_ROOT'])
+          artifact_name = os.environ['VST3_ARTIFACT_NAME']
+          suffix = {'Linux': '.so', 'Windows': '.vst3', 'Darwin': ''}[platform.system()]
+          bundles = [bundle_root / f'{name}.vst3' for name in
+                     ('RhodesResearch', 'RhodesResearchFiltered')]
+          sources = {}
+          for bundle in bundles:
+              if not bundle.is_dir() or bundle.is_symlink():
+                  raise SystemExit(f'Missing complete bundle directory: {bundle}')
+              required = [bundle / 'Contents/Resources' / name for name in
+                          ('LICENSE.txt', 'THIRD_PARTY_NOTICES.md', 'moduleinfo.json')]
+              modules = list(bundle.glob(f'Contents/*/{bundle.stem}{suffix}'))
+              if not modules:
+                  raise SystemExit(f'Missing native module in {bundle}')
+              for path in required + modules:
+                  if not path.is_file() or path.is_symlink() or path.stat().st_size == 0:
+                      raise SystemExit(f'Missing or empty bundle file: {path}')
+              for path in (bundle, *bundle.rglob('*')):
+                  sources[path.relative_to(bundle_root).as_posix()] = path
+
+          archive_path = Path('build/vst3-artifacts') / f'{artifact_name}.tar.gz'
+          archive_path.parent.mkdir(parents=True, exist_ok=True)
+          # The inner tar preserves complete bundles, modes and symlinks inside
+          # GitHub's artifact ZIP. Never upload individual module binaries.
+          with tarfile.open(archive_path, 'w:gz', format=tarfile.PAX_FORMAT,
+                            dereference=False) as archive:
+              for bundle in bundles:
+                  archive.add(bundle, arcname=bundle.name)
+          with tarfile.open(archive_path, 'r:gz') as archive:
+              if set(archive.getnames()) != set(sources):
+                  raise SystemExit('Archive does not contain both complete bundles')
+              for name, source in sources.items():
+                  member = archive.getmember(name)
+                  if member.mode != stat.S_IMODE(source.lstat().st_mode):
+                      raise SystemExit(f'Archive permission mismatch: {name}')
+                  if source.is_symlink():
+                      if not member.issym() or member.linkname != os.readlink(source):
+                          raise SystemExit(f'Archive symlink mismatch: {name}')
+                  elif source.is_file():
+                      with archive.extractfile(member) as archived:
+                          if hashlib.file_digest(archived, 'sha256').digest() != \
+                                  hashlib.sha256(source.read_bytes()).digest():
+                              raise SystemExit(f'Archive content mismatch: {name}')
+          with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as output:
+              output.write(f'name={artifact_name}\npath={archive_path.as_posix()}\n')
+          print(f'Verified {len(sources)} entries in {archive_path}')
+          PY
+      - name: Upload validated experimental bundles
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: ${{ steps.vst3-archive.outputs.name }}
+          path: ${{ steps.vst3-archive.outputs.path }}
+          if-no-files-found: error
+          retention-days: 7
+          compression-level: 0

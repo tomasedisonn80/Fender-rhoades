@@ -11,6 +11,7 @@
 #include <span>
 #include <string>
 #include <string_view>
+#include <type_traits>
 #include <utility>
 #include <vector>
 
@@ -18,6 +19,17 @@ namespace {
 using namespace rhodes;
 using namespace rhodes::vst3;
 using namespace rhodes::vst3::test_host;
+// Share only the selected scalar audio model; ownership, admission and physical
+// action scheduling remain independent of the production note tracker.
+using ScalarEngine = std::remove_cvref_t<
+    decltype(std::declval<const HostEventProcessor&>().engine())>;
+#if defined(RHODES_FILTERED_VST3)
+static_assert(kFilteredAudio && kStateModel == 2);
+static_assert(std::is_same_v<ScalarEngine, AudioEngine>);
+#else
+static_assert(!kFilteredAudio && kStateModel == 1);
+static_assert(std::is_same_v<ScalarEngine, ResearchEngine>);
+#endif
 constexpr std::size_t frames = 32;
 static_assert(key_count == 73 && maximum_block_events == 256);
 
@@ -132,7 +144,7 @@ struct Model {
 template<class Sample>
 struct Fixture {
     ProcessorHost<Sample, frames> host;
-    ResearchEngine reference;
+    ScalarEngine reference;
     EventList events;
     Model model;
     InstrumentState live{};
@@ -145,13 +157,14 @@ struct Fixture {
 
     void recall(InstrumentState state) {
         MemoryStream stream;
-        stream.load(state);
+        stream.load(state, 0, kStateModel);
         check(host.processor.setState(&stream) == sdk::kResultOk, "valid recall rejected");
         pending = state;
         state_matches();
     }
 
-    void mechanics_match(const ResearchEngine& actual, const ResearchEngine& expected) {
+    template<class Engine>
+    void mechanics_match(const Engine& actual, const Engine& expected) {
         check(actual.sample_rate_hz() == expected.sample_rate_hz(), "sample rate mismatch");
         check(actual.mechanical_energy_joules() == expected.mechanical_energy_joules(),
               "mechanical energy mismatch");
@@ -358,9 +371,14 @@ struct Random {
 
 template<class Sample>
 void random_model() {
-    for (const std::uint32_t seed : {0x74a01131U, 0x9826ab03U, 0x164312a1U, 0x83ad18f5U}) {
+    // Retain all four deterministic traces while exercising the 4x/2x/1x
+    // filtered-rate branches without multiplying the randomized workload.
+    constexpr std::array<std::pair<std::uint32_t, double>, 4> scenarios{{
+        {0x74a01131U, 32000.0}, {0x9826ab03U, 192000.0},
+        {0x164312a1U, 48000.0}, {0x83ad18f5U, 96000.0}}};
+    for (const auto& [seed, rate] : scenarios) {
         Random random{seed};
-        auto f = std::make_unique<Fixture<Sample>>((seed & 2U) != 0U ? 192000.0 : 32000.0);
+        auto f = std::make_unique<Fixture<Sample>>(rate);
         for (int block = 0; block < 180; ++block) {
             if (block % 31 == 0) {
                 const float gain = (block % 2 == 0) ? 0.25F : 0.75F;

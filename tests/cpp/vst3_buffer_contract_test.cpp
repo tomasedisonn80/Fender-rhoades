@@ -20,8 +20,18 @@ using namespace rhodes::vst3;
 using namespace rhodes::vst3::test_host;
 
 static_assert(kMaximumHostFrames == 8192, "Review the declared host-bound contract");
+#if defined(RHODES_FILTERED_VST3)
+static_assert(kFilteredAudio && kStateModel == 2, "Filtered buffer tests require model 2");
+#else
+static_assert(!kFilteredAudio && kStateModel == 1, "Direct buffer tests require model 1");
+#endif
 constexpr std::size_t capacity = 8193;
 constexpr sdk::int32 configured_frames = 64;
+constexpr std::size_t history_frames = 96;
+static_assert(audio_filter::coefficients_l1.size() == history_frames + 1 &&
+              audio_filter::coefficients_l2.size() == 2 * history_frames + 1 &&
+              audio_filter::coefficients_l4.size() == 4 * history_frames + 1,
+              "Review full FIR-history continuation coverage");
 constexpr sdk::uint64 untouched_flags = 0x5a5a5a5a5a5a5a5aULL;
 std::size_t checks = 0;
 std::size_t cases = 0;
@@ -30,6 +40,19 @@ std::size_t process_calls = 0;
 void check(bool condition, std::string_view message) {
     ++checks;
     if (!condition) { throw std::runtime_error(std::string{message}); }
+}
+
+void expect_unchanged_history(const ProcessorSnapshot& before, const RhodesProcessor& processor) {
+    before.expect_unchanged(processor);
+    // Compare copied histories before any pending recall can reset the next
+    // live block. Include every 96-frame FIR memory position and its boundary;
+    // retain the shared snapshot's immediate-state and 17-frame assertions.
+    auto actual = processor.engine_processor().engine();
+    auto expected = before.engine.engine();
+    std::array<double, history_frames + 1> actual_output{}, expected_output{};
+    check(actual.process(actual_output) && expected.process(expected_output),
+          "extended snapshot continuation failed");
+    check(actual_output == expected_output, "rejected call changed FIR history or future trajectory");
 }
 
 sdk::tresult invoke(RhodesProcessor& processor, vst::ProcessData& data) {
@@ -205,6 +228,8 @@ void prime(Host<Sample>& actual, Host<Sample>& reference) {
 
 template <class Sample>
 void continue_pair(Host<Sample>& actual, Host<Sample>& reference) {
+    // The original 17 + 31 + 64 live continuation also exceeds FIR memory.
+    static_assert(17 + 31 + configured_frames > history_frames);
     EventList events;
     events.count = 3;
     events.values[0] = note_off(0, 101, 60, 0);
@@ -222,8 +247,8 @@ void continue_pair(Host<Sample>& actual, Host<Sample>& reference) {
 template <class Sample>
 void queue_recall(Host<Sample>& actual, Host<Sample>& reference) {
     MemoryStream left, right;
-    left.load({0.25F, true});
-    right.load({0.25F, true});
+    left.load({0.25F, true}, 0, kStateModel);
+    right.load({0.25F, true}, 0, kStateModel);
     check(actual.processor.setState(&left) == sdk::kResultOk &&
               reference.processor.setState(&right) == sdk::kResultOk, "queue matching configuration recalls");
 }
@@ -301,7 +326,8 @@ void flush_cases() {
                     same_mechanics(actual->processor.engine_processor().engine(), mechanics);
                     const auto packet = saved_state(actual->processor);
                     constexpr EncodedInstrumentState expected{
-                        'R', 'H', 'S', 'T', 1, 0, 1, 0, 0, 0, 0xa0, 0x3e, 0, 0, 0x80, 0x3f};
+                        'R', 'H', 'S', 'T', 1, 0, static_cast<std::uint8_t>(kStateModel), 0,
+                        0, 0, 0xa0, 0x3e, 0, 0, 0x80, 0x3f};
                     check(packet == expected, "flush serialized the wrong gain or sustain");
                     const auto expected_flags = shape == 0 ? untouched_flags : (shape == 1 ? 0U : 3U);
                     check(actual->buffers.buses[0].silenceFlags == expected_flags,
@@ -466,7 +492,7 @@ void rejected_buffer_cases() {
                 if (pending) { queue_recall(*actual, *reference); }
                 const ProcessorSnapshot before{actual->processor};
                 reject_buffer(*actual, scenario);
-                before.expect_unchanged(actual->processor);
+                expect_unchanged_history(before, actual->processor);
                 compare_state(*actual, *reference);
                 continue_pair(*actual, *reference);
             }
@@ -519,7 +545,7 @@ void setup_cases() {
                 }
                 if (scenario < 11) { result = actual->processor.setupProcessing(request); }
                 check(result != sdk::kResultOk, "invalid setup or arrangement accepted");
-                before.expect_unchanged(actual->processor);
+                expect_unchanged_history(before, actual->processor);
                 vst::SpeakerArrangement observed = vst::SpeakerArr::kEmpty;
                 check(actual->processor.getBusArrangement(vst::kOutput, 0, observed) == sdk::kResultOk &&
                           observed == vst::SpeakerArr::kStereo, "rejected configuration changed stereo arrangement");
@@ -529,7 +555,7 @@ void setup_cases() {
                 // rejection boundary, after real continuation at exactly 64.
                 const ProcessorSnapshot continued{actual->processor};
                 reject_buffer(*actual, BadBuffer::setup_limit);
-                continued.expect_unchanged(actual->processor);
+                expect_unchanged_history(continued, actual->processor);
             }
         }
     }
