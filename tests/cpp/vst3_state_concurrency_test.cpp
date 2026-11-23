@@ -15,6 +15,14 @@ using rhodes::InstrumentState;
 using rhodes::vst3::RhodesProcessor;
 using Packet = std::array<std::uint8_t, 16>;
 
+#if defined(RHODES_FILTERED_VST3)
+constexpr std::uint16_t expected_model = 2;
+static_assert(rhodes::vst3::kFilteredAudio && rhodes::vst3::kStateModel == expected_model);
+#else
+constexpr std::uint16_t expected_model = 1;
+static_assert(!rhodes::vst3::kFilteredAudio && rhodes::vst3::kStateModel == expected_model);
+#endif
+
 constexpr InstrumentState first{0.125F, true};
 constexpr InstrumentState second{0.875F, false};
 constexpr InstrumentState automation_a{0.375F, true};
@@ -25,8 +33,11 @@ constexpr std::array allowed{InstrumentState{}, first, second,
 
 // Independent wire oracle: do not call the codec being tested to construct or
 // recognize the complete gain/pedal pairs allowed by the concurrent writers.
+// Pin the variant's literal model above instead of deriving expected bytes from
+// the production model identifier or encoder.
 Packet packet(InstrumentState state) {
-    Packet bytes{'R', 'H', 'S', 'T', 1, 0, 1, 0};
+    Packet bytes{'R', 'H', 'S', 'T', 1, 0,
+                 static_cast<std::uint8_t>(expected_model), 0};
     const auto gain = std::bit_cast<std::uint32_t>(state.monitoring_gain);
     const std::uint32_t pedal = state.sustain ? 0x3f800000U : 0U;
     for (std::size_t digit = 0; digit < 4; ++digit) {
@@ -206,7 +217,7 @@ void state_preflight_race() {
         }
     }
     total.verify();
-    std::cout << "ordered scenarios=8 process_calls=" << total.calls
+    std::cout << "ordered model=" << expected_model << " scenarios=8 process_calls=" << total.calls
               << " explicit_checks=" << total.checks << '\n';
 }
 
@@ -324,7 +335,7 @@ void stress_case(double rate, Outcome& total) {
     total.check(saved(rig->processor, final_recall), "quiescent final save differs");
     total.checks += audio_result.checks + ui_result.checks + observer_result.checks;
     total.calls += audio_result.calls;
-    std::cout << "stress rate=" << rate << " bits=" << sizeof(Sample) * 8
+    std::cout << "stress model=" << expected_model << " rate=" << rate << " bits=" << sizeof(Sample) * 8
               << " process_calls=" << audio_result.calls
               << " state_calls=" << ui_result.calls + observer_result.calls
               << " explicit_checks=" << audio_result.checks + ui_result.checks + observer_result.checks

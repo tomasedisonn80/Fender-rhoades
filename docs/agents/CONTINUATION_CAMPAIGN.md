@@ -2,7 +2,7 @@
 
 This session resumes `d86135b` and records actual worker assignments, separately from earlier campaigns.
 
-Requested: **100 workers in five waves of 20**. Recorded: **27**. Completed: **24**.
+Requested: **100 workers in five waves of 20**. Recorded: **32**. Completed: **29**.
 
 Workers run in batches within three available worker slots. An assignment report records work performed and unresolved findings; it does not establish physical fidelity.
 
@@ -39,9 +39,14 @@ Workers run in batches within three available worker slots. An assignment report
 | [022](continuation-20261123/w2-022.md) | `/root/w2_022_filtered_renderer` | Expose filtered offline rendering with safe output publication | completed |
 | [023](continuation-20261123/w2-023.md) | `/root/w2_023_filtered_allocation_host` | Exercise both VST3 variants with allocation and scalar host regressions | completed |
 | [024](continuation-20261123/w2-024.md) | `/root/w2_024_bundle_resources` | Independently verify both VST3 bundles retain exact third-party resources | completed |
-| 025 | `/root/w2_025_spectral_scope` | Derive synthetic pickup spectral limits and a bounded independent alias experiment | running |
-| 026 | `/root/w2_026_contact_matrix` | Run full declared 338-case contact extension and independent audit | running |
-| 027 | `/root/w2_027_filtered_fp` | Verify filtered host state and caller floating-point environment behavior | running |
+| [025](continuation-20261123/w2-025.md) | `/root/w2_025_spectral_scope` | Derive synthetic pickup spectral limits and a bounded independent alias experiment | completed |
+| [026](continuation-20261123/w2-026.md) | `/root/w2_026_contact_matrix` | Run full declared 338-case contact extension and independent audit | completed |
+| [027](continuation-20261123/w2-027.md) | `/root/w2_027_filtered_fp` | Verify filtered host state and caller floating-point environment behavior | completed |
+| [028](continuation-20261123/w2-028.md) | `/root/w2_028_filtered_stream` | Exercise filtered VST3 partial-stream and state-fault contracts | completed |
+| [029](continuation-20261123/w2-029.md) | `/root/w2_029_filtered_concurrency` | Verify concurrent configuration recall and publication in both VST3 variants | completed |
+| 030 | `/root/w2_030_event_after_diagnosis` | Diagnose five remaining post-event contact refinement failures without changing gates | running |
+| 031 | `/root/w2_031_peak_candidates` | Implement bounded optional contact stationary-peak diagnostics | running |
+| 032 | `/root/w2_032_peak_cli_tests` | Expose optional peak diagnostics and independently test their numerical behavior | running |
 
 ## Wave 3
 

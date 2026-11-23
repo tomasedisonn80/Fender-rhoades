@@ -226,26 +226,71 @@
       "wave": 2,
       "task_name": "/root/w2_025_spectral_scope",
       "scope": "Derive synthetic pickup spectral limits and a bounded independent alias experiment",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/continuation-20261123/w2-025.md",
-      "report_sha256": null
+      "report_sha256": "3169895c8798d336de773fc21c35520646eeaab5579744b3814ea6434e92baa4"
     },
     {
       "id": 26,
       "wave": 2,
       "task_name": "/root/w2_026_contact_matrix",
       "scope": "Run full declared 338-case contact extension and independent audit",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/continuation-20261123/w2-026.md",
-      "report_sha256": null
+      "report_sha256": "d0feb9babb3bf6f0bf3d8364a4fdcfd534d58aac0fd91024633426d25dc20842"
     },
     {
       "id": 27,
       "wave": 2,
       "task_name": "/root/w2_027_filtered_fp",
       "scope": "Verify filtered host state and caller floating-point environment behavior",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/continuation-20261123/w2-027.md",
+      "report_sha256": "1ed1f3d802a00d0eb44e94e7b48df8fca1b590ef7516f78fa612aa323a4eb246"
+    },
+    {
+      "id": 28,
+      "wave": 2,
+      "task_name": "/root/w2_028_filtered_stream",
+      "scope": "Exercise filtered VST3 partial-stream and state-fault contracts",
+      "status": "completed",
+      "report": "docs/agents/continuation-20261123/w2-028.md",
+      "report_sha256": "fbf1044224ce93bec14ce2512d5be563ea7693f113638cedc09a61c27417c41b"
+    },
+    {
+      "id": 29,
+      "wave": 2,
+      "task_name": "/root/w2_029_filtered_concurrency",
+      "scope": "Verify concurrent configuration recall and publication in both VST3 variants",
+      "status": "completed",
+      "report": "docs/agents/continuation-20261123/w2-029.md",
+      "report_sha256": "758ac63a4b1c8490009bda2b83b3703424de147e43cdd7f427ff3d2af412aaa3"
+    },
+    {
+      "id": 30,
+      "wave": 2,
+      "task_name": "/root/w2_030_event_after_diagnosis",
+      "scope": "Diagnose five remaining post-event contact refinement failures without changing gates",
+      "status": "running",
+      "report": "docs/agents/continuation-20261123/w2-030.md",
+      "report_sha256": null
+    },
+    {
+      "id": 31,
+      "wave": 2,
+      "task_name": "/root/w2_031_peak_candidates",
+      "scope": "Implement bounded optional contact stationary-peak diagnostics",
+      "status": "running",
+      "report": "docs/agents/continuation-20261123/w2-031.md",
+      "report_sha256": null
+    },
+    {
+      "id": 32,
+      "wave": 2,
+      "task_name": "/root/w2_032_peak_cli_tests",
+      "scope": "Expose optional peak diagnostics and independently test their numerical behavior",
+      "status": "running",
+      "report": "docs/agents/continuation-20261123/w2-032.md",
       "report_sha256": null
     }
   ]

@@ -16,6 +16,11 @@ namespace {
 namespace host = rhodes::vst3::test_host;
 namespace sdk = Steinberg;
 namespace vst = Steinberg::Vst;
+#if defined(RHODES_FILTERED_VST3)
+static_assert(rhodes::vst3::kFilteredAudio && rhodes::vst3::kStateModel == 2);
+#else
+static_assert(!rhodes::vst3::kFilteredAudio && rhodes::vst3::kStateModel == 1);
+#endif
 using Packet = std::array<std::uint8_t, 16>;
 using host::MemoryStream;
 using host::TransferFault;
@@ -34,7 +39,9 @@ void check(bool condition, std::string_view message) {
 // Independent wire construction: neither the codec nor the control conversion
 // helpers generate expected bytes. Keep packet lifetimes named across calls.
 Packet packet(std::uint32_t gain, std::uint32_t pedal) {
-    Packet bytes{'R', 'H', 'S', 'T', 1, 0, 1, 0};
+    Packet bytes{'R', 'H', 'S', 'T', 1, 0,
+        static_cast<std::uint8_t>(rhodes::vst3::kStateModel & 0xffU),
+        static_cast<std::uint8_t>(rhodes::vst3::kStateModel >> 8U)};
     for (std::size_t digit = 0; digit < 4; ++digit) {
         bytes[8 + digit] = static_cast<std::uint8_t>(gain & 255U);
         bytes[12 + digit] = static_cast<std::uint8_t>(pedal & 255U);
@@ -124,7 +131,7 @@ bool read(Reader reader, MemoryStream* stream, Rig& rig,
           std::optional<rhodes::InstrumentState>& decoded) {
     bool success = false;
     if (reader == Reader::helper) {
-        decoded = rhodes::vst3::read_state_stream(stream);
+        decoded = rhodes::vst3::read_state_stream(stream, rhodes::vst3::kStateModel);
         success = decoded.has_value();
     } else if (reader == Reader::processor) {
         success = rig.audio->processor.setState(stream) == sdk::kResultOk;
@@ -141,7 +148,7 @@ bool write(Writer writer, MemoryStream* stream, Rig& rig,
            rhodes::InstrumentState value) {
     bool success = false;
     if (writer == Writer::helper) {
-        success = rhodes::vst3::write_state_stream(stream, value);
+        success = rhodes::vst3::write_state_stream(stream, value, rhodes::vst3::kStateModel);
     } else if (writer == Writer::processor) {
         success = rig.audio->processor.getState(stream) == sdk::kResultOk;
     } else {
@@ -190,6 +197,18 @@ void prepare_pending(Rig& rig) {
     expect_state(rig.audio->processor.published_state(), pending_gain, true);
 }
 
+void expect_unchanged(const host::ProcessorSnapshot& snapshot, const Rig& rig) {
+    snapshot.expect_unchanged(rig.audio->processor);
+    // The selected engine copy includes the filtered path's private FIR state.
+    // Continue beyond its complete 96-frame history, not just the group delay.
+    auto actual = rig.audio->processor.engine_processor().engine();
+    auto expected = snapshot.engine.engine();
+    std::array<double, 128> actual_output{}, expected_output{};
+    check(actual.process(actual_output) && expected.process(expected_output),
+          "state I/O continuation failed");
+    check(actual_output == expected_output, "state I/O changed future output history");
+}
+
 void consume_preserved_pending(Rig& rig) {
     flush(rig);
     expect_state(rig.audio->processor.current_state(), pending_gain, true);
@@ -198,6 +217,11 @@ void consume_preserved_pending(Rig& rig) {
           rig.audio->processor.note_tracker().active_count() == 0 &&
           rig.audio->processor.engine_processor().engine().mechanical_energy_joules() == 0.0,
           "failed state I/O lost the pending reset");
+    auto reset_engine = rig.audio->processor.engine_processor().engine();
+    std::array<double, 128> output{};
+    check(reset_engine.process(output), "recalled engine continuation failed");
+    check(std::all_of(output.begin(), output.end(), [](double value) { return value == 0.0; }),
+          "preserved recall did not clear future output history");
 }
 
 void verify_read_success(Reader reader, MemoryStream& stream, Rig& rig,
@@ -238,7 +262,7 @@ void reject_read(Rig& rig, Reader reader, MemoryStream* stream,
               "failed read retried or exceeded its transfer bound");
         check(stream->bytes == before_bytes, "failed reader modified source bytes");
     }
-    snapshot->expect_unchanged(rig.audio->processor);
+    expect_unchanged(*snapshot, rig);
     expect_saved(rig, Writer::processor, pending_gain, true);
     expect_saved(rig, Writer::controller, pending_gain, true);
     consume_preserved_pending(rig);
@@ -250,6 +274,30 @@ void reject_read(Rig& rig, Reader reader, MemoryStream* stream,
 
 void partial_roundtrip() {
     Rig rig;
+    // Public helper and fixture-loader defaults stay direct even when this
+    // executable selects the filtered model for its explicit calls.
+    ++cases;
+    auto direct = packet(retry_gain, 0U);
+    direct[6] = 1;
+    MemoryStream default_save;
+    output(default_save, 5, 7);
+    check(rhodes::vst3::write_state_stream(&default_save, state(retry_gain, false)),
+          "default helper save failed");
+    write_transfers += default_save.write_calls;
+    expect_output(default_save, direct, 5);
+    MemoryStream default_read;
+    input(default_read, direct, 5, 7);
+    const auto decoded = rhodes::vst3::read_state_stream(&default_read);
+    read_transfers += default_read.read_calls;
+    check(decoded.has_value(), "default helper did not accept direct state");
+    expect_state(*decoded, retry_gain, false);
+    check(default_read.read_calls == transfers(7) && default_read.position == 21,
+          "default helper read transfer count or position differs");
+    MemoryStream default_fixture;
+    output(default_fixture, 5, 7);
+    default_fixture.load(state(retry_gain, false), 5);
+    check(std::equal(direct.begin(), direct.end(), default_fixture.bytes.begin() + 5),
+          "shared fixture-loader default changed from direct model");
     struct Value { std::uint32_t gain; std::uint32_t pedal; std::uint32_t canonical; };
     constexpr std::array values{
         Value{0x80000000U, 0x80000000U, 0U}, Value{0U, one, 0U},
@@ -295,6 +343,9 @@ void read_failures() {
                     stream.read_fault = fault;
                     stream.read_fault_at = fail_at;
                     reject_read(rig, reader, &stream, fail_at, chunk);
+                    check(stream.position == 5 + static_cast<sdk::int64>(
+                              (fail_at - 1) * static_cast<std::size_t>(chunk)),
+                          "failed read cursor differs from completed transfers");
                 }
             }
         }
@@ -322,7 +373,7 @@ void write_failures() {
                           "faulted save retried or exceeded its bound");
                     const auto completed = (fail_at - 1) * static_cast<std::size_t>(chunk);
                     expect_output(stream, wanted, 5, completed);
-                    snapshot->expect_unchanged(rig.audio->processor);
+                    expect_unchanged(*snapshot, rig);
                     expect_saved(rig, Writer::controller, pending_gain, true);
                     // Retrying from the original position overwrites any valid
                     // prefix; the API never promises rollback of host storage.
@@ -333,7 +384,7 @@ void write_failures() {
                           "retry after a partial save failed");
                     expect_output(stream, wanted, 5);
                     check(stream.write_calls == transfers(chunk), "retry transfer count differs");
-                    snapshot->expect_unchanged(rig.audio->processor);
+                    expect_unchanged(*snapshot, rig);
                     consume_preserved_pending(rig);
                 }
             }
@@ -344,7 +395,7 @@ void write_failures() {
         prepare_pending(rig);
         const auto snapshot = std::make_unique<host::ProcessorSnapshot>(rig.audio->processor);
         check(!write(writer, nullptr, rig, state(pending_gain, true)), "null save accepted");
-        snapshot->expect_unchanged(rig.audio->processor);
+        expect_unchanged(*snapshot, rig);
         expect_saved(rig, Writer::controller, pending_gain, true);
         consume_preserved_pending(rig);
     }
@@ -393,19 +444,24 @@ void malformed_state() {
                                        0x7f800000U, 0xff800000U, 0x7fc12345U, 0x7f812345U};
     constexpr std::array invalid_pedal{1U, 0x80000001U, 0x3f000000U, 0x3f7fffffU,
                                         0x3f800001U, 0x7f800000U, 0x7fc12345U, 0x7f812345U};
-    std::array<Packet, 24> malformed{};
+    std::array<Packet, 25> malformed{};
     for (std::size_t index = 0; index < 8; ++index) {
         malformed[index] = valid;
         malformed[index][index] ^= 0x80U;
         malformed[index + 8] = packet(invalid_gain[index], 0U);
         malformed[index + 16] = packet(retry_gain, invalid_pedal[index]);
     }
+    // Preserve the 24 corrupt packets above and reject the other valid model
+    // separately: model 2 is supported here when this is the filtered build.
+    malformed.back() = valid;
+    malformed.back()[6] = rhodes::vst3::kStateModel == 1 ? 2 : 1;
     for (const auto& bytes : malformed) {
         for (const sdk::int32 chunk : {1, 7, 16}) {
             for (const auto reader : readers) {
                 MemoryStream stream;
                 input(stream, bytes, 5, chunk);
                 reject_read(rig, reader, &stream, transfers(chunk), chunk);
+                check(stream.position == 21, "decoded rejection did not consume exactly 16 bytes");
             }
         }
     }

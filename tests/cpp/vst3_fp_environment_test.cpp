@@ -26,6 +26,11 @@ namespace {
 namespace host = rhodes::vst3::test_host;
 namespace sdk = Steinberg;
 namespace vst = Steinberg::Vst;
+#if defined(RHODES_FILTERED_VST3)
+static_assert(rhodes::vst3::kFilteredAudio && rhodes::vst3::kStateModel == 2);
+#else
+static_assert(!rhodes::vst3::kFilteredAudio && rhodes::vst3::kStateModel == 1);
+#endif
 constexpr unsigned ftz = 1U << 15U;
 constexpr unsigned daz = 1U << 6U;
 // Independent precomputed IEEE-754 values: nearest binary64 1e-40, its
@@ -62,7 +67,11 @@ RHODES_TEST_NOINLINE sdk::tresult set_parameter(rhodes::vst3::RhodesController& 
 // helpers. A flush mode must never change the oracle's notion of zero.
 void load_state(host::MemoryStream& stream, std::uint32_t gain, bool sustain) {
     stream.bytes = {};
-    const std::array<std::uint8_t, 8> prefix{'R', 'H', 'S', 'T', 1, 0, 1, 0};
+    // Pin each variant's model above and write its little-endian bytes here;
+    // neither the state codec nor MemoryStream::load constructs this oracle.
+    const std::array<std::uint8_t, 8> prefix{'R', 'H', 'S', 'T', 1, 0,
+        static_cast<std::uint8_t>(rhodes::vst3::kStateModel & 0xffU),
+        static_cast<std::uint8_t>(rhodes::vst3::kStateModel >> 8U)};
     std::copy(prefix.begin(), prefix.end(), stream.bytes.begin());
     for (std::size_t digit = 0; digit < 4; ++digit) {
         stream.bytes[8 + digit] = static_cast<std::uint8_t>((gain >> (8U * digit)) & 0xffU);
@@ -268,9 +277,54 @@ void recall_cases() {
     expect_gain(instance.processor, gain_bits, true);
 }
 
+template <class Sample>
+void recall_history_cases() {
+    host::ProcessorHost<Sample, 4> instance;
+    host::EventList events;
+    seed(instance, events);
+    // A zero/subnormal host output could hide retained FIR samples under FTZ.
+    // Probe pre-gain audio directly, over more than the 96-frame FIR support.
+    auto before = instance.processor.engine_processor().engine();
+    std::array<double, 128> tail{};
+    check(before.process(tail), "warm recall history probe failed");
+    const auto nonzero_bits = [](double value) {
+        return (std::bit_cast<std::uint64_t>(value) & 0x7fffffffffffffffULL) != 0;
+    };
+    check(std::any_of(tail.begin(), tail.end(), nonzero_bits),
+          "warm recall fixture has no audio history");
+
+    host::MemoryStream stream;
+    load_state(stream, gain_bits, true);
+    check(instance.processor.setState(&stream) == sdk::kResultOk,
+          "warm tiny-gain recall rejected");
+    instance.data.numSamples = 0;
+    check(process(instance.processor, instance.data) == sdk::kResultOk,
+          "warm zero-frame recall flush failed");
+    check(instance.processor.engine_processor().frame_cursor() == 0 &&
+          instance.processor.note_tracker().active_count() == 0,
+          "warm recall did not reset cursor and ownership");
+    expect_gain(instance.processor, gain_bits, true);
+
+    auto after = instance.processor.engine_processor().engine();
+    check(after.process(tail), "recalled history probe failed");
+    for (const double sample : tail) {
+        check(!nonzero_bits(sample), "tiny-gain recall retained pre-gain audio history");
+    }
+}
+
 template <class Function>
 void run_case(std::string_view name, Function function) {
-    try { function(); }
+    try {
+#if RHODES_TEST_MXCSR
+        const auto controls = _mm_getcsr() & ~0x3fU;
+#endif
+        function();
+#if RHODES_TEST_MXCSR
+        // Arithmetic may set sticky status flags, but caller controls must stay
+        // intact before the outer guard restores the complete original MXCSR.
+        check((_mm_getcsr() & ~0x3fU) == controls, "case changed caller MXCSR controls");
+#endif
+    }
     catch (const std::exception& error) {
         ++failed_cases;
         std::cerr << "  " << name << ": " << error.what() << '\n';
@@ -289,6 +343,8 @@ void cases() {
     run_case("double automation", automation_cases<double>);
     run_case("float recall", recall_cases<float>);
     run_case("double recall", recall_cases<double>);
+    run_case("float recall history", recall_history_cases<float>);
+    run_case("double recall history", recall_history_cases<double>);
 }
 
 #if RHODES_TEST_MXCSR

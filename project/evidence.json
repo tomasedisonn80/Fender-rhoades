@@ -321,6 +321,33 @@
       "limitations": [
         "Shared uncontrolled Linux container, synthetic full-polyphony workloads. Report binds exact tested files and binary. Finite timing observations are not worst-case or device guarantees and do not complete RT-001."
       ]
+    },
+    {
+      "id": "PHY-20261123-contact-extension-depth1",
+      "kind": "numerical",
+      "result": "fail",
+      "summary": "Full declared 338-run contact extension preserves original26 failures and reduces selected depth1 result to5 event_after decrease failures; independent sampled comparisons have no numerical failures but continuous extrema remain incomplete.",
+      "command": null,
+      "created_at": "2026-11-23T17:11:12Z",
+      "source_commit": null,
+      "artifacts": [
+        {
+          "path": "docs/validation/contact-extension-depth1-20261123.json",
+          "sha256": "8b1cb0a9b197f6263d6139d15c0b6282fe83fbe2c433e258a4fe6fb78ef52c13"
+        },
+        {
+          "path": "docs/agents/continuation-20261123/w2-026.md",
+          "sha256": "d0feb9babb3bf6f0bf3d8364a4fdcfd534d58aac0fd91024633426d25dc20842"
+        }
+      ],
+      "specimen_id": null,
+      "profile_path": null,
+      "session_paths": [],
+      "independent": true,
+      "reference_evidence": [],
+      "limitations": [
+        "Synthetic p=1 offline reference. No tolerance or acceptance changes; the5 ratios around0.825 exceed the frozen0.8 rule, and338 independent comparisons remain incomplete for continuous extrema. Exact input/source/binary hashes are retained."
+      ]
     }
   ]
 }
