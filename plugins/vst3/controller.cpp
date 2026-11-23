@@ -83,10 +83,10 @@ Steinberg::tresult PLUGIN_API RhodesController::getMidiControllerAssignment(
     return Steinberg::kResultFalse;
 }
 
-Steinberg::tresult PLUGIN_API RhodesController::queryInterface(const char* iid, void** obj) {
-    if (iid == nullptr || obj == nullptr) { return Steinberg::kInvalidArgument; }
-    QUERY_INTERFACE(iid, obj, Steinberg::Vst::IMidiMapping::iid, Steinberg::Vst::IMidiMapping)
-    return EditController::queryInterface(iid, obj);
+Steinberg::tresult PLUGIN_API RhodesController::queryInterface(const char* interface_id, void** obj) {
+    if (interface_id == nullptr || obj == nullptr) { return Steinberg::kInvalidArgument; }
+    QUERY_INTERFACE(interface_id, obj, Steinberg::Vst::IMidiMapping::iid, Steinberg::Vst::IMidiMapping)
+    return EditController::queryInterface(interface_id, obj);
 }
 
 } // namespace rhodes::vst3

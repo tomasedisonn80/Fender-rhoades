@@ -4,9 +4,10 @@ from __future__ import annotations
 from contextlib import redirect_stderr, redirect_stdout
 import importlib.util
 import io
-from pathlib import Path
+from pathlib import Path, PureWindowsPath
 import tempfile
 import unittest
+from unittest.mock import patch
 
 ROOT = Path(__file__).resolve().parents[2]
 SPEC = importlib.util.spec_from_file_location("rhodes_docs", ROOT / "tools/check_docs.py")
@@ -61,6 +62,16 @@ class DocumentationTests(unittest.TestCase):
             with self.subTest(target=target):
                 self.write("README.md", f"[Outside]({target})\n")
                 self.assertIn("must be repository-relative", docs.check_repository(self.root)[0])
+
+    def test_slash_rooted_links_have_the_same_policy_with_windows_path_semantics(self):
+        # Exercise the Windows classification on every CI host. Resolution still
+        # uses the temporary repository, so a missed root reports the wrong class.
+        with patch.object(docs, "Path", PureWindowsPath):
+            for target in ("/etc/passwd", "%2fetc/passwd", "%2Fetc/passwd",
+                           "%2f%2fserver/share.md"):
+                with self.subTest(target=target):
+                    error = docs.target_error(self.root, self.root / "README.md", target)
+                    self.assertIn("must be repository-relative", error)
 
     def test_symlink_target_cannot_escape_repository(self):
         with tempfile.TemporaryDirectory() as outside:

@@ -24,7 +24,7 @@ public:
         Steinberg::Vst::ParamID& tag) override;
 
     DELEGATE_REFCOUNT(Steinberg::Vst::EditController)
-    Steinberg::tresult PLUGIN_API queryInterface(const char* iid, void** obj) override;
+    Steinberg::tresult PLUGIN_API queryInterface(const char* interface_id, void** obj) override;
 
 private:
     bool initialized_ = false;

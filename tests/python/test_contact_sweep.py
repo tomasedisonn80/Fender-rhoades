@@ -137,6 +137,17 @@ class ContactSweepTests(unittest.TestCase):
         self.assertTrue(aggregate["generation_only"])
         self.assertEqual(len(aggregate["runs"]), 8)
         self.assertTrue(manifest["executable_unchanged"])
+        expected_sources = (
+            "tools/run_contact_sweep.py", "tools/validate_contact_reference.py",
+            "docs/specs/CONTACT_ACCEPTANCE_20261123.md",
+            "docs/specs/CONTACT_REFINEMENT_EXTENSION_20261123.md",
+            "docs/agents/development-20261123/W1-A005.md",
+            "docs/agents/development-20261123/W1-A007.md",
+        )
+        self.assertEqual(manifest["source_sha256"], {
+            name: hashlib.sha256((ROOT / name).read_bytes()).hexdigest()
+            for name in expected_sources
+        })
         for record in manifest["results"]:
             self.assertEqual(record["status"], "candidate_generated")
             for kind in ("stdout", "stderr"):

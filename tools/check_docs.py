@@ -143,7 +143,9 @@ def target_error(root: Path, document: Path, raw: str) -> str | None:
             return None
         if "\\" in path or any(ord(char) < 32 for char in path):
             return f"invalid local link path: {raw!r}"
-        if Path(path).is_absolute() or re.match(r"^[A-Za-z]:[\\/]", path):
+        # URL paths use slash roots even on Windows, where an otherwise rooted
+        # path without a drive is not considered absolute by pathlib.
+        if path.startswith("/") or Path(path).is_absolute() or re.match(r"^[A-Za-z]:[\\/]", path):
             return f"local link must be repository-relative: {raw!r}"
         resolved = (document.parent / path).resolve()
         if not resolved.is_relative_to(root):

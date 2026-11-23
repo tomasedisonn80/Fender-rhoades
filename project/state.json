@@ -4,8 +4,8 @@
   "goal": "Physically model a Fender Rhodes Mark I from evolving mechanical, electromagnetic and circuit states without recorded-note playback.",
   "target": "One documented 73-key Mark I Stage specimen at its specified loaded electrical output; identity and measurements pending.",
   "fidelity_status": "unvalidated",
-  "revision": 19,
-  "updated_at": "2026-11-23T16:18:44Z",
+  "revision": 22,
+  "updated_at": "2026-11-23T21:57:17Z",
   "tasks": [
     {
       "id": "FND-001",
@@ -169,7 +169,7 @@
         "owner": "development-root",
         "token": "6dabebffe18f7ab38eeebc9052d01dfc",
         "claimed_at": "2026-11-23T13:06:34Z",
-        "expires_at": "2026-11-24T16:18:44Z"
+        "expires_at": "2026-11-24T21:57:16Z"
       },
       "blockers": [],
       "paths": [
@@ -322,7 +322,7 @@
         "owner": "development-root",
         "token": "bc88c7c1031310a98cdee53215295340",
         "claimed_at": "2026-11-23T13:06:35Z",
-        "expires_at": "2026-11-24T16:18:44Z"
+        "expires_at": "2026-11-24T21:57:16Z"
       },
       "blockers": [],
       "paths": [
@@ -451,7 +451,7 @@
         "owner": "development-root",
         "token": "d88330d6b1e5f189cdd744b2a8902596",
         "claimed_at": "2026-11-23T13:08:44Z",
-        "expires_at": "2026-11-24T16:18:44Z"
+        "expires_at": "2026-11-24T21:57:17Z"
       },
       "blockers": [],
       "paths": [
@@ -622,6 +622,30 @@
       "task": "HOST-001",
       "owner": "development-root",
       "detail": "Lease until 2026-11-24T16:18:44Z"
+    },
+    {
+      "revision": 20,
+      "at": "2026-11-23T21:57:16Z",
+      "action": "renew",
+      "task": "PHY-002",
+      "owner": "development-root",
+      "detail": "Lease until 2026-11-24T21:57:16Z"
+    },
+    {
+      "revision": 21,
+      "at": "2026-11-23T21:57:16Z",
+      "action": "renew",
+      "task": "RT-001",
+      "owner": "development-root",
+      "detail": "Lease until 2026-11-24T21:57:16Z"
+    },
+    {
+      "revision": 22,
+      "at": "2026-11-23T21:57:17Z",
+      "action": "renew",
+      "task": "HOST-001",
+      "owner": "development-root",
+      "detail": "Lease until 2026-11-24T21:57:17Z"
     }
   ]
 }

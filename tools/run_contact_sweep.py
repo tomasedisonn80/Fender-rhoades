@@ -314,7 +314,7 @@ def main() -> int:
                     "status": "running", "acceptance": "not evaluated",
                     "executable": {"path": str(executable), "sha256": sha256(executable)},
                     "metadata": metadata, "input_metadata_sha256": hashlib.sha256(canonical(metadata)).hexdigest(),
-                    "source_sha256": {str(path.relative_to(ROOT)): sha256(path) for path in source_paths},
+                    "source_sha256": {path.relative_to(ROOT).as_posix(): sha256(path) for path in source_paths},
                     "execution": {"parallel_jobs": 1, "timeout_seconds_per_run": args.timeout},
                     "limits": ["Candidate generation is not an independent-method or physical-fidelity audit.",
                                "Source hashes are inspection context; executable build provenance is not inferred.",
