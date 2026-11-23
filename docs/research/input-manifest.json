@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "original_filename": "Pasted text(7).txt",
+  "original_sha256": "4d88a833bbbd438a0ec0b7f9a93a1abe1a211aaec3c9c724b6342104a465e350",
+  "archived_path": "docs/research/USER_RESEARCH.txt",
+  "archived_sha256": "a869daab3d3153c123a6165dfa16e00a7f64877858f8927604c6f66554a593dc",
+  "transformations": [
+    "Prepended archival context separating historical source claims from repository status.",
+    "Removed private Library PDF link; retained the fact that the separate referenced PDF was not supplied."
+  ],
+  "scope": "Text attachment supplied for this repository setup; referenced separate PDF not inspected."
+}

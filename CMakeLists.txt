@@ -34,6 +34,11 @@ add_executable(rhodes_render apps/render.cpp)
 target_link_libraries(rhodes_render PRIVATE rhodes_core)
 rhodes_target_options(rhodes_render)
 
+add_executable(rhodes_benchmark apps/benchmark.cpp)
+target_link_libraries(rhodes_benchmark PRIVATE rhodes_core)
+target_compile_definitions(rhodes_benchmark PRIVATE RHODES_BUILD_CONFIGURATION="$<CONFIG>")
+rhodes_target_options(rhodes_benchmark)
+
 if(BUILD_TESTING)
     add_executable(rhodes_tests tests/cpp/research_engine_test.cpp)
     target_link_libraries(rhodes_tests PRIVATE rhodes_core)
@@ -51,6 +56,9 @@ if(BUILD_TESTING)
         add_test(NAME review.${test_name} COMMAND rhodes_review_tests ${test_name})
     endforeach()
     add_test(NAME cli.help COMMAND rhodes_render --help)
+    add_test(NAME benchmark.help COMMAND rhodes_benchmark --help)
+    add_test(NAME benchmark.smoke COMMAND rhodes_benchmark --blocks 5 --block-size 64
+        --sample-rate 48000 --active-keys 73 --machine ci-smoke)
     add_test(NAME cli.render COMMAND rhodes_render --output ${CMAKE_CURRENT_BINARY_DIR}/smoke.wav
         --seconds 0.05 --sample-rate 48000 --force)
     add_test(NAME cli.reject_nan COMMAND ${CMAKE_COMMAND}

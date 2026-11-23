@@ -16,6 +16,7 @@ ctest --test-dir build -C Release --output-on-failure
 python3 tools/project.py validate
 python3 tools/project.py sync --check
 python3 tools/validate_data.py
+python3 tools/check_docs.py
 python3 tools/campaign.py validate
 python3 tools/campaign.py sync --check
 python3 -m unittest discover -s tests/python -v

@@ -31,6 +31,8 @@ jobs:
         run: python tools/project.py sync --check
       - name: Validate data provenance contracts
         run: python tools/validate_data.py
+      - name: Check documentation integrity
+        run: python tools/check_docs.py
       - name: Validate actual-agent ledger
         run: python tools/campaign.py validate
       - name: Reject stale campaign index

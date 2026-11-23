@@ -26,6 +26,7 @@ released. The [live project state](docs/PROJECT_STATE.md) is generated from the
 | Collect useful instrument data | [Measurement plan](docs/MEASUREMENT_PLAN.md) |
 | Evaluate accuracy and numerical behavior | [Validation specification](docs/VALIDATION.md) |
 | Build and contribute | [Development](docs/DEVELOPMENT.md) · [Contributing](CONTRIBUTING.md) |
+| Measure the synthetic kernel | [Benchmark methodology](docs/BENCHMARKING.md) |
 | Inspect the supplied research | [Research and source provenance](docs/research/README.md) |
 | Audit the setup agents | [Actual-agent campaign](docs/agents/CAMPAIGN.md) |
 
@@ -61,6 +62,7 @@ Run the repository integrity checks:
 python3 tools/project.py validate
 python3 tools/project.py sync --check
 python3 tools/validate_data.py
+python3 tools/check_docs.py
 python3 tools/campaign.py validate
 python3 tools/campaign.py sync --check
 python3 -m unittest discover -s tests/python -v

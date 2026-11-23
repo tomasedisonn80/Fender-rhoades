@@ -4,8 +4,8 @@
   "goal": "Physically model a Fender Rhodes Mark I from evolving mechanical, electromagnetic and circuit states without recorded-note playback.",
   "target": "One documented 73-key Mark I Stage specimen at its specified loaded electrical output; identity and measurements pending.",
   "fidelity_status": "unvalidated",
-  "revision": 0,
-  "updated_at": "2026-11-23T11:46:30Z",
+  "revision": 1,
+  "updated_at": "2026-11-23T12:02:30Z",
   "tasks": [
     {
       "id": "FND-001",
@@ -294,17 +294,49 @@
       ]
     },
     {
-      "id": "CIR-001",
-      "title": "Add separately identified revision-specific electronics",
-      "milestone": "Optional circuits",
+      "id": "STG-001",
+      "title": "Validate the connected passive Stage output controls",
+      "milestone": "Stage output jack",
       "status": "todo",
-      "priority": 90,
+      "priority": 85,
       "dependencies": [
         "VAL-001"
       ],
       "acceptance": [
+        "Identify the actual Stage volume/bass graph, component designators, terminal connections, modifications and correction history.",
+        "Measure pot taper, direction, endpoint/wiper behavior and relevant component uncertainty; solve controls with pickup, cable and receiver loading.",
+        "Validate gain, phase and input impedance across combined control positions, endpoints and held-out loads with explicit loaded-harp versus Stage-jack identities.",
+        "Bind all parameters and assets to the selected specimen/configuration, netlist hash, output boundary and schema version."
+      ],
+      "required_evidence": [
+        "measurement",
+        "numerical",
+        "hardware_validation"
+      ],
+      "evidence": [],
+      "owner": null,
+      "claim": null,
+      "blockers": [],
+      "paths": [
+        "profiles/mark-i-stage-73",
+        "src",
+        "tests/cpp",
+        "data",
+        "docs"
+      ]
+    },
+    {
+      "id": "CIR-001",
+      "title": "Add separately identified optional Suitcase electronics",
+      "milestone": "Optional circuits",
+      "status": "todo",
+      "priority": 90,
+      "dependencies": [
+        "STG-001"
+      ],
+      "acceptance": [
         "Create verified netlists with component-level provenance and identified device models for a selected circuit revision.",
-        "Keep Stage, Peterson and Janus/Suitcase profiles distinct; validate operating point, dynamic state and shared nonlinear chord behavior.",
+        "Keep Peterson and Janus/Suitcase profiles distinct from the completed Stage target; validate operating point, dynamic state and shared nonlinear chord behavior.",
         "Resolve documented schematic corrections against physical boards before exactness claims."
       ],
       "required_evidence": [
@@ -352,5 +384,14 @@
       ]
     }
   ],
-  "history": []
+  "history": [
+    {
+      "revision": 1,
+      "at": "2026-11-23T12:02:30Z",
+      "action": "define_task",
+      "task": "STG-001",
+      "owner": "integration-root",
+      "detail": "A021/A022 review: make passive Stage-jack completeness an explicit measured gate before optional Suitcase circuit families; see ADR 0004."
+    }
+  ]
 }

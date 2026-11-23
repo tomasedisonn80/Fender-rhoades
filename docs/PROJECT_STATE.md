@@ -6,9 +6,9 @@
 
 **Fidelity status:** `unvalidated`. Task completion is not a realism percentage.
 
-**State revision:** 0 · **Last state change:** 2026-11-23T11:46:30Z
+**State revision:** 1 · **Last state change:** 2026-11-23T12:02:30Z
 
-blocked: **2** | done: **0** | in_progress: **1** | todo: **9**
+blocked: **2** | done: **0** | in_progress: **1** | todo: **10**
 
 ## Task ledger
 
@@ -24,7 +24,8 @@ blocked: **2** | done: **0** | in_progress: **1** | todo: **9**
 | ELEC-001 | Identify and solve the specimen pickup network | todo | SPEC-001, DATA-001 | — |
 | VAL-001 | Predict held-out behavior of one measured note | todo | PHY-002, MAG-001, ELEC-001 | — |
 | KEY-001 | Expand validated construction zones across all 73 keys | todo | VAL-001 | — |
-| CIR-001 | Add separately identified revision-specific electronics | todo | VAL-001 | — |
+| STG-001 | Validate the connected passive Stage output controls | todo | VAL-001 | — |
+| CIR-001 | Add separately identified optional Suitcase electronics | todo | STG-001 | — |
 | ACO-001 | Extend the selected boundary to cabinet acoustics | todo | CIR-001 | — |
 
 ## Work selection

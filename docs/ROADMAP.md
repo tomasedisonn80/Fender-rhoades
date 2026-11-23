@@ -33,7 +33,8 @@ the one-note physical-model milestone.
 | `VAL-001` | One-note integrated prediction | `PHY-002`, `MAG-001`, `ELEC-001` | Frozen model predicts held-out strikes, retriggers, release, pickup positions, and loads with justified thresholds |
 | `KEY-001` | Construction zones and full keyboard calibration | `VAL-001` | Per-key/zone provenance, register transition checks, held-out keys or explicitly limited coverage |
 | `RT-001` | Representative runtime benchmark and numerical error budget | `PHY-001` | Reproducible workload/hardware record, timing distribution/maxima, deadline accounting, reference-error report |
-| `CIR-001` | Revision-specific additional circuits | `VAL-001` | Verified graph and identified device/supply dynamics for each explicitly named profile |
+| `STG-001` | Connected passive Stage output controls | `VAL-001` | Verified volume/bass graph, measured tapers/endpoints, loaded transfer and held-out control/load validation |
+| `CIR-001` | Optional revision-specific Suitcase circuits | `STG-001` | Verified graph and identified device/supply dynamics for each explicitly named profile |
 | `ACO-001` | Optional acoustic output boundary | `CIR-001` | Defined driver/cabinet/listening geometry, terminal and acoustic validation, separate scope decision |
 
 `SPEC-001` and consequently actual acquisition work are blocked while no physical
@@ -83,8 +84,10 @@ damper/contact states, and reference integration. It can make progress with
 synthetic parameters while hardware is unavailable; such progress is algorithmic
 evidence, not calibrated fidelity.
 
+The next mechanics implementation follows [the contact reference contract](specs/CONTACT_REFERENCE.md), including reciprocal signs, branch-specific dissipation, coordinate-rescaling checks and continuous pedal requirements.
+
 `MAG-001` identifies the flux-linkage map and compatible reaction forces.
-`ELEC-001` identifies the actual loaded pickup graph. These tasks can proceed
+`ELEC-001` identifies the actual loaded pickup graph. The [transduction and network contract](specs/TRANSDUCTION_NETWORK.md) specifies polarity, compatible energy, map domains and asymmetric circuit fixtures. These tasks can proceed
 alongside mechanical identification; loading is part of the first note, not an
 audio effect added after it. Define a consistent equilibrium and avoid adding
 magnetic influence already embedded in measured mechanical parameters twice.
@@ -107,7 +110,7 @@ for all physical keys and circuit membership for all pickups. Any mechanical
 sleeping or coupling reduction needs evidence.
 
 `KEY-001` includes actual per-key variations and repeatability, not just 73
-frequency-scaled copies of a central note. Validate the selected Stage controls,
+frequency-scaled copies of a central note. `STG-001` separately validates the selected Stage controls,
 cable, and load at the defined output jack. If the loaded-harp and Stage-jack
 boundaries differ, preserve both as explicitly named configurations.
 

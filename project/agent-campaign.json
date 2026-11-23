@@ -70,26 +70,170 @@
     {
       "id": "A009",
       "task_name": "/root/a009_benchmark_harness",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/reviews/A009.md",
-      "report_sha256": null,
+      "report_sha256": "8fc981c479ad698d108f4f5f4941efca22fb68ac63cd163b2e8e52448e84ae7c",
       "scope": "Reproducible synthetic callback timing harness"
     },
     {
       "id": "A010",
       "task_name": "/root/a010_repo_checks",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/reviews/A010.md",
-      "report_sha256": null,
+      "report_sha256": "d1669c0d434503de625539962e003b24a62897036a4ffea02d1700ceefe448b3",
       "scope": "Documentation integrity checker and regressions"
     },
     {
       "id": "A011",
       "task_name": "/root/a011_hammer_contract",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/reviews/A011.md",
-      "report_sha256": null,
+      "report_sha256": "821003f43c80558ee32d0a6a02a3f2563bd7de1f8f727a2a8a775e76f6b45203",
       "scope": "Finite-mass hammer, contact passivity and recontact requirements"
+    },
+    {
+      "id": "A012",
+      "task_name": "/root/a012_damper_contract",
+      "status": "completed",
+      "report": "docs/agents/reviews/A012.md",
+      "report_sha256": "f778871efea15e65c69833256e01b448e8dd6220bb12f47ed2ac62aa458825d9",
+      "scope": "Physical damper contact, pedal linkage and release requirements"
+    },
+    {
+      "id": "A013",
+      "task_name": "/root/a013_modal_normalization",
+      "status": "completed",
+      "report": "docs/agents/reviews/A013.md",
+      "report_sha256": "5f6766ea3529815505ffc6ccb4c84f96cf9ec86cc893f43de1a54b8d6ebf188f",
+      "scope": "Modal normalization, participation and observation contracts"
+    },
+    {
+      "id": "A014",
+      "task_name": "/root/a014_structural_modes",
+      "status": "completed",
+      "report": "docs/agents/reviews/A014.md",
+      "report_sha256": "2775ab49eacd7eea60567749d8790ec9a7062afd7393e1cf147762b287d3aa3e",
+      "scope": "Coupled tine/tonebar modes and electrical harmonic interpretation"
+    },
+    {
+      "id": "A015",
+      "task_name": "/root/a015_supports_spring",
+      "status": "completed",
+      "report": "docs/agents/reviews/A015.md",
+      "report_sha256": "df090cd130eab30a1f9d2917b39cfdbaa5a57763133b401a769e7e3fce94fb3e",
+      "scope": "Tuning spring, grommet, screw and support parameterization"
+    },
+    {
+      "id": "A016",
+      "task_name": "/root/a016_flux_signs",
+      "status": "completed",
+      "report": "docs/agents/reviews/A016.md",
+      "report_sha256": "05751def463af7001ed2fd8fe1d4ad2c2e611a086e95ed7a9c5c4e439623abf5",
+      "scope": "Flux-linkage units, terminal polarity and derivative consistency"
+    },
+    {
+      "id": "A017",
+      "task_name": "/root/a017_magnetic_reciprocity",
+      "status": "completed",
+      "report": "docs/agents/reviews/A017.md",
+      "report_sha256": "166b13277e51ffb6ac2cc482d1bc2e836a946fbaf867a66efde37f09212e50c7",
+      "scope": "Magnetic reciprocity, static force and energy accounting"
+    },
+    {
+      "id": "A018",
+      "task_name": "/root/a018_field_map",
+      "status": "completed",
+      "report": "docs/agents/reviews/A018.md",
+      "report_sha256": "005dbd88393b3cd8de4d4878451dc734533d7e39f1fc1ca9178da3e1e71f770a",
+      "scope": "Field-map interpolation, domain bounds and derivative consistency"
+    },
+    {
+      "id": "A019",
+      "task_name": "/root/a019_pickup_topology",
+      "status": "completed",
+      "report": "docs/agents/reviews/A019.md",
+      "report_sha256": "dbb7f80e890bcf660dfb86e29b5675427ea84c74f49b4c0dbb2260423da6b2fa",
+      "scope": "Pickup group topology, unequal impedances and inactive branches"
+    },
+    {
+      "id": "A020",
+      "task_name": "/root/a020_complex_loading",
+      "status": "completed",
+      "report": "docs/agents/reviews/A020.md",
+      "report_sha256": "ea9a5f27e1893841d942486e1243259efdf591e1011ee6d8d417e68c050ad4c6",
+      "scope": "Complex impedance, cable and load identification"
+    },
+    {
+      "id": "A021",
+      "task_name": "/root/a021_stage_controls",
+      "status": "completed",
+      "report": "docs/agents/reviews/A021.md",
+      "report_sha256": "54dcb2730f57de98bb08ec9e5cbf857fbe13a465f54bd9768af5904ce3049dd0",
+      "scope": "Passive Stage controls and revision-specific circuit graph"
+    },
+    {
+      "id": "A022",
+      "task_name": "/root/a022_revision_profiles",
+      "status": "completed",
+      "report": "docs/agents/reviews/A022.md",
+      "report_sha256": "911ecfaa78d3421863e7939a37c19eb0d51e48b58d78f282ccb7bba5a14c57ba",
+      "scope": "Historical profile separation and compatibility boundaries"
+    },
+    {
+      "id": "A023",
+      "task_name": "/root/a023_shared_circuits",
+      "status": "completed",
+      "report": "docs/agents/reviews/A023.md",
+      "report_sha256": "6dee6e3a0d21c5c808570494f534eec910619096e484710b3c04114329fe0a9b",
+      "scope": "Shared nonlinear stages, supply interaction and chord intermodulation"
+    },
+    {
+      "id": "A024",
+      "task_name": "/root/a024_optical_thermal",
+      "status": "completed",
+      "report": "docs/agents/reviews/A024.md",
+      "report_sha256": "b3adf028a7e8335d0a172273c96f5cd4a5aabb733dd2393621c02290542c6236",
+      "scope": "Optional optical and thermal circuit-state requirements"
+    },
+    {
+      "id": "A025",
+      "task_name": "/root/a025_acoustic_boundary",
+      "status": "completed",
+      "report": "docs/agents/reviews/A025.md",
+      "report_sha256": "0831334a20e9cadc37f335449efb0b85a7c39d90d963b47ae6b1298c7ccaee51",
+      "scope": "Amplifier/speaker electrical and acoustic boundaries"
+    },
+    {
+      "id": "A026",
+      "task_name": "/root/a026_equilibrium",
+      "status": "completed",
+      "report": "docs/agents/reviews/A026.md",
+      "report_sha256": "8c18d333890f7d392dd9205760eca0ebba25c815d50d207fadded544e4d55dc0",
+      "scope": "Consistent mechanical and electrical equilibrium initialization"
+    },
+    {
+      "id": "A027",
+      "task_name": "/root/a027_solver_convergence",
+      "status": "running",
+      "report": "docs/agents/reviews/A027.md",
+      "report_sha256": null,
+      "scope": "Reference convergence, residual scaling and independent stop rules"
+    },
+    {
+      "id": "A028",
+      "task_name": "/root/a028_contact_solver_events",
+      "status": "running",
+      "report": "docs/agents/reviews/A028.md",
+      "report_sha256": null,
+      "scope": "Contact event localization, grazing and bounded solver failures"
+    },
+    {
+      "id": "A029",
+      "task_name": "/root/a029_aliasing_rates",
+      "status": "running",
+      "report": "docs/agents/reviews/A029.md",
+      "report_sha256": null,
+      "scope": "Nonlinear aliasing, coupled oversampling and rate conversion"
     }
   ]
 }

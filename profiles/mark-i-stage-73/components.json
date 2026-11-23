@@ -226,7 +226,7 @@
       "measurement_ids": [],
       "uncertainty": null,
       "implementation_status": "planned",
-      "task_id": "CIR-001"
+      "task_id": "STG-001"
     },
     {
       "id": "BASS-CONTROL",
@@ -241,7 +241,7 @@
       "measurement_ids": [],
       "uncertainty": null,
       "implementation_status": "planned",
-      "task_id": "CIR-001"
+      "task_id": "STG-001"
     },
     {
       "id": "CABLE",
