@@ -424,26 +424,53 @@
       "wave": 3,
       "task_name": "/root/w3_047_audio_pilot",
       "scope": "Complete transient provenance and execute the fixed 36-case independent audio pilot",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/continuation-20261123/w3-047.md",
-      "report_sha256": null
+      "report_sha256": "f129ccdcde5c9dbc4852767b367d0f09924e84a8c0b51fbee0ddbcd5d77e38fd"
     },
     {
       "id": 48,
       "wave": 3,
       "task_name": "/root/w3_048_sanitizer_check",
       "scope": "Run isolated ASan and UBSan checks for FIR audio and contact split rollback",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/continuation-20261123/w3-048.md",
-      "report_sha256": null
+      "report_sha256": "5698e6dfcfe98778acb4612783cecb43f69a8a994de75799d2c5ad8bed3b1f2b"
     },
     {
       "id": 49,
       "wave": 3,
       "task_name": "/root/w3_049_dual_module_loader",
       "scope": "Retain simultaneous direct and filtered VST3 module identity regression",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/continuation-20261123/w3-049.md",
+      "report_sha256": "ea68f9fa31db9e2a89f41b12130377b0fe79687d662db5ea0f3036b2e2cc98f0"
+    },
+    {
+      "id": 50,
+      "wave": 3,
+      "task_name": "/root/w3_050_audio_full_matrix",
+      "scope": "Execute frozen 2097-case independent continuous and discrete audio comparisons",
+      "status": "running",
+      "report": "docs/agents/continuation-20261123/w3-050.md",
+      "report_sha256": null
+    },
+    {
+      "id": 51,
+      "wave": 3,
+      "task_name": "/root/w3_051_peak_audit_design",
+      "scope": "Design independent extrema diagnostics with explicit coverage limits and frozen numerical budgets",
+      "status": "running",
+      "report": "docs/agents/continuation-20261123/w3-051.md",
+      "report_sha256": null
+    },
+    {
+      "id": 52,
+      "wave": 3,
+      "task_name": "/root/w3_052_peak_sweep_option",
+      "scope": "Expose explicit optional peak diagnostics in sweep plans with validated provenance",
+      "status": "running",
+      "report": "docs/agents/continuation-20261123/w3-052.md",
       "report_sha256": null
     }
   ]

@@ -1,0 +1,801 @@
+{
+  "schema": "rhodes.sanitizer.observation.v1",
+  "date": "2026-11-23",
+  "worker": 48,
+  "scope": "Bounded ASan/UBSan verification of synthetic FIR/audio engine/probe and offline contact split/peak tests; VST3 disabled",
+  "result": "pass_with_explicit_leak_coverage_exclusion",
+  "source": {
+    "source_commit": "19dd4434066f8be83aa744dc304bb73c66228519",
+    "source_tree": "21cd2daea8860086476e873d456ff145306c2a50",
+    "source_archive_sha256": "6f135a1edb1fbe8f27ed86479d9a39cf67c1223dbcb3767e1b4f323ae9625107",
+    "source_hashes": {
+      "include/rhodes/audio_engine.hpp": "10efac8150c07e69ef41eed415a6e7403b4339179af902f91cd17ef498da7b97",
+      "include/rhodes/event_processor.hpp": "36e4b64f3278b0079b20e94a333a657c900e4118dc24433ec9d8c58442651351",
+      "include/rhodes/control_value.hpp": "7d940dcbca66f07f9db6c5caf605da57fbe77d66b78641139e078f06d7441919",
+      "include/rhodes/instrument_state.hpp": "16df2b4743db66b1cc19f11fcb7bd1dfa7cf8b541a1db2c0be16dee26d92f182",
+      "include/rhodes/research_engine.hpp": "2f00f75a418ab5988107fcc7a3ddc4503c4f5d72c71b925515a72c7cb9136bf5",
+      "include/rhodes/audio_filter_coefficients.hpp": "c1ab39356d7e44348f9dc56f9120ff2598889d1fa144e5294b084585655eb76d",
+      "include/rhodes/contact_reference.hpp": "00b99e61dc73686c22675bedf647c3ad1b27ba13332180431f5a42e485057fda",
+      "include/rhodes/note_tracker.hpp": "76931b326daae3a112b56420f9be9ea5b03b1c30307f1dc68b6c13c710cd830f",
+      "include/rhodes/fir_decimator.hpp": "e54faeb397bcbccb9ed9834cfc264d84550c4ef375d8e5273a720eb1f190071b",
+      "src/contact_reference.cpp": "0f9808442b5ddf6ddc6091c9b6294117b7aea85cd54707b9c3743121ac706100",
+      "src/research_engine.cpp": "c30f3cbba73632312a1b88cbc3449d73cae4dd1383ad41b70b7bbbb3a7e8123c",
+      "apps/audio_probe.cpp": "488c0b0ca2c734290b71bcd423710db28b6e20e0b40e8b61e0fbc5c9f7f41039",
+      "apps/contact_reference.cpp": "69f27644a659236e5bccc306cfbb2799b49025143f5c7b1b72ee1ef42812f25b",
+      "tests/cpp/audio_fir_test.cpp": "77a2529473b2b6a797d910636aff38d61785a78ccb55e891d3c4226124675746",
+      "tests/cpp/audio_engine_test.cpp": "9afba0e6e596db01b2b2627613bb808682ce1ab850b22f11a546eb329d58b601",
+      "tests/cpp/audio_probe_cli.cmake": "792aec1ea75cfe3462f60ae015f916ae2d795b689ef6f39d8f796703146e48e6",
+      "tests/cpp/contact_split_peak_test.cpp": "bee22064db003fdcfc2445b47d33d7b2e5f30a9a622776caee32e1683db9ff96",
+      "tests/cpp/contact_peak_cli.cmake": "84577b1c3166017cd65c247a6058eddb0911341c94cc4ef18f190bb4b1e58757",
+      "tests/cpp/contact_domain_test.cpp": "e0154c3d7a1e66431d5cb1db4b9430b4a2760f06bbf26fbae55a120558bf241a",
+      "tests/cpp/contact_grazing_test.cpp": "520b8a77673959d26420df31c952492307d5ec670dca65785e7b2138ea7bbd24",
+      "tests/cpp/contact_reference_test.cpp": "e1d77debc7fc563b6c8b2425b25cd5fdc802ef065f4438d24612f1e43bf174b5",
+      "tests/cpp/contact_event_split_test.cpp": "4ee53462c8cf0041e48778ea2e6283d3216e0f9043dcdf2dacc1784cdcd53e4e",
+      "tests/cpp/contact_cli.cmake": "6017cc26ce81943c72d85c2203bc9d7f969238c508298a6f8b5ab0cc3201d5a6",
+      "tests/cpp/contact_peak_test.cpp": "e73e7f1634da92f607d74ad66443646d07c2fd5fd216ddce372ccbe95bbd9762",
+      "CMakeLists.txt": "75631da819beb16c1f86acb30744e705ea9027a4f97e1dceac0d979d904eb06b"
+    },
+    "repository_tree_equivalent_commit": "3d53252fbbc7256d11da935714780f5b1a7a47b7"
+  },
+  "environment": {
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+    "machine": "x86_64",
+    "compiler": "g++ (Debian 14.2.0-19) 14.2.0\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+    "cmake": "cmake version 4.4.5\n\nCMake suite maintained and supported by Kitware (kitware.com/cmake).\n",
+    "python": "3.12.14",
+    "asan_options_before": null,
+    "ubsan_options_before": null
+  },
+  "runs": [
+    {
+      "name": "configure",
+      "command": [
+        "cmake",
+        "-S",
+        "/workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/source",
+        "-B",
+        "/workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/build",
+        "-G",
+        "Ninja",
+        "-DCMAKE_BUILD_TYPE=Debug",
+        "-DRHODES_ENABLE_SANITIZERS=ON",
+        "-DRHODES_BUILD_VST3=OFF",
+        "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 0.6549076519986556,
+      "stdout_sha256": "1b4700f7161630aa4cc4c28588fc6a7f0feeae8be39622a943ca75a968391e6e",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_utf8": "-- The CXX compiler identification is GNU 14.2.0\n-- Detecting CXX compiler ABI info\n-- Detecting CXX compiler ABI info - done\n-- Check for working CXX compiler: /usr/bin/c++ - skipped\n-- Detecting CXX compile features\n-- Detecting CXX compile features - done\n-- Performing Test CMAKE_HAVE_LIBC_PTHREAD\n-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success\n-- Found Threads: TRUE\n-- Configuring done (0.4s)\n-- Generating done (0.0s)\n-- Build files have been written to: /workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/build\n",
+      "stderr_utf8": ""
+    },
+    {
+      "name": "build",
+      "command": [
+        "cmake",
+        "--build",
+        "build/w3-048-sanitizer/build",
+        "--parallel",
+        "2",
+        "--target",
+        "rhodes_audio_fir_tests",
+        "rhodes_audio_engine_tests",
+        "rhodes_audio_probe",
+        "rhodes_contact_peak_tests",
+        "rhodes_contact_event_split_tests",
+        "rhodes_contact_split_peak_tests",
+        "rhodes_contact_reference"
+      ],
+      "exit_code": 0,
+      "duration_seconds": 8.259896758998366,
+      "stdout_sha256": "45374a4bf113076779d9c05a83580988c0ac1be3f67837732aef1245e6f0adaf",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_utf8": "[1/18] Building CXX object CMakeFiles/rhodes_core.dir/src/research_engine.cpp.o\n[2/18] Linking CXX static library librhodes_core.a\n[3/18] Building CXX object CMakeFiles/rhodes_contact.dir/src/contact_reference.cpp.o\n[4/18] Linking CXX static library librhodes_contact.a\n[5/18] Building CXX object CMakeFiles/rhodes_contact_reference.dir/apps/contact_reference.cpp.o\n[6/18] Building CXX object CMakeFiles/rhodes_audio_fir_tests.dir/tests/cpp/audio_fir_test.cpp.o\n[7/18] Building CXX object CMakeFiles/rhodes_audio_probe.dir/apps/audio_probe.cpp.o\n[8/18] Building CXX object CMakeFiles/rhodes_audio_engine_tests.dir/tests/cpp/audio_engine_test.cpp.o\n[9/18] Building CXX object CMakeFiles/rhodes_contact_peak_tests.dir/tests/cpp/contact_peak_test.cpp.o\n[10/18] Building CXX object CMakeFiles/rhodes_contact_event_split_tests.dir/tests/cpp/contact_event_split_test.cpp.o\n[11/18] Linking CXX executable rhodes_contact_reference\n[12/18] Linking CXX executable rhodes_audio_fir_tests\n[13/18] Linking CXX executable rhodes_audio_engine_tests\n[14/18] Linking CXX executable rhodes_audio_probe\n[15/18] Linking CXX executable rhodes_contact_peak_tests\n[16/18] Linking CXX executable rhodes_contact_event_split_tests\n[17/18] Building CXX object CMakeFiles/rhodes_contact_split_peak_tests.dir/tests/cpp/contact_split_peak_test.cpp.o\n[18/18] Linking CXX executable rhodes_contact_split_peak_tests\n",
+      "stderr_utf8": ""
+    },
+    {
+      "name": "initial-tests",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "build/w3-048-sanitizer/build",
+        "-C",
+        "Debug",
+        "--output-on-failure",
+        "--no-tests=error",
+        "--parallel",
+        "1",
+        "-R",
+        "^audio.fir_coefficients_dc$",
+        "--output-junit",
+        "/workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/initial-tests.xml"
+      ],
+      "environment_overrides": {
+        "ASAN_OPTIONS": "detect_leaks=1:halt_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "exit_code": 8,
+      "duration_seconds": 0.14555579199804924,
+      "stdout_sha256": "c1b6c340f0d3cf0e8471e1cdccfc8d0d1a4123cbeac49fb2623f7d809b1f6e44",
+      "stderr_sha256": "18e00877dc1071c85cd4f479d451bebeef8309022e46cf8c63b0bed5151984a4",
+      "stdout_utf8": "Test project /workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/build\n    Start 1: audio.fir_coefficients_dc\n1/1 Test #1: audio.fir_coefficients_dc ........***Failed    0.02 sec\n==7==LeakSanitizer has encountered a fatal error.\n==7==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1\n==7==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)\n\n\n0% tests passed, 1 tests failed out of 1\n\nTotal Test time (real) =   0.02 sec\n\nThe following tests FAILED:\n\t  1 - audio.fir_coefficients_dc (Failed)\n",
+      "stderr_utf8": "Errors while running CTest\n"
+    },
+    {
+      "name": "scoped-tests",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "build/w3-048-sanitizer/build",
+        "-C",
+        "Debug",
+        "--output-on-failure",
+        "--no-tests=error",
+        "--parallel",
+        "1",
+        "-R",
+        "^(audio[.]|contact[.](peak_|event_split|split_))",
+        "--output-junit",
+        "/workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/scoped-tests.xml"
+      ],
+      "environment_overrides": {
+        "ASAN_OPTIONS": "detect_leaks=0:halt_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "exit_code": 0,
+      "duration_seconds": 52.322264256999915,
+      "stdout_sha256": "8704fdb5c86af7ac29a4e28829d840ec0e5d0ec7a97d5cee90d4a6e531a44621",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_utf8": "Test project /workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/build\n      Start  1: audio.fir_coefficients_dc\n 1/26 Test  #1: audio.fir_coefficients_dc ...........   Passed    0.04 sec\n      Start  2: audio.fir_impulse_phases\n 2/26 Test  #2: audio.fir_impulse_phases ............   Passed    8.99 sec\n      Start  3: audio.fir_direct_convolution\n 3/26 Test  #3: audio.fir_direct_convolution ........   Passed    0.81 sec\n      Start  4: audio.fir_group_delay\n 4/26 Test  #4: audio.fir_group_delay ...............   Passed    0.01 sec\n      Start  5: audio.fir_transactional_rejection\n 5/26 Test  #5: audio.fir_transactional_rejection ...   Passed    0.05 sec\n      Start  6: audio.fir_overflow_reset\n 6/26 Test  #6: audio.fir_overflow_reset ............   Passed    0.01 sec\n      Start 12: audio.high_rate_oracle\n 7/26 Test #12: audio.high_rate_oracle ..............   Passed   33.29 sec\n      Start 13: audio.rate_boundaries\n 8/26 Test #13: audio.rate_boundaries ...............   Passed    0.38 sec\n      Start 14: audio.persistent_events\n 9/26 Test #14: audio.persistent_events .............   Passed    0.55 sec\n      Start 15: audio.partition_invariance\n10/26 Test #15: audio.partition_invariance ..........   Passed    1.69 sec\n      Start 16: audio.prepare_atomicity\n11/26 Test #16: audio.prepare_atomicity .............   Passed    1.36 sec\n      Start 17: audio.reset_flush\n12/26 Test #17: audio.reset_flush ...................   Passed    1.24 sec\n      Start 18: audio.event_timing\n13/26 Test #18: audio.event_timing ..................   Passed    0.98 sec\n      Start 19: audio.fault_substeps\n14/26 Test #19: audio.fault_substeps ................   Passed    0.04 sec\n      Start 20: audio.probe_cli\n15/26 Test #20: audio.probe_cli .....................   Passed    1.82 sec\n      Start 37: contact.peak_defaults\n16/26 Test #37: contact.peak_defaults ...............   Passed    0.01 sec\n      Start 38: contact.peak_conservative\n17/26 Test #38: contact.peak_conservative ...........   Passed    0.07 sec\n      Start 39: contact.peak_damped\n18/26 Test #39: contact.peak_damped .................   Passed    0.11 sec\n      Start 40: contact.peak_damper_face\n19/26 Test #40: contact.peak_damper_face ............   Passed    0.08 sec\n      Start 41: contact.peak_actions\n20/26 Test #41: contact.peak_actions ................   Passed    0.01 sec\n      Start 42: contact.peak_rollback\n21/26 Test #42: contact.peak_rollback ...............   Passed    0.03 sec\n      Start 43: contact.peak_cli\n22/26 Test #43: contact.peak_cli ....................   Passed    0.16 sec\n      Start 44: contact.event_split\n23/26 Test #44: contact.event_split .................   Passed    0.07 sec\n      Start 45: contact.split_simultaneous\n24/26 Test #45: contact.split_simultaneous ..........   Passed    0.07 sec\n      Start 46: contact.split_close_roots\n25/26 Test #46: contact.split_close_roots ...........   Passed    0.22 sec\n      Start 47: contact.split_peak_rollback\n26/26 Test #47: contact.split_peak_rollback .........   Passed    0.02 sec\n\n100% tests passed out of 26\n\nTotal Test time (real) =  52.15 sec\n",
+      "stderr_utf8": ""
+    }
+  ],
+  "instrumentation": {
+    "compile_commands": [
+      {
+        "directory": "/workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/build",
+        "command": "/usr/bin/c++ -I/workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/source/include -g -std=c++20 -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -Wall -Wextra -Wpedantic -Wconversion -Wshadow -Werror -fsanitize=address,undefined -fno-omit-frame-pointer -o CMakeFiles/rhodes_core.dir/src/research_engine.cpp.o -c /workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/source/src/research_engine.cpp",
+        "file": "/workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/source/src/research_engine.cpp",
+        "output": "/workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/build/CMakeFiles/rhodes_core.dir/src/research_engine.cpp.o"
+      },
+      {
+        "directory": "/workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/build",
+        "command": "/usr/bin/c++ -I/workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/source/include -g -std=c++20 -Wall -Wextra -Wpedantic -Wconversion -Wshadow -Werror -fsanitize=address,undefined -fno-omit-frame-pointer -o CMakeFiles/rhodes_contact.dir/src/contact_reference.cpp.o -c /workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/source/src/contact_reference.cpp",
+        "file": "/workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/source/src/contact_reference.cpp",
+        "output": "/workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/build/CMakeFiles/rhodes_contact.dir/src/contact_reference.cpp.o"
+      },
+      {
+        "directory": "/workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/build",
+        "command": "/usr/bin/c++ -I/workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/source/include -g -std=gnu++20 -Wall -Wextra -Wpedantic -Wconversion -Wshadow -Werror -fsanitize=address,undefined -fno-omit-frame-pointer -o CMakeFiles/rhodes_contact_reference.dir/apps/contact_reference.cpp.o -c /workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/source/apps/contact_reference.cpp",
+        "file": "/workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/source/apps/contact_reference.cpp",
+        "output": "/workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/build/CMakeFiles/rhodes_contact_reference.dir/apps/contact_reference.cpp.o"
+      },
+      {
+        "directory": "/workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/build",
+        "command": "/usr/bin/c++ -I/workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/source/include -g -std=gnu++20 -Wall -Wextra -Wpedantic -Wconversion -Wshadow -Werror -fsanitize=address,undefined -fno-omit-frame-pointer -o CMakeFiles/rhodes_audio_fir_tests.dir/tests/cpp/audio_fir_test.cpp.o -c /workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/source/tests/cpp/audio_fir_test.cpp",
+        "file": "/workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/source/tests/cpp/audio_fir_test.cpp",
+        "output": "/workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/build/CMakeFiles/rhodes_audio_fir_tests.dir/tests/cpp/audio_fir_test.cpp.o"
+      },
+      {
+        "directory": "/workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/build",
+        "command": "/usr/bin/c++ -I/workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/source/include -g -std=gnu++20 -Wall -Wextra -Wpedantic -Wconversion -Wshadow -Werror -fsanitize=address,undefined -fno-omit-frame-pointer -o CMakeFiles/rhodes_audio_engine_tests.dir/tests/cpp/audio_engine_test.cpp.o -c /workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/source/tests/cpp/audio_engine_test.cpp",
+        "file": "/workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/source/tests/cpp/audio_engine_test.cpp",
+        "output": "/workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/build/CMakeFiles/rhodes_audio_engine_tests.dir/tests/cpp/audio_engine_test.cpp.o"
+      },
+      {
+        "directory": "/workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/build",
+        "command": "/usr/bin/c++ -I/workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/source/include -g -std=gnu++20 -Wall -Wextra -Wpedantic -Wconversion -Wshadow -Werror -fsanitize=address,undefined -fno-omit-frame-pointer -o CMakeFiles/rhodes_audio_probe.dir/apps/audio_probe.cpp.o -c /workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/source/apps/audio_probe.cpp",
+        "file": "/workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/source/apps/audio_probe.cpp",
+        "output": "/workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/build/CMakeFiles/rhodes_audio_probe.dir/apps/audio_probe.cpp.o"
+      },
+      {
+        "directory": "/workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/build",
+        "command": "/usr/bin/c++ -I/workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/source/include -g -std=gnu++20 -Wall -Wextra -Wpedantic -Wconversion -Wshadow -Werror -fsanitize=address,undefined -fno-omit-frame-pointer -o CMakeFiles/rhodes_contact_peak_tests.dir/tests/cpp/contact_peak_test.cpp.o -c /workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/source/tests/cpp/contact_peak_test.cpp",
+        "file": "/workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/source/tests/cpp/contact_peak_test.cpp",
+        "output": "/workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/build/CMakeFiles/rhodes_contact_peak_tests.dir/tests/cpp/contact_peak_test.cpp.o"
+      },
+      {
+        "directory": "/workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/build",
+        "command": "/usr/bin/c++ -I/workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/source/include -g -std=gnu++20 -Wall -Wextra -Wpedantic -Wconversion -Wshadow -Werror -fsanitize=address,undefined -fno-omit-frame-pointer -o CMakeFiles/rhodes_contact_event_split_tests.dir/tests/cpp/contact_event_split_test.cpp.o -c /workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/source/tests/cpp/contact_event_split_test.cpp",
+        "file": "/workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/source/tests/cpp/contact_event_split_test.cpp",
+        "output": "/workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/build/CMakeFiles/rhodes_contact_event_split_tests.dir/tests/cpp/contact_event_split_test.cpp.o"
+      },
+      {
+        "directory": "/workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/build",
+        "command": "/usr/bin/c++ -I/workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/source/include -g -std=gnu++20 -Wall -Wextra -Wpedantic -Wconversion -Wshadow -Werror -fsanitize=address,undefined -fno-omit-frame-pointer -o CMakeFiles/rhodes_contact_split_peak_tests.dir/tests/cpp/contact_split_peak_test.cpp.o -c /workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/source/tests/cpp/contact_split_peak_test.cpp",
+        "file": "/workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/source/tests/cpp/contact_split_peak_test.cpp",
+        "output": "/workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/build/CMakeFiles/rhodes_contact_split_peak_tests.dir/tests/cpp/contact_split_peak_test.cpp.o"
+      }
+    ],
+    "selected_build_commands": "/usr/bin/c++  -I/workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/source/include -g -std=gnu++20 -Wall -Wextra -Wpedantic -Wconversion -Wshadow -Werror -fsanitize=address,undefined -fno-omit-frame-pointer -MD -MT CMakeFiles/rhodes_audio_fir_tests.dir/tests/cpp/audio_fir_test.cpp.o -MF CMakeFiles/rhodes_audio_fir_tests.dir/tests/cpp/audio_fir_test.cpp.o.d -o CMakeFiles/rhodes_audio_fir_tests.dir/tests/cpp/audio_fir_test.cpp.o -c /workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/source/tests/cpp/audio_fir_test.cpp\n/usr/bin/c++  -I/workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/source/include -g -std=c++20 -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -Wall -Wextra -Wpedantic -Wconversion -Wshadow -Werror -fsanitize=address,undefined -fno-omit-frame-pointer -MD -MT CMakeFiles/rhodes_core.dir/src/research_engine.cpp.o -MF CMakeFiles/rhodes_core.dir/src/research_engine.cpp.o.d -o CMakeFiles/rhodes_core.dir/src/research_engine.cpp.o -c /workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/source/src/research_engine.cpp\n: && /home/agent/.local/lib/python3.12/site-packages/cmake/data/bin/cmake -E rm -f librhodes_core.a && /usr/bin/ar qc librhodes_core.a  CMakeFiles/rhodes_core.dir/src/research_engine.cpp.o && /usr/bin/ranlib librhodes_core.a && :\n: && /usr/bin/c++ -g -fsanitize=address,undefined -Wl,--dependency-file=CMakeFiles/rhodes_audio_fir_tests.dir/link.d CMakeFiles/rhodes_audio_fir_tests.dir/tests/cpp/audio_fir_test.cpp.o -o rhodes_audio_fir_tests  librhodes_core.a && :\n/usr/bin/c++  -I/workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/source/include -g -std=gnu++20 -Wall -Wextra -Wpedantic -Wconversion -Wshadow -Werror -fsanitize=address,undefined -fno-omit-frame-pointer -MD -MT CMakeFiles/rhodes_audio_engine_tests.dir/tests/cpp/audio_engine_test.cpp.o -MF CMakeFiles/rhodes_audio_engine_tests.dir/tests/cpp/audio_engine_test.cpp.o.d -o CMakeFiles/rhodes_audio_engine_tests.dir/tests/cpp/audio_engine_test.cpp.o -c /workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/source/tests/cpp/audio_engine_test.cpp\n: && /usr/bin/c++ -g -fsanitize=address,undefined -Wl,--dependency-file=CMakeFiles/rhodes_audio_engine_tests.dir/link.d CMakeFiles/rhodes_audio_engine_tests.dir/tests/cpp/audio_engine_test.cpp.o -o rhodes_audio_engine_tests  librhodes_core.a && :\n/usr/bin/c++  -I/workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/source/include -g -std=gnu++20 -Wall -Wextra -Wpedantic -Wconversion -Wshadow -Werror -fsanitize=address,undefined -fno-omit-frame-pointer -MD -MT CMakeFiles/rhodes_audio_probe.dir/apps/audio_probe.cpp.o -MF CMakeFiles/rhodes_audio_probe.dir/apps/audio_probe.cpp.o.d -o CMakeFiles/rhodes_audio_probe.dir/apps/audio_probe.cpp.o -c /workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/source/apps/audio_probe.cpp\n: && /usr/bin/c++ -g -fsanitize=address,undefined -Wl,--dependency-file=CMakeFiles/rhodes_audio_probe.dir/link.d CMakeFiles/rhodes_audio_probe.dir/apps/audio_probe.cpp.o -o rhodes_audio_probe  librhodes_core.a && :\n/usr/bin/c++  -I/workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/source/include -g -std=gnu++20 -Wall -Wextra -Wpedantic -Wconversion -Wshadow -Werror -fsanitize=address,undefined -fno-omit-frame-pointer -MD -MT CMakeFiles/rhodes_contact_peak_tests.dir/tests/cpp/contact_peak_test.cpp.o -MF CMakeFiles/rhodes_contact_peak_tests.dir/tests/cpp/contact_peak_test.cpp.o.d -o CMakeFiles/rhodes_contact_peak_tests.dir/tests/cpp/contact_peak_test.cpp.o -c /workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/source/tests/cpp/contact_peak_test.cpp\n/usr/bin/c++  -I/workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/source/include -g -std=c++20 -Wall -Wextra -Wpedantic -Wconversion -Wshadow -Werror -fsanitize=address,undefined -fno-omit-frame-pointer -MD -MT CMakeFiles/rhodes_contact.dir/src/contact_reference.cpp.o -MF CMakeFiles/rhodes_contact.dir/src/contact_reference.cpp.o.d -o CMakeFiles/rhodes_contact.dir/src/contact_reference.cpp.o -c /workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/source/src/contact_reference.cpp\n: && /home/agent/.local/lib/python3.12/site-packages/cmake/data/bin/cmake -E rm -f librhodes_contact.a && /usr/bin/ar qc librhodes_contact.a  CMakeFiles/rhodes_contact.dir/src/contact_reference.cpp.o && /usr/bin/ranlib librhodes_contact.a && :\n: && /usr/bin/c++ -g -fsanitize=address,undefined -Wl,--dependency-file=CMakeFiles/rhodes_contact_peak_tests.dir/link.d CMakeFiles/rhodes_contact_peak_tests.dir/tests/cpp/contact_peak_test.cpp.o -o rhodes_contact_peak_tests  librhodes_contact.a && :\n/usr/bin/c++  -I/workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/source/include -g -std=gnu++20 -Wall -Wextra -Wpedantic -Wconversion -Wshadow -Werror -fsanitize=address,undefined -fno-omit-frame-pointer -MD -MT CMakeFiles/rhodes_contact_event_split_tests.dir/tests/cpp/contact_event_split_test.cpp.o -MF CMakeFiles/rhodes_contact_event_split_tests.dir/tests/cpp/contact_event_split_test.cpp.o.d -o CMakeFiles/rhodes_contact_event_split_tests.dir/tests/cpp/contact_event_split_test.cpp.o -c /workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/source/tests/cpp/contact_event_split_test.cpp\n: && /usr/bin/c++ -g -fsanitize=address,undefined -Wl,--dependency-file=CMakeFiles/rhodes_contact_event_split_tests.dir/link.d CMakeFiles/rhodes_contact_event_split_tests.dir/tests/cpp/contact_event_split_test.cpp.o -o rhodes_contact_event_split_tests  librhodes_contact.a && :\n/usr/bin/c++  -I/workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/source/include -g -std=gnu++20 -Wall -Wextra -Wpedantic -Wconversion -Wshadow -Werror -fsanitize=address,undefined -fno-omit-frame-pointer -MD -MT CMakeFiles/rhodes_contact_split_peak_tests.dir/tests/cpp/contact_split_peak_test.cpp.o -MF CMakeFiles/rhodes_contact_split_peak_tests.dir/tests/cpp/contact_split_peak_test.cpp.o.d -o CMakeFiles/rhodes_contact_split_peak_tests.dir/tests/cpp/contact_split_peak_test.cpp.o -c /workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/source/tests/cpp/contact_split_peak_test.cpp\n: && /usr/bin/c++ -g -fsanitize=address,undefined -Wl,--dependency-file=CMakeFiles/rhodes_contact_split_peak_tests.dir/link.d CMakeFiles/rhodes_contact_split_peak_tests.dir/tests/cpp/contact_split_peak_test.cpp.o -o rhodes_contact_split_peak_tests  librhodes_contact.a && :\n/usr/bin/c++  -I/workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/source/include -g -std=gnu++20 -Wall -Wextra -Wpedantic -Wconversion -Wshadow -Werror -fsanitize=address,undefined -fno-omit-frame-pointer -MD -MT CMakeFiles/rhodes_contact_reference.dir/apps/contact_reference.cpp.o -MF CMakeFiles/rhodes_contact_reference.dir/apps/contact_reference.cpp.o.d -o CMakeFiles/rhodes_contact_reference.dir/apps/contact_reference.cpp.o -c /workspace/scratch/e5708eba07db/Fender-rhoades/build/w3-048-sanitizer/source/apps/contact_reference.cpp\n: && /usr/bin/c++ -g -fsanitize=address,undefined -Wl,--dependency-file=CMakeFiles/rhodes_contact_reference.dir/link.d CMakeFiles/rhodes_contact_reference.dir/apps/contact_reference.cpp.o -o rhodes_contact_reference  librhodes_contact.a && :\n",
+    "executables": {
+      "rhodes_audio_fir_tests": {
+        "sha256": "fa09544f75a08f71a011c933baa9f0dff0f7f4c5edc4d06cf5d0e7ae8b425bf5",
+        "dynamic_needed": [
+          "0x0000000000000001 (NEEDED)             Shared library: [libasan.so.8]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libstdc++.so.6]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libm.so.6]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libubsan.so.1]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libgcc_s.so.1]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libc.so.6]"
+        ],
+        "sanitizer_imports": [
+          "U __asan_handle_no_return",
+          "U __asan_init",
+          "U __asan_poison_stack_memory",
+          "U __asan_register_globals",
+          "U __asan_report_load1",
+          "U __asan_report_load16",
+          "U __asan_report_load4",
+          "U __asan_report_load8",
+          "U __asan_report_load_n",
+          "U __asan_report_store1",
+          "U __asan_report_store16",
+          "U __asan_report_store4",
+          "U __asan_report_store8",
+          "U __asan_report_store_n",
+          "U __asan_stack_free_6",
+          "U __asan_stack_free_7",
+          "U __asan_stack_malloc_0",
+          "U __asan_stack_malloc_1",
+          "U __asan_stack_malloc_2",
+          "U __asan_stack_malloc_3",
+          "U __asan_stack_malloc_6",
+          "U __asan_stack_malloc_7",
+          "U __asan_unpoison_stack_memory",
+          "U __asan_unregister_globals",
+          "U __asan_version_mismatch_check_v8",
+          "U __ubsan_handle_add_overflow",
+          "U __ubsan_handle_builtin_unreachable",
+          "U __ubsan_handle_divrem_overflow",
+          "U __ubsan_handle_dynamic_type_cache_miss",
+          "U __ubsan_handle_load_invalid_value",
+          "U __ubsan_handle_mul_overflow",
+          "U __ubsan_handle_nonnull_arg",
+          "U __ubsan_handle_pointer_overflow",
+          "U __ubsan_handle_shift_out_of_bounds",
+          "U __ubsan_handle_sub_overflow",
+          "U __ubsan_handle_type_mismatch_v1"
+        ]
+      },
+      "rhodes_audio_engine_tests": {
+        "sha256": "28d3d77b1a5b2b84c41800ff41d579aa03ae7925689fac93ccc60a71695c4cee",
+        "dynamic_needed": [
+          "0x0000000000000001 (NEEDED)             Shared library: [libasan.so.8]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libstdc++.so.6]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libm.so.6]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libubsan.so.1]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libgcc_s.so.1]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libc.so.6]"
+        ],
+        "sanitizer_imports": [
+          "U __asan_handle_no_return",
+          "U __asan_init",
+          "U __asan_poison_stack_memory",
+          "U __asan_register_globals",
+          "U __asan_report_load1",
+          "U __asan_report_load16",
+          "U __asan_report_load4",
+          "U __asan_report_load8",
+          "U __asan_report_load_n",
+          "U __asan_report_store1",
+          "U __asan_report_store16",
+          "U __asan_report_store4",
+          "U __asan_report_store8",
+          "U __asan_report_store_n",
+          "U __asan_stack_free_10",
+          "U __asan_stack_free_6",
+          "U __asan_stack_free_8",
+          "U __asan_stack_free_9",
+          "U __asan_stack_malloc_0",
+          "U __asan_stack_malloc_1",
+          "U __asan_stack_malloc_10",
+          "U __asan_stack_malloc_2",
+          "U __asan_stack_malloc_3",
+          "U __asan_stack_malloc_4",
+          "U __asan_stack_malloc_6",
+          "U __asan_stack_malloc_8",
+          "U __asan_stack_malloc_9",
+          "U __asan_unpoison_stack_memory",
+          "U __asan_unregister_globals",
+          "U __asan_version_mismatch_check_v8",
+          "U __ubsan_handle_add_overflow",
+          "U __ubsan_handle_builtin_unreachable",
+          "U __ubsan_handle_divrem_overflow",
+          "U __ubsan_handle_dynamic_type_cache_miss",
+          "U __ubsan_handle_load_invalid_value",
+          "U __ubsan_handle_nonnull_arg",
+          "U __ubsan_handle_pointer_overflow",
+          "U __ubsan_handle_sub_overflow",
+          "U __ubsan_handle_type_mismatch_v1"
+        ]
+      },
+      "rhodes_audio_probe": {
+        "sha256": "903ad352209f79b556b384634d8b63f642f91916802da66fbd985f636e432e1a",
+        "dynamic_needed": [
+          "0x0000000000000001 (NEEDED)             Shared library: [libasan.so.8]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libstdc++.so.6]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libm.so.6]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libubsan.so.1]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libgcc_s.so.1]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libc.so.6]"
+        ],
+        "sanitizer_imports": [
+          "U __asan_handle_no_return",
+          "U __asan_init",
+          "U __asan_poison_stack_memory",
+          "U __asan_register_globals",
+          "U __asan_report_load1",
+          "U __asan_report_load16",
+          "U __asan_report_load4",
+          "U __asan_report_load8",
+          "U __asan_report_load_n",
+          "U __asan_report_store1",
+          "U __asan_report_store16",
+          "U __asan_report_store4",
+          "U __asan_report_store8",
+          "U __asan_report_store_n",
+          "U __asan_stack_free_10",
+          "U __asan_stack_free_9",
+          "U __asan_stack_malloc_0",
+          "U __asan_stack_malloc_1",
+          "U __asan_stack_malloc_10",
+          "U __asan_stack_malloc_2",
+          "U __asan_stack_malloc_3",
+          "U __asan_stack_malloc_4",
+          "U __asan_stack_malloc_9",
+          "U __asan_unpoison_stack_memory",
+          "U __asan_unregister_globals",
+          "U __asan_version_mismatch_check_v8",
+          "U __ubsan_handle_add_overflow",
+          "U __ubsan_handle_dynamic_type_cache_miss",
+          "U __ubsan_handle_invalid_builtin",
+          "U __ubsan_handle_load_invalid_value",
+          "U __ubsan_handle_mul_overflow",
+          "U __ubsan_handle_nonnull_arg",
+          "U __ubsan_handle_out_of_bounds",
+          "U __ubsan_handle_pointer_overflow",
+          "U __ubsan_handle_shift_out_of_bounds",
+          "U __ubsan_handle_sub_overflow",
+          "U __ubsan_handle_type_mismatch_v1"
+        ]
+      },
+      "rhodes_contact_peak_tests": {
+        "sha256": "ab5e326196a7c37da3d5ad58635feefb21761685db261305dc6a06382c881ef3",
+        "dynamic_needed": [
+          "0x0000000000000001 (NEEDED)             Shared library: [libasan.so.8]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libstdc++.so.6]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libm.so.6]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libubsan.so.1]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libgcc_s.so.1]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libc.so.6]"
+        ],
+        "sanitizer_imports": [
+          "U __asan_handle_no_return",
+          "U __asan_init",
+          "U __asan_poison_stack_memory",
+          "U __asan_register_globals",
+          "U __asan_report_load1",
+          "U __asan_report_load16",
+          "U __asan_report_load4",
+          "U __asan_report_load8",
+          "U __asan_report_load_n",
+          "U __asan_report_store1",
+          "U __asan_report_store16",
+          "U __asan_report_store4",
+          "U __asan_report_store8",
+          "U __asan_report_store_n",
+          "U __asan_stack_free_5",
+          "U __asan_stack_free_6",
+          "U __asan_stack_free_7",
+          "U __asan_stack_free_8",
+          "U __asan_stack_malloc_0",
+          "U __asan_stack_malloc_1",
+          "U __asan_stack_malloc_2",
+          "U __asan_stack_malloc_3",
+          "U __asan_stack_malloc_4",
+          "U __asan_stack_malloc_5",
+          "U __asan_stack_malloc_6",
+          "U __asan_stack_malloc_7",
+          "U __asan_stack_malloc_8",
+          "U __asan_unpoison_stack_memory",
+          "U __asan_unregister_globals",
+          "U __asan_version_mismatch_check_v8",
+          "U __ubsan_handle_add_overflow",
+          "U __ubsan_handle_builtin_unreachable",
+          "U __ubsan_handle_divrem_overflow",
+          "U __ubsan_handle_dynamic_type_cache_miss",
+          "U __ubsan_handle_load_invalid_value",
+          "U __ubsan_handle_mul_overflow",
+          "U __ubsan_handle_nonnull_arg",
+          "U __ubsan_handle_out_of_bounds",
+          "U __ubsan_handle_pointer_overflow",
+          "U __ubsan_handle_sub_overflow",
+          "U __ubsan_handle_type_mismatch_v1"
+        ]
+      },
+      "rhodes_contact_event_split_tests": {
+        "sha256": "bffd3f7ad09adc3e4c4a408b760319b22ba58b429817cbf4e6365623b1b3fb47",
+        "dynamic_needed": [
+          "0x0000000000000001 (NEEDED)             Shared library: [libasan.so.8]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libstdc++.so.6]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libm.so.6]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libubsan.so.1]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libgcc_s.so.1]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libc.so.6]"
+        ],
+        "sanitizer_imports": [
+          "U __asan_handle_no_return",
+          "U __asan_init",
+          "U __asan_poison_stack_memory",
+          "U __asan_register_globals",
+          "U __asan_report_load1",
+          "U __asan_report_load16",
+          "U __asan_report_load4",
+          "U __asan_report_load8",
+          "U __asan_report_load_n",
+          "U __asan_report_store1",
+          "U __asan_report_store16",
+          "U __asan_report_store4",
+          "U __asan_report_store8",
+          "U __asan_report_store_n",
+          "U __asan_stack_free_5",
+          "U __asan_stack_free_6",
+          "U __asan_stack_free_7",
+          "U __asan_stack_free_8",
+          "U __asan_stack_malloc_0",
+          "U __asan_stack_malloc_1",
+          "U __asan_stack_malloc_2",
+          "U __asan_stack_malloc_3",
+          "U __asan_stack_malloc_4",
+          "U __asan_stack_malloc_5",
+          "U __asan_stack_malloc_6",
+          "U __asan_stack_malloc_7",
+          "U __asan_stack_malloc_8",
+          "U __asan_unpoison_stack_memory",
+          "U __asan_unregister_globals",
+          "U __asan_version_mismatch_check_v8",
+          "U __ubsan_handle_add_overflow",
+          "U __ubsan_handle_builtin_unreachable",
+          "U __ubsan_handle_divrem_overflow",
+          "U __ubsan_handle_load_invalid_value",
+          "U __ubsan_handle_mul_overflow",
+          "U __ubsan_handle_nonnull_arg",
+          "U __ubsan_handle_pointer_overflow",
+          "U __ubsan_handle_sub_overflow",
+          "U __ubsan_handle_type_mismatch_v1"
+        ]
+      },
+      "rhodes_contact_split_peak_tests": {
+        "sha256": "fffa2e7f7b712af875725b27291caf12dd098d0cbf8665d89cf39d03e82b09cf",
+        "dynamic_needed": [
+          "0x0000000000000001 (NEEDED)             Shared library: [libasan.so.8]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libstdc++.so.6]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libm.so.6]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libubsan.so.1]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libgcc_s.so.1]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libc.so.6]"
+        ],
+        "sanitizer_imports": [
+          "U __asan_handle_no_return",
+          "U __asan_init",
+          "U __asan_poison_stack_memory",
+          "U __asan_register_globals",
+          "U __asan_report_load1",
+          "U __asan_report_load16",
+          "U __asan_report_load4",
+          "U __asan_report_load8",
+          "U __asan_report_load_n",
+          "U __asan_report_store1",
+          "U __asan_report_store16",
+          "U __asan_report_store4",
+          "U __asan_report_store8",
+          "U __asan_report_store_n",
+          "U __asan_stack_free_5",
+          "U __asan_stack_free_6",
+          "U __asan_stack_free_7",
+          "U __asan_stack_free_8",
+          "U __asan_stack_malloc_0",
+          "U __asan_stack_malloc_1",
+          "U __asan_stack_malloc_2",
+          "U __asan_stack_malloc_3",
+          "U __asan_stack_malloc_4",
+          "U __asan_stack_malloc_5",
+          "U __asan_stack_malloc_6",
+          "U __asan_stack_malloc_7",
+          "U __asan_stack_malloc_8",
+          "U __asan_unpoison_stack_memory",
+          "U __asan_unregister_globals",
+          "U __asan_version_mismatch_check_v8",
+          "U __ubsan_handle_add_overflow",
+          "U __ubsan_handle_builtin_unreachable",
+          "U __ubsan_handle_divrem_overflow",
+          "U __ubsan_handle_dynamic_type_cache_miss",
+          "U __ubsan_handle_load_invalid_value",
+          "U __ubsan_handle_mul_overflow",
+          "U __ubsan_handle_nonnull_arg",
+          "U __ubsan_handle_out_of_bounds",
+          "U __ubsan_handle_pointer_overflow",
+          "U __ubsan_handle_sub_overflow",
+          "U __ubsan_handle_type_mismatch_v1"
+        ]
+      },
+      "rhodes_contact_reference": {
+        "sha256": "b932e5a5fd50ef318486c8dbe2a3b06cc19b9c64d83b86bf9441eef5f8f4ec8c",
+        "dynamic_needed": [
+          "0x0000000000000001 (NEEDED)             Shared library: [libasan.so.8]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libstdc++.so.6]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libm.so.6]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libubsan.so.1]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libgcc_s.so.1]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libc.so.6]"
+        ],
+        "sanitizer_imports": [
+          "U __asan_handle_no_return",
+          "U __asan_init",
+          "U __asan_poison_stack_memory",
+          "U __asan_register_globals",
+          "U __asan_report_load1",
+          "U __asan_report_load16",
+          "U __asan_report_load4",
+          "U __asan_report_load8",
+          "U __asan_report_load_n",
+          "U __asan_report_store1",
+          "U __asan_report_store16",
+          "U __asan_report_store4",
+          "U __asan_report_store8",
+          "U __asan_report_store_n",
+          "U __asan_stack_free_5",
+          "U __asan_stack_free_6",
+          "U __asan_stack_free_7",
+          "U __asan_stack_free_8",
+          "U __asan_stack_malloc_0",
+          "U __asan_stack_malloc_1",
+          "U __asan_stack_malloc_2",
+          "U __asan_stack_malloc_3",
+          "U __asan_stack_malloc_4",
+          "U __asan_stack_malloc_5",
+          "U __asan_stack_malloc_6",
+          "U __asan_stack_malloc_7",
+          "U __asan_stack_malloc_8",
+          "U __asan_unpoison_stack_memory",
+          "U __asan_unregister_globals",
+          "U __asan_version_mismatch_check_v8",
+          "U __ubsan_handle_add_overflow",
+          "U __ubsan_handle_builtin_unreachable",
+          "U __ubsan_handle_divrem_overflow",
+          "U __ubsan_handle_dynamic_type_cache_miss",
+          "U __ubsan_handle_load_invalid_value",
+          "U __ubsan_handle_mul_overflow",
+          "U __ubsan_handle_nonnull_arg",
+          "U __ubsan_handle_pointer_overflow",
+          "U __ubsan_handle_sub_overflow",
+          "U __ubsan_handle_type_mismatch_v1"
+        ]
+      }
+    }
+  },
+  "tests": [
+    {
+      "name": "audio.fir_coefficients_dc",
+      "status": "run",
+      "seconds": 0.0370586,
+      "failure_count": 0,
+      "output": "PASS fir_coefficients_dc\n"
+    },
+    {
+      "name": "audio.fir_impulse_phases",
+      "status": "run",
+      "seconds": 8.99208,
+      "failure_count": 0,
+      "output": "PASS fir_impulse_phases\n"
+    },
+    {
+      "name": "audio.fir_direct_convolution",
+      "status": "run",
+      "seconds": 0.812734,
+      "failure_count": 0,
+      "output": "maximum direct-convolution absolute error=4.365e-16\nPASS fir_direct_convolution\n"
+    },
+    {
+      "name": "audio.fir_group_delay",
+      "status": "run",
+      "seconds": 0.0116153,
+      "failure_count": 0,
+      "output": "PASS fir_group_delay\n"
+    },
+    {
+      "name": "audio.fir_transactional_rejection",
+      "status": "run",
+      "seconds": 0.0517105,
+      "failure_count": 0,
+      "output": "PASS fir_transactional_rejection\n"
+    },
+    {
+      "name": "audio.fir_overflow_reset",
+      "status": "run",
+      "seconds": 0.00629015,
+      "failure_count": 0,
+      "output": "PASS fir_overflow_reset\n"
+    },
+    {
+      "name": "audio.high_rate_oracle",
+      "status": "run",
+      "seconds": 33.2915,
+      "failure_count": 0,
+      "output": "oracle cases=660 host_frames=132552 maximum_error_V=4.9585986358624545e-16\nPASS high_rate_oracle\n"
+    },
+    {
+      "name": "audio.rate_boundaries",
+      "status": "run",
+      "seconds": 0.384376,
+      "failure_count": 0,
+      "output": "accepted_rate_edges=11 host_frames=1584 maximum_error_V=1.6154612370034016e-17\nPASS rate_boundaries\n"
+    },
+    {
+      "name": "audio.persistent_events",
+      "status": "run",
+      "seconds": 0.552717,
+      "failure_count": 0,
+      "output": "persistent_event_checks=45 host_frames=1536 maximum_error_V=1.6203740280974765e-17\nPASS persistent_events\n"
+    },
+    {
+      "name": "audio.partition_invariance",
+      "status": "run",
+      "seconds": 1.68881,
+      "failure_count": 0,
+      "output": "partition_comparisons=6 exact_host_frame_comparisons=9222\nPASS partition_invariance\n"
+    },
+    {
+      "name": "audio.prepare_atomicity",
+      "status": "run",
+      "seconds": 1.36466,
+      "failure_count": 0,
+      "output": "rejected_prepares=24 exact_future_host_frames=6168\nPASS prepare_atomicity\n"
+    },
+    {
+      "name": "audio.reset_flush",
+      "status": "run",
+      "seconds": 1.23695,
+      "failure_count": 0,
+      "output": "explicit_reset_cases=6 rate_replacement_cases=9 checked_host_frames=3855\nPASS reset_flush\n"
+    },
+    {
+      "name": "audio.event_timing",
+      "status": "run",
+      "seconds": 0.983148,
+      "failure_count": 0,
+      "output": "event_schedule_runs=6 scheduled_events=126 oracle_host_frames=1920 maximum_error_V=1.6203740280974765e-17\nPASS event_timing\n"
+    },
+    {
+      "name": "audio.fault_substeps",
+      "status": "run",
+      "seconds": 0.0432251,
+      "failure_count": 0,
+      "output": "internal_fault_direct_cases=21 internal_fault_processor_cases=21 event_fault_latch_cases=3\nPASS fault_substeps\n"
+    },
+    {
+      "name": "audio.probe_cli",
+      "status": "run",
+      "seconds": 1.82469,
+      "failure_count": 0,
+      "output": "-- PASS bounded double-precision audio probe, analytic initial voltage, ordering, reset, and rejection\n"
+    },
+    {
+      "name": "contact.peak_defaults",
+      "status": "run",
+      "seconds": 0.00845833,
+      "failure_count": 0,
+      "output": "PASS peak_defaults checks=33\n"
+    },
+    {
+      "name": "contact.peak_conservative",
+      "status": "run",
+      "seconds": 0.0657851,
+      "failure_count": 0,
+      "output": "PASS peak_conservative checks=48\n"
+    },
+    {
+      "name": "contact.peak_damped",
+      "status": "run",
+      "seconds": 0.111445,
+      "failure_count": 0,
+      "output": "PASS peak_damped checks=53\n"
+    },
+    {
+      "name": "contact.peak_damper_face",
+      "status": "run",
+      "seconds": 0.0766883,
+      "failure_count": 0,
+      "output": "PASS peak_damper_face checks=17\n"
+    },
+    {
+      "name": "contact.peak_actions",
+      "status": "run",
+      "seconds": 0.00864846,
+      "failure_count": 0,
+      "output": "PASS peak_actions checks=28\n"
+    },
+    {
+      "name": "contact.peak_rollback",
+      "status": "run",
+      "seconds": 0.0271607,
+      "failure_count": 0,
+      "output": "PASS peak_rollback checks=112\n"
+    },
+    {
+      "name": "contact.peak_cli",
+      "status": "run",
+      "seconds": 0.162257,
+      "failure_count": 0,
+      "output": "-- Contact peaks: default omission, opt-in schema, analytic values, zero origins and legacy records passed\n"
+    },
+    {
+      "name": "contact.event_split",
+      "status": "run",
+      "seconds": 0.0691127,
+      "failure_count": 0,
+      "output": "contact event split checks passed\n"
+    },
+    {
+      "name": "contact.split_simultaneous",
+      "status": "run",
+      "seconds": 0.0712487,
+      "failure_count": 0,
+      "output": "PASS split_simultaneous checks=96\n"
+    },
+    {
+      "name": "contact.split_close_roots",
+      "status": "run",
+      "seconds": 0.224433,
+      "failure_count": 0,
+      "output": "PASS split_close_roots checks=386\n"
+    },
+    {
+      "name": "contact.split_peak_rollback",
+      "status": "run",
+      "seconds": 0.0221352,
+      "failure_count": 0,
+      "output": "PASS split_peak_rollback checks=243\n"
+    }
+  ],
+  "verification": {
+    "archived_sources_unchanged": true,
+    "requested_test_count": 26,
+    "passed_test_count": 26,
+    "asan_active": true,
+    "ubsan_active": true,
+    "fail_on_ubsan_error": true,
+    "leak_detection_available": false,
+    "production_source_changes": false
+  },
+  "raw_artifacts": {
+    "build/w3-048-sanitizer/initial-tests.xml": {
+      "bytes": 623,
+      "sha256": "bddb7b9792eec0f6721d2183416919932c7b91aa6ad82a15d20a14049cea3593"
+    },
+    "build/w3-048-sanitizer/scoped-tests.xml": {
+      "bytes": 5995,
+      "sha256": "a61fe376b1f829c4d50fabf01f6f7b646be733214de64f6421dd670a8ad14162"
+    },
+    "build/w3-048-sanitizer/instrumentation.json": {
+      "bytes": 29970,
+      "sha256": "f01aa3d83d15b525a5f7543818b547f25e48445c8bc871591d012690d78dd7c5"
+    },
+    "build/w3-048-sanitizer/identity.json": {
+      "bytes": 6676,
+      "sha256": "6f8b2182e0f1ffc002d45fcfc6a2586c1e80e343fa1961a0fe1e6a6400ae041b"
+    },
+    "build/w3-048-sanitizer/selected-build-commands.txt": {
+      "bytes": 7327,
+      "sha256": "a773e56854f2bec36f8fcb536d4906a3588e6a7ca0f3f7e02976d36281ec1fb4"
+    }
+  },
+  "limitations": [
+    "LeakSanitizer terminated the first probe with its explicit ptrace incompatibility diagnostic; this initial exit-8 failure is preserved.",
+    "The successful 26-case run disabled only leak detection via ASAN_OPTIONS=detect_leaks=0:halt_on_error=1. No leak-check pass is claimed.",
+    "Only local Linux x86_64 GCC 14.2.0 Debug execution is observed. VST3, Clang, MSVC, macOS, Windows, native DAWs, audio devices and realtime performance are outside this run.",
+    "Passing selected instrumented tests is not proof of absence of all memory errors, undefined behavior or data races. ThreadSanitizer was not used.",
+    "No physical specimen, calibrated fidelity or certified continuous-extremum coverage is established."
+  ]
+}

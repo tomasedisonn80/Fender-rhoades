@@ -232,6 +232,28 @@ if(BUILD_TESTING)
         COMMAND $<TARGET_FILE:validator> "${rhodes_plugin_bundle}")
     set_tests_properties(vst3.sdk_validator PROPERTIES TIMEOUT 180)
     get_target_property(rhodes_filtered_bundle rhodes_vst3_filtered SMTG_PLUGIN_PACKAGE_PATH)
+    if(SMTG_LINUX)
+        # The host exercises independently loaded production modules. Keep SDK
+        # loader sources under SDK options and strict warnings on our test.
+        add_library(rhodes_vst3_loader_support STATIC
+            "${RHODES_VST3_SDK_ROOT}/public.sdk/source/vst/hosting/module_linux.cpp"
+            "${RHODES_VST3_SDK_ROOT}/public.sdk/source/common/memorystream.cpp")
+        target_compile_features(rhodes_vst3_loader_support PRIVATE cxx_std_20)
+        target_link_libraries(rhodes_vst3_loader_support PUBLIC sdk_hosting)
+        add_executable(rhodes_vst3_dual_module_tests
+            "${PROJECT_SOURCE_DIR}/tests/cpp/vst3_dual_module_test.cpp")
+        target_compile_features(rhodes_vst3_dual_module_tests PRIVATE cxx_std_20)
+        target_include_directories(rhodes_vst3_dual_module_tests SYSTEM PRIVATE "${RHODES_VST3_SDK_ROOT}")
+        target_link_libraries(rhodes_vst3_dual_module_tests PRIVATE rhodes_vst3_loader_support)
+        rhodes_target_options(rhodes_vst3_dual_module_tests)
+        add_dependencies(rhodes_vst3_dual_module_tests rhodes_vst3 rhodes_vst3_filtered)
+        add_dependencies(rhodes_vst3_checks rhodes_vst3_dual_module_tests)
+        add_test(NAME vst3.dual_module_coexist COMMAND rhodes_vst3_dual_module_tests
+            coexist "${rhodes_plugin_bundle}" "${rhodes_filtered_bundle}")
+        add_test(NAME vst3.dual_module_duplicate_guard COMMAND rhodes_vst3_dual_module_tests
+            duplicate_guard "${rhodes_plugin_bundle}")
+        set_tests_properties(vst3.dual_module_coexist vst3.dual_module_duplicate_guard PROPERTIES TIMEOUT 30)
+    endif()
     add_test(NAME vst3.filtered_sdk_validator
         COMMAND $<TARGET_FILE:validator> "${rhodes_filtered_bundle}")
     set_tests_properties(vst3.filtered_sdk_validator PROPERTIES TIMEOUT 180)

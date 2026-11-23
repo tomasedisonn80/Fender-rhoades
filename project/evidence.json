@@ -406,6 +406,60 @@
       "limitations": [
         "New source still fails ten original-grid refinement conditions; declared depth-1 passes. Historical 26 and five failures retained. All independent run numerical checks pass, but continuous peak compression and force are missing; no PHY-002 completion or physical-fidelity claim."
       ]
+    },
+    {
+      "id": "RT-20261123-filtered-pilot",
+      "kind": "numerical",
+      "result": "fail",
+      "summary": "Fixed 36-case pilot: all discrete implementation comparisons pass and references resolve; all exploratory continuous-prototype comparisons fail.",
+      "command": null,
+      "created_at": "2026-11-23T18:09:22Z",
+      "source_commit": "87267b16b07475abbe4e0dfcaf318340a6c426af",
+      "artifacts": [
+        {
+          "path": "docs/validation/filtered-audio-pilot-20261123.json",
+          "sha256": "523d37625655cec1b4dd1bf8afbde077cd53c35eb8258e760d23df8b2c2fb397"
+        },
+        {
+          "path": "docs/agents/continuation-20261123/w3-047.md",
+          "sha256": "f129ccdcde5c9dbc4852767b367d0f09924e84a8c0b51fbee0ddbcd5d77e38fd"
+        }
+      ],
+      "specimen_id": null,
+      "profile_path": null,
+      "session_paths": [],
+      "independent": true,
+      "reference_evidence": [],
+      "limitations": [
+        "Pilot subset only; complete run exit 1 preserves 36 exploratory B failures. Worst event-window difference 0.04494002455150803 V. No isolated-alias bound, measured physical fidelity, or RT-001 completion."
+      ]
+    },
+    {
+      "id": "RT-20261123-audio-contact-sanitizers",
+      "kind": "numerical",
+      "result": "pass",
+      "summary": "All 26 scoped audio, probe, peak, and contact split CTests passed with ASan and UBSan instrumentation.",
+      "command": null,
+      "created_at": "2026-11-23T18:11:00Z",
+      "source_commit": "3d53252fbbc7256d11da935714780f5b1a7a47b7",
+      "artifacts": [
+        {
+          "path": "docs/validation/sanitizer-audio-contact-20261123.json",
+          "sha256": "a8c3f0e29a4b7c33b5f31af5555dce809fbe6bb9790d711be17bd06a7137eae3"
+        },
+        {
+          "path": "docs/agents/continuation-20261123/w3-048.md",
+          "sha256": "5698e6dfcfe98778acb4612783cecb43f69a8a994de75799d2c5ad8bed3b1f2b"
+        }
+      ],
+      "specimen_id": null,
+      "profile_path": null,
+      "session_paths": [],
+      "independent": false,
+      "reference_evidence": [],
+      "limitations": [
+        "Linux GCC Debug isolated snapshot; LeakSanitizer startup limitation under ptrace retained, leak detection disabled only for successful scoped run. Does not cover host modules, data races, real-time deadlines, continuous extrema certification, or physical fidelity."
+      ]
     }
   ]
 }
