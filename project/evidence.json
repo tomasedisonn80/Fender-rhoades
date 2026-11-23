@@ -224,6 +224,29 @@
       "limitations": [
         "Historical Linux synthetic prototype; does not certify later code or complete physical/runtime gates."
       ]
+    },
+    {
+      "id": "HOST-20261123-bounded-cleanup",
+      "kind": "numerical",
+      "result": "pass",
+      "summary": "Current-source bounded VST3 rejection regression: all39 host CTests including SDK47 pass; INT_MAX sentinel, state recall and allocation checks retained.",
+      "command": null,
+      "created_at": "2026-11-23T16:31:52Z",
+      "source_commit": null,
+      "artifacts": [
+        {
+          "path": "docs/validation/bounded-host-cleanup-20261123.json",
+          "sha256": "d9f5cbf4c640f1d5ae50d63c87a0c30a92c426f40a31800bd6e088abbf4635a8"
+        }
+      ],
+      "specimen_id": null,
+      "profile_path": null,
+      "session_paths": [],
+      "independent": false,
+      "reference_evidence": [],
+      "limitations": [
+        "Synthetic Linux direct model; later filtered model is not covered."
+      ]
     }
   ]
 }

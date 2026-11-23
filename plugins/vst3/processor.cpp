@@ -289,26 +289,35 @@ bool RhodesProcessor::validate_dispatch_bound() const noexcept {
 }
 
 void RhodesProcessor::silence_outputs(vst::ProcessData& data) noexcept {
-    if (data.numOutputs <= 0 || data.outputs == nullptr) { return; }
-    // The host owns buffer storage and its declared dimensions. For rejected
-    // oversized buffers, clearing necessarily scales with the supplied size.
-    for (Steinberg::int32 bus_index = 0; bus_index < data.numOutputs; ++bus_index) {
-        auto& bus = data.outputs[bus_index];
-        if (bus.numChannels < 0) { continue; }
-        bus.silenceFlags = bus.numChannels >= 64 ? std::numeric_limits<Steinberg::uint64>::max() :
-            ((Steinberg::uint64{1} << static_cast<unsigned>(bus.numChannels)) - 1U);
-        if (data.numSamples <= 0) { continue; }
-        if (data.symbolicSampleSize == vst::kSample32 && bus.channelBuffers32 != nullptr) {
-            for (Steinberg::int32 channel = 0; channel < bus.numChannels; ++channel) {
-                if (bus.channelBuffers32[channel] != nullptr) {
-                    std::fill_n(bus.channelBuffers32[channel], data.numSamples, 0.0F);
-                }
+    // Rejection cleanup has its own fixed envelope. Unsupported dimensions or
+    // formats leave both samples and flags untouched, without traversing host
+    // counts or claiming that a partially cleared output is silent.
+    if (data.numSamples < 0 ||
+        data.numSamples > static_cast<Steinberg::int32>(kMaximumHostFrames) ||
+        data.numOutputs != 1 || data.outputs == nullptr ||
+        (data.symbolicSampleSize != vst::kSample32 &&
+         data.symbolicSampleSize != vst::kSample64)) {
+        return;
+    }
+    auto& bus = data.outputs[0];
+    if (data.numSamples == 0) {
+        // Flushes accept an empty or stereo bus, but never inspect pointers.
+        if (bus.numChannels == 0) { bus.silenceFlags = 0; }
+        else if (bus.numChannels == 2) { bus.silenceFlags = 3; }
+        return;
+    }
+    if (bus.numChannels != 2) { return; }
+    bus.silenceFlags = 3;
+    if (data.symbolicSampleSize == vst::kSample32 && bus.channelBuffers32 != nullptr) {
+        for (std::size_t channel = 0; channel < 2; ++channel) {
+            if (bus.channelBuffers32[channel] != nullptr) {
+                std::fill_n(bus.channelBuffers32[channel], data.numSamples, 0.0F);
             }
-        } else if (data.symbolicSampleSize == vst::kSample64 && bus.channelBuffers64 != nullptr) {
-            for (Steinberg::int32 channel = 0; channel < bus.numChannels; ++channel) {
-                if (bus.channelBuffers64[channel] != nullptr) {
-                    std::fill_n(bus.channelBuffers64[channel], data.numSamples, 0.0);
-                }
+        }
+    } else if (data.symbolicSampleSize == vst::kSample64 && bus.channelBuffers64 != nullptr) {
+        for (std::size_t channel = 0; channel < 2; ++channel) {
+            if (bus.channelBuffers64[channel] != nullptr) {
+                std::fill_n(bus.channelBuffers64[channel], data.numSamples, 0.0);
             }
         }
     }

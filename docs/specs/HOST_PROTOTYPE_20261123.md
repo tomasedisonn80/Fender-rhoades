@@ -75,13 +75,35 @@ and parameter-point caps expand accordingly; physical event invocations keep
 their original 4096-frame maximum and use one-sample dispatch here. This is a
 host-compatibility change, not a change to contact tolerances or fidelity gates.
 
-Invalid host input returns failure and silence, preserving active configuration,
-ownership and mechanics. An arithmetic failure preserves successful prior
+Invalid host input returns failure, preserving active configuration, ownership,
+mechanics and any pending recall. Rejected-output cleanup independently validates
+its envelope before accessing output storage:
+
+- Require float32 or float64, `0 <= numSamples <= 8192`, exactly one output bus
+  and a non-null output array before accessing that bus.
+- For positive frames, require exactly two channels. Set stereo silence flags
+  to `3` and clear every declared frame in each supplied non-null channel buffer.
+  A null channel-pointer array permits no sample access. Other malformed input,
+  including a configured-block-limit breach within the global 8192-frame bound,
+  still receives this full bounded cleanup.
+- For zero frames, access no sample pointers. An empty bus gets silence flags
+  `0`, a stereo bus gets `3`; other channel counts leave flags untouched.
+  Zero output buses require no cleanup.
+- Unsupported frame, output-bus or channel counts, or sample formats, leave
+  output samples and silence flags untouched. Never clear a prefix and mark an
+  unsupported output declaration silent.
+
+Cleanup therefore visits at most one bus, two channels and 8192 frames per
+channel. Non-null caller storage must actually exist for the supported declared
+envelope; C++ cannot validate arbitrary foreign pointers. Foreign event and
+parameter getters may block, so these loop bounds do not establish a callback
+deadline guarantee. This bounded rejection policy supersedes earlier retained
+reports that required clearing oversized buffers; those reports remain historical.
+
+An arithmetic failure after successful preflight preserves successful prior
 samples, silences the failed sample and remainder, and latches reset-required.
 The adapter must check finite output conversion rather than silently emitting
-NaN/Inf. Oversized rejected buffers require clearing the supplied output and
-therefore have clearing cost proportional to that invalid buffer size; accepted
-processing bounds do not imply a bound for arbitrary malformed caller storage.
+NaN/Inf.
 
 ## State and threading
 

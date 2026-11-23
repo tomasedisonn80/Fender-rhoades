@@ -43,8 +43,8 @@ struct GuardedBuffers {
         vst::kSample32 : vst::kSample64;
     std::array<std::array<Sample, capacity + 2>, 3> storage{};
     std::array<Sample*, 3> channels{};
-    // Both declared buses have real, bounded storage. They may alias in the
-    // rejected two-output-bus case; no fictitious or invalid pointer is used.
+    // Unsupported counts are metadata over fixed, real sentinel storage.
+    // Rejection must validate them before traversing buses or channels.
     std::array<vst::AudioBusBuffers, 2> buses{};
 
     GuardedBuffers() { restore(); }
@@ -303,10 +303,11 @@ void flush_cases() {
                     constexpr EncodedInstrumentState expected{
                         'R', 'H', 'S', 'T', 1, 0, 1, 0, 0, 0, 0xa0, 0x3e, 0, 0, 0x80, 0x3f};
                     check(packet == expected, "flush serialized the wrong gain or sustain");
-                    if (shape != 0) {
-                        check(actual->buffers.buses[0].silenceFlags == (shape == 1 ? 0U : 3U),
-                              "flush silence flags do not match its channel declaration");
-                    }
+                    const auto expected_flags = shape == 0 ? untouched_flags : (shape == 1 ? 0U : 3U);
+                    check(actual->buffers.buses[0].silenceFlags == expected_flags,
+                          "flush silence flags do not match its channel declaration");
+                    check(actual->buffers.buses[1].silenceFlags == untouched_flags,
+                          "flush touched an unused bus's flags");
                     compare_state(*actual, *reference);
                     if (!configured) { actual->setup(); reference->setup(); }
                     continue_pair(*actual, *reference);
@@ -317,21 +318,35 @@ void flush_cases() {
 }
 
 enum class BadBuffer {
-    negative_frames, setup_limit, global_limit, negative_inputs, extra_input,
-    negative_outputs, missing_output, extra_output, null_output_array,
+    negative_frames, setup_limit, global_boundary, global_limit, huge_frames,
+    negative_inputs, extra_input, huge_inputs,
+    negative_outputs, missing_output, extra_output, huge_outputs, null_output_array,
     negative_channels, zero_channels, mono_channels, extra_channel,
+    huge_channels,
     null_channel_array, null_left, null_right, null_both,
-    negative_mode, invalid_mode, offline_mismatch, invalid_format, format_mismatch
+    negative_mode, invalid_mode, offline_mismatch, invalid_format, format_mismatch,
+    malformed_queue, malformed_note,
+    flush_negative_channels, flush_mono_channels, flush_extra_channel,
+    flush_huge_channels, flush_extra_output, flush_huge_outputs, flush_invalid_format,
+    flush_empty_bad_input, flush_stereo_bad_input
 };
 constexpr std::array bad_buffers{
-    BadBuffer::negative_frames, BadBuffer::setup_limit, BadBuffer::global_limit,
-    BadBuffer::negative_inputs, BadBuffer::extra_input, BadBuffer::negative_outputs,
-    BadBuffer::missing_output, BadBuffer::extra_output, BadBuffer::null_output_array,
+    BadBuffer::negative_frames, BadBuffer::setup_limit, BadBuffer::global_boundary,
+    BadBuffer::global_limit, BadBuffer::huge_frames,
+    BadBuffer::negative_inputs, BadBuffer::extra_input, BadBuffer::huge_inputs,
+    BadBuffer::negative_outputs, BadBuffer::missing_output, BadBuffer::extra_output,
+    BadBuffer::huge_outputs, BadBuffer::null_output_array,
     BadBuffer::negative_channels, BadBuffer::zero_channels, BadBuffer::mono_channels,
-    BadBuffer::extra_channel, BadBuffer::null_channel_array, BadBuffer::null_left,
+    BadBuffer::extra_channel, BadBuffer::huge_channels,
+    BadBuffer::null_channel_array, BadBuffer::null_left,
     BadBuffer::null_right, BadBuffer::null_both, BadBuffer::negative_mode,
     BadBuffer::invalid_mode, BadBuffer::offline_mismatch, BadBuffer::invalid_format,
-    BadBuffer::format_mismatch};
+    BadBuffer::format_mismatch, BadBuffer::malformed_queue, BadBuffer::malformed_note,
+    BadBuffer::flush_negative_channels, BadBuffer::flush_mono_channels,
+    BadBuffer::flush_extra_channel, BadBuffer::flush_huge_channels,
+    BadBuffer::flush_extra_output, BadBuffer::flush_huge_outputs,
+    BadBuffer::flush_invalid_format, BadBuffer::flush_empty_bad_input,
+    BadBuffer::flush_stereo_bad_input};
 
 template <class Sample>
 void reject_buffer(Host<Sample>& actual, BadBuffer scenario) {
@@ -341,23 +356,40 @@ void reject_buffer(Host<Sample>& actual, BadBuffer scenario) {
     std::size_t cleared_frames = 16;
     unsigned cleared_mask = 3;
     sdk::uint64 expected_flags = 3;
-    switch (scenario) {
-    case BadBuffer::negative_frames: data.numSamples = -1; cleared_frames = 0; break;
-    case BadBuffer::setup_limit: data.numSamples = 65; cleared_frames = 65; break;
-    case BadBuffer::global_limit: data.numSamples = 8193; cleared_frames = 8193; break;
-    case BadBuffer::negative_inputs: data.numInputs = -1; break;
-    case BadBuffer::extra_input: data.numInputs = 1; break;
-    case BadBuffer::negative_outputs: data.numOutputs = -1; cleared_mask = 0; expected_flags = untouched_flags; break;
-    case BadBuffer::missing_output: data.numOutputs = 0; cleared_mask = 0; expected_flags = untouched_flags; break;
-    case BadBuffer::extra_output: data.numOutputs = 2; break;
-    case BadBuffer::null_output_array: data.outputs = nullptr; cleared_mask = 0; expected_flags = untouched_flags; break;
-    case BadBuffer::negative_channels: bus.numChannels = -1; cleared_mask = 0; expected_flags = untouched_flags; break;
-    case BadBuffer::zero_channels: bus.numChannels = 0; cleared_mask = 0; expected_flags = 0; break;
-    case BadBuffer::mono_channels: bus.numChannels = 1; cleared_mask = 1; expected_flags = 1; break;
-    case BadBuffer::extra_channel: bus.numChannels = 3; cleared_mask = 7; expected_flags = 7; break;
-    case BadBuffer::null_channel_array:
+    const auto untouched = [&] {
+        cleared_frames = 0;
+        cleared_mask = 0;
+        expected_flags = untouched_flags;
+    };
+    const auto null_channel_array = [&] {
         if constexpr (std::is_same_v<Sample, float>) { bus.channelBuffers32 = nullptr; }
         else { bus.channelBuffers64 = nullptr; }
+    };
+    constexpr auto huge = std::numeric_limits<sdk::int32>::max();
+    ParameterQueue malformed_gain;
+    ParameterChanges malformed_changes;
+    EventList malformed_events;
+    switch (scenario) {
+    case BadBuffer::negative_frames: data.numSamples = -1; untouched(); break;
+    case BadBuffer::setup_limit: data.numSamples = 65; cleared_frames = 65; break;
+    case BadBuffer::global_boundary: data.numSamples = 8192; cleared_frames = 8192; break;
+    case BadBuffer::global_limit: data.numSamples = 8193; untouched(); break;
+    case BadBuffer::huge_frames: data.numSamples = huge; null_channel_array(); untouched(); break;
+    case BadBuffer::negative_inputs: data.numInputs = -1; break;
+    case BadBuffer::extra_input: data.numInputs = 1; break;
+    case BadBuffer::huge_inputs: data.numInputs = huge; break;
+    case BadBuffer::negative_outputs: data.numOutputs = -1; untouched(); break;
+    case BadBuffer::missing_output: data.numOutputs = 0; untouched(); break;
+    case BadBuffer::extra_output: data.numOutputs = 2; untouched(); break;
+    case BadBuffer::huge_outputs: data.numOutputs = huge; null_channel_array(); untouched(); break;
+    case BadBuffer::null_output_array: data.outputs = nullptr; untouched(); break;
+    case BadBuffer::negative_channels: bus.numChannels = -1; untouched(); break;
+    case BadBuffer::zero_channels: bus.numChannels = 0; untouched(); break;
+    case BadBuffer::mono_channels: bus.numChannels = 1; untouched(); break;
+    case BadBuffer::extra_channel: bus.numChannels = 3; untouched(); break;
+    case BadBuffer::huge_channels: bus.numChannels = huge; null_channel_array(); untouched(); break;
+    case BadBuffer::null_channel_array:
+        null_channel_array();
         cleared_mask = 0;
         break;
     case BadBuffer::null_left: actual.buffers.channels[0] = nullptr; cleared_mask = 2; break;
@@ -366,7 +398,7 @@ void reject_buffer(Host<Sample>& actual, BadBuffer scenario) {
     case BadBuffer::negative_mode: data.processMode = -1; break;
     case BadBuffer::invalid_mode: data.processMode = 99; break;
     case BadBuffer::offline_mismatch: data.processMode = actual.setup_mode == vst::kOffline ? vst::kRealtime : vst::kOffline; break;
-    case BadBuffer::invalid_format: data.symbolicSampleSize = 99; cleared_mask = 0; break;
+    case BadBuffer::invalid_format: data.symbolicSampleSize = 99; untouched(); break;
     case BadBuffer::format_mismatch: {
         using Other = std::conditional_t<std::is_same_v<Sample, float>, double, float>;
         auto alternate = std::make_unique<GuardedBuffers<Other>>();
@@ -377,15 +409,49 @@ void reject_buffer(Host<Sample>& actual, BadBuffer scenario) {
         alternate->cleared(16, 3);
         check(alternate->buses[0].silenceFlags == 3, "mismatched-format output flags wrong");
         actual.buffers.unchanged();
+        for (const auto& original_bus : actual.buffers.buses) {
+            check(original_bus.silenceFlags == untouched_flags, "format test touched unused bus flags");
+        }
         return;
     }
+    case BadBuffer::malformed_queue:
+        malformed_gain.count = 2;
+        malformed_gain.values[0] = {0, 0.125};
+        malformed_gain.values[1] = {15, std::numeric_limits<double>::quiet_NaN()};
+        malformed_changes.count = 1;
+        malformed_changes.values[0] = &malformed_gain;
+        data.inputParameterChanges = &malformed_changes;
+        break;
+    case BadBuffer::malformed_note:
+        malformed_events.count = 2;
+        malformed_events.values[0] = note_on(0, 303, 84, 0.625F, 3);
+        malformed_events.values[1] = note_on(16, 404, 77, 0.5F, 4);
+        data.inputEvents = &malformed_events;
+        break;
+    case BadBuffer::flush_negative_channels:
+        data.numSamples = 0; bus.numChannels = -1; untouched(); break;
+    case BadBuffer::flush_mono_channels:
+        data.numSamples = 0; bus.numChannels = 1; untouched(); break;
+    case BadBuffer::flush_extra_channel:
+        data.numSamples = 0; bus.numChannels = 3; untouched(); break;
+    case BadBuffer::flush_huge_channels:
+        data.numSamples = 0; bus.numChannels = huge; null_channel_array(); untouched(); break;
+    case BadBuffer::flush_extra_output:
+        data.numSamples = 0; data.numOutputs = 2; untouched(); break;
+    case BadBuffer::flush_huge_outputs:
+        data.numSamples = 0; data.numOutputs = huge; null_channel_array(); untouched(); break;
+    case BadBuffer::flush_invalid_format:
+        data.numSamples = 0; data.symbolicSampleSize = 99; untouched(); break;
+    case BadBuffer::flush_empty_bad_input:
+        data.numSamples = 0; data.numInputs = 1; bus.numChannels = 0;
+        cleared_frames = 0; expected_flags = 0; break;
+    case BadBuffer::flush_stereo_bad_input:
+        data.numSamples = 0; data.numInputs = 1; cleared_frames = 0; break;
     }
     check(invoke(actual.processor, data) != sdk::kResultOk, "malformed ProcessData accepted");
     actual.buffers.cleared(cleared_frames, cleared_mask);
     check(bus.silenceFlags == expected_flags, "rejected output has wrong silence flags");
-    if (scenario == BadBuffer::extra_output) {
-        check(actual.buffers.buses[1].silenceFlags == 3, "second rejected bus flags wrong");
-    }
+    check(actual.buffers.buses[1].silenceFlags == untouched_flags, "rejection touched a second bus's flags");
 }
 
 template <class Sample>

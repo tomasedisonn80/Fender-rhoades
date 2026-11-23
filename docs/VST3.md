@@ -136,9 +136,16 @@ last duplicate point wins. At an equal sample offset, parameter changes precede
 notes, which preserve their input-list order. The adapter
 accepts at most 256 input note events, two parameter queues and 8192 points per
 queue; each sample has a separate 256-event combined note/pedal limit. Invalid
-input rejects the block with silence while preserving mechanical and ownership
-state. The [host contract](specs/HOST_PROTOTYPE_20261123.md) specifies full ordering
-and rejection behavior.
+input rejects the block while preserving configuration, mechanical and ownership
+state. With a supported output declaration (float32/float64, one stereo bus,
+1–8192 frames), rejection clears each supplied non-null channel buffer in full
+and sets stereo silence flags. This includes malformed events/automation and a
+configured-block-limit breach within the global 8192-frame limit. Unsupported
+output frame, bus or channel counts, or sample formats, leave samples and silence
+flags untouched. Zero-frame flushes access no sample pointers; an empty bus gets
+silence flags `0`, a stereo bus gets `3`, and no output bus requires no work.
+The [host contract](specs/HOST_PROTOTYPE_20261123.md) specifies full ordering,
+pointer requirements and rejection behavior.
 
 Pitch bend, note expression, physical half-pedal, CC120/CC123 mappings, effects
 and additional historical circuits are outside this version. Host naming of
@@ -179,6 +186,8 @@ retained host suites exercise concrete processor/controller classes and include:
 | Control conversions across supported rounding and flush modes | [A053](agents/development-20261123/W3-A053.md) |
 | Actual host control/state regression under FTZ/DAZ modes | [A055](agents/development-20261123/W3-A055.md) |
 | Inactive buses, zero-frame flushes, malformed buffers and setup rollback | [A063](agents/development-20261123/W4-A063.md) |
+| Bounded rejected-output cleanup, unchanged unsupported output declarations and preserved state | [W1-004](agents/continuation-20261123/w1-004.md); supersedes the earlier oversized-rejection clearing policy |
+| Dense-automation rejection assertions and allocation-guarded host regression after the bounded cleanup change | [W1-010](agents/continuation-20261123/w1-010.md) |
 | Partial reads/writes, stream failures and transactional state recall | [A066](agents/development-20261123/W4-A066.md) |
 | Independent automation model, ties, flushes and rejection | [A073](agents/development-20261123/W4-A073.md) |
 | Independent note-ownership model, capacity, recall and randomized sequences | [A074](agents/development-20261123/W4-A074.md) |

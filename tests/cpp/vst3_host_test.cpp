@@ -309,7 +309,7 @@ void linear_automation() {
 void dense_automation() {
     static_assert(kMaximumHostFrames == 8192);
     static_assert(maximum_block_frames == 4096);
-    ProcessorHost<double, kMaximumHostFrames + 1> host;
+    ProcessorHost<double, kMaximumHostFrames + 3> host;
     EventList events;
     events.count = 2;
     events.values[0] = note_on(0, 1);
@@ -342,10 +342,21 @@ void dense_automation() {
     events.count = 0;
     host.data.numSamples = 8193;
     host.fill(7.0);
+    // Real storage for every declared sample, with a guard on each side.
+    // Unsupported frame counts must leave both samples and flags untouched.
+    host.channels = {host.left.data() + 1, host.right.data() + 1};
+    const auto sentinel_flags = std::numeric_limits<sdk::uint64>::max();
+    host.output.silenceFlags = sentinel_flags;
     require(process(host.processor, host.data) != sdk::kResultOk, "8193 frames accepted");
     before.expect_unchanged(host.processor);
-    host.expect_silence();
+    const auto unchanged = [](double value) { return value == 7.0; };
+    require(std::all_of(host.left.begin(), host.left.end(), unchanged) &&
+            std::all_of(host.right.begin(), host.right.end(), unchanged),
+            "unsupported frame count changed output samples or guards");
+    require(host.output.silenceFlags == sentinel_flags,
+            "unsupported frame count changed silence flags");
 
+    host.channels = {host.left.data(), host.right.data()};
     host.data.numSamples = 8192;
     for (auto* queue : {&gain, &pedal}) {
         queue->count = 8193;
@@ -355,7 +366,8 @@ void dense_automation() {
         require(queue->get_calls == calls, "oversized queue was read before count validation");
         before.expect_unchanged(host.processor);
         host.expect_silence(kMaximumHostFrames);
-        require(host.left.back() == 7.0 && host.right.back() == 7.0,
+        require(std::all_of(host.left.begin() + kMaximumHostFrames, host.left.end(), unchanged) &&
+                std::all_of(host.right.begin() + kMaximumHostFrames, host.right.end(), unchanged),
                 "rejection wrote beyond the declared frame count");
         queue->count = 8192;
     }
