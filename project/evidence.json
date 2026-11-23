@@ -379,6 +379,33 @@
       "limitations": [
         "Uncertified finite sign-change search on numerical replay. This does not close the independent continuous-extrema gate, alter refinement budgets, or establish physical fidelity."
       ]
+    },
+    {
+      "id": "PHY-20261123-contact-split-depth1",
+      "kind": "numerical",
+      "result": "inconclusive",
+      "summary": "Repaired event landing passes all declared depth-1 refinement groups across 338 independent candidates; continuous extrema remain incomplete.",
+      "command": null,
+      "created_at": "2026-11-23T18:06:44Z",
+      "source_commit": "4f565f0458fd43dfb7757c59065feacb8bd54908",
+      "artifacts": [
+        {
+          "path": "docs/validation/contact-split-depth1-20261123.json",
+          "sha256": "37e4280a43e448335ef2af3f2a30e7b992cf8c67a624cb54c3f676f3841305fc"
+        },
+        {
+          "path": "docs/agents/continuation-20261123/w3-044.md",
+          "sha256": "01d870251020b647cfd8aaa630a99c5e5628643c51648b1f46be83221cdfa089"
+        }
+      ],
+      "specimen_id": null,
+      "profile_path": null,
+      "session_paths": [],
+      "independent": true,
+      "reference_evidence": [],
+      "limitations": [
+        "New source still fails ten original-grid refinement conditions; declared depth-1 passes. Historical 26 and five failures retained. All independent run numerical checks pass, but continuous peak compression and force are missing; no PHY-002 completion or physical-fidelity claim."
+      ]
     }
   ]
 }

@@ -2,7 +2,7 @@
 
 This session resumes `d86135b` and records actual worker assignments, separately from earlier campaigns.
 
-Requested: **100 workers in five waves of 20**. Recorded: **46**. Completed: **44**.
+Requested: **100 workers in five waves of 20**. Recorded: **49**. Completed: **46**.
 
 Workers run in batches within three available worker slots. An assignment report records work performed and unresolved findings; it does not establish physical fidelity.
 
@@ -63,9 +63,12 @@ Workers run in batches within three available worker slots. An assignment report
 | [041](continuation-20261123/w3-041.md) | `/root/w3_041_event_split_integration` | Integrate reviewed bounded event landing and verify combined peak behavior | completed |
 | [042](continuation-20261123/w3-042.md) | `/root/w3_042_continuous_audio_reference` | Implement independent continuous-time convolution diagnostic and fixed case matrix | completed |
 | [043](continuation-20261123/w3-043.md) | `/root/w3_043_audio_probe` | Export bounded float64 audio trajectories for independent numerical audits | completed |
-| 044 | `/root/w3_044_repaired_contact_matrix` | Audit repaired contact solver on the identical full338 configuration matrix | running |
+| [044](continuation-20261123/w3-044.md) | `/root/w3_044_repaired_contact_matrix` | Audit repaired contact solver on the identical full338 configuration matrix | completed |
 | [045](continuation-20261123/w3-045.md) | `/root/w3_045_ci_runtime_compatibility` | Verify the new CI artifact action against current official runtime and API support | completed |
-| 046 | `/root/w3_046_audio_reference_review` | Independently review analytic transient reference and inconclusive/error gates before study | running |
+| [046](continuation-20261123/w3-046.md) | `/root/w3_046_audio_reference_review` | Independently review analytic transient reference and inconclusive/error gates before study | completed |
+| 047 | `/root/w3_047_audio_pilot` | Complete transient provenance and execute the fixed 36-case independent audio pilot | running |
+| 048 | `/root/w3_048_sanitizer_check` | Run isolated ASan and UBSan checks for FIR audio and contact split rollback | running |
+| 049 | `/root/w3_049_dual_module_loader` | Retain simultaneous direct and filtered VST3 module identity regression | running |
 
 ## Wave 4
 

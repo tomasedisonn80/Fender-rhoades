@@ -76,6 +76,7 @@ SCOPE = (
 )
 SOURCE_PATHS = (
     "src/research_engine.cpp", "include/rhodes/research_engine.hpp",
+    "include/rhodes/event_processor.hpp",
     "include/rhodes/audio_engine.hpp", "include/rhodes/fir_decimator.hpp",
     "include/rhodes/audio_filter_coefficients.hpp", "include/rhodes/control_value.hpp",
     "apps/audio_probe.cpp", "CMakeLists.txt", "tools/validate_filtered_audio.py",

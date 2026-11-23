@@ -397,9 +397,9 @@
       "wave": 3,
       "task_name": "/root/w3_044_repaired_contact_matrix",
       "scope": "Audit repaired contact solver on the identical full338 configuration matrix",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/continuation-20261123/w3-044.md",
-      "report_sha256": null
+      "report_sha256": "01d870251020b647cfd8aaa630a99c5e5628643c51648b1f46be83221cdfa089"
     },
     {
       "id": 45,
@@ -415,8 +415,35 @@
       "wave": 3,
       "task_name": "/root/w3_046_audio_reference_review",
       "scope": "Independently review analytic transient reference and inconclusive/error gates before study",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/continuation-20261123/w3-046.md",
+      "report_sha256": "a784c075d505b650f1c5bcb7959573786114a0cc9cc65f45269f9c5c1bba4114"
+    },
+    {
+      "id": 47,
+      "wave": 3,
+      "task_name": "/root/w3_047_audio_pilot",
+      "scope": "Complete transient provenance and execute the fixed 36-case independent audio pilot",
+      "status": "running",
+      "report": "docs/agents/continuation-20261123/w3-047.md",
+      "report_sha256": null
+    },
+    {
+      "id": 48,
+      "wave": 3,
+      "task_name": "/root/w3_048_sanitizer_check",
+      "scope": "Run isolated ASan and UBSan checks for FIR audio and contact split rollback",
+      "status": "running",
+      "report": "docs/agents/continuation-20261123/w3-048.md",
+      "report_sha256": null
+    },
+    {
+      "id": 49,
+      "wave": 3,
+      "task_name": "/root/w3_049_dual_module_loader",
+      "scope": "Retain simultaneous direct and filtered VST3 module identity regression",
+      "status": "running",
+      "report": "docs/agents/continuation-20261123/w3-049.md",
       "report_sha256": null
     }
   ]
