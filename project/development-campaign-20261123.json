@@ -648,26 +648,107 @@
       "wave": 4,
       "task_name": "/root/w4_a072",
       "scope": "Audit public header and optional dependency boundaries",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/development-20261123/W4-A072.md",
-      "report_sha256": null
+      "report_sha256": "edb932cbb4ca93879d3dd823adb8a532bdbd2d9b2466efe8730a7aa09166f6fe"
     },
     {
       "id": "A073",
       "wave": 4,
       "task_name": "/root/w4_a073",
       "scope": "Independent VST3 automation trajectory and tie-order tests",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/development-20261123/W4-A073.md",
-      "report_sha256": null
+      "report_sha256": "f1c9fedf78eb2f931ae5bd950498ebe4b48505d6288cd1d9931be429e22f6473"
     },
     {
       "id": "A074",
       "wave": 4,
       "task_name": "/root/w4_a074",
       "scope": "Independent MIDI identity model through the VST3 processor",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/development-20261123/W4-A074.md",
+      "report_sha256": "33c163f604d42f87bc5de1d92ca37657bbabbbfe9cf8beb5ecb41f0814d471a3"
+    },
+    {
+      "id": "A075",
+      "wave": 4,
+      "task_name": "/root/w4_a075",
+      "scope": "Verify optional numerical-backend absence is reported honestly",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W4-A075.md",
+      "report_sha256": "d0d91c27d233a2f42136a795fcd9040c19b17adcae7cf7903f74183e08d18dfa"
+    },
+    {
+      "id": "A076",
+      "wave": 4,
+      "task_name": "/root/w4_a076",
+      "scope": "Keep independent oracle self-checks active under Python optimization",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W4-A076.md",
+      "report_sha256": "5fc9039d3af505d0af691a04da3c883b31a1185f3d2e684ddb1e02eec03605d6"
+    },
+    {
+      "id": "A077",
+      "wave": 4,
+      "task_name": "/root/w4_a077",
+      "scope": "Update build, contact and performance guides from retained evidence",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W4-A077.md",
+      "report_sha256": "53a97fbbb69f088bcdc934231f98983f08f9bcabc8520d7a7363a9d56b7f95b6"
+    },
+    {
+      "id": "A078",
+      "wave": 4,
+      "task_name": "/root/w4_a078",
+      "scope": "Review public source provenance and bundled attribution",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W4-A078.md",
+      "report_sha256": "39ed632946ff8d53ac016957de5e205de03e94580f90c0a9a2b7f34a61f5cc63"
+    },
+    {
+      "id": "A079",
+      "wave": 4,
+      "task_name": "/root/w4_a079",
+      "scope": "Criterion-bound independent PHY-002 acceptance review",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W4-A079.md",
+      "report_sha256": "35daa310a804d7259b0cfb3af7df53163c3ba85b2ed100bc3f7b3b3b1001621c"
+    },
+    {
+      "id": "A080",
+      "wave": 4,
+      "task_name": "/root/w4_a080",
+      "scope": "Criterion-bound independent runtime and numerical acceptance review",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W4-A080.md",
+      "report_sha256": "8eeb2418ff8e14ddb2de57d3eb61848462d4916b740da4dd40a0320579673199"
+    },
+    {
+      "id": "A081",
+      "wave": 5,
+      "task_name": "/root/w5_a081",
+      "scope": "Exercise actual VST3 state recall concurrently with audio processing",
+      "status": "running",
+      "report": "docs/agents/development-20261123/W5-A081.md",
+      "report_sha256": null
+    },
+    {
+      "id": "A082",
+      "wave": 5,
+      "task_name": "/root/w5_a082",
+      "scope": "Preserve and independently recompute historical runtime raw measurements",
+      "status": "running",
+      "report": "docs/agents/development-20261123/W5-A082.md",
+      "report_sha256": null
+    },
+    {
+      "id": "A083",
+      "wave": 5,
+      "task_name": "/root/w5_a083",
+      "scope": "Challenge matrix and refinement oracle self-checks under optimized Python",
+      "status": "running",
+      "report": "docs/agents/development-20261123/W5-A083.md",
       "report_sha256": null
     }
   ]

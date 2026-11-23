@@ -1235,6 +1235,12 @@ def refinement_gates(runs: list[dict[str, Any]]) -> dict[str, Any]:
             "nonlinear_solve_refinement": "inapplicable: explicit RK4; separate local integration axis required"}
 
 
+def require_self_check(condition: bool, description: str) -> None:
+    """Oracle validation must run even when Python assertion removal is enabled."""
+    if not condition:
+        raise RuntimeError("Oracle self-check failed: " + description)
+
+
 def self_check() -> dict[str, Any]:
     np, _, expm, quad = numerics()
     from scipy.optimize import brentq
@@ -1242,23 +1248,30 @@ def self_check() -> dict[str, Any]:
     f = fixtures()["conservative_impact"]
     exact = exact_free(f)
     end = exact.sample(f.duration)
-    assert abs(end["hammer_impulse_ns"]-0.0032) < 1e-17
-    assert abs(end["hammer_velocity_m_per_s"]-0.6) < 1e-15
-    assert abs(end["v_m_per_s"][0]-1.6) < 1e-15
-    assert abs(end["energy_j"]-0.004) < 1e-17
+    require_self_check(abs(end["hammer_impulse_ns"]-0.0032) < 1e-17,
+                       "conservative impact hammer impulse must be within 1e-17 N s of 0.0032 N s")
+    require_self_check(abs(end["hammer_velocity_m_per_s"]-0.6) < 1e-15,
+                       "conservative impact hammer velocity must be within 1e-15 m/s of 0.6 m/s")
+    require_self_check(abs(end["v_m_per_s"][0]-1.6) < 1e-15,
+                       "conservative impact modal velocity must be within 1e-15 m/s of 1.6 m/s")
+    require_self_check(abs(end["energy_j"]-0.004) < 1e-17,
+                       "conservative impact energy must be within 1e-17 J of 0.004 J")
     checks["conservative_analytic"] = {"separation_s": SEPARATION, "impulse_ns": end["hammer_impulse_ns"]}
     phi = lambda w: 2*w-math.log1p(2*w)
     rebound = brentq(lambda w: phi(w)-phi(1), -0.499999999, -1e-12, xtol=1e-15)
     damped = radau_oracle(fixtures()["damped_impact"])
     end = damped.sample(damped.fixture.duration)
     measured = end["hammer_velocity_m_per_s"]-end["v_m_per_s"][0]
-    assert abs(measured-rebound) < 1e-9
+    require_self_check(abs(measured-rebound) < 1e-9,
+                       "damped impact rebound must be within 1e-9 m/s of the scalar root")
     expected_loss = MU*(1-rebound*rebound)/2
-    assert abs(end["hammer_loss_j"]-expected_loss) < 1e-12
+    require_self_check(abs(end["hammer_loss_j"]-expected_loss) < 1e-12,
+                       "damped impact loss must be within 1e-12 J of the scalar energy balance")
     checks["damped_radau_vs_scalar"] = {"relative_rebound_m_per_s": measured, "analytic_m_per_s": rebound,
                                          "loss_j": end["hammer_loss_j"], "rhs_evaluations": damped.evaluation_count}
     clipped = exact_free(fixtures()["forced_clamp"]).sample(0.0002)
-    assert clipped["hammer_impulse_ns"] == 0 and abs(clipped["hammer_loss_j"]-0.0001) < 1e-18
+    require_self_check(clipped["hammer_impulse_ns"] == 0 and abs(clipped["hammer_loss_j"]-0.0001) < 1e-18,
+                       "forced clamp must have zero impulse and loss within 1e-18 J of 0.0001 J")
     checks["forced_clamp"] = {"loss_j": clipped["hammer_loss_j"]}
     # Independent always-compressed matrix exponential with modal damping.
     p = fixtures()["preload_linear_plus"]
@@ -1271,14 +1284,18 @@ def self_check() -> dict[str, Any]:
     z = expm(a*p.duration)@z0
     oracle = radau_oracle(p)
     end = oracle.sample(p.duration)
-    assert np.max(np.abs(np.array(end["q_m"])-equilibrium-z[:2])) < 2e-14
-    assert np.max(np.abs(np.array(end["v_m_per_s"])-z[2:])) < 2e-11
+    require_self_check(np.max(np.abs(np.array(end["q_m"])-equilibrium-z[:2])) < 2e-14,
+                       "preload position must be within 2e-14 m of the matrix exponential")
+    require_self_check(np.max(np.abs(np.array(end["v_m_per_s"])-z[2:])) < 2e-11,
+                       "preload velocity must be within 2e-11 m/s of the matrix exponential")
     loss = quad(lambda t: float((expm(a*t)@z0)[2:]@damping@(expm(a*t)@z0)[2:]),
                 0, p.duration, epsabs=1e-18, epsrel=1e-11)[0]
-    assert abs(loss-end["modal_loss_j"]) < 1e-16
+    require_self_check(abs(loss-end["modal_loss_j"]) < 1e-16,
+                       "preload modal loss must be within 1e-16 J of independent quadrature")
     energy = float(z0[:2]@ke@z0[:2]/2)
     lower_gap = float(b@equilibrium-p.face_offset-math.sqrt(2*energy*(b@np.linalg.solve(ke, b))))
-    assert lower_gap > 0
+    require_self_check(lower_gap > 0,
+                       "preload energy bound does not certify strictly positive compression")
     checks["preload_expm_vs_radau"] = {"equilibrium_q_m": equilibrium.tolist(),
                                         "certified_minimum_compression_m": lower_gap,
                                         "quadrature_loss_j": loss,
@@ -1287,7 +1304,8 @@ def self_check() -> dict[str, Any]:
     fine = radau_oracle(fixtures()["preload_plus"], tight=True)
     delta = max(float(np.max(np.abs(coarse.state(float(t))-fine.state(float(t)))))
                 for t in np.linspace(0, p.duration, 1001))
-    assert delta < 1e-10
+    require_self_check(delta < 1e-10,
+                       "independent Radau refinement must differ by less than 1e-10 in state or ledger coordinates")
     checks["independent_radau_refinement"] = {"maximum_state_or_ledger_difference": delta,
                                              "coarse_maximum_step_s": 5e-6, "fine_maximum_step_s": 2.5e-6}
     return {"status": "pass", "scope": "oracle self-check only; no candidate acceptance", "checks": checks}

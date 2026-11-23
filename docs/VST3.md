@@ -49,10 +49,15 @@ cmake -S . -B build/vst3 -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Release \
   -DRHODES_BUILD_VST3=ON -DBUILD_TESTING=ON \
   -DRHODES_VST3_SDK_ROOT="${PWD}/../vst3sdk"
 cmake --build build/vst3 --config Release \
-  --target rhodes_vst3 rhodes_vst3_host_tests --parallel 2
+  --target rhodes_vst3_checks --parallel 2
 ctest --test-dir build/vst3 -C Release -R '^vst3\.' \
   --output-on-failure --no-tests=error
 ```
+
+`rhodes_vst3_checks` exists when `BUILD_TESTING=ON` and builds the bundle,
+SDK validator, callback benchmark and every retained host-test executable. It
+keeps the test command complete as coverage grows. For a plug-in-only build,
+use `--target rhodes_vst3`; tests can be disabled with `-DBUILD_TESTING=OFF`.
 
 On macOS, add `-DCMAKE_OSX_DEPLOYMENT_TARGET=11.0` to the configure command to
 match the configured CI job. Leave `CMAKE_OSX_ARCHITECTURES` unset for the native
@@ -70,7 +75,7 @@ Use a new build directory with an x64 Visual Studio generator:
 ```powershell
 $rhodesSdkPath = (Resolve-Path ../vst3sdk).Path
 cmake -S . -B build/vst3 -A x64 -DRHODES_BUILD_VST3=ON -DBUILD_TESTING=ON "-DRHODES_VST3_SDK_ROOT=$rhodesSdkPath"
-cmake --build build/vst3 --config Release --target rhodes_vst3 rhodes_vst3_host_tests --parallel 2
+cmake --build build/vst3 --config Release --target rhodes_vst3_checks --parallel 2
 ctest --test-dir build/vst3 -C Release -R '^vst3\.' --output-on-failure --no-tests=error
 ```
 
@@ -90,7 +95,8 @@ build/vst3/VST3/Release/RhodesResearch.vst3
 The observed Linux x86_64 module is
 `Contents/x86_64-linux/RhodesResearch.so` inside that bundle. The pinned SDK uses
 the platform's bundle layout on macOS and Windows; retain the whole `.vst3`
-directory, including `Contents/Resources/LICENSE.txt` and `moduleinfo.json`.
+directory, including `Contents/Resources/LICENSE.txt`, `THIRD_PARTY_NOTICES.md`
+and `moduleinfo.json`.
 The resources include the inspected SDK MIT notice. This does not select a
 project-wide license for this repository's original code; see [RIGHTS.md](../RIGHTS.md).
 
@@ -116,7 +122,10 @@ parameter editor because the prototype supplies no custom view.
 
 Monitoring gain multiplies synthetic harp voltage; it is not a calibrated
 instrument amplifier. Gain automation is linearly interpolated and sustain is
-stepped. At an equal sample offset, parameter changes precede notes. The adapter
+stepped. Gain points are quantized to binary32 using nearest, ties-to-even;
+the preceding block's final gain anchors interpolation at offset `-1`, and the
+last duplicate point wins. At an equal sample offset, parameter changes precede
+notes, which preserve their input-list order. The adapter
 accepts at most 256 input note events, two parameter queues and 8192 points per
 queue; each sample has a separate 256-event combined note/pedal limit. Invalid
 input rejects the block with silence while preserving mechanical and ownership
@@ -137,6 +146,12 @@ recalled configuration is applied. A malformed, short, extended or incompatible
 chunk is rejected. Saving takes a coherent configuration snapshot without
 resetting the sound.
 
+Control-value conversion and state encoding preserve their bit-level contract
+under supported host rounding and FTZ/DAZ modes without changing the host's
+floating-point environment. This does not promise identical audio underflow
+behavior across those modes; see the [control audit](agents/development-20261123/W3-A053.md)
+and [actual host checks](agents/development-20261123/W3-A055.md).
+
 Activation and processing lifecycle transitions also reset mechanics and
 ownership while preserving configuration. Ordinary note release preserves
 mechanical state. Arithmetic/output-conversion faults silence the failed sample
@@ -147,16 +162,42 @@ reset before processing continues.
 
 On 2026-11-23, the integrator built the actual Linux x86_64 bundle with GCC 14.2
 and the pinned SDK, then observed **47 SDK validator tests passed, zero failed**.
-The retained suite also passed all **12 host selectors**, exercising concrete
-processor/controller classes, scalar output, ownership, automation, rejected
-blocks, lifecycle, state and streams. Its 89 processor calls observed zero C++
-allocation attempts; the [A024 report](agents/development-20261123/W2-A024.md)
-records coverage and allocation-counter calibration. In CTest, the 47 SDK checks
-are contained within the single `vst3.sdk_validator` test.
+In CTest, those SDK checks are contained within `vst3.sdk_validator`. The
+retained host suites exercise concrete processor/controller classes and include:
+
+| Coverage | Retained evidence |
+| --- | --- |
+| Scalar output, initial ownership/automation/lifecycle/state coverage and allocation-counter calibration | [A024](agents/development-20261123/W2-A024.md); its 89 instrumented processor calls observed zero C++ allocation attempts |
+| Control conversions across supported rounding and flush modes | [A053](agents/development-20261123/W3-A053.md) |
+| Actual host control/state regression under FTZ/DAZ modes | [A055](agents/development-20261123/W3-A055.md) |
+| Inactive buses, zero-frame flushes, malformed buffers and setup rollback | [A063](agents/development-20261123/W4-A063.md) |
+| Partial reads/writes, stream failures and transactional state recall | [A066](agents/development-20261123/W4-A066.md) |
+| Independent automation model, ties, flushes and rejection | [A073](agents/development-20261123/W4-A073.md) |
+| Independent note-ownership model, capacity, recall and randomized sequences | [A074](agents/development-20261123/W4-A074.md) |
+
+These are the scopes recorded by each report; the earlier allocation observation
+does not instrument every later test or prove a universal allocation bound.
+Use `ctest --test-dir build/vst3 -C Release -N -R '^vst3\.'` to enumerate the
+tests configured in your own checkout.
+
+The [export audit](agents/development-20261123/W4-A062.md) reduced the observed
+Linux module's defined dynamic exports from 137 to 14 and its Rhodes
+implementation exports from 120 to zero, while retaining `GetPluginFactory`,
+`ModuleEntry` and `ModuleExit`. Remaining exports were standard-library symbols.
+That binary still required `GLIBC_2.38`; the
+[packaging audit](agents/development-20261123/W3-A058.md) also records
+`GLIBCXX_3.4.29`. These are observed runtime requirements of the retained Linux
+build, not a selected distribution baseline or a portable-binary guarantee.
+
+The [actual callback benchmark](BENCHMARKING.md#actual-vst3-callback-benchmark)
+adds measured calls through the concrete VST3 processor in float32/float64.
+Its [retained matrix](validation/vst3-callback-benchmark-20261123.json) includes
+nominal-period misses and does not establish device deadline compliance.
 
 These results establish the reported engineering checks. Native DAW use,
 macOS/Windows runs, device deadline behavior and release packaging remain
 separate verification. The synthetic pickup still has the documented nonlinear
-aliasing limits; no antialiasing or physical-fidelity acceptance follows from a
-successful SDK validator run. Follow the [project state](PROJECT_STATE.md) for
+aliasing limits; the [retained diagnostic](agents/development-20261123/W4-A068.md)
+does not establish an audibility bound. No antialiasing or physical-fidelity
+acceptance follows from a successful SDK validator run. Follow the [project state](PROJECT_STATE.md) for
 current milestone decisions.

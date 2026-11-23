@@ -85,9 +85,13 @@ five source paths and revisions for packaging beside the common `LICENSE.txt`.
 On 2026-11-23 the existing Linux bundle's
 `build/vst3/VST3/Release/RhodesResearch.vst3/Contents/Resources/LICENSE.txt`
 was compared byte-for-byte with all five pinned source files: all six copies
-were identical, 1094 bytes, with the SHA-256 above. This observation verifies
-the common notice already in that bundle; inclusion of the new index requires
-the integrator's resource-list update and a subsequent packaging check.
+were identical, 1094 bytes, with the SHA-256 above. The optional target also
+copies `THIRD_PARTY_NOTICES.md` through its resource list. The subsequent
+[Linux bundle audit](agents/development-20261123/W3-A058.md) verified that the
+bundled index exactly matches the project source; the
+[visibility update](agents/development-20261123/W4-A062.md) preserved the bundle
+metadata and required entry points. These are local bundle observations, not
+verification of a distributable package on every platform.
 
 ## Optional independent Python audit
 

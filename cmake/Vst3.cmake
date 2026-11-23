@@ -84,6 +84,22 @@ target_compile_definitions(rhodes_vst3_benchmark PRIVATE RHODES_BUILD_CONFIGURAT
 rhodes_target_options(rhodes_vst3_benchmark)
 
 if(BUILD_TESTING)
+    # One explicit build target keeps CI and documented test builds complete.
+    add_custom_target(rhodes_vst3_checks)
+    add_dependencies(rhodes_vst3_checks rhodes_vst3 rhodes_vst3_benchmark)
+    function(rhodes_add_vst3_test target source)
+        add_executable(${target}
+            "${PROJECT_SOURCE_DIR}/${source}"
+            "${PROJECT_SOURCE_DIR}/plugins/vst3/processor.cpp"
+            "${PROJECT_SOURCE_DIR}/plugins/vst3/controller.cpp"
+            "${PROJECT_SOURCE_DIR}/plugins/vst3/state_stream.cpp")
+        target_compile_features(${target} PRIVATE cxx_std_20)
+        target_include_directories(${target} PRIVATE "${PROJECT_SOURCE_DIR}")
+        target_include_directories(${target} SYSTEM PRIVATE "${RHODES_VST3_SDK_ROOT}")
+        target_link_libraries(${target} PRIVATE rhodes_core sdk)
+        rhodes_target_options(${target})
+        add_dependencies(rhodes_vst3_checks ${target})
+    endfunction()
     add_test(NAME vst3.benchmark_help COMMAND rhodes_vst3_benchmark --help)
     foreach(sample_format IN ITEMS 32 64)
         add_test(NAME vst3.benchmark_smoke_${sample_format} COMMAND rhodes_vst3_benchmark
@@ -94,60 +110,32 @@ if(BUILD_TESTING)
     add_test(NAME vst3.benchmark_json COMMAND ${CMAKE_COMMAND}
         "-DBENCHMARK=$<TARGET_FILE:rhodes_vst3_benchmark>"
         -P "${PROJECT_SOURCE_DIR}/tests/cpp/vst3_benchmark_json.cmake")
-    add_executable(rhodes_vst3_host_tests
-        "${PROJECT_SOURCE_DIR}/tests/cpp/vst3_host_test.cpp"
-        "${PROJECT_SOURCE_DIR}/plugins/vst3/processor.cpp"
-        "${PROJECT_SOURCE_DIR}/plugins/vst3/controller.cpp"
-        "${PROJECT_SOURCE_DIR}/plugins/vst3/state_stream.cpp")
-    target_compile_features(rhodes_vst3_host_tests PRIVATE cxx_std_20)
-    target_include_directories(rhodes_vst3_host_tests PRIVATE "${PROJECT_SOURCE_DIR}")
-    target_include_directories(rhodes_vst3_host_tests SYSTEM PRIVATE "${RHODES_VST3_SDK_ROOT}")
-    target_link_libraries(rhodes_vst3_host_tests PRIVATE rhodes_core sdk)
-    rhodes_target_options(rhodes_vst3_host_tests)
+    rhodes_add_vst3_test(rhodes_vst3_host_tests tests/cpp/vst3_host_test.cpp)
     foreach(test_name IN ITEMS scalar_output overlapping_notes linear_automation
             dense_automation invalid_atomicity parameter_flush lifecycle deferred_state
             recall_abort stream_errors controller_mapping allocation_guard)
         add_test(NAME vst3.${test_name} COMMAND rhodes_vst3_host_tests ${test_name})
     endforeach()
-    add_executable(rhodes_vst3_fp_tests
-        "${PROJECT_SOURCE_DIR}/tests/cpp/vst3_fp_environment_test.cpp"
-        "${PROJECT_SOURCE_DIR}/plugins/vst3/processor.cpp"
-        "${PROJECT_SOURCE_DIR}/plugins/vst3/controller.cpp"
-        "${PROJECT_SOURCE_DIR}/plugins/vst3/state_stream.cpp")
-    target_compile_features(rhodes_vst3_fp_tests PRIVATE cxx_std_20)
-    target_include_directories(rhodes_vst3_fp_tests PRIVATE "${PROJECT_SOURCE_DIR}")
-    target_include_directories(rhodes_vst3_fp_tests SYSTEM PRIVATE "${RHODES_VST3_SDK_ROOT}")
-    target_link_libraries(rhodes_vst3_fp_tests PRIVATE rhodes_core sdk)
-    rhodes_target_options(rhodes_vst3_fp_tests)
+    rhodes_add_vst3_test(rhodes_vst3_fp_tests tests/cpp/vst3_fp_environment_test.cpp)
     foreach(test_name IN ITEMS baseline ftz daz ftz_daz)
         add_test(NAME vst3.fp_${test_name} COMMAND rhodes_vst3_fp_tests ${test_name})
         set_tests_properties(vst3.fp_${test_name} PROPERTIES SKIP_RETURN_CODE 77)
     endforeach()
-    add_executable(rhodes_vst3_buffer_tests
-        "${PROJECT_SOURCE_DIR}/tests/cpp/vst3_buffer_contract_test.cpp"
-        "${PROJECT_SOURCE_DIR}/plugins/vst3/processor.cpp"
-        "${PROJECT_SOURCE_DIR}/plugins/vst3/controller.cpp"
-        "${PROJECT_SOURCE_DIR}/plugins/vst3/state_stream.cpp")
-    target_compile_features(rhodes_vst3_buffer_tests PRIVATE cxx_std_20)
-    target_include_directories(rhodes_vst3_buffer_tests PRIVATE "${PROJECT_SOURCE_DIR}")
-    target_include_directories(rhodes_vst3_buffer_tests SYSTEM PRIVATE "${RHODES_VST3_SDK_ROOT}")
-    target_link_libraries(rhodes_vst3_buffer_tests PRIVATE rhodes_core sdk)
-    rhodes_target_options(rhodes_vst3_buffer_tests)
+    rhodes_add_vst3_test(rhodes_vst3_buffer_tests tests/cpp/vst3_buffer_contract_test.cpp)
     foreach(test_name IN ITEMS inactive_buffers flush_matrix rejected_buffers setup_rollback)
         add_test(NAME vst3.${test_name} COMMAND rhodes_vst3_buffer_tests ${test_name})
     endforeach()
-    add_executable(rhodes_vst3_stream_tests
-        "${PROJECT_SOURCE_DIR}/tests/cpp/vst3_stream_contract_test.cpp"
-        "${PROJECT_SOURCE_DIR}/plugins/vst3/processor.cpp"
-        "${PROJECT_SOURCE_DIR}/plugins/vst3/controller.cpp"
-        "${PROJECT_SOURCE_DIR}/plugins/vst3/state_stream.cpp")
-    target_compile_features(rhodes_vst3_stream_tests PRIVATE cxx_std_20)
-    target_include_directories(rhodes_vst3_stream_tests PRIVATE "${PROJECT_SOURCE_DIR}")
-    target_include_directories(rhodes_vst3_stream_tests SYSTEM PRIVATE "${RHODES_VST3_SDK_ROOT}")
-    target_link_libraries(rhodes_vst3_stream_tests PRIVATE rhodes_core sdk)
-    rhodes_target_options(rhodes_vst3_stream_tests)
+    rhodes_add_vst3_test(rhodes_vst3_stream_tests tests/cpp/vst3_stream_contract_test.cpp)
     foreach(test_name IN ITEMS partial_roundtrip read_failures write_failures malformed_state)
         add_test(NAME vst3.${test_name} COMMAND rhodes_vst3_stream_tests ${test_name})
+    endforeach()
+    rhodes_add_vst3_test(rhodes_vst3_automation_tests tests/cpp/vst3_automation_contract_test.cpp)
+    foreach(test_name IN ITEMS automation_model automation_ties automation_flush automation_rejection)
+        add_test(NAME vst3.${test_name} COMMAND rhodes_vst3_automation_tests ${test_name})
+    endforeach()
+    rhodes_add_vst3_test(rhodes_vst3_note_model_tests tests/cpp/vst3_note_model_test.cpp)
+    foreach(test_name IN ITEMS identity_model capacity_model recall_model random_note_model)
+        add_test(NAME vst3.${test_name} COMMAND rhodes_vst3_note_model_tests ${test_name})
     endforeach()
     add_dependencies(rhodes_vst3 validator)
     get_target_property(rhodes_plugin_bundle rhodes_vst3 SMTG_PLUGIN_PACKAGE_PATH)

@@ -132,12 +132,70 @@ analytic evaluations and **sampled maxima**, explicitly not continuous-time
 extrema. Successful execution returns 0; a solver failure emits `success=false`
 and returns 2; CLI/setup exceptions return 1 with an error on stderr.
 
+## Generate and independently audit a sweep
+
 The optional [independent auditor](../tools/validate_contact_reference.py) uses
 NumPy/SciPy, analytic limits, Radau integration and matrix exponentials. Candidate
-JSON is data input; the auditor does not link the candidate solver. The
-[contact tests](../tests/cpp/contact_reference_test.cpp) and
+JSON is data input; the auditor does not import, execute or link the candidate
+solver. Install the optional numerical packages recorded in
+[DEPENDENCIES.md](DEPENDENCIES.md) before numerical auditing. Help, fixture
+listing and malformed-input preflight remain usable without those packages;
+the current analytic, Radau and matrix-exponential oracle paths require them.
+
+The standard-library-only [sweep runner](../tools/run_contact_sweep.py) generates
+eight deduplicated configurations for each of the 26 frozen fixtures: four
+maximum-step values, three event tolerances and three local-tolerance scales.
+Generation and acceptance auditing are separate commands:
+
+```sh
+python3 tools/run_contact_sweep.py --executable build/release/rhodes_contact_reference \
+  --output-dir build/contact-sweep
+python3 tools/validate_contact_reference.py --candidate build/contact-sweep/candidates.json \
+  --output build/contact-audit.json
+```
+
+Use a fresh output directory. The runner retains raw stdout/stderr even for
+failed or timed-out candidates and only writes the combined candidate input
+when generation completes successfully. `--plan` previews the matrix;
+`--force` replaces only the run's named outputs. The auditor returns `0` for
+pass, `1` for fail and `2` for incomplete evidence. Its `--self-check` exercises
+the independent oracles; it does not accept candidate results.
+
+Input auditing rejects nonfinite or malformed scalars, incorrect vector shapes,
+inconsistent diagnostic/status fields and explicit nonzero failure codes before
+numerical comparison. Relaunch evidence must cover the frozen actions, preserve
+positions, modal velocities and unrelated ledgers, and reconcile requested
+velocity, kinetic work and energy with the before/after states. Missing action
+evidence is incomplete; contradictory supplied evidence fails. The
+[input audit](agents/development-20261123/W4-A061.md) and
+[action audit](agents/development-20261123/W4-A070.md) record these checks and
+their adversarial cases. A070 checked all 208 genuine runs and 56 action
+snapshots structurally, plus seven action fixtures numerically; that work did
+not rerun or supersede the full earlier numerical audit.
+
+## Retained result and open acceptance gates
+
+The [full independent audit](agents/development-20261123/W3-A054.md) ran all
+**208 configurations across 26 fixtures** and returned **fail**. All sampled
+oracle comparisons were within their frozen budgets, and all 544 candidate
+events matched independent identity/order. Nevertheless, 26 decreasing-error
+checks failed across nine fixtures: 20 waveform/energy checks and six event-time
+checks. All individual runs also remained incomplete because independently
+located continuous-time force/compression extrema were missing. Sampled maxima
+cannot fill that evidence gap.
+
+The [refinement diagnosis](agents/development-20261123/W3-A056.md) found overlapping
+final event brackets for the six event-time failures, supporting a resolution
+effect. It did not resolve the waveform/energy failures or waive any frozen
+gate. The retained [generation manifest](validation/contact-generation-manifest-20261123.json),
+[execution record](validation/contact-audit-execution-20261123.json),
+[full audit](validation/contact-refinement-audit-20261123.json) and
+[summary](validation/contact-audit-summary-20261123.json) bind these observations
+to their tested inputs and source identities. Later input hardening does not
+retroactively change those results.
+
+The [contact tests](../tests/cpp/contact_reference_test.cpp) and
 [generalized grazing tests](../tests/cpp/contact_grazing_test.cpp) are retained
-regressions. Their passing results do not complete PHY-002 by themselves: the
-full independent step/event/local-tolerance matrix and independently located
-continuous-time peaks remain acceptance gates. Consult the
+regressions. Their passing results do not complete PHY-002: refinement failures
+and independently located continuous-time peaks remain acceptance gates. Consult the
 [project state](PROJECT_STATE.md) and frozen acceptance for the current decision.

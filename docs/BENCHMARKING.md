@@ -1,12 +1,14 @@
 # Synthetic runtime benchmarks
 
-Two dependency-free executables measure different boundaries of the same
-synthetic audio model. Neither includes the offline finite-mass contact solver
+Three executables measure different boundaries of the same synthetic audio
+model. The two core benchmarks are SDK-free; the VST3 benchmark requires the
+optional pinned SDK. None includes the offline finite-mass contact solver
 or establishes calibrated fidelity or complete `RT-001` acceptance.
 
 | Executable | Timed operation | Controls outside the timed operation |
 |---|---|---|
 | `rhodes_runtime_benchmark` | One complete `EventProcessor::process()` call, including input preflight, event dispatch, sustain changes and sample rendering | Preparation, schedule generation and hashing, initial conditions, output checks and reporting |
+| `rhodes_vst3_benchmark` | One complete concrete `RhodesProcessor::process()` call, including VST3 input access, ownership, automation and state publication | Setup, input schedules, output sentinel initialization, output checks, hashes and reporting |
 | `rhodes_benchmark` | `ResearchEngine::process()` only | The preceding note-on calls, preparation, output checks and reporting |
 
 Compare like boundaries. Subtracting results from separate runs does not isolate
@@ -98,8 +100,8 @@ A source/build change invalidates comparison with an earlier binary identity.
 `integrity` records numerical status, finite output/checksum, peak synthetic
 voltage and observed subnormal values. Modal subnormals are inspected only at
 block ends. A short run without subnormals does not validate long-tail behavior,
-flush-to-zero policy or denormal timing. Neither benchmark detects allocations;
-separate allocation/locking checks are required.
+flush-to-zero policy or denormal timing. These benchmark executables do not
+detect allocations; separate allocation/locking checks are required.
 
 The [A038 short matrix](agents/development-20261123/W2-A038.md) records one actual
 Linux container observation with declared source/build identity and limitations.
@@ -110,6 +112,93 @@ and an observed maximum is not a worst-case execution-time bound. Repeat with a
 declared order and controlled or documented competing load before comparing
 implementations. Keep long-tail, host/device and numerical-error acceptance
 separate from this short synthetic matrix.
+
+The later [matched core-cache experiment](agents/development-20261123/W3-A041.md)
+compared the same `EventProcessor` boundary before and after precomputing the
+free/damped transition matrices. For its 500-call, 64-frame, 73-key `pedal256`
+case at 48 kHz, the observed median changed from 1400.686 to 229.495 µs and
+nominal-period misses from 399 to 2. Four short storm renders retained identical
+output/final-state hashes. The [baseline](validation/runtime-baseline-20261123.json)
+and [cached-transition results](validation/runtime-transition-cache-20261123.json)
+retain source identities and the uncontrolled-container limitations. These are
+historical matched core measurements, not a before/after comparison with the
+VST3 callback measurements below.
+
+## Actual VST3 callback benchmark
+
+Configure the optional SDK build as described in [VST3.md](VST3.md). Its
+`rhodes_vst3_checks` aggregate builds the benchmark together with the module,
+validator and retained host tests when `BUILD_TESTING=ON`. To build and run only
+the benchmark in that configured tree:
+
+```sh
+cmake --build build/vst3 --config Release --target rhodes_vst3_benchmark --parallel 2
+./build/vst3/rhodes_vst3_benchmark --blocks 300 --warmup-blocks 32 \
+  --block-size 64 --sample-rate 48000 --active-keys 73 \
+  --workload pedal --sample-format 64 \
+  --machine "documented-machine-label" > build/vst3-callback.json
+```
+
+With Visual Studio, use `build/vst3/Release/rhodes_vst3_benchmark.exe`.
+
+| Option | Accepted values | Default |
+| --- | --- | --- |
+| `--blocks` | Integer `1..1000000` measured calls | `1000` |
+| `--block-size` | Integer `1..8192` frames | `128` |
+| `--sample-rate` | Integer `32000..192000` Hz | `48000` |
+| `--active-keys` | Integer `0..73` | `73` |
+| `--warmup-blocks` | Integer `0..10000` | `32` |
+| `--workload` | `held`, `pedal` or `gain` | `held` |
+| `--sample-format` | `32` or `64` | `64` |
+| `--machine` | Nonempty printable ASCII, at most 128 bytes | `unknown` |
+
+All workloads strike selected keys at block zero and every
+`ceil(rate/(2*frames))` blocks, approximately every half-second. `held` retains
+note ownership. `gain` adds one gain point per sample. `pedal` immediately
+releases each struck key and flips sustain at every sample while the keys ring.
+These are deterministic synthetic stress schedules, not recorded performances.
+
+Large owners, buffers, schedules and the timing vector are allocated before
+measurement. Warmup follows the selected schedule, then a lifecycle reset and
+zero-frame flush restore gain `0.5` and sustain off before measurement. Only the
+actual `RhodesProcessor::process()` call is timed: host getters, input preflight,
+MIDI ownership, automation, output clearing, core rendering and state publication
+are included. Output sentinel initialization, verification, hashes, sorting and
+serialization are outside the timestamps. The executable calls the concrete
+processor; it does not measure shared-module loading, a DAW, device scheduling
+or wake-up jitter.
+
+Success emits schema-version-1 JSON with `benchmark="synthetic_vst3_process"`.
+Inspect `complete` and `integrity` before using timings: the report includes
+success/failure counts, cursor and owner observations, host-getter counts,
+finite/stereo/silence checks, nonzero output, checksum and FNV-1a hashes.
+`timing.raw_callback_us` preserves every call; the summary reports mean,
+nearest-rank p50/p95/p99, maximum, nominal period `1e6*frames/rate`, and durations
+strictly greater than that period. Malformed CLI arguments exit `2`; an
+incomplete measured run emits JSON and exits `3`; success and `--help` exit `0`.
+
+The same external source/build/environment record described above is required;
+the machine label does not discover hardware. Timing uses `steady_clock` without
+overhead subtraction, thread affinity, priority changes or device pacing. This
+executable does not instrument allocation or locking. Finite output and a short
+run cannot establish long-tail denormal behavior, a worst-case bound or a
+real-time guarantee.
+
+The [A069 report](agents/development-20261123/W4-A069.md) and
+[raw matrix with reproduction details](validation/vst3-callback-benchmark-20261123.json)
+retain 12 shuffled cells: 48/192 kHz, 64 frames, 73 keys, all three workloads
+and both sample formats, with 32 warmup and 300 measured calls per cell. All
+3,600 measured calls succeeded and 433 independent accounting/statistics checks
+passed. Two calls exceeded their nominal periods; the largest elapsed time was
+1873.831 µs. These were one-pass observations on a shared Linux x86_64 container
+with a visible Xeon Platinum 8573C and GCC 14.2. They do not isolate a causal
+float32/float64 performance difference or establish host deadline compliance.
+
+The separate [nonlinear aliasing diagnostic](agents/development-20261123/W4-A068.md)
+and [retained observations](validation/aliasing-observations-20261123.json)
+characterize selected synthetic renders and filtering limits. They do not
+supply an alias-only error bound, an audibility conclusion or full `RT-001`
+acceptance.
 
 ## Process-only kernel benchmark
 
@@ -242,8 +331,9 @@ latency, host event cost, or performance on an untested platform.
 
 The current synthetic core excludes finite-mass contact, coupled support
 mechanics, complex pickup impedance, identified Stage controls, reciprocal
-magnetic forces, antialiasing, and host integration. Rebenchmark when these
-change. Completing `RT-001` also needs representative stress conditions,
+magnetic forces and antialiasing. This process-only boundary also excludes the
+host adapter. Rebenchmark when these change. Completing `RT-001` also needs
+representative stress conditions,
 optimized-versus-reference errors, allocation/locking verification, and
 timestep/antialiasing convergence; this harness alone does not satisfy those
 gates. See [the roadmap](ROADMAP.md), [architecture](ARCHITECTURE.md), and
