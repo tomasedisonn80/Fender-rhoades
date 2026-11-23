@@ -1,0 +1,377 @@
+{
+  "schema_version": 1,
+  "source_commit": "6cf5f3af25a6c989eb244db070681be069e7fd78",
+  "source_tree": "5950625afe680dcb9b107e5be793a249a681c51f",
+  "scope": "All tracked build, implementation, test, tooling, schema, profile, example-input and maintained guidance files in the frozen source; mutable project/campaign state and historical worker/integration reports excluded.",
+  "exclusions": [
+    "project/*",
+    "docs/PROJECT_STATE.md",
+    "docs/agents/CAMPAIGN.md",
+    "docs/agents/REVIEW_RESOLUTION.md",
+    "docs/agents/reviews/*"
+  ],
+  "task_definitions": [
+    {
+      "definition": {
+        "task_id": "FND-001",
+        "acceptance": [
+          "Buildable dependency-free research kernel, developer setup and platform CI configuration exist.",
+          "Canonical state, evidence validation, generated status and agent continuation workflow pass their tests.",
+          "Research scope, synthetic constants, missing measurements and licensing uncertainty are documented."
+        ],
+        "dependencies": [],
+        "required_evidence": [
+          "documentary",
+          "numerical"
+        ],
+        "target": "One documented 73-key Mark I Stage specimen at its specified loaded electrical output; identity and measurements pending."
+      },
+      "definition_sha256": "3a6d38f2371bbb535f601c17fb31e1f50e8704693b9f062f45b942303f4a6d24"
+    },
+    {
+      "definition": {
+        "task_id": "PHY-001",
+        "acceptance": [
+          "Analytic oscillator propagation agrees with an independent closed-form reference.",
+          "Retrigger retains displacement and velocity; pickup differentiates combined modal flux linkage.",
+          "Passive network tests include inactive pickup loading; invalid inputs are rejected.",
+          "Synthetic parameters and omitted interactions are explicitly labeled."
+        ],
+        "dependencies": [
+          "FND-001"
+        ],
+        "required_evidence": [
+          "numerical"
+        ],
+        "target": "One documented 73-key Mark I Stage specimen at its specified loaded electrical output; identity and measurements pending."
+      },
+      "definition_sha256": "e1f8e12fe8dd221770dcd91afd64d2c58b57dcccdc450eb7c5bb81e77cf53f5e"
+    }
+  ],
+  "files": [
+    {
+      "path": ".editorconfig",
+      "sha256": "d36890762ceee5761fa35705553db0b68951f883fba88a07492209ea2b961762"
+    },
+    {
+      "path": ".gitattributes",
+      "sha256": "416ad364d8882365764ed4053edc36c97f60a7d73e8d6f428db858f7a5e3f742"
+    },
+    {
+      "path": ".github/CODEOWNERS",
+      "sha256": "3b67fe990aca212b3c6b663f329d939fb65353ae3f72e7e33ae0eadcdb12a62b"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/bug.yml",
+      "sha256": "1a19982128e10df11ed4da51071199a181d1bb34acdbfd0f32af4c0e6cffc037"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/config.yml",
+      "sha256": "13064e7bea658e01e718b414fbb7b3b244f36411fe25ee2055c151f7b534547a"
+    },
+    {
+      "path": ".github/ISSUE_TEMPLATE/model-proposal.yml",
+      "sha256": "283baf76af8c3eb6655b3f17dd0b3f762803bd2f4c8bd43c9e7709478e7f0a54"
+    },
+    {
+      "path": ".github/PULL_REQUEST_TEMPLATE.md",
+      "sha256": "a84c00bac3efe72aeb69954dadfc72ad0d49713b0351f8de79f333291cbd4b41"
+    },
+    {
+      "path": ".github/copilot-instructions.md",
+      "sha256": "beeb2c51121d8a3599bf8ec8b8a22e3cd6b9cb9077349e55d73f462c3f4cb114"
+    },
+    {
+      "path": ".github/dependabot.yml",
+      "sha256": "3f32bd295d1462a4844d206458a300cb8b6584e99ebc98daf3f17ac65d51835a"
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "sha256": "67718696c9cda1b3dbad0f8a3c4189de9b9438d69c710ea351ae9c0085a99fc6"
+    },
+    {
+      "path": ".gitignore",
+      "sha256": "2fdcfdf5f8f26fa756698862729a2b9d970534d88cc8628a71b1d1bd03ebd3d4"
+    },
+    {
+      "path": "AGENTS.md",
+      "sha256": "93b35392c4a38468a53b8a97844c941a7a6d92fb8c061439e75f9bac1b99339d"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "sha256": "de2e0a5b3b1b48b38f667b6a68f8c8bda9134ca565c009410ea0aec4b34cfadd"
+    },
+    {
+      "path": "CLAUDE.md",
+      "sha256": "851053e3ccf009b893790cade3a8d314ce1b4ca8eb9e36dd7b4150e6e4b59f75"
+    },
+    {
+      "path": "CMakeLists.txt",
+      "sha256": "e028839292ff4bfa9cc530138219d2ac3ac4082a71bcd7db3b88b7946bfc59c0"
+    },
+    {
+      "path": "CMakePresets.json",
+      "sha256": "a06e2a16dba0b4947352cbbcec2a7668d29b3f777c6f460f9d65f6bd0bb7f0aa"
+    },
+    {
+      "path": "CONTRIBUTING.md",
+      "sha256": "da57c56c5f8381d5f3fb85af1cd25703b394dbb36336b430e4386a5eed471920"
+    },
+    {
+      "path": "README.md",
+      "sha256": "e441340b93ac3ecb5767c6d4b04dcfcb1f66df7e5f51c3603ed10c4777dc341f"
+    },
+    {
+      "path": "RIGHTS.md",
+      "sha256": "b9ceeec2a73487a305be1c0fb579a52ec3b25efd81301983f53d08b3f16562af"
+    },
+    {
+      "path": "SECURITY.md",
+      "sha256": "adda5a8fed5320ab478461205634b4242155093028c9d72c49695eec67413a10"
+    },
+    {
+      "path": "apps/benchmark.cpp",
+      "sha256": "f05cefbe22b93274bc51f6b3fedad532d333b8c577196059c04e0559530e5705"
+    },
+    {
+      "path": "apps/render.cpp",
+      "sha256": "75076be6bd21ebf0d24dff6db67247f7939a0f9da32283664e7d8655f1d19147"
+    },
+    {
+      "path": "data/README.md",
+      "sha256": "e6e4df63231cbd590200e4b143fad429ab636ed7799d3803107808eccf04fba2"
+    },
+    {
+      "path": "data/examples/synthetic-session.json",
+      "sha256": "b9cfed497fff7e3cba9d24acc92b9161e6e96209e474185f1c1b32627b7c5c77"
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "sha256": "65116bc34c4beea134acbff8094f1b2c7dca5949ad33334d966e23e332abce51"
+    },
+    {
+      "path": "docs/BENCHMARKING.md",
+      "sha256": "117e6d549d01545c26340a5fbddac41e6a36a06feb929893be5b433a15b19788"
+    },
+    {
+      "path": "docs/DEVELOPMENT.md",
+      "sha256": "62adf9e0d7d4195d84c74b460836a696bbdfa71d0282b1fdfe2f1a7753ce72fb"
+    },
+    {
+      "path": "docs/MEASUREMENT_PLAN.md",
+      "sha256": "ac70c6955fa44e23df761830305d983c105fc85e052fb6e6c954e317fd55f624"
+    },
+    {
+      "path": "docs/NUMERICS.md",
+      "sha256": "eb2d7d1bf6638f1e6aa88d058e8679a14cb971a21b11eda86e221e2675618d06"
+    },
+    {
+      "path": "docs/ROADMAP.md",
+      "sha256": "5578ca4949b0e2aaef0ad13228237be6cadf196dea346ff70211e5a099bd30c1"
+    },
+    {
+      "path": "docs/VALIDATION.md",
+      "sha256": "30c8ea205553e53c666f18fd230bf099cb68c53146e192e1a06df46ea31a9fe9"
+    },
+    {
+      "path": "docs/adr/0001-first-target-and-output-boundary.md",
+      "sha256": "b988ce036d9af89f8579ea587193922ac3f02a2fdf5475129133012960b16879"
+    },
+    {
+      "path": "docs/adr/0002-dependency-light-core-and-tooling.md",
+      "sha256": "9f7cd46757890322371e360f474d5008bff9b910533fc0fe08baf7fa63019f0b"
+    },
+    {
+      "path": "docs/adr/0003-reference-runtime-and-evidence-separation.md",
+      "sha256": "88cbc004b32e9a505d590fbe5dd281135df7494123a443e26aa3560c3bd44c63"
+    },
+    {
+      "path": "docs/adr/0004-explicit-stage-output-gate.md",
+      "sha256": "b44064bfbbab903a0d07718a5160cda99f5bb20464e9cf3966085546d132b799"
+    },
+    {
+      "path": "docs/adr/README.md",
+      "sha256": "e1ba259dce83fe5a0f94ae14e0bed5da7651e326afcced201a0fc48bdfba49f7"
+    },
+    {
+      "path": "docs/agents/ACCEPTANCE_REVIEW.md",
+      "sha256": "11bbc5feef1017fb99a60ae1967d8c8e775ddf029d981b6af37bed22b75eee85"
+    },
+    {
+      "path": "docs/agents/CONTINUE.md",
+      "sha256": "3f1696c8410b3319a1914e63d468790c9d30d4391164b6c3e190e95313305003"
+    },
+    {
+      "path": "docs/agents/STATE_FORMAT.md",
+      "sha256": "fed6b73f6df2c4d7f914f8c8e58c33e8db5121735da9fbbe9f24d4837357687a"
+    },
+    {
+      "path": "docs/agents/WORKFLOW.md",
+      "sha256": "d479068971f902a13447abfc64d8def4c26e6be2d5baac605b440fd0b0afd3ba"
+    },
+    {
+      "path": "docs/research/README.md",
+      "sha256": "b7de46c12424b29d9b25947c4fb9dd2095e037eed5ed85755a184a55b77de0a6"
+    },
+    {
+      "path": "docs/research/USER_RESEARCH.txt",
+      "sha256": "a869daab3d3153c123a6165dfa16e00a7f64877858f8927604c6f66554a593dc"
+    },
+    {
+      "path": "docs/research/input-manifest.json",
+      "sha256": "246a51c6dd4f377d23ad8dae3c52b82502b772bc4c546125168d7e4e54d4ee8e"
+    },
+    {
+      "path": "docs/research/sources.json",
+      "sha256": "0e4d24fc97db4f40da2076f99f12ecc93209198c8cb1e39ab4421d7fd5a9214a"
+    },
+    {
+      "path": "docs/specs/ACCEPTANCE_METRICS.md",
+      "sha256": "76f9c20584ae94da42eb4212681651280a69c4d07837f4e100afca7883dfef9e"
+    },
+    {
+      "path": "docs/specs/CONTACT_REFERENCE.md",
+      "sha256": "f2e576ed41afd88f53588816190c420eb011254c19daa5928c146df4a5257c4c"
+    },
+    {
+      "path": "docs/specs/DATA_INGESTION.md",
+      "sha256": "3ece1a0bedc9c53aa7e962bf7c72e19fe1f2d2dfb2e74155d9cdcc6fc51c0aa1"
+    },
+    {
+      "path": "docs/specs/OPTIONAL_CIRCUITS_AND_ACOUSTICS.md",
+      "sha256": "bc4a22b44d2d6d1d3a13ac9fdb6bdeb4b8ed173f087b759f45ba348a4a145ef4"
+    },
+    {
+      "path": "docs/specs/README.md",
+      "sha256": "3b766565380ee8fbaaaeb664f87ca31d56db6a0a997b987e25c651e641748a7d"
+    },
+    {
+      "path": "docs/specs/REFERENCE_SOLVERS.md",
+      "sha256": "f3d0f84806d3f233d375743cef747a38e52d2e506c07f20534e3c494d5eb5ebb"
+    },
+    {
+      "path": "docs/specs/RUNTIME_AND_ASSETS.md",
+      "sha256": "341c0eef59939487fec152d9bd8745aa00b46e242c4a8d63c06aef8e46018152"
+    },
+    {
+      "path": "docs/specs/TRANSDUCTION_NETWORK.md",
+      "sha256": "63ea84d008ebc2f76c660cf9980a2afefda3c9d8c2aa5de2b791710fd2f8997f"
+    },
+    {
+      "path": "docs/validation/README.md",
+      "sha256": "8a6bad3eb3d5c41206c30a0f95ae07bb8337e7e0c1ce402bc7a3a4390f5f5e66"
+    },
+    {
+      "path": "include/rhodes/research_engine.hpp",
+      "sha256": "5978aab99a71565ab6f45b90addc51d69ad32d56cdc9e4bad22de7e8be70310a"
+    },
+    {
+      "path": "profiles/mark-i-stage-73/components.json",
+      "sha256": "28a22c7efc1799f237d635fdff87fd843b22cd9b6a5cc08f44010556b0ec95d4"
+    },
+    {
+      "path": "profiles/mark-i-stage-73/specimen.json",
+      "sha256": "a89cfac5704e566eb01283ae126b8b5a2929b552c6e24eb9daf0543033dd9217"
+    },
+    {
+      "path": "schemas/components.schema.json",
+      "sha256": "ec8c12cc08c5305fe7ee09b6867acc9cc4b795bcda34e4cf019c403a285709c0"
+    },
+    {
+      "path": "schemas/measurement-session.schema.json",
+      "sha256": "c716edf5f5e1eb01bc077393100e901489dfb7d423a9fa02d93664cc66a16c10"
+    },
+    {
+      "path": "schemas/project-state.schema.json",
+      "sha256": "eca082c843c8709ec70e5e3774c302e00e193689fa97a2a798132e50e1a601f8"
+    },
+    {
+      "path": "schemas/specimen.schema.json",
+      "sha256": "05aa8542d5f2cf77cc9c3213d1b95871678280aeef4337e9258391da4f2e335d"
+    },
+    {
+      "path": "src/research_engine.cpp",
+      "sha256": "dcbd1e83074242bf2717f8de6c43f1a86f651861e48bb7de0d97dc386baaed11"
+    },
+    {
+      "path": "tests/cpp/benchmark_json.cmake",
+      "sha256": "6bfadcd834b377cc887d08a6b3fb9bfbe85d51821d29aeaf6904215bcafb7cea"
+    },
+    {
+      "path": "tests/cpp/expect_cli_failure.cmake",
+      "sha256": "9cf60b2d1888b8aa9bd11d28d375a721b228ab0e82debbab46e53fbb35500ce4"
+    },
+    {
+      "path": "tests/cpp/render_output.cmake",
+      "sha256": "cb2804175b965c352a911e8cea6c8d0eac0e1e200370e6476b8f1aa78538f024"
+    },
+    {
+      "path": "tests/cpp/research_engine_test.cpp",
+      "sha256": "cb8c580baea9bd516b8686bffb7fe5b9285f56ce001035c2979374d8a10a1b16"
+    },
+    {
+      "path": "tests/cpp/review_regression.cpp",
+      "sha256": "48f9ff033a8f2bff7f0bfd69d86a23493c685e86afa0eca95a770f879cc23b51"
+    },
+    {
+      "path": "tests/python/test_campaign.py",
+      "sha256": "ec4f3b29a2137f9d6f3dc45d6c7546d762c44ad117f9388eb9bb260772fe8250"
+    },
+    {
+      "path": "tests/python/test_data.py",
+      "sha256": "43469232f5c28949bad0677f646e9acab325ef7566e0d782d93d7fdd2b60de18"
+    },
+    {
+      "path": "tests/python/test_docs.py",
+      "sha256": "9e5c0b55a9ca9d85a64718072692591d4acdafc6c175d1914b433c64293d9ace"
+    },
+    {
+      "path": "tests/python/test_evidence_binding.py",
+      "sha256": "cb396faab4504afcaec63d041222fe7eb6c92e0ea69c21307723cc1b974e94e0"
+    },
+    {
+      "path": "tests/python/test_metadata_boundaries.py",
+      "sha256": "9e682befcf5e650f073c68c6d35c99646c87cf3eb831f56aca70c003da03ddd3"
+    },
+    {
+      "path": "tests/python/test_payloads.py",
+      "sha256": "e1cd213e7461f77b974f13e2e5c86cf27aea5279d0f882a879c627c0e9606846"
+    },
+    {
+      "path": "tests/python/test_project.py",
+      "sha256": "b71b95da0531d388fc521e5090ce589b56e9bb29fdff134ec0c50ef311b7f3b8"
+    },
+    {
+      "path": "tests/python/test_revalidation.py",
+      "sha256": "9aab85dcc163f6140a918b6518739ec702bbc7aeebf1b7568cfd9a2c1b94d68c"
+    },
+    {
+      "path": "tests/python/test_schema_patterns.py",
+      "sha256": "059be3330b3e30121c2b16546124552d18297b9c0939c809fee3213efaaedc1d"
+    },
+    {
+      "path": "tests/python/test_state_review.py",
+      "sha256": "64be33a2874f966cf22b33fbb43dd32f567cb67d3866825ac6f9b5855f28f986"
+    },
+    {
+      "path": "tools/campaign.py",
+      "sha256": "a4e43f5badf005f4feb9df9cc70290d2bac2fd7f96144814d7586d8e33a741f5"
+    },
+    {
+      "path": "tools/check_docs.py",
+      "sha256": "2ad6a1677cfa9c682cc9b1b57da380308eaedfbaf6c258ee42010dfa9c19e4c0"
+    },
+    {
+      "path": "tools/project.py",
+      "sha256": "a2c55ccfaf1bbfab78fcafbc2ec0dcd17bc550f46c9b973022172856aa4a68a2"
+    },
+    {
+      "path": "tools/validate_data.py",
+      "sha256": "246f89257c3f201ba3b3d9cf0dce5962f46a56ffe4a2cf637d4a35440ed168f0"
+    },
+    {
+      "path": "tools/verify_payloads.py",
+      "sha256": "21a925cbfacd496c690b4ab1988e6cc07e84c17b31ce6ad42290df5f062ba6f1"
+    }
+  ]
+}

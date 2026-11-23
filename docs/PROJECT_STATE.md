@@ -6,18 +6,18 @@
 
 **Fidelity status:** `unvalidated`. Task completion is not a realism percentage.
 
-**State revision:** 9 · **Last state change:** 2026-11-23T12:54:32Z
+**State revision:** 12 · **Last state change:** 2026-11-23T13:00:31Z
 
-blocked: **2** | done: **0** | in_progress: **1** | todo: **10**
+blocked: **2** | done: **2** | in_progress: **0** | todo: **9**
 
 ## Task ledger
 
 | ID | Task | Status | Dependencies | Evidence |
 | --- | --- | --- | --- | --- |
-| FND-001 | Establish reproducible research and agent foundation | in_progress | — | — |
+| FND-001 | Establish reproducible research and agent foundation | done | — | FND-20261123-documentary, PHY-20261123-numerical |
 | SPEC-001 | Identify the reference Mark I Stage specimen | blocked | FND-001 | — |
 | DATA-001 | Acquire calibrated specimen data and held-out manifest | blocked | FND-001, SPEC-001 | — |
-| PHY-001 | Validate analytic mechanical and pickup primitives | todo | FND-001 | — |
+| PHY-001 | Validate analytic mechanical and pickup primitives | done | FND-001 | PHY-20261123-numerical |
 | PHY-002 | Implement finite-mass hammer and damper contact reference | todo | PHY-001 | — |
 | RT-001 | Measure runtime cost and numerical approximation errors | todo | PHY-001 | — |
 | MAG-001 | Identify magnetic linkage and reciprocal force reference | todo | SPEC-001, DATA-001 | — |
@@ -32,7 +32,8 @@ blocked: **2** | done: **0** | in_progress: **1** | todo: **10**
 
 Run `python3 tools/project.py next` for lease-aware available work. The list below includes claimed work and is deterministic:
 
-- **FND-001 — Establish reproducible research and agent foundation**. Claimed by `integration-root` until `2026-11-24T12:05:12Z`; check current lease before starting.
+- **PHY-002 — Implement finite-mass hammer and damper contact reference**.
+- **RT-001 — Measure runtime cost and numerical approximation errors**.
 
 ## Explicit blockers
 

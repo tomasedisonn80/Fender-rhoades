@@ -38,7 +38,7 @@ jobs:
       - name: Check documentation integrity
         run: python tools/check_docs.py
       - name: Validate actual-agent ledger
-        run: python tools/campaign.py validate
+        run: python tools/campaign.py validate --require-complete
       - name: Reject stale campaign index
         run: python tools/campaign.py sync --check
       - name: Check agent tooling

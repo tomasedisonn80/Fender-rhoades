@@ -251,3 +251,33 @@ and runtime-policy gates; host/device evidence remains later work. The contact
 contract now assigns the prerequisite fixture/tolerance freeze to the integrator.
 PHY-002 and RT-001 scopes include the headers, build targets and relevant guidance
 needed to implement their stated next steps without ambiguous write authority.
+
+## Final acceptance and campaign completion
+
+A099 independently cloned the published source commit
+`6cf5f3af25a6c989eb244db070681be069e7fd78`, configured a fresh generic Release
+build, and passed 25 CTest cases and 171 Python tests with zero skips. All
+repository integrity commands passed and its checkout stayed clean. A100 checked
+the actual logs, all seven foundation/primitive acceptance clauses, both definition
+digests, the complete 81-file frozen source manifest and campaign identity/hash
+consistency. Its review found no blocker within those software scopes.
+
+The integrator then recorded A100, verified **100/100 actual assignments complete**
+with `campaign.py validate --require-complete`, and made that strict check part
+of CI. Every completed assignment has its own unchanged, hashed report. The
+campaign records actual returned work; it is neither a worker launcher nor proof
+of physical accuracy.
+
+The immutable [foundation review](../validation/foundation-acceptance-2026-11-23.md)
+and [analytic review](../validation/analytic-primitives-2026-11-23.md) are registered
+as `FND-20261123-documentary` and `PHY-20261123-numerical`. FND-001 was completed
+first; PHY-001 was then claimed and completed with the reviewed numerical record.
+Canonical revision 12 now exposes PHY-002 and RT-001 as independent next work.
+SPEC-001 and DATA-001 remain blocked, and fidelity remains `unvalidated`.
+
+The final packaging changes after the frozen source are reports, campaign/evidence
+records, generated state, milestone transitions and CI's stricter campaign
+invocation. Implementation, tests, tools, schemas and the other 80 manifest files
+retain their tested bytes. Local leak detection was disabled; no complete current
+hosted-platform result, physical measurement, runtime deadline or product-release
+claim follows from this setup.

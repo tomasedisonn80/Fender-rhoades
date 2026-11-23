@@ -1,4 +1,83 @@
 {
   "schema_version": 1,
-  "records": []
+  "records": [
+    {
+      "id": "FND-20261123-documentary",
+      "kind": "documentary",
+      "result": "pass",
+      "summary": "Criterion-bound FND-001 review of build/configuration, tested agent workflow and honest research/provenance scope; A100 independently audited the definitions and source bindings.",
+      "command": "python tools/project.py validate\npython tools/project.py sync --check\npython tools/validate_data.py\npython tools/check_docs.py\npython tools/campaign.py validate\npython tools/campaign.py sync --check",
+      "created_at": "2026-11-23T13:00:31Z",
+      "source_commit": "6cf5f3af25a6c989eb244db070681be069e7fd78",
+      "artifacts": [
+        {
+          "path": "docs/validation/foundation-acceptance-2026-11-23.md",
+          "sha256": "ab105f3e2e87aa6da9c1323cad13c0792c4dd517a9b44fa2ff5cb651dde949a5"
+        },
+        {
+          "path": "docs/validation/foundation-source-manifest-2026-11-23.json",
+          "sha256": "2fa63bd195a739e92b3f5ea7b18c3b2595716c1b9285159f48a156d6fdfb07e2"
+        },
+        {
+          "path": "docs/agents/reviews/A099.md",
+          "sha256": "8132a379cedf607aef8f7d258f404e35f27ec63a40c5c3e356cb039e3334c410"
+        },
+        {
+          "path": "docs/agents/reviews/A100.md",
+          "sha256": "4a076eb2609d1ca809ea84de4483f2d9e8123364117d357b1fd7381ea5d88bce"
+        }
+      ],
+      "specimen_id": null,
+      "profile_path": null,
+      "session_paths": [],
+      "independent": false,
+      "reference_evidence": [],
+      "limitations": [
+        "Software/documentary foundation only; specimen identity, calibrated measurements and owner-selected software license remain unavailable.",
+        "Metadata and hashes establish declared consistency, not experiment authenticity; cooperative coordination and trusted directories are assumed.",
+        "Hosted results in the report are explicitly tied to the earlier commit; no complete current three-platform CI result is claimed."
+      ]
+    },
+    {
+      "id": "PHY-20261123-numerical",
+      "kind": "numerical",
+      "result": "pass",
+      "summary": "All four PHY-001 analytic criteria mapped to independent scalar, state-continuity, combined-pickup, passive-network and invalid-input checks. Frozen clean clone passed 25 CTest and 171 Python tests; local sanitizer passed 25. Also supports FND-001 software verification.",
+      "command": "cmake -S . -B build -DCMAKE_BUILD_TYPE=Release\ncmake --build build --config Release --parallel 2\nctest --test-dir build -C Release --output-on-failure --no-tests=error\npython3 -m unittest discover -s tests/python -v\ncmake --preset sanitize\ncmake --build --preset sanitize --parallel 2\nASAN_OPTIONS=detect_leaks=0 ctest --preset sanitize --output-on-failure",
+      "created_at": "2026-11-23T13:00:31Z",
+      "source_commit": "6cf5f3af25a6c989eb244db070681be069e7fd78",
+      "artifacts": [
+        {
+          "path": "docs/validation/analytic-primitives-2026-11-23.md",
+          "sha256": "d2d646938889f1ad58fffda0c8d9628581e8e17a2c4fa1bf4799bd020c065545"
+        },
+        {
+          "path": "docs/validation/foundation-source-manifest-2026-11-23.json",
+          "sha256": "2fa63bd195a739e92b3f5ea7b18c3b2595716c1b9285159f48a156d6fdfb07e2"
+        },
+        {
+          "path": "docs/agents/reviews/A006.md",
+          "sha256": "bb29204fbce7598f4619bbc8bcad26e021b52e08f6cae12c3a64d769a1836be5"
+        },
+        {
+          "path": "docs/agents/reviews/A081.md",
+          "sha256": "a3d064b5936dd989989b51d5b2d8bc1c1997f0fa635309b27c07c32a8f18df9b"
+        },
+        {
+          "path": "docs/agents/reviews/A099.md",
+          "sha256": "8132a379cedf607aef8f7d258f404e35f27ec63a40c5c3e356cb039e3334c410"
+        }
+      ],
+      "specimen_id": null,
+      "profile_path": null,
+      "session_paths": [],
+      "independent": false,
+      "reference_evidence": [],
+      "limitations": [
+        "Synthetic linear modes, impulse/switched-loss controls, polynomial linkage and resistive topology; no measured Rhodes fidelity.",
+        "Local LeakSanitizer disabled; native current Windows/macOS execution and minimum CMake version not established by local tests.",
+        "Finite contact, magnetic reaction, reactive circuits, induced arithmetic-fault recovery, antialiasing convergence and runtime deadlines remain outside this acceptance."
+      ]
+    }
+  ]
 }

@@ -786,6 +786,22 @@
       "report": "docs/agents/reviews/A098.md",
       "report_sha256": "c04f48008ae9db8f9940b89aa0896b21036bc9c83c1379a893f2253ee08b6346",
       "scope": "Audit actionable PHY-002 and RT-001 continuation and role-safe handoff"
+    },
+    {
+      "id": "A099",
+      "task_name": "/root/a099_clean_checkout",
+      "status": "completed",
+      "report": "docs/agents/reviews/A099.md",
+      "report_sha256": "8132a379cedf607aef8f7d258f404e35f27ec63a40c5c3e356cb039e3334c410",
+      "scope": "Verify the frozen remote source in a fresh checkout with complete Release and metadata suites"
+    },
+    {
+      "id": "A100",
+      "task_name": "/root/a100_final_acceptance",
+      "status": "completed",
+      "report": "docs/agents/reviews/A100.md",
+      "report_sha256": "4a076eb2609d1ca809ea84de4483f2d9e8123364117d357b1fd7381ea5d88bce",
+      "scope": "Independently audit final foundation and analytic acceptance, evidence scope and actual-agent integrity"
     }
   ]
 }

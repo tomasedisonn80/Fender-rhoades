@@ -4,14 +4,14 @@
   "goal": "Physically model a Fender Rhodes Mark I from evolving mechanical, electromagnetic and circuit states without recorded-note playback.",
   "target": "One documented 73-key Mark I Stage specimen at its specified loaded electrical output; identity and measurements pending.",
   "fidelity_status": "unvalidated",
-  "revision": 9,
-  "updated_at": "2026-11-23T12:54:32Z",
+  "revision": 12,
+  "updated_at": "2026-11-23T13:00:31Z",
   "tasks": [
     {
       "id": "FND-001",
       "title": "Establish reproducible research and agent foundation",
       "milestone": "Foundation",
-      "status": "in_progress",
+      "status": "done",
       "priority": 0,
       "dependencies": [],
       "acceptance": [
@@ -23,14 +23,12 @@
         "documentary",
         "numerical"
       ],
-      "evidence": [],
+      "evidence": [
+        "FND-20261123-documentary",
+        "PHY-20261123-numerical"
+      ],
       "owner": "integration-root",
-      "claim": {
-        "owner": "integration-root",
-        "token": "dcf6ec191f307578350acbbcb6b1c5a3",
-        "claimed_at": "2026-11-23T12:05:12Z",
-        "expires_at": "2026-11-24T12:05:12Z"
-      },
+      "claim": null,
       "blockers": [],
       "paths": [
         "tools",
@@ -122,7 +120,7 @@
       "id": "PHY-001",
       "title": "Validate analytic mechanical and pickup primitives",
       "milestone": "Research kernel",
-      "status": "todo",
+      "status": "done",
       "priority": 30,
       "dependencies": [
         "FND-001"
@@ -136,8 +134,10 @@
       "required_evidence": [
         "numerical"
       ],
-      "evidence": [],
-      "owner": null,
+      "evidence": [
+        "PHY-20261123-numerical"
+      ],
+      "owner": "integration-root",
       "claim": null,
       "blockers": [],
       "paths": [
@@ -489,6 +489,30 @@
       "task": "RT-001",
       "owner": "integration-root",
       "detail": "A098 next-task audit: include public API, reference/benchmark harness build targets and guidance in implementation scope; preserve all numerical/performance acceptance gates."
+    },
+    {
+      "revision": 10,
+      "at": "2026-11-23T13:00:31Z",
+      "action": "complete",
+      "task": "FND-001",
+      "owner": "integration-root",
+      "detail": "Evidence: FND-20261123-documentary, PHY-20261123-numerical"
+    },
+    {
+      "revision": 11,
+      "at": "2026-11-23T13:00:31Z",
+      "action": "claim",
+      "task": "PHY-001",
+      "owner": "integration-root",
+      "detail": "Lease until 2026-11-23T15:00:31Z"
+    },
+    {
+      "revision": 12,
+      "at": "2026-11-23T13:00:31Z",
+      "action": "complete",
+      "task": "PHY-001",
+      "owner": "integration-root",
+      "detail": "Evidence: PHY-20261123-numerical"
     }
   ]
 }
