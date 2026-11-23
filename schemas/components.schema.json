@@ -1,0 +1,264 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Physical mechanism inventory, version 1",
+  "$comment": "This is not a circuit netlist/BOM schema. tools/validate_data.py additionally checks unique component IDs, existing source/task/profile references, identified specimen for measured/fitted values, same-specimen fit-split measurement references, and one inventory per profile. Uncertainty uses the stated scalar unit. mixed_SI is allowed only for null-valued mechanism placeholders.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "profile_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+    },
+    "inventory_kind": {
+      "const": "mechanism_requirements_not_bom"
+    },
+    "components": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+          },
+          "domain": {
+            "enum": [
+              "mechanical",
+              "magnetic",
+              "electrical"
+            ]
+          },
+          "mechanism": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "unit": {
+            "enum": [
+              "1",
+              "kg",
+              "m",
+              "m/s",
+              "m/s^2",
+              "s",
+              "Hz",
+              "s^-1",
+              "N",
+              "N/m",
+              "N*s/m",
+              "V",
+              "A",
+              "ohm",
+              "F",
+              "H",
+              "Wb_turn",
+              "Pa",
+              "J",
+              "K",
+              "mixed_SI"
+            ]
+          },
+          "value": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "provenance": {
+            "enum": [
+              "unknown",
+              "documentary",
+              "assumed",
+              "synthetic",
+              "measured",
+              "fitted"
+            ]
+          },
+          "source_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "uniqueItems": true
+          },
+          "measurement_ids": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+            },
+            "uniqueItems": true
+          },
+          "uncertainty": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 0
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "implementation_status": {
+            "enum": [
+              "planned",
+              "research_primitive",
+              "reference_implemented",
+              "runtime_implemented"
+            ]
+          },
+          "task_id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+          }
+        },
+        "required": [
+          "id",
+          "domain",
+          "mechanism",
+          "unit",
+          "value",
+          "provenance",
+          "source_ids",
+          "measurement_ids",
+          "uncertainty",
+          "implementation_status",
+          "task_id"
+        ],
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "provenance": {
+                  "const": "unknown"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "value": {
+                  "type": "null"
+                },
+                "uncertainty": {
+                  "type": "null"
+                },
+                "measurement_ids": {
+                  "maxItems": 0
+                }
+              }
+            },
+            "else": {
+              "properties": {
+                "value": {
+                  "type": "number"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "unit": {
+                  "const": "mixed_SI"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "value": {
+                  "type": "null"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "uncertainty": {
+                  "type": "number"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "value": {
+                  "type": "number"
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "provenance": {
+                  "const": "documentary"
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "source_ids": {
+                  "minItems": 1
+                }
+              }
+            }
+          },
+          {
+            "if": {
+              "properties": {
+                "provenance": {
+                  "enum": [
+                    "measured",
+                    "fitted"
+                  ]
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "measurement_ids": {
+                  "minItems": 1
+                },
+                "uncertainty": {
+                  "type": "number",
+                  "minimum": 0
+                }
+              }
+            },
+            "else": {
+              "properties": {
+                "measurement_ids": {
+                  "maxItems": 0
+                }
+              }
+            }
+          }
+        ]
+      },
+      "minItems": 1
+    },
+    "notes": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    }
+  },
+  "required": [
+    "schema_version",
+    "profile_id",
+    "inventory_kind",
+    "components",
+    "notes"
+  ]
+}

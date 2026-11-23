@@ -1,0 +1,158 @@
+{
+  "schema_version": 1,
+  "review_date": "2026-11-23",
+  "sources": [
+    {
+      "id": "SRC-001",
+      "title": "1979 Rhodes Service Manual",
+      "url": "https://www.fenderrhodes.com/service/manual.html",
+      "status": "reviewed",
+      "notes": "Revision-specific action, regulation, and circuit source; reconcile with actual specimen.",
+      "redistribution": "link_only"
+    },
+    {
+      "id": "SRC-002",
+      "title": "Pickup Maintenance and Replacement",
+      "url": "https://www.fenderrhodes.com/service/pickups.html",
+      "status": "reviewed",
+      "notes": "Firsthand service account: later 73-key grouping 4 then groups of 3; confirm actual wiring. DC resistance alone does not identify impedance.",
+      "redistribution": "link_only"
+    },
+    {
+      "id": "SRC-003",
+      "title": "Simulation of the Fender Rhodes — Falaize",
+      "url": "https://afalaize.github.io/posts/rhodes/",
+      "status": "reviewed",
+      "notes": "Author-described coupled hammer/beam/pickup research and links. No implementation copied.",
+      "redistribution": "link_only"
+    },
+    {
+      "id": "SRC-004",
+      "title": "Real-time Physical Model of a Wurlitzer and Rhodes Electric Piano — Pfeifle, DAFx 2017",
+      "url": "https://www.dafx.de/paper-archive/2017/papers/DAFx17_paper_79.pdf",
+      "status": "reviewed",
+      "notes": "Physical-model feasibility; not a benchmark for this repository.",
+      "redistribution": "link_only"
+    },
+    {
+      "id": "SRC-005",
+      "title": "Rhodes attack-mode study record",
+      "url": "https://iris.univpm.it/handle/11566/286030",
+      "status": "supplied_unreviewed",
+      "notes": "Source listed in user research; verify full publication before deriving parameters.",
+      "redistribution": "link_only"
+    },
+    {
+      "id": "SRC-006",
+      "title": "Electromagnetic pickup study, Compumag 2019",
+      "url": "https://www.compumag.org/Proceedings/2019_Paris/files/papers/PC-A4-9.pdf",
+      "status": "supplied_unreviewed",
+      "notes": "Source listed in user research; verify geometry and conventions before use.",
+      "redistribution": "link_only"
+    },
+    {
+      "id": "SRC-007",
+      "title": "MIT Electromagnetic Fields and Energy, section 11.7",
+      "url": "https://web.mit.edu/6.013_book/www/chapter11/11.7.html",
+      "status": "supplied_unreviewed",
+      "notes": "Source listed in user research for energy/co-energy; not a Rhodes calibration.",
+      "redistribution": "link_only"
+    },
+    {
+      "id": "SRC-008",
+      "title": "Rhodes amplifier differences",
+      "url": "https://www.fenderrhodes.com/service/amp-diffs.html",
+      "status": "supplied_unreviewed",
+      "notes": "Revision-family separation; board identity must be established.",
+      "redistribution": "link_only"
+    },
+    {
+      "id": "SRC-009",
+      "title": "ngspice documentation",
+      "url": "https://ngspice.sourceforge.io/docs.html",
+      "status": "supplied_unreviewed",
+      "notes": "Device-law reference, not historical parameter identification.",
+      "redistribution": "link_only"
+    },
+    {
+      "id": "SRC-010",
+      "title": "Janus I / 100 W Suitcase PCB inventory",
+      "url": "https://www.fenderrhodes.com/org/manual/fig11-2.html",
+      "status": "supplied_unreviewed",
+      "notes": "Future circuit-family reference; outside first Stage milestone.",
+      "redistribution": "link_only"
+    },
+    {
+      "id": "SRC-011",
+      "title": "Rhodes common amplifier failures",
+      "url": "https://www.fenderrhodes.com/service/amp-failures.html",
+      "status": "supplied_unreviewed",
+      "notes": "Future historical service reference.",
+      "redistribution": "link_only"
+    },
+    {
+      "id": "SRC-012",
+      "title": "Photoconductive detector documentation",
+      "url": "https://www.htds.fr/wp-content/uploads/2019/04/Optoelectronique_detecteurs_photoresistances-2.pdf",
+      "status": "supplied_unreviewed",
+      "notes": "Optical dynamics reference; no identification of a particular Rhodes device.",
+      "redistribution": "link_only"
+    },
+    {
+      "id": "SRC-013",
+      "title": "RC4558 product and model resources",
+      "url": "https://www.ti.com/product/RC4558",
+      "status": "supplied_unreviewed",
+      "notes": "Future device model reference; exact historical die not established.",
+      "redistribution": "link_only"
+    },
+    {
+      "id": "SRC-014",
+      "title": "Wave digital filter research",
+      "url": "https://pureadmin.qub.ac.uk/ws/portalfiles/portal/150619192/FINAL_VERSION.pdf",
+      "status": "supplied_unreviewed",
+      "notes": "Numerical method lead from user research.",
+      "redistribution": "link_only"
+    },
+    {
+      "id": "SRC-015",
+      "title": "Antiderivative antialiasing for memoryless nonlinearities",
+      "url": "https://www.research.ed.ac.uk/en/publications/antiderivative-antialiasing-for-memoryless-nonlinearities/",
+      "status": "supplied_unreviewed",
+      "notes": "Limited to appropriate model class; not a general coupled-system solution.",
+      "redistribution": "link_only"
+    },
+    {
+      "id": "SRC-016",
+      "title": "Klippel simulation and auralisation documentation",
+      "url": "https://docs.klippel.de/db-lab/latest/simulation-auralisation/sim2/sim2.html",
+      "status": "supplied_unreviewed",
+      "notes": "Optional future acoustic boundary.",
+      "redistribution": "link_only"
+    },
+    {
+      "id": "SRC-017",
+      "title": "ITU-R BS.1116",
+      "url": "https://www.itu.int/rec/R-REC-BS.1116/",
+      "status": "supplied_unreviewed",
+      "notes": "Listening methodology reference; version and design to be selected before study.",
+      "redistribution": "link_only"
+    },
+    {
+      "id": "SRC-018",
+      "title": "Public Rhodes model implementation lead",
+      "url": "https://github.com/jstolberg/rhodes",
+      "status": "supplied_unreviewed",
+      "notes": "Research lead only. Reuse license not established; no source copied.",
+      "redistribution": "link_only"
+    },
+    {
+      "id": "SRC-019",
+      "title": "1979 manual chapter 6, key numbering",
+      "url": "https://www.fenderrhodes.com/service-manuals/1979/ch6.html",
+      "status": "reviewed",
+      "notes": "Manual key numbers 8 through 80 for 73-key instrument map to MIDI 28 through 100 under A0=MIDI21 convention; do not confuse stamped tonebar number with octave.",
+      "redistribution": "link_only"
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "profile_id": "mark-i-stage-73-unidentified",
+  "kind": "specimen",
+  "identity_status": "unidentified",
+  "model_family": "mark_i_stage_73",
+  "serial_number": null,
+  "production_date": null,
+  "action_revision": null,
+  "tine_revision": null,
+  "pickup_revision": null,
+  "wiring_verified": false,
+  "output_boundary": "loaded_harp",
+  "key_count": 73,
+  "midi_low": 28,
+  "midi_high": 100,
+  "key_mapping_source": "SRC-019",
+  "reference_pitch_hz": 440.0,
+  "reference_pitch_status": "assumed",
+  "instrument_evidence": [],
+  "load": {
+    "resistance_ohm": null,
+    "capacitance_farad": null
+  },
+  "notes": "Target placeholder. No physical specimen, measured values, or verified circuit revision. MIDI mapping follows standard pitch convention and the manual numbering; reference pitch is a development assumption."
+}

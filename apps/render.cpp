@@ -1,0 +1,178 @@
+#include "rhodes/research_engine.hpp"
+
+#include <algorithm>
+#include <array>
+#include <bit>
+#include <charconv>
+#include <cmath>
+#include <cstdint>
+#include <filesystem>
+#include <fstream>
+#include <iostream>
+#include <limits>
+#include <span>
+#include <stdexcept>
+#include <string>
+#include <string_view>
+
+namespace {
+struct Options {
+    std::filesystem::path output = "research-note.wav";
+    double seconds = 3.0;
+    std::uint32_t sample_rate = 48000;
+    std::size_t key = 40;
+    double velocity = 0.7;
+    double gain = 8.0;
+    bool force = false;
+};
+
+void usage() {
+    std::cout <<
+        "rhodes_render: synthetic physical-model research fixture, not a validated Rhodes\n"
+        "Usage: rhodes_render [--output PATH] [--seconds 0.01..60]\n"
+        "                     [--sample-rate 32000..192000] [--key 0..72]\n"
+        "                     [--velocity 0..1] [--gain 0..100] [--force]\n"
+        "Writes mono 32-bit IEEE-float WAV. Key 0 maps to synthetic MIDI 28.\n"
+        "The note releases after min(1 second, 65% of duration).\n"
+        "One output unit represents one modeled volt times the explicit monitoring gain.\n"
+        "No normalization, clipping, measured parameters, or recorded samples are used.\n";
+}
+
+template<typename T>
+T number(std::string_view text, std::string_view flag) {
+    T result{};
+    const auto parsed = std::from_chars(text.data(), text.data() + text.size(), result);
+    if (parsed.ec != std::errc{} || parsed.ptr != text.data() + text.size()) {
+        throw std::runtime_error("Invalid value for " + std::string(flag));
+    }
+    return result;
+}
+
+void u16(std::ostream& output, std::uint16_t value) {
+    const std::array<char, 2> bytes{static_cast<char>(value & 0xffU),
+                                  static_cast<char>((value >> 8U) & 0xffU)};
+    output.write(bytes.data(), static_cast<std::streamsize>(bytes.size()));
+}
+
+void u32(std::ostream& output, std::uint32_t value) {
+    const std::array<char, 4> bytes{
+        static_cast<char>(value & 0xffU), static_cast<char>((value >> 8U) & 0xffU),
+        static_cast<char>((value >> 16U) & 0xffU), static_cast<char>((value >> 24U) & 0xffU)};
+    output.write(bytes.data(), static_cast<std::streamsize>(bytes.size()));
+}
+
+void header(std::ostream& output, std::uint32_t rate, std::uint32_t samples) {
+    output.write("RIFF", 4);
+    u32(output, 50U + samples * 4U);
+    output.write("WAVEfmt ", 8);
+    u32(output, 18U); // WAVEFORMATEX, including cbSize = 0.
+    u16(output, 3U);  // WAVE_FORMAT_IEEE_FLOAT.
+    u16(output, 1U);
+    u32(output, rate);
+    u32(output, rate * 4U);
+    u16(output, 4U);
+    u16(output, 32U);
+    u16(output, 0U);
+    output.write("fact", 4);
+    u32(output, 4U);
+    u32(output, samples);
+    output.write("data", 4);
+    u32(output, samples * 4U);
+}
+}
+
+int main(int argc, char** argv) {
+    static_assert(sizeof(float) == 4 && std::numeric_limits<float>::is_iec559,
+                  "WAV renderer requires IEEE-754 binary32 floats");
+    try {
+        Options options;
+        for (int i = 1; i < argc; ++i) {
+            const std::string_view flag{argv[i]};
+            if (flag == "--help") {
+                usage();
+                return 0;
+            }
+            if (flag == "--force") {
+                options.force = true;
+                continue;
+            }
+            if (flag != "--output" && flag != "--seconds" && flag != "--sample-rate" &&
+                flag != "--key" && flag != "--velocity" && flag != "--gain") {
+                throw std::runtime_error("Unknown option: " + std::string(flag));
+            }
+            if (++i >= argc) {
+                throw std::runtime_error("Missing value for " + std::string(flag));
+            }
+            const std::string_view value{argv[i]};
+            if (flag == "--output") { options.output = std::filesystem::path{value}; }
+            else if (flag == "--seconds") { options.seconds = number<double>(value, flag); }
+            else if (flag == "--sample-rate") { options.sample_rate = number<std::uint32_t>(value, flag); }
+            else if (flag == "--key") { options.key = number<std::size_t>(value, flag); }
+            else if (flag == "--velocity") { options.velocity = number<double>(value, flag); }
+            else if (flag == "--gain") { options.gain = number<double>(value, flag); }
+        }
+        if (!std::isfinite(options.seconds) || options.seconds < 0.01 || options.seconds > 60.0 ||
+            options.sample_rate < rhodes::minimum_sample_rate_hz ||
+            options.sample_rate > rhodes::maximum_sample_rate_hz ||
+            options.key >= rhodes::key_count || !std::isfinite(options.velocity) ||
+            options.velocity < 0.0 || options.velocity > 1.0 ||
+            !std::isfinite(options.gain) || options.gain < 0.0 || options.gain > 100.0 ||
+            options.output.empty()) {
+            throw std::runtime_error("Arguments are outside the documented ranges; see --help");
+        }
+        if (!options.force && std::filesystem::exists(options.output)) {
+            throw std::runtime_error("Output already exists; choose another path or pass --force");
+        }
+        rhodes::ResearchEngine engine;
+        if (!engine.prepare(static_cast<double>(options.sample_rate)) ||
+            !engine.note_on(options.key, options.velocity)) {
+            throw std::runtime_error("Research engine rejected the requested configuration");
+        }
+        const auto frames = static_cast<std::uint32_t>(
+            std::llround(options.seconds * static_cast<double>(options.sample_rate)));
+        const auto release_frame = static_cast<std::uint32_t>(
+            std::llround(std::min(1.0, options.seconds * 0.65) *
+                         static_cast<double>(options.sample_rate)));
+        std::ofstream output(options.output, std::ios::binary | std::ios::trunc);
+        if (!output) {
+            throw std::runtime_error("Unable to open output file");
+        }
+        header(output, options.sample_rate, frames);
+        double peak = 0.0;
+        std::array<double, 256> block{};
+        std::uint32_t written = 0;
+        while (written < frames) {
+            if (written == release_frame && !engine.note_off(options.key)) {
+                throw std::runtime_error("Note release failed");
+            }
+            auto count = std::min(static_cast<std::uint32_t>(block.size()), frames - written);
+            if (written < release_frame) {
+                count = std::min(count, release_frame - written);
+            }
+            if (!engine.process(std::span<double>{block.data(), count})) {
+                throw std::runtime_error("Numerical failure in the research engine");
+            }
+            for (std::size_t j = 0; j < count; ++j) {
+                const double value = block[j] * options.gain;
+                if (!std::isfinite(value) || std::abs(value) > std::numeric_limits<float>::max()) {
+                    throw std::runtime_error("Output exceeds the float-WAV numerical range");
+                }
+                peak = std::max(peak, std::abs(value));
+                u32(output, std::bit_cast<std::uint32_t>(static_cast<float>(value)));
+            }
+            written += count;
+        }
+        output.flush();
+        if (!output) {
+            throw std::runtime_error("Output write failed (file may be incomplete)");
+        }
+        std::cout << "Wrote " << options.output.string() << ": " << frames
+                  << " frames at " << options.sample_rate << " Hz, peak=" << peak
+                  << ", explicit monitoring gain=" << options.gain
+                  << ". Synthetic parameters; no hardware fidelity result.\n";
+        return 0;
+    } catch (const std::exception& error) {
+        std::cerr << "rhodes_render: " << error.what() << '\n';
+        return 2;
+    }
+}

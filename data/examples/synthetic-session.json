@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "session_id": "synthetic-contract-example-v1",
+  "kind": "synthetic",
+  "specimen_profile": "mark-i-stage-73-unidentified",
+  "output_boundary": "loaded_harp",
+  "split": "development",
+  "condition_id": "synthetic-impulse-440hz",
+  "acquired_at": null,
+  "operator": null,
+  "temperature_celsius": null,
+  "sample_rate_hz": 48000,
+  "channels": [
+    {
+      "name": "pickup_voltage",
+      "unit": "V",
+      "calibration_id": null
+    }
+  ],
+  "excitation": {
+    "type": "synthetic_impulse",
+    "key_midi": 69,
+    "hammer_velocity_m_per_s": null
+  },
+  "load": {
+    "resistance_ohm": 1000000,
+    "capacitance_farad": 0
+  },
+  "pickup_geometry_m": null,
+  "calibration": [],
+  "artifacts": [],
+  "rights": {
+    "status": "synthetic_original",
+    "permission_reference": null
+  },
+  "notes": "Metadata-only fixture with assumed load. No acquired audio, no actual instrument, no calibration. Cannot support a measured fidelity claim."
+}

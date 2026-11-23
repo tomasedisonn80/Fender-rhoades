@@ -1,0 +1,27 @@
+name: Reproducible defect
+description: Report a software, numerical, or physical-model discrepancy
+title: "[Bug]: "
+body:
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Expected and observed behavior
+      description: Distinguish a software failure from a mismatch with measured hardware.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: Include commit, OS, compiler, sample rate, block size, profile, and exact commands.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence and provenance
+      description: Link permitted evidence; include units, load, instrument revision, and uncertainty when relevant.
+  - type: textarea
+    id: scope
+    attributes:
+      label: Related task and suspected scope

@@ -1,0 +1,262 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Mark I Stage 73 specimen metadata, version 1",
+  "$comment": "Static shape only. tools/validate_data.py additionally checks source references, canonical integer syntax, finite numbers and repository cross-references. Identified means required metadata is present, not that this schema proves authenticity.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "profile_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+    },
+    "kind": {
+      "const": "specimen"
+    },
+    "identity_status": {
+      "enum": [
+        "unidentified",
+        "identified"
+      ]
+    },
+    "model_family": {
+      "const": "mark_i_stage_73"
+    },
+    "serial_number": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "production_date": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "action_revision": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "tine_revision": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "pickup_revision": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "wiring_verified": {
+      "type": "boolean"
+    },
+    "output_boundary": {
+      "enum": [
+        "loaded_harp",
+        "stage_jack"
+      ]
+    },
+    "key_count": {
+      "type": "integer",
+      "const": 73
+    },
+    "midi_low": {
+      "type": "integer",
+      "const": 28
+    },
+    "midi_high": {
+      "type": "integer",
+      "const": 100
+    },
+    "key_mapping_source": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+    },
+    "reference_pitch_hz": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "reference_pitch_status": {
+      "enum": [
+        "assumed",
+        "measured"
+      ]
+    },
+    "instrument_evidence": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "pattern": "\\S"
+      },
+      "uniqueItems": true
+    },
+    "load": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "resistance_ohm": {
+          "anyOf": [
+            {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "capacitance_farad": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "resistance_ohm",
+        "capacitance_farad"
+      ]
+    },
+    "notes": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    }
+  },
+  "required": [
+    "schema_version",
+    "profile_id",
+    "kind",
+    "identity_status",
+    "model_family",
+    "serial_number",
+    "production_date",
+    "action_revision",
+    "tine_revision",
+    "pickup_revision",
+    "wiring_verified",
+    "output_boundary",
+    "key_count",
+    "midi_low",
+    "midi_high",
+    "key_mapping_source",
+    "reference_pitch_hz",
+    "reference_pitch_status",
+    "instrument_evidence",
+    "load",
+    "notes"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "identity_status": {
+            "const": "identified"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "serial_number": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "action_revision": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "tine_revision": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "pickup_revision": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "wiring_verified": {
+            "const": true
+          },
+          "instrument_evidence": {
+            "minItems": 1
+          },
+          "load": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "resistance_ohm": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "capacitance_farad": {
+                "type": "number",
+                "minimum": 0
+              }
+            },
+            "required": [
+              "resistance_ohm",
+              "capacitance_farad"
+            ]
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "wiring_verified": {
+            "const": false
+          },
+          "reference_pitch_status": {
+            "const": "assumed"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+cmake_minimum_required(VERSION 3.24)
+project(RhodesResearch VERSION 0.1.0 LANGUAGES CXX)
+
+include(CTest)
+option(RHODES_WARNINGS_AS_ERRORS "Treat project compiler warnings as errors" ON)
+option(RHODES_ENABLE_SANITIZERS "Enable address and undefined-behavior sanitizers" OFF)
+
+add_library(rhodes_core src/research_engine.cpp)
+target_include_directories(rhodes_core PUBLIC
+    $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>)
+target_compile_features(rhodes_core PUBLIC cxx_std_20)
+set_target_properties(rhodes_core PROPERTIES CXX_EXTENSIONS OFF)
+
+function(rhodes_target_options target)
+    if(MSVC)
+        target_compile_options(${target} PRIVATE /W4 /permissive- /fp:precise)
+        if(RHODES_WARNINGS_AS_ERRORS)
+            target_compile_options(${target} PRIVATE /WX)
+        endif()
+    else()
+        target_compile_options(${target} PRIVATE -Wall -Wextra -Wpedantic -Wconversion -Wshadow)
+        if(RHODES_WARNINGS_AS_ERRORS)
+            target_compile_options(${target} PRIVATE -Werror)
+        endif()
+        if(RHODES_ENABLE_SANITIZERS)
+            target_compile_options(${target} PRIVATE -fsanitize=address,undefined -fno-omit-frame-pointer)
+            target_link_options(${target} PRIVATE -fsanitize=address,undefined)
+        endif()
+    endif()
+endfunction()
+rhodes_target_options(rhodes_core)
+
+add_executable(rhodes_render apps/render.cpp)
+target_link_libraries(rhodes_render PRIVATE rhodes_core)
+rhodes_target_options(rhodes_render)
+
+if(BUILD_TESTING)
+    add_executable(rhodes_tests tests/cpp/research_engine_test.cpp)
+    target_link_libraries(rhodes_tests PRIVATE rhodes_core)
+    rhodes_target_options(rhodes_tests)
+    foreach(test_name IN ITEMS exact_solution energy_loss energy_conservation
+            retrigger pickup_derivative pickup_intermodulation network_loading
+            invalid_input silence block_partition pedal_release supported_rates)
+        add_test(NAME core.${test_name} COMMAND rhodes_tests ${test_name})
+    endforeach()
+    add_executable(rhodes_review_tests tests/cpp/review_regression.cpp)
+    target_link_libraries(rhodes_review_tests PRIVATE rhodes_core)
+    rhodes_target_options(rhodes_review_tests)
+    foreach(test_name IN ITEMS modal_boundaries rejected_updates engine_controls
+            network_extreme_divider)
+        add_test(NAME review.${test_name} COMMAND rhodes_review_tests ${test_name})
+    endforeach()
+    add_test(NAME cli.help COMMAND rhodes_render --help)
+    add_test(NAME cli.render COMMAND rhodes_render --output ${CMAKE_CURRENT_BINARY_DIR}/smoke.wav
+        --seconds 0.05 --sample-rate 48000 --force)
+    add_test(NAME cli.reject_nan COMMAND ${CMAKE_COMMAND}
+        -DPROGRAM=$<TARGET_FILE:rhodes_render> -DARG1=--seconds -DARG2=nan
+        -P ${CMAKE_CURRENT_SOURCE_DIR}/tests/cpp/expect_cli_failure.cmake)
+    add_test(NAME cli.reject_unknown COMMAND ${CMAKE_COMMAND}
+        -DPROGRAM=$<TARGET_FILE:rhodes_render> -DARG1=--unknown
+        -P ${CMAKE_CURRENT_SOURCE_DIR}/tests/cpp/expect_cli_failure.cmake)
+endif()

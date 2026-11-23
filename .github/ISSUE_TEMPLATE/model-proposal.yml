@@ -1,0 +1,27 @@
+name: Physical model proposal
+description: Propose a measurable improvement to a specific component or interaction
+title: "[Model]: "
+body:
+  - type: textarea
+    id: target
+    attributes:
+      label: Component, interaction, and output boundary
+    validations:
+      required: true
+  - type: textarea
+    id: model
+    attributes:
+      label: Equations, units, assumptions, and validity domain
+    validations:
+      required: true
+  - type: textarea
+    id: validation
+    attributes:
+      label: Independent validation and acceptance criteria
+      description: What observation could disprove the proposed model?
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: Primary sources, data rights, and unknown parameters

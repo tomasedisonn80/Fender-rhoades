@@ -1,0 +1,356 @@
+{
+  "schema_version": 1,
+  "project": "Fender-rhoades",
+  "goal": "Physically model a Fender Rhodes Mark I from evolving mechanical, electromagnetic and circuit states without recorded-note playback.",
+  "target": "One documented 73-key Mark I Stage specimen at its specified loaded electrical output; identity and measurements pending.",
+  "fidelity_status": "unvalidated",
+  "revision": 0,
+  "updated_at": "2026-11-23T11:46:30Z",
+  "tasks": [
+    {
+      "id": "FND-001",
+      "title": "Establish reproducible research and agent foundation",
+      "milestone": "Foundation",
+      "status": "in_progress",
+      "priority": 0,
+      "dependencies": [],
+      "acceptance": [
+        "Buildable dependency-free research kernel, developer setup and platform CI configuration exist.",
+        "Canonical state, evidence validation, generated status and agent continuation workflow pass their tests.",
+        "Research scope, synthetic constants, missing measurements and licensing uncertainty are documented."
+      ],
+      "required_evidence": [
+        "documentary",
+        "numerical"
+      ],
+      "evidence": [],
+      "owner": "integration-root",
+      "claim": null,
+      "blockers": [],
+      "paths": [
+        "tools",
+        "tests",
+        "docs",
+        "project",
+        "schemas"
+      ]
+    },
+    {
+      "id": "SPEC-001",
+      "title": "Identify the reference Mark I Stage specimen",
+      "milestone": "Specimen",
+      "status": "blocked",
+      "priority": 10,
+      "dependencies": [
+        "FND-001"
+      ],
+      "acceptance": [
+        "Record specimen identity, construction dates or uncertainty, action and pickup condition, and selected loaded-output boundary.",
+        "Inspect actual wiring and revision-specific components; reconcile discrepancies with documentary sources."
+      ],
+      "required_evidence": [
+        "measurement"
+      ],
+      "evidence": [],
+      "owner": null,
+      "claim": null,
+      "blockers": [
+        "No identified physical specimen or authenticated measurement set has been supplied."
+      ],
+      "paths": [
+        "profiles/mark-i-stage-73",
+        "data"
+      ]
+    },
+    {
+      "id": "DATA-001",
+      "title": "Acquire calibrated specimen data and held-out manifest",
+      "milestone": "Measurement",
+      "status": "blocked",
+      "priority": 20,
+      "dependencies": [
+        "FND-001",
+        "SPEC-001"
+      ],
+      "acceptance": [
+        "Acquire synchronized mechanical motion and electrical output with measured geometry, excitation, loads and calibration.",
+        "Record units, uncertainty, specimen identity, acquisition conditions, hashes, rights, and independent train/validation splits.",
+        "Retain retriggers, release, velocity, pickup-position and loading conditions not used for fitting."
+      ],
+      "required_evidence": [
+        "measurement"
+      ],
+      "evidence": [],
+      "owner": null,
+      "claim": null,
+      "blockers": [
+        "Actual calibrated specimen recordings and motion/impedance measurements are unavailable; templates are not observations."
+      ],
+      "paths": [
+        "data",
+        "profiles/mark-i-stage-73"
+      ]
+    },
+    {
+      "id": "PHY-001",
+      "title": "Validate analytic mechanical and pickup primitives",
+      "milestone": "Research kernel",
+      "status": "todo",
+      "priority": 30,
+      "dependencies": [
+        "FND-001"
+      ],
+      "acceptance": [
+        "Analytic oscillator propagation agrees with an independent closed-form reference.",
+        "Retrigger retains displacement and velocity; pickup differentiates combined modal flux linkage.",
+        "Passive network tests include inactive pickup loading; invalid inputs are rejected.",
+        "Synthetic parameters and omitted interactions are explicitly labeled."
+      ],
+      "required_evidence": [
+        "numerical"
+      ],
+      "evidence": [],
+      "owner": null,
+      "claim": null,
+      "blockers": [],
+      "paths": [
+        "include/rhodes",
+        "src",
+        "tests/cpp"
+      ]
+    },
+    {
+      "id": "PHY-002",
+      "title": "Implement finite-mass hammer and damper contact reference",
+      "milestone": "One-note mechanics",
+      "status": "todo",
+      "priority": 40,
+      "dependencies": [
+        "PHY-001"
+      ],
+      "acceptance": [
+        "Use finite hammer mass, reciprocal contact forces, separation and recontact with persistent resonator state.",
+        "Model damper/pedal contact and resting equilibrium; identify or label all assumed contact parameters.",
+        "Pass energy, timestep convergence, retrigger, release and pedal stress checks with explicit numerical tolerances."
+      ],
+      "required_evidence": [
+        "numerical"
+      ],
+      "evidence": [],
+      "owner": null,
+      "claim": null,
+      "blockers": [],
+      "paths": [
+        "include/rhodes",
+        "src",
+        "tests/cpp",
+        "docs"
+      ]
+    },
+    {
+      "id": "MAG-001",
+      "title": "Identify magnetic linkage and reciprocal force reference",
+      "milestone": "One-note transduction",
+      "status": "todo",
+      "priority": 50,
+      "dependencies": [
+        "SPEC-001",
+        "DATA-001"
+      ],
+      "acceptance": [
+        "Identify a smooth flux-linkage map and derivatives across measured displacement, orientation and pickup geometry.",
+        "Use consistent energy/co-energy for induced voltage and reaction force; identify permanent-magnet force independently.",
+        "Avoid double-counting magnetic effects already present in measured mechanical modes."
+      ],
+      "required_evidence": [
+        "measurement",
+        "numerical"
+      ],
+      "evidence": [],
+      "owner": null,
+      "claim": null,
+      "blockers": [],
+      "paths": [
+        "profiles/mark-i-stage-73",
+        "src",
+        "tests/cpp",
+        "data"
+      ]
+    },
+    {
+      "id": "ELEC-001",
+      "title": "Identify and solve the specimen pickup network",
+      "milestone": "One-note loading",
+      "status": "todo",
+      "priority": 60,
+      "dependencies": [
+        "SPEC-001",
+        "DATA-001"
+      ],
+      "acceptance": [
+        "Verify actual coil membership, topology, component values, parasitics, load and cable.",
+        "Include electrically inactive branches and correct loaded boundary; distinguish documentary candidates from specimen facts.",
+        "Validate DC, complex impedance, source transfer and energy/current residuals against independent reference calculations and measurements."
+      ],
+      "required_evidence": [
+        "measurement",
+        "numerical"
+      ],
+      "evidence": [],
+      "owner": null,
+      "claim": null,
+      "blockers": [],
+      "paths": [
+        "profiles/mark-i-stage-73",
+        "src",
+        "tests/cpp",
+        "data"
+      ]
+    },
+    {
+      "id": "VAL-001",
+      "title": "Predict held-out behavior of one measured note",
+      "milestone": "Measured one-note gate",
+      "status": "todo",
+      "priority": 70,
+      "dependencies": [
+        "PHY-002",
+        "MAG-001",
+        "ELEC-001"
+      ],
+      "acceptance": [
+        "Predict unseen strike levels, release, retriggers, pickup positions and loads on the identified specimen.",
+        "Predeclare numerical, physical, electrical and perceptual acceptance criteria from measurement uncertainty and repeatability.",
+        "Record passing and failing conditions with absolute level and timing preserved; report scope without realism percentages."
+      ],
+      "required_evidence": [
+        "hardware_validation"
+      ],
+      "evidence": [],
+      "owner": null,
+      "claim": null,
+      "blockers": [],
+      "paths": [
+        "data",
+        "docs/validation",
+        "tests"
+      ]
+    },
+    {
+      "id": "KEY-001",
+      "title": "Expand validated construction zones across all 73 keys",
+      "milestone": "Measured keyboard",
+      "status": "todo",
+      "priority": 80,
+      "dependencies": [
+        "VAL-001"
+      ],
+      "acceptance": [
+        "Calibrate per-key and construction-zone parameters without hiding discontinuities or resetting repeated notes.",
+        "Validate bass/mid/treble, transition notes, shared motion and chords against held-out specimen measurements.",
+        "Preserve silent pickup network membership and shared nonlinear circuit processing."
+      ],
+      "required_evidence": [
+        "hardware_validation"
+      ],
+      "evidence": [],
+      "owner": null,
+      "claim": null,
+      "blockers": [],
+      "paths": [
+        "profiles/mark-i-stage-73",
+        "src",
+        "data",
+        "tests"
+      ]
+    },
+    {
+      "id": "RT-001",
+      "title": "Measure runtime cost and numerical approximation errors",
+      "milestone": "Runtime engineering",
+      "status": "todo",
+      "priority": 45,
+      "dependencies": [
+        "PHY-001"
+      ],
+      "acceptance": [
+        "Benchmark representative kernels with hardware, compiler, sample rate, block size, polyphony and stress conditions recorded.",
+        "Report maximum observed callback duration and deadline misses, plus optimized-versus-reference error.",
+        "Verify allocation/locking policy and timestep/antialiasing convergence; claim only measured performance."
+      ],
+      "required_evidence": [
+        "performance",
+        "numerical"
+      ],
+      "evidence": [],
+      "owner": null,
+      "claim": null,
+      "blockers": [],
+      "paths": [
+        "src",
+        "apps",
+        "tests",
+        "docs/validation"
+      ]
+    },
+    {
+      "id": "CIR-001",
+      "title": "Add separately identified revision-specific electronics",
+      "milestone": "Optional circuits",
+      "status": "todo",
+      "priority": 90,
+      "dependencies": [
+        "VAL-001"
+      ],
+      "acceptance": [
+        "Create verified netlists with component-level provenance and identified device models for a selected circuit revision.",
+        "Keep Stage, Peterson and Janus/Suitcase profiles distinct; validate operating point, dynamic state and shared nonlinear chord behavior.",
+        "Resolve documented schematic corrections against physical boards before exactness claims."
+      ],
+      "required_evidence": [
+        "measurement",
+        "numerical"
+      ],
+      "evidence": [],
+      "owner": null,
+      "claim": null,
+      "blockers": [],
+      "paths": [
+        "profiles",
+        "src",
+        "data",
+        "docs"
+      ]
+    },
+    {
+      "id": "ACO-001",
+      "title": "Extend the selected boundary to cabinet acoustics",
+      "milestone": "Optional acoustics",
+      "status": "todo",
+      "priority": 100,
+      "dependencies": [
+        "CIR-001"
+      ],
+      "acceptance": [
+        "Define amplifier/speaker electrical interaction, acoustic listening or microphone boundary and runtime response policy.",
+        "Identify and validate electrical, mechanical, radiation and level-dependent effects separately.",
+        "Report acoustic validation only for held-out conditions and the specific cabinet/position."
+      ],
+      "required_evidence": [
+        "measurement",
+        "hardware_validation"
+      ],
+      "evidence": [],
+      "owner": null,
+      "claim": null,
+      "blockers": [],
+      "paths": [
+        "profiles",
+        "src",
+        "data",
+        "docs"
+      ]
+    }
+  ],
+  "history": []
+}

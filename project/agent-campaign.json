@@ -1,0 +1,95 @@
+{
+  "schema_version": 1,
+  "requested_agents": 100,
+  "purpose": "Repository foundation implementation and independent technical reviews",
+  "agents": [
+    {
+      "id": "A001",
+      "task_name": "/root/a001_dsp_foundation",
+      "status": "completed",
+      "report": "docs/agents/reviews/A001.md",
+      "report_sha256": "caceef27e025eb0236cd87f67395e7d559f8e519ca3989c5327291f4ba496cfb",
+      "scope": "C++20 research kernel and tests"
+    },
+    {
+      "id": "A002",
+      "task_name": "/root/a002_agent_automation",
+      "status": "completed",
+      "report": "docs/agents/reviews/A002.md",
+      "report_sha256": "5b9e0022864c9a2fe5186801f05919541696ccf115df3aee94f6007305b74588",
+      "scope": "Dependency-aware agent workflow and tools"
+    },
+    {
+      "id": "A003",
+      "task_name": "/root/a003_model_architecture",
+      "status": "completed",
+      "report": "docs/agents/reviews/A003.md",
+      "report_sha256": "280fdab269c009083f7305169faa0bb7d7b6dcdd56b1b1c026c3b66a5a6f520e",
+      "scope": "Architecture, roadmap, measurements and validation"
+    },
+    {
+      "id": "A004",
+      "task_name": "/root/a004_data_contracts",
+      "status": "completed",
+      "report": "docs/agents/reviews/A004.md",
+      "report_sha256": "56128e65282dba33a4bf944512a2e1a34a39ba430cff5deaebf568d4240229a4",
+      "scope": "Profile, component and measurement contracts with negative tests"
+    },
+    {
+      "id": "A005",
+      "task_name": "/root/a005_ci_portability",
+      "status": "completed",
+      "report": "docs/agents/reviews/A005.md",
+      "report_sha256": "65c5f2e1576094c423324766ec75cfbcc9dfd00c6526000b2395b472f8295f89",
+      "scope": "Cross-platform CI and build portability audit"
+    },
+    {
+      "id": "A006",
+      "task_name": "/root/a006_cpp_review",
+      "status": "completed",
+      "report": "docs/agents/reviews/A006.md",
+      "report_sha256": "bb29204fbce7598f4619bbc8bcad26e021b52e08f6cae12c3a64d769a1836be5",
+      "scope": "C++ numerical API and portability regression review"
+    },
+    {
+      "id": "A007",
+      "task_name": "/root/a007_state_machine_audit",
+      "status": "completed",
+      "report": "docs/agents/reviews/A007.md",
+      "report_sha256": "244b219669431668e0f18567ea966de0497de7e32e2cf5423792b81614da28b6",
+      "scope": "Task state machine, leases and evidence durability audit"
+    },
+    {
+      "id": "A008",
+      "task_name": "/root/a008_numeric_contract",
+      "status": "completed",
+      "report": "docs/agents/reviews/A008.md",
+      "report_sha256": "07db51d84552df664b6230a62aeff086b923e2a929a1ba367124f6d858423e13",
+      "scope": "Exact numerical conventions, API behavior and model limits"
+    },
+    {
+      "id": "A009",
+      "task_name": "/root/a009_benchmark_harness",
+      "status": "running",
+      "report": "docs/agents/reviews/A009.md",
+      "report_sha256": null,
+      "scope": "Reproducible synthetic callback timing harness"
+    },
+    {
+      "id": "A010",
+      "task_name": "/root/a010_repo_checks",
+      "status": "running",
+      "report": "docs/agents/reviews/A010.md",
+      "report_sha256": null,
+      "scope": "Documentation integrity checker and regressions"
+    },
+    {
+      "id": "A011",
+      "task_name": "/root/a011_hammer_contract",
+      "status": "running",
+      "report": "docs/agents/reviews/A011.md",
+      "report_sha256": null,
+      "scope": "Finite-mass hammer, contact passivity and recontact requirements"
+    }
+  ]
+}

@@ -1,0 +1,490 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Acquisition or synthetic observation manifest, version 1",
+  "$comment": "Shape and local conditions only. tools/validate_data.py also requires an identified profile for measured sessions, matching output boundary, unique IDs and paths, calibration references and unit agreement, and no condition/data-hash leakage across splits. Artifact entries describe observation payloads, not shared calibration documents. Declared hashes are not opened or verified by this metadata checker. Metadata cannot establish physical truth.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "type": "integer",
+      "const": 1
+    },
+    "session_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+    },
+    "kind": {
+      "enum": [
+        "synthetic",
+        "measured"
+      ]
+    },
+    "specimen_profile": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+    },
+    "output_boundary": {
+      "enum": [
+        "loaded_harp",
+        "stage_jack"
+      ]
+    },
+    "split": {
+      "enum": [
+        "development",
+        "fit",
+        "validation",
+        "test"
+      ]
+    },
+    "condition_id": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+    },
+    "acquired_at": {
+      "anyOf": [
+        {
+          "type": "string",
+          "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?(?:Z|[+-]\\d{2}:\\d{2})$",
+          "format": "date-time"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "operator": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "\\S"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "temperature_celsius": {
+      "anyOf": [
+        {
+          "type": "number",
+          "minimum": -273.15
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "sample_rate_hz": {
+      "type": "number",
+      "exclusiveMinimum": 0
+    },
+    "channels": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "unit": {
+            "enum": [
+              "V",
+              "A",
+              "m",
+              "m/s",
+              "N",
+              "Pa"
+            ]
+          },
+          "calibration_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "unit",
+          "calibration_id"
+        ]
+      },
+      "minItems": 1
+    },
+    "excitation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "enum": [
+            "synthetic_impulse",
+            "native_hammer",
+            "controlled_hammer",
+            "pluck",
+            "electrical_sweep"
+          ]
+        },
+        "key_midi": {
+          "type": "integer",
+          "minimum": 28,
+          "maximum": 100
+        },
+        "hammer_velocity_m_per_s": {
+          "anyOf": [
+            {
+              "type": "number",
+              "minimum": 0
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "type",
+        "key_midi",
+        "hammer_velocity_m_per_s"
+      ]
+    },
+    "load": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "resistance_ohm": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "capacitance_farad": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "resistance_ohm",
+        "capacitance_farad"
+      ]
+    },
+    "pickup_geometry_m": {
+      "anyOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "gap": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "vertical_offset": {
+              "type": "number"
+            }
+          },
+          "required": [
+            "gap",
+            "vertical_offset"
+          ]
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "calibration": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+          },
+          "method": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "reference": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "uncertainty": {
+            "type": "number",
+            "minimum": 0
+          },
+          "unit": {
+            "enum": [
+              "V",
+              "A",
+              "m",
+              "m/s",
+              "N",
+              "Pa"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "method",
+          "reference",
+          "uncertainty",
+          "unit"
+        ]
+      }
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "path": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "^(?!/)(?!.*(?:^|/)(?:\\.{1,2}|\\.git)(?:/|$))(?!.*//)(?!.*[\\\\:\\x00-\\x1f\\x7f])(?!.*\\/$).+$"
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+          },
+          "bytes": {
+            "type": "integer",
+            "minimum": 1
+          }
+        },
+        "required": [
+          "path",
+          "sha256",
+          "bytes"
+        ]
+      }
+    },
+    "rights": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "enum": [
+            "synthetic_original",
+            "owned",
+            "permission_granted"
+          ]
+        },
+        "permission_reference": {
+          "anyOf": [
+            {
+              "type": "string",
+              "minLength": 1,
+              "pattern": "\\S"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "status",
+        "permission_reference"
+      ]
+    },
+    "notes": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "\\S"
+    }
+  },
+  "required": [
+    "schema_version",
+    "session_id",
+    "kind",
+    "specimen_profile",
+    "output_boundary",
+    "split",
+    "condition_id",
+    "acquired_at",
+    "operator",
+    "temperature_celsius",
+    "sample_rate_hz",
+    "channels",
+    "excitation",
+    "load",
+    "pickup_geometry_m",
+    "calibration",
+    "artifacts",
+    "rights",
+    "notes"
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "kind": {
+            "const": "synthetic"
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "split": {
+            "const": "development"
+          },
+          "acquired_at": {
+            "type": "null"
+          },
+          "operator": {
+            "type": "null"
+          },
+          "calibration": {
+            "maxItems": 0
+          },
+          "channels": {
+            "items": {
+              "properties": {
+                "calibration_id": {
+                  "type": "null"
+                }
+              }
+            }
+          },
+          "rights": {
+            "properties": {
+              "status": {
+                "const": "synthetic_original"
+              },
+              "permission_reference": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "split": {
+            "enum": [
+              "fit",
+              "validation",
+              "test"
+            ]
+          },
+          "acquired_at": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?(?:Z|[+-]\\d{2}:\\d{2})$",
+            "format": "date-time"
+          },
+          "operator": {
+            "type": "string",
+            "minLength": 1,
+            "pattern": "\\S"
+          },
+          "temperature_celsius": {
+            "type": "number",
+            "minimum": -273.15
+          },
+          "calibration": {
+            "minItems": 1
+          },
+          "artifacts": {
+            "minItems": 1
+          },
+          "channels": {
+            "items": {
+              "properties": {
+                "calibration_id": {
+                  "type": "string",
+                  "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+                }
+              }
+            }
+          },
+          "pickup_geometry_m": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "gap": {
+                "type": "number",
+                "exclusiveMinimum": 0
+              },
+              "vertical_offset": {
+                "type": "number"
+              }
+            },
+            "required": [
+              "gap",
+              "vertical_offset"
+            ]
+          },
+          "excitation": {
+            "properties": {
+              "type": {
+                "enum": [
+                  "native_hammer",
+                  "controlled_hammer",
+                  "pluck",
+                  "electrical_sweep"
+                ]
+              }
+            }
+          },
+          "rights": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "owned",
+                  "permission_granted"
+                ]
+              },
+              "permission_reference": {
+                "type": "string",
+                "minLength": 1,
+                "pattern": "\\S"
+              }
+            }
+          }
+        },
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "excitation": {
+                  "properties": {
+                    "type": {
+                      "enum": [
+                        "native_hammer",
+                        "controlled_hammer"
+                      ]
+                    }
+                  }
+                }
+              }
+            },
+            "then": {
+              "properties": {
+                "excitation": {
+                  "properties": {
+                    "hammer_velocity_m_per_s": {
+                      "type": "number",
+                      "exclusiveMinimum": 0
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

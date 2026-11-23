@@ -1,0 +1,278 @@
+{
+  "schema_version": 1,
+  "profile_id": "mark-i-stage-73-unidentified",
+  "inventory_kind": "mechanism_requirements_not_bom",
+  "components": [
+    {
+      "id": "HAMMER-MASS",
+      "domain": "mechanical",
+      "mechanism": "finite hammer inertia",
+      "unit": "kg",
+      "value": null,
+      "provenance": "unknown",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "measurement_ids": [],
+      "uncertainty": null,
+      "implementation_status": "planned",
+      "task_id": "PHY-002"
+    },
+    {
+      "id": "HAMMER-CONTACT",
+      "domain": "mechanical",
+      "mechanism": "unilateral nonlinear contact law and dissipation",
+      "unit": "N",
+      "value": null,
+      "provenance": "unknown",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "measurement_ids": [],
+      "uncertainty": null,
+      "implementation_status": "planned",
+      "task_id": "PHY-002"
+    },
+    {
+      "id": "ACTION",
+      "domain": "mechanical",
+      "mechanism": "key-to-hammer motion, escapement, repetition",
+      "unit": "m",
+      "value": null,
+      "provenance": "unknown",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "measurement_ids": [],
+      "uncertainty": null,
+      "implementation_status": "planned",
+      "task_id": "PHY-002"
+    },
+    {
+      "id": "TINE",
+      "domain": "mechanical",
+      "mechanism": "modal mass, stiffness, loss and spatial coupling",
+      "unit": "mixed_SI",
+      "value": null,
+      "provenance": "unknown",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "measurement_ids": [],
+      "uncertainty": null,
+      "implementation_status": "planned",
+      "task_id": "PHY-001"
+    },
+    {
+      "id": "TONEBAR",
+      "domain": "mechanical",
+      "mechanism": "coupled resonator and mount dynamics",
+      "unit": "mixed_SI",
+      "value": null,
+      "provenance": "unknown",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "measurement_ids": [],
+      "uncertainty": null,
+      "implementation_status": "planned",
+      "task_id": "PHY-002"
+    },
+    {
+      "id": "TUNING-SPRING",
+      "domain": "mechanical",
+      "mechanism": "position-dependent added mass",
+      "unit": "mixed_SI",
+      "value": null,
+      "provenance": "unknown",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "measurement_ids": [],
+      "uncertainty": null,
+      "implementation_status": "planned",
+      "task_id": "PHY-002"
+    },
+    {
+      "id": "GROMMETS",
+      "domain": "mechanical",
+      "mechanism": "boundary compliance and preload loss",
+      "unit": "mixed_SI",
+      "value": null,
+      "provenance": "unknown",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "measurement_ids": [],
+      "uncertainty": null,
+      "implementation_status": "planned",
+      "task_id": "PHY-002"
+    },
+    {
+      "id": "DAMPER",
+      "domain": "mechanical",
+      "mechanism": "clearance, preload, contact and dissipative loss",
+      "unit": "mixed_SI",
+      "value": null,
+      "provenance": "unknown",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "measurement_ids": [],
+      "uncertainty": null,
+      "implementation_status": "planned",
+      "task_id": "PHY-002"
+    },
+    {
+      "id": "PEDAL",
+      "domain": "mechanical",
+      "mechanism": "shared linkage with per-key clearances",
+      "unit": "m",
+      "value": null,
+      "provenance": "unknown",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "measurement_ids": [],
+      "uncertainty": null,
+      "implementation_status": "planned",
+      "task_id": "PHY-002"
+    },
+    {
+      "id": "HARP",
+      "domain": "mechanical",
+      "mechanism": "shared structural coupling and supports",
+      "unit": "mixed_SI",
+      "value": null,
+      "provenance": "unknown",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "measurement_ids": [],
+      "uncertainty": null,
+      "implementation_status": "planned",
+      "task_id": "KEY-001"
+    },
+    {
+      "id": "MAGNET",
+      "domain": "magnetic",
+      "mechanism": "static field and zero-current attraction",
+      "unit": "mixed_SI",
+      "value": null,
+      "provenance": "unknown",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "measurement_ids": [],
+      "uncertainty": null,
+      "implementation_status": "planned",
+      "task_id": "MAG-001"
+    },
+    {
+      "id": "FLUX-LINKAGE",
+      "domain": "magnetic",
+      "mechanism": "smooth flux linkage and consistent spatial derivatives",
+      "unit": "Wb_turn",
+      "value": null,
+      "provenance": "unknown",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "measurement_ids": [],
+      "uncertainty": null,
+      "implementation_status": "planned",
+      "task_id": "MAG-001"
+    },
+    {
+      "id": "COIL-RLC",
+      "domain": "electrical",
+      "mechanism": "winding resistance, inductance and parasitic capacitance",
+      "unit": "mixed_SI",
+      "value": null,
+      "provenance": "unknown",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "measurement_ids": [],
+      "uncertainty": null,
+      "implementation_status": "planned",
+      "task_id": "ELEC-001"
+    },
+    {
+      "id": "HARP-WIRING",
+      "domain": "electrical",
+      "mechanism": "identified series-parallel topology including stationary branches",
+      "unit": "1",
+      "value": null,
+      "provenance": "unknown",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "measurement_ids": [],
+      "uncertainty": null,
+      "implementation_status": "planned",
+      "task_id": "ELEC-001"
+    },
+    {
+      "id": "VOLUME",
+      "domain": "electrical",
+      "mechanism": "revision-specific passive potentiometer taper and topology",
+      "unit": "ohm",
+      "value": null,
+      "provenance": "unknown",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "measurement_ids": [],
+      "uncertainty": null,
+      "implementation_status": "planned",
+      "task_id": "CIR-001"
+    },
+    {
+      "id": "BASS-CONTROL",
+      "domain": "electrical",
+      "mechanism": "revision-specific passive network",
+      "unit": "mixed_SI",
+      "value": null,
+      "provenance": "unknown",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "measurement_ids": [],
+      "uncertainty": null,
+      "implementation_status": "planned",
+      "task_id": "CIR-001"
+    },
+    {
+      "id": "CABLE",
+      "domain": "electrical",
+      "mechanism": "resistance and capacitance at specified length",
+      "unit": "mixed_SI",
+      "value": null,
+      "provenance": "unknown",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "measurement_ids": [],
+      "uncertainty": null,
+      "implementation_status": "planned",
+      "task_id": "ELEC-001"
+    },
+    {
+      "id": "DESTINATION",
+      "domain": "electrical",
+      "mechanism": "measured terminal input impedance",
+      "unit": "ohm",
+      "value": null,
+      "provenance": "unknown",
+      "source_ids": [
+        "SRC-001"
+      ],
+      "measurement_ids": [],
+      "uncertainty": null,
+      "implementation_status": "planned",
+      "task_id": "ELEC-001"
+    }
+  ],
+  "notes": "A verified circuit BOM and graph require actual board, component designators, node connectivity, values and uncertainty; none is fabricated here. TINE synthetic primitive does not validate these specimen parameters."
+}

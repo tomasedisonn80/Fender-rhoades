@@ -1,0 +1,419 @@
+ARCHIVED USER-SUPPLIED RESEARCH INPUT
+The statements below describe the supplied research, not this repository's current implementation or validation. Private document links were removed.
+
+# A Fender Rhodes can be modeled in pure code, down to its individual circuit components
+
+The strongest approach is to connect **physical models of the hammer, tine, tonebar and damper; a nonlinear electromagnetic pickup model; and a circuit simulation built from the actual instrument’s components and wiring**. Audio can be generated entirely from those evolving model states, without playing recorded notes. Published research has already demonstrated the core feasibility, including a real-time FPGA implementation. [dafx.de](https://www.dafx.de/paper-archive/2017/papers/DAFx17_paper_79.pdf?utm_source=chatgpt.com)
+
+**I completed 100 specialist researcher-agent assignments**, run in batches, followed by independent reviews of the mechanics, electromagnetics, electronics/DSP and overall feasibility. Their findings are consolidated in this report:
+
+[Separate PDF referenced by the supplied research; not supplied for this setup] — 18 pages, including equations, component models, an implementation and measurement plan, source references, and the complete 100-assignment ledger.
+
+The central qualification is that **schematics provide connections and nominal values; reproducing a particular Rhodes also requires measurements of that instrument**. Hammer behavior, mechanical damping, magnetic fields, pickup impedance and aged optical components are not completely specified by the public documentation.
+
+What follows is the substantive engineering conclusion. This is completed research and an implementation blueprint; no complete emulator, hardware-validated netlist or measured fidelity result was produced in this session.
+
+## 1. First define which Rhodes—and which output
+
+A Rhodes is an electromechanical instrument. Its electronic output begins with a physical hammer exciting a vibrating assembly beside a magnetic pickup. The service documentation describes both the mechanical adjustments and multiple electronic configurations. [fenderrhodes.com](https://www.fenderrhodes.com/service/manual.html?utm_source=chatgpt.com)
+
+The output boundary matters:
+
+| Target | What the model must include |
+|---|---|
+| **Loaded harp output** | Action, vibrating assemblies, pickups, harp wiring and specified electrical load |
+| **Stage output jack** | The above, plus the selected passive controls, cable and destination input impedance |
+| **Suitcase preamp outputs** | The above, plus the correct preamp and stereo modulation circuitry |
+| **Suitcase heard through its cabinet** | Power amplifiers, loudspeaker loads, driver motion, cabinet radiation and listening or microphone position |
+
+There are also distinct circuit families. The firsthand amplifier documentation identifies Jordan, Peterson and Haigler systems, with different electronics and interconnections. A model assembled from arbitrary features of those systems would represent a new hybrid rather than a particular historical instrument. [Amplifier Differences](https://www.fenderrhodes.com/service/amp-diffs.html?utm_source=chatgpt.com)
+
+**My recommended first target is one documented 73-key Stage specimen.** Establish its construction, regulation, pickup wiring and loaded output. Develop Peterson and Janus/Suitcase electronics as separately identified profiles.
+
+This makes progress testable: the model can be compared with a known electrical output before speaker and room effects complicate the comparison.
+
+### What the existing research establishes
+
+Three research strands are especially useful:
+
+- **Pfeifle’s DAFx work** demonstrates real-time physical modeling on FPGA hardware, including mechanical excitation and pickup conversion. Its computational result supports feasibility, but does not supply a benchmark for a new desktop implementation. [dafx.de](https://www.dafx.de/paper-archive/2017/papers/DAFx17_paper_79.pdf?utm_source=chatgpt.com)
+- **Falaize and Hélie’s work** provides an energy-based formulation and public simulation materials for a nonlinear hammer, vibrating beam, pickup and electrical load. [Antoine Falaize](https://afalaize.github.io/posts/rhodes/?utm_source=chatgpt.com)
+- **Gabrielli and colleagues’ study** investigates the inharmonic attack modes using mechanical measurements and examines their intermodulation through the magnetic pickup. This is particularly relevant to reproducing the attack character. [iris.univpm.it](https://iris.univpm.it/handle/11566/286030?utm_source=chatgpt.com)
+
+Together, these provide a strong foundation. Completing the instrument requires additional identification, circuit coverage and validation.
+
+## 2. The model must preserve the physical interactions
+
+The proposed architecture is:
+
+```mermaid
+flowchart TD
+    I["Key and pedal input"] --> A["Hammer and damper contact"]
+    A <--> M["Tine, tonebar and mounts"]
+    M <--> H["Shared harp motion"]
+    M <--> P["Magnetic pickup and coil"]
+    P <--> N["Harp wiring and controls"]
+    N --> D["Direct output"]
+    N <--> E["Suitcase electronics"]
+    E <--> S["Speakers and cabinet"]
+    S --> R["Room and microphone"]
+```
+
+This is a conceptual simulation architecture, not a substitute for a revision-specific schematic.
+
+The interactions explain several implementation requirements:
+
+- A hammer can strike a tine that is already moving.
+- A damper changes contact forces while vibration continues.
+- Pickup position affects magnetic conversion and can affect mechanical forces.
+- Electrically connected pickups contribute impedance even when their tines are stationary.
+- A shared nonlinear amplifier responds to the combined instrument signal.
+- A loudspeaker presents an electrical load back to its amplifier.
+
+Each of those relationships needs either an explicit model or a validated simplification.
+
+## 3. Model the mechanics before trying to reproduce the electronics
+
+### Tines, tonebars, tuning springs and supports
+
+A useful starting equation is:
+
+\[
+M\ddot q+C\dot q+Kq+g(q,\dot q)
+=
+b_hF_h+b_dF_d+f_{\mathrm{mag}}+f_{\mathrm{harp}}.
+\]
+
+Here:
+
+- \(q\) contains the mechanical coordinates.
+- \(M\), \(C\) and \(K\) describe mass, loss and stiffness.
+- \(g\) represents additional nonlinear mechanical behavior where required.
+- \(F_h\) and \(F_d\) are hammer and damper contact forces.
+- The signed mappings \(b_h\) and \(b_d\) place those forces at their physical contact locations.
+- The remaining terms describe magnetic and shared-structure interaction.
+
+For implementation, I would construct or identify a detailed structural model offline, then reduce it to the modes that matter at the hammer, damper, pickup and supports.
+
+A modal representation can be efficient while retaining physical meaning. Each retained mode needs its frequency, loss, spatial shape, excitation coefficient and observation coefficient. Its frequency need not be an integer multiple of the fundamental. The published attack-mode study provides direct evidence that these structural modes and their pickup-generated interactions deserve attention. [iris.univpm.it](https://iris.univpm.it/handle/11566/286030?utm_source=chatgpt.com)
+
+The smaller mechanical parts enter through their actual effects:
+
+- **Tuning spring:** added mass at a particular location, affecting the assembly’s modes.
+- **Grommets and mounting screws:** boundary compliance, damping and preload.
+- **Tonebar and block:** coupled structural motion and energy transfer.
+- **Shared harp:** possible coupling between assemblies.
+
+A screw does not automatically require its own oscillator. It requires a representation of whatever influence it has on the measured response.
+
+One important identification rule emerged from the reviews: **avoid counting magnetic effects twice**. If modal frequencies and damping are measured with the pickup installed and electrically loaded, those measurements may already contain magnetic contributions. Adding a separate magnetic-force model afterward requires separating the contributions already present.
+
+### Hammer contact
+
+A possible starting family for hammer contact is:
+
+\[
+F_h=
+\begin{cases}
+\max\!\left(0,\;k\delta^p+c\delta^p\dot\delta\right),&\delta>0,\\
+0,&\delta\le0,
+\end{cases}
+\]
+
+where \(\delta\) is tip compression.
+
+This is a candidate constitutive model. The parameters must be fitted from impact behavior, and the implementation must preserve finite hammer mass, equal-and-opposite forces, separation and possible recontact. Related viscoelastic impact modeling appears in the physical Rhodes literature. [dafx.de](https://www.dafx.de/paper-archive/2017/papers/DAFx17_paper_79.pdf?utm_source=chatgpt.com)
+
+The original manual documents different hammer-tip groups and regulation settings. Those are useful calibration priors. They do not directly supply a dynamic force–compression law; the inspected hardness table also does not identify its durometer scale. [fenderrhodes.com](https://www.fenderrhodes.com/service-manuals/1979/ch4.html?utm_source=chatgpt.com)
+
+Consequently, MIDI velocity should feed a calibrated action or hammer-launch model. It should not simply become an arbitrary amplitude multiplier.
+
+### Retriggers, release and pedal
+
+The implementation should maintain **one persistent mechanical state for each physical key**.
+
+A repeated strike interacts with the existing displacement and velocity. Resetting phase and amplitude loses that interaction. Similarly, note-off should update the damper mechanism rather than erase the resonator state.
+
+The pedal should change the common linkage while preserving individual damper clearances and contact properties. The service manual’s action description supplies the mechanical arrangement, but the contact behavior still needs measurement. [fenderrhodes.com](https://www.fenderrhodes.com/service-manuals/1979/ch2.html?utm_source=chatgpt.com)
+
+Initialize the model around the assembled resting equilibrium, including relevant gravity, magnetic attraction and damper preload. Otherwise, the first simulated strike may begin from a physically inconsistent state.
+
+## 4. The magnetic pickup is a central source of the timbre
+
+The essential open-circuit relationship is:
+
+\[
+e_m(t)=-\frac{d\lambda(q(t))}{dt}
+      =-\nabla_q\lambda(q)\cdot\dot q.
+\]
+
+Here, \(\lambda\) is **flux linkage**, already including the winding turns. If a simplified model starts with flux per turn \(\Phi\), then \(\lambda=N\Phi\); the turn count must not be applied twice.
+
+The pickup therefore depends on both motion and position within a nonuniform magnetic field. A useful implementation can derive a field model offline, reduce it to a smooth spatial map and evaluate its derivatives at runtime. Published electromagnetic work has examined detailed and simplified Rhodes pickup fields and their resulting linkage. [compumag.org](https://www.compumag.org/Proceedings/2019_Paris/files/papers/PC-A4-9.pdf?utm_source=chatgpt.com)
+
+### Why harder strikes change the harmonic balance
+
+Consider an illustrative local expansion:
+
+\[
+\lambda(x)=a_0+a_1x+a_2x^2+a_3x^3+\cdots.
+\]
+
+Even approximately sinusoidal tine motion produces additional harmonics after this nonlinear mapping and differentiation. The quadratic and cubic contributions scale differently with motion amplitude. A harder strike can therefore change the harmonic balance through the physical conversion process.
+
+This also means that the electrical decay of a generated harmonic need not equal the decay rate of a separate mechanical mode. Fitting every electrical harmonic as an independent damped oscillator can assign the wrong physical explanation.
+
+### Combine the mechanical motion before applying the pickup nonlinearity
+
+If two modes contribute \(x_1\) and \(x_2\), the quadratic term contains:
+
+\[
+(x_1+x_2)^2=x_1^2+2x_1x_2+x_2^2.
+\]
+
+The cross term produces intermodulation. Applying separate nonlinearities to each mode and then adding the results loses it. Magnetic intermodulation is explicitly part of the published Rhodes mode research. [iris.univpm.it](https://iris.univpm.it/handle/11566/286030?utm_source=chatgpt.com)
+
+The model should therefore reconstruct the relevant local motion, then apply the pickup map.
+
+A map indexed only by tine-tip position is itself a reduction. Its adequacy must be checked against changes in local orientation and deformation elsewhere in the magnetically active region.
+
+### Include reciprocal forces in the reference model
+
+The pickup also exerts force. An energy-consistent reference should derive electrical induction and mechanical reaction from compatible magnetic energy or co-energy relationships. Permanent-magnet attraction exists even when coil current is zero. [web.mit.edu](https://web.mit.edu/6.013_book/www/chapter11/11.7.html?utm_source=chatgpt.com)
+
+A practical runtime model may omit some feedback after comparison establishes that the error is acceptable. That decision should be tested across relevant loads and pickup positions.
+
+Two details are especially important:
+
+1. A voltage-derived flux map alone does not identify the entire zero-current force relationship.
+2. A high-impedance amplifier input does not automatically establish negligible current everywhere inside a parallel pickup network.
+
+## 5. Reproduce the actual pickup network
+
+The harp’s electrical wiring is part of the instrument.
+
+A firsthand service account describes a later 73-key arrangement comprising one parallel group of four pickups followed by 23 parallel groups of three, with the groups connected in series. It also reports approximately 170–190 ohms DC resistance for a good isolated pickup, depending on vintage. These are documentary starting points, not a complete impedance specification. [Pickup Maintenance & Replacement](https://www.fenderrhodes.com/service/pickups.html?utm_source=chatgpt.com)
+
+For a linear parallel group whose branches contain source voltages \(e_i\) and impedances \(Z_i\):
+
+\[
+Z_g=\left(\sum_i\frac1{Z_i}\right)^{-1},
+\qquad
+E_g=Z_g\sum_i\frac{e_i}{Z_i}.
+\]
+
+For three equal branches:
+
+\[
+Z_g=\frac Z3,\qquad
+E_g=\frac{e_1+e_2+e_3}{3}.
+\]
+
+A stationary pickup can have approximately zero motional source voltage and still load the other branches. An unstruck tine may also produce a signal if shared motion excites it.
+
+This yields a concrete implementation rule: **mechanical voice activity and electrical circuit membership must be managed separately**.
+
+Measure and include coil impedance, relevant winding capacitance, actual wiring, controls, cable capacitance and destination impedance. Stage-circuit measurements show that loading can change the control response, so a generic EQ after a sum of voices is not automatically equivalent. [Rhodes](https://sites.google.com/site/davidmorrinoldsite/home/trouble/trouble-keyboards/rhodes?utm_source=chatgpt.com)
+
+## 6. “Down to the smallest electronic component” means a verified circuit graph and device laws
+
+For every component, store:
+
+- Reference designator and connected nodes.
+- Nominal and measured values, units and tolerances.
+- Device-model identity and parameters.
+- Relevant temperature or operating conditions.
+- Provenance and uncertainty.
+- Whether the value is documentary, measured, fitted or assumed.
+
+The required model depth then depends on the device and operating range.
+
+| Component | Representation in code |
+|---|---|
+| **Resistor** | Conductance at its actual nodes; measured tolerance, noise and temperature effects where relevant |
+| **Capacitor** | Stored charge and current; optional ESR, leakage, absorption and voltage dependence |
+| **Inductor or pickup coil** | Flux/current dynamics, winding loss and identified parasitics |
+| **Potentiometer** | Connected track segments, measured taper and relevant wiper behavior |
+| **Diode** | Nonlinear current plus junction and stored-charge behavior |
+| **BJT** | Identified transistor model including relevant leakage, gain, capacitance, charge storage and temperature dependence |
+| **Op-amp** | Dynamic model of gain, bandwidth, slew, limits, loading and recovery |
+| **Incandescent lamp** | Electrical heating, filament temperature and light output |
+| **LED** | Electrical drive and light-output relationship |
+| **Photoresistor** | Light-dependent conductance with measured response and history |
+| **Transformer** | Coupled windings, losses and relevant core behavior |
+| **Power supply** | Rails and source impedance, including shared dynamics when material |
+| **Wires and connectors** | Actual connectivity plus identified resistance, capacitance or interference paths |
+
+SPICE documentation supplies established model families for these circuit elements, including modified Gummel–Poon BJT models. Their default parameters are starting assumptions, not measurements of a vintage Rhodes device. [Documentation: manual and control flow](https://ngspice.sourceforge.io/docs.html?utm_source=chatgpt.com)
+
+### A concrete component inventory
+
+The original Figure 11-2 inventory for one 100-watt Suitcase/Janus I preamp identifies:
+
+- Three dual op-amp packages.
+- A 2N3392 transistor.
+- Two light-dependent resistors and two silicon diodes.
+- Capacitors C1–C20.
+- Resistor/control designations R1–R39, including five controls.
+- Switch S1.
+
+That provides an actual board inventory from which to begin a model. It is specific to that board. [100W Suitcase & Janus I](https://www.fenderrhodes.com/org/manual/fig11-2.html?utm_source=chatgpt.com)
+
+The archive also documents a correction to the late Mark I/Janus modulation drawing to match observed boards. This makes checking schematic revision and PCB connectivity essential before claiming an exact circuit implementation. [fenderrhodes.com](https://www.fenderrhodes.com/service/manual.html?utm_source=chatgpt.com)
+
+### Peterson and Janus require different models
+
+Firsthand service evidence identifies incandescent modulation bulbs and germanium output devices in the Peterson system, including a driver transformer in the power stage. Those mechanisms affect the relevant device models, bias behavior and modulation dynamics. [Common Amp Failures](https://www.fenderrhodes.com/service/amp-failures.html?utm_source=chatgpt.com)
+
+An LED-driven optical system requires a different light-source model. The photoconductor can still have unequal rising and falling responses and illumination-history effects. Manufacturer documentation establishes these behaviors for photoconductive devices, although the individual Rhodes assemblies still need identification. [htds.fr](https://www.htds.fr/wp-content/uploads/2019/04/Optoelectronique_detecteurs_photoresistances-2.pdf?utm_source=chatgpt.com)
+
+### Integrated circuits require an explicit level of detail
+
+A trustworthy internal transistor netlist can support transistor-level op-amp simulation. A simplified internal drawing does not identify all of the relevant semiconductor parameters.
+
+For an initial implementation, use a documented dynamic macro-model, inspect what it represents, and validate it against the selected hardware. TI provides documentation and model resources for devices such as the RC4558 and NE5534. Those resources do not establish the characteristics of every historical die installed in a Rhodes. [TI.com](https://www.ti.com/product/RC4558?utm_source=chatgpt.com)
+
+## 7. How those parts become executable code
+
+**Modified nodal analysis—MNA—is a strong reference formulation.** It combines component laws with Kirchhoff’s constraints, using node voltages and selected branch currents as unknowns. [faculty.sist.shanghaitech.edu.cn](https://faculty.sist.shanghaitech.edu.cn/faculty/zhoupq/Teaching/Fall16/Assignments/Ref2-MNA.pdf?utm_source=chatgpt.com)
+
+For example, a resistor of conductance \(g=1/R\) between nodes \(a\) and \(b\) contributes:
+
+- \(+g\) to entries \((a,a)\) and \((b,b)\).
+- \(-g\) to entries \((a,b)\) and \((b,a)\).
+
+A capacitor contributes stored charge. A transistor contributes nonlinear conduction and charge relationships. The complete connected system can be written in a general form such as:
+
+\[
+\frac{dQ(x)}{dt}+F(x,u)=0.
+\]
+
+If storage depends explicitly on moving geometry, temperature, prescribed controls or time, those dependencies must also be included.
+
+A numerical solver then:
+
+1. Finds a consistent operating point.
+2. Advances charge, flux and other dynamic states.
+3. Solves the nonlinear circuit constraints.
+4. Checks convergence and physical residuals.
+5. Preserves the state for the next timestep.
+
+The operating-point requirement matters: arbitrary initial capacitor voltages or inductor currents can produce unphysical startup behavior. [PLECS 5.0 Documentation](https://docs.plexim.com/plecs/latest/spice/core_concepts/?utm_source=chatgpt.com)
+
+**Wave digital filters are another useful implementation method**, especially for suitable passive networks and selected circuit substructures. Research extends them to complex topologies and active linear multiports. They remain a representation of the identified circuit; they do not remove the need to model nonlinear device states or validate the result. [pureadmin.qub.ac.uk](https://pureadmin.qub.ac.uk/ws/portalfiles/portal/150619192/FINAL_VERSION.pdf?utm_source=chatgpt.com)
+
+Shared nonlinear circuitry must remain shared. In general:
+
+\[
+f\!\left(\sum_i v_i\right)\ne\sum_i f(v_i).
+\]
+
+An independent distorted preamp per note loses interactions that occur when chords pass through the same physical stage.
+
+## 8. A practical real-time architecture
+
+My proposed implementation separates a detailed offline reference from the optimized audio engine.
+
+**Offline work** should include structural analysis, magnetic-field calculations, circuit simulation, measurement fitting and generation of reduced model assets.
+
+**The runtime engine** should evaluate retained mechanical modes, contact, magnetic conversion and connected circuit states using preallocated storage and bounded computation.
+
+The main numerical requirements are:
+
+- Preserve state through retriggers, pedal events and control changes.
+- Keep relevant feedback loops consistently coupled.
+- Use smooth field maps and consistent derivatives.
+- Antialias nonlinear processing before reducing the sample rate.
+- Resolve retained high-frequency modes at the internal numerical rate.
+- Validate any slower update rate used for thermal or optical states.
+- Compare optimized output against a tightly converged reference.
+
+There is no universal oversampling factor that establishes fidelity. Choose the internal rate and filters by convergence tests covering hard strikes, high notes, chords and clipping. Antiderivative antialiasing can help with appropriate nonlinear mappings, but it is not a general replacement for a coupled dynamic solver. [University of Edinburgh Research Explorer](https://www.research.ed.ac.uk/en/publications/antiderivative-antialiasing-for-memoryless-nonlinearities/?utm_source=chatgpt.com)
+
+**Numerical stability and audible accuracy need separate checks.** A solver can remain bounded while shortening decay, changing phase or shifting tuning. Energy-based methods help audit physical consistency, but the resulting timing and waveform still require validation. [mdpi.com](https://www.mdpi.com/2076-3417/6/10/273?utm_source=chatgpt.com)
+
+Performance claims should report maximum observed callback duration and deadline misses under documented stress conditions, hardware and configuration. The research here does not establish a CPU or polyphony guarantee.
+
+## 9. Speakers and acoustics belong inside the chosen boundary
+
+For a Suitcase acoustic target, the speaker is both an electrical load and a mechanical radiator.
+
+The model should account for terminal impedance, back EMF, moving mass, suspension, damping, motor behavior and cabinet loading. At larger levels, relevant nonlinearities can include excursion-dependent force factor, stiffness and inductance, plus thermal changes in coil resistance. These are established loudspeaker-modeling mechanisms; their magnitudes must be measured for the selected drivers. [Klippel Manuals](https://docs.klippel.de/db-lab/latest/simulation-auralisation/sim2/sim2.html?utm_source=chatgpt.com)
+
+The amplifier and speaker electrical port should be solved together where their interaction matters. A final EQ or convolution stage cannot reproduce every load-dependent amplifier behavior.
+
+“Pure code” can reasonably mean either:
+
+| Interpretation | Acoustic implementation |
+|---|---|
+| **No recorded-note playback** | A physical note generator may use a measured cabinet or room impulse response |
+| **No recorded responses at runtime** | Use procedural acoustics or fitted causal modal/rational models |
+
+An impulse response describes linear behavior at a measurement condition. Level-dependent speaker effects require additional states.
+
+For acoustic stereo, identify the transfer from each electrical channel to each microphone or listening position. Preserve relevant phase and propagation delay. Mechanical action noise should enter through a documented acoustic or microphonic path, rather than being automatically added to every direct-output signal.
+
+## 10. Measurement is the main remaining engineering task
+
+The difficult inverse problem is that several parameter combinations can produce similar recordings.
+
+A quiet output could result from weaker excitation, higher damping, a larger pickup gap, weaker magnetic sensitivity or heavier electrical loading. Fitting only the final waveform can confuse those explanations.
+
+The proposed measurement program therefore separates observations:
+
+| Measurement | What it helps identify |
+|---|---|
+| Native hammer motion and controlled strikes | Actual excitation and contact behavior |
+| Synchronized tine/tonebar motion and pickup voltage | Mechanical modes versus magnetic conversion |
+| Controlled pickup-position changes | Geometry dependence of the transduction |
+| Known electrical loads and complex impedance sweeps | Coil, wiring and loading behavior |
+| Independent circuit sweeps, transients and multitone tests | Gain, phase, distortion, bias and recovery |
+| Optical drive and channel-gain trajectories | Modulation dynamics and channel mismatch |
+| Speaker terminal voltage/current plus acoustic output | Electrical, mechanical and radiation behavior |
+
+Mechanical motion must be recorded again after moving a pickup, because changing the magnet position can also alter the mechanics.
+
+The model should reserve complete conditions for validation: unseen strike levels, pickup positions, loads, releases, retriggers, control movements and musical phrases. Adjacent samples from a fitted recording do not provide an independent test of prediction.
+
+### What counts as convincing validation
+
+Use several forms of evidence:
+
+- **Physical:** motion, modal frequencies, decay and contact timing.
+- **Electrical:** calibrated level, gain/phase, harmonics, intermodulation and modulation trajectories.
+- **Numerical:** timestep convergence, residuals, energy accounting and block-size behavior.
+- **Perceptual:** controlled comparisons with held-out musical material.
+- **Performance:** latency, deadline behavior and sustained operation.
+
+Listening tests should preserve separate checks of absolute level, level-matched timbre and onset timing. ITU-R BS.1116 supplies useful principles for evaluating small audible impairments. A failure to detect a difference supports the tested conditions and statistical power; it does not establish universal identity or prove that every component parameter is correct. [itu.int](https://www.itu.int/rec/R-REC-BS.1116/?utm_source=chatgpt.com)
+
+The acceptance thresholds should follow measurement uncertainty, within-instrument repeatability and the intended use. A single “realism percentage” would obscure those distinctions.
+
+## 11. Existing code is useful, with inspectable limitations
+
+Two implementation leads are worth studying:
+
+**[Falaize’s research simulation](https://afalaize.github.io/posts/rhodes/)** links Python 2.7 code associated with the physical model. Its author-described scope makes it useful for studying connected hammer, beam and pickup simulation. [Antoine Falaize](https://afalaize.github.io/posts/rhodes/?utm_source=chatgpt.com)
+
+**[The public jstolberg/rhodes repository](https://github.com/jstolberg/rhodes)** contains a parameter-estimation pipeline and readable model source. The inspected model uses a prescribed hammer pulse, one-axis modal motion and a precomputed pickup map, and explicitly omits coil/circuit filtering. No explicit reuse license was established from the inspected pages. [GitHub](https://github.com/jstolberg/rhodes?utm_source=chatgpt.com)
+
+These are valuable research references. Neither inspected implementation supplies the complete component coverage requested here.
+
+A learned model can also assist parameter estimation or approximate an expensive constitutive relationship. Differentiable DSP research demonstrates how known signal-processing structures can be combined with learning. For this project, any learned substitute should retain explicit scope and be validated across physical conditions; generating plausible audio does not by itself identify the instrument’s components. [magenta.withgoogle.com](https://magenta.withgoogle.com/ddsp?utm_source=chatgpt.com)
+
+## 12. The implementation sequence I recommend
+
+| Stage | Deliverable | Requirement before expanding |
+|---|---|---|
+| **1. Identify the specimen** | Construction record, regulation measurements, wiring and circuit revisions | Resolve documentary and physical discrepancies |
+| **2. Reproduce one note** | Persistent hammer/tine/damper model, nonlinear pickup and correct loading | Predict held-out strikes, releases, geometry and loads |
+| **3. Expand across registers** | Construction-zone models and per-key calibration | Verify transitions and individual-key behavior |
+| **4. Complete the selected circuits** | Verified netlists, identified devices and shared-stage behavior | Match independent circuit measurements |
+| **5. Add the acoustic target** | Coupled amplifier/speaker model and defined radiation paths | Match terminal and acoustic measurements separately |
+| **6. Optimize and evaluate** | Real-time engine with documented errors and listening results | Preserve validated behavior under stress |
+
+Circuit identification should begin alongside the first mechanical work, because loading belongs in the earliest note model. A representative computational kernel should also be benchmarked early.
+
+**The first decisive milestone is one measured note that predicts behavior across strike strength, release, repeated strikes, pickup position and electrical load.** Once that works for the right physical reasons, expansion to the keyboard and revision-specific electronics becomes a controlled engineering process.
+
+That is the route I would take toward your goal: every relevant component represented, the interactions preserved, and each increase in detail justified by its ability to predict the behavior of the actual Rhodes.
