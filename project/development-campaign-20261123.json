@@ -72,26 +72,143 @@
       "wave": 1,
       "task_name": "/root/w1_a008",
       "scope": "Reference integration and rollback design review",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/development-20261123/W1-A008.md",
-      "report_sha256": null
+      "report_sha256": "ba6f71fdb85b1bdbcc9b6839142aa3129ec0d61c32c1ffdeae0e8e196fb6b16b"
     },
     {
       "id": "A009",
       "wave": 1,
       "task_name": "/root/w1_a009",
       "scope": "Bounded event API independent audit",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/development-20261123/W1-A009.md",
-      "report_sha256": null
+      "report_sha256": "9ebb08a6e438da509ac44f686d44f08b4ed170bd827da6f4387a288fca3a7c7f"
     },
     {
       "id": "A010",
       "wave": 1,
       "task_name": "/root/w1_a010",
       "scope": "MIDI note ownership and overlap contract",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/development-20261123/W1-A010.md",
+      "report_sha256": "df36082d4ee40111aaa77ae46638e2a46b00b1b111e0b9cd8ce2c21b85fb9a72"
+    },
+    {
+      "id": "A011",
+      "wave": 1,
+      "task_name": "/root/w1_a011",
+      "scope": "Portable VST configuration serialization contract",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W1-A011.md",
+      "report_sha256": "932cf72a94755083b8fec243d09f2347e508e47906c281e93bb1c80fb5a34669"
+    },
+    {
+      "id": "A012",
+      "wave": 1,
+      "task_name": "/root/w1_a012",
+      "scope": "Independent analytical contact oracle design",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W1-A012.md",
+      "report_sha256": "dd102b5a436f734b5b616770877f3f6d4ee52f8fc5318be7385c39ed5835977b"
+    },
+    {
+      "id": "A013",
+      "wave": 1,
+      "task_name": "/root/w1_a013",
+      "scope": "Full-call timing workloads and allocation evidence design",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W1-A013.md",
+      "report_sha256": "ffceb01ceece492c06b112fbe1ee1cd500957428cade20f42f6bfe06f12a8146"
+    },
+    {
+      "id": "A014",
+      "wave": 1,
+      "task_name": "/root/w1_a014",
+      "scope": "Pinned VST3 SDK provenance and dependency notice documentation",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W1-A014.md",
+      "report_sha256": "0b5b2b9d87005479753187e306204d182f6f14ec6cca83144fdaaf83150825bb"
+    },
+    {
+      "id": "A015",
+      "wave": 1,
+      "task_name": "/root/w1_a015",
+      "scope": "Formal event processor regression tests",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W1-A015.md",
+      "report_sha256": "fa4e8b8ae6f890ee334e1c25eb33896e561a8e405ec9a17ced179d1ecb3dc6eb"
+    },
+    {
+      "id": "A016",
+      "wave": 1,
+      "task_name": "/root/w1_a016",
+      "scope": "Historical action and damper source review",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W1-A016.md",
+      "report_sha256": "835de249d024e82ce389f86f03d6982e0be1cc13b92c38a9bb8e6f521169faed"
+    },
+    {
+      "id": "A017",
+      "wave": 1,
+      "task_name": "/root/w1_a017",
+      "scope": "Nonlinear pickup spectral and aliasing audit",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W1-A017.md",
+      "report_sha256": "1a856656c7334c16c78d819189ccc9204d9f6ff0a76d98ed5a478953afcb9041"
+    },
+    {
+      "id": "A018",
+      "wave": 1,
+      "task_name": "/root/w1_a018",
+      "scope": "Finite reference domain and bounded failure policy review",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W1-A018.md",
+      "report_sha256": "fcebf9493cbc01f57e9d907cc8c583f1bdae31cd7a3aa9593921d3a246bd8ec4"
+    },
+    {
+      "id": "A019",
+      "wave": 1,
+      "task_name": "/root/w1_a019",
+      "scope": "Fixed-storage MIDI note identity implementation",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W1-A019.md",
+      "report_sha256": "52e3e854b24c100334fcf076a5a4738884f0363f703be503a6ab38c647d728b4"
+    },
+    {
+      "id": "A020",
+      "wave": 1,
+      "task_name": "/root/w1_a020",
+      "scope": "Independent wave-one integration design gate",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W1-A020.md",
+      "report_sha256": "73d06df066f3394216ebd8fe50bfc6fa74f70c0f3870e303f3ed7bc7c841bc74"
+    },
+    {
+      "id": "A021",
+      "wave": 2,
+      "task_name": "/root/w2_a021",
+      "scope": "Finite-mass hammer and compliant damper reference implementation",
+      "status": "running",
+      "report": "docs/agents/development-20261123/W2-A021.md",
+      "report_sha256": null
+    },
+    {
+      "id": "A022",
+      "wave": 2,
+      "task_name": "/root/w2_a022",
+      "scope": "Independent contact oracle and numerical regression implementation",
+      "status": "running",
+      "report": "docs/agents/development-20261123/W2-A022.md",
+      "report_sha256": null
+    },
+    {
+      "id": "A023",
+      "wave": 2,
+      "task_name": "/root/w2_a023",
+      "scope": "Experimental VST3 processor controller and stream implementation",
+      "status": "running",
+      "report": "docs/agents/development-20261123/W2-A023.md",
       "report_sha256": null
     }
   ]
