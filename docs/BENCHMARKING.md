@@ -1,14 +1,17 @@
 # Synthetic runtime benchmarks
 
-Three executables measure different boundaries of the same synthetic audio
-model. The two core benchmarks are SDK-free; the VST3 benchmark requires the
-optional pinned SDK. None includes the offline finite-mass contact solver
-or establishes calibrated fidelity or complete `RT-001` acceptance.
+Five executables expose three timing boundaries of the synthetic audio model.
+The two core benchmarks are SDK-free; the direct, filtered and quadrature VST3
+benchmarks require the optional pinned SDK. None includes the offline finite-mass
+contact solver. Timing observations alone establish neither calibrated fidelity
+nor complete `RT-001` acceptance.
 
 | Executable | Timed operation | Controls outside the timed operation |
 |---|---|---|
 | `rhodes_runtime_benchmark` | One complete `EventProcessor::process()` call, including input preflight, event dispatch, sustain changes and sample rendering | Preparation, schedule generation and hashing, initial conditions, output checks and reporting |
 | `rhodes_vst3_benchmark` | One complete concrete `RhodesProcessor::process()` call, including VST3 input access, ownership, automation and state publication | Setup, input schedules, output sentinel initialization, output checks, hashes and reporting |
+| `rhodes_vst3_filtered_benchmark` | The same complete VST3 callback using the filtered signal path | Setup, input schedules, output sentinel initialization, output checks, hashes and reporting |
+| `rhodes_vst3_quadrature_benchmark` | The same complete VST3 callback using the quadrature signal path | Setup, input schedules, output sentinel initialization, output checks, hashes and reporting |
 | `rhodes_benchmark` | `ResearchEngine::process()` only | The preceding note-on calls, preparation, output checks and reporting |
 
 Compare like boundaries. Subtracting results from separate runs does not isolate
@@ -136,9 +139,9 @@ timings or DSP trajectories and adds no performance or numerical acceptance.
 ## Actual VST3 callback benchmark
 
 Configure the optional SDK build as described in [VST3.md](VST3.md). Its
-`rhodes_vst3_checks` aggregate builds both benchmarks together with both modules,
-validator and retained host tests when `BUILD_TESTING=ON`. To build and run only
-the benchmark in that configured tree:
+`rhodes_vst3_checks` aggregate builds all three VST3 benchmarks and all three
+modules, the SDK validator and retained host tests when `BUILD_TESTING=ON`.
+To build and run only the direct benchmark in that configured tree:
 
 ```sh
 cmake --build build/vst3 --config Release --target rhodes_vst3_benchmark --parallel 2
@@ -151,10 +154,34 @@ cmake --build build/vst3 --config Release --target rhodes_vst3_benchmark --paral
 With Visual Studio, use `build/vst3/Release/rhodes_vst3_benchmark.exe`.
 
 Use target and executable `rhodes_vst3_filtered_benchmark` for the filtered
-variant with the same arguments. Its `identity` object records the plugin name,
-state model `2`, latency `48`, selected oversampling factor and internal sample
-rate. The direct benchmark reports model `1`, latency `0` and factor `1`. Compare
-matching workloads and host rates; filter delay is not callback execution time.
+variant, or `rhodes_vst3_quadrature_benchmark` for quadrature, with the same
+arguments. All three compile the [shared benchmark source](../apps/vst3_benchmark.cpp)
+with their respective signal path selected at build time. Each `identity` object
+records its own plug-in name and audio path:
+
+| Variant | `state_model` | `latency_frames` | Additional `identity` fields |
+|---|---:|---:|---|
+| Direct | `1` | `0` | `oversampling_factor=1`; `internal_sample_rate_hz` equals the requested host rate |
+| Filtered | `2` | `48` | Selected `oversampling_factor` and `internal_sample_rate_hz` |
+| Quadrature | `3` | `48` | `quadrature_nodes=6`; `observation_scheme="gauss-legendre-host-cell"`; no `oversampling_factor` or `internal_sample_rate_hz` |
+
+Quadrature observes six nonuniform positions within each host interval and
+advances mechanics once per host frame. Its nodes do not define a uniform
+internal sampling rate. Compare matching workloads and host rates, keeping the
+reported filter delay separate from callback execution time.
+
+For example, build and capture a quadrature observation in the configured tree:
+
+```sh
+cmake --build build/vst3 --config Release --target rhodes_vst3_quadrature_benchmark --parallel 2
+./build/vst3/rhodes_vst3_quadrature_benchmark --blocks 512 --warmup-blocks 32 \
+  --block-size 64 --sample-rate 48000 --active-keys 73 \
+  --workload held --sample-format 64 \
+  --machine "documented-machine-label" > build/vst3-quadrature-callback.json
+```
+
+With Visual Studio, use
+`build/vst3/Release/rhodes_vst3_quadrature_benchmark.exe`.
 
 | Option | Accepted values | Default |
 | --- | --- | --- |
@@ -183,6 +210,15 @@ serialization are outside the timestamps. The executable calls the concrete
 processor; it does not measure shared-module loading, a DAW, device scheduling
 or wake-up jitter.
 
+After the measurement reset, quadrature has no completed host cell for its first
+output frame, which is exactly zero even when keys are struck. Consequently,
+an excited `--blocks 1 --block-size 1` quadrature observation reports
+`integrity.nonzero_output_expected=false`. Every longer excited measurement must
+contain nonzero output; a zero-key workload remains silent in every variant.
+The 48-frame latency describes the kernel delay, while the first completed cell
+can contribute at the second output frame. Warmup does not remove this startup
+behavior because the measurement phase always resets afterwards.
+
 Success emits schema-version-1 JSON with `benchmark="synthetic_vst3_process"`.
 Inspect `complete` and `integrity` before using timings: the report includes
 success/failure counts, cursor and owner observations, host-getter counts,
@@ -198,6 +234,29 @@ overhead subtraction, thread affinity, priority changes or device pacing. This
 executable does not instrument allocation or locking. Finite output and a short
 run cannot establish long-tail denormal behavior, a worst-case bound or a
 real-time guarantee.
+
+### Planned three-variant comparison
+
+The [quadrature benchmark protocol](specs/QUADRATURE_BENCHMARK_20261123.md) and
+[machine-readable run plan](validation/quadrature-benchmark-plan-20261123.json)
+define a matched comparison of all three variants, with two balanced rounds,
+declared stress profiles, environment capture and complete raw-result retention.
+That Linux protocol uses an external launcher to pin every benchmark child to
+the lowest initially permitted logical CPU; the executables themselves leave
+affinity unchanged.
+The plan specifies work to run; it contains no measured callback results.
+Retain unsuccessful runs and nominal-period overruns alongside successful ones,
+and compare output fingerprints between repetitions of the same variant and
+profile. Different signal paths have different output and latency contracts.
+
+The separate [Q6 numerical study](validation/quadrature-audio-full-20261123.json)
+records 2,097 cases and 2,534,400 frames against independently constructed Q6 and
+resolved continuous Q64 references. It is the numerical companion to timing
+observations, within its frozen synthetic model, kernel and input matrix. Its
+scope excludes an alias-only error bound, audibility, measured-instrument
+fidelity and callback deadline guarantees.
+
+### Historical callback observations
 
 The [A069 report](agents/development-20261123/W4-A069.md) and
 [raw matrix with reproduction details](validation/vst3-callback-benchmark-20261123.json)

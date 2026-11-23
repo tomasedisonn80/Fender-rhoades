@@ -1,16 +1,23 @@
 # Experimental VST3 instrument
 
-**Rhodes Research Prototype 0.1.0** and **Rhodes Research Filtered 0.2.0** wrap
-the sample-free synthetic `ResearchEngine` in separate VST3 instruments. Both provide ordinary host parameter
-controls; there is no custom editor. Its sound uses impulse excitation,
+**Rhodes Research Prototype 0.1.0**, **Rhodes Research Filtered 0.2.0** and
+**Rhodes Research Quadrature 0.3.0** wrap the sample-free synthetic
+`ResearchEngine` in separate VST3 instruments. All three provide ordinary host
+parameter controls; there is no custom editor. Their sound uses impulse excitation,
 switched-loss release, a polynomial pickup and a synthetic resistive network.
 The separate finite-mass contact reference is offline and does not run inside
-either plug-in. No specimen calibration or measured fidelity is established.
+any of these plug-ins. No specimen calibration or measured fidelity is established.
 
 | Variant | Bundle / build target | Audio and saved-state contract |
 |---|---|---|
 | Direct research model | `RhodesResearch.vst3` / `rhodes_vst3` | Original class IDs, model-1 state, zero reported latency |
 | Filtered research model | `RhodesResearchFiltered.vst3` / `rhodes_vst3_filtered` | Separate class IDs, model-2 state, 48-frame FIR delay |
+| Quadrature research model | `RhodesResearchQuadrature.vst3` / `rhodes_vst3_quadrature` | Separate class IDs, model-3 state, six fractional observations per host cell, 48-frame delay |
+
+Each variant has its own processor/controller FUID pair, defined in
+[plugin_ids.hpp](../plugins/vst3/plugin_ids.hpp). The original model-1 and model-2
+identities and saved-state interpretation remain unchanged. A project can load
+the three instruments together; there is no live sound-path or latency switch.
 
 The filtered variant uses 4x internal rate through 48 kHz, 2x above 48 through
 96 kHz, and 1x above 96 kHz. A 385/193/97-tap Kaiser FIR processes the combined
@@ -19,6 +26,24 @@ persist across note releases/retriggers. Coefficients, timing and numerical
 limits are fixed in the [filtered audio contract](specs/FILTERED_AUDIO_20261123.md).
 The current measured filter response is not a guarantee for every transient or
 internal-rate alias, and it does not establish audibility or Rhodes fidelity.
+
+The quadrature variant observes the same mechanical trajectory at six
+nonuniform Gauss–Legendre points within each host-frame interval, then advances
+the authoritative mechanics once at host rate. Six fixed 96-tap branches combine
+completed cells with a 48-frame group delay. Ordinary release, retrigger and
+pedal events preserve mechanics and convolution history; a hard reset clears
+both. The first output after reset is zero because no cell has yet completed;
+the response can become nonzero on the next frame. The
+[quadrature contract](specs/QUADRATURE_AUDIO_20261123.md) fixes the timing,
+coefficients, state identity and verification limits.
+
+The [retained full study](validation/quadrature-audio-full-20261123.json) covers
+2,097 cases and 2,534,400 loaded-harp voltage frames at nine exact rates. Every
+independent Q6 and resolved continuous-Q64 comparison passed; the largest
+continuous-reference error was `8.318901123516298e-12 V`, against the unchanged
+`1e-4 V` peak limit. This establishes numerical behavior for the declared
+synthetic matrix. The [legacy compatibility record](validation/quadrature-legacy-compatibility-20261123.json)
+also retains 24 byte-identical direct/filtered WAV reproductions.
 
 The implementation contract is [HOST_PROTOTYPE_20261123](specs/HOST_PROTOTYPE_20261123.md).
 The [dependency inventory](DEPENDENCIES.md) records the official SDK revision,
@@ -75,20 +100,23 @@ ctest --test-dir build/vst3 -C Release -R '^vst3\.' \
   --output-on-failure --no-tests=error
 ```
 
-`rhodes_vst3_checks` exists when `BUILD_TESTING=ON` and builds the bundle,
-SDK validator, callback benchmark and every retained host-test executable. It
-keeps the test command complete as coverage grows. For a plug-in-only build,
-use `--target rhodes_vst3` or `--target rhodes_vst3_filtered`; tests can be
-disabled with `-DBUILD_TESTING=OFF`.
+`rhodes_vst3_checks` exists when `BUILD_TESTING=ON` and builds all three bundles,
+all three callback benchmarks, the SDK validator and every retained host-test
+executable. The test command above runs each bundle through the validator and
+includes the Linux-only triple-module loader checks where available. For a
+plug-in-only build, select `--target rhodes_vst3`,
+`--target rhodes_vst3_filtered` or `--target rhodes_vst3_quadrature`; tests can be
+disabled with `-DBUILD_TESTING=OFF`. To build the three modules without the
+test aggregate, pass all three target names after `--target`.
 
 On macOS, add `-DCMAKE_OSX_DEPLOYMENT_TARGET=11.0` to the configure command to
 match the configured CI job. Leave `CMAKE_OSX_ARCHITECTURES` unset for the native
 architecture. Use a new build directory when changing generators. This guide
 uses Unix Makefiles because the pinned SDK's Xcode branch adds fast-math and
 code-signing settings requiring separate review; it does not recommend Xcode
-as an interchangeable configuration. The observed test result below is
-specifically Linux. Signing, notarization and distribution are separate release
-work.
+as an interchangeable configuration. Native macOS verification remains open;
+the completed platform jobs below cover Linux and Windows. Signing,
+notarization and distribution are separate release work.
 
 ### Windows PowerShell
 
@@ -103,8 +131,9 @@ ctest --test-dir build/vst3 -C Release -R '^vst3\.' --output-on-failure --no-tes
 
 If selecting Ninja instead, supply its matching compiler environment, add
 `-DCMAKE_BUILD_TYPE=Release`, and omit Visual Studio's `-A x64`; do not mix
-generators in one build directory. Native
-Windows verification is still required before claiming Windows compatibility.
+generators in one build directory. The observed Windows CI result below is bound
+to a specific implementation commit and x64 build; actual DAW use still needs
+its own verification.
 
 ## Find and inspect the bundle
 
@@ -113,22 +142,30 @@ With the Release configurations above, the complete bundles are:
 ```text
 build/vst3/VST3/Release/RhodesResearch.vst3
 build/vst3/VST3/Release/RhodesResearchFiltered.vst3
+build/vst3/VST3/Release/RhodesResearchQuadrature.vst3
 ```
 
-The observed Linux x86_64 modules are
-`Contents/x86_64-linux/RhodesResearch.so` and
-`Contents/x86_64-linux/RhodesResearchFiltered.so` inside their respective bundles. The pinned SDK uses
+The observed Linux x86_64 modules are `Contents/x86_64-linux/RhodesResearch.so`,
+`Contents/x86_64-linux/RhodesResearchFiltered.so` and
+`Contents/x86_64-linux/RhodesResearchQuadrature.so` inside their respective bundles. The pinned SDK uses
 the platform's bundle layout on macOS and Windows; retain the whole `.vst3`
 directory, including `Contents/Resources/LICENSE.txt`, `THIRD_PARTY_NOTICES.md`
 and `moduleinfo.json`.
 The resources include the inspected SDK MIT notice. This does not select a
 project-wide license for this repository's original code; see [RIGHTS.md](../RIGHTS.md).
 
+The [VST3 CI workflow](../.github/workflows/vst3.yml) archives all three complete
+bundles after its host tests and validators succeed. Each platform artifact
+contains a `.tar.gz` archive inside GitHub's artifact ZIP. The archive check
+verifies every entry, file hash, mode and internal symlink; keep the complete
+bundle directories when extracting or installing. CI artifacts have a seven-day
+retention period and are experimental build outputs, not a published release.
+
 The build disables automatic links into user plug-in directories. To evaluate
 the result in a DAW, use that host's normal installation/scanning procedure for
-the complete bundle, then insert **Rhodes Research Prototype** or
-**Rhodes Research Filtered** on an instrument
-track. Its category is `Instrument|Synth|Stereo`. A host may show its generic
+the complete bundle, then insert **Rhodes Research Prototype**,
+**Rhodes Research Filtered** or **Rhodes Research Quadrature** on an instrument
+track. Their category is `Instrument|Synth|Stereo`. A host may show its generic
 parameter editor because the prototype supplies no custom view.
 
 ## Playing and controlling the prototype
@@ -143,7 +180,7 @@ parameter editor because the prototype supplies no custom view.
 | Processing | Float32 or float64; sample rates 32–192 kHz inclusive; at most **8192 frames** per host call |
 | Monitoring Gain | Host parameter `0`, displayed multiplier `0..32x`, default `16x`; normalized value `0..1`, default `0.5` |
 | Sustain | Host parameter `1`, `Off`/`On`; normalized values at least `0.5` select `On`; MIDI CC64 maps to it on all channels |
-| Latency and tail | Direct: 0 frames; filtered: 48 frames (1 ms at 48 kHz); both advertise an infinite asymptotic tail |
+| Latency and tail | Direct: 0 frames; filtered and quadrature: 48 frames (1 ms at 48 kHz); all advertise an infinite asymptotic tail |
 
 Monitoring gain multiplies synthetic harp voltage; it is not a calibrated
 instrument amplifier. Gain automation is linearly interpolated and sustain is
@@ -171,8 +208,11 @@ octaves differs, so use the MIDI pitch numbers when checking the range.
 ## Saving and resetting state
 
 The exact 16-byte version-1 state stores monitoring gain and sustain for
-synthetic model ID `1` in the direct variant and `2` in the filtered variant.
-Each rejects the other's state. The format version remains 1; the model field
+synthetic model ID `1` in the direct variant, `2` in the filtered variant and `3`
+in the quadrature variant. Every variant rejects both other model IDs: all six
+ordered cross-model recalls are rejected without conversion. Rejection also
+preserves any valid own-model recall already waiting for an audio boundary.
+The format version remains 1; the model field
 identifies the separate sound path. It does not store ringing notes. A valid recall is
 queued through a lock-free mailbox and installed at a valid audio boundary:
 mechanics, note holders, cursor, FIR history when present, and interpolation history reset before the
@@ -194,10 +234,41 @@ reset before processing continues.
 
 ## Observed verification and remaining gates
 
-On 2026-11-23, the integrator built the actual Linux x86_64 bundle with GCC 14.2
-and the pinned SDK, then observed **47 SDK validator tests passed, zero failed**.
-In CTest, those SDK checks are contained within `vst3.sdk_validator`. The
-retained host suites exercise concrete processor/controller classes and include:
+### Three-variant implementation checkpoint
+
+At commit [3f08573](https://github.com/baabi-boo/Fender-rhoades/commit/3f08573cf5d40d8c23ab1c92e38b987aa1b4e14c),
+the following jobs completed successfully on 2026-11-23. Each built all three
+modules, ran its retained host tests and all three SDK validators, then verified
+and uploaded the complete three-bundle archive:
+
+| Platform job | Observed result |
+|---|---|
+| [Linux](https://github.com/baabi-boo/Fender-rhoades/actions/runs/45280519074/job/138063450540) | Build, host tests, three validators and archive/upload passed |
+| [Windows x64](https://github.com/baabi-boo/Fender-rhoades/actions/runs/45280519074/job/138063450736) | Build, host tests, three validators and archive/upload passed |
+
+The macOS job in that workflow was cancelled without recorded execution steps;
+the overall workflow therefore has a cancelled conclusion. The two completed
+job results above remain successful. These observations apply to the linked
+commit; inspect the CI result for the particular checkout or artifact being
+evaluated. They do not establish native DAW operation or device deadlines.
+
+The newer retained [three-module loader fixture](agents/transient-campaign/w2_a33.md)
+passed locally on Linux with all six load orders, both output formats and
+48/192 kHz rates. It checks six distinct FUIDs, independent output/state,
+all six cross-model recall directions and duplicate-module rejection. Its
+CTest registrations are Linux-only; Windows/macOS coexistence in a real host
+remains separate coverage. The [dedicated quadrature host fixture](agents/transient-campaign/w2_a32.md)
+records local observation/convolution, pending-recall, reset and lifecycle
+checks, with each report retaining the tested source and scope.
+
+### Earlier retained host evidence
+
+Before the quadrature addition, the integrator built the original Linux x86_64
+bundle with GCC 14.2 and the pinned SDK and observed **47 SDK validator tests
+passed, zero failed**. In CTest, those SDK checks are contained within
+`vst3.sdk_validator`; the current build also registers
+`vst3.filtered_sdk_validator` and `vst3.quadrature_sdk_validator`. Earlier host
+suites exercise concrete processor/controller classes and include:
 
 | Coverage | Retained evidence |
 | --- | --- |
@@ -237,7 +308,7 @@ Its [retained matrix](validation/vst3-callback-benchmark-20261123.json) includes
 nominal-period misses and does not establish device deadline compliance.
 
 These results establish the reported engineering checks. Native DAW use,
-macOS/Windows runs, device deadline behavior and release packaging remain
+macOS execution, device deadline behavior and release distribution remain
 separate verification. The synthetic pickup still has the documented nonlinear
 aliasing limits; the [retained diagnostic](agents/development-20261123/W4-A068.md)
 does not establish an audibility bound. No antialiasing or physical-fidelity

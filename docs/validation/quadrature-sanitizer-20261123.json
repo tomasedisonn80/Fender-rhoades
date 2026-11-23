@@ -1,0 +1,715 @@
+{
+  "schema_version": 1,
+  "kind": "quadrature-address-and-undefined-sanitizer-observation",
+  "worker": "/root/w3_a44_sanitizer_quadrature",
+  "created_at_utc": "2026-11-23T22:52:15.474249+00:00",
+  "scope": "Focused standalone quadrature core, probe and renderer under a local Linux Debug build; no VST3 SDK module or real DAW was instrumented by this assignment.",
+  "fidelity_status": "unvalidated",
+  "overall_status": "address-and-undefined-pass; leak-check-unavailable",
+  "observed_results": {
+    "configure_exit_code": 0,
+    "build_exit_code": 0,
+    "built_targets": [
+      "rhodes_fractional_observation_tests",
+      "rhodes_quadrature_fir_tests",
+      "rhodes_quadrature_engine_tests",
+      "rhodes_quadrature_probe",
+      "rhodes_render"
+    ],
+    "initial_leak_enabled": {
+      "ctest_exit_code": 8,
+      "selected": 16,
+      "passed": 0,
+      "failed": 16,
+      "skipped": 0,
+      "test_time_seconds": 14.83,
+      "status": "blocked by LeakSanitizer thread-suspension failure",
+      "environment": {
+        "ASAN_OPTIONS": "detect_leaks=1:halt_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      }
+    },
+    "minimal_control": {
+      "exit_code": 1,
+      "main_body_completed": true,
+      "reported_tracer_pid": 0,
+      "diagnostic": "Could not attach to thread 11 (errno 1). Failed suspending threads. LeakSanitizer has encountered a fatal error.",
+      "interpretation": "The same shutdown failure occurs in a non-project control. The permission failure and generic ptrace hint establish an execution-environment limitation; TracerPid=0 does not establish that the process was traced."
+    },
+    "supplemental_address_undefined": {
+      "ctest_exit_code": 0,
+      "selected": 16,
+      "passed": 16,
+      "failed": 0,
+      "skipped": 0,
+      "test_time_seconds": 18.34,
+      "environment": {
+        "ASAN_OPTIONS": "detect_leaks=0:halt_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "address_or_undefined_diagnostics_in_project_test_log": false,
+      "leak_check": "explicitly unavailable; not a passing leak result"
+    },
+    "detector_calibration": {
+      "address": "intentional heap-buffer-overflow rejected with exit1 and expected diagnostic",
+      "undefined": "intentional signed integer overflow rejected with exit1 and expected diagnostic",
+      "environment_matches_supplemental_run": true
+    }
+  },
+  "record": {
+    "source_commit": "b8fbd0d22c16426e18b91834abc625e76133cf7d",
+    "source_sha256_before": {
+      "CMakeLists.txt": "2a70fba5924a3eeb01bf0dfd7c2a0f6a00726d27ac7535660a4bf267cf81ff3e",
+      "src/research_engine.cpp": "d2545bac87cd5361d9b2e6e7d5333e61f0319033fd1d4673ea30a6e0c24f3112",
+      "apps/audio_probe.cpp": "f9232693eb3a332dcc48f35f0f165a99647b3462e3995e259dbeb014ac189206",
+      "apps/render.cpp": "4fe901544c9faa0992f4517ad1958cc2969d6d4b5d0426b101b4fe52aa265fe2",
+      "tests/cpp/fractional_observation_test.cpp": "2239559e448af9b3ecd9118b1012c0511de85a88c37edf8ba99b603243eaf318",
+      "tests/cpp/quadrature_fir_test.cpp": "68ef7b4cee30bd8ba6f8e7aba1ab9ee5d5f67318f4e96b38be84e66517576a04",
+      "tests/cpp/quadrature_engine_test.cpp": "0ded7d0c4f1390e761d9a5eacd2376a36b4d8e5be590db67039bb6174ff637f3",
+      "tests/cpp/quadrature_cli.cmake": "21e4f9eb4025d672996b73715a6735b25c37917f48a13bad59a276325f499147",
+      "tests/cpp/diagnostic_stdout.cmake": "7f91f038da0d8f19e7623a94bdc47b473bc0fb8e0a87b43b0f9bab3611d07076",
+      "include/rhodes/audio_engine.hpp": "10efac8150c07e69ef41eed415a6e7403b4339179af902f91cd17ef498da7b97",
+      "include/rhodes/audio_filter_coefficients.hpp": "c1ab39356d7e44348f9dc56f9120ff2598889d1fa144e5294b084585655eb76d",
+      "include/rhodes/contact_reference.hpp": "00b99e61dc73686c22675bedf647c3ad1b27ba13332180431f5a42e485057fda",
+      "include/rhodes/control_value.hpp": "7d940dcbca66f07f9db6c5caf605da57fbe77d66b78641139e078f06d7441919",
+      "include/rhodes/event_processor.hpp": "36e4b64f3278b0079b20e94a333a657c900e4118dc24433ec9d8c58442651351",
+      "include/rhodes/fir_decimator.hpp": "e54faeb397bcbccb9ed9834cfc264d84550c4ef375d8e5273a720eb1f190071b",
+      "include/rhodes/instrument_state.hpp": "c11c9d982887f4228c76c3ee9e10fe5627c2dc0f1053ad531cfd316285a65616",
+      "include/rhodes/note_tracker.hpp": "76931b326daae3a112b56420f9be9ea5b03b1c30307f1dc68b6c13c710cd830f",
+      "include/rhodes/quadrature_engine.hpp": "ebb49129735c83e55ddbcd1e7adb83e4daad90c89663a71558f9affe750fff2d",
+      "include/rhodes/quadrature_filter_coefficients.hpp": "3cca4ea6553ceb01810a6230f2144491364fa48af7d6cfbc43a8e3dcf5d08b51",
+      "include/rhodes/quadrature_fir.hpp": "30c9b3e913f6d31020a67105db23464ffa2865c02c269fb1eb0ccc739d3bd1dc",
+      "include/rhodes/research_engine.hpp": "a6ba109f254aba92dc1dd8f0f76941b1b93636035e208d443d1f5764b0a1daed"
+    },
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+    "machine": "x86_64",
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "cmake": "cmake version 4.4.5",
+    "cxx": "c++ (Debian 14.2.0-19) 14.2.0",
+    "sanitizer_environment": {
+      "ASAN_OPTIONS": "detect_leaks=1:halt_on_error=1",
+      "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+    },
+    "commands": [
+      {
+        "argv": [
+          "cmake",
+          "-S",
+          ".",
+          "-B",
+          "/workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize",
+          "-DCMAKE_BUILD_TYPE=Debug",
+          "-DRHODES_ENABLE_SANITIZERS=ON",
+          "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+          "-DBUILD_TESTING=ON",
+          "-DRHODES_BUILD_VST3=OFF"
+        ],
+        "exit_code": 0,
+        "log": "a44-configure.log"
+      },
+      {
+        "argv": [
+          "cmake",
+          "--build",
+          "build/w3-a44-sanitize",
+          "--target",
+          "rhodes_fractional_observation_tests",
+          "rhodes_quadrature_fir_tests",
+          "rhodes_quadrature_engine_tests",
+          "rhodes_quadrature_probe",
+          "rhodes_render",
+          "--parallel",
+          "2"
+        ],
+        "exit_code": 0,
+        "log": "a44-build.log"
+      },
+      {
+        "argv": [
+          "ctest",
+          "--test-dir",
+          "build/w3-a44-sanitize",
+          "-R",
+          "^quadrature\\.",
+          "--output-on-failure",
+          "--no-tests=error",
+          "--parallel",
+          "1",
+          "--output-junit",
+          "build/w3-a44-sanitize/a44-junit.xml"
+        ],
+        "exit_code": 8,
+        "log": "a44-ctest.log",
+        "started_at_utc": "2026-11-23T22:48:06.073841+00:00",
+        "finished_at_utc": "2026-11-23T22:48:21.043095+00:00"
+      },
+      {
+        "argv": [
+          "c++",
+          "-g",
+          "-std=c++20",
+          "-fsanitize=address,undefined",
+          "-fno-omit-frame-pointer",
+          "build/w3-a44-sanitize/a44-lsan-control.cpp",
+          "-o",
+          "build/w3-a44-sanitize/a44-lsan-control"
+        ],
+        "exit_code": 0,
+        "log": "a44-control-build.log"
+      },
+      {
+        "argv": [
+          "build/w3-a44-sanitize/a44-lsan-control"
+        ],
+        "exit_code": 1,
+        "log": "a44-control-run.log",
+        "environment": {
+          "ASAN_OPTIONS": "detect_leaks=1:halt_on_error=1",
+          "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1",
+          "LSAN_OPTIONS": "verbosity=1:log_threads=1"
+        }
+      },
+      {
+        "argv": [
+          "ctest",
+          "--test-dir",
+          "build/w3-a44-sanitize",
+          "-R",
+          "^quadrature\\.",
+          "--output-on-failure",
+          "--no-tests=error",
+          "--parallel",
+          "1",
+          "--output-junit",
+          "build/w3-a44-sanitize/a44-address-undefined-junit.xml"
+        ],
+        "exit_code": 0,
+        "log": "a44-address-undefined-ctest.log",
+        "environment": {
+          "ASAN_OPTIONS": "detect_leaks=0:halt_on_error=1",
+          "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+        },
+        "limitation": "Leak detection explicitly disabled only for this supplemental address/undefined-behavior run because the retained minimal control cannot suspend threads (errno 1). No project or CI configuration was changed.",
+        "started_at_utc": "2026-11-23T22:49:47.380420+00:00",
+        "finished_at_utc": "2026-11-23T22:50:05.934830+00:00"
+      }
+    ],
+    "selected_compile_commands": [
+      {
+        "directory": "/workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize",
+        "command": "/usr/bin/c++  -I/workspace/scratch/a37aa07d1094/Fender-rhoades/include -g -std=c++20 -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -Wall -Wextra -Wpedantic -Wconversion -Wshadow -Werror -fsanitize=address,undefined -fno-omit-frame-pointer -o CMakeFiles/rhodes_core.dir/src/research_engine.cpp.o -c /workspace/scratch/a37aa07d1094/Fender-rhoades/src/research_engine.cpp",
+        "file": "/workspace/scratch/a37aa07d1094/Fender-rhoades/src/research_engine.cpp",
+        "output": "CMakeFiles/rhodes_core.dir/src/research_engine.cpp.o"
+      },
+      {
+        "directory": "/workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize",
+        "command": "/usr/bin/c++  -I/workspace/scratch/a37aa07d1094/Fender-rhoades/include -g -std=gnu++20 -Wall -Wextra -Wpedantic -Wconversion -Wshadow -Werror -fsanitize=address,undefined -fno-omit-frame-pointer -o CMakeFiles/rhodes_render.dir/apps/render.cpp.o -c /workspace/scratch/a37aa07d1094/Fender-rhoades/apps/render.cpp",
+        "file": "/workspace/scratch/a37aa07d1094/Fender-rhoades/apps/render.cpp",
+        "output": "CMakeFiles/rhodes_render.dir/apps/render.cpp.o"
+      },
+      {
+        "directory": "/workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize",
+        "command": "/usr/bin/c++  -I/workspace/scratch/a37aa07d1094/Fender-rhoades/include -g -std=gnu++20 -Wall -Wextra -Wpedantic -Wconversion -Wshadow -Werror -fsanitize=address,undefined -fno-omit-frame-pointer -o CMakeFiles/rhodes_fractional_observation_tests.dir/tests/cpp/fractional_observation_test.cpp.o -c /workspace/scratch/a37aa07d1094/Fender-rhoades/tests/cpp/fractional_observation_test.cpp",
+        "file": "/workspace/scratch/a37aa07d1094/Fender-rhoades/tests/cpp/fractional_observation_test.cpp",
+        "output": "CMakeFiles/rhodes_fractional_observation_tests.dir/tests/cpp/fractional_observation_test.cpp.o"
+      },
+      {
+        "directory": "/workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize",
+        "command": "/usr/bin/c++  -I/workspace/scratch/a37aa07d1094/Fender-rhoades/include -g -std=gnu++20 -Wall -Wextra -Wpedantic -Wconversion -Wshadow -Werror -fsanitize=address,undefined -fno-omit-frame-pointer -o CMakeFiles/rhodes_quadrature_fir_tests.dir/tests/cpp/quadrature_fir_test.cpp.o -c /workspace/scratch/a37aa07d1094/Fender-rhoades/tests/cpp/quadrature_fir_test.cpp",
+        "file": "/workspace/scratch/a37aa07d1094/Fender-rhoades/tests/cpp/quadrature_fir_test.cpp",
+        "output": "CMakeFiles/rhodes_quadrature_fir_tests.dir/tests/cpp/quadrature_fir_test.cpp.o"
+      },
+      {
+        "directory": "/workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize",
+        "command": "/usr/bin/c++  -I/workspace/scratch/a37aa07d1094/Fender-rhoades/include -g -std=gnu++20 -Wall -Wextra -Wpedantic -Wconversion -Wshadow -Werror -fsanitize=address,undefined -fno-omit-frame-pointer -o CMakeFiles/rhodes_quadrature_engine_tests.dir/tests/cpp/quadrature_engine_test.cpp.o -c /workspace/scratch/a37aa07d1094/Fender-rhoades/tests/cpp/quadrature_engine_test.cpp",
+        "file": "/workspace/scratch/a37aa07d1094/Fender-rhoades/tests/cpp/quadrature_engine_test.cpp",
+        "output": "CMakeFiles/rhodes_quadrature_engine_tests.dir/tests/cpp/quadrature_engine_test.cpp.o"
+      },
+      {
+        "directory": "/workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize",
+        "command": "/usr/bin/c++ -DRHODES_QUADRATURE_PROBE=1 -I/workspace/scratch/a37aa07d1094/Fender-rhoades/include -g -std=gnu++20 -Wall -Wextra -Wpedantic -Wconversion -Wshadow -Werror -fsanitize=address,undefined -fno-omit-frame-pointer -o CMakeFiles/rhodes_quadrature_probe.dir/apps/audio_probe.cpp.o -c /workspace/scratch/a37aa07d1094/Fender-rhoades/apps/audio_probe.cpp",
+        "file": "/workspace/scratch/a37aa07d1094/Fender-rhoades/apps/audio_probe.cpp",
+        "output": "CMakeFiles/rhodes_quadrature_probe.dir/apps/audio_probe.cpp.o"
+      }
+    ],
+    "selected_link_commands": {
+      "rhodes_core": "/usr/bin/ar qc librhodes_core.a CMakeFiles/rhodes_core.dir/src/research_engine.cpp.o\n/usr/bin/ranlib librhodes_core.a",
+      "rhodes_fractional_observation_tests": "/usr/bin/c++ -g -fsanitize=address,undefined -Wl,--dependency-file=CMakeFiles/rhodes_fractional_observation_tests.dir/link.d CMakeFiles/rhodes_fractional_observation_tests.dir/tests/cpp/fractional_observation_test.cpp.o -o rhodes_fractional_observation_tests  librhodes_core.a",
+      "rhodes_quadrature_fir_tests": "/usr/bin/c++ -g -fsanitize=address,undefined -Wl,--dependency-file=CMakeFiles/rhodes_quadrature_fir_tests.dir/link.d CMakeFiles/rhodes_quadrature_fir_tests.dir/tests/cpp/quadrature_fir_test.cpp.o -o rhodes_quadrature_fir_tests  librhodes_core.a",
+      "rhodes_quadrature_engine_tests": "/usr/bin/c++ -g -fsanitize=address,undefined -Wl,--dependency-file=CMakeFiles/rhodes_quadrature_engine_tests.dir/link.d CMakeFiles/rhodes_quadrature_engine_tests.dir/tests/cpp/quadrature_engine_test.cpp.o -o rhodes_quadrature_engine_tests  librhodes_core.a",
+      "rhodes_quadrature_probe": "/usr/bin/c++ -g -fsanitize=address,undefined -Wl,--dependency-file=CMakeFiles/rhodes_quadrature_probe.dir/link.d CMakeFiles/rhodes_quadrature_probe.dir/apps/audio_probe.cpp.o -o rhodes_quadrature_probe  librhodes_core.a",
+      "rhodes_render": "/usr/bin/c++ -g -fsanitize=address,undefined -Wl,--dependency-file=CMakeFiles/rhodes_render.dir/link.d CMakeFiles/rhodes_render.dir/apps/render.cpp.o -o rhodes_render  librhodes_core.a"
+    },
+    "source_files_equal_HEAD": true,
+    "source_sha256_after": {
+      "CMakeLists.txt": "2a70fba5924a3eeb01bf0dfd7c2a0f6a00726d27ac7535660a4bf267cf81ff3e",
+      "src/research_engine.cpp": "d2545bac87cd5361d9b2e6e7d5333e61f0319033fd1d4673ea30a6e0c24f3112",
+      "apps/audio_probe.cpp": "f9232693eb3a332dcc48f35f0f165a99647b3462e3995e259dbeb014ac189206",
+      "apps/render.cpp": "4fe901544c9faa0992f4517ad1958cc2969d6d4b5d0426b101b4fe52aa265fe2",
+      "tests/cpp/fractional_observation_test.cpp": "2239559e448af9b3ecd9118b1012c0511de85a88c37edf8ba99b603243eaf318",
+      "tests/cpp/quadrature_fir_test.cpp": "68ef7b4cee30bd8ba6f8e7aba1ab9ee5d5f67318f4e96b38be84e66517576a04",
+      "tests/cpp/quadrature_engine_test.cpp": "0ded7d0c4f1390e761d9a5eacd2376a36b4d8e5be590db67039bb6174ff637f3",
+      "tests/cpp/quadrature_cli.cmake": "21e4f9eb4025d672996b73715a6735b25c37917f48a13bad59a276325f499147",
+      "tests/cpp/diagnostic_stdout.cmake": "7f91f038da0d8f19e7623a94bdc47b473bc0fb8e0a87b43b0f9bab3611d07076",
+      "include/rhodes/audio_engine.hpp": "10efac8150c07e69ef41eed415a6e7403b4339179af902f91cd17ef498da7b97",
+      "include/rhodes/audio_filter_coefficients.hpp": "c1ab39356d7e44348f9dc56f9120ff2598889d1fa144e5294b084585655eb76d",
+      "include/rhodes/contact_reference.hpp": "00b99e61dc73686c22675bedf647c3ad1b27ba13332180431f5a42e485057fda",
+      "include/rhodes/control_value.hpp": "7d940dcbca66f07f9db6c5caf605da57fbe77d66b78641139e078f06d7441919",
+      "include/rhodes/event_processor.hpp": "36e4b64f3278b0079b20e94a333a657c900e4118dc24433ec9d8c58442651351",
+      "include/rhodes/fir_decimator.hpp": "e54faeb397bcbccb9ed9834cfc264d84550c4ef375d8e5273a720eb1f190071b",
+      "include/rhodes/instrument_state.hpp": "c11c9d982887f4228c76c3ee9e10fe5627c2dc0f1053ad531cfd316285a65616",
+      "include/rhodes/note_tracker.hpp": "76931b326daae3a112b56420f9be9ea5b03b1c30307f1dc68b6c13c710cd830f",
+      "include/rhodes/quadrature_engine.hpp": "ebb49129735c83e55ddbcd1e7adb83e4daad90c89663a71558f9affe750fff2d",
+      "include/rhodes/quadrature_filter_coefficients.hpp": "3cca4ea6553ceb01810a6230f2144491364fa48af7d6cfbc43a8e3dcf5d08b51",
+      "include/rhodes/quadrature_fir.hpp": "30c9b3e913f6d31020a67105db23464ffa2865c02c269fb1eb0ccc739d3bd1dc",
+      "include/rhodes/research_engine.hpp": "a6ba109f254aba92dc1dd8f0f76941b1b93636035e208d443d1f5764b0a1daed"
+    },
+    "source_bytes_unchanged": true,
+    "source_commit_after": "b8fbd0d22c16426e18b91834abc625e76133cf7d",
+    "binaries": {
+      "rhodes_fractional_observation_tests": {
+        "sha256": "f58a8c1bb6f1462aa399575ea2706c0fa2a539aae7c1c93e5605f9d9a664fb48",
+        "bytes": 953744,
+        "needed": [
+          "0x0000000000000001 (NEEDED)             Shared library: [libasan.so.8]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libstdc++.so.6]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libm.so.6]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libubsan.so.1]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libgcc_s.so.1]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libc.so.6]"
+        ]
+      },
+      "rhodes_quadrature_fir_tests": {
+        "sha256": "bcd37467ebfb0437240d6aca669cbd775313334478b6f1f639985e8b3770a4fb",
+        "bytes": 456088,
+        "needed": [
+          "0x0000000000000001 (NEEDED)             Shared library: [libasan.so.8]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libstdc++.so.6]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libm.so.6]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libubsan.so.1]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libgcc_s.so.1]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libc.so.6]"
+        ]
+      },
+      "rhodes_quadrature_engine_tests": {
+        "sha256": "145d7368a4d8c8a966f1b17ad2ee8b7197374da27e207bc09b3f64c5c584c786",
+        "bytes": 1721304,
+        "needed": [
+          "0x0000000000000001 (NEEDED)             Shared library: [libasan.so.8]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libstdc++.so.6]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libm.so.6]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libubsan.so.1]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libgcc_s.so.1]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libc.so.6]"
+        ]
+      },
+      "rhodes_quadrature_probe": {
+        "sha256": "6fddb5a54826c0a636c4c2251713406bb6dc7df533d3e5da25ea30d31314170b",
+        "bytes": 889184,
+        "needed": [
+          "0x0000000000000001 (NEEDED)             Shared library: [libasan.so.8]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libstdc++.so.6]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libm.so.6]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libubsan.so.1]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libgcc_s.so.1]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libc.so.6]"
+        ]
+      },
+      "rhodes_render": {
+        "sha256": "cb8055647942ded047bb29e429879543562c60354b568dc18715d897e372c68b",
+        "bytes": 1507760,
+        "needed": [
+          "0x0000000000000001 (NEEDED)             Shared library: [libasan.so.8]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libstdc++.so.6]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libm.so.6]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libubsan.so.1]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libgcc_s.so.1]",
+          "0x0000000000000001 (NEEDED)             Shared library: [libc.so.6]"
+        ]
+      }
+    },
+    "junit": {
+      "initial_leak_enabled": {
+        "path": "build/w3-a44-sanitize/build/w3-a44-sanitize/a44-junit.xml",
+        "sha256": "607c2076aeeba837798022321aaec665c4853492ddeb53d8a124d3ead55a9f07",
+        "suite_attributes": {
+          "name": "Linux-c++",
+          "tests": "16",
+          "failures": "16",
+          "disabled": "0",
+          "skipped": "0",
+          "time": "14",
+          "timestamp": "2026-11-23T15:48:06"
+        },
+        "cases": [
+          {
+            "name": "quadrature.analytic_nodes",
+            "time_seconds": 0.35465,
+            "status": "fail",
+            "failure": true,
+            "skipped": false
+          },
+          {
+            "name": "quadrature.plan_domains",
+            "time_seconds": 0.0907798,
+            "status": "fail",
+            "failure": true,
+            "skipped": false
+          },
+          {
+            "name": "quadrature.observation_nonmutation",
+            "time_seconds": 0.725763,
+            "status": "fail",
+            "failure": true,
+            "skipped": false
+          },
+          {
+            "name": "quadrature.damping_regimes",
+            "time_seconds": 0.264415,
+            "status": "fail",
+            "failure": true,
+            "skipped": false
+          },
+          {
+            "name": "quadrature.qfir_convolution",
+            "time_seconds": 0.0384289,
+            "status": "fail",
+            "failure": true,
+            "skipped": false
+          },
+          {
+            "name": "quadrature.qfir_impulses",
+            "time_seconds": 1.00908,
+            "status": "fail",
+            "failure": true,
+            "skipped": false
+          },
+          {
+            "name": "quadrature.qfir_delay",
+            "time_seconds": 0.0545414,
+            "status": "fail",
+            "failure": true,
+            "skipped": false
+          },
+          {
+            "name": "quadrature.qfir_rejection",
+            "time_seconds": 0.178215,
+            "status": "fail",
+            "failure": true,
+            "skipped": false
+          },
+          {
+            "name": "quadrature.qfir_overflow",
+            "time_seconds": 0.0095677,
+            "status": "fail",
+            "failure": true,
+            "skipped": false
+          },
+          {
+            "name": "quadrature.qengine_events",
+            "time_seconds": 2.49182,
+            "status": "fail",
+            "failure": true,
+            "skipped": false
+          },
+          {
+            "name": "quadrature.qengine_partitions",
+            "time_seconds": 4.33793,
+            "status": "fail",
+            "failure": true,
+            "skipped": false
+          },
+          {
+            "name": "quadrature.qengine_prepare",
+            "time_seconds": 3.44504,
+            "status": "fail",
+            "failure": true,
+            "skipped": false
+          },
+          {
+            "name": "quadrature.qengine_faults",
+            "time_seconds": 0.442775,
+            "status": "fail",
+            "failure": true,
+            "skipped": false
+          },
+          {
+            "name": "quadrature.qengine_allocations",
+            "time_seconds": 1.34227,
+            "status": "fail",
+            "failure": true,
+            "skipped": false
+          },
+          {
+            "name": "quadrature.cli",
+            "time_seconds": 0.0195527,
+            "status": "fail",
+            "failure": true,
+            "skipped": false
+          },
+          {
+            "name": "quadrature.probe_stdout",
+            "time_seconds": 0.0174695,
+            "status": "fail",
+            "failure": true,
+            "skipped": false
+          }
+        ]
+      },
+      "address_undefined_only": {
+        "path": "build/w3-a44-sanitize/build/w3-a44-sanitize/a44-address-undefined-junit.xml",
+        "sha256": "3b04acfcb4305cb1dc826a30723d6a0c55eff357fe2ccd0a85df2209ef7e8683",
+        "suite_attributes": {
+          "name": "Linux-c++",
+          "tests": "16",
+          "failures": "0",
+          "disabled": "0",
+          "skipped": "0",
+          "time": "18",
+          "timestamp": "2026-11-23T15:49:47"
+        },
+        "cases": [
+          {
+            "name": "quadrature.analytic_nodes",
+            "time_seconds": 1.14443,
+            "status": "run",
+            "failure": false,
+            "skipped": false
+          },
+          {
+            "name": "quadrature.plan_domains",
+            "time_seconds": 0.107342,
+            "status": "run",
+            "failure": false,
+            "skipped": false
+          },
+          {
+            "name": "quadrature.observation_nonmutation",
+            "time_seconds": 1.12694,
+            "status": "run",
+            "failure": false,
+            "skipped": false
+          },
+          {
+            "name": "quadrature.damping_regimes",
+            "time_seconds": 0.259757,
+            "status": "run",
+            "failure": false,
+            "skipped": false
+          },
+          {
+            "name": "quadrature.qfir_convolution",
+            "time_seconds": 0.0295069,
+            "status": "run",
+            "failure": false,
+            "skipped": false
+          },
+          {
+            "name": "quadrature.qfir_impulses",
+            "time_seconds": 0.992054,
+            "status": "run",
+            "failure": false,
+            "skipped": false
+          },
+          {
+            "name": "quadrature.qfir_delay",
+            "time_seconds": 0.0279019,
+            "status": "run",
+            "failure": false,
+            "skipped": false
+          },
+          {
+            "name": "quadrature.qfir_rejection",
+            "time_seconds": 0.174781,
+            "status": "run",
+            "failure": false,
+            "skipped": false
+          },
+          {
+            "name": "quadrature.qfir_overflow",
+            "time_seconds": 0.00669825,
+            "status": "run",
+            "failure": false,
+            "skipped": false
+          },
+          {
+            "name": "quadrature.qengine_events",
+            "time_seconds": 2.41355,
+            "status": "run",
+            "failure": false,
+            "skipped": false
+          },
+          {
+            "name": "quadrature.qengine_partitions",
+            "time_seconds": 3.57292,
+            "status": "run",
+            "failure": false,
+            "skipped": false
+          },
+          {
+            "name": "quadrature.qengine_prepare",
+            "time_seconds": 3.51836,
+            "status": "run",
+            "failure": false,
+            "skipped": false
+          },
+          {
+            "name": "quadrature.qengine_faults",
+            "time_seconds": 0.43966,
+            "status": "run",
+            "failure": false,
+            "skipped": false
+          },
+          {
+            "name": "quadrature.qengine_allocations",
+            "time_seconds": 1.65152,
+            "status": "run",
+            "failure": false,
+            "skipped": false
+          },
+          {
+            "name": "quadrature.cli",
+            "time_seconds": 2.8367,
+            "status": "run",
+            "failure": false,
+            "skipped": false
+          },
+          {
+            "name": "quadrature.probe_stdout",
+            "time_seconds": 0.0299565,
+            "status": "run",
+            "failure": false,
+            "skipped": false
+          }
+        ]
+      }
+    },
+    "junit_timestamp_note": "CTest JUnit timestamps have no UTC offset; the wrapper command records explicit UTC start/finish times."
+  },
+  "minimal_control_source": {
+    "utf8": "#include <fstream>\n#include <iostream>\n#include <string>\nint main() {\n  std::ifstream status(\"/proc/self/status\");\n  for (std::string line; std::getline(status, line);) {\n    if (line.rfind(\"TracerPid:\", 0) == 0) std::cout << line << \"\\n\";\n  }\n  std::cout << \"minimal control body completed\" << std::endl;\n  return 0;\n}\n",
+    "sha256": "82809e1fabba8d8e3e16da88868dcecebcadff447a633e466df5a95f8b8eb196",
+    "binary_sha256": "d920a0b6ded41933a53cc4bf6e32e284d7c0d791deb90fadbd14cc769cd34ee0"
+  },
+  "detector_controls": {
+    "address": {
+      "source": "int main() { int* p = new int[1]; volatile int index = 1; p[index] = 42; delete[] p; return 0; }\n",
+      "source_sha256": "e344f90f3db7fc9fa7ad057e36773e6e6f79c089099ad5c5938550bc6ca4b4d3",
+      "compile_argv": [
+        "c++",
+        "-g",
+        "-std=c++20",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "build/w3-a44-sanitize/a44-address-control.cpp",
+        "-o",
+        "build/w3-a44-sanitize/a44-address-control"
+      ],
+      "compile_exit_code": 0,
+      "run_argv": [
+        "build/w3-a44-sanitize/a44-address-control"
+      ],
+      "environment": {
+        "ASAN_OPTIONS": "detect_leaks=0:halt_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "exit_code": 1,
+      "expected_diagnostic": "heap-buffer-overflow",
+      "expected_diagnostic_observed": true,
+      "log": "a44-address-control.log",
+      "binary_sha256": "d8bcbc7451fa5df09d1641a5a07db3a4f7d700c3268658ad4fa0c49dc0b3b0ee"
+    },
+    "undefined": {
+      "source": "#include <limits>\nint main() { volatile int value = std::numeric_limits<int>::max(); return value + 1; }\n",
+      "source_sha256": "c4462ed7aea7d6210df66e5f35cce4e9efb892e109d30341291da6d3def8b792",
+      "compile_argv": [
+        "c++",
+        "-g",
+        "-std=c++20",
+        "-fsanitize=address,undefined",
+        "-fno-omit-frame-pointer",
+        "build/w3-a44-sanitize/a44-undefined-control.cpp",
+        "-o",
+        "build/w3-a44-sanitize/a44-undefined-control"
+      ],
+      "compile_exit_code": 0,
+      "run_argv": [
+        "build/w3-a44-sanitize/a44-undefined-control"
+      ],
+      "environment": {
+        "ASAN_OPTIONS": "detect_leaks=0:halt_on_error=1",
+        "UBSAN_OPTIONS": "halt_on_error=1:print_stacktrace=1"
+      },
+      "exit_code": 1,
+      "expected_diagnostic": "signed integer overflow",
+      "expected_diagnostic_observed": true,
+      "log": "a44-undefined-control.log",
+      "binary_sha256": "89e9976525ba95dd2d849bad582f636098035a9af88fd84d08349f90200f0999"
+    }
+  },
+  "retained_logs": {
+    "a44-configure.log": {
+      "sha256": "d0338600c805101545209a954657521f16c1402cfe576b085e77fa7229a41197",
+      "bytes": 537,
+      "utf8": "-- The CXX compiler identification is GNU 14.2.0\n-- Detecting CXX compiler ABI info\n-- Detecting CXX compiler ABI info - done\n-- Check for working CXX compiler: /usr/bin/c++ - skipped\n-- Detecting CXX compile features\n-- Detecting CXX compile features - done\n-- Performing Test CMAKE_HAVE_LIBC_PTHREAD\n-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success\n-- Found Threads: TRUE\n-- Configuring done (0.3s)\n-- Generating done (0.1s)\n-- Build files have been written to: /workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize\n"
+    },
+    "a44-build.log": {
+      "sha256": "f51e28a640db5176da40eadf4dfc0dea377960f101cd4c7a590f4ef0707e1a78",
+      "bytes": 1310,
+      "utf8": "[ 25%] Building CXX object CMakeFiles/rhodes_core.dir/src/research_engine.cpp.o\n[ 50%] Linking CXX static library librhodes_core.a\n[ 50%] Built target rhodes_core\n[ 75%] Building CXX object CMakeFiles/rhodes_fractional_observation_tests.dir/tests/cpp/fractional_observation_test.cpp.o\n[100%] Linking CXX executable rhodes_fractional_observation_tests\n[100%] Built target rhodes_fractional_observation_tests\n[ 50%] Built target rhodes_core\n[ 75%] Building CXX object CMakeFiles/rhodes_quadrature_fir_tests.dir/tests/cpp/quadrature_fir_test.cpp.o\n[100%] Linking CXX executable rhodes_quadrature_fir_tests\n[100%] Built target rhodes_quadrature_fir_tests\n[ 50%] Built target rhodes_core\n[ 75%] Building CXX object CMakeFiles/rhodes_quadrature_engine_tests.dir/tests/cpp/quadrature_engine_test.cpp.o\n[100%] Linking CXX executable rhodes_quadrature_engine_tests\n[100%] Built target rhodes_quadrature_engine_tests\n[ 50%] Built target rhodes_core\n[ 75%] Building CXX object CMakeFiles/rhodes_quadrature_probe.dir/apps/audio_probe.cpp.o\n[100%] Linking CXX executable rhodes_quadrature_probe\n[100%] Built target rhodes_quadrature_probe\n[ 50%] Built target rhodes_core\n[ 75%] Building CXX object CMakeFiles/rhodes_render.dir/apps/render.cpp.o\n[100%] Linking CXX executable rhodes_render\n[100%] Built target rhodes_render\n"
+    },
+    "a44-ctest.log": {
+      "sha256": "e7e2398c4c4634ccd5f8dc8e635e11a981263199165d26eed32eb3fabc37f023",
+      "bytes": 7816,
+      "utf8": "Test project /workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize\n      Start  1: quadrature.analytic_nodes\n 1/16 Test  #1: quadrature.analytic_nodes ............***Failed    0.35 sec\n==7==LeakSanitizer has encountered a fatal error.\n==7==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1\n==7==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)\n\n      Start  2: quadrature.plan_domains\n 2/16 Test  #2: quadrature.plan_domains ..............***Failed    0.09 sec\n==9==LeakSanitizer has encountered a fatal error.\n==9==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1\n==9==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)\n\n      Start  3: quadrature.observation_nonmutation\n 3/16 Test  #3: quadrature.observation_nonmutation ...***Failed    0.73 sec\n==11==LeakSanitizer has encountered a fatal error.\n==11==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1\n==11==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)\n\n      Start  4: quadrature.damping_regimes\n 4/16 Test  #4: quadrature.damping_regimes ...........***Failed    0.26 sec\n==13==LeakSanitizer has encountered a fatal error.\n==13==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1\n==13==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)\n\n      Start  5: quadrature.qfir_convolution\n 5/16 Test  #5: quadrature.qfir_convolution ..........***Failed    0.04 sec\n==15==LeakSanitizer has encountered a fatal error.\n==15==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1\n==15==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)\n\n      Start  6: quadrature.qfir_impulses\n 6/16 Test  #6: quadrature.qfir_impulses .............***Failed    1.01 sec\n==17==LeakSanitizer has encountered a fatal error.\n==17==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1\n==17==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)\n\n      Start  7: quadrature.qfir_delay\n 7/16 Test  #7: quadrature.qfir_delay ................***Failed    0.05 sec\n==19==LeakSanitizer has encountered a fatal error.\n==19==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1\n==19==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)\n\n      Start  8: quadrature.qfir_rejection\n 8/16 Test  #8: quadrature.qfir_rejection ............***Failed    0.18 sec\n==21==LeakSanitizer has encountered a fatal error.\n==21==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1\n==21==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)\n\n      Start  9: quadrature.qfir_overflow\n 9/16 Test  #9: quadrature.qfir_overflow .............***Failed    0.01 sec\n==23==LeakSanitizer has encountered a fatal error.\n==23==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1\n==23==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)\n\n      Start 10: quadrature.qengine_events\n10/16 Test #10: quadrature.qengine_events ............***Failed    2.49 sec\n==25==LeakSanitizer has encountered a fatal error.\n==25==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1\n==25==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)\n\n      Start 11: quadrature.qengine_partitions\n11/16 Test #11: quadrature.qengine_partitions ........***Failed    4.34 sec\n==27==LeakSanitizer has encountered a fatal error.\n==27==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1\n==27==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)\n\n      Start 12: quadrature.qengine_prepare\n12/16 Test #12: quadrature.qengine_prepare ...........***Failed    3.45 sec\n==29==LeakSanitizer has encountered a fatal error.\n==29==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1\n==29==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)\n\n      Start 13: quadrature.qengine_faults\n13/16 Test #13: quadrature.qengine_faults ............***Failed    0.44 sec\n==31==LeakSanitizer has encountered a fatal error.\n==31==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1\n==31==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)\n\n      Start 14: quadrature.qengine_allocations\n14/16 Test #14: quadrature.qengine_allocations .......***Failed    1.34 sec\n==33==LeakSanitizer has encountered a fatal error.\n==33==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1\n==33==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)\n\n      Start 36: quadrature.cli\n15/16 Test #36: quadrature.cli .......................***Failed    0.02 sec\nCMake Error at /workspace/scratch/a37aa07d1094/Fender-rhoades/tests/cpp/quadrature_cli.cmake:84 (message):\n  Missing quadrature help/limit contract: rhodes_quadrature_probe\n  --sample-rate Hz --frames N\n\n  Synthetic QuadratureEngine double-precision JSON probe; no measured\n  fidelity claim.\n\n  Finite host rate 32000..192000 Hz; 1..4096 frames; 48-frame causal kernel\n  delay.\n\n  Six Gauss-Legendre observations per host cell; no uniform internal sample\n  rate.\n\n  stdin: offset type key value, exactly four fields on each nonempty row.\n\n  Types: on (key 0..72, value 0..1; zero releases), off (key 0..72, value 0),\n\n  sustain (key 0, value 0/1), all_off/reset (key 0, value 0).\n\n  Ordered offsets 0..N-1; equal offsets retain row order before that sample.\n\n  At most 4096 rows, each at most 128 bytes excluding newline; blank rows\n  reject.\n\n  Empty stdin is silence.  Entire input preflights before engine\n  mutation/output.\n\n  Processing uses 64-frame blocks and bounded physical-event dispatch.\n\n  JSON stdout contains volts with 17 significant digits; no gain or time\n  shift.\n\n  Invalid input exits 2 with diagnostics on stderr and empty stdout.\n\n  ==36==LeakSanitizer has encountered a fatal error.\n\n  ==36==HINT: For debugging, try setting environment variable\n  LSAN_OPTIONS=verbosity=1:log_threads=1\n\n  ==36==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)\n\n\n\n\n      Start 38: quadrature.probe_stdout\n16/16 Test #38: quadrature.probe_stdout ..............***Failed    0.02 sec\nCMake Error at /workspace/scratch/a37aa07d1094/Fender-rhoades/tests/cpp/diagnostic_stdout.cmake:42 (message):\n  json failed with a healthy destination: 1: ==39==LeakSanitizer has\n  encountered a fatal error.\n\n  ==39==HINT: For debugging, try setting environment variable\n  LSAN_OPTIONS=verbosity=1:log_threads=1\n\n  ==39==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)\n\nCall Stack (most recent call first):\n  /workspace/scratch/a37aa07d1094/Fender-rhoades/tests/cpp/diagnostic_stdout.cmake:65 (check_output)\n\n\n\n\n0% tests passed, 16 tests failed out of 16\n\nTotal Test time (real) =  14.83 sec\n\nThe following tests FAILED:\n\t  1 - quadrature.analytic_nodes (Failed)\n\t  2 - quadrature.plan_domains (Failed)\n\t  3 - quadrature.observation_nonmutation (Failed)\n\t  4 - quadrature.damping_regimes (Failed)\n\t  5 - quadrature.qfir_convolution (Failed)\n\t  6 - quadrature.qfir_impulses (Failed)\n\t  7 - quadrature.qfir_delay (Failed)\n\t  8 - quadrature.qfir_rejection (Failed)\n\t  9 - quadrature.qfir_overflow (Failed)\n\t 10 - quadrature.qengine_events (Failed)\n\t 11 - quadrature.qengine_partitions (Failed)\n\t 12 - quadrature.qengine_prepare (Failed)\n\t 13 - quadrature.qengine_faults (Failed)\n\t 14 - quadrature.qengine_allocations (Failed)\n\t 36 - quadrature.cli (Failed)\n\t 38 - quadrature.probe_stdout (Failed)\nErrors while running CTest\n"
+    },
+    "a44-first-LastTest.log": {
+      "sha256": "c43effb0b8bccf0f557b47dc487bbfd833c0a4c5e637c6573f9a8e1022502de7",
+      "bytes": 16759,
+      "utf8": "Start testing: Nov 23 15:48 MST\n----------------------------------------------------------\n1/150 Testing: quadrature.analytic_nodes\n1/150 Test: quadrature.analytic_nodes\nCommand: \"/workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize/rhodes_fractional_observation_tests\" \"analytic_nodes\"\nDirectory: /workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize\n\"quadrature.analytic_nodes\" start time: Nov 23 15:48 MST\nOutput:\n----------------------------------------------------------\n==7==LeakSanitizer has encountered a fatal error.\n==7==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1\n==7==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)\n<end of output>\nTest time =   0.35 sec\n----------------------------------------------------------\nTest Failed.\n\"quadrature.analytic_nodes\" end time: Nov 23 15:48 MST\n\"quadrature.analytic_nodes\" time elapsed: 00:00:00\n----------------------------------------------------------\n\n2/150 Testing: quadrature.plan_domains\n2/150 Test: quadrature.plan_domains\nCommand: \"/workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize/rhodes_fractional_observation_tests\" \"plan_domains\"\nDirectory: /workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize\n\"quadrature.plan_domains\" start time: Nov 23 15:48 MST\nOutput:\n----------------------------------------------------------\n==9==LeakSanitizer has encountered a fatal error.\n==9==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1\n==9==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)\n<end of output>\nTest time =   0.09 sec\n----------------------------------------------------------\nTest Failed.\n\"quadrature.plan_domains\" end time: Nov 23 15:48 MST\n\"quadrature.plan_domains\" time elapsed: 00:00:00\n----------------------------------------------------------\n\n3/150 Testing: quadrature.observation_nonmutation\n3/150 Test: quadrature.observation_nonmutation\nCommand: \"/workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize/rhodes_fractional_observation_tests\" \"observation_nonmutation\"\nDirectory: /workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize\n\"quadrature.observation_nonmutation\" start time: Nov 23 15:48 MST\nOutput:\n----------------------------------------------------------\n==11==LeakSanitizer has encountered a fatal error.\n==11==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1\n==11==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)\n<end of output>\nTest time =   0.73 sec\n----------------------------------------------------------\nTest Failed.\n\"quadrature.observation_nonmutation\" end time: Nov 23 15:48 MST\n\"quadrature.observation_nonmutation\" time elapsed: 00:00:00\n----------------------------------------------------------\n\n4/150 Testing: quadrature.damping_regimes\n4/150 Test: quadrature.damping_regimes\nCommand: \"/workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize/rhodes_fractional_observation_tests\" \"damping_regimes\"\nDirectory: /workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize\n\"quadrature.damping_regimes\" start time: Nov 23 15:48 MST\nOutput:\n----------------------------------------------------------\n==13==LeakSanitizer has encountered a fatal error.\n==13==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1\n==13==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)\n<end of output>\nTest time =   0.26 sec\n----------------------------------------------------------\nTest Failed.\n\"quadrature.damping_regimes\" end time: Nov 23 15:48 MST\n\"quadrature.damping_regimes\" time elapsed: 00:00:00\n----------------------------------------------------------\n\n5/150 Testing: quadrature.qfir_convolution\n5/150 Test: quadrature.qfir_convolution\nCommand: \"/workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize/rhodes_quadrature_fir_tests\" \"qfir_convolution\"\nDirectory: /workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize\n\"quadrature.qfir_convolution\" start time: Nov 23 15:48 MST\nOutput:\n----------------------------------------------------------\n==15==LeakSanitizer has encountered a fatal error.\n==15==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1\n==15==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)\n<end of output>\nTest time =   0.04 sec\n----------------------------------------------------------\nTest Failed.\n\"quadrature.qfir_convolution\" end time: Nov 23 15:48 MST\n\"quadrature.qfir_convolution\" time elapsed: 00:00:00\n----------------------------------------------------------\n\n6/150 Testing: quadrature.qfir_impulses\n6/150 Test: quadrature.qfir_impulses\nCommand: \"/workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize/rhodes_quadrature_fir_tests\" \"qfir_impulses\"\nDirectory: /workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize\n\"quadrature.qfir_impulses\" start time: Nov 23 15:48 MST\nOutput:\n----------------------------------------------------------\n==17==LeakSanitizer has encountered a fatal error.\n==17==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1\n==17==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)\n<end of output>\nTest time =   1.01 sec\n----------------------------------------------------------\nTest Failed.\n\"quadrature.qfir_impulses\" end time: Nov 23 15:48 MST\n\"quadrature.qfir_impulses\" time elapsed: 00:00:01\n----------------------------------------------------------\n\n7/150 Testing: quadrature.qfir_delay\n7/150 Test: quadrature.qfir_delay\nCommand: \"/workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize/rhodes_quadrature_fir_tests\" \"qfir_delay\"\nDirectory: /workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize\n\"quadrature.qfir_delay\" start time: Nov 23 15:48 MST\nOutput:\n----------------------------------------------------------\n==19==LeakSanitizer has encountered a fatal error.\n==19==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1\n==19==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)\n<end of output>\nTest time =   0.05 sec\n----------------------------------------------------------\nTest Failed.\n\"quadrature.qfir_delay\" end time: Nov 23 15:48 MST\n\"quadrature.qfir_delay\" time elapsed: 00:00:00\n----------------------------------------------------------\n\n8/150 Testing: quadrature.qfir_rejection\n8/150 Test: quadrature.qfir_rejection\nCommand: \"/workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize/rhodes_quadrature_fir_tests\" \"qfir_rejection\"\nDirectory: /workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize\n\"quadrature.qfir_rejection\" start time: Nov 23 15:48 MST\nOutput:\n----------------------------------------------------------\n==21==LeakSanitizer has encountered a fatal error.\n==21==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1\n==21==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)\n<end of output>\nTest time =   0.18 sec\n----------------------------------------------------------\nTest Failed.\n\"quadrature.qfir_rejection\" end time: Nov 23 15:48 MST\n\"quadrature.qfir_rejection\" time elapsed: 00:00:00\n----------------------------------------------------------\n\n9/150 Testing: quadrature.qfir_overflow\n9/150 Test: quadrature.qfir_overflow\nCommand: \"/workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize/rhodes_quadrature_fir_tests\" \"qfir_overflow\"\nDirectory: /workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize\n\"quadrature.qfir_overflow\" start time: Nov 23 15:48 MST\nOutput:\n----------------------------------------------------------\n==23==LeakSanitizer has encountered a fatal error.\n==23==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1\n==23==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)\n<end of output>\nTest time =   0.01 sec\n----------------------------------------------------------\nTest Failed.\n\"quadrature.qfir_overflow\" end time: Nov 23 15:48 MST\n\"quadrature.qfir_overflow\" time elapsed: 00:00:00\n----------------------------------------------------------\n\n10/150 Testing: quadrature.qengine_events\n10/150 Test: quadrature.qengine_events\nCommand: \"/workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize/rhodes_quadrature_engine_tests\" \"qengine_events\"\nDirectory: /workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize\n\"quadrature.qengine_events\" start time: Nov 23 15:48 MST\nOutput:\n----------------------------------------------------------\n==25==LeakSanitizer has encountered a fatal error.\n==25==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1\n==25==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)\n<end of output>\nTest time =   2.49 sec\n----------------------------------------------------------\nTest Failed.\n\"quadrature.qengine_events\" end time: Nov 23 15:48 MST\n\"quadrature.qengine_events\" time elapsed: 00:00:02\n----------------------------------------------------------\n\n11/150 Testing: quadrature.qengine_partitions\n11/150 Test: quadrature.qengine_partitions\nCommand: \"/workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize/rhodes_quadrature_engine_tests\" \"qengine_partitions\"\nDirectory: /workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize\n\"quadrature.qengine_partitions\" start time: Nov 23 15:48 MST\nOutput:\n----------------------------------------------------------\n==27==LeakSanitizer has encountered a fatal error.\n==27==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1\n==27==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)\n<end of output>\nTest time =   4.34 sec\n----------------------------------------------------------\nTest Failed.\n\"quadrature.qengine_partitions\" end time: Nov 23 15:48 MST\n\"quadrature.qengine_partitions\" time elapsed: 00:00:04\n----------------------------------------------------------\n\n12/150 Testing: quadrature.qengine_prepare\n12/150 Test: quadrature.qengine_prepare\nCommand: \"/workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize/rhodes_quadrature_engine_tests\" \"qengine_prepare\"\nDirectory: /workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize\n\"quadrature.qengine_prepare\" start time: Nov 23 15:48 MST\nOutput:\n----------------------------------------------------------\n==29==LeakSanitizer has encountered a fatal error.\n==29==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1\n==29==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)\n<end of output>\nTest time =   3.45 sec\n----------------------------------------------------------\nTest Failed.\n\"quadrature.qengine_prepare\" end time: Nov 23 15:48 MST\n\"quadrature.qengine_prepare\" time elapsed: 00:00:03\n----------------------------------------------------------\n\n13/150 Testing: quadrature.qengine_faults\n13/150 Test: quadrature.qengine_faults\nCommand: \"/workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize/rhodes_quadrature_engine_tests\" \"qengine_faults\"\nDirectory: /workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize\n\"quadrature.qengine_faults\" start time: Nov 23 15:48 MST\nOutput:\n----------------------------------------------------------\n==31==LeakSanitizer has encountered a fatal error.\n==31==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1\n==31==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)\n<end of output>\nTest time =   0.44 sec\n----------------------------------------------------------\nTest Failed.\n\"quadrature.qengine_faults\" end time: Nov 23 15:48 MST\n\"quadrature.qengine_faults\" time elapsed: 00:00:00\n----------------------------------------------------------\n\n14/150 Testing: quadrature.qengine_allocations\n14/150 Test: quadrature.qengine_allocations\nCommand: \"/workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize/rhodes_quadrature_engine_tests\" \"qengine_allocations\"\nDirectory: /workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize\n\"quadrature.qengine_allocations\" start time: Nov 23 15:48 MST\nOutput:\n----------------------------------------------------------\n==33==LeakSanitizer has encountered a fatal error.\n==33==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1\n==33==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)\n<end of output>\nTest time =   1.34 sec\n----------------------------------------------------------\nTest Failed.\n\"quadrature.qengine_allocations\" end time: Nov 23 15:48 MST\n\"quadrature.qengine_allocations\" time elapsed: 00:00:01\n----------------------------------------------------------\n\n36/150 Testing: quadrature.cli\n36/150 Test: quadrature.cli\nCommand: \"/home/agent/.local/lib/python3.12/site-packages/cmake/data/bin/cmake\" \"-DPROBE=/workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize/rhodes_quadrature_probe\" \"-DRENDERER=/workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize/rhodes_render\" \"-DTEST_ROOT=/workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize\" \"-P\" \"/workspace/scratch/a37aa07d1094/Fender-rhoades/tests/cpp/quadrature_cli.cmake\"\nDirectory: /workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize\n\"quadrature.cli\" start time: Nov 23 15:48 MST\nOutput:\n----------------------------------------------------------\nCMake Error at /workspace/scratch/a37aa07d1094/Fender-rhoades/tests/cpp/quadrature_cli.cmake:84 (message):\n  Missing quadrature help/limit contract: rhodes_quadrature_probe\n  --sample-rate Hz --frames N\n\n  Synthetic QuadratureEngine double-precision JSON probe; no measured\n  fidelity claim.\n\n  Finite host rate 32000..192000 Hz; 1..4096 frames; 48-frame causal kernel\n  delay.\n\n  Six Gauss-Legendre observations per host cell; no uniform internal sample\n  rate.\n\n  stdin: offset type key value, exactly four fields on each nonempty row.\n\n  Types: on (key 0..72, value 0..1; zero releases), off (key 0..72, value 0),\n\n  sustain (key 0, value 0/1), all_off/reset (key 0, value 0).\n\n  Ordered offsets 0..N-1; equal offsets retain row order before that sample.\n\n  At most 4096 rows, each at most 128 bytes excluding newline; blank rows\n  reject.\n\n  Empty stdin is silence.  Entire input preflights before engine\n  mutation/output.\n\n  Processing uses 64-frame blocks and bounded physical-event dispatch.\n\n  JSON stdout contains volts with 17 significant digits; no gain or time\n  shift.\n\n  Invalid input exits 2 with diagnostics on stderr and empty stdout.\n\n  ==36==LeakSanitizer has encountered a fatal error.\n\n  ==36==HINT: For debugging, try setting environment variable\n  LSAN_OPTIONS=verbosity=1:log_threads=1\n\n  ==36==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)\n\n\n\n<end of output>\nTest time =   0.02 sec\n----------------------------------------------------------\nTest Failed.\n\"quadrature.cli\" end time: Nov 23 15:48 MST\n\"quadrature.cli\" time elapsed: 00:00:00\n----------------------------------------------------------\n\n38/150 Testing: quadrature.probe_stdout\n38/150 Test: quadrature.probe_stdout\nCommand: \"/home/agent/.local/lib/python3.12/site-packages/cmake/data/bin/cmake\" \"-DPROGRAM=/workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize/rhodes_quadrature_probe\" \"-DKIND=quadrature_probe\" \"-DTEST_ROOT=/workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize\" \"-P\" \"/workspace/scratch/a37aa07d1094/Fender-rhoades/tests/cpp/diagnostic_stdout.cmake\"\nDirectory: /workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize\n\"quadrature.probe_stdout\" start time: Nov 23 15:48 MST\nOutput:\n----------------------------------------------------------\nCMake Error at /workspace/scratch/a37aa07d1094/Fender-rhoades/tests/cpp/diagnostic_stdout.cmake:42 (message):\n  json failed with a healthy destination: 1: ==39==LeakSanitizer has\n  encountered a fatal error.\n\n  ==39==HINT: For debugging, try setting environment variable\n  LSAN_OPTIONS=verbosity=1:log_threads=1\n\n  ==39==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)\n\nCall Stack (most recent call first):\n  /workspace/scratch/a37aa07d1094/Fender-rhoades/tests/cpp/diagnostic_stdout.cmake:65 (check_output)\n\n\n<end of output>\nTest time =   0.02 sec\n----------------------------------------------------------\nTest Failed.\n\"quadrature.probe_stdout\" end time: Nov 23 15:48 MST\n\"quadrature.probe_stdout\" time elapsed: 00:00:00\n----------------------------------------------------------\n\nEnd testing: Nov 23 15:48 MST\n"
+    },
+    "a44-control-build.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "utf8": ""
+    },
+    "a44-control-run.log": {
+      "sha256": "d13f2454a32f6c15eae2f3de3625aaffaa5682c13be7023ec6432f26aa2c0233",
+      "bytes": 14021,
+      "utf8": "==11==Registered root region at 0x7f3f10001310 of size 80\n==11==Registered root region at 0x7f3f0fc007a0 of size 32\n==11==Unregistered root region at 0x7f3f10001310 of size 80\n==11==Unregistered root region at 0x7f3f0fc007a0 of size 32\n==11==AddressSanitizer: failed to intercept '__isoc99_printf'\n==11==Registered root region at 0x7f3f10001310 of size 80\n==11==Registered root region at 0x7f3f0fc007a0 of size 32\n==11==Unregistered root region at 0x7f3f10001310 of size 80\n==11==Unregistered root region at 0x7f3f0fc007a0 of size 32\n==11==AddressSanitizer: failed to intercept '__isoc99_sprintf'\n==11==Registered root region at 0x7f3f10001310 of size 80\n==11==Registered root region at 0x7f3f0fc007a0 of size 32\n==11==Unregistered root region at 0x7f3f10001310 of size 80\n==11==Unregistered root region at 0x7f3f0fc007a0 of size 32\n==11==AddressSanitizer: failed to intercept '__isoc99_snprintf'\n==11==Registered root region at 0x7f3f10001310 of size 80\n==11==Registered root region at 0x7f3f0fc007a0 of size 32\n==11==Unregistered root region at 0x7f3f10001310 of size 80\n==11==Unregistered root region at 0x7f3f0fc007a0 of size 32\n==11==AddressSanitizer: failed to intercept '__isoc99_fprintf'\n==11==Registered root region at 0x7f3f10001310 of size 80\n==11==Registered root region at 0x7f3f0fc007a0 of size 32\n==11==Unregistered root region at 0x7f3f10001310 of size 80\n==11==Unregistered root region at 0x7f3f0fc007a0 of size 32\n==11==AddressSanitizer: failed to intercept '__isoc99_vprintf'\n==11==Registered root region at 0x7f3f10001310 of size 80\n==11==Registered root region at 0x7f3f0fc007a0 of size 32\n==11==Unregistered root region at 0x7f3f10001310 of size 80\n==11==Unregistered root region at 0x7f3f0fc007a0 of size 32\n==11==AddressSanitizer: failed to intercept '__isoc99_vsprintf'\n==11==Registered root region at 0x7f3f10001310 of size 80\n==11==Registered root region at 0x7f3f0fc007a0 of size 32\n==11==Unregistered root region at 0x7f3f10001310 of size 80\n==11==Unregistered root region at 0x7f3f0fc007a0 of size 32\n==11==AddressSanitizer: failed to intercept '__isoc99_vsnprintf'\n==11==Registered root region at 0x7f3f10001310 of size 80\n==11==Registered root region at 0x7f3f0fc007a0 of size 32\n==11==Unregistered root region at 0x7f3f10001310 of size 80\n==11==Unregistered root region at 0x7f3f0fc007a0 of size 32\n==11==AddressSanitizer: failed to intercept '__isoc99_vfprintf'\n==11==Registered root region at 0x7f3f0fa00f40 of size 64\n==11==Registered root region at 0x7f3f0fc007a0 of size 32\n==11==Unregistered root region at 0x7f3f0fa00f40 of size 64\n==11==Unregistered root region at 0x7f3f0fc007a0 of size 32\n==11==AddressSanitizer: failed to intercept '__b64_ntop'\n==11==Registered root region at 0x7f3f0fa00f40 of size 64\n==11==Registered root region at 0x7f3f0fc007a0 of size 32\n==11==Unregistered root region at 0x7f3f0fa00f40 of size 64\n==11==Unregistered root region at 0x7f3f0fc007a0 of size 32\n==11==AddressSanitizer: failed to intercept '__b64_pton'\n==11==Registered root region at 0x7f3f0f8016e0 of size 96\n==11==Registered root region at 0x7f3f0fc007a0 of size 32\n==11==Unregistered root region at 0x7f3f0f8016e0 of size 96\n==11==Unregistered root region at 0x7f3f0fc007a0 of size 32\n==11==AddressSanitizer: failed to intercept 'pthread_mutexattr_getrobust_np'\n==11==Registered root region at 0x7f3f10001310 of size 80\n==11==Registered root region at 0x7f3f0fc007a0 of size 32\n==11==Unregistered root region at 0x7f3f10001310 of size 80\n==11==Unregistered root region at 0x7f3f0fc007a0 of size 32\n==11==AddressSanitizer: failed to intercept 'xdrmem_create'\n==11==Registered root region at 0x7f3f10001310 of size 80\n==11==Registered root region at 0x7f3f0fc007a0 of size 32\n==11==Unregistered root region at 0x7f3f10001310 of size 80\n==11==Unregistered root region at 0x7f3f0fc007a0 of size 32\n==11==AddressSanitizer: failed to intercept 'xdrstdio_create'\n==11==Registered root region at 0x7f3f0fa00f40 of size 64\n==11==Registered root region at 0x7f3f0fc007a0 of size 32\n==11==Unregistered root region at 0x7f3f0fa00f40 of size 64\n==11==Unregistered root region at 0x7f3f0fc007a0 of size 32\n==11==AddressSanitizer: failed to intercept 'xdr_short'\n==11==Registered root region at 0x7f3f10001310 of size 80\n==11==Registered root region at 0x7f3f0fc007a0 of size 32\n==11==Unregistered root region at 0x7f3f10001310 of size 80\n==11==Unregistered root region at 0x7f3f0fc007a0 of size 32\n==11==AddressSanitizer: failed to intercept 'xdr_u_short'\n==11==Registered root region at 0x7f3f0fa00f40 of size 64\n==11==Registered root region at 0x7f3f0fc007a0 of size 32\n==11==Unregistered root region at 0x7f3f0fa00f40 of size 64\n==11==Unregistered root region at 0x7f3f0fc007a0 of size 32\n==11==AddressSanitizer: failed to intercept 'xdr_int'\n==11==Registered root region at 0x7f3f0fa00f40 of size 64\n==11==Registered root region at 0x7f3f0fc007a0 of size 32\n==11==Unregistered root region at 0x7f3f0fa00f40 of size 64\n==11==Unregistered root region at 0x7f3f0fc007a0 of size 32\n==11==AddressSanitizer: failed to intercept 'xdr_u_int'\n==11==Registered root region at 0x7f3f0fa00f40 of size 64\n==11==Registered root region at 0x7f3f0fc007a0 of size 32\n==11==Unregistered root region at 0x7f3f0fa00f40 of size 64\n==11==Unregistered root region at 0x7f3f0fc007a0 of size 32\n==11==AddressSanitizer: failed to intercept 'xdr_long'\n==11==Registered root region at 0x7f3f0fa00f40 of size 64\n==11==Registered root region at 0x7f3f0fc007a0 of size 32\n==11==Unregistered root region at 0x7f3f0fa00f40 of size 64\n==11==Unregistered root region at 0x7f3f0fc007a0 of size 32\n==11==AddressSanitizer: failed to intercept 'xdr_u_long'\n==11==Registered root region at 0x7f3f0fa00f40 of size 64\n==11==Registered root region at 0x7f3f0fc007a0 of size 32\n==11==Unregistered root region at 0x7f3f0fa00f40 of size 64\n==11==Unregistered root region at 0x7f3f0fc007a0 of size 32\n==11==AddressSanitizer: failed to intercept 'xdr_hyper'\n==11==Registered root region at 0x7f3f10001310 of size 80\n==11==Registered root region at 0x7f3f0fc007a0 of size 32\n==11==Unregistered root region at 0x7f3f10001310 of size 80\n==11==Unregistered root region at 0x7f3f0fc007a0 of size 32\n==11==AddressSanitizer: failed to intercept 'xdr_u_hyper'\n==11==Registered root region at 0x7f3f10001310 of size 80\n==11==Registered root region at 0x7f3f0fc007a0 of size 32\n==11==Unregistered root region at 0x7f3f10001310 of size 80\n==11==Unregistered root region at 0x7f3f0fc007a0 of size 32\n==11==AddressSanitizer: failed to intercept 'xdr_longlong_t'\n==11==Registered root region at 0x7f3f10001310 of size 80\n==11==Registered root region at 0x7f3f0fc007a0 of size 32\n==11==Unregistered root region at 0x7f3f10001310 of size 80\n==11==Unregistered root region at 0x7f3f0fc007a0 of size 32\n==11==AddressSanitizer: failed to intercept 'xdr_u_longlong_t'\n==11==Registered root region at 0x7f3f0fa00f40 of size 64\n==11==Registered root region at 0x7f3f0fc007a0 of size 32\n==11==Unregistered root region at 0x7f3f0fa00f40 of size 64\n==11==Unregistered root region at 0x7f3f0fc007a0 of size 32\n==11==AddressSanitizer: failed to intercept 'xdr_int8_t'\n==11==Registered root region at 0x7f3f10001310 of size 80\n==11==Registered root region at 0x7f3f0fc007a0 of size 32\n==11==Unregistered root region at 0x7f3f10001310 of size 80\n==11==Unregistered root region at 0x7f3f0fc007a0 of size 32\n==11==AddressSanitizer: failed to intercept 'xdr_uint8_t'\n==11==Registered root region at 0x7f3f10001310 of size 80\n==11==Registered root region at 0x7f3f0fc007a0 of size 32\n==11==Unregistered root region at 0x7f3f10001310 of size 80\n==11==Unregistered root region at 0x7f3f0fc007a0 of size 32\n==11==AddressSanitizer: failed to intercept 'xdr_int16_t'\n==11==Registered root region at 0x7f3f10001310 of size 80\n==11==Registered root region at 0x7f3f0fc007a0 of size 32\n==11==Unregistered root region at 0x7f3f10001310 of size 80\n==11==Unregistered root region at 0x7f3f0fc007a0 of size 32\n==11==AddressSanitizer: failed to intercept 'xdr_uint16_t'\n==11==Registered root region at 0x7f3f10001310 of size 80\n==11==Registered root region at 0x7f3f0fc007a0 of size 32\n==11==Unregistered root region at 0x7f3f10001310 of size 80\n==11==Unregistered root region at 0x7f3f0fc007a0 of size 32\n==11==AddressSanitizer: failed to intercept 'xdr_int32_t'\n==11==Registered root region at 0x7f3f10001310 of size 80\n==11==Registered root region at 0x7f3f0fc007a0 of size 32\n==11==Unregistered root region at 0x7f3f10001310 of size 80\n==11==Unregistered root region at 0x7f3f0fc007a0 of size 32\n==11==AddressSanitizer: failed to intercept 'xdr_uint32_t'\n==11==Registered root region at 0x7f3f10001310 of size 80\n==11==Registered root region at 0x7f3f0fc007a0 of size 32\n==11==Unregistered root region at 0x7f3f10001310 of size 80\n==11==Unregistered root region at 0x7f3f0fc007a0 of size 32\n==11==AddressSanitizer: failed to intercept 'xdr_int64_t'\n==11==Registered root region at 0x7f3f10001310 of size 80\n==11==Registered root region at 0x7f3f0fc007a0 of size 32\n==11==Unregistered root region at 0x7f3f10001310 of size 80\n==11==Unregistered root region at 0x7f3f0fc007a0 of size 32\n==11==AddressSanitizer: failed to intercept 'xdr_uint64_t'\n==11==Registered root region at 0x7f3f0fa00f40 of size 64\n==11==Registered root region at 0x7f3f0fc007a0 of size 32\n==11==Unregistered root region at 0x7f3f0fa00f40 of size 64\n==11==Unregistered root region at 0x7f3f0fc007a0 of size 32\n==11==AddressSanitizer: failed to intercept 'xdr_quad_t'\n==11==Registered root region at 0x7f3f10001310 of size 80\n==11==Registered root region at 0x7f3f0fc007a0 of size 32\n==11==Unregistered root region at 0x7f3f10001310 of size 80\n==11==Unregistered root region at 0x7f3f0fc007a0 of size 32\n==11==AddressSanitizer: failed to intercept 'xdr_u_quad_t'\n==11==Registered root region at 0x7f3f0fa00f40 of size 64\n==11==Registered root region at 0x7f3f0fc007a0 of size 32\n==11==Unregistered root region at 0x7f3f0fa00f40 of size 64\n==11==Unregistered root region at 0x7f3f0fc007a0 of size 32\n==11==AddressSanitizer: failed to intercept 'xdr_bool'\n==11==Registered root region at 0x7f3f0fa00f40 of size 64\n==11==Registered root region at 0x7f3f0fc007a0 of size 32\n==11==Unregistered root region at 0x7f3f0fa00f40 of size 64\n==11==Unregistered root region at 0x7f3f0fc007a0 of size 32\n==11==AddressSanitizer: failed to intercept 'xdr_enum'\n==11==Registered root region at 0x7f3f0fa00f40 of size 64\n==11==Registered root region at 0x7f3f0fc007a0 of size 32\n==11==Unregistered root region at 0x7f3f0fa00f40 of size 64\n==11==Unregistered root region at 0x7f3f0fc007a0 of size 32\n==11==AddressSanitizer: failed to intercept 'xdr_char'\n==11==Registered root region at 0x7f3f0fa00f40 of size 64\n==11==Registered root region at 0x7f3f0fc007a0 of size 32\n==11==Unregistered root region at 0x7f3f0fa00f40 of size 64\n==11==Unregistered root region at 0x7f3f0fc007a0 of size 32\n==11==AddressSanitizer: failed to intercept 'xdr_u_char'\n==11==Registered root region at 0x7f3f0fa00f40 of size 64\n==11==Registered root region at 0x7f3f0fc007a0 of size 32\n==11==Unregistered root region at 0x7f3f0fa00f40 of size 64\n==11==Unregistered root region at 0x7f3f0fc007a0 of size 32\n==11==AddressSanitizer: failed to intercept 'xdr_float'\n==11==Registered root region at 0x7f3f0fa00f40 of size 64\n==11==Registered root region at 0x7f3f0fc007a0 of size 32\n==11==Unregistered root region at 0x7f3f0fa00f40 of size 64\n==11==Unregistered root region at 0x7f3f0fc007a0 of size 32\n==11==AddressSanitizer: failed to intercept 'xdr_double'\n==11==Registered root region at 0x7f3f0fa00f40 of size 64\n==11==Registered root region at 0x7f3f0fc007a0 of size 32\n==11==Unregistered root region at 0x7f3f0fa00f40 of size 64\n==11==Unregistered root region at 0x7f3f0fc007a0 of size 32\n==11==AddressSanitizer: failed to intercept 'xdr_bytes'\n==11==Registered root region at 0x7f3f0fa00f40 of size 64\n==11==Registered root region at 0x7f3f0fc007a0 of size 32\n==11==Unregistered root region at 0x7f3f0fa00f40 of size 64\n==11==Unregistered root region at 0x7f3f0fc007a0 of size 32\n==11==AddressSanitizer: failed to intercept 'xdr_string'\n==11==Registered root region at 0x7f3f10001310 of size 80\n==11==Registered root region at 0x7f3f0fc007a0 of size 32\n==11==Unregistered root region at 0x7f3f10001310 of size 80\n==11==Unregistered root region at 0x7f3f0fc007a0 of size 32\n==11==AddressSanitizer: failed to intercept 'xdrrec_create'\n==11==Registered root region at 0x7f3f10001310 of size 80\n==11==Registered root region at 0x7f3f0fc007a0 of size 32\n==11==Unregistered root region at 0x7f3f10001310 of size 80\n==11==Unregistered root region at 0x7f3f0fc007a0 of size 32\n==11==AddressSanitizer: failed to intercept 'xdr_destroy'\n==11==AddressSanitizer: libc interceptors initialized\n|| `[0x10007fff8000, 0x7fffffffffff]` || HighMem    ||\n|| `[0x02008fff7000, 0x10007fff7fff]` || HighShadow ||\n|| `[0x00008fff7000, 0x02008fff6fff]` || ShadowGap  ||\n|| `[0x00007fff8000, 0x00008fff6fff]` || LowShadow  ||\n|| `[0x000000000000, 0x00007fff7fff]` || LowMem     ||\nMemToShadow(shadow): 0x00008fff7000 0x000091ff6dff 0x004091ff6e00 0x02008fff6fff\nredzone=16\nmax_redzone=2048\nquarantine_size_mb=256M\nthread_local_quarantine_size_kb=1024K\nmalloc_context_size=30\nSHADOW_SCALE: 3\nSHADOW_GRANULARITY: 8\nSHADOW_OFFSET: 0x7fff8000\n==11==Installed the sigaction for signal 11\n==11==Installed the sigaction for signal 7\n==11==Installed the sigaction for signal 8\n==11==T0: FakeStack created: 0x7f3f0e4f7000 -- 0x7f3f0f000000 stack_size_log: 20; mmapped 11300K, noreserve=0 \n==11==T0: stack [0x7fffd7f7b000,0x7fffd877b000) size 0x800000; local=0x7fffd877757c\n==11==AddressSanitizer Init done\nTracerPid:\t0\nminimal control body completed\n==11==LeakSanitizer: checking for leaks==12==Could not attach to thread 11 (errno 1).\n==12==Failed suspending threads.\n==11==LeakSanitizer has encountered a fatal error.\n==11==HINT: For debugging, try setting environment variable LSAN_OPTIONS=verbosity=1:log_threads=1\n==11==HINT: LeakSanitizer does not work under ptrace (strace, gdb, etc)\n"
+    },
+    "a44-address-undefined-ctest.log": {
+      "sha256": "fb8a608f1ddb96518f781893f9f74014a7edc3ab51bf050eda68773ba214ac26",
+      "bytes": 2037,
+      "utf8": "Test project /workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize\n      Start  1: quadrature.analytic_nodes\n 1/16 Test  #1: quadrature.analytic_nodes ............   Passed    1.14 sec\n      Start  2: quadrature.plan_domains\n 2/16 Test  #2: quadrature.plan_domains ..............   Passed    0.11 sec\n      Start  3: quadrature.observation_nonmutation\n 3/16 Test  #3: quadrature.observation_nonmutation ...   Passed    1.13 sec\n      Start  4: quadrature.damping_regimes\n 4/16 Test  #4: quadrature.damping_regimes ...........   Passed    0.26 sec\n      Start  5: quadrature.qfir_convolution\n 5/16 Test  #5: quadrature.qfir_convolution ..........   Passed    0.03 sec\n      Start  6: quadrature.qfir_impulses\n 6/16 Test  #6: quadrature.qfir_impulses .............   Passed    0.99 sec\n      Start  7: quadrature.qfir_delay\n 7/16 Test  #7: quadrature.qfir_delay ................   Passed    0.03 sec\n      Start  8: quadrature.qfir_rejection\n 8/16 Test  #8: quadrature.qfir_rejection ............   Passed    0.17 sec\n      Start  9: quadrature.qfir_overflow\n 9/16 Test  #9: quadrature.qfir_overflow .............   Passed    0.01 sec\n      Start 10: quadrature.qengine_events\n10/16 Test #10: quadrature.qengine_events ............   Passed    2.41 sec\n      Start 11: quadrature.qengine_partitions\n11/16 Test #11: quadrature.qengine_partitions ........   Passed    3.57 sec\n      Start 12: quadrature.qengine_prepare\n12/16 Test #12: quadrature.qengine_prepare ...........   Passed    3.52 sec\n      Start 13: quadrature.qengine_faults\n13/16 Test #13: quadrature.qengine_faults ............   Passed    0.44 sec\n      Start 14: quadrature.qengine_allocations\n14/16 Test #14: quadrature.qengine_allocations .......   Passed    1.65 sec\n      Start 36: quadrature.cli\n15/16 Test #36: quadrature.cli .......................   Passed    2.84 sec\n      Start 38: quadrature.probe_stdout\n16/16 Test #38: quadrature.probe_stdout ..............   Passed    0.03 sec\n\n100% tests passed out of 16\n\nTotal Test time (real) =  18.34 sec\n"
+    },
+    "Testing/Temporary/LastTest.log": {
+      "sha256": "037a3860aee37fb5a648a78986261d295c47c1886723194a29e52da1dfcc1582",
+      "bytes": 12871,
+      "utf8": "Start testing: Nov 23 15:49 MST\n----------------------------------------------------------\n1/150 Testing: quadrature.analytic_nodes\n1/150 Test: quadrature.analytic_nodes\nCommand: \"/workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize/rhodes_fractional_observation_tests\" \"analytic_nodes\"\nDirectory: /workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize\n\"quadrature.analytic_nodes\" start time: Nov 23 15:49 MST\nOutput:\n----------------------------------------------------------\n648 independent observations; maximum error=2.56793285e-16 V\nPASS analytic_nodes\n<end of output>\nTest time =   1.14 sec\n----------------------------------------------------------\nTest Passed.\n\"quadrature.analytic_nodes\" end time: Nov 23 15:49 MST\n\"quadrature.analytic_nodes\" time elapsed: 00:00:01\n----------------------------------------------------------\n\n2/150 Testing: quadrature.plan_domains\n2/150 Test: quadrature.plan_domains\nCommand: \"/workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize/rhodes_fractional_observation_tests\" \"plan_domains\"\nDirectory: /workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize\n\"quadrature.plan_domains\" start time: Nov 23 15:49 MST\nOutput:\n----------------------------------------------------------\n18 independent observations; maximum error=2.09251019e-17 V\nPASS plan_domains\n<end of output>\nTest time =   0.11 sec\n----------------------------------------------------------\nTest Passed.\n\"quadrature.plan_domains\" end time: Nov 23 15:49 MST\n\"quadrature.plan_domains\" time elapsed: 00:00:00\n----------------------------------------------------------\n\n3/150 Testing: quadrature.observation_nonmutation\n3/150 Test: quadrature.observation_nonmutation\nCommand: \"/workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize/rhodes_fractional_observation_tests\" \"observation_nonmutation\"\nDirectory: /workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize\n\"quadrature.observation_nonmutation\" start time: Nov 23 15:49 MST\nOutput:\n----------------------------------------------------------\nPASS observation_nonmutation\n<end of output>\nTest time =   1.13 sec\n----------------------------------------------------------\nTest Passed.\n\"quadrature.observation_nonmutation\" end time: Nov 23 15:49 MST\n\"quadrature.observation_nonmutation\" time elapsed: 00:00:01\n----------------------------------------------------------\n\n4/150 Testing: quadrature.damping_regimes\n4/150 Test: quadrature.damping_regimes\nCommand: \"/workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize/rhodes_fractional_observation_tests\" \"damping_regimes\"\nDirectory: /workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize\n\"quadrature.damping_regimes\" start time: Nov 23 15:49 MST\nOutput:\n----------------------------------------------------------\n486 independent observations; maximum error=7.35495649e-17 V\nPASS damping_regimes\n<end of output>\nTest time =   0.26 sec\n----------------------------------------------------------\nTest Passed.\n\"quadrature.damping_regimes\" end time: Nov 23 15:49 MST\n\"quadrature.damping_regimes\" time elapsed: 00:00:00\n----------------------------------------------------------\n\n5/150 Testing: quadrature.qfir_convolution\n5/150 Test: quadrature.qfir_convolution\nCommand: \"/workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize/rhodes_quadrature_fir_tests\" \"qfir_convolution\"\nDirectory: /workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize\n\"quadrature.qfir_convolution\" start time: Nov 23 15:49 MST\nOutput:\n----------------------------------------------------------\nmaximum chronological-convolution absolute error=7.02997e-16\nPASS qfir_convolution\n<end of output>\nTest time =   0.03 sec\n----------------------------------------------------------\nTest Passed.\n\"quadrature.qfir_convolution\" end time: Nov 23 15:49 MST\n\"quadrature.qfir_convolution\" time elapsed: 00:00:00\n----------------------------------------------------------\n\n6/150 Testing: quadrature.qfir_impulses\n6/150 Test: quadrature.qfir_impulses\nCommand: \"/workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize/rhodes_quadrature_fir_tests\" \"qfir_impulses\"\nDirectory: /workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize\n\"quadrature.qfir_impulses\" start time: Nov 23 15:49 MST\nOutput:\n----------------------------------------------------------\nPASS qfir_impulses\n<end of output>\nTest time =   0.99 sec\n----------------------------------------------------------\nTest Passed.\n\"quadrature.qfir_impulses\" end time: Nov 23 15:49 MST\n\"quadrature.qfir_impulses\" time elapsed: 00:00:00\n----------------------------------------------------------\n\n7/150 Testing: quadrature.qfir_delay\n7/150 Test: quadrature.qfir_delay\nCommand: \"/workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize/rhodes_quadrature_fir_tests\" \"qfir_delay\"\nDirectory: /workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize\n\"quadrature.qfir_delay\" start time: Nov 23 15:49 MST\nOutput:\n----------------------------------------------------------\nmaximum fixed-48-frame sinusoid absolute error=1.80807e-15\nPASS qfir_delay\n<end of output>\nTest time =   0.03 sec\n----------------------------------------------------------\nTest Passed.\n\"quadrature.qfir_delay\" end time: Nov 23 15:49 MST\n\"quadrature.qfir_delay\" time elapsed: 00:00:00\n----------------------------------------------------------\n\n8/150 Testing: quadrature.qfir_rejection\n8/150 Test: quadrature.qfir_rejection\nCommand: \"/workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize/rhodes_quadrature_fir_tests\" \"qfir_rejection\"\nDirectory: /workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize\n\"quadrature.qfir_rejection\" start time: Nov 23 15:49 MST\nOutput:\n----------------------------------------------------------\nPASS qfir_rejection\n<end of output>\nTest time =   0.17 sec\n----------------------------------------------------------\nTest Passed.\n\"quadrature.qfir_rejection\" end time: Nov 23 15:49 MST\n\"quadrature.qfir_rejection\" time elapsed: 00:00:00\n----------------------------------------------------------\n\n9/150 Testing: quadrature.qfir_overflow\n9/150 Test: quadrature.qfir_overflow\nCommand: \"/workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize/rhodes_quadrature_fir_tests\" \"qfir_overflow\"\nDirectory: /workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize\n\"quadrature.qfir_overflow\" start time: Nov 23 15:49 MST\nOutput:\n----------------------------------------------------------\nPASS qfir_overflow\n<end of output>\nTest time =   0.01 sec\n----------------------------------------------------------\nTest Passed.\n\"quadrature.qfir_overflow\" end time: Nov 23 15:49 MST\n\"quadrature.qfir_overflow\" time elapsed: 00:00:00\n----------------------------------------------------------\n\n10/150 Testing: quadrature.qengine_events\n10/150 Test: quadrature.qengine_events\nCommand: \"/workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize/rhodes_quadrature_engine_tests\" \"qengine_events\"\nDirectory: /workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize\n\"quadrature.qengine_events\" start time: Nov 23 15:49 MST\nOutput:\n----------------------------------------------------------\nevent_rates=9 oracle_frames=2889 maximum_convolution_error=3.89737e-17\nPASS qengine_events\n<end of output>\nTest time =   2.41 sec\n----------------------------------------------------------\nTest Passed.\n\"quadrature.qengine_events\" end time: Nov 23 15:49 MST\n\"quadrature.qengine_events\" time elapsed: 00:00:02\n----------------------------------------------------------\n\n11/150 Testing: quadrature.qengine_partitions\n11/150 Test: quadrature.qengine_partitions\nCommand: \"/workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize/rhodes_quadrature_engine_tests\" \"qengine_partitions\"\nDirectory: /workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize\n\"quadrature.qengine_partitions\" start time: Nov 23 15:49 MST\nOutput:\n----------------------------------------------------------\npartition_cases=36 including_empty_and_single_frame_blocks\nPASS qengine_partitions\n<end of output>\nTest time =   3.57 sec\n----------------------------------------------------------\nTest Passed.\n\"quadrature.qengine_partitions\" end time: Nov 23 15:49 MST\n\"quadrature.qengine_partitions\" time elapsed: 00:00:03\n----------------------------------------------------------\n\n12/150 Testing: quadrature.qengine_prepare\n12/150 Test: quadrature.qengine_prepare\nCommand: \"/workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize/rhodes_quadrature_engine_tests\" \"qengine_prepare\"\nDirectory: /workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize\n\"quadrature.qengine_prepare\" start time: Nov 23 15:49 MST\nOutput:\n----------------------------------------------------------\ninvalid_rate_transactions=81 injected_prepare_failures=2\nPASS qengine_prepare\n<end of output>\nTest time =   3.52 sec\n----------------------------------------------------------\nTest Passed.\n\"quadrature.qengine_prepare\" end time: Nov 23 15:50 MST\n\"quadrature.qengine_prepare\" time elapsed: 00:00:03\n----------------------------------------------------------\n\n13/150 Testing: quadrature.qengine_faults\n13/150 Test: quadrature.qengine_faults\nCommand: \"/workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize/rhodes_quadrature_engine_tests\" \"qengine_faults\"\nDirectory: /workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize\n\"quadrature.qengine_faults\" start time: Nov 23 15:50 MST\nOutput:\n----------------------------------------------------------\nnode_and_advance_fault_cases=84 each_direct_and_fenced; FIR_overflow_frame=49\nPASS qengine_faults\n<end of output>\nTest time =   0.44 sec\n----------------------------------------------------------\nTest Passed.\n\"quadrature.qengine_faults\" end time: Nov 23 15:50 MST\n\"quadrature.qengine_faults\" time elapsed: 00:00:00\n----------------------------------------------------------\n\n14/150 Testing: quadrature.qengine_allocations\n14/150 Test: quadrature.qengine_allocations\nCommand: \"/workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize/rhodes_quadrature_engine_tests\" \"qengine_allocations\"\nDirectory: /workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize\n\"quadrature.qengine_allocations\" start time: Nov 23 15:50 MST\nOutput:\n----------------------------------------------------------\nallocation_guarded_callbacks=81 calibrated_allocation_forms=2 observed_allocations=0\nPASS qengine_allocations\n<end of output>\nTest time =   1.65 sec\n----------------------------------------------------------\nTest Passed.\n\"quadrature.qengine_allocations\" end time: Nov 23 15:50 MST\n\"quadrature.qengine_allocations\" time elapsed: 00:00:01\n----------------------------------------------------------\n\n36/150 Testing: quadrature.cli\n36/150 Test: quadrature.cli\nCommand: \"/home/agent/.local/lib/python3.12/site-packages/cmake/data/bin/cmake\" \"-DPROBE=/workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize/rhodes_quadrature_probe\" \"-DRENDERER=/workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize/rhodes_render\" \"-DTEST_ROOT=/workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize\" \"-P\" \"/workspace/scratch/a37aa07d1094/Fender-rhoades/tests/cpp/quadrature_cli.cmake\"\nDirectory: /workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize\n\"quadrature.cli\" start time: Nov 23 15:50 MST\nOutput:\n----------------------------------------------------------\n-- PASS quadrature CLI: 43 probe calls, 17 renderer calls, 3200 finite WAV frames; help, timing, limits, and publication\n<end of output>\nTest time =   2.84 sec\n----------------------------------------------------------\nTest Passed.\n\"quadrature.cli\" end time: Nov 23 15:50 MST\n\"quadrature.cli\" time elapsed: 00:00:02\n----------------------------------------------------------\n\n38/150 Testing: quadrature.probe_stdout\n38/150 Test: quadrature.probe_stdout\nCommand: \"/home/agent/.local/lib/python3.12/site-packages/cmake/data/bin/cmake\" \"-DPROGRAM=/workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize/rhodes_quadrature_probe\" \"-DKIND=quadrature_probe\" \"-DTEST_ROOT=/workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize\" \"-P\" \"/workspace/scratch/a37aa07d1094/Fender-rhoades/tests/cpp/diagnostic_stdout.cmake\"\nDirectory: /workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize\n\"quadrature.probe_stdout\" start time: Nov 23 15:50 MST\nOutput:\n----------------------------------------------------------\n-- Verified quadrature_probe JSON and help output failure exits\n<end of output>\nTest time =   0.03 sec\n----------------------------------------------------------\nTest Passed.\n\"quadrature.probe_stdout\" end time: Nov 23 15:50 MST\n\"quadrature.probe_stdout\" time elapsed: 00:00:00\n----------------------------------------------------------\n\nEnd testing: Nov 23 15:50 MST\n"
+    },
+    "a44-address-control.log": {
+      "sha256": "5d6bf5b23cf999153b457773fdda0436d2c62b072fc4ce15022bfc06bcf127f6",
+      "bytes": 2691,
+      "utf8": "=================================================================\n==11==ERROR: AddressSanitizer: heap-buffer-overflow on address 0x502000000014 at pc 0x559af18df2f5 bp 0x7ffeddad2c40 sp 0x7ffeddad2c38\nWRITE of size 4 at 0x502000000014 thread T0\n    #0 0x559af18df2f4 in main build/w3-a44-sanitize/a44-address-control.cpp:1\n    #1 0x7fc3f6db8ca7  (/lib/x86_64-linux-gnu/libc.so.6+0x29ca7) (BuildId: 5e5b51f4c39af9ac589408c1dc432ba390a273cc)\n    #2 0x7fc3f6db8d64 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x29d64) (BuildId: 5e5b51f4c39af9ac589408c1dc432ba390a273cc)\n    #3 0x559af18df100 in _start (/workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize/a44-address-control+0x1100) (BuildId: 5257cdcf179b7d81f659989f2e22ee840dfdd237)\n\n0x502000000014 is located 0 bytes after 4-byte region [0x502000000010,0x502000000014)\nallocated by thread T0 here:\n    #0 0x7fc3f7a108d8 in operator new[](unsigned long) ../../../../src/libsanitizer/asan/asan_new_delete.cpp:98\n    #1 0x559af18df248 in main build/w3-a44-sanitize/a44-address-control.cpp:1\n    #2 0x7fc3f6db8ca7  (/lib/x86_64-linux-gnu/libc.so.6+0x29ca7) (BuildId: 5e5b51f4c39af9ac589408c1dc432ba390a273cc)\n\nSUMMARY: AddressSanitizer: heap-buffer-overflow build/w3-a44-sanitize/a44-address-control.cpp:1 in main\nShadow bytes around the buggy address:\n  0x501ffffffd80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x501ffffffe00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x501ffffffe80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x501fffffff00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n  0x501fffffff80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00\n=>0x502000000000: fa fa[04]fa fa fa fa fa fa fa fa fa fa fa fa fa\n  0x502000000080: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa\n  0x502000000100: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa\n  0x502000000180: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa\n  0x502000000200: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa\n  0x502000000280: fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa fa\nShadow byte legend (one shadow byte represents 8 application bytes):\n  Addressable:           00\n  Partially addressable: 01 02 03 04 05 06 07 \n  Heap left redzone:       fa\n  Freed heap region:       fd\n  Stack left redzone:      f1\n  Stack mid redzone:       f2\n  Stack right redzone:     f3\n  Stack after return:      f5\n  Stack use after scope:   f8\n  Global redzone:          f9\n  Global init order:       f6\n  Poisoned by user:        f7\n  Container overflow:      fc\n  Array cookie:            ac\n  Intra object redzone:    bb\n  ASan internal:           fe\n  Left alloca redzone:     ca\n  Right alloca redzone:    cb\n==11==ABORTING\n"
+    },
+    "a44-undefined-control.log": {
+      "sha256": "e218e9e24416549c849cd8b7218646a1a31d2c3f0c687d490e1ac17ccdcc0d4b",
+      "bytes": 664,
+      "utf8": "build/w3-a44-sanitize/a44-undefined-control.cpp:2:83: runtime error: signed integer overflow: 2147483647 + 1 cannot be represented in type 'int'\n    #0 0x55a8be494225 in main build/w3-a44-sanitize/a44-undefined-control.cpp:2\n    #1 0x7f3519c95ca7  (/lib/x86_64-linux-gnu/libc.so.6+0x29ca7) (BuildId: 5e5b51f4c39af9ac589408c1dc432ba390a273cc)\n    #2 0x7f3519c95d64 in __libc_start_main (/lib/x86_64-linux-gnu/libc.so.6+0x29d64) (BuildId: 5e5b51f4c39af9ac589408c1dc432ba390a273cc)\n    #3 0x55a8be4940c0 in _start (/workspace/scratch/a37aa07d1094/Fender-rhoades/build/w3-a44-sanitize/a44-undefined-control+0x10c0) (BuildId: de330fc5455924272abfdf8797db5fde2d9b0267)\n\n"
+    }
+  },
+  "integrity": {
+    "all21_source_bytes_unchanged": true,
+    "all21_source_files_equal_tested_commit": true,
+    "binary_hash_capture": "After the test runs; no independent before/after binary hash comparison was performed. The isolated build paths were used only by this assignment.",
+    "six_compile_commands_instrumented": true,
+    "five_executables_link_both_runtimes": true
+  },
+  "remaining_limits": [
+    "Leak detection could not complete in this execution environment. Repeat leak-enabled checks on an environment permitting sanitizer thread suspension.",
+    "No production, test, CMake or CI guards were changed; detect_leaks=0 applied only to the explicitly labeled supplemental command and its detector controls.",
+    "No dedicated VST3 host or loaded module was instrumented by this assignment; no native Windows/macOS, thread-sanitizer, hardware, DAW, deadline, or physical-fidelity claim is made.",
+    "Passing these selected cases does not prove absence of all memory errors or undefined behavior. Debug sanitizer durations are not performance evidence."
+  ]
+}

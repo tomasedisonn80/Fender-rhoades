@@ -2,6 +2,24 @@
 
 ## Unreleased — experimental VST3 and research foundation
 
+- Additional model-3 **Rhodes Research Quadrature** instrument: six prepared
+  fractional observations per host interval, fixed convolution storage and
+  48-frame latency. Existing direct and filtered identities and saved states
+  remain available; every cross-model recall is rejected.
+- Independent [full quadrature study](docs/validation/quadrature-audio-full-20261123.json):
+  2,097 cases and 2,534,400 frames pass both the independent Q6 comparison and
+  resolved continuous-reference limits, with a maximum latter error of
+  8.318901123516298e-12 V. These are synthetic numerical results.
+- [Twenty-four legacy renders](docs/validation/quadrature-legacy-compatibility-20261123.json)
+  retain their exact sample and complete WAV hashes. New retained tests cover
+  fractional observations, event and reset behavior, allocation policy, three
+  loaded modules, model-3 host contracts and bounded diagnostic output.
+- Windows build/path portability repairs and portable quadrature host fixtures,
+  including identical reset timelines under fused arithmetic. Warning policy,
+  production DSP and numerical tolerances remain unchanged by the fixture repair.
+- A separate [quadrature campaign ledger](docs/agents/QUADRATURE_CAMPAIGN.md),
+  deterministic index and strict report/hash validation record this continuation
+  without rewriting earlier campaigns or claiming unperformed work.
 - Separate filtered VST3 variant with 4x/2x/1x internal processing, reproducible
   Kaiser FIR coefficients and explicit 48-frame latency; direct-model identities
   and state remain available. Cross-model state is rejected transactionally.
