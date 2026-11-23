@@ -4,6 +4,7 @@
 
 #include <bit>
 #include <cmath>
+#include <iomanip>
 #include <iostream>
 #include <limits>
 #include <memory>
@@ -22,7 +23,7 @@ using rhodes::InstrumentState;
 using rhodes::vst3::RhodesProcessor;
 using Packet = std::array<std::uint8_t, 16>;
 
-constexpr std::size_t frames = 256;
+constexpr std::size_t kContractFrames = 256;
 constexpr InstrumentState initial{0.625F, true};
 constexpr InstrumentState pending{0.125F, false};
 constexpr InstrumentState replacement{0.75F, false};
@@ -87,7 +88,7 @@ void flush(RhodesProcessor& processor, sdk::int32 sample_size) {
 }
 
 template<class Sample>
-using Rig = host::ProcessorHost<Sample, frames>;
+using Rig = host::ProcessorHost<Sample, kContractFrames>;
 
 template<class Sample>
 void seed(Rig<Sample>& rig, std::size_t key = 0) {
@@ -148,11 +149,11 @@ void output_case(double rate, std::size_t key) {
     // their independent analytic/numerical checks belong to separate fixtures.
     auto source = std::make_unique<rhodes::ResearchEngine>();
     auto plan = std::make_unique<rhodes::FractionalObservationPlan>();
-    using Cells = std::array<std::array<double, qf::node_count>, frames>;
+    using Cells = std::array<std::array<double, qf::node_count>, kContractFrames>;
     auto cells = std::make_unique<Cells>();
     check(source->prepare(rate) && source->prepare_observation_plan(qf::nodes, *plan),
           "chronological source preparation failed");
-    for (std::size_t frame = 0; frame < frames; ++frame) {
+    for (std::size_t frame = 0; frame < kContractFrames; ++frame) {
         if (frame == 46) { source->set_sustain(true); }
         if (frame == 128) { source->set_sustain(false); }
         if (frame == 0 || frame == 63) {
@@ -291,7 +292,7 @@ void ordering_case(double rate) {
     auto events = std::make_unique<host::EventList>();
     events->count = 2;
     events->values[0] = host::note_on(0, 11, 100);
-    events->values[1] = host::note_on(static_cast<sdk::int32>(frames), 12, 68);
+    events->values[1] = host::note_on(static_cast<sdk::int32>(kContractFrames), 12, 68);
     rig->data.inputEvents = events.get();
     check(process(rig->processor, rig->data) != sdk::kResultOk,
           "late invalid event accepted with recall pending");
@@ -339,7 +340,7 @@ void ordering_case(double rate) {
           process(control->processor, control->data) == sdk::kResultOk,
           "post-recall continuation failed");
     check(rig->left == control->left && rig->right == control->right &&
-          rig->processor.engine_processor().frame_cursor() == 2 * frames,
+          rig->processor.engine_processor().frame_cursor() == 2 * kContractFrames,
           "recall replayed after its accepted transaction");
     expect_saved(rig->processor, automated);
     ++cases;
@@ -353,6 +354,80 @@ void recall_order() {
 }
 
 enum class Reset { processing, activation, setup, recall };
+
+std::string_view reset_name(Reset reset) {
+    switch (reset) {
+    case Reset::processing: return "processing";
+    case Reset::activation: return "activation";
+    case Reset::setup: return "setup";
+    case Reset::recall: return "recall";
+    }
+    return "unknown";
+}
+
+template<class Sample>
+void diagnose_reset_difference(const Rig<Sample>& actual, const Rig<Sample>& expected,
+                               double rate, Reset reset) {
+    std::size_t first_frame = kContractFrames;
+    std::size_t differing_frames = 0;
+    double maximum_error = 0.0;
+    for (std::size_t frame = 0; frame < kContractFrames; ++frame) {
+        if (actual.left[frame] != expected.left[frame] ||
+            actual.right[frame] != expected.right[frame]) {
+            if (first_frame == kContractFrames) { first_frame = frame; }
+            ++differing_frames;
+        }
+        maximum_error = std::max({maximum_error,
+            std::abs(static_cast<double>(actual.left[frame]) -
+                     static_cast<double>(expected.left[frame])),
+            std::abs(static_cast<double>(actual.right[frame]) -
+                     static_cast<double>(expected.right[frame]))});
+    }
+    const auto& actual_engine = actual.processor.engine_processor().engine();
+    const auto& expected_engine = expected.processor.engine_processor().engine();
+    std::size_t differing_states = 0;
+    double maximum_displacement_error = 0.0;
+    double maximum_velocity_error = 0.0;
+    for (std::size_t key = 0; key < rhodes::key_count; ++key) {
+        for (std::size_t mode = 0; mode < rhodes::modes_per_key; ++mode) {
+            const auto a = actual_engine.modal_state(key, mode);
+            const auto e = expected_engine.modal_state(key, mode);
+            if (!a || !e) {
+                std::cerr << "Reset diagnostic missing state key=" << key
+                          << " mode=" << mode << '\n';
+                continue;
+            }
+            differing_states += a->displacement_m != e->displacement_m ||
+                                a->velocity_m_per_s != e->velocity_m_per_s ? 1U : 0U;
+            maximum_displacement_error = std::max(maximum_displacement_error,
+                std::abs(a->displacement_m - e->displacement_m));
+            maximum_velocity_error = std::max(maximum_velocity_error,
+                std::abs(a->velocity_m_per_s - e->velocity_m_per_s));
+        }
+    }
+    std::cerr << std::setprecision(17)
+              << "Reset diagnostic rate=" << rate
+              << " sample_bits=" << sizeof(Sample) * 8
+              << " reset=" << reset_name(reset)
+              << " first_frame=" << first_frame
+              << " differing_frames=" << differing_frames
+              << " max_output_error=" << maximum_error
+              << " differing_modal_states=" << differing_states
+              << " max_displacement_error=" << maximum_displacement_error
+              << " max_velocity_error=" << maximum_velocity_error
+              << " actual_cursor=" << actual.processor.engine_processor().frame_cursor()
+              << " expected_cursor=" << expected.processor.engine_processor().frame_cursor()
+              << '\n';
+    if (first_frame < kContractFrames) {
+        std::cerr << "Reset first sample actual_left=" << actual.left[first_frame]
+                  << " expected_left=" << expected.left[first_frame]
+                  << " actual_right=" << actual.right[first_frame]
+                  << " expected_right=" << expected.right[first_frame] << std::hexfloat
+                  << " actual_hex=" << actual.left[first_frame]
+                  << " expected_hex=" << expected.left[first_frame]
+                  << std::defaultfloat << '\n';
+    }
+}
 
 template<class Sample>
 void reset_case(double rate, Reset reset) {
@@ -393,12 +468,22 @@ void reset_case(double rate, Reset reset) {
     events->values[0] = host::note_on(0, 99, 100, 1.0F);
     auto control = std::make_unique<Rig<Sample>>(rate);
     recall(control->processor, expected_state);
+    // Compare identical post-reset timelines, including the silent prelude.
+    // Unequal elapsed cells put equivalent zero histories at different ring
+    // positions; permitted FMA contraction can then change final rounding.
+    // The dirty instance's entire prelude is already required to be silent.
+    control->fill(Sample{1});
+    check(process(control->processor, control->data) == sdk::kResultOk,
+          "fresh post-recall silent render failed");
+    control->expect_silence();
     control->data.inputEvents = events.get();
     rig->data.inputEvents = events.get();
     check(process(rig->processor, rig->data) == sdk::kResultOk &&
           process(control->processor, control->data) == sdk::kResultOk,
           "post-reset restrike failed");
-    check(rig->left == control->left && rig->right == control->right,
+    const bool same_output = rig->left == control->left && rig->right == control->right;
+    if (!same_output) { diagnose_reset_difference(*rig, *control, rate, reset); }
+    check(same_output,
           "post-reset quadrature trajectory differs from a fresh recalled instance");
     host::same_mechanics(rig->processor.engine_processor().engine(),
                          control->processor.engine_processor().engine());
