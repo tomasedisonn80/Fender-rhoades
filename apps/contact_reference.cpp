@@ -155,6 +155,7 @@ void usage() {
     std::cout << "rhodes_contact_reference: frozen synthetic offline contact fixtures, JSON to stdout\n"
         "Options: --fixture NAME --max-step SECONDS --event-tolerance SECONDS\n"
         "         --tolerance-scale FACTOR --output-step SECONDS\n"
+        "         --locate-peak-candidates (optional, uncertified sign-change search)\n"
         "Defaults: conservative_impact, 20e-6, 1e-8, 1, 20e-6.\n"
         "Fixtures: conservative_impact, damped_impact, forced_clamp, supported_impact,\n"
         "supported_conservative, separated_oscillator, preload_equilibrium, preload_plus,\n"
@@ -190,6 +191,40 @@ std::string_view event_kind(c::EventKind kind) {
     case c::EventKind::damper_motion_change: return "motion_change";
     }
     return "unknown";
+}
+
+std::string_view peak_origin(c::PeakOrigin origin) {
+    switch (origin) {
+    case c::PeakOrigin::disabled: return "disabled";
+    case c::PeakOrigin::sample: return "sample";
+    case c::PeakOrigin::stationary_candidate: return "stationary_candidate";
+    case c::PeakOrigin::action_before: return "action_before";
+    case c::PeakOrigin::action_after: return "action_after";
+    }
+    return "unknown";
+}
+
+void emit_peak(const c::PeakCandidate& peak, std::string_view value_key) {
+    std::cout << "{\"" << value_key << "\":" << peak.value
+        << ",\"time_s\":" << peak.time_s
+        << ",\"bracket_lo_s\":" << peak.bracket_begin_s
+        << ",\"bracket_hi_s\":" << peak.bracket_end_s
+        << ",\"origin\":\"" << peak_origin(peak.origin) << "\"}";
+}
+
+void emit_located_peaks(const c::Diagnostics& diagnostics) {
+    std::cout << ",\"located_peak_candidates\":{"
+        "\"coverage\":\"uncertified_sign_change_search\","
+        "\"evaluation_method\":\"fixed_interval_anchor_replay_two_rk4_half_steps_or_certified_free_motion\","
+        "\"hammer_compression\":";
+    emit_peak(diagnostics.located_hammer_compression, "value_m");
+    std::cout << ",\"hammer_force\":";
+    emit_peak(diagnostics.located_hammer_force, "value_n");
+    std::cout << ",\"damper_compression\":";
+    emit_peak(diagnostics.located_damper_compression, "value_m");
+    std::cout << ",\"damper_force\":";
+    emit_peak(diagnostics.located_damper_force, "value_n");
+    std::cout << '}';
 }
 
 void emit_sample(const Sample& sample, const Fixture& input) {
@@ -230,6 +265,10 @@ int main(int argc, char** argv) {
         for (int i = 1; i < argc; ++i) {
             const std::string_view flag = argv[i];
             if (flag == "--help") { usage(); return 0; }
+            if (flag == "--locate-peak-candidates") {
+                settings.locate_peak_candidates = true;
+                continue;
+            }
             if (flag != "--fixture" && flag != "--max-step" && flag != "--event-tolerance" &&
                 flag != "--tolerance-scale" && flag != "--output-step") {
                 throw std::runtime_error("Unknown option");
@@ -353,7 +392,9 @@ int main(int argc, char** argv) {
             << ",\"damper_compression_time_s\":" << d.sampled_maximum_damper_compression_time_s
             << ",\"damper_force_n\":" << d.sampled_maximum_damper_force_n
             << ",\"damper_force_time_s\":" << d.sampled_maximum_damper_force_time_s
-            << "}}}]}\n";
+            << '}';
+        if (settings.locate_peak_candidates) { emit_located_peaks(d); }
+        std::cout << "}}]}\n";
         return result ? 0 : 2;
     } catch (const std::exception& error) {
         std::cerr << "Contact reference error: " << error.what() << '\n';

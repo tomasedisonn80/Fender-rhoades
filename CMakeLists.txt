@@ -107,6 +107,16 @@ if(BUILD_TESTING)
     add_test(NAME contact.cli_json COMMAND ${CMAKE_COMMAND}
         "-DPROGRAM=$<TARGET_FILE:rhodes_contact_reference>"
         -P "${CMAKE_CURRENT_SOURCE_DIR}/tests/cpp/contact_cli.cmake")
+    add_executable(rhodes_contact_peak_tests tests/cpp/contact_peak_test.cpp)
+    target_link_libraries(rhodes_contact_peak_tests PRIVATE rhodes_contact)
+    rhodes_target_options(rhodes_contact_peak_tests)
+    foreach(test_name IN ITEMS peak_defaults peak_conservative peak_damped
+            peak_damper_face peak_actions peak_rollback)
+        add_test(NAME contact.${test_name} COMMAND rhodes_contact_peak_tests ${test_name})
+    endforeach()
+    add_test(NAME contact.peak_cli COMMAND ${CMAKE_COMMAND}
+        "-DPROGRAM=$<TARGET_FILE:rhodes_contact_reference>"
+        -P "${CMAKE_CURRENT_SOURCE_DIR}/tests/cpp/contact_peak_cli.cmake")
     add_executable(rhodes_contact_grazing_tests tests/cpp/contact_grazing_test.cpp)
     target_link_libraries(rhodes_contact_grazing_tests PRIVATE rhodes_contact)
     rhodes_target_options(rhodes_contact_grazing_tests)

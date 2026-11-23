@@ -2,7 +2,7 @@
 
 This session resumes `d86135b` and records actual worker assignments, separately from earlier campaigns.
 
-Requested: **100 workers in five waves of 20**. Recorded: **32**. Completed: **29**.
+Requested: **100 workers in five waves of 20**. Recorded: **35**. Completed: **32**.
 
 Workers run in batches within three available worker slots. An assignment report records work performed and unresolved findings; it does not establish physical fidelity.
 
@@ -44,9 +44,12 @@ Workers run in batches within three available worker slots. An assignment report
 | [027](continuation-20261123/w2-027.md) | `/root/w2_027_filtered_fp` | Verify filtered host state and caller floating-point environment behavior | completed |
 | [028](continuation-20261123/w2-028.md) | `/root/w2_028_filtered_stream` | Exercise filtered VST3 partial-stream and state-fault contracts | completed |
 | [029](continuation-20261123/w2-029.md) | `/root/w2_029_filtered_concurrency` | Verify concurrent configuration recall and publication in both VST3 variants | completed |
-| 030 | `/root/w2_030_event_after_diagnosis` | Diagnose five remaining post-event contact refinement failures without changing gates | running |
-| 031 | `/root/w2_031_peak_candidates` | Implement bounded optional contact stationary-peak diagnostics | running |
-| 032 | `/root/w2_032_peak_cli_tests` | Expose optional peak diagnostics and independently test their numerical behavior | running |
+| [030](continuation-20261123/w2-030.md) | `/root/w2_030_event_after_diagnosis` | Diagnose five remaining post-event contact refinement failures without changing gates | completed |
+| [031](continuation-20261123/w2-031.md) | `/root/w2_031_peak_candidates` | Implement bounded optional contact stationary-peak diagnostics | completed |
+| [032](continuation-20261123/w2-032.md) | `/root/w2_032_peak_cli_tests` | Expose optional peak diagnostics and independently test their numerical behavior | completed |
+| 033 | `/root/w2_033_contact_event_split` | Prototype bounded event-root step splitting in isolated contact source | running |
+| 034 | `/root/w2_034_filtered_buffers` | Validate bounded rejected-buffer cleanup and retained history in filtered VST3 | running |
+| 035 | `/root/w2_035_filtered_automation` | Verify independent sample-accurate controls across all filtered rate branches | running |
 
 ## Wave 3
 

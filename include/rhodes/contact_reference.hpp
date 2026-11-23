@@ -119,6 +119,7 @@ struct Settings {
     std::uint64_t maximum_event_rows = 100000; // Persistent total history bound.
     std::uint64_t maximum_interval_rows = 100000;
     bool record_intervals = true;
+    bool locate_peak_candidates = false; // Optional, uncertified stationary-point search.
     bool operator==(const Settings&) const = default;
 };
 
@@ -206,6 +207,16 @@ struct Interval {
     bool operator==(const Interval&) const = default;
 };
 
+enum class PeakOrigin { disabled, sample, stationary_candidate, action_before, action_after };
+struct PeakCandidate {
+    double value = 0.0; // Metres for compression records; newtons for force records.
+    double time_s = 0.0; // Time of the selected value, including root-bracket samples.
+    double bracket_begin_s = 0.0;
+    double bracket_end_s = 0.0;
+    PeakOrigin origin = PeakOrigin::disabled; // Also used for a disabled contact.
+    bool operator==(const PeakCandidate&) const = default;
+};
+
 struct Diagnostics {
     WorkCounters work{};
     double minimum_accepted_step_s = 0.0;
@@ -224,6 +235,13 @@ struct Diagnostics {
     double sampled_maximum_damper_compression_time_s = 0.0;
     double sampled_maximum_damper_force_n = 0.0;
     double sampled_maximum_damper_force_time_s = 0.0;
+    // Opt-in samples and located stationary candidates on fixed-anchor replay.
+    // Finite sign-change sampling cannot certify continuous extrema. An enabled
+    // all-zero record has sample origin; sample/action brackets are degenerate.
+    PeakCandidate located_hammer_compression{};
+    PeakCandidate located_hammer_force{};
+    PeakCandidate located_damper_compression{};
+    PeakCandidate located_damper_force{};
     std::uint64_t grazing_candidates = 0;
     Branch hammer_branch = Branch::disabled;
     Branch damper_branch = Branch::disabled;

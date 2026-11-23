@@ -394,6 +394,16 @@ private:
     [[nodiscard]] bool add(double& accumulator, double increment, std::size_t index) noexcept;
     [[nodiscard]] bool action_reclassify(const Observation& before, const Observation& after);
     [[nodiscard]] bool before_action();
+    [[nodiscard]] bool retain_peak(PeakCandidate&, double value, double t,
+                                    double begin, double end, PeakOrigin) noexcept;
+    [[nodiscard]] bool peak_samples(const Observation&, double t, PeakOrigin) noexcept;
+    [[nodiscard]] bool replay_peak(const Point& start, double t, Point&) noexcept;
+    [[nodiscard]] bool peak_derivative(const Point&, ContactId, bool force,
+                                        double& value, bool& eligible) noexcept;
+    [[nodiscard]] bool peak_root(const Root&, ContactId, bool force) noexcept;
+    [[nodiscard]] bool peak_segment(const Point& start, Point left, Point right,
+                                    ContactId, bool force) noexcept;
+    [[nodiscard]] bool collect_interval_peaks(const Point& start, double h) noexcept;
     void configure_analytic_free_motion() noexcept;
     [[nodiscard]] bool analytic_free_step(double end, const Vector& y, Vector& output) noexcept;
 };
@@ -869,6 +879,193 @@ bool ReferenceSolver::scan(const Point& start, const Trial& candidate, double h,
     return true;
 }
 
+bool ReferenceSolver::retain_peak(PeakCandidate& peak, double value, double t,
+                                  double begin, double end, PeakOrigin origin) noexcept {
+    if (!bounded(value, 0.0, scalar_limit) || !bounded(begin, 0.0, maximum_time) ||
+        !bounded(end, begin, maximum_time) || !bounded(t, begin, end)) {
+        return stop(Status::numerical_failure, Failure::arithmetic);
+    }
+    // Preserve ties except for adding a more specific source to the same sample.
+    // This lets an exact sampled root or an action side retain its provenance.
+    const bool annotate_sample = value == peak.value && t == peak.time_s &&
+        peak.origin == PeakOrigin::sample && origin != PeakOrigin::sample;
+    if (peak.origin == PeakOrigin::disabled || value > peak.value || annotate_sample) {
+        peak = {value, t, begin, end, origin};
+    }
+    return true;
+}
+
+bool ReferenceSolver::peak_samples(const Observation& observation, double t,
+                                   PeakOrigin origin) noexcept {
+    if (!ref_.settings_.locate_peak_candidates) {
+        return true;
+    }
+    auto& diagnostics = ref_.diagnostics_;
+    if (ref_.config_.hammer.enabled &&
+        (!retain_peak(diagnostics.located_hammer_compression,
+                      observation.hammer.compression_m, t, t, t, origin) ||
+         !retain_peak(diagnostics.located_hammer_force,
+                      observation.hammer.force_n, t, t, t, origin))) {
+        return false;
+    }
+    if (ref_.config_.damper.enabled &&
+        (!retain_peak(diagnostics.located_damper_compression,
+                      observation.damper.compression_m, t, t, t, origin) ||
+         !retain_peak(diagnostics.located_damper_force,
+                      observation.damper.force_n, t, t, t, origin))) {
+        return false;
+    }
+    return true;
+}
+
+bool ReferenceSolver::replay_peak(const Point& start, double t, Point& output) noexcept {
+    return replay(start, t, output) &&
+        peak_samples(output.observation, output.t, PeakOrigin::sample);
+}
+
+bool ReferenceSolver::peak_derivative(const Point& p, ContactId id, bool force,
+                                     double& value, bool& eligible) noexcept {
+    const auto& s = sample(p, id);
+    eligible = s.gap_m > 0.0 && (!force || s.raw_factor_n_per_m > 0.0);
+    if (!force) {
+        // The signed gap rate can bracket a positive compression maximum even
+        // when a segment endpoint is separated. Eligibility is checked at roots.
+        value = s.gap_rate_m_per_s;
+        return finite_scalar(value) || stop(Status::numerical_failure, Failure::arithmetic);
+    }
+    value = 0.0;
+    if (!eligible) {
+        // Separated and clipped force plateaus are sampled zeros, not roots of
+        // the positive-force derivative. Never enumerate their zero continuum.
+        return true;
+    }
+    double acceleration = id == ContactId::hammer ? p.observation.hammer_acceleration_m_per_s2 :
+        -p.observation.face.acceleration_m_per_s2;
+    if (!finite_scalar(acceleration)) {
+        return stop(Status::numerical_failure, Failure::arithmetic);
+    }
+    for (std::size_t j = 0; j < mode_count; ++j) {
+        const double projection = id == ContactId::hammer ?
+            -ref_.config_.hammer_projection[j] : ref_.config_.damper_projection[j];
+        const double term = projection * p.observation.modal_acceleration_m_per_s2[j];
+        if (!finite_scalar(term) || !finite_scalar(acceleration + term)) {
+            return stop(Status::numerical_failure, Failure::arithmetic);
+        }
+        acceleration += term;
+    }
+    const auto& law = id == ContactId::hammer ? ref_.config_.hammer : ref_.config_.damper;
+    const double velocity_term = s.gap_rate_m_per_s * s.raw_factor_n_per_m;
+    const double compressed_damping = law.c_ns_per_m2 * s.gap_m;
+    const double acceleration_term = compressed_damping * acceleration;
+    value = velocity_term + acceleration_term;
+    return (finite_scalar(velocity_term) && finite_scalar(compressed_damping) &&
+            finite_scalar(acceleration_term) && finite_scalar(value)) ||
+        stop(Status::numerical_failure, Failure::arithmetic);
+}
+
+bool ReferenceSolver::peak_root(const Root& root, ContactId id, bool force) noexcept {
+    auto& diagnostics = ref_.diagnostics_;
+    auto& peak = id == ContactId::hammer ?
+        (force ? diagnostics.located_hammer_force : diagnostics.located_hammer_compression) :
+        (force ? diagnostics.located_damper_force : diagnostics.located_damper_compression);
+    // Keep the largest value in the final bracket, not an assumed exact value at
+    // its midpoint. All three points use the same fixed interval anchor.
+    for (const auto* p : {&root.left, &root.middle, &root.right}) {
+        const auto& s = sample(*p, id);
+        if (s.gap_m > 0.0 && (!force || s.raw_factor_n_per_m > 0.0) &&
+            !retain_peak(peak, force ? s.force_n : s.compression_m, p->t,
+                         root.left.t, root.right.t, PeakOrigin::stationary_candidate)) {
+            return false;
+        }
+    }
+    return true;
+}
+
+bool ReferenceSolver::peak_segment(const Point& start, Point left, Point right,
+                                   ContactId id, bool force) noexcept {
+    double a = 0.0;
+    double b = 0.0;
+    bool left_eligible = false;
+    bool right_eligible = false;
+    if (!peak_derivative(left, id, force, a, left_eligible) ||
+        !peak_derivative(right, id, force, b, right_eligible)) {
+        return false;
+    }
+    if ((force && (!left_eligible || !right_eligible)) ||
+        !(opposite(a, b) || (a == 0.0 && b != 0.0) || (b == 0.0 && a != 0.0))) {
+        return true;
+    }
+    ++work_.extrema_checks;
+    if (a == 0.0) {
+        return left_eligible ? peak_root({left, left, left, 0.0}, id, force) : true;
+    }
+    if (b == 0.0) {
+        return right_eligible ? peak_root({right, right, right, 0.0}, id, force) : true;
+    }
+    for (std::uint64_t iteration = 0;
+         iteration < ref_.settings_.maximum_root_iterations; ++iteration) {
+        ++work_.root_iterations;
+        const double width = right.t - left.t;
+        const double middle = left.t + 0.5 * width;
+        if (!(middle > left.t && middle < right.t)) {
+            return stop(Status::numerical_failure, Failure::minimum_progress);
+        }
+        Point mid;
+        if (!replay_peak(start, middle, mid)) {
+            return false;
+        }
+        double value = 0.0;
+        bool eligible = false;
+        if (!peak_derivative(mid, id, force, value, eligible)) {
+            return false;
+        }
+        if (force && !eligible) {
+            // A force-branch boundary interrupted the sampled bracket. Its
+            // samples remain candidates, but it does not establish a stationary
+            // root on a smooth positive-force branch.
+            return true;
+        }
+        if (value == 0.0) {
+            return eligible ? peak_root({mid, mid, mid, 0.0}, id, force) : true;
+        }
+        if (width <= ref_.settings_.event_time_tolerance_s) {
+            return eligible ? peak_root({left, right, mid, 0.0}, id, force) : true;
+        }
+        if (opposite(a, value)) {
+            right = mid;
+        } else {
+            left = mid;
+            a = value;
+        }
+    }
+    return stop(Status::budget_exhausted, Failure::root_limit);
+}
+
+bool ReferenceSolver::collect_interval_peaks(const Point& start, double h) noexcept {
+    // Deliberately independent of scan's RK compositions and event rows. Both
+    // bracket endpoints and every refinement use replay from this one anchor;
+    // the existing certified zero-force analytic branch remains available.
+    std::array<Point, 5> points{};
+    for (std::size_t i = 0; i < points.size(); ++i) {
+        if (!replay_peak(start, start.t + 0.25 * static_cast<double>(i) * h, points[i])) {
+            return false;
+        }
+    }
+    for (const auto id : {ContactId::hammer, ContactId::damper}) {
+        const auto& law = id == ContactId::hammer ? ref_.config_.hammer : ref_.config_.damper;
+        if (!law.enabled) {
+            continue;
+        }
+        for (std::size_t i = 0; i + 1 < points.size(); ++i) {
+            if (!peak_segment(start, points[i], points[i + 1], id, false) ||
+                !peak_segment(start, points[i], points[i + 1], id, true)) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
 bool ReferenceSolver::append_event(const Event& event) {
     // Duplicate endpoint detections share a bracket. A later distinct onset is
     // retained even if its gap or time happens to be very small.
@@ -1056,6 +1253,16 @@ Result ReferenceSolver::advance(double dt) {
             h *= 0.5;
             continue;
         }
+        if (ref_.settings_.locate_peak_candidates) {
+            const double accepted_power_residual = trial_power_residual_;
+            if (!collect_interval_peaks(start, h) ||
+                !peak_samples(points.back().observation, points.back().t, PeakOrigin::sample)) {
+                return result();
+            }
+            // Extra diagnostic evaluations must not redefine the independently
+            // sampled legacy diagnostics or change the accepted trajectory.
+            trial_power_residual_ = accepted_power_residual;
+        }
         if (!commit_interval(start, candidate, h, points, found)) {
             return result();
         }
@@ -1072,6 +1279,9 @@ Result ReferenceSolver::advance(double dt) {
 Result ReferenceSolver::initialization_events() {
     attempted_until_ = ref_.state_.time_s;
     configure_analytic_free_motion();
+    if (!peak_samples(ref_.observation_, ref_.state_.time_s, PeakOrigin::sample)) {
+        return result();
+    }
     for (const auto id : {ContactId::hammer, ContactId::damper}) {
         const auto& s = id == ContactId::hammer ? ref_.observation_.hammer : ref_.observation_.damper;
         if (s.branch == Branch::disabled) {
@@ -1200,6 +1410,9 @@ Result ReferenceSolver::action_relaunch(double velocity) {
         return result();
     }
     const Observation before = ref_.observation_;
+    if (!peak_samples(before, ref_.state_.time_s, PeakOrigin::action_before)) {
+        return result();
+    }
     const double prior_velocity = ref_.state_.hammer_v_m_per_s;
     const double work = 0.5 * ref_.config_.hammer_mass_kg *
         (velocity - prior_velocity) * (velocity + prior_velocity);
@@ -1228,6 +1441,9 @@ Result ReferenceSolver::action_relaunch(double velocity) {
     }
     ref_.observation_ = after;
     configure_analytic_free_motion();
+    if (!peak_samples(after, t, PeakOrigin::action_after)) {
+        return result();
+    }
     sampled_peaks(ref_.diagnostics_, after, t);
     ref_.next_step_s_ = ref_.settings_.maximum_step_s;
     add_work(ref_.diagnostics_.work, work_);
@@ -1251,6 +1467,9 @@ Result ReferenceSolver::action_motion(const Trajectory& trajectory) {
         return result();
     }
     const Observation before = ref_.observation_;
+    if (!peak_samples(before, ref_.state_.time_s, PeakOrigin::action_before)) {
+        return result();
+    }
     ref_.config_.damper_motion = trajectory;
     Observation after;
     if (!observe_unchecked(ref_.config_, ref_.state_, after)) {
@@ -1266,6 +1485,9 @@ Result ReferenceSolver::action_motion(const Trajectory& trajectory) {
     }
     ref_.observation_ = after;
     configure_analytic_free_motion();
+    if (!peak_samples(after, t, PeakOrigin::action_after)) {
+        return result();
+    }
     sampled_peaks(ref_.diagnostics_, after, t);
     ref_.next_step_s_ = ref_.settings_.maximum_step_s;
     add_work(ref_.diagnostics_.work, work_);

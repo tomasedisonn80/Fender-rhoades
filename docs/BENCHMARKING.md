@@ -136,7 +136,7 @@ timings or DSP trajectories and adds no performance or numerical acceptance.
 ## Actual VST3 callback benchmark
 
 Configure the optional SDK build as described in [VST3.md](VST3.md). Its
-`rhodes_vst3_checks` aggregate builds the benchmark together with the module,
+`rhodes_vst3_checks` aggregate builds both benchmarks together with both modules,
 validator and retained host tests when `BUILD_TESTING=ON`. To build and run only
 the benchmark in that configured tree:
 
@@ -149,6 +149,12 @@ cmake --build build/vst3 --config Release --target rhodes_vst3_benchmark --paral
 ```
 
 With Visual Studio, use `build/vst3/Release/rhodes_vst3_benchmark.exe`.
+
+Use target and executable `rhodes_vst3_filtered_benchmark` for the filtered
+variant with the same arguments. Its `identity` object records the plugin name,
+state model `2`, latency `48`, selected oversampling factor and internal sample
+rate. The direct benchmark reports model `1`, latency `0` and factor `1`. Compare
+matching workloads and host rates; filter delay is not callback execution time.
 
 | Option | Accepted values | Default |
 | --- | --- | --- |
@@ -202,6 +208,19 @@ passed. Two calls exceeded their nominal periods; the largest elapsed time was
 1873.831 µs. These were one-pass observations on a shared Linux x86_64 container
 with a visible Xeon Platinum 8573C and GCC 14.2. They do not isolate a causal
 float32/float64 performance difference or establish host deadline compliance.
+
+The [filtered comparison report](agents/continuation-20261123/w1-018.md) and
+[retained callback data](validation/filtered-callback-observations-20261123.json)
+add 24 paired direct/filtered observations across 32/48/96/192 kHz, 64/128-frame
+blocks and the declared held/pedal/gain schedules. All 4,800 measured calls
+succeeded, with zero nominal-period misses in that matrix and 1,008 independent
+accounting checks. A preliminary ten-call smoke run with one nominal-period
+miss is preserved separately in the same record. These shared-container
+observations neither isolate scheduling causes nor establish a worst-case bound.
+Allocation checks are a separate experiment in
+[the expanded host suite](agents/continuation-20261123/w2-023.md): zero intercepted
+C++ allocation attempts across 187 processor calls per variant, with calibrated
+allocation hooks and explicitly bounded fixtures.
 
 The separate [nonlinear aliasing diagnostic](agents/development-20261123/W4-A068.md)
 and [retained observations](validation/aliasing-observations-20261123.json)

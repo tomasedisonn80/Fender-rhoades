@@ -271,26 +271,53 @@
       "wave": 2,
       "task_name": "/root/w2_030_event_after_diagnosis",
       "scope": "Diagnose five remaining post-event contact refinement failures without changing gates",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/continuation-20261123/w2-030.md",
-      "report_sha256": null
+      "report_sha256": "68ae6e7f856610e3966556fa520a99d9b53dd6c690deaaf29af45fca50806c09"
     },
     {
       "id": 31,
       "wave": 2,
       "task_name": "/root/w2_031_peak_candidates",
       "scope": "Implement bounded optional contact stationary-peak diagnostics",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/continuation-20261123/w2-031.md",
-      "report_sha256": null
+      "report_sha256": "f796cd051a759259a70e19eff27883c9d21830a1744b804c3381cbf316752263"
     },
     {
       "id": 32,
       "wave": 2,
       "task_name": "/root/w2_032_peak_cli_tests",
       "scope": "Expose optional peak diagnostics and independently test their numerical behavior",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/continuation-20261123/w2-032.md",
+      "report_sha256": "28102de35b7e7b2fbc7292cf4ad498745fd38aa26563f520a8f705b33f7448c9"
+    },
+    {
+      "id": 33,
+      "wave": 2,
+      "task_name": "/root/w2_033_contact_event_split",
+      "scope": "Prototype bounded event-root step splitting in isolated contact source",
+      "status": "running",
+      "report": "docs/agents/continuation-20261123/w2-033.md",
+      "report_sha256": null
+    },
+    {
+      "id": 34,
+      "wave": 2,
+      "task_name": "/root/w2_034_filtered_buffers",
+      "scope": "Validate bounded rejected-buffer cleanup and retained history in filtered VST3",
+      "status": "running",
+      "report": "docs/agents/continuation-20261123/w2-034.md",
+      "report_sha256": null
+    },
+    {
+      "id": 35,
+      "wave": 2,
+      "task_name": "/root/w2_035_filtered_automation",
+      "scope": "Verify independent sample-accurate controls across all filtered rate branches",
+      "status": "running",
+      "report": "docs/agents/continuation-20261123/w2-035.md",
       "report_sha256": null
     }
   ]
