@@ -247,6 +247,80 @@
       "limitations": [
         "Synthetic Linux direct model; later filtered model is not covered."
       ]
+    },
+    {
+      "id": "RT-20261123-filtered-contract",
+      "kind": "numerical",
+      "result": "pass",
+      "summary": "Synthetic filtered audio contract and integrated direct/filtered host verification: 182 CTests including both SDK validators; independent FIR and high-rate convolution gates pass.",
+      "command": "ctest --test-dir build/main -C Release --output-on-failure --no-tests=error --parallel 2 --output-junit /tmp/rhodes-wave2-audio-ctest.xml",
+      "created_at": "2026-11-23T17:00:48Z",
+      "source_commit": "e56620711191a04bd867d236cac7ac1aa2556c2c",
+      "artifacts": [
+        {
+          "path": "docs/validation/filtered-audio-integration-20261123.json",
+          "sha256": "083644d17bf490c2e438b796e8c0f98a63f208ec91bc8f395ae333aecac30a86"
+        },
+        {
+          "path": "docs/agents/continuation-20261123/w1-011.md",
+          "sha256": "1c4212f07b1c3955ab6e4798aa397ece7ffb7d95e5242a8afae1c5bbf5eaeb06"
+        },
+        {
+          "path": "docs/agents/continuation-20261123/w1-013.md",
+          "sha256": "fc8c6a242d06f3b42d064416be7be4791c868809a0484815e533ecb152f9642b"
+        },
+        {
+          "path": "docs/agents/continuation-20261123/w1-016.md",
+          "sha256": "e29e0b3686c9ddbf0b78483c5a588be08f1a54e1ac3ed7e1d5554489f8f2cb1c"
+        },
+        {
+          "path": "docs/agents/continuation-20261123/w1-017.md",
+          "sha256": "d4be2beb2d6aae11ea5e0b2b0676b8def25d82809bb8fa4d2a123c6227eaeb1e"
+        },
+        {
+          "path": "docs/agents/continuation-20261123/w2-022.md",
+          "sha256": "76e5d7531e67da6d7599c27602358e27bae385abb9a02046a9e550ef9c95d70e"
+        },
+        {
+          "path": "docs/agents/continuation-20261123/w2-023.md",
+          "sha256": "dff96557a879e7a42e93147e5124938e9322b24af70041ee4217ac31e7111021"
+        }
+      ],
+      "specimen_id": null,
+      "profile_path": null,
+      "session_paths": [],
+      "independent": true,
+      "reference_evidence": [],
+      "limitations": [
+        "Linux x86_64 synthetic engineering scope only. FIR response and high-rate convolution do not establish all transient alias errors, physical fidelity, native DAW behavior or hard real-time deadlines."
+      ]
+    },
+    {
+      "id": "RT-20261123-filtered-observations",
+      "kind": "performance",
+      "result": "pass",
+      "summary": "Retained paired direct/filtered callback observations: 4800 measured calls and 1008 accounting checks, zero nominal misses in the 24-cell matrix; a preliminary 1-in-10 miss remains preserved.",
+      "command": null,
+      "created_at": "2026-11-23T17:00:48Z",
+      "source_commit": null,
+      "artifacts": [
+        {
+          "path": "docs/validation/filtered-callback-observations-20261123.json",
+          "sha256": "8ec0e0a300c4e9d6148bda7a0fb2fa861523421acd99860202db88d79e129717"
+        },
+        {
+          "path": "docs/agents/continuation-20261123/w1-018.md",
+          "sha256": "8ec18d4d2283d8bb4521037fe85387eaf816d66ac8b955ee8ea0c60e4a2e441e"
+        }
+      ],
+      "specimen_id": null,
+      "profile_path": null,
+      "session_paths": [],
+      "independent": true,
+      "reference_evidence": [],
+      "limitations": [
+        "Shared uncontrolled Linux container, synthetic full-polyphony workloads. Report binds exact tested files and binary. Finite timing observations are not worst-case or device guarantees and do not complete RT-001."
+      ]
     }
   ]
 }

@@ -2,7 +2,7 @@
 
 This session resumes `d86135b` and records actual worker assignments, separately from earlier campaigns.
 
-Requested: **100 workers in five waves of 20**. Recorded: **25**. Completed: **22**.
+Requested: **100 workers in five waves of 20**. Recorded: **27**. Completed: **24**.
 
 Workers run in batches within three available worker slots. An assignment report records work performed and unresolved findings; it does not establish physical fidelity.
 
@@ -35,11 +35,13 @@ Workers run in batches within three available worker slots. An assignment report
 
 | ID | Actual task | Scope | Status |
 |---|---|---|---|
-| 021 | `/root/w2_021_refinement_extension` | Implement explicit uniform contact refinement extension and preserve original gate results | running |
+| [021](continuation-20261123/w2-021.md) | `/root/w2_021_refinement_extension` | Implement explicit uniform contact refinement extension and preserve original gate results | completed |
 | [022](continuation-20261123/w2-022.md) | `/root/w2_022_filtered_renderer` | Expose filtered offline rendering with safe output publication | completed |
 | [023](continuation-20261123/w2-023.md) | `/root/w2_023_filtered_allocation_host` | Exercise both VST3 variants with allocation and scalar host regressions | completed |
-| 024 | `/root/w2_024_bundle_resources` | Independently verify both VST3 bundles retain exact third-party resources | running |
+| [024](continuation-20261123/w2-024.md) | `/root/w2_024_bundle_resources` | Independently verify both VST3 bundles retain exact third-party resources | completed |
 | 025 | `/root/w2_025_spectral_scope` | Derive synthetic pickup spectral limits and a bounded independent alias experiment | running |
+| 026 | `/root/w2_026_contact_matrix` | Run full declared 338-case contact extension and independent audit | running |
+| 027 | `/root/w2_027_filtered_fp` | Verify filtered host state and caller floating-point environment behavior | running |
 
 ## Wave 3
 

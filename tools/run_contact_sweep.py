@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Generate frozen contact candidates; this does not evaluate acceptance.
 
-Eight deduplicated runs per fixture cover four maximum steps, three event
-tolerances and three local-tolerance scales. The independent audit is a separate
-command: validate_contact_reference.py --candidate OUTPUT/candidates.json.
+By default eight deduplicated runs per fixture cover four maximum steps, three
+event tolerances and three local-tolerance scales. An explicit bounded extension
+retains those runs and adds uniformly finer steps and finest-step event/local
+axes. The independent audit is a separate command recorded in the manifest.
 Only fixture/axis metadata are imported from that tool; no oracle is executed.
 Raw stdout and stderr are retained even for failed or timed-out candidates.
 """
@@ -22,12 +23,13 @@ import sys
 import tempfile
 from typing import Any
 
-from validate_contact_reference import EVENT_LEVELS, STEP_LEVELS, fixtures
+from validate_contact_reference import (EVENT_LEVELS, LOCAL_SCALES, LOCAL_TOLERANCES,
+                                        OUTPUT_STEP, fixtures, refinement_matrix,
+                                        refinement_policy, refinement_slots,
+                                        refinement_step_levels)
 
 
 ROOT = Path(__file__).resolve().parents[1]
-LOCAL_SCALES = (1.0, 0.1, 0.01)
-OUTPUT_STEP = 20e-6
 MAX_JSON_BYTES = 64 * 1024 * 1024
 SAMPLE_FIELDS = ("time_s", "hammer_position_m", "hammer_velocity_m_per_s",
                  "hammer_force_n", "damper_force_n", "hammer_impulse_ns",
@@ -58,21 +60,16 @@ def write_json(path: Path, value: Any) -> None:
         temporary.unlink(missing_ok=True)
 
 
-def plan(names: list[str]) -> list[dict[str, Any]]:
-    settings: dict[tuple[float, float, float], list[str]] = {}
-    for axis, values in (
-        ("maximum_step", ((h, EVENT_LEVELS[-1], 1.0) for h in STEP_LEVELS)),
-        ("event_tolerance", ((STEP_LEVELS[-1], eta, 1.0) for eta in EVENT_LEVELS)),
-        ("local_tolerance", ((STEP_LEVELS[-1], EVENT_LEVELS[-1], s) for s in LOCAL_SCALES)),
-    ):
-        for key in values:
-            settings.setdefault(key, []).append(axis)
+def plan(names: list[str], extra_step_levels: int = 0) -> list[dict[str, Any]]:
+    settings = refinement_slots(extra_step_levels)
     runs = []
     for name in sorted(set(names)):
-        for (step, eta, scale), axes in settings.items():
+        for controls, axes in settings.items():
+            step, eta, output_step = controls[:3]
+            scale = controls[3] / LOCAL_TOLERANCES["relative_tolerance"]
             runs.append({"id": f"{len(runs) + 1:04d}_{name}", "fixture": name,
                          "maximum_step_s": step, "event_tolerance_s": eta,
-                         "tolerance_scale": scale, "output_step_s": OUTPUT_STEP,
+                         "tolerance_scale": scale, "output_step_s": output_step,
                          "axes": axes})
     return runs
 
@@ -203,6 +200,8 @@ def main() -> int:
     parser.add_argument("--output-dir", type=Path, default=ROOT / "build/contact-sweep")
     parser.add_argument("--fixture", choices=sorted(definitions), action="append",
                         help="repeat for a subset; default is all 26 frozen fixtures")
+    parser.add_argument("--extra-step-levels", type=int, choices=(0, 1, 2), default=0,
+                        help="explicit uniform refinement extension; default 0 retains the original 208-run matrix")
     parser.add_argument("--timeout", type=float, default=30.0, help="seconds per candidate, 0 < timeout <= 600")
     parser.add_argument("--force", action="store_true", help="replace only this run's named outputs in an existing directory")
     parser.add_argument("--plan", action="store_true", help="print deterministic input plan without running or writing files")
@@ -210,10 +209,14 @@ def main() -> int:
     if not math.isfinite(args.timeout) or not 0 < args.timeout <= 600:
         parser.error("timeout must be finite and in (0, 600]")
     names = sorted(set(args.fixture or definitions))
-    items = plan(names)
+    items = plan(names, args.extra_step_levels)
     metadata = {"fixtures": {name: asdict(definitions[name]) for name in names},
-                "maximum_step_levels_s": STEP_LEVELS, "event_levels_s": EVENT_LEVELS,
+                "maximum_step_levels_s": refinement_step_levels(args.extra_step_levels), "event_levels_s": EVENT_LEVELS,
                 "local_tolerance_scales": LOCAL_SCALES, "output_step_s": OUTPUT_STEP,
+                "refinement_policy": refinement_policy(args.extra_step_levels),
+                "matrix": refinement_matrix(args.extra_step_levels, names),
+                "required_matrix": refinement_matrix(args.extra_step_levels),
+                "original_frozen_matrix": refinement_matrix(0),
                 "runs": items, "nonlinear_solve_axis": "inapplicable: explicit RK4"}
     if args.plan:
         print(json.dumps(metadata, indent=2, allow_nan=False))
@@ -240,6 +243,7 @@ def main() -> int:
         (output / "candidates.json").unlink(missing_ok=True)
         source_paths = [Path(__file__).resolve(), ROOT / "tools/validate_contact_reference.py",
                         ROOT / "docs/specs/CONTACT_ACCEPTANCE_20261123.md",
+                        ROOT / "docs/specs/CONTACT_REFINEMENT_EXTENSION_20261123.md",
                         ROOT / "docs/agents/development-20261123/W1-A005.md",
                         ROOT / "docs/agents/development-20261123/W1-A007.md"]
         manifest = {"schema_version": 1, "kind": "rhodes-contact-candidate-sweep",
@@ -267,6 +271,8 @@ def main() -> int:
             manifest["aggregate"] = {"path": "candidates.json", "sha256": sha256(output / "candidates.json")}
             manifest["audit_argv"] = [sys.executable, str(ROOT / "tools/validate_contact_reference.py"),
                                      "--candidate", str(output / "candidates.json")]
+            if args.extra_step_levels:
+                manifest["audit_argv"].extend(["--extra-step-levels", str(args.extra_step_levels)])
         manifest["status"] = "candidate_generation_complete" if success else "failed"
         manifest["executable_unchanged"] = unchanged
         write_json(output / "manifest.json", manifest)

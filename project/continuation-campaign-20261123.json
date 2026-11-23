@@ -190,9 +190,9 @@
       "wave": 2,
       "task_name": "/root/w2_021_refinement_extension",
       "scope": "Implement explicit uniform contact refinement extension and preserve original gate results",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/continuation-20261123/w2-021.md",
-      "report_sha256": null
+      "report_sha256": "34c343328e07ab4903aeb65ded04cc4c87958d7dc79817d1c44b2a3281e0f82f"
     },
     {
       "id": 22,
@@ -217,9 +217,9 @@
       "wave": 2,
       "task_name": "/root/w2_024_bundle_resources",
       "scope": "Independently verify both VST3 bundles retain exact third-party resources",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/continuation-20261123/w2-024.md",
-      "report_sha256": null
+      "report_sha256": "d89404187d2ee0ec9b344f00a298350c7a1997f19729fa86e8a2f0476ec5d146"
     },
     {
       "id": 25,
@@ -228,6 +228,24 @@
       "scope": "Derive synthetic pickup spectral limits and a bounded independent alias experiment",
       "status": "running",
       "report": "docs/agents/continuation-20261123/w2-025.md",
+      "report_sha256": null
+    },
+    {
+      "id": 26,
+      "wave": 2,
+      "task_name": "/root/w2_026_contact_matrix",
+      "scope": "Run full declared 338-case contact extension and independent audit",
+      "status": "running",
+      "report": "docs/agents/continuation-20261123/w2-026.md",
+      "report_sha256": null
+    },
+    {
+      "id": 27,
+      "wave": 2,
+      "task_name": "/root/w2_027_filtered_fp",
+      "scope": "Verify filtered host state and caller floating-point environment behavior",
+      "status": "running",
+      "report": "docs/agents/continuation-20261123/w2-027.md",
       "report_sha256": null
     }
   ]

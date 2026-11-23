@@ -32,6 +32,7 @@ from __future__ import annotations
 
 import argparse
 import csv
+import hashlib
 import json
 import math
 import sys
@@ -42,7 +43,18 @@ from typing import Any, Callable
 
 
 STEP_LEVELS = (20e-6, 10e-6, 5e-6, 2.5e-6)
+EXTRA_STEP_LEVELS = (1.25e-6, 0.625e-6)
 EVENT_LEVELS = (10e-9, 5e-9, 2.5e-9)
+# These are the emitted settings of the original eight-run sweep, including
+# every local error control. They define slots; observed minima never do.
+LOCAL_SCALES = (1.0, 0.1, 0.01)
+OUTPUT_STEP = 20e-6
+LOCAL_TOLERANCES = {"relative_tolerance": 1e-8, "absolute_tolerance": 1e-12,
+                    "velocity_absolute_tolerance": 1e-9,
+                    "energy_absolute_tolerance": 1e-13,
+                    "impulse_absolute_tolerance": 1e-13}
+RUN_SETTING_FIELDS = ("maximum_step_s", "event_tolerance_s", "output_step_s",
+                      *LOCAL_TOLERANCES)
 BUDGETS = {
     "position": (1e-8, 1e-4), "velocity": (1e-5, 1e-4),
     "force": (1e-4, 2e-4), "impulse": (1e-8, 1e-4),
@@ -902,14 +914,18 @@ def read_runs(path: Path) -> list[dict[str, Any]]:
             raise ValueError("Candidate JSON root must be an object")
         runs = data["runs"] if "runs" in data else [data]
     else:
-        grouped: dict[tuple[str, str, str], dict[str, Any]] = {}
+        grouped: dict[tuple[Any, ...], dict[str, Any]] = {}
         with path.open(newline="", encoding="utf-8") as handle:
             for row in csv.DictReader(handle):
-                group = (row["fixture"], row["maximum_step_s"], row["event_tolerance_s"])
-                run = grouped.setdefault(group, {"fixture": group[0], "maximum_step_s": float(group[1]),
-                                                  "event_tolerance_s": float(group[2]), "samples": [], "events": []})
+                settings = {key: float(row[key]) for key in RUN_SETTING_FIELDS
+                            if row.get(key) not in (None, "")}
+                # Missing legacy metadata stays absent, so it cannot establish
+                # a refinement slot. Distinct local settings never share rows.
+                group = (row["fixture"], *(settings.get(key) for key in RUN_SETTING_FIELDS))
+                run = grouped.setdefault(group, {"fixture": row["fixture"], **settings,
+                                                  "samples": [], "events": []})
                 run["samples"].append({k: float(v) for k, v in row.items()
-                                       if k not in {"fixture", "maximum_step_s", "event_tolerance_s"} and v != ""})
+                                       if k not in {"fixture", *RUN_SETTING_FIELDS} and v != ""})
         runs = list(grouped.values())
     if not isinstance(runs, list):
         raise ValueError("Candidate runs must be an array")
@@ -1134,39 +1150,153 @@ def compare_runs(coarse: dict[str, Any], fine: dict[str, Any], *, factor: float 
     return worst, errors
 
 
-def refinement_gates(runs: list[dict[str, Any]]) -> dict[str, Any]:
-    missing: list[str] = []
-    failures: list[str] = []
-    comparisons: dict[str, Any] = {}
-    malformed = [f"run {index}: {failure}" for index, run in enumerate(runs)
-                 for failure in validate_run_input(run)]
-    if malformed:
-        return {"status": "fail", "failures": malformed[:80], "missing": [], "comparisons": {}}
-    contradictory = [f"run {index}: {failure}" for index, run in enumerate(runs)
-                     for failure in validate_action_evidence(run)[0]]
-    if contradictory:
-        return {"status": "fail", "failures": contradictory[:80], "missing": [], "comparisons": {}}
-    by_name: dict[str, list[dict[str, Any]]] = {}
+def refinement_settings(step: float, event: float, scale: float = 1.0) -> tuple[float, ...]:
+    """Complete declared solver/output settings in RUN_SETTING_FIELDS order."""
+    return (step, event, OUTPUT_STEP, *(value * scale for value in LOCAL_TOLERANCES.values()))
+
+
+def refinement_step_levels(extra_step_levels: int = 0) -> tuple[float, ...]:
+    """An operator-declared bounded policy; booleans are not integer policies."""
+    if type(extra_step_levels) is not int or extra_step_levels not in (0, 1, 2):
+        raise ValueError("extra_step_levels must be an integer choice of 0, 1, or 2")
+    return STEP_LEVELS + EXTRA_STEP_LEVELS[:extra_step_levels]
+
+
+def refinement_slots(extra_step_levels: int = 0) -> dict[tuple[float, ...], list[str]]:
+    """Retain the original eight slots, then add only the declared extension.
+
+    An extension includes baseline step runs and the three frozen event/local
+    levels at its own finest step. Depth two does not reuse depth one's extra
+    event/local axes. Original slot insertion order is deliberately unchanged.
+    """
+    steps = refinement_step_levels(extra_step_levels)
+    slots: dict[tuple[float, ...], list[str]] = {}
+    axes = [
+        ("maximum_step", [refinement_settings(h, EVENT_LEVELS[-1]) for h in STEP_LEVELS]),
+        ("event_tolerance", [refinement_settings(STEP_LEVELS[-1], eta) for eta in EVENT_LEVELS]),
+        ("local_tolerance", [refinement_settings(STEP_LEVELS[-1], EVENT_LEVELS[-1], scale)
+                             for scale in LOCAL_SCALES]),
+    ]
+    if extra_step_levels:
+        axes.extend([
+            ("maximum_step", [refinement_settings(h, EVENT_LEVELS[-1]) for h in steps[len(STEP_LEVELS):]]),
+            ("event_tolerance", [refinement_settings(steps[-1], eta) for eta in EVENT_LEVELS]),
+            ("local_tolerance", [refinement_settings(steps[-1], EVENT_LEVELS[-1], scale)
+                                 for scale in LOCAL_SCALES]),
+        ])
+    for axis, settings in axes:
+        for slot in settings:
+            slots.setdefault(slot, []).append(axis)
+    return slots
+
+
+def refinement_slot_id(name: str, settings: tuple[float, ...]) -> str:
+    scale = settings[3] / LOCAL_TOLERANCES["relative_tolerance"]
+    return f"{name}:h={settings[0]:.12g}:eta={settings[1]:.12g}:local={scale:.12g}"
+
+
+def refinement_matrix(extra_step_levels: int = 0, names: list[str] | None = None) -> dict[str, Any]:
+    """Hash the declared complete settings and fixtures, never observed minima."""
+    slots = refinement_slots(extra_step_levels)
+    names = sorted(set(fixtures() if names is None else names))
+    settings = [{"fixture": name, "settings": dict(zip(RUN_SETTING_FIELDS, slot))}
+                for name in names for slot in sorted(slots)]
+    payload = json.dumps(settings, sort_keys=True, separators=(",", ":"),
+                         allow_nan=False).encode("utf-8")
+    return {"id": f"contact-refinement-20261123-extra-{extra_step_levels}",
+            "settings_sha256": hashlib.sha256(payload).hexdigest(),
+            "fixtures": names, "fixture_count": len(names),
+            "slots_per_fixture": len(slots), "run_count": len(settings)}
+
+
+def refinement_policy(extra_step_levels: int = 0) -> dict[str, Any]:
+    steps = refinement_step_levels(extra_step_levels)
+    return {"extra_step_levels": extra_step_levels,
+            "maximum_step_levels_s": list(steps), "event_levels_s": list(EVENT_LEVELS),
+            "local_tolerance_scales": list(LOCAL_SCALES),
+            "local_tolerances_at_scale_one": dict(LOCAL_TOLERANCES),
+            "output_step_s": OUTPUT_STEP, "original_finest_step_s": STEP_LEVELS[-1],
+            "selected_finest_step_s": steps[-1],
+            "acceptance_source": "docs/specs/CONTACT_ACCEPTANCE_20261123.md",
+            "extension_source": "docs/specs/CONTACT_REFINEMENT_EXTENSION_20261123.md"}
+
+
+def select_refinement_runs(runs: list[dict[str, Any]], extra_step_levels: int = 0) -> tuple[
+        dict[str, dict[tuple[float, ...], dict[str, Any]]], list[str], list[str], list[dict[str, Any]]]:
+    """Select frozen slots after preflight, rejecting conflicting same-slot data.
+
+    A source path is provenance, not scientific content. Everything else in a
+    run participates in its canonical hash. Exact repeats retain all sources;
+    their representative is deterministic and never chosen by input order.
+    """
+    declared = sorted(refinement_slots(extra_step_levels))
+    groups: dict[tuple[str, tuple[float, ...]], list[dict[str, Any]]] = {}
+    by_name: dict[str, dict[tuple[float, ...], dict[str, Any]]] = {}
+    missing, failures, selection = [], [], []
     for run in runs:
-        by_name.setdefault(run["fixture"], []).append(run)
+        name = run["fixture"]
+        by_name.setdefault(name, {})
+        absent = [key for key in RUN_SETTING_FIELDS if key not in run]
+        if absent:
+            missing.append(name + ": complete refinement settings (missing " + ", ".join(absent) + ")")
+            continue
+        actual = tuple(float(run[key]) for key in RUN_SETTING_FIELDS)
+        matches = [slot for slot in declared if all(
+            math.isclose(value, expected, rel_tol=1e-12, abs_tol=0)
+            for value, expected in zip(actual, slot))]
+        if len(matches) != 1:
+            label = json.dumps(dict(zip(RUN_SETTING_FIELDS, actual)), sort_keys=True)
+            failures.append(name + ": " + ("undeclared" if not matches else "ambiguous") +
+                            " refinement settings " + label)
+            continue
+        groups.setdefault((name, matches[0]), []).append(run)
+    for (name, settings), copies in sorted(groups.items()):
+        variants: dict[str, list[dict[str, Any]]] = {}
+        for run in copies:
+            scientific = {key: value for key, value in run.items() if key != "source"}
+            payload = json.dumps(scientific, sort_keys=True, separators=(",", ":"),
+                                 ensure_ascii=False, allow_nan=False).encode("utf-8")
+            digest = hashlib.sha256(payload).hexdigest()
+            variants.setdefault(digest, []).append(run)
+        slot_id = refinement_slot_id(name, settings)
+        selection.append({"slot": slot_id, "settings": dict(zip(RUN_SETTING_FIELDS, settings)),
+                          "selected": len(variants) == 1,
+                          "variants": [{"scientific_content_sha256": digest, "copies": len(values),
+                                        "sources": sorted({run["source"] for run in values if "source" in run})}
+                                       for digest, values in sorted(variants.items())]})
+        if len(variants) != 1:
+            failures.append(name + ": conflicting duplicate refinement slot " + slot_id +
+                            " (scientific content hashes " + ", ".join(sorted(variants)) + ")")
+            continue
+        by_name[name][settings] = min(copies, key=lambda run: run.get("source", ""))
+    return by_name, sorted(set(missing)), sorted(set(failures)), selection
+
+
+def check_refinement_selection(by_name: dict[str, dict[tuple[float, ...], dict[str, Any]]],
+                               missing: list[str], failures: list[str],
+                               selection: list[dict[str, Any]],
+                               steps: tuple[float, ...]) -> dict[str, Any]:
+    # Copy mutable diagnostics so evaluating the original matrix cannot inherit
+    # an extension's numerical failures, or overwrite its frozen outcome.
+    missing, failures = list(missing), list(failures)
+    comparisons: dict[str, Any] = {}
+    if failures:
+        return {"status": "fail", "failures": failures, "missing": missing,
+                "comparisons": {}, "selection": selection}
     for name, group in sorted(by_name.items()):
         # Hold local and event tolerances fixed on the h axis.
-        levels = []
-        for step in STEP_LEVELS:
-            matches = [r for r in group if math.isclose(float(r["maximum_step_s"]), step, rel_tol=1e-10)]
-            matches.sort(key=lambda r: float(r["event_tolerance_s"]))
-            levels.append(matches[0] if matches else None)
+        levels = [group.get(refinement_settings(step, EVENT_LEVELS[-1])) for step in steps]
         if any(r is None for r in levels):
-            missing.append(name+": four maximum-step refinements")
+            count = "four" if steps == STEP_LEVELS else str(len(steps))
+            missing.append(name+": "+count+" maximum-step refinements")
         else:
-            settings = [(r.get("relative_tolerance"), r.get("absolute_tolerance"), r["event_tolerance_s"]) for r in levels]
-            if any(value != settings[0] for value in settings[1:]):
-                missing.append(name+": independent step axis with fixed local/event tolerances")
             diffs = []
             for coarse, fine in zip(levels, levels[1:]):
                 delta, errors = compare_runs(coarse, fine)
                 diffs.append(delta)
-                if len(diffs) >= 2:
+                # The original two-successive-comparison rule applies at the
+                # declared finest step. Every earlier difference is retained.
+                if len(diffs) >= len(levels) - 2:
                     failures.extend(name+": "+e for e in errors[:10])
             # Roundoff resolution is computed in physical units, separately
             # from the frozen observable budget. No acceptance budget widens.
@@ -1191,11 +1321,7 @@ def refinement_gates(runs: list[dict[str, Any]]) -> dict[str, Any]:
                 elif not resolvable:
                     plateaus.append(key)
             comparisons[name+":step"] = {"differences_as_budget_fractions": diffs, "below_resolution": plateaus}
-        event_runs = []
-        for eta in EVENT_LEVELS:
-            found = [r for r in group if math.isclose(float(r["maximum_step_s"]), STEP_LEVELS[-1], rel_tol=1e-10)
-                     and math.isclose(float(r["event_tolerance_s"]), eta, rel_tol=1e-10)]
-            event_runs.append(found[0] if found else None)
+        event_runs = [group.get(refinement_settings(steps[-1], eta)) for eta in EVENT_LEVELS]
         if any(r is None for r in event_runs):
             missing.append(name+": three event-bracket refinements")
         else:
@@ -1204,35 +1330,91 @@ def refinement_gates(runs: list[dict[str, Any]]) -> dict[str, Any]:
                 delta, errors = compare_runs(coarse, fine, factor=0.1)
                 comparisons[name+":event"].append(delta)
                 failures.extend(name+": event tightening: "+e for e in errors[:10])
-        local = [r for r in group if math.isclose(float(r["maximum_step_s"]), STEP_LEVELS[-1], rel_tol=1e-10)
-                 and math.isclose(float(r["event_tolerance_s"]), EVENT_LEVELS[-1], rel_tol=1e-10)
-                 and "relative_tolerance" in r and "absolute_tolerance" in r]
-        local.sort(key=lambda r: (float(r["relative_tolerance"]), float(r["absolute_tolerance"])), reverse=True)
-        unique: list[dict[str, Any]] = []
-        for r in local:
-            if not unique or (r["relative_tolerance"], r["absolute_tolerance"]) != (unique[-1]["relative_tolerance"], unique[-1]["absolute_tolerance"]):
-                unique.append(r)
-        if len(unique) < 3:
+        local = [group.get(refinement_settings(steps[-1], EVENT_LEVELS[-1], scale))
+                 for scale in LOCAL_SCALES]
+        if any(r is None for r in local):
             missing.append(name+": three separate local-integration tolerances (nonlinear solve axis inapplicable to RK4)")
         else:
-            for coarse, fine in zip(unique[-3:], unique[-2:]):
+            for coarse, fine in zip(local, local[1:]):
                 delta, errors = compare_runs(coarse, fine, factor=0.1)
                 comparisons.setdefault(name+":local", []).append(delta)
                 failures.extend(name+": local tightening: "+e for e in errors[:10])
     for name in ("supported_impact", "moving_damper", "evolved_relaunch"):
-        a, b = by_name.get(name+"_scaled", []), by_name.get(name, [])
-        if not a or not b:
+        settings = refinement_settings(steps[-1], EVENT_LEVELS[-1])
+        fine_a = by_name.get(name+"_scaled", {}).get(settings)
+        fine_b = by_name.get(name, {}).get(settings)
+        if fine_a is None or fine_b is None:
             missing.append(name+": signed coordinate rescaling")
         else:
-            fine_a = min(a, key=lambda r: (r["maximum_step_s"], r["event_tolerance_s"]))
-            fine_b = min(b, key=lambda r: (r["maximum_step_s"], r["event_tolerance_s"]))
             delta, errors = compare_runs(fine_a, fine_b, structural=True)
             comparisons[name+":scaling"] = delta
             failures.extend(name+": coordinate invariance: "+e for e in errors[:10])
     missing.extend("absent fixture: "+name for name in fixtures() if name not in by_name)
     return {"status": "fail" if failures else "incomplete" if missing else "pass",
-            "failures": failures, "missing": missing, "comparisons": comparisons,
+            "failures": failures, "missing": sorted(set(missing)), "comparisons": comparisons,
+            "selection": selection,
             "nonlinear_solve_refinement": "inapplicable: explicit RK4; separate local integration axis required"}
+
+
+def extended_refinement_report(extra_step_levels: int, original: dict[str, Any],
+                               extended: dict[str, Any]) -> dict[str, Any]:
+    """Retain independently named results and explicit missing matrix slots."""
+    for depth, result in ((0, original), (extra_step_levels, extended)):
+        selected = {entry["slot"] for entry in result.get("selection", []) if entry["selected"]}
+        missing_slots = [{"slot": refinement_slot_id(name, slot), "fixture": name,
+                          "settings": dict(zip(RUN_SETTING_FIELDS, slot))}
+                         for name in sorted(fixtures()) for slot in sorted(refinement_slots(depth))
+                         if refinement_slot_id(name, slot) not in selected]
+        result["matrix"] = refinement_matrix(depth)
+        result["missing_slots"] = missing_slots
+        if missing_slots and depth:
+            # Retained original event/local slots are required even though the
+            # extension compares those axes at its newly declared finest step.
+            result["missing"] = sorted(set(result["missing"] + [
+                "missing refinement slot: " + slot["slot"] for slot in missing_slots]))
+            if result["status"] == "pass":
+                result["status"] = "incomplete"
+    return {**extended, "policy": refinement_policy(extra_step_levels),
+            "original_frozen_result": original, "extended_result": extended}
+
+
+def refinement_gates(runs: list[dict[str, Any]], extra_step_levels: int = 0) -> dict[str, Any]:
+    steps = refinement_step_levels(extra_step_levels)
+    # Partition only the scope of the separately reported original gate. Every
+    # selected run still passes the complete-settings selector. Unidentifiable
+    # step metadata is retained conservatively so it cannot hide a bad original
+    # run; identifiable finer evidence must not alter the original's outcome.
+    original_runs = [run for run in runs if not isinstance(run, dict) or
+                     not finite_number(run.get("maximum_step_s")) or
+                     any(math.isclose(run["maximum_step_s"], step, rel_tol=1e-12, abs_tol=0)
+                         for step in STEP_LEVELS)] if extra_step_levels else []
+    malformed = sorted({f"{run.get('fixture', '<unknown fixture>') if isinstance(run, dict) else '<invalid run>'}: {failure}"
+                        for run in runs for failure in validate_run_input(run)})
+    contradictory = [] if malformed else sorted({f"{run['fixture']}: {failure}" for run in runs
+                                                 for failure in validate_action_evidence(run)[0]})
+    if malformed or contradictory:
+        result = {"status": "fail", "failures": (malformed or contradictory)[:80],
+                  "missing": [], "comparisons": {}}
+        if extra_step_levels:
+            return extended_refinement_report(extra_step_levels, refinement_gates(original_runs), result)
+        return result
+    by_name, missing, failures, selection = select_refinement_runs(runs, extra_step_levels)
+    result = check_refinement_selection(by_name, missing, failures, selection, steps)
+    if not extra_step_levels:
+        return result
+    original_slots = refinement_slots()
+    if missing or failures:
+        # Re-check only original-grid evidence when input diagnostics need
+        # attribution. A conflicting finer duplicate fails the extension while
+        # leaving the original result bound to its own evidence.
+        original = refinement_gates(original_runs)
+    else:
+        original_groups = {name: {slot: run for slot, run in group.items() if slot in original_slots}
+                           for name, group in by_name.items() if any(slot in original_slots for slot in group)}
+        original_selection = [entry for entry in selection
+                              if tuple(entry["settings"][key] for key in RUN_SETTING_FIELDS) in original_slots]
+        original = check_refinement_selection(original_groups, [], [], original_selection, STEP_LEVELS)
+    return extended_refinement_report(extra_step_levels, original, result)
 
 
 def require_self_check(condition: bool, description: str) -> None:
@@ -1320,6 +1502,8 @@ def main() -> int:
     parser.add_argument("--output", type=Path, help="write machine-readable audit result")
     parser.add_argument("--self-check", action="store_true", help="validate independent analytic/Radau/expm oracles")
     parser.add_argument("--list-fixtures", action="store_true")
+    parser.add_argument("--extra-step-levels", type=int, choices=(0, 1, 2), default=0,
+                        help="explicit uniform refinement extension; default 0 audits the original frozen grid")
     args = parser.parse_args()
     if args.list_fixtures:
         print(json.dumps({name: {"duration_s": f.duration, "energy_scale_j": f.energy_scale}
@@ -1329,13 +1513,14 @@ def main() -> int:
         parser.error("specify --candidate, --self-check, or --list-fixtures")
     try:
         report: dict[str, Any] = {"scope": "frozen p=1 synthetic reference; no measured fidelity claim",
-                                  "acceptance_source": "docs/specs/CONTACT_ACCEPTANCE_20261123.md"}
+                                  "acceptance_source": "docs/specs/CONTACT_ACCEPTANCE_20261123.md",
+                                  "refinement_policy": refinement_policy(args.extra_step_levels)}
         if args.self_check:
             report["oracle_self_check"] = self_check()
         if args.candidate:
             runs = [run for path in args.candidate for run in read_runs(path)]
             report["runs"] = [audit_run(run) for run in runs]
-            report["refinement"] = refinement_gates(runs)
+            report["refinement"] = refinement_gates(runs, args.extra_step_levels)
             statuses = [r["status"] for r in report["runs"]]+[report["refinement"]["status"]]
             report["status"] = "fail" if "fail" in statuses else "incomplete" if "incomplete" in statuses else "pass"
         else:

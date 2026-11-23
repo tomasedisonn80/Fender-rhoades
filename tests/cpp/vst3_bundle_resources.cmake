@@ -1,0 +1,45 @@
+cmake_minimum_required(VERSION 3.24)
+
+# Inspect both complete bundles after their module targets have been built.
+# Use the SDK/project originals, not the generated staging copies, as oracles.
+foreach(argument IN ITEMS DIRECT_BUNDLE FILTERED_BUNDLE SDK_LICENSE THIRD_PARTY_NOTICES)
+    if(NOT DEFINED ${argument} OR NOT IS_ABSOLUTE "${${argument}}")
+        message(FATAL_ERROR "${argument} must name an absolute path")
+    endif()
+endforeach()
+
+foreach(argument IN ITEMS DIRECT_BUNDLE FILTERED_BUNDLE)
+    if(NOT IS_DIRECTORY "${${argument}}")
+        message(FATAL_ERROR "${argument} must name an existing bundle directory: ${${argument}}")
+    endif()
+endforeach()
+foreach(argument IN ITEMS SDK_LICENSE THIRD_PARTY_NOTICES)
+    if(NOT EXISTS "${${argument}}" OR IS_DIRECTORY "${${argument}}")
+        message(FATAL_ERROR "${argument} must name an existing source file: ${${argument}}")
+    endif()
+endforeach()
+
+file(REAL_PATH "${DIRECT_BUNDLE}" direct_real)
+file(REAL_PATH "${FILTERED_BUNDLE}" filtered_real)
+if("${direct_real}" STREQUAL "${filtered_real}")
+    message(FATAL_ERROR "DIRECT_BUNDLE and FILTERED_BUNDLE must be distinct bundles")
+endif()
+
+function(expect_resource bundle name original)
+    set(resource "${bundle}/Contents/Resources/${name}")
+    if(NOT EXISTS "${resource}" OR IS_DIRECTORY "${resource}")
+        message(FATAL_ERROR "Missing bundle resource: ${resource}")
+    endif()
+    execute_process(COMMAND "${CMAKE_COMMAND}" -E compare_files "${original}" "${resource}"
+        RESULT_VARIABLE result ERROR_VARIABLE diagnostic)
+    if(NOT "${result}" STREQUAL "0")
+        message(FATAL_ERROR "Bundle resource differs from ${original}: ${resource}; ${diagnostic}")
+    endif()
+endfunction()
+
+foreach(bundle IN ITEMS "${DIRECT_BUNDLE}" "${FILTERED_BUNDLE}")
+    expect_resource("${bundle}" LICENSE.txt "${SDK_LICENSE}")
+    expect_resource("${bundle}" THIRD_PARTY_NOTICES.md "${THIRD_PARTY_NOTICES}")
+endforeach()
+
+message(STATUS "Both VST3 bundles contain byte-identical SDK license and third-party notices")
