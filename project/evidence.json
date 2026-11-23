@@ -78,6 +78,50 @@
         "Local LeakSanitizer disabled; native current Windows/macOS execution and minimum CMake version not established by local tests.",
         "Finite contact, magnetic reaction, reactive circuits, induced arithmetic-fault recovery, antialiasing convergence and runtime deadlines remain outside this acceptance."
       ]
+    },
+    {
+      "id": "PHY-20261123-contact-sweep",
+      "kind": "numerical",
+      "result": "fail",
+      "summary": "Independent 208-run contact audit: all sampled oracle comparisons within budgets, but 26 final-step refinement checks fail and continuous-time extrema remain incomplete; PHY-002 is not complete.",
+      "command": "python3 tools/validate_contact_reference.py --candidate build/contact-full-wave3/candidates.json --output build/a054/contact-audit.json",
+      "created_at": "2026-11-23T14:55:18Z",
+      "source_commit": "b181822ce576167ff21b47c82d54125cf8518fda",
+      "artifacts": [
+        {
+          "path": "docs/validation/contact-refinement-audit-20261123.json",
+          "sha256": "2f9cf2eacaafae71abb9a1f5e7230b52c849a5b267b0ac39975341bbac2ca488"
+        },
+        {
+          "path": "docs/validation/contact-audit-execution-20261123.json",
+          "sha256": "4c6ce3b8d5a18c306a59b14968b0ca2b69e8527ac4305e232ef792643638552d"
+        },
+        {
+          "path": "docs/validation/contact-audit-summary-20261123.json",
+          "sha256": "37107f03e404ca525a9fd192fd828cda986293cf734de618e2e675f2338cf6fb"
+        },
+        {
+          "path": "docs/validation/contact-generation-manifest-20261123.json",
+          "sha256": "b139422249f67b87624549a84f3c62b47d12255291ac4bf716573e36e0df3a3c"
+        },
+        {
+          "path": "docs/agents/development-20261123/W3-A054.md",
+          "sha256": "73a37407127d965efa7f0dbc6d7b75658ff630425ae0ba732d8cf988d225bac6"
+        },
+        {
+          "path": "docs/agents/development-20261123/W3-A056.md",
+          "sha256": "7c5a9ae2cedf59177b0d0922f54b6c60f2cc1b3523fdc539dc5f901744a631c7"
+        }
+      ],
+      "specimen_id": null,
+      "profile_path": null,
+      "session_paths": [],
+      "independent": true,
+      "reference_evidence": [],
+      "limitations": [
+        "Synthetic offline finite-mass p=1 model; no calibrated physical specimen. Eight tracked audited inputs exactly match the recorded commit; execution/source/input/binary hashes retained.",
+        "No independent continuous-time force/compression extrema acceptance. Twenty waveform or energy and six event-time refinement monotonicity failures remain under the frozen matrix."
+      ]
     }
   ]
 }

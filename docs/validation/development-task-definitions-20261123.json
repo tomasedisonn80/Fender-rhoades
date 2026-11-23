@@ -1,0 +1,110 @@
+{
+  "schema_version": 1,
+  "purpose": "Frozen task definitions for criterion-by-criterion integration reviews; not an acceptance result. Numerical budgets remain in the separately frozen contact and runtime contracts.",
+  "definition_source_commit": "af06ed1f4d7363508e57970d3b1a911e94564ed8",
+  "records": [
+    {
+      "definition": {
+        "task_id": "PHY-002",
+        "acceptance": [
+          "Use finite hammer mass, reciprocal contact forces, separation and recontact with persistent resonator state.",
+          "Model damper/pedal contact and resting equilibrium; identify or label all assumed contact parameters.",
+          "Pass energy, timestep convergence, retrigger, release and pedal stress checks with explicit numerical tolerances."
+        ],
+        "dependencies": [
+          "PHY-001"
+        ],
+        "required_evidence": [
+          "numerical"
+        ],
+        "target": "One documented 73-key Mark I Stage specimen at its specified loaded electrical output; identity and measurements pending."
+      },
+      "definition_sha256": "e51dfa484a4a2f600fa3b6eaf357a8a2a85bfade777745ceb55fd0af8ba4ee03",
+      "criteria": [
+        {
+          "id": "PHY-002/C01",
+          "text": "Use finite hammer mass, reciprocal contact forces, separation and recontact with persistent resonator state."
+        },
+        {
+          "id": "PHY-002/C02",
+          "text": "Model damper/pedal contact and resting equilibrium; identify or label all assumed contact parameters."
+        },
+        {
+          "id": "PHY-002/C03",
+          "text": "Pass energy, timestep convergence, retrigger, release and pedal stress checks with explicit numerical tolerances."
+        }
+      ]
+    },
+    {
+      "definition": {
+        "task_id": "RT-001",
+        "acceptance": [
+          "Benchmark representative kernels with hardware, compiler, sample rate, block size, polyphony and stress conditions recorded.",
+          "Report maximum observed callback duration and deadline misses, plus optimized-versus-reference error.",
+          "Verify allocation/locking policy and timestep/antialiasing convergence; claim only measured performance."
+        ],
+        "dependencies": [
+          "PHY-001"
+        ],
+        "required_evidence": [
+          "performance",
+          "numerical"
+        ],
+        "target": "One documented 73-key Mark I Stage specimen at its specified loaded electrical output; identity and measurements pending."
+      },
+      "definition_sha256": "134aae8a07f36b75bc986390376f51ca5fbb8abc0955d57913dda04d1ad4f6b8",
+      "criteria": [
+        {
+          "id": "RT-001/C01",
+          "text": "Benchmark representative kernels with hardware, compiler, sample rate, block size, polyphony and stress conditions recorded."
+        },
+        {
+          "id": "RT-001/C02",
+          "text": "Report maximum observed callback duration and deadline misses, plus optimized-versus-reference error."
+        },
+        {
+          "id": "RT-001/C03",
+          "text": "Verify allocation/locking policy and timestep/antialiasing convergence; claim only measured performance."
+        }
+      ]
+    },
+    {
+      "definition": {
+        "task_id": "HOST-001",
+        "acceptance": [
+          "Bounded sample-offset event processing preserves producer order and physical key state; invalid blocks reject without mutation.",
+          "An optional VST3 instrument builds against an explicitly identified public SDK and passes the available SDK validator with bounded audio processing and documented output scaling.",
+          "Host configuration round-trips through a versioned validated state format; MIDI range, sustain, overlapping notes, reset and unsupported host conditions are explicit and tested.",
+          "Document the actual tested platform and synthetic sound boundary without claiming measured fidelity or an untested release."
+        ],
+        "dependencies": [
+          "PHY-001"
+        ],
+        "required_evidence": [
+          "numerical",
+          "documentary"
+        ],
+        "target": "One documented 73-key Mark I Stage specimen at its specified loaded electrical output; identity and measurements pending."
+      },
+      "definition_sha256": "b5e43a5c4bfccd246d49bf60783b320a1629741489023757d01cb50207e48336",
+      "criteria": [
+        {
+          "id": "HOST-001/C01",
+          "text": "Bounded sample-offset event processing preserves producer order and physical key state; invalid blocks reject without mutation."
+        },
+        {
+          "id": "HOST-001/C02",
+          "text": "An optional VST3 instrument builds against an explicitly identified public SDK and passes the available SDK validator with bounded audio processing and documented output scaling."
+        },
+        {
+          "id": "HOST-001/C03",
+          "text": "Host configuration round-trips through a versioned validated state format; MIDI range, sustain, overlapping notes, reset and unsupported host conditions are explicit and tested."
+        },
+        {
+          "id": "HOST-001/C04",
+          "text": "Document the actual tested platform and synthetic sound boundary without claiming measured fidelity or an untested release."
+        }
+      ]
+    }
+  ]
+}

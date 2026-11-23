@@ -543,6 +543,69 @@
       "status": "completed",
       "report": "docs/agents/development-20261123/W3-A060.md",
       "report_sha256": "23ec913ac7d5c296f2b902609492acc0ee5146f2fa07543b671e76ad8552447f"
+    },
+    {
+      "id": "A061",
+      "wave": 4,
+      "task_name": "/root/w4_a061",
+      "scope": "Harden malformed independent contact-auditor evidence",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W4-A061.md",
+      "report_sha256": "bdca8f9d0861de0d28bcdc7dc6dc63f443d92e0ae64b8d862916dedb4313a9c0"
+    },
+    {
+      "id": "A062",
+      "wave": 4,
+      "task_name": "/root/w4_a062",
+      "scope": "Hide unintended VST3 module symbols and verify factory exports",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W4-A062.md",
+      "report_sha256": "323daaa965f5644e1747046a4497aa40972755d92d7bf22f1523623951c6cc20"
+    },
+    {
+      "id": "A063",
+      "wave": 4,
+      "task_name": "/root/w4_a063",
+      "scope": "Independent host buffer lifecycle and rejection tests",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W4-A063.md",
+      "report_sha256": "c4cd44f2703b0653731d915f239dc0c47894aa0c99dccb97c17c1c2068cbea71"
+    },
+    {
+      "id": "A064",
+      "wave": 4,
+      "task_name": "/root/w4_a064",
+      "scope": "Actual VST3 callback performance benchmark harness",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W4-A064.md",
+      "report_sha256": "159f002e649b848a467b93a0371276afa8e0fa75ce003f409a7015610bd071cd"
+    },
+    {
+      "id": "A065",
+      "wave": 4,
+      "task_name": "/root/w4_a065",
+      "scope": "Offline contact domain boundaries and rollback tests",
+      "status": "running",
+      "report": "docs/agents/development-20261123/W4-A065.md",
+      "report_sha256": null
+    },
+    {
+      "id": "A066",
+      "wave": 4,
+      "task_name": "/root/w4_a066",
+      "scope": "VST3 partial state transfer and retry invariants",
+      "status": "running",
+      "report": "docs/agents/development-20261123/W4-A066.md",
+      "report_sha256": null
+    },
+    {
+      "id": "A067",
+      "wave": 4,
+      "task_name": "/root/w4_a067",
+      "scope": "Independent adversarial review of hardened contact evidence inputs",
+      "status": "running",
+      "report": "docs/agents/development-20261123/W4-A067.md",
+      "report_sha256": null
     }
   ]
 }

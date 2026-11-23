@@ -582,13 +582,200 @@ def compare_samples(actual: dict[str, Any], expected: dict[str, Any], f: Fixture
         reference = fields(expected)[key][0]
         budget = tolerance(kind, reference, factor=factor, energy_scale=f.energy_scale, structural=structural)
         ratio = abs(value-reference)/budget
-        ratios[key] = ratio
-        if not math.isfinite(value) or ratio > 1:
+        # Failed numerical evidence must still produce serializable output.
+        # An overflowed ratio is a failure, never a finite comparison result.
+        if math.isfinite(ratio):
+            ratios[key] = ratio
+        if not math.isfinite(value) or not math.isfinite(ratio) or ratio > 1:
             failures.append(f"{key}: {value:.17g} vs {reference:.17g}, budget {budget:.6g}")
     return ratios, failures
 
 
+def finite_number(value: Any) -> bool:
+    """A JSON number usable by the floating-point audit, excluding booleans."""
+    if type(value) not in (int, float):
+        return False
+    try:
+        return math.isfinite(value)
+    except OverflowError:  # Arbitrarily large JSON integers cannot become doubles.
+        return False
+
+
+def validate_run_input(run: Any) -> list[str]:
+    """Check candidate structure/domains without importing a numerical backend.
+
+    Missing optional evidence remains an audit incompleteness. Present malformed
+    evidence fails here, before indexing vectors, evaluating physics, sorting
+    refinement metadata, or copying candidate events into a JSON report.
+    """
+    failures: list[str] = []
+    if not isinstance(run, dict):
+        return ["Candidate run must be an object"]
+    name = run.get("fixture")
+    if not isinstance(name, str) or name not in fixtures():
+        return ["Unknown frozen fixture"]
+    duration = fixtures()[name].duration
+
+    def number(value: Any, where: str, *, positive: bool = False,
+               nonnegative: bool = False) -> bool:
+        if not finite_number(value):
+            failures.append(where + " must be a finite number")
+            return False
+        if positive and value <= 0:
+            failures.append(where + " must be positive")
+            return False
+        if nonnegative and value < 0:
+            failures.append(where + " must be nonnegative")
+            return False
+        return True
+
+    # Unknown numeric extensions may be ignored scientifically, but cannot
+    # carry NaN/Inf into the candidate-event dictionaries retained in a report.
+    def finite_json(value: Any, where: str) -> None:
+        if isinstance(value, dict):
+            for key, child in value.items():
+                if not isinstance(key, str):
+                    failures.append(where + " object keys must be strings")
+                finite_json(child, where + "." + str(key))
+        elif isinstance(value, list):
+            for index, child in enumerate(value):
+                finite_json(child, f"{where}[{index}]")
+        elif type(value) in (float, int) and not finite_number(value):
+            failures.append(where + " must be finite")
+        elif value is not None and type(value) not in (str, bool, int, float):
+            failures.append(where + " must contain only JSON values")
+
+    finite_json(run, "run")
+    for key in ("maximum_step_s", "event_tolerance_s"):
+        number(run.get(key), key, positive=True)
+    for key in ("relative_tolerance", "absolute_tolerance", "velocity_absolute_tolerance",
+                "energy_absolute_tolerance", "impulse_absolute_tolerance", "output_step_s"):
+        if key in run:
+            number(run[key], key, positive=True)
+    if "success" in run and type(run["success"]) is not bool:
+        failures.append("success must be a boolean")
+    if "failure_code" in run and (type(run["failure_code"]) is not int or run["failure_code"] < 0):
+        failures.append("failure_code must be a nonnegative integer")
+    if "source" in run and not isinstance(run["source"], str):
+        failures.append("source must be a string")
+
+    scalar_fields = ("hammer_position_m", "hammer_velocity_m_per_s", "hammer_force_n",
+                     "damper_force_n", "hammer_impulse_ns", "damper_impulse_ns",
+                     "modal_loss_j", "hammer_loss_j", "damper_loss_j", "actuator_work_j",
+                     "launch_work_j", "energy_j")
+    optional_scalars = ("hammer_acceleration_m_per_s2", "hammer_gap_m", "damper_gap_m",
+                        "hammer_relative_velocity_m_per_s", "damper_relative_velocity_m_per_s",
+                        "hammer_clipped_loss_j", "damper_clipped_loss_j", "pickup_voltage_v",
+                        "instantaneous_power_residual_w", "actuator_power_w")
+
+    def sample_values(sample: Any, where: str) -> bool:
+        if not isinstance(sample, dict):
+            failures.append(where + " must be an object")
+            return False
+        for key in ("q_m", "v_m_per_s", "modal_acceleration_m_per_s2"):
+            if key == "modal_acceleration_m_per_s2" and key not in sample:
+                continue
+            value = sample.get(key)
+            if not isinstance(value, list) or len(value) != 2:
+                failures.append(where + "." + key + " must contain exactly two components")
+            else:
+                for index, component in enumerate(value):
+                    number(component, f"{where}.{key}[{index}]")
+        for key in scalar_fields:
+            number(sample.get(key), where + "." + key)
+        for key in optional_scalars:
+            if key in sample:
+                number(sample[key], where + "." + key)
+        return True
+
+    samples = run.get("samples", [])
+    if not isinstance(samples, list):
+        failures.append("samples must be an array")
+    else:
+        previous = None
+        for index, sample in enumerate(samples):
+            if not sample_values(sample, f"samples[{index}]"):
+                continue
+            time = sample.get("time_s")
+            if (not finite_number(time) or time < 0 or time > duration + 1e-12 or
+                    (previous is not None and time <= previous)):
+                failures.append("Sample times must be finite, strictly increasing, and within the frozen duration")
+            if finite_number(time):
+                previous = time
+
+    events = run.get("events", [])
+    if not isinstance(events, list):
+        failures.append("events must be an array")
+    else:
+        for index, event in enumerate(events):
+            where = f"events[{index}]"
+            if not isinstance(event, dict):
+                failures.append(where + " must be an object")
+                continue
+            for key in ("contact", "kind"):
+                if not isinstance(event.get(key), str):
+                    failures.append(where + "." + key + " must be a string")
+            time = event.get("time_s")
+            if number(time, where + ".time_s") and not 0 <= time <= duration + 1e-12:
+                failures.append(where + ".time_s lies outside the frozen duration")
+            for key in ("bracket_lo_s", "bracket_hi_s"):
+                if key in event and not finite_number(event[key]):
+                    failures.append("invalid event bracket or width above declared tolerance: " + where + "." + key)
+            if "gap_uncertainty_m" in event:
+                number(event["gap_uncertainty_m"], where + ".gap_uncertainty_m", nonnegative=True)
+            if "work_j" in event:
+                number(event["work_j"], where + ".work_j")
+
+    diagnostics = run.get("diagnostics", {})
+    if not isinstance(diagnostics, dict):
+        failures.append("diagnostics must be an object")
+    else:
+        for key in ("max_abs_cumulative_residual_j", "sum_abs_interval_residual_j"):
+            if key not in diagnostics:
+                continue
+            if not finite_number(diagnostics[key]):
+                failures.append(key + " exceeds frozen energy budget: value must be finite")
+            elif diagnostics[key] < 0:
+                failures.append(key + " must be nonnegative")
+        for key in ("maximum_power_residual_w", "initial_energy_j",
+                    "minimum_accepted_step_s", "maximum_accepted_step_s"):
+            if key in diagnostics:
+                number(diagnostics[key], "diagnostics." + key, nonnegative=True)
+        for key in ("accepted_steps", "rejected_steps", "rhs_evaluations", "analytic_free_evaluations",
+                    "event_subdivisions", "root_iterations", "grazing_candidates"):
+            if key in diagnostics and (type(diagnostics[key]) is not int or diagnostics[key] < 0):
+                failures.append("diagnostics." + key + " must be a nonnegative integer")
+        if "sampled_maxima" in diagnostics:
+            maxima = diagnostics["sampled_maxima"]
+            if not isinstance(maxima, dict):
+                failures.append("diagnostics.sampled_maxima must be an object")
+            else:
+                for key, value in maxima.items():
+                    if key != "scope":
+                        number(value, "diagnostics.sampled_maxima." + key, nonnegative=True)
+
+    snapshots = run.get("relaunch_snapshots", [])
+    if not isinstance(snapshots, list):
+        failures.append("relaunch_snapshots must be an array")
+    else:
+        for index, snapshot in enumerate(snapshots):
+            where = f"relaunch_snapshots[{index}]"
+            if not isinstance(snapshot, dict):
+                failures.append(where + " must be an object")
+                continue
+            for side in ("before", "after"):
+                sample_values(snapshot.get(side), where + "." + side)
+            for key in ("time_s", "requested_velocity_m_per_s", "work_j"):
+                if key in snapshot:
+                    number(snapshot[key], where + "." + key)
+            if "success" in snapshot and type(snapshot["success"]) is not bool:
+                failures.append(where + ".success must be a boolean")
+    return failures
+
+
 def normalize_sample(s: dict[str, Any]) -> dict[str, Any]:
+    if not isinstance(s, dict):
+        raise ValueError("Every candidate sample must be an object")
     s = dict(s)
     aliases = {"hammer_x_m": "hammer_position_m", "hammer_v_m_per_s": "hammer_velocity_m_per_s",
                "background_loss_j": "modal_loss_j", "pedal_work_j": "actuator_work_j"}
@@ -606,6 +793,8 @@ def read_runs(path: Path) -> list[dict[str, Any]]:
     if path.suffix.lower() != ".csv":
         with path.open(encoding="utf-8") as handle:
             data = json.load(handle)
+        if not isinstance(data, dict):
+            raise ValueError("Candidate JSON root must be an object")
         runs = data["runs"] if "runs" in data else [data]
     else:
         grouped: dict[tuple[str, str, str], dict[str, Any]] = {}
@@ -617,9 +806,16 @@ def read_runs(path: Path) -> list[dict[str, Any]]:
                 run["samples"].append({k: float(v) for k, v in row.items()
                                        if k not in {"fixture", "maximum_step_s", "event_tolerance_s"} and v != ""})
         runs = list(grouped.values())
-    for run in runs:
+    if not isinstance(runs, list):
+        raise ValueError("Candidate runs must be an array")
+    for index, run in enumerate(runs):
+        if not isinstance(run, dict) or not isinstance(run.get("samples", []), list):
+            raise ValueError(f"Candidate run {index} must be an object with a sample array")
         run["samples"] = [normalize_sample(sample) for sample in run.get("samples", [])]
         run["source"] = str(path)
+        failures = validate_run_input(run)
+        if failures:
+            raise ValueError(f"Malformed candidate run {index}: " + "; ".join(failures[:12]))
     return runs
 
 
@@ -641,20 +837,22 @@ def canonical_events(run: dict[str, Any]) -> list[dict[str, Any]]:
 
 
 def audit_run(run: dict[str, Any]) -> dict[str, Any]:
-    name = run["fixture"]
-    if name not in fixtures():
-        return {"fixture": name, "status": "fail", "failures": ["Unknown frozen fixture"], "missing": []}
-    oracle = oracle_for(name)
-    f = oracle.fixture
-    failures: list[str] = []
+    failures = validate_run_input(run)
+    name = run.get("fixture") if isinstance(run, dict) else None
+    if failures:
+        return {"fixture": name if isinstance(name, str) else None, "status": "fail",
+                "failures": failures[:80], "failure_count": len(failures), "missing": []}
     missing: list[str] = []
     if run.get("success") is False:
         failures.append("Candidate reported explicit failure before completing the requested interval; code="+
                         str(run.get("failure_code", "unspecified")))
     worst: dict[str, float] = {}
-    samples = run["samples"]
+    samples = run.get("samples", [])
     if not samples:
-        return {"fixture": name, "status": "incomplete", "failures": [], "missing": ["trajectory samples"]}
+        return {"fixture": name, "status": "fail" if failures else "incomplete",
+                "failures": failures, "failure_count": len(failures), "missing": ["trajectory samples"]}
+    oracle = oracle_for(name)
+    f = oracle.fixture
     times = [float(s["time_s"]) for s in samples]
     if any(not math.isfinite(t) or t < 0 or t > f.duration+1e-12 for t in times) or any(b <= a for a, b in zip(times, times[1:])):
         failures.append("Sample times must be finite, strictly increasing, and within the frozen duration")
@@ -677,7 +875,15 @@ def audit_run(run: dict[str, Any]) -> dict[str, Any]:
         except (KeyError, TypeError, ValueError) as exc:
             missing.append("required sample field: "+str(exc))
             break
-        independent = observe(f, time, y)
+        try:
+            independent = observe(f, time, y)
+        except OverflowError:
+            failures.append(f"t={time:.12g}: candidate state overflows independent physics")
+            continue
+        if any(not finite_number(value) for observation in independent.values()
+               for value in (observation if isinstance(observation, list) else [observation])):
+            failures.append(f"t={time:.12g}: candidate state produces non-finite independent physics")
+            continue
         for contact in ("hammer", "damper"):
             force = float(s[contact+"_force_n"])
             expected = independent[contact+"_force_n"]
@@ -691,7 +897,11 @@ def audit_run(run: dict[str, Any]) -> dict[str, Any]:
             failures.append(f"t={time:.12g}: exported energy disagrees with independently assembled storage")
         loss = sum(float(s[k]) for k in ("modal_loss_j", "hammer_loss_j", "damper_loss_j"))
         balance = float(s["energy_j"])-initial_energy+loss-float(s["actuator_work_j"])-float(s["launch_work_j"])
-        sum_abs += abs(balance-previous_balance)
+        next_sum = sum_abs + abs(balance-previous_balance)
+        if not math.isfinite(balance) or not math.isfinite(next_sum):
+            failures.append(f"t={time:.12g}: candidate energy ledger overflows")
+            continue
+        sum_abs = next_sum
         previous_balance = balance
         max_cumulative = max(max_cumulative, abs(balance))
         for key in ("modal_loss_j", "hammer_loss_j", "damper_loss_j"):
@@ -704,7 +914,10 @@ def audit_run(run: dict[str, Any]) -> dict[str, Any]:
             residual = independent["instantaneous_power_residual_w"]
             residual += sum(m*v*(a-b) for m, v, a, b in zip(f.mass, s["v_m_per_s"], s["modal_acceleration_m_per_s2"], independent["modal_acceleration_m_per_s2"]))
             residual += f.hammer_mass*s["hammer_velocity_m_per_s"]*(s["hammer_acceleration_m_per_s2"]-independent["hammer_acceleration_m_per_s2"])
-            max_power = max(max_power, abs(residual))
+            if not math.isfinite(residual):
+                failures.append(f"t={time:.12g}: candidate instantaneous power residual is non-finite")
+            else:
+                max_power = max(max_power, abs(residual))
         if name in {"conservative_impact", "damped_impact", "forced_clamp"}:
             momentum = f.hammer_mass*s["hammer_velocity_m_per_s"]+f.mass[0]*s["v_m_per_s"][0]
             target = f.hammer_mass*f.vh
@@ -812,6 +1025,10 @@ def refinement_gates(runs: list[dict[str, Any]]) -> dict[str, Any]:
     missing: list[str] = []
     failures: list[str] = []
     comparisons: dict[str, Any] = {}
+    malformed = [f"run {index}: {failure}" for index, run in enumerate(runs)
+                 for failure in validate_run_input(run)]
+    if malformed:
+        return {"status": "fail", "failures": malformed[:80], "missing": [], "comparisons": {}}
     by_name: dict[str, list[dict[str, Any]]] = {}
     for run in runs:
         by_name.setdefault(run["fixture"], []).append(run)

@@ -22,6 +22,13 @@ target_include_directories(rhodes_core PUBLIC
 target_compile_features(rhodes_core PUBLIC cxx_std_20)
 set_target_properties(rhodes_core PROPERTIES CXX_EXTENSIONS OFF)
 set_target_properties(rhodes_core PROPERTIES POSITION_INDEPENDENT_CODE ON)
+# Keep implementation symbols private when this archive is linked into a plug-in.
+# A separately requested shared core keeps its existing public-symbol behavior.
+get_target_property(rhodes_core_type rhodes_core TYPE)
+if(rhodes_core_type STREQUAL "STATIC_LIBRARY")
+    set_target_properties(rhodes_core PROPERTIES
+        CXX_VISIBILITY_PRESET hidden VISIBILITY_INLINES_HIDDEN ON)
+endif()
 
 function(rhodes_target_options target)
     if(MSVC)
