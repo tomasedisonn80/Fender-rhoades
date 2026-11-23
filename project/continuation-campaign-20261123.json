@@ -460,17 +460,35 @@
       "wave": 3,
       "task_name": "/root/w3_051_peak_audit_design",
       "scope": "Design independent extrema diagnostics with explicit coverage limits and frozen numerical budgets",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/continuation-20261123/w3-051.md",
-      "report_sha256": null
+      "report_sha256": "f9649848f1d23ec490046fa8fbc4370ec61d9352909914eb5aaea21bab078f7b"
     },
     {
       "id": 52,
       "wave": 3,
       "task_name": "/root/w3_052_peak_sweep_option",
       "scope": "Expose explicit optional peak diagnostics in sweep plans with validated provenance",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/continuation-20261123/w3-052.md",
+      "report_sha256": "c9445822603b081a45b455e0cbec3930aeef8828b7e817b3ff8fb42c32b7e28e"
+    },
+    {
+      "id": 53,
+      "wave": 3,
+      "task_name": "/root/w3_053_diagnostic_stdout",
+      "scope": "Reject buffered stdout publication failures in precise probe and contact CLI",
+      "status": "running",
+      "report": "docs/agents/continuation-20261123/w3-053.md",
+      "report_sha256": null
+    },
+    {
+      "id": 54,
+      "wave": 3,
+      "task_name": "/root/w3_054_benchmark_stdout",
+      "scope": "Detect actual buffered stdout failures in kernel runtime and VST3 benchmark publishers",
+      "status": "running",
+      "report": "docs/agents/continuation-20261123/w3-054.md",
       "report_sha256": null
     }
   ]

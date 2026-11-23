@@ -7,6 +7,8 @@ retains those runs and adds uniformly finer steps and finest-step event/local
 axes. The independent audit is a separate command recorded in the manifest.
 Only fixture/axis metadata are imported from that tool; no oracle is executed.
 Raw stdout and stderr are retained even for failed or timed-out candidates.
+The explicit --locate-peak-candidates option requests additional uncertified
+diagnostics; their schema is checked, but continuous extrema are not accepted.
 """
 from __future__ import annotations
 
@@ -31,6 +33,8 @@ from validate_contact_reference import (EVENT_LEVELS, LOCAL_SCALES, LOCAL_TOLERA
 
 ROOT = Path(__file__).resolve().parents[1]
 MAX_JSON_BYTES = 64 * 1024 * 1024
+PEAK_COVERAGE = "uncertified_sign_change_search"
+PEAK_METHOD = "fixed_interval_anchor_replay_two_rk4_half_steps_or_certified_free_motion"
 SAMPLE_FIELDS = ("time_s", "hammer_position_m", "hammer_velocity_m_per_s",
                  "hammer_force_n", "damper_force_n", "hammer_impulse_ns",
                  "damper_impulse_ns", "modal_loss_j", "hammer_loss_j",
@@ -60,7 +64,10 @@ def write_json(path: Path, value: Any) -> None:
         temporary.unlink(missing_ok=True)
 
 
-def plan(names: list[str], extra_step_levels: int = 0) -> list[dict[str, Any]]:
+def plan(names: list[str], extra_step_levels: int = 0, *,
+         locate_peak_candidates: bool = False) -> list[dict[str, Any]]:
+    if type(locate_peak_candidates) is not bool:
+        raise ValueError("locate_peak_candidates must be a boolean")
     settings = refinement_slots(extra_step_levels)
     runs = []
     for name in sorted(set(names)):
@@ -71,11 +78,55 @@ def plan(names: list[str], extra_step_levels: int = 0) -> list[dict[str, Any]]:
                          "maximum_step_s": step, "event_tolerance_s": eta,
                          "tolerance_scale": scale, "output_step_s": output_step,
                          "axes": axes})
+            if locate_peak_candidates:
+                runs[-1]["locate_peak_candidates"] = True
     return runs
 
 
 def number(value: Any) -> bool:
     return type(value) in (int, float) and math.isfinite(value)
+
+
+def validate_peak_candidates(run: dict[str, Any], item: dict[str, Any],
+                             duration: float) -> None:
+    """Validate requested diagnostics, never infer continuous-maximum coverage."""
+    peaks = run["diagnostics"].get("located_peak_candidates")
+    records = {f"{contact}_{quantity}": unit
+               for contact in ("hammer", "damper")
+               for quantity, unit in (("compression", "value_m"), ("force", "value_n"))}
+    if not isinstance(peaks, dict) or set(peaks) != {"coverage", "evaluation_method", *records}:
+        raise ValueError("requested peak candidates are missing or have an invalid schema")
+    if peaks["coverage"] != PEAK_COVERAGE or peaks["evaluation_method"] != PEAK_METHOD:
+        raise ValueError("requested peak candidates have unexpected coverage or evaluation method")
+    origins = {"disabled", "sample", "stationary_candidate", "action_before", "action_after"}
+    definition = fixtures()[item["fixture"]]
+    for name, unit in records.items():
+        peak = peaks[name]
+        fields = {unit, "time_s", "bracket_lo_s", "bracket_hi_s", "origin"}
+        if not isinstance(peak, dict) or set(peak) != fields or \
+                any(not number(peak[key]) for key in fields - {"origin"}):
+            raise ValueError("requested peak candidate has invalid SI fields: " + name)
+        value, time = peak[unit], peak["time_s"]
+        lo, hi, origin = peak["bracket_lo_s"], peak["bracket_hi_s"], peak["origin"]
+        if not isinstance(origin, str) or origin not in origins or value < 0 or \
+                not 0 <= lo <= time <= hi <= duration:
+            raise ValueError("requested peak candidate has invalid value, bracket or origin: " + name)
+        if origin == "stationary_candidate":
+            if hi - lo > item["event_tolerance_s"] * (1 + 1e-9):
+                raise ValueError("requested peak candidate bracket exceeds event tolerance: " + name)
+        elif not lo == time == hi:
+            raise ValueError("requested sample/action/disabled peak bracket is not degenerate: " + name)
+        if origin == "disabled" and (value != 0 or time != 0):
+            raise ValueError("requested disabled peak candidate is not the zero record: " + name)
+        # In the frozen CLI fixtures the hammer is enabled, and positive kd
+        # identifies the enabled damper. Disabled and stationary-zero differ.
+        enabled = name.startswith("hammer_") or definition.kd > 0
+        if (origin == "disabled") == enabled:
+            raise ValueError("requested peak candidate origin disagrees with enabled contact: " + name)
+        if origin in {"action_before", "action_after"} and not any(
+                abs(time - action_time) <= 16 * max(math.ulp(time), math.ulp(action_time))
+                for action_time, _ in definition.relaunch):
+            raise ValueError("requested peak action is not at a declared action time: " + name)
 
 
 def candidate(path: Path, item: dict[str, Any], duration: float) -> dict[str, Any]:
@@ -132,6 +183,8 @@ def candidate(path: Path, item: dict[str, Any], duration: float) -> dict[str, An
         raise ValueError("candidate did not cover the complete frozen duration")
     if not isinstance(run.get("events"), list) or not isinstance(run.get("diagnostics"), dict):
         raise ValueError("missing event or diagnostic containers")
+    if item.get("locate_peak_candidates", False):
+        validate_peak_candidates(run, item, duration)
     return run
 
 
@@ -142,6 +195,8 @@ def execute(executable: Path, output: Path, item: dict[str, Any], timeout: float
             "--event-tolerance", repr(item["event_tolerance_s"]),
             "--tolerance-scale", repr(item["tolerance_scale"]),
             "--output-step", repr(item["output_step_s"])]
+    if item.get("locate_peak_candidates", False):
+        argv.append("--locate-peak-candidates")
     stdout = output / (item["id"] + ".json")
     stderr = output / (item["id"] + ".stderr.txt")
     record = dict(item, argv=argv, stdout=stdout.name, stderr=stderr.name,
@@ -202,6 +257,8 @@ def main() -> int:
                         help="repeat for a subset; default is all 26 frozen fixtures")
     parser.add_argument("--extra-step-levels", type=int, choices=(0, 1, 2), default=0,
                         help="explicit uniform refinement extension; default 0 retains the original 208-run matrix")
+    parser.add_argument("--locate-peak-candidates", action="store_true",
+                        help="request and retain uncertified peak diagnostics; does not satisfy the independent extrema gate")
     parser.add_argument("--timeout", type=float, default=30.0, help="seconds per candidate, 0 < timeout <= 600")
     parser.add_argument("--force", action="store_true", help="replace only this run's named outputs in an existing directory")
     parser.add_argument("--plan", action="store_true", help="print deterministic input plan without running or writing files")
@@ -209,7 +266,7 @@ def main() -> int:
     if not math.isfinite(args.timeout) or not 0 < args.timeout <= 600:
         parser.error("timeout must be finite and in (0, 600]")
     names = sorted(set(args.fixture or definitions))
-    items = plan(names, args.extra_step_levels)
+    items = plan(names, args.extra_step_levels, locate_peak_candidates=args.locate_peak_candidates)
     metadata = {"fixtures": {name: asdict(definitions[name]) for name in names},
                 "maximum_step_levels_s": refinement_step_levels(args.extra_step_levels), "event_levels_s": EVENT_LEVELS,
                 "local_tolerance_scales": LOCAL_SCALES, "output_step_s": OUTPUT_STEP,
@@ -218,6 +275,10 @@ def main() -> int:
                 "required_matrix": refinement_matrix(args.extra_step_levels),
                 "original_frozen_matrix": refinement_matrix(0),
                 "runs": items, "nonlinear_solve_axis": "inapplicable: explicit RK4"}
+    if args.locate_peak_candidates:
+        metadata["peak_candidates"] = {"requested": True, "coverage": PEAK_COVERAGE,
+                                       "evaluation_method": PEAK_METHOD,
+                                       "acceptance": "not evaluated; independent continuous-extrema gate remains open"}
     if args.plan:
         print(json.dumps(metadata, indent=2, allow_nan=False))
         return 0
@@ -246,6 +307,8 @@ def main() -> int:
                         ROOT / "docs/specs/CONTACT_REFINEMENT_EXTENSION_20261123.md",
                         ROOT / "docs/agents/development-20261123/W1-A005.md",
                         ROOT / "docs/agents/development-20261123/W1-A007.md"]
+        if args.locate_peak_candidates:
+            source_paths.append(ROOT / "docs/specs/CONTACT_PEAK_DIAGNOSTICS_20261123.md")
         manifest = {"schema_version": 1, "kind": "rhodes-contact-candidate-sweep",
                     "created_utc": datetime.now(timezone.utc).isoformat(),
                     "status": "running", "acceptance": "not evaluated",
@@ -257,6 +320,8 @@ def main() -> int:
                                "Source hashes are inspection context; executable build provenance is not inferred.",
                                "A subset cannot establish the complete frozen acceptance matrix."],
                     "results": []}
+        if args.locate_peak_candidates:
+            manifest["limits"].append("Peak candidates are an uncertified sign-change search, not independent continuous extrema.")
         write_json(output / "manifest.json", manifest)
         for item in items:
             record = execute(executable, output, item, args.timeout, definitions[item["fixture"]].duration)
