@@ -9,7 +9,7 @@ recorded in [DEPENDENCIES.md](../DEPENDENCIES.md).
 
 Provide one MIDI event input, no audio input, and one stereo output carrying the
 same synthetic mono signal on both channels. Support 32-bit and 64-bit samples,
-32–192 kHz, and up to 4096 frames per host call. Reject unsupported setup before
+32–192 kHz, and up to 8192 frames per host call. Reject unsupported setup before
 replacing a working configuration. Advertise zero latency; no measured CPU or
 audio-device deadline guarantee is implied. No custom editor is required: expose
 ordinary host controls.
@@ -50,7 +50,7 @@ mechanics. The note-tracking helper may support channel release independently
 for future adapters. No unsupported MIDI event type is reinterpreted as a note.
 
 Preflight all bounded host input before mutating audio state: at most 256 input
-events, two parameter queues, and at most 4096 points per queue. Validate every
+events, two parameter queues, and at most 8192 points per queue. Validate every
 read, count, domain, offset, queue identity and ordering. Parameter points may be
 dense while mechanical events are dispatched in bounded groups. An individual
 sample may contain at most 256 combined physical note/pedal events. Reject any
@@ -61,7 +61,13 @@ serialization or logging.
 The physical event limit is per `EventProcessor::process` call; the host adapter
 may issue one such call per sample after preflighting the entire host block.
 Dense host automation does not need to fit a single 256-event array for all
-4096 samples. MIDI-to-key translation retains a separate 256-event cap.
+8192 samples. MIDI-to-key translation retains a separate 256-event cap.
+
+The initial 4096-frame host proposal was expanded after the unmodified pinned
+SDK validator requested 8192-frame setup and processing. The fixed host arrays
+and parameter-point caps expand accordingly; physical event invocations keep
+their original 4096-frame maximum and use one-sample dispatch here. This is a
+host-compatibility change, not a change to contact tolerances or fidelity gates.
 
 Invalid host input returns failure and silence, preserving active configuration,
 ownership and mechanics. An arithmetic failure preserves successful prior

@@ -189,26 +189,80 @@
       "wave": 2,
       "task_name": "/root/w2_a021",
       "scope": "Finite-mass hammer and compliant damper reference implementation",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/development-20261123/W2-A021.md",
-      "report_sha256": null
+      "report_sha256": "655892cfd26cec339ee388a053e497269886b177086600383a5df08bb3815480"
     },
     {
       "id": "A022",
       "wave": 2,
       "task_name": "/root/w2_a022",
       "scope": "Independent contact oracle and numerical regression implementation",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/development-20261123/W2-A022.md",
-      "report_sha256": null
+      "report_sha256": "50831ec3195d6bc9a99b52addf3f8cdcd24733b162f19f595c45907343a8fd33"
     },
     {
       "id": "A023",
       "wave": 2,
       "task_name": "/root/w2_a023",
       "scope": "Experimental VST3 processor controller and stream implementation",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/development-20261123/W2-A023.md",
+      "report_sha256": "cbd77eb28ec96b2800a9c00e956510309ed732903cdb4d695b910875312b3c3a"
+    },
+    {
+      "id": "A024",
+      "wave": 2,
+      "task_name": "/root/w2_a024",
+      "scope": "Retained real VST3 host and state regression harness",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W2-A024.md",
+      "report_sha256": "96997047a86dd3bb8fcfa08f8c60000a795aae207642555cb6e7827ce7d8fbd2"
+    },
+    {
+      "id": "A025",
+      "wave": 2,
+      "task_name": "/root/w2_a025",
+      "scope": "Resolve grazing and simultaneous separation contact events without relaxing frozen tolerances",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W2-A025.md",
+      "report_sha256": "5b246dd4e470f24bffdb78ea43639214d9b8e2ab409552649c0add73c2715932"
+    },
+    {
+      "id": "A026",
+      "wave": 2,
+      "task_name": "/root/w2_a026",
+      "scope": "Implement full-call event processor runtime benchmark",
+      "status": "completed",
+      "report": "docs/agents/development-20261123/W2-A026.md",
+      "report_sha256": "b4d821b3823c827dbd5e470aaa5d3ba36da2418def01bcc925b3cb7e653947a7"
+    },
+    {
+      "id": "A027",
+      "wave": 2,
+      "task_name": "/root/w2_a027",
+      "scope": "Configure pinned SDK VST3 build and validator CI across Linux Windows and macOS",
+      "status": "running",
+      "report": "docs/agents/development-20261123/W2-A027.md",
+      "report_sha256": null
+    },
+    {
+      "id": "A028",
+      "wave": 2,
+      "task_name": "/root/w2_a028",
+      "scope": "Document reproducible VST3 SDK setup build controls and tested prototype limits",
+      "status": "running",
+      "report": "docs/agents/development-20261123/W2-A028.md",
+      "report_sha256": null
+    },
+    {
+      "id": "A029",
+      "wave": 2,
+      "task_name": "/root/w2_a029",
+      "scope": "Export exact contact relaunch snapshots and transparent numerical diagnostics",
+      "status": "running",
+      "report": "docs/agents/development-20261123/W2-A029.md",
       "report_sha256": null
     }
   ]

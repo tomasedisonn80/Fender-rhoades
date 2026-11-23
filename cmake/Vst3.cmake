@@ -1,0 +1,70 @@
+# Optional, explicitly supplied SDK. The default core build never downloads it.
+if(CMAKE_VERSION VERSION_LESS 3.25)
+    message(FATAL_ERROR "The optional VST3 SDK requires CMake 3.25 or newer")
+endif()
+if(NOT EXISTS "${RHODES_VST3_SDK_ROOT}/pluginterfaces/vst/ivstaudioprocessor.h"
+        OR NOT EXISTS "${RHODES_VST3_SDK_ROOT}/public.sdk/source/vst/vstaudioeffect.cpp"
+        OR NOT EXISTS "${RHODES_VST3_SDK_ROOT}/cmake/modules/SMTG_VST3_SDK.cmake")
+    message(FATAL_ERROR "Set RHODES_VST3_SDK_ROOT to the complete pinned SDK checkout; see docs/DEPENDENCIES.md")
+endif()
+find_package(Git REQUIRED)
+execute_process(COMMAND "${GIT_EXECUTABLE}" -C "${RHODES_VST3_SDK_ROOT}" rev-parse HEAD
+    OUTPUT_VARIABLE rhodes_sdk_commit OUTPUT_STRIP_TRAILING_WHITESPACE
+    RESULT_VARIABLE rhodes_sdk_git_result ERROR_QUIET)
+if(NOT rhodes_sdk_git_result EQUAL 0 OR NOT rhodes_sdk_commit STREQUAL
+        "3cdf9ca5d1f5b1b21e0a86832aa4abe55607bd96")
+    message(FATAL_ERROR "VST3 SDK must be the documented v3.8.1_build_84 commit (3cdf9ca5...)")
+endif()
+
+set(SMTG_ENABLE_VSTGUI_SUPPORT OFF CACHE BOOL "Headless instrument" FORCE)
+set(SMTG_ENABLE_VST3_PLUGIN_EXAMPLES OFF CACHE BOOL "No SDK plugin examples" FORCE)
+set(SMTG_ENABLE_VST3_HOSTING_EXAMPLES OFF CACHE BOOL "No SDK audio/editor hosts" FORCE)
+set(SMTG_CREATE_PLUGIN_LINK OFF CACHE BOOL "Do not install into a user plugin directory" FORCE)
+set(SMTG_RUN_VST_VALIDATOR OFF CACHE BOOL "Run the validator explicitly through CTest" FORCE)
+set(SMTG_CREATE_MODULE_INFO ON CACHE BOOL "Create VST3 module metadata" FORCE)
+# SDK helper functions are invoked in this directory after add_subdirectory;
+# their platform-entry source paths must remain visible in the caller's scope.
+set(SDK_ROOT "${RHODES_VST3_SDK_ROOT}")
+set(public_sdk_SOURCE_DIR "${RHODES_VST3_SDK_ROOT}/public.sdk")
+set(pluginterfaces_SOURCE_DIR "${RHODES_VST3_SDK_ROOT}/pluginterfaces")
+add_subdirectory("${RHODES_VST3_SDK_ROOT}" "${CMAKE_BINARY_DIR}/vst3-sdk" EXCLUDE_FROM_ALL)
+
+smtg_add_vst3plugin(rhodes_vst3 PACKAGE_NAME "RhodesResearch" SOURCES_LIST
+    "${PROJECT_SOURCE_DIR}/plugins/vst3/processor.cpp"
+    "${PROJECT_SOURCE_DIR}/plugins/vst3/controller.cpp"
+    "${PROJECT_SOURCE_DIR}/plugins/vst3/state_stream.cpp"
+    "${PROJECT_SOURCE_DIR}/plugins/vst3/factory.cpp")
+target_compile_features(rhodes_vst3 PRIVATE cxx_std_20)
+target_include_directories(rhodes_vst3 PRIVATE "${PROJECT_SOURCE_DIR}")
+target_include_directories(rhodes_vst3 SYSTEM PRIVATE "${RHODES_VST3_SDK_ROOT}")
+target_link_libraries(rhodes_vst3 PRIVATE rhodes_core sdk)
+rhodes_target_options(rhodes_vst3)
+if(SMTG_MAC)
+    smtg_target_set_bundle(rhodes_vst3 BUNDLE_IDENTIFIER "org.rhodesresearch.experimental"
+        COMPANY_NAME "Independent Rhodes Research")
+endif()
+smtg_target_add_plugin_resources(rhodes_vst3 RESOURCES
+    "${RHODES_VST3_SDK_ROOT}/LICENSE.txt")
+
+if(BUILD_TESTING)
+    add_executable(rhodes_vst3_host_tests
+        "${PROJECT_SOURCE_DIR}/tests/cpp/vst3_host_test.cpp"
+        "${PROJECT_SOURCE_DIR}/plugins/vst3/processor.cpp"
+        "${PROJECT_SOURCE_DIR}/plugins/vst3/controller.cpp"
+        "${PROJECT_SOURCE_DIR}/plugins/vst3/state_stream.cpp")
+    target_compile_features(rhodes_vst3_host_tests PRIVATE cxx_std_20)
+    target_include_directories(rhodes_vst3_host_tests PRIVATE "${PROJECT_SOURCE_DIR}")
+    target_include_directories(rhodes_vst3_host_tests SYSTEM PRIVATE "${RHODES_VST3_SDK_ROOT}")
+    target_link_libraries(rhodes_vst3_host_tests PRIVATE rhodes_core sdk)
+    rhodes_target_options(rhodes_vst3_host_tests)
+    foreach(test_name IN ITEMS scalar_output overlapping_notes linear_automation
+            dense_automation invalid_atomicity parameter_flush lifecycle deferred_state
+            recall_abort stream_errors controller_mapping allocation_guard)
+        add_test(NAME vst3.${test_name} COMMAND rhodes_vst3_host_tests ${test_name})
+    endforeach()
+    add_dependencies(rhodes_vst3 validator)
+    get_target_property(rhodes_plugin_bundle rhodes_vst3 SMTG_PLUGIN_PACKAGE_PATH)
+    add_test(NAME vst3.sdk_validator
+        COMMAND $<TARGET_FILE:validator> "${rhodes_plugin_bundle}")
+    set_tests_properties(vst3.sdk_validator PROPERTIES TIMEOUT 180)
+endif()

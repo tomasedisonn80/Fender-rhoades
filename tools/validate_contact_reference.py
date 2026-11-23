@@ -1,0 +1,1000 @@
+#!/usr/bin/env python3
+"""Independent numerical audit of the frozen synthetic contact fixtures.
+
+This optional developer tool needs NumPy and SciPy; neither is a runtime or
+base CTest dependency.  It never imports, executes, or links candidate solver
+code.  Candidate samples are data.  Radau, closed forms, and independently
+assembled matrix exponentials are the oracles.
+
+Input JSON is {"runs": [{"fixture": str, "maximum_step_s": float,
+"event_tolerance_s": float, "samples": [...], "events": [...]}]}.
+Repeat --candidate to combine a refinement sweep. CSV rows use the same scalar
+names, q0_m/q1_m, v0_m_per_s/v1_m_per_s, and run metadata on every row. A CSV
+without event/accepted-interval diagnostics cannot establish complete acceptance.
+Every sample includes time_s, q_m[2], v_m_per_s[2], hammer_position_m,
+hammer_velocity_m_per_s, hammer_force_n, damper_force_n, hammer_impulse_ns,
+damper_impulse_ns, modal_loss_j, hammer_loss_j, damper_loss_j,
+actuator_work_j, launch_work_j, and energy_j. Event rows include contact
+(hammer/damper), kind (onset/separation/clamp_on/clamp_off/grazing/relaunch),
+time_s, bracket_lo_s and bracket_hi_s. Grazing rows also need
+gap_uncertainty_m. Full acceptance additionally requires accepted-interval
+diagnostics and independently located peaks; missing data are reported as
+incomplete, never silently treated as passing.
+
+All constants and budgets below are from CONTACT_ACCEPTANCE_20261123 and
+W1-A005/A007/A012. They are engineering fixtures, not Rhodes measurements.
+"""
+
+from __future__ import annotations
+
+import argparse
+import csv
+import json
+import math
+import sys
+from dataclasses import dataclass, replace
+from functools import lru_cache
+from pathlib import Path
+from typing import Any, Callable
+
+
+STEP_LEVELS = (20e-6, 10e-6, 5e-6, 2.5e-6)
+EVENT_LEVELS = (10e-9, 5e-9, 2.5e-9)
+BUDGETS = {
+    "position": (1e-8, 1e-4), "velocity": (1e-5, 1e-4),
+    "force": (1e-4, 2e-4), "impulse": (1e-8, 1e-4),
+    "time": (1e-7, 1e-4), "momentum": (5e-9, 1e-6),
+    "constitutive": (1e-10, 1e-10),
+}
+SCALE_BUDGETS = {"position": (1e-11, 1e-8), "velocity": (1e-8, 1e-8),
+                 "force": (1e-7, 1e-8), "impulse": (1e-10, 1e-8),
+                 "energy": (1e-10, 1e-8), "voltage": (1e-7, 1e-8),
+                 "time": (1e-9, 1e-8)}
+MU = 0.0016
+OMEGA = math.sqrt(20000 / MU)
+SEPARATION = math.pi / OMEGA
+GRAZE_TIME = 0.0010073
+
+
+def numerics() -> tuple[Any, Any, Any, Any]:
+    try:
+        import numpy as np
+        from scipy.integrate import quad, solve_ivp
+        from scipy.linalg import expm
+    except ImportError as exc:
+        raise RuntimeError("Optional independent audit requires NumPy and SciPy; "
+                           "they are not dependencies of the reference CTests.") from exc
+    return np, solve_ivp, expm, quad
+
+
+@dataclass(frozen=True)
+class Fixture:
+    name: str
+    mass: tuple[float, float] = (0.002, 0.001)
+    frequency: tuple[float, float] = (200.0, 650.0)
+    beta: tuple[float, float] = (1.0, 3.0)
+    bh: tuple[float, float] = (1.0, 0.35)
+    bd: tuple[float, float] = (1.0, -0.25)
+    pickup: tuple[float, float] = (1.0, 0.2)
+    hammer_mass: float = 0.008
+    kh: float = 20000.0
+    ch: float = 0.0
+    kd: float = 0.0
+    cd: float = 0.0
+    clearance: float = 0.0
+    q: tuple[float, float] = (0.0, 0.0)
+    v: tuple[float, float] = (0.0, 0.0)
+    x: float = -0.0002
+    vh: float = 1.0
+    duration: float = 0.020
+    face: str = "constant"
+    face_offset: float = 0.0
+    face_velocity: float = 0.0
+    face_amplitude: float = 0.0
+    face_omega: float = 0.0
+    energy_scale: float = 0.004
+    relaunch: tuple[tuple[float, float], ...] = ()
+    scaled: bool = False
+
+    def motion(self, time: float) -> tuple[float, float]:
+        if self.face == "sinusoidal":
+            return (self.face_offset + self.face_amplitude * math.cos(self.face_omega * time),
+                    -self.face_amplitude * self.face_omega * math.sin(self.face_omega * time))
+        return self.face_offset + self.face_velocity * time, self.face_velocity
+
+    def stiffness(self) -> tuple[float, float]:
+        return tuple(m * (2 * math.pi * f) ** 2
+                     for m, f in zip(self.mass, self.frequency))
+
+    def damping(self) -> tuple[float, float]:
+        return tuple(2 * m * b for m, b in zip(self.mass, self.beta))
+
+
+def fixtures() -> dict[str, Fixture]:
+    base = Fixture("supported_impact")
+    free = replace(base, name="conservative_impact", frequency=(0.0, 650.0),
+                   beta=(0.0, 0.0), bh=(1.0, 0.0), x=0.0, duration=0.002)
+    out = {base.name: base, free.name: free}
+    variants = [
+        replace(free, name="damped_impact", ch=40000),
+        replace(free, name="forced_clamp", ch=40000, x=0.0001, vh=-1,
+                duration=0.0002, energy_scale=0.0041),
+        replace(base, name="supported_conservative", beta=(0.0, 0.0)),
+        replace(base, name="separated_oscillator", x=-0.002, vh=0,
+                q=(0.00008, -0.00002), v=(0.2, -0.1), energy_scale=0.0001),
+        replace(base, name="evolved_relaunch",
+                relaunch=((0.0037, 1.0),), energy_scale=0.005),
+    ]
+    for item in variants:
+        out[item.name] = item
+    preload = replace(base, name="preload_equilibrium", x=-0.002, vh=0,
+                      kd=12000, cd=30000, face_offset=-0.00005,
+                      energy_scale=0.00001)
+    k = preload.stiffness()
+    compliance = sum(b * b / kj for b, kj in zip(preload.bd, k))
+    delta = -preload.face_offset / (1 + preload.kd * compliance)
+    force = preload.kd * delta
+    equilibrium = tuple(-b * force / kj for b, kj in zip(preload.bd, k))
+    preload = replace(preload, q=equilibrium)
+    out[preload.name] = preload
+    for sign, suffix in ((1, "plus"), (-1, "minus")):
+        perturb = (equilibrium[0] + sign * 1e-6, equilibrium[1])
+        p = replace(preload, name="preload_" + suffix, q=perturb)
+        out[p.name] = p
+        p = replace(p, name="preload_linear_" + suffix, cd=0)
+        out[p.name] = p
+    for sign, name in ((1, "withdraw_damper"), (-1, "advance_damper")):
+        p = replace(preload, name=name, face="linear", face_velocity=sign * 0.02,
+                    duration=0.0001, energy_scale=0.0001)
+        out[name] = p
+    p = replace(preload, name="moving_damper", q=(0.0, 0.0), face="sinusoidal",
+                face_offset=0.00015, face_amplitude=0.00025,
+                face_omega=2 * math.pi / 0.012, duration=0.024, energy_scale=0.0001)
+    out[p.name] = p
+    for sign, suffix in ((1, "plus"), (-1, "minus")):
+        q = (0.00008, -0.00002)
+        p = replace(base, name="relaunch_phase_" + suffix, q=q,
+                    v=(sign * 0.2, -sign * 0.1),
+                    x=sum(b * value for b, value in zip(base.bh, q)) + 0.00005,
+                    vh=-0.3, ch=40000, relaunch=((0.0, 1.0),),
+                    duration=0.002, energy_scale=0.005)
+        out[p.name] = p
+    for shift, suffix in ((-1e-6, "before"), (0.0, "at"), (1e-6, "after")):
+        p = replace(free, name="event_" + suffix,
+                    relaunch=((SEPARATION + shift, 1.0),), energy_scale=0.005)
+        out[p.name] = p
+    omega = 2 * math.pi * 200
+    for shift, suffix in ((-1e-8, "miss"), (0.0, "tangent"), (1e-8, "contact")):
+        p = replace(base, name="grazing_" + suffix, bh=(1.0, 0.0),
+                    beta=(0.0, 0.0), q=(-1e-4 * math.cos(omega * GRAZE_TIME), 0.0),
+                    v=(-1e-4 * omega * math.sin(omega * GRAZE_TIME), 0.0),
+                    x=-1e-4 + shift, vh=0, duration=GRAZE_TIME + 30e-6,
+                    energy_scale=0.0001)
+        out[p.name] = p
+    for name in ("supported_impact", "moving_damper", "evolved_relaunch"):
+        p = out[name]
+        scale = (2.0, -3.0)
+        p = replace(p, name=name + "_scaled", scaled=True,
+                    mass=tuple(m / s**2 for m, s in zip(p.mass, scale)),
+                    bh=tuple(b / s for b, s in zip(p.bh, scale)),
+                    bd=tuple(b / s for b, s in zip(p.bd, scale)),
+                    pickup=tuple(b / s for b, s in zip(p.pickup, scale)),
+                    q=tuple(q * s for q, s in zip(p.q, scale)),
+                    v=tuple(v * s for v, s in zip(p.v, scale)))
+        out[p.name] = p
+    return out
+
+
+def law(delta: float, speed: float, stiffness: float, damping: float) -> tuple[float, float, float]:
+    """Independent p=1 force, stored contact energy, and physical loss power."""
+    if delta <= 0 or stiffness == 0:
+        return 0.0, 0.0, 0.0
+    elastic = stiffness * delta
+    raw = elastic + damping * delta * speed
+    if raw <= 0:
+        return 0.0, elastic * delta / 2, -elastic * speed
+    return raw, elastic * delta / 2, damping * delta * speed * speed
+
+
+def observe(f: Fixture, time: float, y: Any) -> dict[str, Any]:
+    q, v = y[:2], y[2:4]
+    gap_h = y[4] - sum(b * a for b, a in zip(f.bh, q)) - f.clearance
+    speed_h = y[5] - sum(b * a for b, a in zip(f.bh, v))
+    face, face_speed = f.motion(time)
+    gap_d = sum(b * a for b, a in zip(f.bd, q)) - face
+    speed_d = sum(b * a for b, a in zip(f.bd, v)) - face_speed
+    fh, uh, dh = law(gap_h, speed_h, f.kh, f.ch)
+    fd, ud, dd = law(gap_d, speed_d, f.kd, f.cd)
+    k, c = f.stiffness(), f.damping()
+    acceleration = [(-kj * qi - cj * vi + bh * fh - bd * fd) / m
+                    for kj, cj, qi, vi, bh, bd, m in zip(k, c, q, v, f.bh, f.bd, f.mass)]
+    hammer_acceleration = -fh / f.hammer_mass
+    background = sum(cj * vi**2 for cj, vi in zip(c, v))
+    energy = sum((m * vi**2 + kj * qi**2) / 2
+                 for m, kj, qi, vi in zip(f.mass, k, q, v)) + f.hammer_mass * y[5]**2 / 2 + uh + ud
+    x = sum(b * a for b, a in zip(f.pickup, q))
+    speed = sum(b * a for b, a in zip(f.pickup, v))
+    energy_rate = (sum(m * vi * ai + kj * qi * vi
+                       for m, vi, ai, kj, qi in zip(f.mass, v, acceleration, k, q))
+                   + f.hammer_mass * y[5] * hammer_acceleration
+                   + (f.kh * max(0.0, gap_h) * speed_h if f.kh else 0.0)
+                   + (f.kd * max(0.0, gap_d) * speed_d if f.kd else 0.0))
+    return {
+        "time_s": float(time), "q_m": list(map(float, q)), "v_m_per_s": list(map(float, v)),
+        "hammer_position_m": float(y[4]), "hammer_velocity_m_per_s": float(y[5]),
+        "hammer_force_n": fh, "damper_force_n": fd,
+        "hammer_gap_m": gap_h, "damper_gap_m": gap_d,
+        "hammer_relative_velocity_m_per_s": speed_h,
+        "damper_relative_velocity_m_per_s": speed_d,
+        "energy_j": energy, "modal_loss_j": float(y[6]),
+        "hammer_loss_j": float(y[7]), "damper_loss_j": float(y[8]),
+        "actuator_work_j": float(y[9]), "launch_work_j": float(y[10]),
+        "hammer_impulse_ns": float(y[11]), "damper_impulse_ns": float(y[12]),
+        "modal_acceleration_m_per_s2": acceleration,
+        "hammer_acceleration_m_per_s2": hammer_acceleration,
+        "instantaneous_power_residual_w": energy_rate + background + dh + dd + fd * face_speed,
+        "actuator_power_w": -fd * face_speed,
+        "pickup_voltage_v": -(0.4 + 1600 * x + 1200000 * x*x) * speed,
+    }
+
+
+def initial_vector(f: Fixture) -> Any:
+    np, _, _, _ = numerics()
+    return np.array([*f.q, *f.v, f.x, f.vh, 0, 0, 0, 0, 0, 0, 0], dtype=float)
+
+
+def rhs(f: Fixture) -> Callable[[float, Any], Any]:
+    np, _, _, _ = numerics()
+    def evaluate(t: float, y: Any) -> Any:
+        o = observe(f, t, y)
+        face, face_speed = f.motion(t)
+        del face
+        _, _, dh = law(o["hammer_gap_m"], o["hammer_relative_velocity_m_per_s"], f.kh, f.ch)
+        _, _, dd = law(o["damper_gap_m"], o["damper_relative_velocity_m_per_s"], f.kd, f.cd)
+        return np.array([y[2], y[3], *o["modal_acceleration_m_per_s2"], y[5],
+                         o["hammer_acceleration_m_per_s2"],
+                         sum(c * v*v for c, v in zip(f.damping(), y[2:4])), dh, dd,
+                         -o["damper_force_n"] * face_speed, 0,
+                         o["hammer_force_n"], o["damper_force_n"]])
+    return evaluate
+
+
+@dataclass
+class Oracle:
+    fixture: Fixture
+    method: str
+    state: Callable[[float], Any]
+    events: list[dict[str, Any]]
+    evaluation_count: int = 0
+
+    def sample(self, time: float) -> dict[str, Any]:
+        return observe(self.fixture, time, self.state(time))
+
+
+def exact_free(f: Fixture) -> Oracle:
+    np, _, _, quad = numerics()
+    initial = initial_vector(f)
+    name = f.name
+    def trajectory(t: float) -> Any:
+        y = initial.copy()
+        if name == "conservative_impact":
+            s = min(t, SEPARATION)
+            delta = math.sin(OMEGA*s) / OMEGA
+            relative = math.cos(OMEGA*s)
+            y[4], y[0] = 0.8*s + 0.2*delta, 0.8*s - 0.8*delta
+            y[5], y[2] = 0.8 + 0.2*relative, 0.8 - 0.8*relative
+            y[4] += y[5] * (t-s)
+            y[0] += y[2] * (t-s)
+            y[11] = MU * (1-relative)
+        elif name == "forced_clamp":
+            y[4] = 1e-4 - t
+            delta = max(0.0, 1e-4-t)
+            # Integral of the physical clamped-branch loss -k*delta*delta_dot.
+            y[7] = 10000 * (1e-8-delta*delta)
+        else:
+            def scalar(j: int, time: float) -> tuple[float, float]:
+                w = 2*math.pi*f.frequency[j]
+                beta = f.beta[j]
+                wd = math.sqrt(w*w-beta*beta)
+                a, b = f.q[j], (f.v[j]+beta*f.q[j])/wd
+                sine, cosine = math.sin(wd*time), math.cos(wd*time)
+                env = math.exp(-beta*time)
+                q = env*(a*cosine+b*sine)
+                return q, -beta*q+env*wd*(-a*sine+b*cosine)
+            for j in range(2):
+                y[j], y[j+2] = scalar(j, t)
+            y[4] += f.vh*t
+            y[6] = sum(quad(lambda s, j=j: f.damping()[j]*scalar(j, s)[1]**2,
+                            0, t, epsabs=1e-15, epsrel=1e-12, limit=250)[0]
+                       for j in range(2))
+        return np.array(y)
+    events: list[dict[str, Any]] = []
+    if name == "conservative_impact":
+        events = [{"contact": "hammer", "kind": "onset", "time_s": 0.0},
+                  {"contact": "hammer", "kind": "separation", "time_s": SEPARATION}]
+    elif name == "forced_clamp":
+        events = [{"contact": "hammer", "kind": "clamp_on", "time_s": 0.0},
+                  {"contact": "hammer", "kind": "separation", "time_s": 1e-4}]
+    return Oracle(f, "piecewise analytic" if name != "separated_oscillator" else "scalar oscillator + quadrature",
+                  trajectory, events)
+
+
+def exact_supported(f: Fixture) -> Oracle:
+    """Piecewise affine matrix exponential for conservative supported impact."""
+    np, _, expm, _ = numerics()
+    from scipy.optimize import brentq
+    initial = initial_vector(f)
+    segments: list[tuple[float, float, Any, Any]] = []
+    events: list[dict[str, Any]] = []
+    t0, active = 0.0, False
+    y0 = np.r_[initial[:6], 0.0, 1.0]  # impulse and affine constant
+    def matrix(contact: bool) -> Any:
+        a = np.zeros((8, 8))
+        a[0, 2] = a[1, 3] = a[4, 5] = 1
+        for j in range(2):
+            a[j+2, j] = -(2*math.pi*f.frequency[j])**2
+            a[j+2, j+2] = -2*f.beta[j]
+        if contact:
+            gap = np.array([-f.bh[0], -f.bh[1], 0, 0, 1, 0, 0, -f.clearance])
+            for j in range(2):
+                a[j+2] += f.bh[j]*f.kh/f.mass[j]*gap
+            a[5] -= f.kh/f.hammer_mass*gap
+            a[6] += f.kh*gap
+        return a
+    while t0 < f.duration-1e-15:
+        a = matrix(active)
+        def gap(dt: float) -> float:
+            z = expm(a*dt)@y0
+            return float(z[4]-np.dot(f.bh, z[:2])-f.clearance)
+        previous = min(1e-12, f.duration-t0)
+        gp = gap(previous)
+        root = None
+        # A 2.5 us independent scan excludes the initial root and brackets each
+        # linear branch before a separately solved zero; no candidate stages.
+        for dt in np.arange(2.5e-6, f.duration-t0+2.5e-6, 2.5e-6):
+            dt = min(float(dt), f.duration-t0)
+            value = gap(dt)
+            if (active and gp > 0 >= value) or (not active and gp < 0 <= value):
+                root = brentq(gap, previous, dt, xtol=1e-15, rtol=1e-14)
+                break
+            previous, gp = dt, value
+            if dt >= f.duration-t0:
+                break
+        end = f.duration if root is None else t0+root
+        segments.append((t0, end, y0.copy(), a))
+        if root is None:
+            break
+        y0 = expm(a*root)@y0
+        active = not active
+        t0 = end
+        events.append({"contact": "hammer", "kind": "onset" if active else "separation", "time_s": t0})
+        if len(events) > 1000:
+            raise RuntimeError("Independent expm branch budget exhausted")
+    @lru_cache(maxsize=20000)
+    def trajectory(t: float) -> Any:
+        for start, end, z, a in segments:
+            if t <= end+1e-15:
+                value = expm(a*(t-start))@z
+                y = initial.copy()
+                y[:6] = value[:6]
+                y[11] = value[6]
+                return y
+        raise ValueError("Time outside independent trajectory")
+    return Oracle(f, "independent branch matrix exponential", trajectory, events)
+
+
+def exact_relaunch_impact(f: Fixture) -> Oracle:
+    """Exact relative oscillator and centre-of-mass motion across action events.
+
+    Geometric roots at an external action time are processed first. The oracle
+    uses a closed-form zero, so roundoff in an integration trajectory cannot
+    choose a different event order at the deliberately exact separation tie.
+    """
+    np, _, _, _ = numerics()
+    y = initial_vector(f)
+    start = 0.0
+    active = True
+    events = [{"contact": "hammer", "kind": "onset", "time_s": 0.0}]
+    segments: list[tuple[float, float, Any, bool]] = []
+    def propagate(state: Any, dt: float, compressed: bool, root: bool = False) -> Any:
+        result = state.copy()
+        delta = state[4]-state[0]
+        speed = state[5]-state[2]
+        centre = 0.8*state[4]+0.2*state[0]
+        centre_speed = 0.8*state[5]+0.2*state[2]
+        if compressed:
+            cosine, sine = math.cos(OMEGA*dt), math.sin(OMEGA*dt)
+            compression = delta*cosine+speed*sine/OMEGA
+            relative = -delta*OMEGA*sine+speed*cosine
+        else:
+            compression, relative = delta+speed*dt, speed
+        if root:
+            compression = 0.0  # Exact value at the independently solved zero.
+        centre += centre_speed*dt
+        result[4], result[0] = centre+0.2*compression, centre-0.8*compression
+        result[5], result[2] = centre_speed+0.2*relative, centre_speed-0.8*relative
+        if compressed:
+            result[11] += MU*(speed-relative)
+        return result
+    for end, launch in [*f.relaunch, (f.duration, None)]:
+        while start < end-1e-15:
+            delta, speed = y[4]-y[0], y[5]-y[2]
+            crossing = math.inf
+            if active:
+                phase = math.atan2(max(0.0, delta)*OMEGA, speed)
+                crossing = (math.pi-phase)/OMEGA
+            elif speed > 0 and delta < 0:
+                crossing = -delta/speed
+            remaining = end-start
+            hits_root = crossing <= remaining+4*math.ulp(end)
+            dt = min(crossing, remaining) if hits_root else remaining
+            segments.append((start, start+dt, y.copy(), active))
+            y = propagate(y, dt, active, hits_root)
+            start += dt
+            if hits_root:
+                active = not active
+                events.append({"contact": "hammer", "kind": "onset" if active else "separation", "time_s": start})
+            if dt <= 0:
+                raise RuntimeError("Analytic action oracle lost progress")
+        if launch is not None:
+            y[10] += f.hammer_mass*(launch**2-y[5]**2)/2
+            y[5] = launch
+            events.append({"contact": "hammer", "kind": "relaunch", "time_s": end})
+            if not active and y[4] == y[0] and y[5] > y[2]:
+                active = True
+                events.append({"contact": "hammer", "kind": "onset", "time_s": end})
+    def trajectory(time: float) -> Any:
+        for begin, end, state, compressed in reversed(segments):
+            if begin-1e-15 <= time <= end+1e-15:
+                return propagate(state, time-begin, compressed)
+        raise ValueError("Time outside analytic action trajectory")
+    return Oracle(f, "piecewise analytic impact with exact action ordering", trajectory, events)
+
+
+def radau_oracle(f: Fixture, *, tight: bool = True) -> Oracle:
+    np, solve_ivp, _, _ = numerics()
+    segments: list[tuple[float, float, Any]] = []
+    events: list[dict[str, Any]] = []
+    y, start, nfev = initial_vector(f), 0.0, 0
+    def geometric(contact: str) -> Callable[[float, Any], float]:
+        def event(t: float, state: Any) -> float:
+            if contact == "damper" and not f.kd:
+                return 1.0
+            return observe(f, t, state)[contact+"_gap_m"]
+        return event
+    def clamping(contact: str) -> Callable[[float, Any], float]:
+        def event(t: float, state: Any) -> float:
+            k, c = (f.kh, f.ch) if contact == "hammer" else (f.kd, f.cd)
+            if not k or not c:
+                return 1.0
+            return k+c*observe(f, t, state)[contact+"_relative_velocity_m_per_s"]
+        return event
+    event_functions = [geometric("hammer"), geometric("damper"),
+                       clamping("hammer"), clamping("damper")]
+    launches = list(f.relaunch)
+    if launches and launches[0][0] == 0:
+        _, velocity = launches.pop(0)
+        y[10] += f.hammer_mass*(velocity**2-y[5]**2)/2
+        y[5] = velocity
+        events.append({"contact": "hammer", "kind": "relaunch", "time_s": 0.0})
+    for end, launch_velocity in [*launches, (f.duration, None)]:
+        if end <= start:
+            continue
+        atol = np.array([1e-16, 1e-16, 1e-13, 1e-13, 1e-16, 1e-13,
+                         1e-16, 1e-16, 1e-16, 1e-16, 1e-16, 1e-16, 1e-16])
+        solution = solve_ivp(rhs(f), (start, end), y, method="Radau", dense_output=True,
+                             rtol=1e-12 if tight else 1e-10,
+                             atol=atol if tight else atol*10,
+                             max_step=2.5e-6 if tight else 5e-6, events=event_functions)
+        if not solution.success or abs(solution.t[-1]-end) > 1e-15:
+            raise RuntimeError("Independent Radau failed: "+solution.message)
+        nfev += solution.nfev
+        segments.append((start, end, solution.sol))
+        for event_index, roots in enumerate(solution.t_events):
+            contact = "hammer" if event_index % 2 == 0 else "damper"
+            for root in roots:
+                time = float(root)
+                o = observe(f, time, solution.sol(time))
+                speed = o[contact+"_relative_velocity_m_per_s"]
+                if event_index < 2:
+                    kind = "onset" if speed > 1e-10 else "separation" if speed < -1e-10 else "grazing"
+                else:
+                    if o[contact+"_gap_m"] <= 0:
+                        continue
+                    left, right = max(start, time-1e-10), min(end, time+1e-10)
+                    kind = "clamp_on" if event_functions[event_index](right, solution.sol(right)) < event_functions[event_index](left, solution.sol(left)) else "clamp_off"
+                events.append({"contact": contact, "kind": kind, "time_s": time})
+        y = solution.y[:, -1].copy()
+        start = end
+        if launch_velocity is not None:
+            y[10] += f.hammer_mass*(launch_velocity**2-y[5]**2)/2
+            y[5] = launch_velocity
+            events.append({"contact": "hammer", "kind": "relaunch", "time_s": start})
+    # A tangent has no sign change: solve the independent free turning point
+    # explicitly. Tiny integration excursions must never reclassify it as a hit.
+    if f.name == "grazing_tangent":
+        events = [{"contact": "hammer", "kind": "grazing", "time_s": GRAZE_TIME}]
+    events.sort(key=lambda item: item["time_s"])
+    deduplicated: list[dict[str, Any]] = []
+    for e in events:
+        if not deduplicated or any(e[k] != deduplicated[-1][k] for k in ("contact", "kind")) or abs(e["time_s"]-deduplicated[-1]["time_s"]) > 1e-12:
+            deduplicated.append(e)
+    @lru_cache(maxsize=20000)
+    def trajectory(t: float) -> Any:
+        # Right-continuous external velocity events, with continuous positions.
+        for index in range(len(segments)-1, -1, -1):
+            begin, end, solution = segments[index]
+            if begin-1e-15 <= t <= end+1e-15:
+                result = solution(t).copy()
+                if index == len(segments)-1 and t == end and launches and launches[-1][0] == t:
+                    result = y.copy()
+                return result
+        raise ValueError("Time outside independent Radau trajectory")
+    return Oracle(f, "SciPy Radau (independently assembled)", trajectory, deduplicated, nfev)
+
+
+@lru_cache(maxsize=64)
+def oracle_for(name: str, tight: bool = True) -> Oracle:
+    f = fixtures()[name]
+    if name in {"conservative_impact", "forced_clamp", "separated_oscillator"}:
+        return exact_free(f)
+    if name == "supported_conservative":
+        return exact_supported(f)
+    if name.startswith("event_"):
+        return exact_relaunch_impact(f)
+    return radau_oracle(f, tight=tight)
+
+
+def tolerance(kind: str, value: float, *, factor: float = 1.0,
+              energy_scale: float = 0.004, structural: bool = False) -> float:
+    if kind == "energy" and not structural:
+        return factor*(2e-9+5e-5*energy_scale)
+    a, r = (SCALE_BUDGETS if structural else BUDGETS)[kind]
+    return factor*(a+r*abs(value))
+
+
+def fields(sample: dict[str, Any], scaled: bool = False) -> dict[str, tuple[float, str]]:
+    out: dict[str, tuple[float, str]] = {}
+    for key, kind in (("q_m", "position"), ("v_m_per_s", "velocity")):
+        for j, value in enumerate(sample[key]):
+            out[f"{key}[{j}]"] = (float(value)/(2.0, -3.0)[j] if scaled else float(value), kind)
+    for key, kind in (("hammer_position_m", "position"), ("hammer_velocity_m_per_s", "velocity"),
+                      ("hammer_force_n", "force"), ("damper_force_n", "force"),
+                      ("hammer_impulse_ns", "impulse"), ("damper_impulse_ns", "impulse"),
+                      ("modal_loss_j", "energy"), ("hammer_loss_j", "energy"),
+                      ("damper_loss_j", "energy"), ("actuator_work_j", "energy"),
+                      ("launch_work_j", "energy"), ("energy_j", "energy")):
+        out[key] = (float(sample[key]), kind)
+    for key, kind in (("hammer_gap_m", "position"), ("damper_gap_m", "position"),
+                      ("pickup_voltage_v", "voltage")):
+        if key in sample:
+            out[key] = (float(sample[key]), kind)
+    return out
+
+
+def compare_samples(actual: dict[str, Any], expected: dict[str, Any], f: Fixture,
+                    *, factor: float = 1.0, structural: bool = False,
+                    actual_scaled: bool = False) -> tuple[dict[str, float], list[str]]:
+    ratios, failures = {}, []
+    for key, (value, kind) in fields(actual, actual_scaled).items():
+        if kind == "voltage" and not structural:
+            continue
+        reference = fields(expected)[key][0]
+        budget = tolerance(kind, reference, factor=factor, energy_scale=f.energy_scale, structural=structural)
+        ratio = abs(value-reference)/budget
+        ratios[key] = ratio
+        if not math.isfinite(value) or ratio > 1:
+            failures.append(f"{key}: {value:.17g} vs {reference:.17g}, budget {budget:.6g}")
+    return ratios, failures
+
+
+def normalize_sample(s: dict[str, Any]) -> dict[str, Any]:
+    s = dict(s)
+    aliases = {"hammer_x_m": "hammer_position_m", "hammer_v_m_per_s": "hammer_velocity_m_per_s",
+               "background_loss_j": "modal_loss_j", "pedal_work_j": "actuator_work_j"}
+    for old, new in aliases.items():
+        if new not in s and old in s:
+            s[new] = s[old]
+    if "q_m" not in s:
+        s["q_m"] = [float(s["q0_m"]), float(s["q1_m"])]
+    if "v_m_per_s" not in s:
+        s["v_m_per_s"] = [float(s["v0_m_per_s"]), float(s["v1_m_per_s"])]
+    return s
+
+
+def read_runs(path: Path) -> list[dict[str, Any]]:
+    if path.suffix.lower() != ".csv":
+        with path.open(encoding="utf-8") as handle:
+            data = json.load(handle)
+        runs = data["runs"] if "runs" in data else [data]
+    else:
+        grouped: dict[tuple[str, str, str], dict[str, Any]] = {}
+        with path.open(newline="", encoding="utf-8") as handle:
+            for row in csv.DictReader(handle):
+                group = (row["fixture"], row["maximum_step_s"], row["event_tolerance_s"])
+                run = grouped.setdefault(group, {"fixture": group[0], "maximum_step_s": float(group[1]),
+                                                  "event_tolerance_s": float(group[2]), "samples": [], "events": []})
+                run["samples"].append({k: float(v) for k, v in row.items()
+                                       if k not in {"fixture", "maximum_step_s", "event_tolerance_s"} and v != ""})
+        runs = list(grouped.values())
+    for run in runs:
+        run["samples"] = [normalize_sample(sample) for sample in run.get("samples", [])]
+        run["source"] = str(path)
+    return runs
+
+
+def canonical_events(run: dict[str, Any]) -> list[dict[str, Any]]:
+    aliases = {"contact_onset": "onset", "contact_separation": "separation",
+               "clamp_enter": "clamp_on", "clamp_exit": "clamp_off",
+               "force_clamp": "clamp_on", "force_unclamp": "clamp_off",
+               "hammer_relaunch": "relaunch"}
+    result = []
+    for value in run.get("events", []):
+        e = dict(value)
+        e["kind"] = aliases.get(e["kind"], e["kind"])
+        if e["kind"] == "relaunch":
+            e["contact"] = "hammer"
+        if e["kind"] in {"initial", "initialized"}:
+            continue
+        result.append(e)
+    return result
+
+
+def audit_run(run: dict[str, Any]) -> dict[str, Any]:
+    name = run["fixture"]
+    if name not in fixtures():
+        return {"fixture": name, "status": "fail", "failures": ["Unknown frozen fixture"], "missing": []}
+    oracle = oracle_for(name)
+    f = oracle.fixture
+    failures: list[str] = []
+    missing: list[str] = []
+    if run.get("success") is False:
+        failures.append("Candidate reported explicit failure before completing the requested interval; code="+
+                        str(run.get("failure_code", "unspecified")))
+    worst: dict[str, float] = {}
+    samples = run["samples"]
+    if not samples:
+        return {"fixture": name, "status": "incomplete", "failures": [], "missing": ["trajectory samples"]}
+    times = [float(s["time_s"]) for s in samples]
+    if any(not math.isfinite(t) or t < 0 or t > f.duration+1e-12 for t in times) or any(b <= a for a, b in zip(times, times[1:])):
+        failures.append("Sample times must be finite, strictly increasing, and within the frozen duration")
+        return {"fixture": name, "status": "fail", "failures": failures, "missing": []}
+    if abs(times[0]) > 1e-15 or abs(times[-1]-f.duration) > 1e-12:
+        missing.append("complete trajectory including t=0 and the frozen final time")
+    previous_balance, sum_abs, max_cumulative, max_power, max_force_law = 0.0, 0.0, 0.0, 0.0, 0.0
+    initial_energy = observe(f, 0, initial_vector(f))["energy_j"]
+    for s in samples:
+        time = float(s["time_s"])
+        try:
+            reference = oracle.sample(time)
+            ratios, errors = compare_samples(s, reference, f)
+            for key, ratio in ratios.items():
+                worst[key] = max(worst.get(key, 0.0), ratio)
+            failures.extend(f"t={time:.12g}: {error}" for error in errors[:5])
+            y = [*s["q_m"], *s["v_m_per_s"], s["hammer_position_m"], s["hammer_velocity_m_per_s"],
+                 s["modal_loss_j"], s["hammer_loss_j"], s["damper_loss_j"], s["actuator_work_j"],
+                 s["launch_work_j"], s["hammer_impulse_ns"], s["damper_impulse_ns"]]
+        except (KeyError, TypeError, ValueError) as exc:
+            missing.append("required sample field: "+str(exc))
+            break
+        independent = observe(f, time, y)
+        for contact in ("hammer", "damper"):
+            force = float(s[contact+"_force_n"])
+            expected = independent[contact+"_force_n"]
+            residual = abs(force-expected)
+            max_force_law = max(max_force_law, residual)
+            if residual > tolerance("constitutive", expected):
+                failures.append(f"t={time:.12g}: independent {contact} force-law residual {residual:.6g} N")
+            if expected == 0 and force != 0:
+                failures.append(f"t={time:.12g}: separated/clamped {contact} force is not exactly zero")
+        if abs(float(s["energy_j"])-independent["energy_j"]) > tolerance("energy", independent["energy_j"], energy_scale=f.energy_scale):
+            failures.append(f"t={time:.12g}: exported energy disagrees with independently assembled storage")
+        loss = sum(float(s[k]) for k in ("modal_loss_j", "hammer_loss_j", "damper_loss_j"))
+        balance = float(s["energy_j"])-initial_energy+loss-float(s["actuator_work_j"])-float(s["launch_work_j"])
+        sum_abs += abs(balance-previous_balance)
+        previous_balance = balance
+        max_cumulative = max(max_cumulative, abs(balance))
+        for key in ("modal_loss_j", "hammer_loss_j", "damper_loss_j"):
+            if float(s[key]) < -1e-18:
+                failures.append(f"t={time:.12g}: negative accumulated physical loss {key}")
+        max_power = max(max_power, abs(independent["instantaneous_power_residual_w"]))
+        if "modal_acceleration_m_per_s2" in s and "hammer_acceleration_m_per_s2" in s:
+            # Substituting exported acceleration makes this a check of candidate
+            # dynamics, not just an algebraic identity of our own force law.
+            residual = independent["instantaneous_power_residual_w"]
+            residual += sum(m*v*(a-b) for m, v, a, b in zip(f.mass, s["v_m_per_s"], s["modal_acceleration_m_per_s2"], independent["modal_acceleration_m_per_s2"]))
+            residual += f.hammer_mass*s["hammer_velocity_m_per_s"]*(s["hammer_acceleration_m_per_s2"]-independent["hammer_acceleration_m_per_s2"])
+            max_power = max(max_power, abs(residual))
+        if name in {"conservative_impact", "damped_impact", "forced_clamp"}:
+            momentum = f.hammer_mass*s["hammer_velocity_m_per_s"]+f.mass[0]*s["v_m_per_s"][0]
+            target = f.hammer_mass*f.vh
+            if abs(momentum-target) > tolerance("momentum", target):
+                failures.append(f"t={time:.12g}: free-mass momentum error")
+    if not all("modal_acceleration_m_per_s2" in s and "hammer_acceleration_m_per_s2" in s for s in samples):
+        missing.append("exported acceleration for independent instantaneous power residual")
+    cumulative_limit = 2e-9+5e-5*f.energy_scale
+    interval_limit = 4e-9+2e-4*f.energy_scale
+    if max_cumulative > cumulative_limit or sum_abs > interval_limit:
+        failures.append("sample-interval/cumulative energy budget exceeded")
+    diagnostics = run.get("diagnostics", {})
+    for key, limit in (("max_abs_cumulative_residual_j", cumulative_limit), ("sum_abs_interval_residual_j", interval_limit)):
+        if key not in diagnostics:
+            missing.append("accepted-interval "+key)
+        elif not math.isfinite(float(diagnostics[key])) or float(diagnostics[key]) > limit:
+            failures.append(key+" exceeds frozen energy budget")
+    actual_events = canonical_events(run)
+    expected_events = oracle.events
+    if [(e["contact"], e["kind"]) for e in actual_events] != [(e["contact"], e["kind"]) for e in expected_events]:
+        failures.append("event order/classification differs from independent oracle: candidate="+
+                        str([(e["contact"], e["kind"]) for e in actual_events])+" oracle="+
+                        str([(e["contact"], e["kind"]) for e in expected_events]))
+    for actual, expected in zip(actual_events, expected_events):
+        time = float(actual["time_s"])
+        if abs(time-expected["time_s"]) > tolerance("time", expected["time_s"]):
+            failures.append("event timing differs from independent root")
+        if "bracket_lo_s" not in actual or "bracket_hi_s" not in actual:
+            missing.append("event root bracket")
+        else:
+            lo, hi = float(actual["bracket_lo_s"]), float(actual["bracket_hi_s"])
+            if not all(math.isfinite(x) for x in (lo, hi)) or not lo <= time <= hi or hi-lo > float(run["event_tolerance_s"])*(1+1e-9):
+                failures.append("invalid event bracket or width above declared tolerance")
+        if name.startswith("grazing") and actual["kind"] != "relaunch":
+            if "gap_uncertainty_m" not in actual:
+                missing.append("grazing event gap uncertainty")
+            elif not 0 <= float(actual["gap_uncertainty_m"]) < 1e-12:
+                failures.append("grazing gap uncertainty exceeds 1e-12 m")
+    if name == "grazing_contact":
+        target = oracle.sample(f.duration)["hammer_impulse_ns"]
+        value = float(samples[-1]["hammer_impulse_ns"])
+        if value <= 0 or abs(value-target) > 1e-11+0.005*abs(target):
+            failures.append("short-contact positive impulse/tight discrepancy gate failed")
+    if name in {"grazing_miss", "grazing_tangent"} and float(samples[-1]["hammer_impulse_ns"]) != 0:
+        failures.append("miss/tangent must have exactly zero hammer impulse")
+    if f.relaunch:
+        work = oracle.sample(f.duration)["launch_work_j"]
+        if abs(float(samples[-1]["launch_work_j"])-work) > 1e-12+1e-10*abs(work):
+            failures.append("launch work exceeds frozen event-work budget")
+        if "relaunch_snapshots" not in run:
+            missing.append("before/after relaunch snapshots for exact state preservation")
+        else:
+            for snapshot in run["relaunch_snapshots"]:
+                before, after = snapshot["before"], snapshot["after"]
+                if any(before[key] != after[key] for key in ("q_m", "v_m_per_s", "hammer_position_m")):
+                    failures.append("relaunch changed a position or modal velocity")
+    # The current export contains sampled diagnostic maxima only. A complete
+    # future extrema audit must bracket stationary points independently; the
+    # mere presence of a dictionary named "peaks" is not that evidence.
+    missing.append("independently located peak compression and force (extrema audit not yet implemented)")
+    return {"fixture": name, "source": run.get("source"), "method": oracle.method,
+            "maximum_step_s": run["maximum_step_s"], "event_tolerance_s": run["event_tolerance_s"],
+            "status": "fail" if failures else "incomplete" if missing else "pass",
+            "worst_budget_fraction": worst, "maximum_sample_cumulative_residual_j": max_cumulative,
+            "sum_absolute_sample_interval_residual_j": sum_abs,
+            "maximum_instantaneous_power_residual_w": max_power,
+            "maximum_constitutive_residual_n": max_force_law,
+            "oracle_events": expected_events, "candidate_events": actual_events,
+            "failures": failures[:80], "failure_count": len(failures), "missing": sorted(set(missing))}
+
+
+def compare_runs(coarse: dict[str, Any], fine: dict[str, Any], *, factor: float = 1.0,
+                 structural: bool = False) -> tuple[dict[str, float], list[str]]:
+    f = fixtures()[fine["fixture"]]
+    lookup = {round(float(s["time_s"]), 14): s for s in fine["samples"]}
+    worst: dict[str, float] = {}
+    errors: list[str] = []
+    common = 0
+    for sample in coarse["samples"]:
+        time = round(float(sample["time_s"]), 14)
+        if time not in lookup:
+            continue
+        reference = lookup[time]
+        ratios, failures = compare_samples(sample, reference, f, factor=factor,
+                                          structural=structural, actual_scaled=structural)
+        common += 1
+        for key, ratio in ratios.items():
+            worst[key] = max(worst.get(key, 0.0), ratio)
+        errors.extend(failures[:3])
+    if common < math.floor(f.duration/20e-6):
+        errors.append("Missing physical-time common 20 us waveform grid")
+    a, b = canonical_events(coarse), canonical_events(fine)
+    if [(e["contact"], e["kind"]) for e in a] != [(e["contact"], e["kind"]) for e in b]:
+        errors.append("event classification/order changes under refinement")
+    else:
+        ratios = [abs(float(x["time_s"])-float(y["time_s"]))/tolerance("time", float(y["time_s"]), factor=factor, structural=structural)
+                  for x, y in zip(a, b)]
+        worst["event_time_s"] = max(ratios, default=0)
+        if worst["event_time_s"] > 1:
+            errors.append("event timing refinement exceeds budget")
+    return worst, errors
+
+
+def refinement_gates(runs: list[dict[str, Any]]) -> dict[str, Any]:
+    missing: list[str] = []
+    failures: list[str] = []
+    comparisons: dict[str, Any] = {}
+    by_name: dict[str, list[dict[str, Any]]] = {}
+    for run in runs:
+        by_name.setdefault(run["fixture"], []).append(run)
+    for name, group in sorted(by_name.items()):
+        # Hold local and event tolerances fixed on the h axis.
+        levels = []
+        for step in STEP_LEVELS:
+            matches = [r for r in group if math.isclose(float(r["maximum_step_s"]), step, rel_tol=1e-10)]
+            matches.sort(key=lambda r: float(r["event_tolerance_s"]))
+            levels.append(matches[0] if matches else None)
+        if any(r is None for r in levels):
+            missing.append(name+": four maximum-step refinements")
+        else:
+            settings = [(r.get("relative_tolerance"), r.get("absolute_tolerance"), r["event_tolerance_s"]) for r in levels]
+            if any(value != settings[0] for value in settings[1:]):
+                missing.append(name+": independent step axis with fixed local/event tolerances")
+            diffs = []
+            for coarse, fine in zip(levels, levels[1:]):
+                delta, errors = compare_runs(coarse, fine)
+                diffs.append(delta)
+                if len(diffs) >= 2:
+                    failures.extend(name+": "+e for e in errors[:10])
+            # Roundoff resolution is computed in physical units, separately
+            # from the frozen observable budget. No acceptance budget widens.
+            plateaus = []
+            for key, last in diffs[-1].items():
+                previous = diffs[-2].get(key, 0.0)
+                if key == "event_time_s":
+                    reference_scale = fixtures()[name].duration
+                    resolution = 128*math.ulp(reference_scale)/BUDGETS["time"][0]
+                else:
+                    values = [fields(s)[key] for s in levels[-1]["samples"] if key in fields(s)]
+                    kind = values[0][1]
+                    declared_scale = {"position": 1e-3, "velocity": 1.0, "force": 10.0,
+                                      "impulse": 0.004, "energy": fixtures()[name].energy_scale,
+                                      "voltage": 1.0}[kind]
+                    reference_scale = max([declared_scale, *[abs(value) for value, _ in values]])
+                    floor = tolerance(kind, 0.0, energy_scale=fixtures()[name].energy_scale)
+                    resolution = 128*math.ulp(reference_scale)/floor
+                resolvable = max(last, previous) > resolution
+                if resolvable and last > 0.8*previous:
+                    failures.append(f"{name}: final refinement for {key} not decreasing (fractions {previous:.5g}, {last:.5g})")
+                elif not resolvable:
+                    plateaus.append(key)
+            comparisons[name+":step"] = {"differences_as_budget_fractions": diffs, "below_resolution": plateaus}
+        event_runs = []
+        for eta in EVENT_LEVELS:
+            found = [r for r in group if math.isclose(float(r["maximum_step_s"]), STEP_LEVELS[-1], rel_tol=1e-10)
+                     and math.isclose(float(r["event_tolerance_s"]), eta, rel_tol=1e-10)]
+            event_runs.append(found[0] if found else None)
+        if any(r is None for r in event_runs):
+            missing.append(name+": three event-bracket refinements")
+        else:
+            comparisons[name+":event"] = []
+            for coarse, fine in zip(event_runs, event_runs[1:]):
+                delta, errors = compare_runs(coarse, fine, factor=0.1)
+                comparisons[name+":event"].append(delta)
+                failures.extend(name+": event tightening: "+e for e in errors[:10])
+        local = [r for r in group if math.isclose(float(r["maximum_step_s"]), STEP_LEVELS[-1], rel_tol=1e-10)
+                 and math.isclose(float(r["event_tolerance_s"]), EVENT_LEVELS[-1], rel_tol=1e-10)
+                 and "relative_tolerance" in r and "absolute_tolerance" in r]
+        local.sort(key=lambda r: (float(r["relative_tolerance"]), float(r["absolute_tolerance"])), reverse=True)
+        unique: list[dict[str, Any]] = []
+        for r in local:
+            if not unique or (r["relative_tolerance"], r["absolute_tolerance"]) != (unique[-1]["relative_tolerance"], unique[-1]["absolute_tolerance"]):
+                unique.append(r)
+        if len(unique) < 3:
+            missing.append(name+": three separate local-integration tolerances (nonlinear solve axis inapplicable to RK4)")
+        else:
+            for coarse, fine in zip(unique[-3:], unique[-2:]):
+                delta, errors = compare_runs(coarse, fine, factor=0.1)
+                comparisons.setdefault(name+":local", []).append(delta)
+                failures.extend(name+": local tightening: "+e for e in errors[:10])
+    for name in ("supported_impact", "moving_damper", "evolved_relaunch"):
+        a, b = by_name.get(name+"_scaled", []), by_name.get(name, [])
+        if not a or not b:
+            missing.append(name+": signed coordinate rescaling")
+        else:
+            fine_a = min(a, key=lambda r: (r["maximum_step_s"], r["event_tolerance_s"]))
+            fine_b = min(b, key=lambda r: (r["maximum_step_s"], r["event_tolerance_s"]))
+            delta, errors = compare_runs(fine_a, fine_b, structural=True)
+            comparisons[name+":scaling"] = delta
+            failures.extend(name+": coordinate invariance: "+e for e in errors[:10])
+    missing.extend("absent fixture: "+name for name in fixtures() if name not in by_name)
+    return {"status": "fail" if failures else "incomplete" if missing else "pass",
+            "failures": failures, "missing": missing, "comparisons": comparisons,
+            "nonlinear_solve_refinement": "inapplicable: explicit RK4; separate local integration axis required"}
+
+
+def self_check() -> dict[str, Any]:
+    np, _, expm, quad = numerics()
+    from scipy.optimize import brentq
+    checks: dict[str, Any] = {}
+    f = fixtures()["conservative_impact"]
+    exact = exact_free(f)
+    end = exact.sample(f.duration)
+    assert abs(end["hammer_impulse_ns"]-0.0032) < 1e-17
+    assert abs(end["hammer_velocity_m_per_s"]-0.6) < 1e-15
+    assert abs(end["v_m_per_s"][0]-1.6) < 1e-15
+    assert abs(end["energy_j"]-0.004) < 1e-17
+    checks["conservative_analytic"] = {"separation_s": SEPARATION, "impulse_ns": end["hammer_impulse_ns"]}
+    phi = lambda w: 2*w-math.log1p(2*w)
+    rebound = brentq(lambda w: phi(w)-phi(1), -0.499999999, -1e-12, xtol=1e-15)
+    damped = radau_oracle(fixtures()["damped_impact"])
+    end = damped.sample(damped.fixture.duration)
+    measured = end["hammer_velocity_m_per_s"]-end["v_m_per_s"][0]
+    assert abs(measured-rebound) < 1e-9
+    expected_loss = MU*(1-rebound*rebound)/2
+    assert abs(end["hammer_loss_j"]-expected_loss) < 1e-12
+    checks["damped_radau_vs_scalar"] = {"relative_rebound_m_per_s": measured, "analytic_m_per_s": rebound,
+                                         "loss_j": end["hammer_loss_j"], "rhs_evaluations": damped.evaluation_count}
+    clipped = exact_free(fixtures()["forced_clamp"]).sample(0.0002)
+    assert clipped["hammer_impulse_ns"] == 0 and abs(clipped["hammer_loss_j"]-0.0001) < 1e-18
+    checks["forced_clamp"] = {"loss_j": clipped["hammer_loss_j"]}
+    # Independent always-compressed matrix exponential with modal damping.
+    p = fixtures()["preload_linear_plus"]
+    mass, stiffness, damping = np.diag(p.mass), np.diag(p.stiffness()), np.diag(p.damping())
+    b = np.array(p.bd)
+    ke = stiffness+p.kd*np.outer(b, b)
+    equilibrium = np.linalg.solve(ke, p.kd*b*p.face_offset)
+    a = np.block([[np.zeros((2, 2)), np.eye(2)], [-np.linalg.solve(mass, ke), -np.linalg.solve(mass, damping)]])
+    z0 = np.r_[np.array(p.q)-equilibrium, p.v]
+    z = expm(a*p.duration)@z0
+    oracle = radau_oracle(p)
+    end = oracle.sample(p.duration)
+    assert np.max(np.abs(np.array(end["q_m"])-equilibrium-z[:2])) < 2e-14
+    assert np.max(np.abs(np.array(end["v_m_per_s"])-z[2:])) < 2e-11
+    loss = quad(lambda t: float((expm(a*t)@z0)[2:]@damping@(expm(a*t)@z0)[2:]),
+                0, p.duration, epsabs=1e-18, epsrel=1e-11)[0]
+    assert abs(loss-end["modal_loss_j"]) < 1e-16
+    energy = float(z0[:2]@ke@z0[:2]/2)
+    lower_gap = float(b@equilibrium-p.face_offset-math.sqrt(2*energy*(b@np.linalg.solve(ke, b))))
+    assert lower_gap > 0
+    checks["preload_expm_vs_radau"] = {"equilibrium_q_m": equilibrium.tolist(),
+                                        "certified_minimum_compression_m": lower_gap,
+                                        "quadrature_loss_j": loss,
+                                        "radau_loss_j": end["modal_loss_j"]}
+    coarse = radau_oracle(fixtures()["preload_plus"], tight=False)
+    fine = radau_oracle(fixtures()["preload_plus"], tight=True)
+    delta = max(float(np.max(np.abs(coarse.state(float(t))-fine.state(float(t)))))
+                for t in np.linspace(0, p.duration, 1001))
+    assert delta < 1e-10
+    checks["independent_radau_refinement"] = {"maximum_state_or_ledger_difference": delta,
+                                             "coarse_maximum_step_s": 5e-6, "fine_maximum_step_s": 2.5e-6}
+    return {"status": "pass", "scope": "oracle self-check only; no candidate acceptance", "checks": checks}
+
+
+def main() -> int:
+    parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    parser.add_argument("--candidate", type=Path, action="append", default=[], help="candidate JSON/CSV; repeat for sweeps")
+    parser.add_argument("--output", type=Path, help="write machine-readable audit result")
+    parser.add_argument("--self-check", action="store_true", help="validate independent analytic/Radau/expm oracles")
+    parser.add_argument("--list-fixtures", action="store_true")
+    args = parser.parse_args()
+    if args.list_fixtures:
+        print(json.dumps({name: {"duration_s": f.duration, "energy_scale_j": f.energy_scale}
+                          for name, f in fixtures().items()}, indent=2))
+        return 0
+    if not args.self_check and not args.candidate:
+        parser.error("specify --candidate, --self-check, or --list-fixtures")
+    try:
+        report: dict[str, Any] = {"scope": "frozen p=1 synthetic reference; no measured fidelity claim",
+                                  "acceptance_source": "docs/specs/CONTACT_ACCEPTANCE_20261123.md"}
+        if args.self_check:
+            report["oracle_self_check"] = self_check()
+        if args.candidate:
+            runs = [run for path in args.candidate for run in read_runs(path)]
+            report["runs"] = [audit_run(run) for run in runs]
+            report["refinement"] = refinement_gates(runs)
+            statuses = [r["status"] for r in report["runs"]]+[report["refinement"]["status"]]
+            report["status"] = "fail" if "fail" in statuses else "incomplete" if "incomplete" in statuses else "pass"
+        else:
+            report["status"] = "pass"
+    except (ValueError, KeyError, TypeError, OSError, RuntimeError, AssertionError) as exc:
+        report = {"status": "fail", "error": str(exc) or type(exc).__name__}
+    payload = json.dumps(report, indent=2, allow_nan=False)
+    if args.output:
+        args.output.write_text(payload+"\n", encoding="utf-8")
+        print(json.dumps({"status": report["status"], "report": str(args.output)}))
+    else:
+        print(payload)
+    return 1 if report["status"] == "fail" else 2 if report["status"] == "incomplete" else 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

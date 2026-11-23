@@ -4,6 +4,8 @@ project(RhodesResearch VERSION 0.1.0 LANGUAGES CXX)
 include(CTest)
 option(RHODES_WARNINGS_AS_ERRORS "Treat project compiler warnings as errors" ON)
 option(RHODES_ENABLE_SANITIZERS "Enable address and undefined-behavior sanitizers" OFF)
+option(RHODES_BUILD_VST3 "Build the experimental instrument using an external pinned VST3 SDK" OFF)
+set(RHODES_VST3_SDK_ROOT "" CACHE PATH "Path to the pinned official VST3 SDK checkout")
 
 if(RHODES_ENABLE_SANITIZERS)
     if(MSVC OR CMAKE_CXX_COMPILER_FRONTEND_VARIANT STREQUAL "MSVC"
@@ -40,6 +42,16 @@ function(rhodes_target_options target)
 endfunction()
 rhodes_target_options(rhodes_core)
 
+# Offline contact reference stays separate from the bounded audio core.
+add_library(rhodes_contact src/contact_reference.cpp)
+target_include_directories(rhodes_contact PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
+target_compile_features(rhodes_contact PUBLIC cxx_std_20)
+set_target_properties(rhodes_contact PROPERTIES CXX_EXTENSIONS OFF)
+rhodes_target_options(rhodes_contact)
+add_executable(rhodes_contact_reference apps/contact_reference.cpp)
+target_link_libraries(rhodes_contact_reference PRIVATE rhodes_contact)
+rhodes_target_options(rhodes_contact_reference)
+
 add_executable(rhodes_render apps/render.cpp)
 target_link_libraries(rhodes_render PRIVATE rhodes_core)
 rhodes_target_options(rhodes_render)
@@ -49,7 +61,21 @@ target_link_libraries(rhodes_benchmark PRIVATE rhodes_core)
 target_compile_definitions(rhodes_benchmark PRIVATE RHODES_BUILD_CONFIGURATION="$<CONFIG>")
 rhodes_target_options(rhodes_benchmark)
 
+add_executable(rhodes_runtime_benchmark apps/runtime_benchmark.cpp)
+target_link_libraries(rhodes_runtime_benchmark PRIVATE rhodes_core)
+target_compile_definitions(rhodes_runtime_benchmark PRIVATE RHODES_BUILD_CONFIGURATION="$<CONFIG>")
+rhodes_target_options(rhodes_runtime_benchmark)
+
 if(BUILD_TESTING)
+    add_executable(rhodes_contact_tests tests/cpp/contact_reference_test.cpp)
+    target_link_libraries(rhodes_contact_tests PRIVATE rhodes_contact)
+    rhodes_target_options(rhodes_contact_tests)
+    foreach(test_name IN ITEMS conservative_impact damped_impact forced_clamp
+            separated_oscillator preload moving_damper relaunch event_order scaling
+            invalid_inputs cap_exhaustion grazing_miss grazing_tangent grazing_contact)
+        add_test(NAME contact.${test_name} COMMAND rhodes_contact_tests ${test_name})
+    endforeach()
+    add_test(NAME contact.cli_help COMMAND rhodes_contact_reference --help)
     add_executable(rhodes_tests tests/cpp/research_engine_test.cpp)
     target_link_libraries(rhodes_tests PRIVATE rhodes_core)
     rhodes_target_options(rhodes_tests)
@@ -87,6 +113,10 @@ if(BUILD_TESTING)
     endforeach()
     add_test(NAME cli.help COMMAND rhodes_render --help)
     add_test(NAME benchmark.help COMMAND rhodes_benchmark --help)
+    add_test(NAME runtime_benchmark.help COMMAND rhodes_runtime_benchmark --help)
+    add_test(NAME runtime_benchmark.smoke COMMAND rhodes_runtime_benchmark
+        --blocks 5 --warmup-blocks 2 --block-size 64 --sample-rate 48000
+        --active-keys 73 --workload retrigger256 --machine ci-smoke)
     add_test(NAME benchmark.smoke COMMAND rhodes_benchmark --blocks 5 --block-size 64
         --sample-rate 48000 --active-keys 73 --machine ci-smoke)
     add_test(NAME benchmark.json COMMAND ${CMAKE_COMMAND}
@@ -103,4 +133,8 @@ if(BUILD_TESTING)
     add_test(NAME cli.reject_unknown COMMAND ${CMAKE_COMMAND}
         -DPROGRAM=$<TARGET_FILE:rhodes_render> -DARG1=--unknown
         -P ${CMAKE_CURRENT_SOURCE_DIR}/tests/cpp/expect_cli_failure.cmake)
+endif()
+
+if(RHODES_BUILD_VST3)
+    include(cmake/Vst3.cmake)
 endif()

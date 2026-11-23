@@ -7,11 +7,13 @@ mechanical motion, electromagnetic pickup conversion, and the connected electric
 network. The first target is one **73-key Stage specimen, once identified**, at a defined
 loaded output. The repository name is retained for existing links.
 
-**Current stage: research foundation.** There is a buildable C++20 kernel, an
-offline WAV renderer, analytical tests, and an evidence-based workflow for human
-and AI contributors. Parameters are synthetic; no physical specimen has been
-measured, no fidelity claim has been established, and no audio plug-in has been
-released. The [live project state](docs/PROJECT_STATE.md) is generated from the
+**Current stage: experimental VST3 instrument and physical-model research.**
+The C++20 synthetic core now has bounded sample-offset events, MIDI note ownership,
+versioned state recall, and an optional headless VST3 adapter. A separate offline
+finite-mass hammer/damper reference includes energy and event diagnostics.
+Parameters remain synthetic; no physical specimen has been measured, no fidelity
+claim has been established, and no plug-in release has been published.
+The [live project state](docs/PROJECT_STATE.md) is generated from the
 [canonical task graph](project/state.json).
 
 ## Start here
@@ -30,6 +32,8 @@ released. The [live project state](docs/PROJECT_STATE.md) is generated from the
 | Measure the synthetic kernel | [Benchmark methodology](docs/BENCHMARKING.md) |
 | Inspect the supplied research | [Research and source provenance](docs/research/README.md) |
 | Audit the setup agents | [Actual-agent campaign](docs/agents/CAMPAIGN.md) |
+| Audit the current development campaign | [Five waves of development](docs/agents/DEVELOPMENT_CAMPAIGN.md) |
+| Inspect the VST3 prototype contract | [Host behavior and limits](docs/specs/HOST_PROTOTYPE_20261123.md) |
 
 ## Build and run
 
@@ -81,13 +85,13 @@ the sanitizer preset excludes Windows. See
 | Subsystem | Implemented foundation | Required next work |
 |---|---|---|
 | Mechanical motion | Exact discrete linear damped modes; persistent per-key state | Identified tine/tonebar/support properties and coupled structure |
-| Excitation and release | Explicit impulse and switched-loss surrogates | Finite-mass hammer, unilateral contact, damper and pedal mechanics |
+| Excitation and release | Impulse/switched-loss audio core; separate finite-mass p=1 contact reference | Full independent refinement/extrema acceptance and calibrated action mechanics |
 | Pickup | Nonlinear polynomial flux-linkage derivative after modal summation | Measured geometry-dependent map, reciprocal forces and validity bounds |
 | Harp circuit | Synthetic resistive series/parallel network retaining all 73 branches | Verified specimen topology, complex coil impedance, parasitics and load |
 | Stage controls | Architecture and component requirements | Revision-specific connected passive circuit |
 | Instrument identity | Unidentified profile with units and provenance fields | Actual specimen, construction revisions and measurements |
-| Runtime | Fixed-storage research core and deterministic offline rendering | Convergence, antialiasing, bounded host event processing and measured deadlines |
-| Host product | Build/test infrastructure | Plugin adapters, UI, packaging and release validation |
+| Runtime | Bounded event processing, deterministic rendering and complete-call benchmark | Independent error and antialiasing budgets, representative host/device timing |
+| Host product | Optional VST3 instrument, generic host controls, note ownership and portable state | Native DAW/platform validation, product UI and release packaging |
 
 Peterson/Janus Suitcase electronics, amplifiers, loudspeakers and room acoustics
 belong to separately identified future profiles. They do not silently become part
