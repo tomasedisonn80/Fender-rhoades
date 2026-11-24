@@ -4,8 +4,8 @@
   "goal": "Physically model a Fender Rhodes Mark I from evolving mechanical, electromagnetic and circuit states without recorded-note playback.",
   "target": "One documented 73-key Mark I Stage specimen at its specified loaded electrical output; identity and measurements pending.",
   "fidelity_status": "unvalidated",
-  "revision": 45,
-  "updated_at": "2026-11-24T13:32:18Z",
+  "revision": 47,
+  "updated_at": "2026-11-24T14:16:38Z",
   "tasks": [
     {
       "id": "FND-001",
@@ -558,6 +558,48 @@
         "project",
         "README.md"
       ]
+    },
+    {
+      "id": "HOST-004",
+      "title": "Build the owner-reference native photo editor and functional panel controls",
+      "milestone": "Photographic VST3 editor",
+      "status": "in_progress",
+      "priority": 49,
+      "dependencies": [
+        "HOST-001"
+      ],
+      "acceptance": [
+        "Preserve the supplied original image and implement a native editor using its full composition and aligned controls.",
+        "Connect panel controls to bounded synthetic audio processing and coherent state recall while preserving default legacy output.",
+        "Verify native editor lifecycle, interaction, resizing and packaged resources; retain actual screenshots and platform-specific results."
+      ],
+      "required_evidence": [
+        "documentary",
+        "numerical"
+      ],
+      "evidence": [],
+      "owner": "photo-editor-root",
+      "claim": {
+        "owner": "photo-editor-root",
+        "token": "8bc48185721742d3e4b6029c1d622915",
+        "claimed_at": "2026-11-24T14:16:38Z",
+        "expires_at": "2026-11-24T16:16:38Z"
+      },
+      "blockers": [],
+      "paths": [
+        "assets",
+        "plugins/vst3",
+        "include/rhodes",
+        "tests",
+        "cmake",
+        "CMakeLists.txt",
+        ".github/workflows",
+        "docs",
+        "project",
+        "README.md",
+        "CHANGELOG.md",
+        "RIGHTS.md"
+      ]
     }
   ],
   "history": [
@@ -920,6 +962,22 @@
       "task": "HOST-002",
       "owner": "continuation-d-root",
       "detail": "Evidence: HOST-002-20261124-linux-integration, HOST-002-20261124-legacy-compatibility, HOST-002-20261124-native-linux-windows, HOST-002-20261124-macos-recovered, HOST-002-20261124-final-criterion-review"
+    },
+    {
+      "revision": 46,
+      "at": "2026-11-24T14:16:38Z",
+      "action": "plan",
+      "task": "HOST-004",
+      "owner": "photo-editor-root",
+      "detail": "Owner explicitly requested the attached suitcase photo as exact native UI; add independent editor engineering scope without changing physical-calibration dependencies or active HOST-003 ownership."
+    },
+    {
+      "revision": 47,
+      "at": "2026-11-24T14:16:38Z",
+      "action": "claim",
+      "task": "HOST-004",
+      "owner": "photo-editor-root",
+      "detail": "Lease until 2026-11-24T16:16:38Z"
     }
   ]
 }

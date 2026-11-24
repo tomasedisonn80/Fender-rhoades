@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "provenance": {
+    "source": "Unchanged attachment supplied by the repository owner on 2026-11-24.",
+    "permission": "The owner requested inclusion and use of this attachment as the editor reference for this project.",
+    "rights_scope": "No broader license, authorship, or historical origin is asserted; see assets/reference/README.md and RIGHTS.md.",
+    "transformation": "Decode the original WebP RGB pixels and encode them losslessly as PNG, retaining the embedded ICC profile. No crop, resize, retouch, color conversion, or generated imagery.",
+    "generator": {
+      "Pillow": "13.0.0",
+      "libwebp": "1.6.0"
+    },
+    "png_options": {
+      "compress_level": 9,
+      "optimize": false
+    }
+  },
+  "assets": [
+    {
+      "role": "reference",
+      "path": "assets/reference/rhodes-suitcase-reference.webp",
+      "format": "WEBP",
+      "sha256": "782b4c83a2bf827ed0d363bc567cdc2211485da6e650db4ae99448e78b7da24b",
+      "bytes": 257616,
+      "width_px": 1536,
+      "height_px": 1152,
+      "pixel_mode": "RGB"
+    },
+    {
+      "role": "editor",
+      "path": "plugins/vst3/resources/rhodes-suitcase.png",
+      "format": "PNG",
+      "sha256": "84e2d48fc0311eb923083cc3e1f96dc5fa1b3f8a6e085daee7c973e54d754d26",
+      "bytes": 1434362,
+      "width_px": 1536,
+      "height_px": 1152,
+      "pixel_mode": "RGB"
+    }
+  ],
+  "decoded_pixels": {
+    "mode": "RGB",
+    "layout": "Row-major, top-to-bottom, three 8-bit channels per pixel in RGB order.",
+    "sha256": "9ca2f5bb49d0bebeb0f9d779753b7f5c357d8a76f6d995db75b528aca5f4cdd3"
+  },
+  "icc_profile": {
+    "bytes": 520,
+    "sha256": "13cd371bf631f6ca66043db515ef24d032ba8accf28ee55c34efd3ce764546da",
+    "preserved_in_png": true
+  }
+}
