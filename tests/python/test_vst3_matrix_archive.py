@@ -207,9 +207,17 @@ class ArchivedMatrix(unittest.TestCase):
 
     def test_historical_python_sum_difference_is_explicit(self):
         def edit(report, payloads):
-            self.edit_json(payloads, "r1-p01-direct.execution.json",
-                           lambda d: d["verification"].update(mean_input_order_us=68.39333593750001))
-            self.rebind_execution(payloads)
+            # Isolate the injected difference from legitimate Python 3.11/3.12
+            # built-in sum differences in the historical auxiliary audit.
+            # Normative native summaries and fsum checks remain untouched.
+            for run in json.loads(payloads["plan.json"])["runs"]:
+                values = json.loads(payloads[run["stdout_file"]])["timing"]["raw_callback_us"]
+                current_mean = sum(values) / len(values)
+                injected_mean = current_mean + 1.0 if run["id"] == "r1-p01-direct" else current_mean
+                self.edit_json(payloads, run["record_file"],
+                               lambda d, mean=injected_mean:
+                                   d["verification"].update(mean_input_order_us=mean))
+                self.rebind_execution(payloads, run["id"])
         with tempfile.TemporaryDirectory() as directory:
             result = verifier.verify_report(self.bundle(directory, edit))
         self.assertEqual(result["input_order_mean_differences"], ["r1-p01-direct"])

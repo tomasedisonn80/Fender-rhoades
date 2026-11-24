@@ -46,22 +46,58 @@
       "wave": 3,
       "id": "W3-45",
       "agent_task_name": "/root/w3_45_batch_arithmetic",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w3-45-batch-arithmetic.md",
+      "sha256": "150506bf3b7958434fdda249a112e58a99afcc3badc7afb366d4c4e135b25ab7"
     },
     {
       "assignment": 46,
       "wave": 3,
       "id": "W3-46",
       "agent_task_name": "/root/w3_46_batch_storage",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w3-46-batch-storage.md",
+      "sha256": "6af689bbb9c2b7e1ecedff138df15086fa215bc31a21f6eae4bcaa0ce1d8498c"
     },
     {
       "assignment": 47,
       "wave": 3,
       "id": "W3-47",
       "agent_task_name": "/root/w3_47_clang_scope",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w3-47-clang-scope.md",
+      "sha256": "7eaddb4ef314b42094b75bf016865e6f9e5169eaa9bf7643ee7092e766767e28"
+    },
+    {
+      "assignment": 48,
+      "wave": 3,
+      "id": "W3-48",
+      "agent_task_name": "/root/w3_48_fir_faults",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w3-48-fir-faults.md",
+      "sha256": "9083f00cb92007a2f982b3b4c16534b6b8191a68feb33a8fde0984ad706b5b08"
+    },
+    {
+      "assignment": 49,
+      "wave": 3,
+      "id": "W3-49",
+      "agent_task_name": "/root/w3_49_allocation_policy",
+      "status": "running"
+    },
+    {
+      "assignment": 50,
+      "wave": 3,
+      "id": "W3-50",
+      "agent_task_name": "/root/w3_50_event_state",
+      "status": "running"
+    },
+    {
+      "assignment": 51,
+      "wave": 3,
+      "id": "W3-51",
+      "agent_task_name": "/root/w3_51_timing_statistics",
       "status": "running"
     }
   ],
-  "completed_actual_agents": 4
+  "completed_actual_agents": 8
 }
