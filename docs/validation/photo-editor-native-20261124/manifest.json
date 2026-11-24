@@ -1,0 +1,422 @@
+{
+  "schema_version": 1,
+  "archive_root": "photo-editor-native-evidence",
+  "scope": "Historical W2 direct VST3 photo editor on Linux/X11/Xvfb; preservation only. Three diagnostic SDK callbacks accept/log edits; no audio processing or named-DAW acceptance.",
+  "created_utc": "2026-11-24T16:01:40.488631+00:00",
+  "file_count": 56,
+  "original_payload_bytes": 36881370,
+  "final_native_capture_count": 25,
+  "container_metadata": "Sorted USTAR members; uid/gid/mtime 0; regular-file mode 0644. Original payload bytes unchanged.",
+  "excluded": [
+    "SDK object/archive/shared-library and host binaries",
+    "commercial REAPER binary",
+    "plug-in module binaries",
+    "initial run01 PNG captures"
+  ],
+  "omitted_repository_snapshots": [
+    {
+      "path": "/workspace/scratch/7a7c13ab7da3/Fender-rhoades/plugins/vst3/photo_native_focus.cpp",
+      "recorded_sha256": "3b4fb4a575f306bfc7363884cdd2dbaca55cb32d47e0b69e0cbada52d055c8ed",
+      "reason": "Current file differs from the historical W2 checkpoint."
+    },
+    {
+      "path": "/workspace/scratch/7a7c13ab7da3/Fender-rhoades/plugins/vst3/photo_native_focus.hpp",
+      "recorded_sha256": "fbcc4ba33dc8e779e39d441ef3bd67d76596c9a2cdb90f20631d1acb519084e9",
+      "reason": "Current file differs from the historical W2 checkpoint."
+    }
+  ],
+  "files": [
+    {
+      "path": "environment/build-env.sh",
+      "original_path": "/workspace/scratch/7a7c13ab7da3/worklogs/build-env.sh",
+      "bytes": 232,
+      "sha256": "491ab81b05324c23abc4743f55590b7f18f448e9f747f0e26eaa77e0bcacf57e",
+      "role": "original_environment_recipe"
+    },
+    {
+      "path": "environment/gui-env.sh",
+      "original_path": "/home/agent/rhodes-7a7c13ab7da3/gui-env.sh",
+      "bytes": 903,
+      "sha256": "85617aca564051f0d2a4ffcd42abf9047210c48d906b791e1ed4ac87d8925ff6",
+      "role": "original_environment_recipe"
+    },
+    {
+      "path": "environment/with-xvfb.py",
+      "original_path": "/home/agent/rhodes-7a7c13ab7da3/with-xvfb.py",
+      "bytes": 2733,
+      "sha256": "0e435b916c0ca35af60d461d1d2514e78209359c6fd9de63760908a3129d455d",
+      "role": "original_environment_recipe"
+    },
+    {
+      "path": "repository/assets/reference/rhodes-suitcase-reference.webp",
+      "original_path": "/workspace/scratch/7a7c13ab7da3/Fender-rhoades/assets/reference/rhodes-suitcase-reference.webp",
+      "bytes": 257616,
+      "sha256": "782b4c83a2bf827ed0d363bc567cdc2211485da6e650db4ae99448e78b7da24b",
+      "role": "original_reference_photo"
+    },
+    {
+      "path": "repository/plugins/vst3/controller.cpp",
+      "original_path": "/workspace/scratch/7a7c13ab7da3/Fender-rhoades/plugins/vst3/controller.cpp",
+      "bytes": 23148,
+      "sha256": "5c76dd7a2628d5d65e803395d01160190dee01beb047c9fbaaba52f6facb72fa",
+      "role": "recorded_repository_input"
+    },
+    {
+      "path": "repository/plugins/vst3/photo_editor.cpp",
+      "original_path": "/workspace/scratch/7a7c13ab7da3/Fender-rhoades/plugins/vst3/photo_editor.cpp",
+      "bytes": 32855,
+      "sha256": "8056443e855b25a85824cadebaeb38389d2519c55b1db412c08dcc5a68f491da",
+      "role": "recorded_repository_input"
+    },
+    {
+      "path": "repository/plugins/vst3/photo_geometry.hpp",
+      "original_path": "/workspace/scratch/7a7c13ab7da3/Fender-rhoades/plugins/vst3/photo_geometry.hpp",
+      "bytes": 11936,
+      "sha256": "77fe4f4ac93ee0b212ef3f5399eb5cfa8884076d8eef51d2adf2123e6d85e0bd",
+      "role": "recorded_repository_input"
+    },
+    {
+      "path": "repository/plugins/vst3/processor.cpp",
+      "original_path": "/workspace/scratch/7a7c13ab7da3/Fender-rhoades/plugins/vst3/processor.cpp",
+      "bytes": 37967,
+      "sha256": "1ef121c4afb190c45fa1ff41a2127fb7487919dc69d8856c4a05e79844f760a9",
+      "role": "recorded_repository_input"
+    },
+    {
+      "path": "repository/plugins/vst3/resources/rhodes-suitcase.png",
+      "original_path": "/workspace/scratch/7a7c13ab7da3/Fender-rhoades/plugins/vst3/resources/rhodes-suitcase.png",
+      "bytes": 1434362,
+      "sha256": "84e2d48fc0311eb923083cc3e1f96dc5fa1b3f8a6e085daee7c973e54d754d26",
+      "role": "recorded_repository_input"
+    },
+    {
+      "path": "repository/tools/verify_native_photo_editor.py",
+      "original_path": "/workspace/scratch/7a7c13ab7da3/Fender-rhoades/tools/verify_native_photo_editor.py",
+      "bytes": 31258,
+      "sha256": "ce0f2d5c3e74e34c478186bef80ee6879ab0a5328b45d682d9d34d45b6dfda47",
+      "role": "recorded_repository_input"
+    },
+    {
+      "path": "w2-001/build-diagnostic-host.py",
+      "original_path": "/home/agent/rhodes-7a7c13ab7da3/w2-001/build-diagnostic-host.py",
+      "bytes": 3300,
+      "sha256": "55c2b901558bc7cbdfc4111a5959ec1e0ccaccaf4f2fe865e9a5b788b3870f98",
+      "role": "isolated_diagnostic_host_recipe"
+    },
+    {
+      "path": "w2-001/commands.json",
+      "original_path": "/home/agent/rhodes-7a7c13ab7da3/w2-001/commands.json",
+      "bytes": 6272,
+      "sha256": "79dcc2a41b6240dce30fe1e3599bce5d1151aefd84059390da6f071185a89a67",
+      "role": "isolated_diagnostic_host_recipe"
+    },
+    {
+      "path": "w2-001/editorhost-accepting.diff",
+      "original_path": "/home/agent/rhodes-7a7c13ab7da3/w2-001/editorhost-accepting.diff",
+      "bytes": 1009,
+      "sha256": "ddd021f49e302e30c0135767012097e0a754db65095cae2fb05349557fa98dc8",
+      "role": "isolated_diagnostic_host_recipe"
+    },
+    {
+      "path": "w2-001/provenance.json",
+      "original_path": "/home/agent/rhodes-7a7c13ab7da3/w2-001/provenance.json",
+      "bytes": 1222,
+      "sha256": "0c31601a50ba8871b307b6b3aaf250f821ae33291de868d65b4c4aaacc3af917",
+      "role": "isolated_diagnostic_host_recipe"
+    },
+    {
+      "path": "w2-013/focus-motion-probe.py",
+      "original_path": "/home/agent/rhodes-7a7c13ab7da3/w2-013/focus-motion-probe.py",
+      "bytes": 4119,
+      "sha256": "d20539cc58daf772f304b0d9d2f447b6b5b51f867f343c2288af7984083e47de",
+      "role": "focus_probe_or_historical_regression"
+    },
+    {
+      "path": "w2-013/focus-motion-run01/editorhost.log",
+      "original_path": "/home/agent/rhodes-7a7c13ab7da3/w2-013/focus-motion-run01/editorhost.log",
+      "bytes": 596,
+      "sha256": "a1b422b69e58608b151714b29964d22776733b54956eefdfd5bff4cb6ddf1b01",
+      "role": "historical_failed_run_record"
+    },
+    {
+      "path": "w2-013/focus-motion-run01/outcome.json",
+      "original_path": "/home/agent/rhodes-7a7c13ab7da3/w2-013/focus-motion-run01/outcome.json",
+      "bytes": 24996,
+      "sha256": "fbf533c947b73cafbf309319ecf1ba1b706640dd37becfae445e0a10e9f0a51e",
+      "role": "historical_failed_run_record"
+    },
+    {
+      "path": "w2-013/focus-motion-run02/close-with-held-volume.png",
+      "original_path": "/home/agent/rhodes-7a7c13ab7da3/w2-013/focus-motion-run02/close-with-held-volume.png",
+      "bytes": 1480453,
+      "sha256": "b8acb8f83f2d46e998df23b16b76705e0dfefec2ddf40fd059008ce8bed55e24",
+      "role": "final_native_capture"
+    },
+    {
+      "path": "w2-013/focus-motion-run02/editorhost.log",
+      "original_path": "/home/agent/rhodes-7a7c13ab7da3/w2-013/focus-motion-run02/editorhost.log",
+      "bytes": 624,
+      "sha256": "9365a1726489bce181be23c5e63d6c36694d3132ea854f281941a7da5b0f5c11",
+      "role": "final_native_record"
+    },
+    {
+      "path": "w2-013/focus-motion-run02/external_focus_loss-after-held-motion.png",
+      "original_path": "/home/agent/rhodes-7a7c13ab7da3/w2-013/focus-motion-run02/external_focus_loss-after-held-motion.png",
+      "bytes": 1476171,
+      "sha256": "5167f25366c8e5d8e7eda298bf089af18478ad5e28ccf78ae02531a2c7fff140",
+      "role": "final_native_capture"
+    },
+    {
+      "path": "w2-013/focus-motion-run02/idle-after-focus-motion.png",
+      "original_path": "/home/agent/rhodes-7a7c13ab7da3/w2-013/focus-motion-run02/idle-after-focus-motion.png",
+      "bytes": 1476171,
+      "sha256": "5167f25366c8e5d8e7eda298bf089af18478ad5e28ccf78ae02531a2c7fff140",
+      "role": "final_native_capture"
+    },
+    {
+      "path": "w2-013/focus-motion-run02/idle-before-focus-motion.png",
+      "original_path": "/home/agent/rhodes-7a7c13ab7da3/w2-013/focus-motion-run02/idle-before-focus-motion.png",
+      "bytes": 1476171,
+      "sha256": "5167f25366c8e5d8e7eda298bf089af18478ad5e28ccf78ae02531a2c7fff140",
+      "role": "final_native_capture"
+    },
+    {
+      "path": "w2-013/focus-motion-run02/outcome.json",
+      "original_path": "/home/agent/rhodes-7a7c13ab7da3/w2-013/focus-motion-run02/outcome.json",
+      "bytes": 25360,
+      "sha256": "f58d094b7c03fd8e511d744fd36befaa2bd65c04facbd27f23dbf96dabc8b268",
+      "role": "final_native_record"
+    },
+    {
+      "path": "w2-013/focus-motion-run02/quick_focus_out_back-after-held-motion.png",
+      "original_path": "/home/agent/rhodes-7a7c13ab7da3/w2-013/focus-motion-run02/quick_focus_out_back-after-held-motion.png",
+      "bytes": 1476171,
+      "sha256": "5167f25366c8e5d8e7eda298bf089af18478ad5e28ccf78ae02531a2c7fff140",
+      "role": "final_native_capture"
+    },
+    {
+      "path": "w2-013/focus-motion-run02/volume-double-click-reset-2.png",
+      "original_path": "/home/agent/rhodes-7a7c13ab7da3/w2-013/focus-motion-run02/volume-double-click-reset-2.png",
+      "bytes": 1480082,
+      "sha256": "59c5ca067fce3fc429a0fbf7bd9399e16d6d160ba9d174216566dc5a767144ff",
+      "role": "final_native_capture"
+    },
+    {
+      "path": "w2-013/focus-motion-run02/volume-double-click-reset-3.png",
+      "original_path": "/home/agent/rhodes-7a7c13ab7da3/w2-013/focus-motion-run02/volume-double-click-reset-3.png",
+      "bytes": 1480082,
+      "sha256": "59c5ca067fce3fc429a0fbf7bd9399e16d6d160ba9d174216566dc5a767144ff",
+      "role": "final_native_capture"
+    },
+    {
+      "path": "w2-013/focus-motion-run02/volume-double-click-reset.png",
+      "original_path": "/home/agent/rhodes-7a7c13ab7da3/w2-013/focus-motion-run02/volume-double-click-reset.png",
+      "bytes": 1480082,
+      "sha256": "59c5ca067fce3fc429a0fbf7bd9399e16d6d160ba9d174216566dc5a767144ff",
+      "role": "final_native_capture"
+    },
+    {
+      "path": "w2-013/initial-native-focus-test.cpp",
+      "original_path": "/home/agent/rhodes-7a7c13ab7da3/w2-013/initial-native-focus-test.cpp",
+      "bytes": 6084,
+      "sha256": "952a9a2a71f52c59ceadbfe08e60f137ae09faa58475b00b13020b588c03ec9c",
+      "role": "focus_probe_or_historical_regression"
+    },
+    {
+      "path": "w2-013/initial-photo-native-focus.cpp",
+      "original_path": "/home/agent/rhodes-7a7c13ab7da3/w2-013/initial-photo-native-focus.cpp",
+      "bytes": 3621,
+      "sha256": "d74c79be4b131d82e1212d4e9ec50cd3c1b18d79da941f2c1c9881003df1fa39",
+      "role": "focus_probe_or_historical_regression"
+    },
+    {
+      "path": "w2-013/prior-filter-regression.log",
+      "original_path": "/home/agent/rhodes-7a7c13ab7da3/w2-013/prior-filter-regression.log",
+      "bytes": 163,
+      "sha256": "47c1c3e8f14a2a2b5da012b5e1ab310088cb06ce29cfbfe5402c385802b9bf49",
+      "role": "focus_probe_or_historical_regression"
+    },
+    {
+      "path": "w2-013/sdk-native-run01/editorhost.log",
+      "original_path": "/home/agent/rhodes-7a7c13ab7da3/w2-013/sdk-native-run01/editorhost.log",
+      "bytes": 1305,
+      "sha256": "3ad2b6853167f2d4df37fc10f3be1a4b23aa185cf15812bb607d1e6f47d996fa",
+      "role": "historical_failed_run_record"
+    },
+    {
+      "path": "w2-013/sdk-native-run01/outcome.json",
+      "original_path": "/home/agent/rhodes-7a7c13ab7da3/w2-013/sdk-native-run01/outcome.json",
+      "bytes": 42498,
+      "sha256": "38e658a85f561ca543864c860c2ce2f47f2a51cdf1a1da5ca36e3535afab1658",
+      "role": "historical_failed_run_record"
+    },
+    {
+      "path": "w2-013/sdk-native-run02/close-with-held-volume.png",
+      "original_path": "/home/agent/rhodes-7a7c13ab7da3/w2-013/sdk-native-run02/close-with-held-volume.png",
+      "bytes": 1480453,
+      "sha256": "b8acb8f83f2d46e998df23b16b76705e0dfefec2ddf40fd059008ce8bed55e24",
+      "role": "final_native_capture"
+    },
+    {
+      "path": "w2-013/sdk-native-run02/direct-xembed-keyboard-deactivation.png",
+      "original_path": "/home/agent/rhodes-7a7c13ab7da3/w2-013/sdk-native-run02/direct-xembed-keyboard-deactivation.png",
+      "bytes": 1476171,
+      "sha256": "5167f25366c8e5d8e7eda298bf089af18478ad5e28ccf78ae02531a2c7fff140",
+      "role": "final_native_capture"
+    },
+    {
+      "path": "w2-013/sdk-native-run02/direct-xembed-volume-deactivation.png",
+      "original_path": "/home/agent/rhodes-7a7c13ab7da3/w2-013/sdk-native-run02/direct-xembed-volume-deactivation.png",
+      "bytes": 1476171,
+      "sha256": "5167f25366c8e5d8e7eda298bf089af18478ad5e28ccf78ae02531a2c7fff140",
+      "role": "final_native_capture"
+    },
+    {
+      "path": "w2-013/sdk-native-run02/editorhost.log",
+      "original_path": "/home/agent/rhodes-7a7c13ab7da3/w2-013/sdk-native-run02/editorhost.log",
+      "bytes": 1493,
+      "sha256": "e68f718789496d98c72246d0e7ae7b1d189d682626b30ee5a7df9807cc5204dd",
+      "role": "final_native_record"
+    },
+    {
+      "path": "w2-013/sdk-native-run02/focus-loss-during-drag.png",
+      "original_path": "/home/agent/rhodes-7a7c13ab7da3/w2-013/sdk-native-run02/focus-loss-during-drag.png",
+      "bytes": 1476171,
+      "sha256": "5167f25366c8e5d8e7eda298bf089af18478ad5e28ccf78ae02531a2c7fff140",
+      "role": "final_native_capture"
+    },
+    {
+      "path": "w2-013/sdk-native-run02/idle-1024x768.png",
+      "original_path": "/home/agent/rhodes-7a7c13ab7da3/w2-013/sdk-native-run02/idle-1024x768.png",
+      "bytes": 794227,
+      "sha256": "b1d47718b4741a472bff5a99039c3df32c61facc2904298980ee42663975b054",
+      "role": "final_native_capture"
+    },
+    {
+      "path": "w2-013/sdk-native-run02/idle-1536x1152.png",
+      "original_path": "/home/agent/rhodes-7a7c13ab7da3/w2-013/sdk-native-run02/idle-1536x1152.png",
+      "bytes": 1476171,
+      "sha256": "5167f25366c8e5d8e7eda298bf089af18478ad5e28ccf78ae02531a2c7fff140",
+      "role": "final_native_capture"
+    },
+    {
+      "path": "w2-013/sdk-native-run02/idle-after-interactions.png",
+      "original_path": "/home/agent/rhodes-7a7c13ab7da3/w2-013/sdk-native-run02/idle-after-interactions.png",
+      "bytes": 1476171,
+      "sha256": "5167f25366c8e5d8e7eda298bf089af18478ad5e28ccf78ae02531a2c7fff140",
+      "role": "final_native_capture"
+    },
+    {
+      "path": "w2-013/sdk-native-run02/keyboard-focus-loss.png",
+      "original_path": "/home/agent/rhodes-7a7c13ab7da3/w2-013/sdk-native-run02/keyboard-focus-loss.png",
+      "bytes": 1476171,
+      "sha256": "5167f25366c8e5d8e7eda298bf089af18478ad5e28ccf78ae02531a2c7fff140",
+      "role": "final_native_capture"
+    },
+    {
+      "path": "w2-013/sdk-native-run02/keyboard-held.png",
+      "original_path": "/home/agent/rhodes-7a7c13ab7da3/w2-013/sdk-native-run02/keyboard-held.png",
+      "bytes": 1462663,
+      "sha256": "8a23e6f3b62ae850e9fd355cefe797d4175d5aee0ccb9c078a44535bcb90dd9a",
+      "role": "final_native_capture"
+    },
+    {
+      "path": "w2-013/sdk-native-run02/keyboard-hover.png",
+      "original_path": "/home/agent/rhodes-7a7c13ab7da3/w2-013/sdk-native-run02/keyboard-hover.png",
+      "bytes": 1462905,
+      "sha256": "6f2e0e1a838d7887594be20c82c66967c532bbd262365817ec76293bb580ec95",
+      "role": "final_native_capture"
+    },
+    {
+      "path": "w2-013/sdk-native-run02/keyboard-released.png",
+      "original_path": "/home/agent/rhodes-7a7c13ab7da3/w2-013/sdk-native-run02/keyboard-released.png",
+      "bytes": 1462905,
+      "sha256": "6f2e0e1a838d7887594be20c82c66967c532bbd262365817ec76293bb580ec95",
+      "role": "final_native_capture"
+    },
+    {
+      "path": "w2-013/sdk-native-run02/outcome.json",
+      "original_path": "/home/agent/rhodes-7a7c13ab7da3/w2-013/sdk-native-run02/outcome.json",
+      "bytes": 43773,
+      "sha256": "1d7cce344500927bb9c23b4a39f8f4fbbbc939d3c3deead99fd96abb0379626e",
+      "role": "final_native_record"
+    },
+    {
+      "path": "w2-013/sdk-native-run02/volume-double-click-reset-2.png",
+      "original_path": "/home/agent/rhodes-7a7c13ab7da3/w2-013/sdk-native-run02/volume-double-click-reset-2.png",
+      "bytes": 1480082,
+      "sha256": "59c5ca067fce3fc429a0fbf7bd9399e16d6d160ba9d174216566dc5a767144ff",
+      "role": "final_native_capture"
+    },
+    {
+      "path": "w2-013/sdk-native-run02/volume-double-click-reset-3.png",
+      "original_path": "/home/agent/rhodes-7a7c13ab7da3/w2-013/sdk-native-run02/volume-double-click-reset-3.png",
+      "bytes": 1480082,
+      "sha256": "59c5ca067fce3fc429a0fbf7bd9399e16d6d160ba9d174216566dc5a767144ff",
+      "role": "final_native_capture"
+    },
+    {
+      "path": "w2-013/sdk-native-run02/volume-double-click-reset-4.png",
+      "original_path": "/home/agent/rhodes-7a7c13ab7da3/w2-013/sdk-native-run02/volume-double-click-reset-4.png",
+      "bytes": 1480082,
+      "sha256": "59c5ca067fce3fc429a0fbf7bd9399e16d6d160ba9d174216566dc5a767144ff",
+      "role": "final_native_capture"
+    },
+    {
+      "path": "w2-013/sdk-native-run02/volume-double-click-reset.png",
+      "original_path": "/home/agent/rhodes-7a7c13ab7da3/w2-013/sdk-native-run02/volume-double-click-reset.png",
+      "bytes": 795488,
+      "sha256": "7876c0b7d9eeb782b040b7a591169fc4146961a83c072a455e1e632228ad78cf",
+      "role": "final_native_capture"
+    },
+    {
+      "path": "w2-013/sdk-native-run02/volume-drag-held-2.png",
+      "original_path": "/home/agent/rhodes-7a7c13ab7da3/w2-013/sdk-native-run02/volume-drag-held-2.png",
+      "bytes": 1480104,
+      "sha256": "87cff01d2ace784938763dac065d672d15b9d17b4eae28f1b1634e0719eea018",
+      "role": "final_native_capture"
+    },
+    {
+      "path": "w2-013/sdk-native-run02/volume-drag-held.png",
+      "original_path": "/home/agent/rhodes-7a7c13ab7da3/w2-013/sdk-native-run02/volume-drag-held.png",
+      "bytes": 795568,
+      "sha256": "38b97a908fc7fe99e2d9e1ecd38f4baf871589baeb82e4283e289ddd79eaeaa8",
+      "role": "final_native_capture"
+    },
+    {
+      "path": "worklogs/w2-013-compile-commands.json",
+      "original_path": "/workspace/scratch/7a7c13ab7da3/worklogs/w2-013-compile-commands.json",
+      "bytes": 1858,
+      "sha256": "82fd7319f70b1eed3fe1c89bb26fea2a4baec182c9a440d3c23642b2a5d7fb53",
+      "role": "original_worker_record_or_test_source"
+    },
+    {
+      "path": "worklogs/w2-013-evidence.json",
+      "original_path": "/workspace/scratch/7a7c13ab7da3/worklogs/w2-013-evidence.json",
+      "bytes": 5014,
+      "sha256": "febdd5bf1d67c1f7d07e14e602b65f3116fd4d8f25bd7f9a5ddb4a7917404fac",
+      "role": "original_worker_record_or_test_source"
+    },
+    {
+      "path": "worklogs/w2-013-native-focus-test-run02.log",
+      "original_path": "/workspace/scratch/7a7c13ab7da3/worklogs/w2-013-native-focus-test-run02.log",
+      "bytes": 1030,
+      "sha256": "ca6adc2a551b48210cc5a141edbcd3bc1c5f04d20ae249860e2bee63deeae5b4",
+      "role": "original_worker_record_or_test_source"
+    },
+    {
+      "path": "worklogs/w2-013-native-focus-test.cpp",
+      "original_path": "/workspace/scratch/7a7c13ab7da3/worklogs/w2-013-native-focus-test.cpp",
+      "bytes": 6540,
+      "sha256": "2fd943946edb6aefb31560c9f561e1c6efda6041d09357d34943d27df00daaa3",
+      "role": "original_worker_record_or_test_source"
+    },
+    {
+      "path": "worklogs/w2-013.md",
+      "original_path": "/workspace/scratch/7a7c13ab7da3/worklogs/w2-013.md",
+      "bytes": 10515,
+      "sha256": "bdd5fec82c6092bf5cd3c59b19604bb953891d0a5978600bc10b0626a8cf8eb1",
+      "role": "original_worker_record_or_test_source"
+    }
+  ]
+}

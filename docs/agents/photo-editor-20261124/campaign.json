@@ -2,7 +2,7 @@
   "requested_workers": 100,
   "requested_waves": 5,
   "workers_per_wave": 20,
-  "completed_report_count": 40,
+  "completed_report_count": 50,
   "workers": [
     {
       "agent": "w1_001",
@@ -289,6 +289,76 @@
           "sha256": "3cbd93ef01548dd405a2ff1dfce0b7f028d6cce8d0b8cf19fcb3396c4ce2d0ae"
         }
       ]
+    },
+    {
+      "agent": "w3_001",
+      "wave": 3,
+      "report": "w3-001.md",
+      "sha256": "46182a4d13a449e7d9f98f5efc05169670602de338bbab062ddf0eb5d0998091",
+      "status": "reported"
+    },
+    {
+      "agent": "w3_002",
+      "wave": 3,
+      "report": "w3-002.md",
+      "sha256": "0f2715e32131c697ad20da15804f3272b9c52210442e66b36b673238bf35b720",
+      "status": "reported"
+    },
+    {
+      "agent": "w3_004",
+      "wave": 3,
+      "report": "w3-004.md",
+      "sha256": "f142b7484b781e3b84ad9ff76436bd0a7cdfb7bceb22e46f59acdd3bf542712e",
+      "status": "reported"
+    },
+    {
+      "agent": "w3_005",
+      "wave": 3,
+      "report": "w3-005.md",
+      "sha256": "61f6fae034ab76ecc778b0b93cfebd7fc42fba90e1708c52557b9e607ff94381",
+      "status": "reported"
+    },
+    {
+      "agent": "w3_006",
+      "wave": 3,
+      "report": "w3-006.md",
+      "sha256": "cb32880d5fefde89eff3fb9605dcc2cdefc90c2b4d338625a99ada10a1444d96",
+      "status": "reported"
+    },
+    {
+      "agent": "w3_007",
+      "wave": 3,
+      "report": "w3-007.md",
+      "sha256": "1335912776585fb2ef88cf7b5cc1d39668bb7a4f547fdb7edfdb10884f048609",
+      "status": "reported"
+    },
+    {
+      "agent": "w3_008",
+      "wave": 3,
+      "report": "w3-008.md",
+      "sha256": "e0a41fc1d6cc11bd02fc0440db4ac5abbbe79011e7a71af9a400bce925b9d063",
+      "status": "reported"
+    },
+    {
+      "agent": "w3_009",
+      "wave": 3,
+      "report": "w3-009.md",
+      "sha256": "1ebe4793d465d07e3571829bf47356bd435e88e87c0e6dc425debbc6ab22e2d2",
+      "status": "reported"
+    },
+    {
+      "agent": "w3_010",
+      "wave": 3,
+      "report": "w3-010.md",
+      "sha256": "407ece95244b8f8f30b41f93b9c94bc7b4769c412039027b3d7a2008685dce3f",
+      "status": "reported"
+    },
+    {
+      "agent": "w3_011",
+      "wave": 3,
+      "report": "w3-011.md",
+      "sha256": "448e098cce45b0033ca10ce0a4600dd3d120809e0b2e55f7f6339e41f40c63c0",
+      "status": "reported"
     }
   ]
 }

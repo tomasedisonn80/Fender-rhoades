@@ -1,0 +1,313 @@
+{
+  "schema_version": 1,
+  "scope": "Archive extraction/byte integrity and independent decoded-image comparison; no host rerun.",
+  "verified_utc": "2026-11-24T16:01:49.539193+00:00",
+  "archive": {
+    "filename": "native-photo-editor-evidence.tar.xz",
+    "bytes": 10289820,
+    "sha256": "698e3fd85c8880be260ae847778b64f16c150fe288b2a0e9b357b0a47fe3fa8c",
+    "compression": "xz single thread, LZMA2 preset 6, 64 MiB dictionary"
+  },
+  "manifest_sha256": "33b0186ec21e1ca307b9a110b4f5bd7f524fce607f1b1d12d4a2915f3d0b12bc",
+  "payload_sha256_file_sha256": "6e581512452539af12f01b8bd81fc49a2b626e18f1a2be2a588b511764bfbd04",
+  "payload_files_verified": 56,
+  "archive_file_members": 58,
+  "all_extracted_hashes_match": true,
+  "all_preserved_originals_still_match": true,
+  "unexpected_or_missing_archive_files": [],
+  "capture_file_hash_and_rgb_hash_records_verified": 25,
+  "callback_logs_equal_recorded_callback_sequences": true,
+  "runs": {
+    "sdk-native-run02": {
+      "outcome_sha256": "1d7cce344500927bb9c23b4a39f8f4fbbbc939d3c3deead99fd96abb0379626e",
+      "checks": {
+        "pass": 27
+      },
+      "callbacks": 63,
+      "captures": 17,
+      "started_utc": "2026-11-24T15:42:41.228818+00:00",
+      "finished_utc": "2026-11-24T15:43:10.175987+00:00"
+    },
+    "focus-motion-run02": {
+      "outcome_sha256": "f58d094b7c03fd8e511d744fd36befaa2bd65c04facbd27f23dbf96dabc8b268",
+      "checks": {
+        "pass": 20
+      },
+      "callbacks": 28,
+      "captures": 8,
+      "started_utc": "2026-11-24T15:42:41.233498+00:00",
+      "finished_utc": "2026-11-24T15:42:54.704530+00:00"
+    }
+  },
+  "photo_identity": {
+    "width": 1536,
+    "height": 1152,
+    "pixels": 1769472,
+    "different_pixels_png_webp_idle": 0,
+    "decoded_rgb_sha256": "9ca2f5bb49d0bebeb0f9d779753b7f5c357d8a76f6d995db75b528aca5f4cdd3",
+    "reference_webp_sha256": "782b4c83a2bf827ed0d363bc567cdc2211485da6e650db4ae99448e78b7da24b",
+    "reference_png_sha256": "84e2d48fc0311eb923083cc3e1f96dc5fa1b3f8a6e085daee7c973e54d754d26",
+    "idle_png_sha256": "5167f25366c8e5d8e7eda298bf089af18478ad5e28ccf78ae02531a2c7fff140"
+  },
+  "recorded_input_identity_observations": [
+    {
+      "run": "sdk-native-run02",
+      "path": "/workspace/scratch/7a7c13ab7da3/Fender-rhoades/tools/verify_native_photo_editor.py",
+      "recorded_sha256": "ce0f2d5c3e74e34c478186bef80ee6879ab0a5328b45d682d9d34d45b6dfda47",
+      "current_sha256": "ce0f2d5c3e74e34c478186bef80ee6879ab0a5328b45d682d9d34d45b6dfda47"
+    },
+    {
+      "run": "sdk-native-run02",
+      "path": "/home/agent/rhodes-7a7c13ab7da3/w2-001/editorhost-accepting",
+      "recorded_sha256": "37f557e9863001b54b158482338ff66dcf9fb3934ba12d8ace0c9ddbbb0eebe9",
+      "current_sha256": "37f557e9863001b54b158482338ff66dcf9fb3934ba12d8ace0c9ddbbb0eebe9"
+    },
+    {
+      "run": "sdk-native-run02",
+      "path": "/workspace/scratch/7a7c13ab7da3/Fender-rhoades/plugins/vst3/resources/rhodes-suitcase.png",
+      "recorded_sha256": "84e2d48fc0311eb923083cc3e1f96dc5fa1b3f8a6e085daee7c973e54d754d26",
+      "current_sha256": "84e2d48fc0311eb923083cc3e1f96dc5fa1b3f8a6e085daee7c973e54d754d26"
+    },
+    {
+      "run": "sdk-native-run02",
+      "path": "/workspace/scratch/7a7c13ab7da3/Fender-rhoades/plugins/vst3/photo_editor.cpp",
+      "recorded_sha256": "8056443e855b25a85824cadebaeb38389d2519c55b1db412c08dcc5a68f491da",
+      "current_sha256": "8056443e855b25a85824cadebaeb38389d2519c55b1db412c08dcc5a68f491da"
+    },
+    {
+      "run": "sdk-native-run02",
+      "path": "/workspace/scratch/7a7c13ab7da3/Fender-rhoades/plugins/vst3/photo_geometry.hpp",
+      "recorded_sha256": "77fe4f4ac93ee0b212ef3f5399eb5cfa8884076d8eef51d2adf2123e6d85e0bd",
+      "current_sha256": "77fe4f4ac93ee0b212ef3f5399eb5cfa8884076d8eef51d2adf2123e6d85e0bd"
+    },
+    {
+      "run": "sdk-native-run02",
+      "path": "/workspace/scratch/7a7c13ab7da3/Fender-rhoades/plugins/vst3/controller.cpp",
+      "recorded_sha256": "5c76dd7a2628d5d65e803395d01160190dee01beb047c9fbaaba52f6facb72fa",
+      "current_sha256": "5c76dd7a2628d5d65e803395d01160190dee01beb047c9fbaaba52f6facb72fa"
+    },
+    {
+      "run": "sdk-native-run02",
+      "path": "/workspace/scratch/7a7c13ab7da3/Fender-rhoades/plugins/vst3/processor.cpp",
+      "recorded_sha256": "1ef121c4afb190c45fa1ff41a2127fb7487919dc69d8856c4a05e79844f760a9",
+      "current_sha256": "1ef121c4afb190c45fa1ff41a2127fb7487919dc69d8856c4a05e79844f760a9"
+    },
+    {
+      "run": "sdk-native-run02",
+      "path": "/home/agent/rhodes-7a7c13ab7da3/build-editor/VST3/Release/RhodesResearch.vst3/Contents/Resources/Expat-LICENSE.txt",
+      "recorded_sha256": "f6eeb2310d0b00e5cecac39c73a0696a5bdbfb754b26325ed5a502fc1a6c338c",
+      "current_sha256": "f6eeb2310d0b00e5cecac39c73a0696a5bdbfb754b26325ed5a502fc1a6c338c"
+    },
+    {
+      "run": "sdk-native-run02",
+      "path": "/home/agent/rhodes-7a7c13ab7da3/build-editor/VST3/Release/RhodesResearch.vst3/Contents/Resources/LICENSE.txt",
+      "recorded_sha256": "e86d79e19e4a33ebc442d2e0d083887dfc75a2a8de9fe17eeddedb84810ad74e",
+      "current_sha256": "e86d79e19e4a33ebc442d2e0d083887dfc75a2a8de9fe17eeddedb84810ad74e"
+    },
+    {
+      "run": "sdk-native-run02",
+      "path": "/home/agent/rhodes-7a7c13ab7da3/build-editor/VST3/Release/RhodesResearch.vst3/Contents/Resources/RapidJSON-LICENSE.txt",
+      "recorded_sha256": "a140e5d46fe734a1c78f1a3c3ef207871dd75648be71fdda8e309b23ab8b1f32",
+      "current_sha256": "a140e5d46fe734a1c78f1a3c3ef207871dd75648be71fdda8e309b23ab8b1f32"
+    },
+    {
+      "run": "sdk-native-run02",
+      "path": "/home/agent/rhodes-7a7c13ab7da3/build-editor/VST3/Release/RhodesResearch.vst3/Contents/Resources/THIRD_PARTY_NOTICES.md",
+      "recorded_sha256": "5eeba1a7dc30e6aae860e1ba8323ee362e2b20c36170075f23a4079f69863894",
+      "current_sha256": "5eeba1a7dc30e6aae860e1ba8323ee362e2b20c36170075f23a4079f69863894"
+    },
+    {
+      "run": "sdk-native-run02",
+      "path": "/home/agent/rhodes-7a7c13ab7da3/build-editor/VST3/Release/RhodesResearch.vst3/Contents/Resources/VSTGUI-LICENSE.txt",
+      "recorded_sha256": "605bcd2152176b365cf0ba6cca331a988fa885b4f43f20ceff4e264e6576ca66",
+      "current_sha256": "605bcd2152176b365cf0ba6cca331a988fa885b4f43f20ceff4e264e6576ca66"
+    },
+    {
+      "run": "sdk-native-run02",
+      "path": "/home/agent/rhodes-7a7c13ab7da3/build-editor/VST3/Release/RhodesResearch.vst3/Contents/Resources/miniz-LICENSE.txt",
+      "recorded_sha256": "6f20fa7672b00e2e975c291df737cf227addf3ad32e36fef3fe0f416e4664d3d",
+      "current_sha256": "6f20fa7672b00e2e975c291df737cf227addf3ad32e36fef3fe0f416e4664d3d"
+    },
+    {
+      "run": "sdk-native-run02",
+      "path": "/home/agent/rhodes-7a7c13ab7da3/build-editor/VST3/Release/RhodesResearch.vst3/Contents/Resources/moduleinfo.json",
+      "recorded_sha256": "28b44aaa74a32dbe415b3553b37b019440ebe17bad7708b217790d47bb6adfb9",
+      "current_sha256": "28b44aaa74a32dbe415b3553b37b019440ebe17bad7708b217790d47bb6adfb9"
+    },
+    {
+      "run": "sdk-native-run02",
+      "path": "/home/agent/rhodes-7a7c13ab7da3/build-editor/VST3/Release/RhodesResearch.vst3/Contents/Resources/rhodes-suitcase.png",
+      "recorded_sha256": "84e2d48fc0311eb923083cc3e1f96dc5fa1b3f8a6e085daee7c973e54d754d26",
+      "current_sha256": "84e2d48fc0311eb923083cc3e1f96dc5fa1b3f8a6e085daee7c973e54d754d26"
+    },
+    {
+      "run": "sdk-native-run02",
+      "path": "/home/agent/rhodes-7a7c13ab7da3/build-editor/VST3/Release/RhodesResearch.vst3/Contents/Resources/rhodes-suitcase.uidesc",
+      "recorded_sha256": "7554fecedf67cf744b3aa7f6cf12dc4f874d8b5e0b97ec66959ba2b42ea5825e",
+      "current_sha256": "7554fecedf67cf744b3aa7f6cf12dc4f874d8b5e0b97ec66959ba2b42ea5825e"
+    },
+    {
+      "run": "sdk-native-run02",
+      "path": "/home/agent/rhodes-7a7c13ab7da3/build-editor/VST3/Release/RhodesResearch.vst3/Contents/x86_64-linux/RhodesResearch.so",
+      "recorded_sha256": "ae3b732ca33e4fdca57367e6b1beafac28bd78a4f619cadad93ae7c4e0fa7306",
+      "current_sha256": "ae3b732ca33e4fdca57367e6b1beafac28bd78a4f619cadad93ae7c4e0fa7306"
+    },
+    {
+      "run": "sdk-native-run02",
+      "path": "/workspace/scratch/7a7c13ab7da3/Fender-rhoades/plugins/vst3/photo_native_focus.hpp",
+      "recorded_sha256": "fbcc4ba33dc8e779e39d441ef3bd67d76596c9a2cdb90f20631d1acb519084e9",
+      "current_sha256": "e776f8415b5df380406d32dc0bc096afe96df98753f64634e434d35c79130d28"
+    },
+    {
+      "run": "sdk-native-run02",
+      "path": "/workspace/scratch/7a7c13ab7da3/Fender-rhoades/plugins/vst3/photo_native_focus.cpp",
+      "recorded_sha256": "3b4fb4a575f306bfc7363884cdd2dbaca55cb32d47e0b69e0cbada52d055c8ed",
+      "current_sha256": "423f03fd44808e4750e99e1bfcd11d080a2e34992180670192ccec0923b6b4df"
+    },
+    {
+      "run": "sdk-native-run02",
+      "path": "/home/agent/rhodes-7a7c13ab7da3/w2-013/focus-motion-probe.py",
+      "recorded_sha256": "d20539cc58daf772f304b0d9d2f447b6b5b51f867f343c2288af7984083e47de",
+      "current_sha256": "d20539cc58daf772f304b0d9d2f447b6b5b51f867f343c2288af7984083e47de"
+    },
+    {
+      "run": "sdk-native-run02",
+      "path": "/home/agent/rhodes-7a7c13ab7da3/w2-001/provenance.json",
+      "recorded_sha256": "0c31601a50ba8871b307b6b3aaf250f821ae33291de868d65b4c4aaacc3af917",
+      "current_sha256": "0c31601a50ba8871b307b6b3aaf250f821ae33291de868d65b4c4aaacc3af917"
+    },
+    {
+      "run": "focus-motion-run02",
+      "path": "/workspace/scratch/7a7c13ab7da3/Fender-rhoades/tools/verify_native_photo_editor.py",
+      "recorded_sha256": "ce0f2d5c3e74e34c478186bef80ee6879ab0a5328b45d682d9d34d45b6dfda47",
+      "current_sha256": "ce0f2d5c3e74e34c478186bef80ee6879ab0a5328b45d682d9d34d45b6dfda47"
+    },
+    {
+      "run": "focus-motion-run02",
+      "path": "/home/agent/rhodes-7a7c13ab7da3/w2-001/editorhost-accepting",
+      "recorded_sha256": "37f557e9863001b54b158482338ff66dcf9fb3934ba12d8ace0c9ddbbb0eebe9",
+      "current_sha256": "37f557e9863001b54b158482338ff66dcf9fb3934ba12d8ace0c9ddbbb0eebe9"
+    },
+    {
+      "run": "focus-motion-run02",
+      "path": "/workspace/scratch/7a7c13ab7da3/Fender-rhoades/plugins/vst3/resources/rhodes-suitcase.png",
+      "recorded_sha256": "84e2d48fc0311eb923083cc3e1f96dc5fa1b3f8a6e085daee7c973e54d754d26",
+      "current_sha256": "84e2d48fc0311eb923083cc3e1f96dc5fa1b3f8a6e085daee7c973e54d754d26"
+    },
+    {
+      "run": "focus-motion-run02",
+      "path": "/workspace/scratch/7a7c13ab7da3/Fender-rhoades/plugins/vst3/photo_editor.cpp",
+      "recorded_sha256": "8056443e855b25a85824cadebaeb38389d2519c55b1db412c08dcc5a68f491da",
+      "current_sha256": "8056443e855b25a85824cadebaeb38389d2519c55b1db412c08dcc5a68f491da"
+    },
+    {
+      "run": "focus-motion-run02",
+      "path": "/workspace/scratch/7a7c13ab7da3/Fender-rhoades/plugins/vst3/photo_geometry.hpp",
+      "recorded_sha256": "77fe4f4ac93ee0b212ef3f5399eb5cfa8884076d8eef51d2adf2123e6d85e0bd",
+      "current_sha256": "77fe4f4ac93ee0b212ef3f5399eb5cfa8884076d8eef51d2adf2123e6d85e0bd"
+    },
+    {
+      "run": "focus-motion-run02",
+      "path": "/workspace/scratch/7a7c13ab7da3/Fender-rhoades/plugins/vst3/controller.cpp",
+      "recorded_sha256": "5c76dd7a2628d5d65e803395d01160190dee01beb047c9fbaaba52f6facb72fa",
+      "current_sha256": "5c76dd7a2628d5d65e803395d01160190dee01beb047c9fbaaba52f6facb72fa"
+    },
+    {
+      "run": "focus-motion-run02",
+      "path": "/workspace/scratch/7a7c13ab7da3/Fender-rhoades/plugins/vst3/processor.cpp",
+      "recorded_sha256": "1ef121c4afb190c45fa1ff41a2127fb7487919dc69d8856c4a05e79844f760a9",
+      "current_sha256": "1ef121c4afb190c45fa1ff41a2127fb7487919dc69d8856c4a05e79844f760a9"
+    },
+    {
+      "run": "focus-motion-run02",
+      "path": "/home/agent/rhodes-7a7c13ab7da3/build-editor/VST3/Release/RhodesResearch.vst3/Contents/Resources/Expat-LICENSE.txt",
+      "recorded_sha256": "f6eeb2310d0b00e5cecac39c73a0696a5bdbfb754b26325ed5a502fc1a6c338c",
+      "current_sha256": "f6eeb2310d0b00e5cecac39c73a0696a5bdbfb754b26325ed5a502fc1a6c338c"
+    },
+    {
+      "run": "focus-motion-run02",
+      "path": "/home/agent/rhodes-7a7c13ab7da3/build-editor/VST3/Release/RhodesResearch.vst3/Contents/Resources/LICENSE.txt",
+      "recorded_sha256": "e86d79e19e4a33ebc442d2e0d083887dfc75a2a8de9fe17eeddedb84810ad74e",
+      "current_sha256": "e86d79e19e4a33ebc442d2e0d083887dfc75a2a8de9fe17eeddedb84810ad74e"
+    },
+    {
+      "run": "focus-motion-run02",
+      "path": "/home/agent/rhodes-7a7c13ab7da3/build-editor/VST3/Release/RhodesResearch.vst3/Contents/Resources/RapidJSON-LICENSE.txt",
+      "recorded_sha256": "a140e5d46fe734a1c78f1a3c3ef207871dd75648be71fdda8e309b23ab8b1f32",
+      "current_sha256": "a140e5d46fe734a1c78f1a3c3ef207871dd75648be71fdda8e309b23ab8b1f32"
+    },
+    {
+      "run": "focus-motion-run02",
+      "path": "/home/agent/rhodes-7a7c13ab7da3/build-editor/VST3/Release/RhodesResearch.vst3/Contents/Resources/THIRD_PARTY_NOTICES.md",
+      "recorded_sha256": "5eeba1a7dc30e6aae860e1ba8323ee362e2b20c36170075f23a4079f69863894",
+      "current_sha256": "5eeba1a7dc30e6aae860e1ba8323ee362e2b20c36170075f23a4079f69863894"
+    },
+    {
+      "run": "focus-motion-run02",
+      "path": "/home/agent/rhodes-7a7c13ab7da3/build-editor/VST3/Release/RhodesResearch.vst3/Contents/Resources/VSTGUI-LICENSE.txt",
+      "recorded_sha256": "605bcd2152176b365cf0ba6cca331a988fa885b4f43f20ceff4e264e6576ca66",
+      "current_sha256": "605bcd2152176b365cf0ba6cca331a988fa885b4f43f20ceff4e264e6576ca66"
+    },
+    {
+      "run": "focus-motion-run02",
+      "path": "/home/agent/rhodes-7a7c13ab7da3/build-editor/VST3/Release/RhodesResearch.vst3/Contents/Resources/miniz-LICENSE.txt",
+      "recorded_sha256": "6f20fa7672b00e2e975c291df737cf227addf3ad32e36fef3fe0f416e4664d3d",
+      "current_sha256": "6f20fa7672b00e2e975c291df737cf227addf3ad32e36fef3fe0f416e4664d3d"
+    },
+    {
+      "run": "focus-motion-run02",
+      "path": "/home/agent/rhodes-7a7c13ab7da3/build-editor/VST3/Release/RhodesResearch.vst3/Contents/Resources/moduleinfo.json",
+      "recorded_sha256": "28b44aaa74a32dbe415b3553b37b019440ebe17bad7708b217790d47bb6adfb9",
+      "current_sha256": "28b44aaa74a32dbe415b3553b37b019440ebe17bad7708b217790d47bb6adfb9"
+    },
+    {
+      "run": "focus-motion-run02",
+      "path": "/home/agent/rhodes-7a7c13ab7da3/build-editor/VST3/Release/RhodesResearch.vst3/Contents/Resources/rhodes-suitcase.png",
+      "recorded_sha256": "84e2d48fc0311eb923083cc3e1f96dc5fa1b3f8a6e085daee7c973e54d754d26",
+      "current_sha256": "84e2d48fc0311eb923083cc3e1f96dc5fa1b3f8a6e085daee7c973e54d754d26"
+    },
+    {
+      "run": "focus-motion-run02",
+      "path": "/home/agent/rhodes-7a7c13ab7da3/build-editor/VST3/Release/RhodesResearch.vst3/Contents/Resources/rhodes-suitcase.uidesc",
+      "recorded_sha256": "7554fecedf67cf744b3aa7f6cf12dc4f874d8b5e0b97ec66959ba2b42ea5825e",
+      "current_sha256": "7554fecedf67cf744b3aa7f6cf12dc4f874d8b5e0b97ec66959ba2b42ea5825e"
+    },
+    {
+      "run": "focus-motion-run02",
+      "path": "/home/agent/rhodes-7a7c13ab7da3/build-editor/VST3/Release/RhodesResearch.vst3/Contents/x86_64-linux/RhodesResearch.so",
+      "recorded_sha256": "ae3b732ca33e4fdca57367e6b1beafac28bd78a4f619cadad93ae7c4e0fa7306",
+      "current_sha256": "ae3b732ca33e4fdca57367e6b1beafac28bd78a4f619cadad93ae7c4e0fa7306"
+    },
+    {
+      "run": "focus-motion-run02",
+      "path": "/workspace/scratch/7a7c13ab7da3/Fender-rhoades/plugins/vst3/photo_native_focus.hpp",
+      "recorded_sha256": "fbcc4ba33dc8e779e39d441ef3bd67d76596c9a2cdb90f20631d1acb519084e9",
+      "current_sha256": "e776f8415b5df380406d32dc0bc096afe96df98753f64634e434d35c79130d28"
+    },
+    {
+      "run": "focus-motion-run02",
+      "path": "/workspace/scratch/7a7c13ab7da3/Fender-rhoades/plugins/vst3/photo_native_focus.cpp",
+      "recorded_sha256": "3b4fb4a575f306bfc7363884cdd2dbaca55cb32d47e0b69e0cbada52d055c8ed",
+      "current_sha256": "423f03fd44808e4750e99e1bfcd11d080a2e34992180670192ccec0923b6b4df"
+    },
+    {
+      "run": "focus-motion-run02",
+      "path": "/home/agent/rhodes-7a7c13ab7da3/w2-013/focus-motion-probe.py",
+      "recorded_sha256": "d20539cc58daf772f304b0d9d2f447b6b5b51f867f343c2288af7984083e47de",
+      "current_sha256": "d20539cc58daf772f304b0d9d2f447b6b5b51f867f343c2288af7984083e47de"
+    },
+    {
+      "run": "focus-motion-run02",
+      "path": "/home/agent/rhodes-7a7c13ab7da3/w2-001/provenance.json",
+      "recorded_sha256": "0c31601a50ba8871b307b6b3aaf250f821ae33291de868d65b4c4aaacc3af917",
+      "current_sha256": "0c31601a50ba8871b307b6b3aaf250f821ae33291de868d65b4c4aaacc3af917"
+    }
+  ],
+  "not_claimed": [
+    "Current source acceptance after W2",
+    "REAPER or other named DAW acceptance",
+    "Audio processing or processor note release timing",
+    "Windows/macOS/Wayland native operation",
+    "Hardware deadlines or measured physical fidelity"
+  ]
+}
