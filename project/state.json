@@ -4,8 +4,8 @@
   "goal": "Physically model a Fender Rhodes Mark I from evolving mechanical, electromagnetic and circuit states without recorded-note playback.",
   "target": "One documented 73-key Mark I Stage specimen at its specified loaded electrical output; identity and measurements pending.",
   "fidelity_status": "unvalidated",
-  "revision": 48,
-  "updated_at": "2026-11-24T15:42:05Z",
+  "revision": 49,
+  "updated_at": "2026-11-24T17:05:22Z",
   "tasks": [
     {
       "id": "FND-001",
@@ -583,7 +583,7 @@
         "owner": "photo-editor-root",
         "token": "8bc48185721742d3e4b6029c1d622915",
         "claimed_at": "2026-11-24T14:16:38Z",
-        "expires_at": "2026-11-24T17:42:05Z"
+        "expires_at": "2026-11-24T20:05:22Z"
       },
       "blockers": [],
       "paths": [
@@ -986,6 +986,14 @@
       "task": "HOST-004",
       "owner": "photo-editor-root",
       "detail": "Lease until 2026-11-24T17:42:05Z"
+    },
+    {
+      "revision": 49,
+      "at": "2026-11-24T17:05:22Z",
+      "action": "renew",
+      "task": "HOST-004",
+      "owner": "photo-editor-root",
+      "detail": "Lease until 2026-11-24T20:05:22Z"
     }
   ]
 }
