@@ -1,0 +1,2325 @@
+{
+  "scope": "observational, not WCRT or causal speedup; candidate/baseline; lower ratios mean shorter observed durations",
+  "median_rule": "native p50 uses nearest rank; cross-run/pair medians use arithmetic middle of two central values when even",
+  "pooling": "no pooled callback percentile and no cross-profile speedup aggregate",
+  "pairs": [
+    {
+      "profile_id": "p01",
+      "cycle": 1,
+      "baseline_run": "c01-p01-1-baseline",
+      "candidate_run": "c01-p01-2-candidate",
+      "candidate_over_baseline": {
+        "p50_us": {
+          "value": 0.4173119504836391,
+          "reason": null
+        },
+        "p99_us": {
+          "value": 1.975814458549513,
+          "reason": null
+        },
+        "max_us": {
+          "value": 5.927246556687525,
+          "reason": null
+        },
+        "mean_us": {
+          "value": 0.49734188000053603,
+          "reason": null
+        }
+      },
+      "deadline_misses": {
+        "baseline": 0,
+        "candidate": 2,
+        "candidate_over_baseline": {
+          "value": null,
+          "reason": "zero baseline denominator"
+        }
+      }
+    },
+    {
+      "profile_id": "p01",
+      "cycle": 1,
+      "baseline_run": "c01-p01-4-baseline",
+      "candidate_run": "c01-p01-3-candidate",
+      "candidate_over_baseline": {
+        "p50_us": {
+          "value": 0.4314612579240171,
+          "reason": null
+        },
+        "p99_us": {
+          "value": 0.8469206621065971,
+          "reason": null
+        },
+        "max_us": {
+          "value": 2.147824700944345,
+          "reason": null
+        },
+        "mean_us": {
+          "value": 0.46415726012253306,
+          "reason": null
+        }
+      },
+      "deadline_misses": {
+        "baseline": 0,
+        "candidate": 0,
+        "candidate_over_baseline": {
+          "value": null,
+          "reason": "zero baseline denominator"
+        }
+      }
+    },
+    {
+      "profile_id": "p02",
+      "cycle": 1,
+      "baseline_run": "c01-p02-1-baseline",
+      "candidate_run": "c01-p02-2-candidate",
+      "candidate_over_baseline": {
+        "p50_us": {
+          "value": 0.5766989829217883,
+          "reason": null
+        },
+        "p99_us": {
+          "value": 3.7937813284690045,
+          "reason": null
+        },
+        "max_us": {
+          "value": 9.121195242504696,
+          "reason": null
+        },
+        "mean_us": {
+          "value": 0.682409746621618,
+          "reason": null
+        }
+      },
+      "deadline_misses": {
+        "baseline": 0,
+        "candidate": 3,
+        "candidate_over_baseline": {
+          "value": null,
+          "reason": "zero baseline denominator"
+        }
+      }
+    },
+    {
+      "profile_id": "p02",
+      "cycle": 1,
+      "baseline_run": "c01-p02-4-baseline",
+      "candidate_run": "c01-p02-3-candidate",
+      "candidate_over_baseline": {
+        "p50_us": {
+          "value": 0.5794787108506635,
+          "reason": null
+        },
+        "p99_us": {
+          "value": 0.3104663540378032,
+          "reason": null
+        },
+        "max_us": {
+          "value": 0.2635322353700743,
+          "reason": null
+        },
+        "mean_us": {
+          "value": 0.5460903870029921,
+          "reason": null
+        }
+      },
+      "deadline_misses": {
+        "baseline": 0,
+        "candidate": 0,
+        "candidate_over_baseline": {
+          "value": null,
+          "reason": "zero baseline denominator"
+        }
+      }
+    },
+    {
+      "profile_id": "p03",
+      "cycle": 1,
+      "baseline_run": "c01-p03-1-baseline",
+      "candidate_run": "c01-p03-2-candidate",
+      "candidate_over_baseline": {
+        "p50_us": {
+          "value": 0.5161837374169912,
+          "reason": null
+        },
+        "p99_us": {
+          "value": 0.4746314062733012,
+          "reason": null
+        },
+        "max_us": {
+          "value": 0.5516606521399777,
+          "reason": null
+        },
+        "mean_us": {
+          "value": 0.5250255002990533,
+          "reason": null
+        }
+      },
+      "deadline_misses": {
+        "baseline": 0,
+        "candidate": 0,
+        "candidate_over_baseline": {
+          "value": null,
+          "reason": "zero baseline denominator"
+        }
+      }
+    },
+    {
+      "profile_id": "p03",
+      "cycle": 1,
+      "baseline_run": "c01-p03-4-baseline",
+      "candidate_run": "c01-p03-3-candidate",
+      "candidate_over_baseline": {
+        "p50_us": {
+          "value": 0.5113819771351715,
+          "reason": null
+        },
+        "p99_us": {
+          "value": 0.5537103964966892,
+          "reason": null
+        },
+        "max_us": {
+          "value": 0.6730253890121278,
+          "reason": null
+        },
+        "mean_us": {
+          "value": 0.5078758913818944,
+          "reason": null
+        }
+      },
+      "deadline_misses": {
+        "baseline": 0,
+        "candidate": 0,
+        "candidate_over_baseline": {
+          "value": null,
+          "reason": "zero baseline denominator"
+        }
+      }
+    },
+    {
+      "profile_id": "p04",
+      "cycle": 1,
+      "baseline_run": "c01-p04-1-baseline",
+      "candidate_run": "c01-p04-2-candidate",
+      "candidate_over_baseline": {
+        "p50_us": {
+          "value": 1.0316235390190376,
+          "reason": null
+        },
+        "p99_us": {
+          "value": 1.7965072302558398,
+          "reason": null
+        },
+        "max_us": {
+          "value": 3.1818923710287663,
+          "reason": null
+        },
+        "mean_us": {
+          "value": 1.0867792942237708,
+          "reason": null
+        }
+      },
+      "deadline_misses": {
+        "baseline": 0,
+        "candidate": 1,
+        "candidate_over_baseline": {
+          "value": null,
+          "reason": "zero baseline denominator"
+        }
+      }
+    },
+    {
+      "profile_id": "p04",
+      "cycle": 1,
+      "baseline_run": "c01-p04-4-baseline",
+      "candidate_run": "c01-p04-3-candidate",
+      "candidate_over_baseline": {
+        "p50_us": {
+          "value": 0.9888640754269719,
+          "reason": null
+        },
+        "p99_us": {
+          "value": 0.6065995245092769,
+          "reason": null
+        },
+        "max_us": {
+          "value": 0.330502711991932,
+          "reason": null
+        },
+        "mean_us": {
+          "value": 0.9338426666833611,
+          "reason": null
+        }
+      },
+      "deadline_misses": {
+        "baseline": 1,
+        "candidate": 0,
+        "candidate_over_baseline": {
+          "value": 0.0,
+          "reason": null
+        }
+      }
+    },
+    {
+      "profile_id": "p05",
+      "cycle": 1,
+      "baseline_run": "c01-p05-1-baseline",
+      "candidate_run": "c01-p05-2-candidate",
+      "candidate_over_baseline": {
+        "p50_us": {
+          "value": 0.4347460126521456,
+          "reason": null
+        },
+        "p99_us": {
+          "value": 0.4131503356485767,
+          "reason": null
+        },
+        "max_us": {
+          "value": 0.29147459520538277,
+          "reason": null
+        },
+        "mean_us": {
+          "value": 0.4208393401665522,
+          "reason": null
+        }
+      },
+      "deadline_misses": {
+        "baseline": 60,
+        "candidate": 0,
+        "candidate_over_baseline": {
+          "value": 0.0,
+          "reason": null
+        }
+      }
+    },
+    {
+      "profile_id": "p05",
+      "cycle": 1,
+      "baseline_run": "c01-p05-4-baseline",
+      "candidate_run": "c01-p05-3-candidate",
+      "candidate_over_baseline": {
+        "p50_us": {
+          "value": 0.4276241758493019,
+          "reason": null
+        },
+        "p99_us": {
+          "value": 0.4232959453843316,
+          "reason": null
+        },
+        "max_us": {
+          "value": 0.43994964178345963,
+          "reason": null
+        },
+        "mean_us": {
+          "value": 0.41767684659706256,
+          "reason": null
+        }
+      },
+      "deadline_misses": {
+        "baseline": 60,
+        "candidate": 0,
+        "candidate_over_baseline": {
+          "value": 0.0,
+          "reason": null
+        }
+      }
+    },
+    {
+      "profile_id": "p06",
+      "cycle": 1,
+      "baseline_run": "c01-p06-1-baseline",
+      "candidate_run": "c01-p06-2-candidate",
+      "candidate_over_baseline": {
+        "p50_us": {
+          "value": 0.449863570959678,
+          "reason": null
+        },
+        "p99_us": {
+          "value": 0.46927095471017827,
+          "reason": null
+        },
+        "max_us": {
+          "value": 0.5873408386071959,
+          "reason": null
+        },
+        "mean_us": {
+          "value": 0.45094554590207275,
+          "reason": null
+        }
+      },
+      "deadline_misses": {
+        "baseline": 28,
+        "candidate": 0,
+        "candidate_over_baseline": {
+          "value": 0.0,
+          "reason": null
+        }
+      }
+    },
+    {
+      "profile_id": "p06",
+      "cycle": 1,
+      "baseline_run": "c01-p06-4-baseline",
+      "candidate_run": "c01-p06-3-candidate",
+      "candidate_over_baseline": {
+        "p50_us": {
+          "value": 0.39131845393476195,
+          "reason": null
+        },
+        "p99_us": {
+          "value": 0.3157942867070297,
+          "reason": null
+        },
+        "max_us": {
+          "value": 0.638229954043672,
+          "reason": null
+        },
+        "mean_us": {
+          "value": 0.39926067301044765,
+          "reason": null
+        }
+      },
+      "deadline_misses": {
+        "baseline": 168,
+        "candidate": 3,
+        "candidate_over_baseline": {
+          "value": 0.017857142857142856,
+          "reason": null
+        }
+      }
+    },
+    {
+      "profile_id": "p07",
+      "cycle": 1,
+      "baseline_run": "c01-p07-1-baseline",
+      "candidate_run": "c01-p07-2-candidate",
+      "candidate_over_baseline": {
+        "p50_us": {
+          "value": 0.5069680576291006,
+          "reason": null
+        },
+        "p99_us": {
+          "value": 1.3235242137799923,
+          "reason": null
+        },
+        "max_us": {
+          "value": 1.2400528832998556,
+          "reason": null
+        },
+        "mean_us": {
+          "value": 0.5110943677347363,
+          "reason": null
+        }
+      },
+      "deadline_misses": {
+        "baseline": 76,
+        "candidate": 3,
+        "candidate_over_baseline": {
+          "value": 0.039473684210526314,
+          "reason": null
+        }
+      }
+    },
+    {
+      "profile_id": "p07",
+      "cycle": 1,
+      "baseline_run": "c01-p07-4-baseline",
+      "candidate_run": "c01-p07-3-candidate",
+      "candidate_over_baseline": {
+        "p50_us": {
+          "value": 0.524503887547844,
+          "reason": null
+        },
+        "p99_us": {
+          "value": 0.5471831529223661,
+          "reason": null
+        },
+        "max_us": {
+          "value": 0.30195960364064345,
+          "reason": null
+        },
+        "mean_us": {
+          "value": 0.5358972157938565,
+          "reason": null
+        }
+      },
+      "deadline_misses": {
+        "baseline": 7,
+        "candidate": 0,
+        "candidate_over_baseline": {
+          "value": 0.0,
+          "reason": null
+        }
+      }
+    },
+    {
+      "profile_id": "p08",
+      "cycle": 1,
+      "baseline_run": "c01-p08-1-baseline",
+      "candidate_run": "c01-p08-2-candidate",
+      "candidate_over_baseline": {
+        "p50_us": {
+          "value": 1.0314659764441896,
+          "reason": null
+        },
+        "p99_us": {
+          "value": 0.9566642871353174,
+          "reason": null
+        },
+        "max_us": {
+          "value": 0.7529324396374437,
+          "reason": null
+        },
+        "mean_us": {
+          "value": 0.9955358435327472,
+          "reason": null
+        }
+      },
+      "deadline_misses": {
+        "baseline": 67,
+        "candidate": 95,
+        "candidate_over_baseline": {
+          "value": 1.4179104477611941,
+          "reason": null
+        }
+      }
+    },
+    {
+      "profile_id": "p08",
+      "cycle": 1,
+      "baseline_run": "c01-p08-4-baseline",
+      "candidate_run": "c01-p08-3-candidate",
+      "candidate_over_baseline": {
+        "p50_us": {
+          "value": 1.0259596401443016,
+          "reason": null
+        },
+        "p99_us": {
+          "value": 1.2134963058435324,
+          "reason": null
+        },
+        "max_us": {
+          "value": 1.3655310523616702,
+          "reason": null
+        },
+        "mean_us": {
+          "value": 1.0474464571918114,
+          "reason": null
+        }
+      },
+      "deadline_misses": {
+        "baseline": 30,
+        "candidate": 52,
+        "candidate_over_baseline": {
+          "value": 1.7333333333333334,
+          "reason": null
+        }
+      }
+    },
+    {
+      "profile_id": "p09",
+      "cycle": 1,
+      "baseline_run": "c01-p09-1-baseline",
+      "candidate_run": "c01-p09-2-candidate",
+      "candidate_over_baseline": {
+        "p50_us": {
+          "value": 0.5370874042377813,
+          "reason": null
+        },
+        "p99_us": {
+          "value": 0.900479584427125,
+          "reason": null
+        },
+        "max_us": {
+          "value": 0.979552252774746,
+          "reason": null
+        },
+        "mean_us": {
+          "value": 0.5572005007037106,
+          "reason": null
+        }
+      },
+      "deadline_misses": {
+        "baseline": 0,
+        "candidate": 0,
+        "candidate_over_baseline": {
+          "value": null,
+          "reason": "zero baseline denominator"
+        }
+      }
+    },
+    {
+      "profile_id": "p09",
+      "cycle": 1,
+      "baseline_run": "c01-p09-4-baseline",
+      "candidate_run": "c01-p09-3-candidate",
+      "candidate_over_baseline": {
+        "p50_us": {
+          "value": 0.4938128575798707,
+          "reason": null
+        },
+        "p99_us": {
+          "value": 1.0634392290003432,
+          "reason": null
+        },
+        "max_us": {
+          "value": 0.8456193522155921,
+          "reason": null
+        },
+        "mean_us": {
+          "value": 0.5107269876969729,
+          "reason": null
+        }
+      },
+      "deadline_misses": {
+        "baseline": 0,
+        "candidate": 0,
+        "candidate_over_baseline": {
+          "value": null,
+          "reason": "zero baseline denominator"
+        }
+      }
+    },
+    {
+      "profile_id": "p10",
+      "cycle": 1,
+      "baseline_run": "c01-p10-1-baseline",
+      "candidate_run": "c01-p10-2-candidate",
+      "candidate_over_baseline": {
+        "p50_us": {
+          "value": 0.9842659439234405,
+          "reason": null
+        },
+        "p99_us": {
+          "value": 0.988379947818219,
+          "reason": null
+        },
+        "max_us": {
+          "value": 0.8920106613420027,
+          "reason": null
+        },
+        "mean_us": {
+          "value": 0.9960818794512698,
+          "reason": null
+        }
+      },
+      "deadline_misses": {
+        "baseline": 130,
+        "candidate": 106,
+        "candidate_over_baseline": {
+          "value": 0.8153846153846154,
+          "reason": null
+        }
+      }
+    },
+    {
+      "profile_id": "p10",
+      "cycle": 1,
+      "baseline_run": "c01-p10-4-baseline",
+      "candidate_run": "c01-p10-3-candidate",
+      "candidate_over_baseline": {
+        "p50_us": {
+          "value": 0.9747135125328819,
+          "reason": null
+        },
+        "p99_us": {
+          "value": 0.982695353823619,
+          "reason": null
+        },
+        "max_us": {
+          "value": 5.871211087379442,
+          "reason": null
+        },
+        "mean_us": {
+          "value": 1.025299201243362,
+          "reason": null
+        }
+      },
+      "deadline_misses": {
+        "baseline": 112,
+        "candidate": 88,
+        "candidate_over_baseline": {
+          "value": 0.7857142857142857,
+          "reason": null
+        }
+      }
+    },
+    {
+      "profile_id": "p11",
+      "cycle": 1,
+      "baseline_run": "c01-p11-1-baseline",
+      "candidate_run": "c01-p11-2-candidate",
+      "candidate_over_baseline": {
+        "p50_us": {
+          "value": 0.3449421863692768,
+          "reason": null
+        },
+        "p99_us": {
+          "value": 0.46843919135442036,
+          "reason": null
+        },
+        "max_us": {
+          "value": 0.7023641317336647,
+          "reason": null
+        },
+        "mean_us": {
+          "value": 0.38385630245145075,
+          "reason": null
+        }
+      },
+      "deadline_misses": {
+        "baseline": 191,
+        "candidate": 1,
+        "candidate_over_baseline": {
+          "value": 0.005235602094240838,
+          "reason": null
+        }
+      }
+    },
+    {
+      "profile_id": "p11",
+      "cycle": 1,
+      "baseline_run": "c01-p11-4-baseline",
+      "candidate_run": "c01-p11-3-candidate",
+      "candidate_over_baseline": {
+        "p50_us": {
+          "value": 0.5132974499846262,
+          "reason": null
+        },
+        "p99_us": {
+          "value": 0.4184744728103935,
+          "reason": null
+        },
+        "max_us": {
+          "value": 0.23500591790321104,
+          "reason": null
+        },
+        "mean_us": {
+          "value": 0.5032209972738342,
+          "reason": null
+        }
+      },
+      "deadline_misses": {
+        "baseline": 37,
+        "candidate": 2,
+        "candidate_over_baseline": {
+          "value": 0.05405405405405406,
+          "reason": null
+        }
+      }
+    },
+    {
+      "profile_id": "p12",
+      "cycle": 1,
+      "baseline_run": "c01-p12-1-baseline",
+      "candidate_run": "c01-p12-2-candidate",
+      "candidate_over_baseline": {
+        "p50_us": {
+          "value": 0.9866349866349866,
+          "reason": null
+        },
+        "p99_us": {
+          "value": 0.9822373952969558,
+          "reason": null
+        },
+        "max_us": {
+          "value": 1.091157868841104,
+          "reason": null
+        },
+        "mean_us": {
+          "value": 0.9808007849622294,
+          "reason": null
+        }
+      },
+      "deadline_misses": {
+        "baseline": 0,
+        "candidate": 0,
+        "candidate_over_baseline": {
+          "value": null,
+          "reason": "zero baseline denominator"
+        }
+      }
+    },
+    {
+      "profile_id": "p12",
+      "cycle": 1,
+      "baseline_run": "c01-p12-4-baseline",
+      "candidate_run": "c01-p12-3-candidate",
+      "candidate_over_baseline": {
+        "p50_us": {
+          "value": 1.0488612249973033,
+          "reason": null
+        },
+        "p99_us": {
+          "value": 1.0539270887824337,
+          "reason": null
+        },
+        "max_us": {
+          "value": 0.9389994249480123,
+          "reason": null
+        },
+        "mean_us": {
+          "value": 1.1524187858937114,
+          "reason": null
+        }
+      },
+      "deadline_misses": {
+        "baseline": 0,
+        "candidate": 0,
+        "candidate_over_baseline": {
+          "value": null,
+          "reason": "zero baseline denominator"
+        }
+      }
+    },
+    {
+      "profile_id": "p01",
+      "cycle": 2,
+      "baseline_run": "c02-p01-1-baseline",
+      "candidate_run": "c02-p01-2-candidate",
+      "candidate_over_baseline": {
+        "p50_us": {
+          "value": 0.26572476424781255,
+          "reason": null
+        },
+        "p99_us": {
+          "value": 0.4557631244707875,
+          "reason": null
+        },
+        "max_us": {
+          "value": 0.5210028200839146,
+          "reason": null
+        },
+        "mean_us": {
+          "value": 0.3203468290086944,
+          "reason": null
+        }
+      },
+      "deadline_misses": {
+        "baseline": 0,
+        "candidate": 0,
+        "candidate_over_baseline": {
+          "value": null,
+          "reason": "zero baseline denominator"
+        }
+      }
+    },
+    {
+      "profile_id": "p01",
+      "cycle": 2,
+      "baseline_run": "c02-p01-4-baseline",
+      "candidate_run": "c02-p01-3-candidate",
+      "candidate_over_baseline": {
+        "p50_us": {
+          "value": 0.5856231864498279,
+          "reason": null
+        },
+        "p99_us": {
+          "value": 0.35666748959582417,
+          "reason": null
+        },
+        "max_us": {
+          "value": 0.40360902059289655,
+          "reason": null
+        },
+        "mean_us": {
+          "value": 0.5532164520233076,
+          "reason": null
+        }
+      },
+      "deadline_misses": {
+        "baseline": 0,
+        "candidate": 0,
+        "candidate_over_baseline": {
+          "value": null,
+          "reason": "zero baseline denominator"
+        }
+      }
+    },
+    {
+      "profile_id": "p02",
+      "cycle": 2,
+      "baseline_run": "c02-p02-1-baseline",
+      "candidate_run": "c02-p02-2-candidate",
+      "candidate_over_baseline": {
+        "p50_us": {
+          "value": 0.43766445601976156,
+          "reason": null
+        },
+        "p99_us": {
+          "value": 0.4974946423300018,
+          "reason": null
+        },
+        "max_us": {
+          "value": 0.6442897563662768,
+          "reason": null
+        },
+        "mean_us": {
+          "value": 0.4472396157818653,
+          "reason": null
+        }
+      },
+      "deadline_misses": {
+        "baseline": 0,
+        "candidate": 0,
+        "candidate_over_baseline": {
+          "value": null,
+          "reason": "zero baseline denominator"
+        }
+      }
+    },
+    {
+      "profile_id": "p02",
+      "cycle": 2,
+      "baseline_run": "c02-p02-4-baseline",
+      "candidate_run": "c02-p02-3-candidate",
+      "candidate_over_baseline": {
+        "p50_us": {
+          "value": 0.7299096835857908,
+          "reason": null
+        },
+        "p99_us": {
+          "value": 0.14257710914990054,
+          "reason": null
+        },
+        "max_us": {
+          "value": 0.0898294319660629,
+          "reason": null
+        },
+        "mean_us": {
+          "value": 0.6165413411456651,
+          "reason": null
+        }
+      },
+      "deadline_misses": {
+        "baseline": 7,
+        "candidate": 0,
+        "candidate_over_baseline": {
+          "value": 0.0,
+          "reason": null
+        }
+      }
+    },
+    {
+      "profile_id": "p03",
+      "cycle": 2,
+      "baseline_run": "c02-p03-1-baseline",
+      "candidate_run": "c02-p03-2-candidate",
+      "candidate_over_baseline": {
+        "p50_us": {
+          "value": 0.5412693106815842,
+          "reason": null
+        },
+        "p99_us": {
+          "value": 0.6990257746150751,
+          "reason": null
+        },
+        "max_us": {
+          "value": 0.7699598829792139,
+          "reason": null
+        },
+        "mean_us": {
+          "value": 0.5491303869341679,
+          "reason": null
+        }
+      },
+      "deadline_misses": {
+        "baseline": 0,
+        "candidate": 0,
+        "candidate_over_baseline": {
+          "value": null,
+          "reason": "zero baseline denominator"
+        }
+      }
+    },
+    {
+      "profile_id": "p03",
+      "cycle": 2,
+      "baseline_run": "c02-p03-4-baseline",
+      "candidate_run": "c02-p03-3-candidate",
+      "candidate_over_baseline": {
+        "p50_us": {
+          "value": 0.45683930544214424,
+          "reason": null
+        },
+        "p99_us": {
+          "value": 0.33726258667470604,
+          "reason": null
+        },
+        "max_us": {
+          "value": 0.2805088422069754,
+          "reason": null
+        },
+        "mean_us": {
+          "value": 0.4125768667741157,
+          "reason": null
+        }
+      },
+      "deadline_misses": {
+        "baseline": 1,
+        "candidate": 0,
+        "candidate_over_baseline": {
+          "value": 0.0,
+          "reason": null
+        }
+      }
+    },
+    {
+      "profile_id": "p04",
+      "cycle": 2,
+      "baseline_run": "c02-p04-1-baseline",
+      "candidate_run": "c02-p04-2-candidate",
+      "candidate_over_baseline": {
+        "p50_us": {
+          "value": 0.956211809367728,
+          "reason": null
+        },
+        "p99_us": {
+          "value": 0.7988158321722891,
+          "reason": null
+        },
+        "max_us": {
+          "value": 0.5645360020795425,
+          "reason": null
+        },
+        "mean_us": {
+          "value": 0.9427597128638006,
+          "reason": null
+        }
+      },
+      "deadline_misses": {
+        "baseline": 0,
+        "candidate": 0,
+        "candidate_over_baseline": {
+          "value": null,
+          "reason": "zero baseline denominator"
+        }
+      }
+    },
+    {
+      "profile_id": "p04",
+      "cycle": 2,
+      "baseline_run": "c02-p04-4-baseline",
+      "candidate_run": "c02-p04-3-candidate",
+      "candidate_over_baseline": {
+        "p50_us": {
+          "value": 0.9721141800198082,
+          "reason": null
+        },
+        "p99_us": {
+          "value": 1.1061687736668553,
+          "reason": null
+        },
+        "max_us": {
+          "value": 1.2573954159887826,
+          "reason": null
+        },
+        "mean_us": {
+          "value": 1.0005150764630504,
+          "reason": null
+        }
+      },
+      "deadline_misses": {
+        "baseline": 0,
+        "candidate": 0,
+        "candidate_over_baseline": {
+          "value": null,
+          "reason": "zero baseline denominator"
+        }
+      }
+    },
+    {
+      "profile_id": "p05",
+      "cycle": 2,
+      "baseline_run": "c02-p05-1-baseline",
+      "candidate_run": "c02-p05-2-candidate",
+      "candidate_over_baseline": {
+        "p50_us": {
+          "value": 0.49557988773641926,
+          "reason": null
+        },
+        "p99_us": {
+          "value": 0.3552801947971732,
+          "reason": null
+        },
+        "max_us": {
+          "value": 0.2734523436907454,
+          "reason": null
+        },
+        "mean_us": {
+          "value": 0.4374911394045579,
+          "reason": null
+        }
+      },
+      "deadline_misses": {
+        "baseline": 139,
+        "candidate": 0,
+        "candidate_over_baseline": {
+          "value": 0.0,
+          "reason": null
+        }
+      }
+    },
+    {
+      "profile_id": "p05",
+      "cycle": 2,
+      "baseline_run": "c02-p05-4-baseline",
+      "candidate_run": "c02-p05-3-candidate",
+      "candidate_over_baseline": {
+        "p50_us": {
+          "value": 0.4139456427120611,
+          "reason": null
+        },
+        "p99_us": {
+          "value": 0.41464008475885145,
+          "reason": null
+        },
+        "max_us": {
+          "value": 0.33563095455434044,
+          "reason": null
+        },
+        "mean_us": {
+          "value": 0.41761281990017796,
+          "reason": null
+        }
+      },
+      "deadline_misses": {
+        "baseline": 105,
+        "candidate": 0,
+        "candidate_over_baseline": {
+          "value": 0.0,
+          "reason": null
+        }
+      }
+    },
+    {
+      "profile_id": "p06",
+      "cycle": 2,
+      "baseline_run": "c02-p06-1-baseline",
+      "candidate_run": "c02-p06-2-candidate",
+      "candidate_over_baseline": {
+        "p50_us": {
+          "value": 0.4400243231923614,
+          "reason": null
+        },
+        "p99_us": {
+          "value": 0.7607029765674478,
+          "reason": null
+        },
+        "max_us": {
+          "value": 1.5280948367318392,
+          "reason": null
+        },
+        "mean_us": {
+          "value": 0.45613879402393614,
+          "reason": null
+        }
+      },
+      "deadline_misses": {
+        "baseline": 55,
+        "candidate": 1,
+        "candidate_over_baseline": {
+          "value": 0.01818181818181818,
+          "reason": null
+        }
+      }
+    },
+    {
+      "profile_id": "p06",
+      "cycle": 2,
+      "baseline_run": "c02-p06-4-baseline",
+      "candidate_run": "c02-p06-3-candidate",
+      "candidate_over_baseline": {
+        "p50_us": {
+          "value": 0.4434766941977803,
+          "reason": null
+        },
+        "p99_us": {
+          "value": 0.4552950387943981,
+          "reason": null
+        },
+        "max_us": {
+          "value": 1.7710484859093298,
+          "reason": null
+        },
+        "mean_us": {
+          "value": 0.4493738237097288,
+          "reason": null
+        }
+      },
+      "deadline_misses": {
+        "baseline": 38,
+        "candidate": 1,
+        "candidate_over_baseline": {
+          "value": 0.02631578947368421,
+          "reason": null
+        }
+      }
+    },
+    {
+      "profile_id": "p07",
+      "cycle": 2,
+      "baseline_run": "c02-p07-1-baseline",
+      "candidate_run": "c02-p07-2-candidate",
+      "candidate_over_baseline": {
+        "p50_us": {
+          "value": 0.5035269342077682,
+          "reason": null
+        },
+        "p99_us": {
+          "value": 0.4511404985318961,
+          "reason": null
+        },
+        "max_us": {
+          "value": 0.45868741389783446,
+          "reason": null
+        },
+        "mean_us": {
+          "value": 0.47615787280325467,
+          "reason": null
+        }
+      },
+      "deadline_misses": {
+        "baseline": 84,
+        "candidate": 0,
+        "candidate_over_baseline": {
+          "value": 0.0,
+          "reason": null
+        }
+      }
+    },
+    {
+      "profile_id": "p07",
+      "cycle": 2,
+      "baseline_run": "c02-p07-4-baseline",
+      "candidate_run": "c02-p07-3-candidate",
+      "candidate_over_baseline": {
+        "p50_us": {
+          "value": 0.697431864371308,
+          "reason": null
+        },
+        "p99_us": {
+          "value": 0.5245806531687714,
+          "reason": null
+        },
+        "max_us": {
+          "value": 1.34832094446589,
+          "reason": null
+        },
+        "mean_us": {
+          "value": 0.6155660232430791,
+          "reason": null
+        }
+      },
+      "deadline_misses": {
+        "baseline": 75,
+        "candidate": 1,
+        "candidate_over_baseline": {
+          "value": 0.013333333333333334,
+          "reason": null
+        }
+      }
+    },
+    {
+      "profile_id": "p08",
+      "cycle": 2,
+      "baseline_run": "c02-p08-1-baseline",
+      "candidate_run": "c02-p08-2-candidate",
+      "candidate_over_baseline": {
+        "p50_us": {
+          "value": 0.964599730424908,
+          "reason": null
+        },
+        "p99_us": {
+          "value": 0.8682960034038505,
+          "reason": null
+        },
+        "max_us": {
+          "value": 0.8694555253532897,
+          "reason": null
+        },
+        "mean_us": {
+          "value": 0.9685320042252816,
+          "reason": null
+        }
+      },
+      "deadline_misses": {
+        "baseline": 145,
+        "candidate": 127,
+        "candidate_over_baseline": {
+          "value": 0.8758620689655172,
+          "reason": null
+        }
+      }
+    },
+    {
+      "profile_id": "p08",
+      "cycle": 2,
+      "baseline_run": "c02-p08-4-baseline",
+      "candidate_run": "c02-p08-3-candidate",
+      "candidate_over_baseline": {
+        "p50_us": {
+          "value": 1.0024824333135278,
+          "reason": null
+        },
+        "p99_us": {
+          "value": 1.067932629477562,
+          "reason": null
+        },
+        "max_us": {
+          "value": 1.0423626800657908,
+          "reason": null
+        },
+        "mean_us": {
+          "value": 1.0008782939880667,
+          "reason": null
+        }
+      },
+      "deadline_misses": {
+        "baseline": 51,
+        "candidate": 40,
+        "candidate_over_baseline": {
+          "value": 0.7843137254901961,
+          "reason": null
+        }
+      }
+    },
+    {
+      "profile_id": "p09",
+      "cycle": 2,
+      "baseline_run": "c02-p09-1-baseline",
+      "candidate_run": "c02-p09-2-candidate",
+      "candidate_over_baseline": {
+        "p50_us": {
+          "value": 0.5257165908757517,
+          "reason": null
+        },
+        "p99_us": {
+          "value": 0.4240324719878118,
+          "reason": null
+        },
+        "max_us": {
+          "value": 1.2455813438569403,
+          "reason": null
+        },
+        "mean_us": {
+          "value": 0.5246013211117133,
+          "reason": null
+        }
+      },
+      "deadline_misses": {
+        "baseline": 0,
+        "candidate": 0,
+        "candidate_over_baseline": {
+          "value": null,
+          "reason": "zero baseline denominator"
+        }
+      }
+    },
+    {
+      "profile_id": "p09",
+      "cycle": 2,
+      "baseline_run": "c02-p09-4-baseline",
+      "candidate_run": "c02-p09-3-candidate",
+      "candidate_over_baseline": {
+        "p50_us": {
+          "value": 0.5329246901839186,
+          "reason": null
+        },
+        "p99_us": {
+          "value": 0.5142710293660978,
+          "reason": null
+        },
+        "max_us": {
+          "value": 0.44766023348243256,
+          "reason": null
+        },
+        "mean_us": {
+          "value": 0.5510959885628489,
+          "reason": null
+        }
+      },
+      "deadline_misses": {
+        "baseline": 0,
+        "candidate": 0,
+        "candidate_over_baseline": {
+          "value": null,
+          "reason": "zero baseline denominator"
+        }
+      }
+    },
+    {
+      "profile_id": "p10",
+      "cycle": 2,
+      "baseline_run": "c02-p10-1-baseline",
+      "candidate_run": "c02-p10-2-candidate",
+      "candidate_over_baseline": {
+        "p50_us": {
+          "value": 0.9978331964674186,
+          "reason": null
+        },
+        "p99_us": {
+          "value": 0.8779445321279703,
+          "reason": null
+        },
+        "max_us": {
+          "value": 1.0798158934413553,
+          "reason": null
+        },
+        "mean_us": {
+          "value": 0.9823166644878167,
+          "reason": null
+        }
+      },
+      "deadline_misses": {
+        "baseline": 151,
+        "candidate": 156,
+        "candidate_over_baseline": {
+          "value": 1.033112582781457,
+          "reason": null
+        }
+      }
+    },
+    {
+      "profile_id": "p10",
+      "cycle": 2,
+      "baseline_run": "c02-p10-4-baseline",
+      "candidate_run": "c02-p10-3-candidate",
+      "candidate_over_baseline": {
+        "p50_us": {
+          "value": 1.0008788118463836,
+          "reason": null
+        },
+        "p99_us": {
+          "value": 1.1081749189348318,
+          "reason": null
+        },
+        "max_us": {
+          "value": 1.2392631600600663,
+          "reason": null
+        },
+        "mean_us": {
+          "value": 0.9883739489295523,
+          "reason": null
+        }
+      },
+      "deadline_misses": {
+        "baseline": 64,
+        "candidate": 39,
+        "candidate_over_baseline": {
+          "value": 0.609375,
+          "reason": null
+        }
+      }
+    },
+    {
+      "profile_id": "p11",
+      "cycle": 2,
+      "baseline_run": "c02-p11-1-baseline",
+      "candidate_run": "c02-p11-2-candidate",
+      "candidate_over_baseline": {
+        "p50_us": {
+          "value": 0.5152720604871525,
+          "reason": null
+        },
+        "p99_us": {
+          "value": 0.3532847570208388,
+          "reason": null
+        },
+        "max_us": {
+          "value": 0.33674940199937103,
+          "reason": null
+        },
+        "mean_us": {
+          "value": 0.49406413743776334,
+          "reason": null
+        }
+      },
+      "deadline_misses": {
+        "baseline": 38,
+        "candidate": 0,
+        "candidate_over_baseline": {
+          "value": 0.0,
+          "reason": null
+        }
+      }
+    },
+    {
+      "profile_id": "p11",
+      "cycle": 2,
+      "baseline_run": "c02-p11-4-baseline",
+      "candidate_run": "c02-p11-3-candidate",
+      "candidate_over_baseline": {
+        "p50_us": {
+          "value": 0.48279931363105755,
+          "reason": null
+        },
+        "p99_us": {
+          "value": 0.4382348649629959,
+          "reason": null
+        },
+        "max_us": {
+          "value": 0.5216740074263,
+          "reason": null
+        },
+        "mean_us": {
+          "value": 0.463932429087734,
+          "reason": null
+        }
+      },
+      "deadline_misses": {
+        "baseline": 92,
+        "candidate": 1,
+        "candidate_over_baseline": {
+          "value": 0.010869565217391304,
+          "reason": null
+        }
+      }
+    },
+    {
+      "profile_id": "p12",
+      "cycle": 2,
+      "baseline_run": "c02-p12-1-baseline",
+      "candidate_run": "c02-p12-2-candidate",
+      "candidate_over_baseline": {
+        "p50_us": {
+          "value": 1.0143465271409642,
+          "reason": null
+        },
+        "p99_us": {
+          "value": 0.9099337313824551,
+          "reason": null
+        },
+        "max_us": {
+          "value": 0.43815524313872156,
+          "reason": null
+        },
+        "mean_us": {
+          "value": 1.0312066478602986,
+          "reason": null
+        }
+      },
+      "deadline_misses": {
+        "baseline": 0,
+        "candidate": 0,
+        "candidate_over_baseline": {
+          "value": null,
+          "reason": "zero baseline denominator"
+        }
+      }
+    },
+    {
+      "profile_id": "p12",
+      "cycle": 2,
+      "baseline_run": "c02-p12-4-baseline",
+      "candidate_run": "c02-p12-3-candidate",
+      "candidate_over_baseline": {
+        "p50_us": {
+          "value": 1.0008812629053936,
+          "reason": null
+        },
+        "p99_us": {
+          "value": 1.1098677416976959,
+          "reason": null
+        },
+        "max_us": {
+          "value": 0.9850329022803366,
+          "reason": null
+        },
+        "mean_us": {
+          "value": 1.0178807499411224,
+          "reason": null
+        }
+      },
+      "deadline_misses": {
+        "baseline": 0,
+        "candidate": 0,
+        "candidate_over_baseline": {
+          "value": null,
+          "reason": "zero baseline denominator"
+        }
+      }
+    }
+  ],
+  "profiles": [
+    {
+      "profile_id": "p01",
+      "matched_pairs": 4,
+      "ratios": {
+        "p50_us": {
+          "all_pair_ratios": [
+            0.4173119504836391,
+            0.4314612579240171,
+            0.26572476424781255,
+            0.5856231864498279
+          ],
+          "median_pair_ratio": 0.4243866042038281,
+          "undefined_pairs": 0
+        },
+        "p99_us": {
+          "all_pair_ratios": [
+            1.975814458549513,
+            0.8469206621065971,
+            0.4557631244707875,
+            0.35666748959582417
+          ],
+          "median_pair_ratio": 0.6513418932886923,
+          "undefined_pairs": 0
+        },
+        "max_us": {
+          "all_pair_ratios": [
+            5.927246556687525,
+            2.147824700944345,
+            0.5210028200839146,
+            0.40360902059289655
+          ],
+          "median_pair_ratio": 1.33441376051413,
+          "undefined_pairs": 0
+        },
+        "mean_us": {
+          "all_pair_ratios": [
+            0.49734188000053603,
+            0.46415726012253306,
+            0.3203468290086944,
+            0.5532164520233076
+          ],
+          "median_pair_ratio": 0.4807495700615345,
+          "undefined_pairs": 0
+        }
+      },
+      "observations": {
+        "baseline": {
+          "runs": 4,
+          "callbacks": 1024,
+          "median_of_run_p50_us": 302.6585,
+          "median_of_run_p99_us": 546.8205,
+          "maximum_observed_us": 683.313,
+          "deadline_misses": 0
+        },
+        "candidate": {
+          "runs": 4,
+          "callbacks": 1024,
+          "median_of_run_p50_us": 128.505,
+          "median_of_run_p99_us": 325.9885,
+          "maximum_observed_us": 3438.455,
+          "deadline_misses": 2
+        }
+      }
+    },
+    {
+      "profile_id": "p02",
+      "matched_pairs": 4,
+      "ratios": {
+        "p50_us": {
+          "all_pair_ratios": [
+            0.5766989829217883,
+            0.5794787108506635,
+            0.43766445601976156,
+            0.7299096835857908
+          ],
+          "median_pair_ratio": 0.578088846886226,
+          "undefined_pairs": 0
+        },
+        "p99_us": {
+          "all_pair_ratios": [
+            3.7937813284690045,
+            0.3104663540378032,
+            0.4974946423300018,
+            0.14257710914990054
+          ],
+          "median_pair_ratio": 0.40398049818390247,
+          "undefined_pairs": 0
+        },
+        "max_us": {
+          "all_pair_ratios": [
+            9.121195242504696,
+            0.2635322353700743,
+            0.6442897563662768,
+            0.0898294319660629
+          ],
+          "median_pair_ratio": 0.45391099586817557,
+          "undefined_pairs": 0
+        },
+        "mean_us": {
+          "all_pair_ratios": [
+            0.682409746621618,
+            0.5460903870029921,
+            0.4472396157818653,
+            0.6165413411456651
+          ],
+          "median_pair_ratio": 0.5813158640743286,
+          "undefined_pairs": 0
+        }
+      },
+      "observations": {
+        "baseline": {
+          "runs": 4,
+          "callbacks": 1024,
+          "median_of_run_p50_us": 298.5475,
+          "median_of_run_p99_us": 611.8264999999999,
+          "maximum_observed_us": 3218.188,
+          "deadline_misses": 7
+        },
+        "candidate": {
+          "runs": 4,
+          "callbacks": 1024,
+          "median_of_run_p50_us": 171.49900000000002,
+          "median_of_run_p99_us": 267.92650000000003,
+          "maximum_observed_us": 5191.082,
+          "deadline_misses": 3
+        }
+      }
+    },
+    {
+      "profile_id": "p03",
+      "matched_pairs": 4,
+      "ratios": {
+        "p50_us": {
+          "all_pair_ratios": [
+            0.5161837374169912,
+            0.5113819771351715,
+            0.5412693106815842,
+            0.45683930544214424
+          ],
+          "median_pair_ratio": 0.5137828572760814,
+          "undefined_pairs": 0
+        },
+        "p99_us": {
+          "all_pair_ratios": [
+            0.4746314062733012,
+            0.5537103964966892,
+            0.6990257746150751,
+            0.33726258667470604
+          ],
+          "median_pair_ratio": 0.5141709013849952,
+          "undefined_pairs": 0
+        },
+        "max_us": {
+          "all_pair_ratios": [
+            0.5516606521399777,
+            0.6730253890121278,
+            0.7699598829792139,
+            0.2805088422069754
+          ],
+          "median_pair_ratio": 0.6123430205760527,
+          "undefined_pairs": 0
+        },
+        "mean_us": {
+          "all_pair_ratios": [
+            0.5250255002990533,
+            0.5078758913818944,
+            0.5491303869341679,
+            0.4125768667741157
+          ],
+          "median_pair_ratio": 0.5164506958404738,
+          "undefined_pairs": 0
+        }
+      },
+      "observations": {
+        "baseline": {
+          "runs": 4,
+          "callbacks": 1024,
+          "median_of_run_p50_us": 301.27099999999996,
+          "median_of_run_p99_us": 487.5475,
+          "maximum_observed_us": 1378.502,
+          "deadline_misses": 1
+        },
+        "candidate": {
+          "runs": 4,
+          "callbacks": 1024,
+          "median_of_run_p50_us": 152.13,
+          "median_of_run_p99_us": 254.58749999999998,
+          "maximum_observed_us": 601.12,
+          "deadline_misses": 0
+        }
+      }
+    },
+    {
+      "profile_id": "p04",
+      "matched_pairs": 4,
+      "ratios": {
+        "p50_us": {
+          "all_pair_ratios": [
+            1.0316235390190376,
+            0.9888640754269719,
+            0.956211809367728,
+            0.9721141800198082
+          ],
+          "median_pair_ratio": 0.98048912772339,
+          "undefined_pairs": 0
+        },
+        "p99_us": {
+          "all_pair_ratios": [
+            1.7965072302558398,
+            0.6065995245092769,
+            0.7988158321722891,
+            1.1061687736668553
+          ],
+          "median_pair_ratio": 0.9524923029195722,
+          "undefined_pairs": 0
+        },
+        "max_us": {
+          "all_pair_ratios": [
+            3.1818923710287663,
+            0.330502711991932,
+            0.5645360020795425,
+            1.2573954159887826
+          ],
+          "median_pair_ratio": 0.9109657090341625,
+          "undefined_pairs": 0
+        },
+        "mean_us": {
+          "all_pair_ratios": [
+            1.0867792942237708,
+            0.9338426666833611,
+            0.9427597128638006,
+            1.0005150764630504
+          ],
+          "median_pair_ratio": 0.9716373946634255,
+          "undefined_pairs": 0
+        }
+      },
+      "observations": {
+        "baseline": {
+          "runs": 4,
+          "callbacks": 1024,
+          "median_of_run_p50_us": 301.7975,
+          "median_of_run_p99_us": 527.0115000000001,
+          "maximum_observed_us": 1698.567,
+          "deadline_misses": 1
+        },
+        "candidate": {
+          "runs": 4,
+          "callbacks": 1024,
+          "median_of_run_p50_us": 297.576,
+          "median_of_run_p99_us": 516.1945000000001,
+          "maximum_observed_us": 1832.525,
+          "deadline_misses": 1
+        }
+      }
+    },
+    {
+      "profile_id": "p05",
+      "matched_pairs": 4,
+      "ratios": {
+        "p50_us": {
+          "all_pair_ratios": [
+            0.4347460126521456,
+            0.4276241758493019,
+            0.49557988773641926,
+            0.4139456427120611
+          ],
+          "median_pair_ratio": 0.4311850942507237,
+          "undefined_pairs": 0
+        },
+        "p99_us": {
+          "all_pair_ratios": [
+            0.4131503356485767,
+            0.4232959453843316,
+            0.3552801947971732,
+            0.41464008475885145
+          ],
+          "median_pair_ratio": 0.4138952102037141,
+          "undefined_pairs": 0
+        },
+        "max_us": {
+          "all_pair_ratios": [
+            0.29147459520538277,
+            0.43994964178345963,
+            0.2734523436907454,
+            0.33563095455434044
+          ],
+          "median_pair_ratio": 0.3135527748798616,
+          "undefined_pairs": 0
+        },
+        "mean_us": {
+          "all_pair_ratios": [
+            0.4208393401665522,
+            0.41767684659706256,
+            0.4374911394045579,
+            0.41761281990017796
+          ],
+          "median_pair_ratio": 0.4192580933818074,
+          "undefined_pairs": 0
+        }
+      },
+      "observations": {
+        "baseline": {
+          "runs": 4,
+          "callbacks": 1024,
+          "median_of_run_p50_us": 1258.4845,
+          "median_of_run_p99_us": 1961.716,
+          "maximum_observed_us": 4680.545,
+          "deadline_misses": 364
+        },
+        "candidate": {
+          "runs": 4,
+          "callbacks": 1024,
+          "median_of_run_p50_us": 529.8705,
+          "median_of_run_p99_us": 778.7639999999999,
+          "maximum_observed_us": 1279.906,
+          "deadline_misses": 0
+        }
+      }
+    },
+    {
+      "profile_id": "p06",
+      "matched_pairs": 4,
+      "ratios": {
+        "p50_us": {
+          "all_pair_ratios": [
+            0.449863570959678,
+            0.39131845393476195,
+            0.4400243231923614,
+            0.4434766941977803
+          ],
+          "median_pair_ratio": 0.4417505086950708,
+          "undefined_pairs": 0
+        },
+        "p99_us": {
+          "all_pair_ratios": [
+            0.46927095471017827,
+            0.3157942867070297,
+            0.7607029765674478,
+            0.4552950387943981
+          ],
+          "median_pair_ratio": 0.4622829967522882,
+          "undefined_pairs": 0
+        },
+        "max_us": {
+          "all_pair_ratios": [
+            0.5873408386071959,
+            0.638229954043672,
+            1.5280948367318392,
+            1.7710484859093298
+          ],
+          "median_pair_ratio": 1.0831623953877556,
+          "undefined_pairs": 0
+        },
+        "mean_us": {
+          "all_pair_ratios": [
+            0.45094554590207275,
+            0.39926067301044765,
+            0.45613879402393614,
+            0.4493738237097288
+          ],
+          "median_pair_ratio": 0.45015968480590074,
+          "undefined_pairs": 0
+        }
+      },
+      "observations": {
+        "baseline": {
+          "runs": 4,
+          "callbacks": 1024,
+          "median_of_run_p50_us": 1210.8944999999999,
+          "median_of_run_p99_us": 1678.417,
+          "maximum_observed_us": 5568.33,
+          "deadline_misses": 289
+        },
+        "candidate": {
+          "runs": 4,
+          "callbacks": 1024,
+          "median_of_run_p50_us": 538.7584999999999,
+          "median_of_run_p99_us": 1005.2945,
+          "maximum_observed_us": 4573.336,
+          "deadline_misses": 5
+        }
+      }
+    },
+    {
+      "profile_id": "p07",
+      "matched_pairs": 4,
+      "ratios": {
+        "p50_us": {
+          "all_pair_ratios": [
+            0.5069680576291006,
+            0.524503887547844,
+            0.5035269342077682,
+            0.697431864371308
+          ],
+          "median_pair_ratio": 0.5157359725884723,
+          "undefined_pairs": 0
+        },
+        "p99_us": {
+          "all_pair_ratios": [
+            1.3235242137799923,
+            0.5471831529223661,
+            0.4511404985318961,
+            0.5245806531687714
+          ],
+          "median_pair_ratio": 0.5358819030455688,
+          "undefined_pairs": 0
+        },
+        "max_us": {
+          "all_pair_ratios": [
+            1.2400528832998556,
+            0.30195960364064345,
+            0.45868741389783446,
+            1.34832094446589
+          ],
+          "median_pair_ratio": 0.8493701485988451,
+          "undefined_pairs": 0
+        },
+        "mean_us": {
+          "all_pair_ratios": [
+            0.5110943677347363,
+            0.5358972157938565,
+            0.47615787280325467,
+            0.6155660232430791
+          ],
+          "median_pair_ratio": 0.5234957917642964,
+          "undefined_pairs": 0
+        }
+      },
+      "observations": {
+        "baseline": {
+          "runs": 4,
+          "callbacks": 1024,
+          "median_of_run_p50_us": 1227.018,
+          "median_of_run_p99_us": 1864.6875,
+          "maximum_observed_us": 5405.109,
+          "deadline_misses": 242
+        },
+        "candidate": {
+          "runs": 4,
+          "callbacks": 1024,
+          "median_of_run_p50_us": 627.209,
+          "median_of_run_p99_us": 911.065,
+          "maximum_observed_us": 6702.621,
+          "deadline_misses": 4
+        }
+      }
+    },
+    {
+      "profile_id": "p08",
+      "matched_pairs": 4,
+      "ratios": {
+        "p50_us": {
+          "all_pair_ratios": [
+            1.0314659764441896,
+            1.0259596401443016,
+            0.964599730424908,
+            1.0024824333135278
+          ],
+          "median_pair_ratio": 1.0142210367289146,
+          "undefined_pairs": 0
+        },
+        "p99_us": {
+          "all_pair_ratios": [
+            0.9566642871353174,
+            1.2134963058435324,
+            0.8682960034038505,
+            1.067932629477562
+          ],
+          "median_pair_ratio": 1.0122984583064396,
+          "undefined_pairs": 0
+        },
+        "max_us": {
+          "all_pair_ratios": [
+            0.7529324396374437,
+            1.3655310523616702,
+            0.8694555253532897,
+            1.0423626800657908
+          ],
+          "median_pair_ratio": 0.9559091027095403,
+          "undefined_pairs": 0
+        },
+        "mean_us": {
+          "all_pair_ratios": [
+            0.9955358435327472,
+            1.0474464571918114,
+            0.9685320042252816,
+            1.0008782939880667
+          ],
+          "median_pair_ratio": 0.998207068760407,
+          "undefined_pairs": 0
+        }
+      },
+      "observations": {
+        "baseline": {
+          "runs": 4,
+          "callbacks": 1024,
+          "median_of_run_p50_us": 1214.71,
+          "median_of_run_p99_us": 1845.5695,
+          "maximum_observed_us": 4358.828,
+          "deadline_misses": 293
+        },
+        "candidate": {
+          "runs": 4,
+          "callbacks": 1024,
+          "median_of_run_p50_us": 1245.691,
+          "median_of_run_p99_us": 1929.469,
+          "maximum_observed_us": 3628.537,
+          "deadline_misses": 314
+        }
+      }
+    },
+    {
+      "profile_id": "p09",
+      "matched_pairs": 4,
+      "ratios": {
+        "p50_us": {
+          "all_pair_ratios": [
+            0.5370874042377813,
+            0.4938128575798707,
+            0.5257165908757517,
+            0.5329246901839186
+          ],
+          "median_pair_ratio": 0.5293206405298352,
+          "undefined_pairs": 0
+        },
+        "p99_us": {
+          "all_pair_ratios": [
+            0.900479584427125,
+            1.0634392290003432,
+            0.4240324719878118,
+            0.5142710293660978
+          ],
+          "median_pair_ratio": 0.7073753068966113,
+          "undefined_pairs": 0
+        },
+        "max_us": {
+          "all_pair_ratios": [
+            0.979552252774746,
+            0.8456193522155921,
+            1.2455813438569403,
+            0.44766023348243256
+          ],
+          "median_pair_ratio": 0.9125858024951691,
+          "undefined_pairs": 0
+        },
+        "mean_us": {
+          "all_pair_ratios": [
+            0.5572005007037106,
+            0.5107269876969729,
+            0.5246013211117133,
+            0.5510959885628489
+          ],
+          "median_pair_ratio": 0.5378486548372812,
+          "undefined_pairs": 0
+        }
+      },
+      "observations": {
+        "baseline": {
+          "runs": 4,
+          "callbacks": 1024,
+          "median_of_run_p50_us": 1364.121,
+          "median_of_run_p99_us": 2474.8315000000002,
+          "maximum_observed_us": 4191.024,
+          "deadline_misses": 0
+        },
+        "candidate": {
+          "runs": 4,
+          "callbacks": 1024,
+          "median_of_run_p50_us": 712.8415,
+          "median_of_run_p99_us": 1389.9344999999998,
+          "maximum_observed_us": 4680.455,
+          "deadline_misses": 0
+        }
+      }
+    },
+    {
+      "profile_id": "p10",
+      "matched_pairs": 4,
+      "ratios": {
+        "p50_us": {
+          "all_pair_ratios": [
+            0.9842659439234405,
+            0.9747135125328819,
+            0.9978331964674186,
+            1.0008788118463836
+          ],
+          "median_pair_ratio": 0.9910495701954296,
+          "undefined_pairs": 0
+        },
+        "p99_us": {
+          "all_pair_ratios": [
+            0.988379947818219,
+            0.982695353823619,
+            0.8779445321279703,
+            1.1081749189348318
+          ],
+          "median_pair_ratio": 0.985537650820919,
+          "undefined_pairs": 0
+        },
+        "max_us": {
+          "all_pair_ratios": [
+            0.8920106613420027,
+            5.871211087379442,
+            1.0798158934413553,
+            1.2392631600600663
+          ],
+          "median_pair_ratio": 1.1595395267507107,
+          "undefined_pairs": 0
+        },
+        "mean_us": {
+          "all_pair_ratios": [
+            0.9960818794512698,
+            1.025299201243362,
+            0.9823166644878167,
+            0.9883739489295523
+          ],
+          "median_pair_ratio": 0.9922279141904111,
+          "undefined_pairs": 0
+        }
+      },
+      "observations": {
+        "baseline": {
+          "runs": 4,
+          "callbacks": 1024,
+          "median_of_run_p50_us": 332.137,
+          "median_of_run_p99_us": 585.4375,
+          "maximum_observed_us": 1109.804,
+          "deadline_misses": 457
+        },
+        "candidate": {
+          "runs": 4,
+          "callbacks": 1024,
+          "median_of_run_p50_us": 325.3315,
+          "median_of_run_p99_us": 541.6575,
+          "maximum_observed_us": 3700.002,
+          "deadline_misses": 389
+        }
+      }
+    },
+    {
+      "profile_id": "p11",
+      "matched_pairs": 4,
+      "ratios": {
+        "p50_us": {
+          "all_pair_ratios": [
+            0.3449421863692768,
+            0.5132974499846262,
+            0.5152720604871525,
+            0.48279931363105755
+          ],
+          "median_pair_ratio": 0.4980483818078419,
+          "undefined_pairs": 0
+        },
+        "p99_us": {
+          "all_pair_ratios": [
+            0.46843919135442036,
+            0.4184744728103935,
+            0.3532847570208388,
+            0.4382348649629959
+          ],
+          "median_pair_ratio": 0.4283546688866947,
+          "undefined_pairs": 0
+        },
+        "max_us": {
+          "all_pair_ratios": [
+            0.7023641317336647,
+            0.23500591790321104,
+            0.33674940199937103,
+            0.5216740074263
+          ],
+          "median_pair_ratio": 0.42921170471283554,
+          "undefined_pairs": 0
+        },
+        "mean_us": {
+          "all_pair_ratios": [
+            0.38385630245145075,
+            0.5032209972738342,
+            0.49406413743776334,
+            0.463932429087734
+          ],
+          "median_pair_ratio": 0.4789982832627487,
+          "undefined_pairs": 0
+        }
+      },
+      "observations": {
+        "baseline": {
+          "runs": 4,
+          "callbacks": 1024,
+          "median_of_run_p50_us": 304.8315,
+          "median_of_run_p99_us": 593.5395,
+          "maximum_observed_us": 1496.307,
+          "deadline_misses": 358
+        },
+        "candidate": {
+          "runs": 4,
+          "callbacks": 1024,
+          "median_of_run_p50_us": 151.985,
+          "median_of_run_p99_us": 248.28300000000002,
+          "maximum_observed_us": 398.44,
+          "deadline_misses": 4
+        }
+      }
+    },
+    {
+      "profile_id": "p12",
+      "matched_pairs": 4,
+      "ratios": {
+        "p50_us": {
+          "all_pair_ratios": [
+            0.9866349866349866,
+            1.0488612249973033,
+            1.0143465271409642,
+            1.0008812629053936
+          ],
+          "median_pair_ratio": 1.0076138950231788,
+          "undefined_pairs": 0
+        },
+        "p99_us": {
+          "all_pair_ratios": [
+            0.9822373952969558,
+            1.0539270887824337,
+            0.9099337313824551,
+            1.1098677416976959
+          ],
+          "median_pair_ratio": 1.0180822420396947,
+          "undefined_pairs": 0
+        },
+        "max_us": {
+          "all_pair_ratios": [
+            1.091157868841104,
+            0.9389994249480123,
+            0.43815524313872156,
+            0.9850329022803366
+          ],
+          "median_pair_ratio": 0.9620161636141744,
+          "undefined_pairs": 0
+        },
+        "mean_us": {
+          "all_pair_ratios": [
+            0.9808007849622294,
+            1.1524187858937114,
+            1.0312066478602986,
+            1.0178807499411224
+          ],
+          "median_pair_ratio": 1.0245436989007106,
+          "undefined_pairs": 0
+        }
+      },
+      "observations": {
+        "baseline": {
+          "runs": 4,
+          "callbacks": 1024,
+          "median_of_run_p50_us": 1209.1865,
+          "median_of_run_p99_us": 1735.6515,
+          "maximum_observed_us": 4021.408,
+          "deadline_misses": 0
+        },
+        "candidate": {
+          "runs": 4,
+          "callbacks": 1024,
+          "median_of_run_p50_us": 1211.875,
+          "median_of_run_p99_us": 1727.9505,
+          "maximum_observed_us": 2437.912,
+          "deadline_misses": 0
+        }
+      }
+    }
+  ],
+  "limits": [
+    "Observational matched candidate/baseline ratios; no causal speedup or statistical independence is established.",
+    "Every callback and outlier is retained. Observed maxima are not worst-case execution-time (WCRT) bounds.",
+    "Nominal block-period misses are not measured DAW/audio-device underruns or realtime guarantees.",
+    "Only concrete RhodesProcessor::process calls are timed; launch, setup, warmup, checks and reporting are excluded.",
+    "Synthetic Q6 model, six nodes and 48-frame latency; no physical or perceptual fidelity is established.",
+    "No allocation, locking, native-platform coverage, timer-resolution or long-tail guarantee follows from this experiment.",
+    "Current source hashes do not reconstruct a historical baseline. Retained provenance and embedded compiler fields are claims with their original scope.",
+    "No build, priority change, power-policy change, pacing, overhead subtraction, adaptive repetition or automatic retry is performed.",
+    "Default affinity is inherited and observed where supported; no CPU is silently selected or assumed.",
+    "A zero denominator produces a null ratio with an explicit reason, never an invented zero or infinity."
+  ]
+}
