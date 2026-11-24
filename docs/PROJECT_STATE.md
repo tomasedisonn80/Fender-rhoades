@@ -6,9 +6,9 @@
 
 **Fidelity status:** `unvalidated`. Task completion is not a realism percentage.
 
-**State revision:** 30 · **Last state change:** 2026-11-24T07:04:48Z
+**State revision:** 32 · **Last state change:** 2026-11-24T07:25:28Z
 
-blocked: **2** | done: **3** | in_progress: **0** | todo: **9**
+blocked: **2** | done: **3** | in_progress: **2** | todo: **7**
 
 ## Task ledger
 
@@ -18,8 +18,8 @@ blocked: **2** | done: **3** | in_progress: **0** | todo: **9**
 | SPEC-001 | Identify the reference Mark I Stage specimen | blocked | FND-001 | — |
 | DATA-001 | Acquire calibrated specimen data and held-out manifest | blocked | FND-001, SPEC-001 | — |
 | PHY-001 | Validate analytic mechanical and pickup primitives | done | FND-001 | PHY-20261123-numerical |
-| PHY-002 | Implement finite-mass hammer and damper contact reference | todo | PHY-001 | — |
-| RT-001 | Measure runtime cost and numerical approximation errors | todo | PHY-001 | — |
+| PHY-002 | Implement finite-mass hammer and damper contact reference | in_progress | PHY-001 | — |
+| RT-001 | Measure runtime cost and numerical approximation errors | in_progress | PHY-001 | — |
 | HOST-001 | Build and validate an experimental VST3 instrument adapter | done | PHY-001 | HOST-20261124-current-native, HOST-20261124-final-review |
 | MAG-001 | Identify magnetic linkage and reciprocal force reference | todo | SPEC-001, DATA-001 | — |
 | ELEC-001 | Identify and solve the specimen pickup network | todo | SPEC-001, DATA-001 | — |
@@ -33,8 +33,8 @@ blocked: **2** | done: **3** | in_progress: **0** | todo: **9**
 
 Run `python3 tools/project.py next` for lease-aware available work. The list below includes claimed work and is deterministic:
 
-- **PHY-002 — Implement finite-mass hammer and damper contact reference**.
-- **RT-001 — Measure runtime cost and numerical approximation errors**.
+- **PHY-002 — Implement finite-mass hammer and damper contact reference**. Claimed by `continuation-b-root` until `2026-11-24T11:25:28Z`; check current lease before starting.
+- **RT-001 — Measure runtime cost and numerical approximation errors**. Claimed by `continuation-b-root` until `2026-11-24T11:25:28Z`; check current lease before starting.
 
 ## Explicit blockers
 

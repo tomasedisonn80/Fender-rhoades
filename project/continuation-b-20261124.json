@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "campaign": "continuation-b-20261124",
+  "baseline_commit": "a17e665454c1daa1c1aff3d71b790b28fe145e12",
+  "requested_agents": 100,
+  "requested_waves": 5,
+  "concurrency_limit_including_integrator": 4,
+  "status": "in_progress",
+  "agents": [
+    {"assignment": 1, "wave": 1, "agent_task_name": "/root/w1_001_contact_extrema", "status": "running"},
+    {"assignment": 2, "wave": 1, "agent_task_name": "/root/w1_002_filtered_error", "status": "running"},
+    {"assignment": 3, "wave": 1, "agent_task_name": "/root/w1_003_public_research", "status": "running"}
+  ]
+}
