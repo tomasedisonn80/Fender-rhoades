@@ -177,14 +177,30 @@
       "assignment": 22,
       "wave": 2,
       "agent_task_name": "/root/w2_022_campaign_validator",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/20261124b-w2-022-campaign-validator.md",
+      "sha256": "ed77b85d71f3212993e8c3ec80ff002349c7287e271fa7483974713eafa1c753"
     },
     {
       "assignment": 23,
       "wave": 2,
       "agent_task_name": "/root/w2_023_extrema_evidence_audit",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124b-w2-023-extrema-evidence-audit.md",
+      "sha256": "c183fc89dada99783eff2eb21b16b085cde9b7a699e04327caf85574aa1d4af2"
+    },
+    {
+      "assignment": 24,
+      "wave": 2,
+      "agent_task_name": "/root/w2_024_callback_harness_tests",
+      "status": "running"
+    },
+    {
+      "assignment": 25,
+      "wave": 2,
+      "agent_task_name": "/root/w2_025_alias_diagnostic_design",
       "status": "running"
     }
   ],
-  "completed_agents": 20
+  "completed_agents": 22
 }
