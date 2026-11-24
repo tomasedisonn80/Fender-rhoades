@@ -1,6 +1,7 @@
 """CLI portability regressions; constructed payloads are not physics evidence."""
 from __future__ import annotations
 
+import errno
 import hashlib
 import json
 import os
@@ -109,6 +110,17 @@ assert 'numpy' not in sys.modules and 'scipy' not in sys.modules
         candidate = self.root / os.fsdecode(b"candidate \xff.json")
         output = self.root / os.fsdecode(b"evidence \xfe")
         producer = self.root / os.fsdecode(b"declared producer \xfd.bin")
+        # Some POSIX filesystems reject undecodable names before the CLI can
+        # run. Probe that capability without hiding unrelated I/O failures.
+        try:
+            candidate.write_bytes(b"filename capability probe")
+        except UnicodeEncodeError:
+            self.skipTest("filesystem encoding rejects surrogate-escaped filenames")
+        except OSError as error:
+            if error.errno == errno.EILSEQ:
+                self.skipTest("filesystem rejects undecodable filename bytes")
+            raise
+        candidate.unlink()
         plan, record = self.retained_paths(candidate, output, producer)
         self.assertEqual(os.fsencode(record["input_path"]), os.fsencode(candidate))
         self.assertEqual(os.fsencode(plan["producer_binary"]), os.fsencode(producer))

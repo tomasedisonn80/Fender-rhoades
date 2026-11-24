@@ -59,7 +59,7 @@ class ContactPeakBackendBoundaryTests(unittest.TestCase):
 
     def test_real_nonzero_garbled_and_undecodable_workers_preserve_values(self):
         workers = {
-            "nonzero_unicode": "import sys\nsys.stderr.write('SciPy 加载失败 Ω\\n' * 400)\nsys.exit(23)\n",
+            "nonzero_unicode": "import sys\nsys.stderr.buffer.write(('SciPy 加载失败 Ω\\n' * 400).encode('utf-8'))\nsys.exit(23)\n",
             "garbled_stdout": "print('not JSON')\n",
             "undecodable_stderr": "import sys\nsys.stderr.buffer.write(bytes([255]))\nsys.exit(24)\n",
         }
