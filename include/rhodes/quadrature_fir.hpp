@@ -42,12 +42,19 @@ public:
 #pragma clang fp contract(off)
 #endif
         constexpr auto count = quadrature_filter::history_frames;
-        const std::size_t newest = next_ == 0 ? count - 1 : next_ - 1;
+        const std::size_t split = next_ == 0 ? count : next_;
         double sum = 0.0;
         for (std::size_t node = 0; node < quadrature_filter::node_count; ++node) {
-            for (std::size_t age = 0; age < count; ++age) {
-                const std::size_t index = newest >= age ? newest - age :
-                    count - (age - newest);
+            // Traverse the ring as two descending contiguous ranges. Keep one
+            // accumulator and the exact node/age order, including intermediate
+            // overflow, while removing the wrap decision from every product.
+            std::size_t age = 0;
+            for (std::size_t index = split; index > 0; ++age) {
+                --index;
+                sum += quadrature_filter::coefficients[node][age] * history_[node][index];
+            }
+            for (std::size_t index = count; index > split; ++age) {
+                --index;
                 sum += quadrature_filter::coefficients[node][age] * history_[node][index];
             }
         }
