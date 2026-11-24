@@ -1,6 +1,6 @@
 # Expression and mono output continuation
 
-Status: design under independent review. Baseline:
+Status: reviewed implementation contract. Baseline:
 `6c91dab00855b67a559e92edb79ae49e567be469`. This is an engineering extension
 of the three existing synthetic instruments, not a physical calibration.
 
@@ -17,15 +17,22 @@ Reserve parameter ID 2 and retain gain/sustain IDs 0/1, the sixteen CC123 IDs,
 all six class identities, model numbers 1/2/3 and latencies 0/48/48. Expose
 Expression as an automatable continuous control with factor range 0..1 and
 unit `x`. Its text conversion uses the existing strict bounded ASCII decimal
-parser and canonical binary32 round trips; commands remain binary64 controls.
+parser and canonical binary32 round trips. Accept surrounding ASCII whitespace,
+the existing signed decimal/exponent grammar and an optional lowercase `x`
+suffix; enforce the parsed finite binary64 domain 0..1 before canonicalization.
+Commands retain their binary64 controls and do not accept a unit suffix.
 
 Expression changes the digital output only. Zero expression continues note
 ownership, mechanical evolution, filtering and release tails. It does not mute
-by clearing state, stop an arithmetic fault being reported, alter velocity or
-claim an authentic historical volume circuit. Preserve the old calculation
+by clearing state, alter velocity or claim an authentic historical volume
+circuit. Preserve the old calculation
 `monitored = (32 * gain) * volts`; check it for nonfinite values before applying
 expression. At exact unity return the monitored value directly, retaining the
 legacy arithmetic path and stereo audio bytes.
+Engine failure or nonfinite monitored output always faults, including at zero
+expression. Apply expression before the final host-format conversion: reducing
+a finite double into the float output range is valid, not a hidden fault. Check
+the final conversion even when inactive output buffers are omitted.
 
 ## Automation and transactions
 
@@ -35,7 +42,9 @@ tracking must start after the three persistent parameter IDs. Retain the 256
 command/event budgets and existing physical-action expansion limit.
 
 Expression follows the same explicit interpolation convention as Monitoring
-Gain: the previously published value is the offset -1 anchor, distinct points
+Gain: the audio owner's current canonical live value, after any selected recall,
+is the offset -1 anchor. Do not use the mailbox snapshot, which can already hold
+a newer UI recall. Distinct points
 are canonical binary32 anchors, equal offsets keep the final point, and values
 after the last point are held. Gain and expression interpolate independently.
 Output uses the double interpolation values; saved configuration uses their

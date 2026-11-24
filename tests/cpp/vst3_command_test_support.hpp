@@ -31,6 +31,8 @@ struct CommandQueue final : FixedHostObject<vst::IParamValueQueue> {
 };
 
 struct CommandChanges final : FixedHostObject<vst::IParameterChanges> {
+    // Legacy gain/sustain plus sixteen commands; Expression remains at unity.
+    // This fixture capacity is independent of the nineteen-queue public limit.
     std::array<vst::IParamValueQueue*, 18> values{};
     sdk::int32 count = 0;
     std::size_t reads = 0;

@@ -116,6 +116,9 @@ struct Fixture {
     ScalarModel model;
 
     explicit Fixture(double rate) : host(rate), model(rate) {
+        // Preserve the existing two-control scalar oracle at Expression unity.
+        check(host.processor.current_state().expression == 1.0F,
+              "legacy automation fixture requires unity expression");
         pedal.id = kSustainId;
         wire(false);
         host.data.inputEvents = &events;

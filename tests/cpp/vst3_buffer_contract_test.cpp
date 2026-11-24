@@ -260,8 +260,11 @@ void queue_recall(Host<Sample>& actual, Host<Sample>& reference) {
 
 template <class Sample>
 void inactive_cases() {
-    for (unsigned mask = 0; mask < 4; ++mask) {
+    // The fifth shape omits the inactive bus entirely while retaining sentinel
+    // storage; its mechanics and later audible continuation must still match.
+    for (unsigned mask = 0; mask < 5; ++mask) {
         ++cases;
+        const bool omitted = mask == 4;
         auto actual = std::make_unique<Host<Sample>>();
         auto reference = std::make_unique<Host<Sample>>();
         prime(*actual, *reference);
@@ -269,8 +272,13 @@ void inactive_cases() {
         reference->restore(32);
         check(actual->processor.activateBus(vst::kAudio, vst::kOutput, 0, false) == sdk::kResultOk,
               "deactivate output bus");
-        for (unsigned channel = 0; channel < 2; ++channel) {
-            if ((mask & (1U << channel)) == 0U) { actual->buffers.channels[channel] = nullptr; }
+        if (omitted) {
+            actual->data.numOutputs = 0;
+            actual->data.outputs = nullptr;
+        } else {
+            for (unsigned channel = 0; channel < 2; ++channel) {
+                if ((mask & (1U << channel)) == 0U) { actual->buffers.channels[channel] = nullptr; }
+            }
         }
         // Real-time and prefetch processing may share one non-offline setup.
         if ((mask & 1U) != 0U) { actual->data.processMode = vst::kPrefetch; }
@@ -282,7 +290,12 @@ void inactive_cases() {
         reference->data.inputEvents = &events;
         check(invoke(actual->processor, actual->data) == sdk::kResultOk, "inactive buffer mask rejected");
         check(invoke(reference->processor, reference->data) == sdk::kResultOk, "inactive control render failed");
-        actual->buffers.matches(reference->buffers, 32, mask);
+        actual->buffers.matches(reference->buffers, 32, omitted ? 0U : mask);
+        if (omitted) {
+            for (const auto& bus : actual->buffers.buses) {
+                check(bus.silenceFlags == untouched_flags, "omitted inactive output touched silence flags");
+            }
+        }
         compare_state(*actual, *reference);
         check(actual->processor.activateBus(vst::kAudio, vst::kOutput, 0, true) == sdk::kResultOk,
               "reactivate output bus");
@@ -413,13 +426,15 @@ void reject_buffer(Host<Sample>& actual, BadBuffer scenario) {
     case BadBuffer::extra_input: data.numInputs = 1; break;
     case BadBuffer::huge_inputs: data.numInputs = huge; break;
     case BadBuffer::negative_outputs: data.numOutputs = -1; untouched(); break;
+    // These rejection fixtures retain an active stereo bus.
     case BadBuffer::missing_output: data.numOutputs = 0; untouched(); break;
     case BadBuffer::extra_output: data.numOutputs = 2; untouched(); break;
     case BadBuffer::huge_outputs: data.numOutputs = huge; null_channel_array(); untouched(); break;
     case BadBuffer::null_output_array: data.outputs = nullptr; untouched(); break;
     case BadBuffer::negative_channels: bus.numChannels = -1; untouched(); break;
     case BadBuffer::zero_channels: bus.numChannels = 0; untouched(); break;
-    case BadBuffer::mono_channels: bus.numChannels = 1; untouched(); break;
+    case BadBuffer::mono_channels:
+        bus.numChannels = 1; cleared_mask = 1; expected_flags = 1; break;
     case BadBuffer::extra_channel: bus.numChannels = 3; untouched(); break;
     case BadBuffer::huge_channels: bus.numChannels = huge; null_channel_array(); untouched(); break;
     case BadBuffer::null_channel_array:
@@ -465,7 +480,8 @@ void reject_buffer(Host<Sample>& actual, BadBuffer scenario) {
     case BadBuffer::flush_negative_channels:
         data.numSamples = 0; bus.numChannels = -1; untouched(); break;
     case BadBuffer::flush_mono_channels:
-        data.numSamples = 0; bus.numChannels = 1; untouched(); break;
+        data.numSamples = 0; bus.numChannels = 1; null_channel_array();
+        cleared_frames = 0; cleared_mask = 1; expected_flags = 1; break;
     case BadBuffer::flush_extra_channel:
         data.numSamples = 0; bus.numChannels = 3; untouched(); break;
     case BadBuffer::flush_huge_channels:
@@ -547,7 +563,7 @@ void setup_cases() {
                 case 14: result = actual->processor.setBusArrangements(nullptr, 0, outputs.data(), 0); break;
                 case 15: result = actual->processor.setBusArrangements(nullptr, 0, outputs.data(), 2); break;
                 case 16: result = actual->processor.setBusArrangements(nullptr, 0, nullptr, 1); break;
-                case 17: outputs[0] = vst::SpeakerArr::kMono; result = actual->processor.setBusArrangements(nullptr, 0, outputs.data(), 1); break;
+                case 17: outputs[0] = vst::SpeakerArr::k51; result = actual->processor.setBusArrangements(nullptr, 0, outputs.data(), 1); break;
                 case 18: outputs[0] = vst::SpeakerArr::kEmpty; result = actual->processor.setBusArrangements(nullptr, 0, outputs.data(), 1); break;
                 default: throw std::runtime_error("invalid setup test case");
                 }

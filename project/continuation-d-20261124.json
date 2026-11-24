@@ -6,7 +6,7 @@
   "requested_waves": 5,
   "concurrency_limit_including_integrator": 4,
   "status": "in_progress",
-  "completed_agents": 15,
+  "completed_agents": 26,
   "agents": [
     {
       "assignment": 1,
@@ -132,12 +132,106 @@
       "assignment": 16,
       "wave": 1,
       "agent_task_name": "/root/w1_016_docs_plan",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-d/w1-016.md",
+      "sha256": "bf1b13c916e6a54332ea29558e7140e6a92b98839268feedfe9cf95790dcfee3"
     },
     {
       "assignment": 17,
       "wave": 1,
       "agent_task_name": "/root/w1_017_scalar_oracle",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-d/w1-017.md",
+      "sha256": "e95df05b92e12adb49d4a8dc54631c9b34bbdc69863976c298afbc25d83a3e62"
+    },
+    {
+      "assignment": 18,
+      "wave": 1,
+      "agent_task_name": "/root/w1_018_transaction_cases",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-d/w1-018.md",
+      "sha256": "36647c0d9a6dc1ba0f6a888ba75aeabc528ba6adc9cdc74c95610c9a2832460d"
+    },
+    {
+      "assignment": 19,
+      "wave": 1,
+      "agent_task_name": "/root/w1_019_spec_challenge",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-d/w1-019.md",
+      "sha256": "765551b1ff29cc6d910aa7196b21b97012a7abb64b3a2ce128dd29d5e7b85bfb"
+    },
+    {
+      "assignment": 20,
+      "wave": 1,
+      "agent_task_name": "/root/w1_020_acceptance_plan",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-d/w1-020.md",
+      "sha256": "63c84257da7649db263b48681c9484fc0b34b845949f9af910dfa1f0e653b72f"
+    },
+    {
+      "assignment": 21,
+      "wave": 2,
+      "agent_task_name": "/root/w2_021_state_codec",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-d/w2-021.md",
+      "sha256": "61a3c0f929f6dbe190e3eb8015f4f51676272d45f95ddbad20c754a45361a695"
+    },
+    {
+      "assignment": 22,
+      "wave": 2,
+      "agent_task_name": "/root/w2_022_expression_controller",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-d/w2-022.md",
+      "sha256": "5c6b377689d238f2b11aa30f5ed96da2d7710561346f8af1f2bcb3c946f0065e"
+    },
+    {
+      "assignment": 23,
+      "wave": 2,
+      "agent_task_name": "/root/w2_023_expression_processor",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-d/w2-023.md",
+      "sha256": "850abd0f8fbdb8a0837e8ceee1add8e91c810bc4725410f3f6f24929450a5f08"
+    },
+    {
+      "assignment": 24,
+      "wave": 2,
+      "agent_task_name": "/root/w2_024_adaptive_stream",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-d/w2-024.md",
+      "sha256": "aabb6e91dac17d66b11e98e9dfcb439d22aa67c3ceea52ab129a2820bab8286c"
+    },
+    {
+      "assignment": 25,
+      "wave": 2,
+      "agent_task_name": "/root/w2_025_legacy_fixtures",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-d/w2-025.md",
+      "sha256": "dc9199518c6f06800a94ad20f84d059066f098744cd437b49b1e475a9e9f493f"
+    },
+    {
+      "assignment": 26,
+      "wave": 2,
+      "agent_task_name": "/root/w2_026_expression_audio",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-d/w2-026.md",
+      "sha256": "c1c6d211848fb399943ff94a80206eda2555f8a7f03d82ae71483d7c0160a62b"
+    },
+    {
+      "assignment": 27,
+      "wave": 2,
+      "agent_task_name": "/root/w2_027_mono_buffers",
+      "status": "running"
+    },
+    {
+      "assignment": 28,
+      "wave": 2,
+      "agent_task_name": "/root/w2_028_loaded_feature",
+      "status": "running"
+    },
+    {
+      "assignment": 29,
+      "wave": 2,
+      "agent_task_name": "/root/w2_029_expression_concurrency",
       "status": "running"
     }
   ]

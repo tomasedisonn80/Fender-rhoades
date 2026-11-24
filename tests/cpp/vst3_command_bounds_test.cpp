@@ -13,7 +13,7 @@ using ScalarEngine = std::remove_cvref_t<
     decltype(std::declval<const HostEventProcessor&>().engine())>;
 
 static_assert(maximum_block_events == 256 && key_count == 73);
-static_assert(kMaximumChannelCommands == 256 && kControllerParameterCount == 18);
+static_assert(kMaximumChannelCommands == 256 && kControllerParameterCount == 19);
 constexpr std::size_t frames = 128;
 
 float intensity(std::size_t index) {

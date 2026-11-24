@@ -47,10 +47,11 @@ inline constexpr const char* kPluginVersion = "0.1.0";
 #endif
 inline constexpr Steinberg::Vst::ParamID kGainId = 0;
 inline constexpr Steinberg::Vst::ParamID kSustainId = 1;
+inline constexpr Steinberg::Vst::ParamID kExpressionId = 2;
 // Transient per-channel CC123 commands. Existing configuration IDs stay stable.
 inline constexpr Steinberg::Vst::ParamID kAllNotesOffBaseId = 0x1000;
 inline constexpr std::size_t kMidiChannelCount = 16;
-inline constexpr std::size_t kControllerParameterCount = 2 + kMidiChannelCount;
+inline constexpr std::size_t kControllerParameterCount = 3 + kMidiChannelCount;
 inline constexpr std::size_t kMaximumChannelCommands = 256;
 
 [[nodiscard]] inline constexpr int all_notes_off_channel(

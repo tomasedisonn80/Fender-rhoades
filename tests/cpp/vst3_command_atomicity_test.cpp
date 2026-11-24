@@ -19,7 +19,7 @@ static_assert(kStateModel == 2 && std::is_same_v<ScalarEngine, AudioEngine>);
 #else
 static_assert(kStateModel == 1 && std::is_same_v<ScalarEngine, ResearchEngine>);
 #endif
-static_assert(kMaximumChannelCommands == 256 && kControllerParameterCount == 18);
+static_assert(kMaximumChannelCommands == 256 && kControllerParameterCount == 19);
 constexpr std::size_t frames = 128;
 
 struct Owner {
@@ -323,7 +323,7 @@ void malformed_transactions_and_recall() {
         bad("duplicate parameter queue");
         require(changes.reads == 4 && last.reads == 0, "duplicate queue points were read");
     }
-    for (const vst::ParamID unknown : {vst::ParamID{2}, kAllNotesOffBaseId - 1,
+    for (const vst::ParamID unknown : {vst::ParamID{3}, kAllNotesOffBaseId - 1,
                                      kAllNotesOffBaseId + 16, std::numeric_limits<vst::ParamID>::max()}) {
         last.id = unknown;
         bad("unknown parameter ID");
@@ -334,7 +334,7 @@ void malformed_transactions_and_recall() {
     bad("negative command point count");
     require(last.reads == 0, "negative command point count was traversed");
     last.count = 3;
-    for (const sdk::int32 count : {-1, 19}) {
+    for (const sdk::int32 count : {-1, 20}) {
         changes.count = count;
         bad("invalid total queue count");
         require(changes.reads == 0, "invalid queue count was traversed");
@@ -523,8 +523,9 @@ void sixteen_channel_queue_order() {
     ascending.values[16] = &gain;
     ascending.values[17] = &pedal;
     constexpr std::array<std::size_t, 18> order{17, 3, 12, 1, 8, 15, 16, 6, 0, 11, 5, 14, 2, 9, 4, 13, 7, 10};
-    for (std::size_t index = 0; index < ascending.values.size(); ++index) {
-        descending.values[index] = ascending.values[17 - index];
+    // This legacy permutation deliberately contains only gain/sustain and commands.
+    for (std::size_t index = 0; index < order.size(); ++index) {
+        descending.values[index] = ascending.values[order.size() - 1 - index];
         permutation.values[index] = ascending.values[order[index]];
     }
     canonical.data.inputParameterChanges = &ascending;

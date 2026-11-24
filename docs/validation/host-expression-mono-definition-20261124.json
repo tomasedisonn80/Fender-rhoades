@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "task_id": "HOST-003",
+  "definition": {
+    "task_id": "HOST-003",
+    "acceptance": [
+      "Global CC11 Expression has independent bounded sample-offset automation, strict control conversion, unity default and unchanged legacy-unity audio; mute preserves synthesis, and invalid transactions reject without live mutation.",
+      "Adaptive versioned configuration preserves exact 16-byte legacy unity states, supports validated 20-byte expression states and all model identities, and retains coherent bounded lock-free publication under concurrent recall.",
+      "Mono and stereo negotiation, exact scalar output, bounded buffer handling, omitted inactive outputs, silence masks and lifecycle behavior pass direct and actual loaded-module checks without changing existing stereo behavior.",
+      "Independent integration and legacy comparisons plus relevant core/host checks and all three SDK/module validators pass on Linux, Windows and macOS with source-bound results, explicit skips and no unsupported runtime claims.",
+      "User, state-format, build and named-DAW verification documents describe the observed feature scope, compatibility and remaining limits; physical calibration and separate numerical tasks are not promoted."
+    ],
+    "dependencies": [
+      "HOST-001"
+    ],
+    "required_evidence": [
+      "numerical",
+      "documentary"
+    ],
+    "target": "One documented 73-key Mark I Stage specimen at its specified loaded electrical output; identity and measurements pending."
+  },
+  "definition_sha256": "f3054fce1854dfa16109e0d01f80b1aa8b4b6b71738fad5889de24e147977431",
+  "baseline_commit": "6c91dab00855b67a559e92edb79ae49e567be469",
+  "publication_checkpoint": "cba5eeb9faf106c38efa530e94036dc2db3836b2",
+  "scope": "Synthetic host controls and output-layout engineering; no physical fidelity or named-DAW acceptance.",
+  "input_sha256": {
+    "docs/specs/HOST_EXPRESSION_MONO_20261124.md": "16a617fb45448f7cad16d7de94ccd0c05b98706aeea99a36c4cea59bd4ea7229",
+    "docs/agents/reports/continuation-d/w1-017.md": "e95df05b92e12adb49d4a8dc54631c9b34bbdc69863976c298afbc25d83a3e62",
+    "docs/agents/reports/continuation-d/w1-019.md": "765551b1ff29cc6d910aa7196b21b97012a7abb64b3a2ce128dd29d5e7b85bfb",
+    "docs/agents/reports/continuation-d/w1-020.md": "63c84257da7649db263b48681c9484fc0b34b845949f9af910dfa1f0e653b72f"
+  },
+  "comparison_rules": {
+    "legacy_unity_audio": "bit-identical within same build environment and sample format",
+    "mono_vs_stereo_left": "bit-identical on matched timelines",
+    "state_ownership_and_wire": "exact",
+    "dyadic_expression_cases": "exact bit comparisons, permitting either audio zero sign",
+    "nondyadic_expression_double": "16 * epsilon_binary64 * abs(monitored reference), with explicit finite/zero handling",
+    "nondyadic_expression_float": "at most one final binary32 ULP",
+    "curve_partitioning": "Equivalent delivered piecewise linear curves with exact representable boundary anchors; no claim for rounded anchor changes."
+  },
+  "review_note": "W019 corrections accepted; final specification status label updated after W020 review. No acceptance requirement or numerical tolerance was relaxed."
+}

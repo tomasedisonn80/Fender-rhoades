@@ -629,14 +629,32 @@ void lifecycle() {
             host.processor.canProcessSampleSize(99) != sdk::kResultTrue,
             "sample-size capability differs");
     require(host.processor.getTailSamples() == vst::kInfiniteTail, "synthetic infinite tail");
+    require(host.processor.setProcessing(false) == sdk::kResultOk &&
+            host.processor.setActive(false) == sdk::kResultOk,
+            "suspend before output negotiation");
     vst::SpeakerArrangement arrangement = vst::SpeakerArr::kStereo;
     require(host.processor.setBusArrangements(nullptr, 0, &arrangement, 1) == sdk::kResultOk,
             "stereo arrangement rejected");
     arrangement = vst::SpeakerArr::kMono;
-    require(host.processor.setBusArrangements(nullptr, 0, &arrangement, 1) != sdk::kResultOk,
-            "mono arrangement accepted");
+    require(host.processor.setBusArrangements(nullptr, 0, &arrangement, 1) == sdk::kResultOk,
+            "mono arrangement rejected");
+    vst::BusInfo output_info{};
     require(host.processor.getBusArrangement(vst::kOutput, 0, arrangement) == sdk::kResultOk &&
-            arrangement == vst::SpeakerArr::kStereo, "rejected arrangement changed bus");
+            arrangement == vst::SpeakerArr::kMono &&
+            host.processor.getBusInfo(vst::kAudio, vst::kOutput, 0, output_info) == sdk::kResultOk &&
+            output_info.channelCount == 1, "mono arrangement and metadata differ");
+    arrangement = vst::SpeakerArr::kEmpty;
+    require(host.processor.setBusArrangements(nullptr, 0, &arrangement, 1) != sdk::kResultOk,
+            "empty arrangement accepted");
+    require(host.processor.getBusArrangement(vst::kOutput, 0, arrangement) == sdk::kResultOk &&
+            arrangement == vst::SpeakerArr::kMono, "rejected arrangement changed bus");
+    arrangement = vst::SpeakerArr::kStereo;
+    require(host.processor.setBusArrangements(nullptr, 0, &arrangement, 1) == sdk::kResultOk &&
+            host.processor.getBusInfo(vst::kAudio, vst::kOutput, 0, output_info) == sdk::kResultOk &&
+            output_info.channelCount == 2, "restore stereo arrangement and metadata");
+    require(host.processor.setActive(true) == sdk::kResultOk &&
+            host.processor.setProcessing(true) == sdk::kResultOk,
+            "resume after output negotiation");
     EventList events;
     events.count = 1;
     events.values[0] = note_on(0, 1);
@@ -903,13 +921,18 @@ void controller_mapping() {
     MemoryStream host_context;
     ControllerHost host;
     auto& controller = host.controller;
-    require(controller.getParameterCount() == 18, "controller parameter count");
-    vst::ParameterInfo gain_info{}, pedal_info{};
+    require(controller.getParameterCount() == 19, "controller parameter count");
+    vst::ParameterInfo gain_info{}, pedal_info{}, expression_info{};
     require(controller.getParameterInfo(0, gain_info) == sdk::kResultOk &&
             controller.getParameterInfo(1, pedal_info) == sdk::kResultOk &&
+            controller.getParameterInfo(2, expression_info) == sdk::kResultOk &&
             gain_info.id == kGainId && gain_info.defaultNormalizedValue == 0.5 &&
             gain_info.stepCount == 0 && pedal_info.id == kSustainId &&
-            pedal_info.defaultNormalizedValue == 0.0 && pedal_info.stepCount == 1,
+            pedal_info.defaultNormalizedValue == 0.0 && pedal_info.stepCount == 1 &&
+            expression_info.id == kExpressionId && expression_info.defaultNormalizedValue == 1.0 &&
+            expression_info.stepCount == 0 &&
+            expression_info.flags == vst::ParameterInfo::kCanAutomate &&
+            controller.getParamNormalized(kExpressionId) == 1.0,
             "controller parameter metadata");
     require(controller.normalizedParamToPlain(kGainId, 0.5) == 16.0 &&
             controller.plainParamToNormalized(kGainId, 16.0) == 0.5,
@@ -924,7 +947,7 @@ void controller_mapping() {
                     == sdk::kResultOk && tag == expected_command,
                 "CC123 missing or assigned to another channel");
         vst::ParameterInfo command_info{};
-        require(controller.getParameterInfo(2 + channel, command_info) == sdk::kResultOk &&
+        require(controller.getParameterInfo(3 + channel, command_info) == sdk::kResultOk &&
                 command_info.id == expected_command && command_info.stepCount == 0 &&
                 command_info.flags == vst::ParameterInfo::kNoFlags &&
                 command_info.defaultNormalizedValue == 0.0 && command_info.units[0] == 0,
@@ -981,13 +1004,15 @@ void controller_mapping() {
     stream.transfer_limit = 1;
     require(controller.setComponentState(&stream) == sdk::kResultOk &&
             controller.getParamNormalized(kGainId) == 0.125 &&
-            controller.getParamNormalized(kSustainId) == 1.0,
+            controller.getParamNormalized(kSustainId) == 1.0 &&
+            controller.getParamNormalized(kExpressionId) == 1.0,
             "controller component-state recall");
     stream.position = 0;
     stream.extent = 17;
     require(controller.setComponentState(&stream) != sdk::kResultOk &&
             controller.getParamNormalized(kGainId) == 0.125 &&
-            controller.getParamNormalized(kSustainId) == 1.0,
+            controller.getParamNormalized(kSustainId) == 1.0 &&
+            controller.getParamNormalized(kExpressionId) == 1.0,
             "malformed component state partially changed controller");
     stream.load({0.25F, false}, 0, kStateModel);
     require(controller.setState(&stream) == sdk::kResultOk, "controller own-state recall");
@@ -1001,15 +1026,19 @@ void controller_mapping() {
     const auto reject_duplicate = [&](sdk::FUnknown* context) {
         auto* gain = controller.getParameterObject(kGainId);
         auto* pedal = controller.getParameterObject(kSustainId);
+        auto* expression = controller.getParameterObject(kExpressionId);
         const auto gain_value = controller.getParamNormalized(kGainId);
         const auto pedal_value = controller.getParamNormalized(kSustainId);
+        const auto expression_value = controller.getParamNormalized(kExpressionId);
         require(controller.initialize(context) != sdk::kResultOk,
                 "duplicate controller initialization succeeded");
-        require(controller.getParameterCount() == 18 &&
+        require(controller.getParameterCount() == 19 &&
                 controller.getParameterObject(kGainId) == gain &&
                 controller.getParameterObject(kSustainId) == pedal &&
+                controller.getParameterObject(kExpressionId) == expression &&
                 controller.getParamNormalized(kGainId) == gain_value &&
-                controller.getParamNormalized(kSustainId) == pedal_value,
+                controller.getParamNormalized(kSustainId) == pedal_value &&
+                controller.getParamNormalized(kExpressionId) == expression_value,
                 "duplicate initialization changed parameter objects or values");
     };
     require(controller.setParamNormalized(kSustainId, 1.0) == sdk::kResultOk,
@@ -1020,9 +1049,10 @@ void controller_mapping() {
     require(controller.terminate() == sdk::kResultOk &&
             controller.getParameterCount() == 0, "controller termination retained parameters");
     require(controller.initialize(&host_context) == sdk::kResultOk &&
-            controller.getParameterCount() == 18 &&
+            controller.getParameterCount() == 19 &&
             controller.getParamNormalized(kGainId) == 0.5 &&
-            controller.getParamNormalized(kSustainId) == 0.0,
+            controller.getParamNormalized(kSustainId) == 0.0 &&
+            controller.getParamNormalized(kExpressionId) == 1.0,
             "controller nonnull-context reinitialization failed");
     require(controller.setParamNormalized(kGainId, 0.75) == sdk::kResultOk &&
             controller.setParamNormalized(kSustainId, 1.0) == sdk::kResultOk,
@@ -1031,9 +1061,10 @@ void controller_mapping() {
     reject_duplicate(nullptr);
     require(controller.terminate() == sdk::kResultOk &&
             controller.initialize(nullptr) == sdk::kResultOk &&
-            controller.getParameterCount() == 18 &&
+            controller.getParameterCount() == 19 &&
             controller.getParamNormalized(kGainId) == 0.5 &&
-            controller.getParamNormalized(kSustainId) == 0.0,
+            controller.getParamNormalized(kSustainId) == 0.0 &&
+            controller.getParamNormalized(kExpressionId) == 1.0,
             "controller null-context reinitialization failed");
 }
 
@@ -1107,8 +1138,9 @@ void allocation_guard_at_rate(double rate) {
 
 template<class Sample>
 void allocation_guard_commands_at_rate(double rate) {
-    // Keep the existing two-queue fixture unchanged. This fixed host wrapper
-    // admits gain, sustain and all sixteen command queues without callback allocation.
+    // Preserve the legacy workload at default Expression unity. This fixed host
+    // wrapper admits gain, sustain and all sixteen command queues; the nineteen-
+    // queue Expression workload is covered by separate fixtures.
     struct CommandParameters final : FixedHostObject<vst::IParameterChanges> {
         std::array<vst::IParamValueQueue*, 18> values{};
         sdk::int32 PLUGIN_API getParameterCount() override { return 18; }

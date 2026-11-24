@@ -96,6 +96,7 @@ private:
     // Instance-owned fixed scratch. Staging input never changes live ownership,
     // mechanics, configuration or the mailbox, even on a late invalid point.
     std::array<ParameterPoint, kMaximumHostFrames> gain_points_{};
+    std::array<ParameterPoint, kMaximumHostFrames> expression_points_{};
     std::array<ParameterPoint, kMaximumHostFrames> sustain_points_{};
     std::array<ChannelCommand, kMaximumChannelCommands> channel_commands_{};
     std::array<HostNote, maximum_block_events> host_notes_{};
@@ -104,6 +105,7 @@ private:
     std::array<PhysicalNote, 2 * maximum_block_events + key_count> physical_notes_{};
     std::array<EngineEvent, maximum_block_events> dispatch_{};
     std::size_t gain_count_ = 0;
+    std::size_t expression_count_ = 0;
     std::size_t sustain_count_ = 0;
     std::size_t channel_command_count_ = 0;
     std::size_t host_note_count_ = 0;

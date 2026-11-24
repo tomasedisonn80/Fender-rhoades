@@ -14,8 +14,8 @@ it does not authenticate execution or replace engineering evidence.
 
 ## Scope
 
-The [reviewed feature contract](../specs/HOST_EXPRESSION_MONO_20261124.md) is
-currently under first-wave review. It adds global MIDI Expression (CC11) and
+The [reviewed feature contract](../specs/HOST_EXPRESSION_MONO_20261124.md) was
+frozen after twenty first-wave reviews. It adds global MIDI Expression (CC11) and
 optional mono output to all three synthetic instruments while retaining
 unchanged unity-expression stereo audio, class identities and latency. An
 adaptive state codec preserves legacy bytes at unity and saves non-unity
@@ -45,9 +45,35 @@ numerical work or promote the project's unvalidated fidelity status.
 A new local Linux/GCC Release build against the pinned SDK passed 327 of 327
 CTests, with no skips. The integrator retained original module binaries for
 later comparisons. Native macOS VST3 and core job logs have been obtained;
-the complete current macOS Python result is still pending at this checkpoint.
+the previously missing macOS Python execution has now completed with 888
+reported tests, including 51 skips. These older-source observations still
+require a supplemental criterion review before closing HOST-002.
 Final platform conclusions require the later source-bound evidence, not this
 progress note. No new feature acceptance or physical fidelity is claimed here.
+
+The first integrated HOST-003 run passed 32 new CTests: seven state-codec
+selectors, four stream selectors, and seven audio selectors across three
+variants. It used the current uncommitted implementation on the published
+`cba5eeb9faf106c38efa530e94036dc2db3836b2` base. Broader legacy, mono, concurrent,
+loaded-module and native verification remains in progress.
+
+## Worker boundaries
+
+Read the operating contract and frozen feature specification before starting.
+Each assignment owns only its named source, tests or report paths. The
+integrator alone changes CMake registration, Git/index/branches, the campaign
+ledger, canonical task/evidence state and final acceptance decisions. Workers
+do not spawn children. Report actual commands and results, including first
+failures; do not infer a native, sanitizer, DAW or physical pass from source
+inspection. A completed report becomes immutable when its hash is recorded.
+
+The active checkout is `/workspace/scratch/68ec02e60e7e/Fender-rhoades`.
+The pinned read-only SDK is `/workspace/scratch/d6370337c6a4/vst3sdk`.
+Only the integrator mutates `/tmp/rhodes-d-build`; workers may read its archives
+for private focused builds. Temporary worker files belong in a unique `/tmp`
+or `/dev/shm` directory. Do not remove files from other workspaces. Current
+production code implements the contract; additions should target concrete
+unverified behavior rather than repeat passing fixtures.
 
 ## Recovery
 

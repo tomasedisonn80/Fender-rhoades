@@ -33,8 +33,9 @@ using Text = std::array<vst::TChar, 128>;
 constexpr sdk::int32 frames = 128;
 constexpr vst::ParamID gain_id = 0;
 constexpr vst::ParamID sustain_id = 1;
+constexpr vst::ParamID expression_id = 2;
 constexpr vst::ParamID command_base = 0x1000;
-constexpr std::size_t parameter_count = 18;
+constexpr std::size_t parameter_count = 19;
 
 struct Identity {
     const char* name;
@@ -67,8 +68,8 @@ void require(bool condition, std::string_view message) {
 }
 
 constexpr vst::ParamID parameter_id(std::size_t index) {
-    return index < 2 ? static_cast<vst::ParamID>(index) :
-        command_base + static_cast<vst::ParamID>(index - 2);
+    return index < 3 ? static_cast<vst::ParamID>(index) :
+        command_base + static_cast<vst::ParamID>(index - 3);
 }
 
 template<class Interface>
@@ -136,7 +137,7 @@ public:
                     VST3::UID{controller_id}.toString() == identity.controller,
                 "component advertises frozen controller ID");
         require(controller->getParameterCount() == static_cast<sdk::int32>(parameter_count),
-                "18 public parameters");
+                "19 public parameters");
         require(audio->getLatencySamples() == identity.latency, "unchanged latency");
         require(component->activateBus(vst::kAudio, vst::kOutput, 0, true) == sdk::kResultOk,
                 "activate stereo output");
@@ -191,10 +192,11 @@ void controller_contract(vst::IEditController& controller) {
         vst::ParameterInfo info{};
         require(controller.getParameterInfo(static_cast<sdk::int32>(index), info) == sdk::kResultOk,
                 "read public parameter metadata");
-        require(info.id == parameter_id(index), "gain/sustain/command IDs and order unchanged");
-        require(controller.getParamNormalized(info.id) == (index == 0 ? 0.5 : 0.0),
-                "unchanged defaults and initially zero commands");
-        if (index >= 2) {
+        require(info.id == parameter_id(index), "persistent/command IDs and order differ");
+        require(controller.getParamNormalized(info.id) ==
+                    (info.id == gain_id ? 0.5 : (info.id == expression_id ? 1.0 : 0.0)),
+                "persistent defaults and initially zero commands");
+        if (index >= 3) {
             require(info.flags == vst::ParameterInfo::kNoFlags && info.stepCount == 0,
                     "writable nonautomatable continuous command metadata");
         }
@@ -217,10 +219,11 @@ void controller_contract(vst::IEditController& controller) {
                     id == 0xffffffffU, "CC120 remains unmapped without changing caller output");
     }
 
-    // Seed nondefault values so a parser which resets controls is observable.
+    // Seed nondefault legacy values so a parser which resets controls is observable.
+    // Expression stays explicitly at unity to preserve the 16-byte state oracle.
     std::array<double, parameter_count> normalized{};
     for (std::size_t index = 0; index < parameter_count; ++index) {
-        require(controller.setParamNormalized(parameter_id(index), index == 1 ? 1.0 : 0.25) ==
+        require(controller.setParamNormalized(parameter_id(index), index == 1 || index == 2 ? 1.0 : 0.25) ==
                     sdk::kResultOk, "seed controller values");
         normalized[index] = controller.getParamNormalized(parameter_id(index));
     }
@@ -243,7 +246,7 @@ void controller_contract(vst::IEditController& controller) {
         }
         reject(parameter_id(index), nullptr);
     }
-    for (const auto id : {vst::ParamID{2}, vst::ParamID{0x0fff}, vst::ParamID{0x1010},
+    for (const auto id : {vst::ParamID{3}, vst::ParamID{0x0fff}, vst::ParamID{0x1010},
                           vst::ParamID{0xffffffffU}}) {
         auto input = text("0.5");
         reject(id, input.data());
@@ -255,7 +258,7 @@ void controller_contract(vst::IEditController& controller) {
     double value = -1.0;
     require(controller.getParamValueByString(gain_id, valid_gain.data(), value) == sdk::kResultOk &&
                 value == 0.5, "valid gain decimal and unit suffix");
-    for (std::size_t index = 2; index < parameter_count; ++index) {
+    for (std::size_t index = 3; index < parameter_count; ++index) {
         auto valid_command = text(" +2.5e-1 ");
         value = -1.0;
         require(controller.getParamValueByString(parameter_id(index), valid_command.data(), value) ==
@@ -533,7 +536,9 @@ int main(int argc, char** argv) {
             require(module.use_count() == 1, "all instance owners released before module unload");
             module.reset();
         }
-        require(flushes == 6 && rejected_blocks == 102 && rejected_texts == 1002,
+        // Six variant/format sets each reject 19 * (8 malformed + null),
+        // four unknown IDs and one unterminated input: 6 * (19 * 9 + 5) = 1056.
+        require(flushes == 6 && rejected_blocks == 102 && rejected_texts == 1056,
                 "all six format/variant fixture sets executed");
         std::cout << "PASS loaded MIDI: 3 modules, 2 formats, " << comparisons << " exact audio pairs, "
                   << callbacks << " loaded callbacks, " << flushes << " zero-frame releases, "

@@ -189,6 +189,26 @@ if(BUILD_TESTING)
     foreach(test_name IN ITEMS stream_roundtrip stream_invalid_model stream_rejection stream_transfers)
         add_test(NAME vst3.model_${test_name} COMMAND rhodes_model_stream_tests ${test_name})
     endforeach()
+    add_executable(rhodes_expression_stream_tests
+        "${PROJECT_SOURCE_DIR}/tests/cpp/vst3_expression_stream_test.cpp"
+        "${PROJECT_SOURCE_DIR}/plugins/vst3/state_stream.cpp")
+    target_include_directories(rhodes_expression_stream_tests PRIVATE "${PROJECT_SOURCE_DIR}")
+    target_include_directories(rhodes_expression_stream_tests SYSTEM PRIVATE "${RHODES_VST3_SDK_ROOT}")
+    target_link_libraries(rhodes_expression_stream_tests PRIVATE rhodes_core)
+    rhodes_target_options(rhodes_expression_stream_tests)
+    add_dependencies(rhodes_vst3_checks rhodes_expression_stream_tests)
+    foreach(test_name IN ITEMS roundtrip malformed transfers overwrite)
+        add_test(NAME vst3.expression_stream_${test_name} COMMAND rhodes_expression_stream_tests ${test_name})
+    endforeach()
+    rhodes_add_vst3_test(rhodes_vst3_expression_audio_tests tests/cpp/vst3_expression_audio_test.cpp)
+    rhodes_add_vst3_test(rhodes_vst3_filtered_expression_audio_tests tests/cpp/vst3_expression_audio_test.cpp TRUE)
+    rhodes_add_vst3_test(rhodes_vst3_quadrature_expression_audio_tests tests/cpp/vst3_expression_audio_test.cpp FALSE TRUE)
+    foreach(test_name IN ITEMS default_queues anchor_duplicates combined_curves nondyadic_curve
+            muted_resume flush_recall partition_curves)
+        add_test(NAME vst3.expression_audio_${test_name} COMMAND rhodes_vst3_expression_audio_tests ${test_name})
+        add_test(NAME vst3.filtered_expression_audio_${test_name} COMMAND rhodes_vst3_filtered_expression_audio_tests ${test_name})
+        add_test(NAME vst3.quadrature_expression_audio_${test_name} COMMAND rhodes_vst3_quadrature_expression_audio_tests ${test_name})
+    endforeach()
     foreach(sample_format IN ITEMS 32 64)
         add_test(NAME vst3.filtered_benchmark_smoke_${sample_format}
             COMMAND rhodes_vst3_filtered_benchmark --blocks 5 --warmup-blocks 2

@@ -54,12 +54,18 @@ Steinberg::tresult PLUGIN_API RhodesProcessor::terminate() {
 Steinberg::tresult PLUGIN_API RhodesProcessor::setBusArrangements(
     vst::SpeakerArrangement* /*inputs*/, Steinberg::int32 numIns,
     vst::SpeakerArrangement* outputs, Steinberg::int32 numOuts) {
-    // Validate before invoking the SDK helper, whose default implementation can
+    // Validate before changing the SDK bus. The default implementation can
     // partially change bus arrangements before returning a failure.
-    if (numIns != 0 || numOuts != 1 || outputs == nullptr ||
-        outputs[0] != vst::SpeakerArr::kStereo || !initialized_) {
+    if (!initialized_ || numIns != 0 || numOuts != 1 || outputs == nullptr ||
+        (outputs[0] != vst::SpeakerArr::kMono && outputs[0] != vst::SpeakerArr::kStereo)) {
         return Steinberg::kResultFalse;
     }
+    auto* bus = getAudioOutput(0);
+    if (bus == nullptr) { return Steinberg::kResultFalse; }
+    // Hosts negotiate while suspended. Use the SDK bus as the single source of
+    // layout metadata; changing the arrangement retains its activation state.
+    bus->setName(outputs[0] == vst::SpeakerArr::kMono ? STR16("Mono Out") : STR16("Stereo Out"));
+    bus->setArrangement(outputs[0]);
     return Steinberg::kResultTrue;
 }
 
@@ -143,30 +149,47 @@ bool RhodesProcessor::validate_buffers(const vst::ProcessData& data) noexcept {
         return false;
     }
     if (data.numOutputs == 1 && data.outputs == nullptr) { return false; }
+    const auto* bus = getAudioOutput(0);
+    if (bus == nullptr) { return false; }
+    const auto arrangement = bus->getArrangement();
+    if (arrangement != vst::SpeakerArr::kMono && arrangement != vst::SpeakerArr::kStereo) {
+        return false;
+    }
+    const Steinberg::int32 channels = arrangement == vst::SpeakerArr::kMono ? 1 : 2;
     if (data.numSamples == 0) {
-        // Hosts may omit all buffers or retain a zero-channel/stereo bus while
-        // flushing parameters. No sample pointer is accessed during a flush.
+        // Hosts may omit all buffers or retain a zero-channel/negotiated-width
+        // bus while flushing parameters. Never inspect its sample pointers.
         return data.numOutputs == 0 || data.outputs[0].numChannels == 0 ||
-               data.outputs[0].numChannels == 2;
+               data.outputs[0].numChannels == channels;
     }
     if (!configured_ || data.numSamples > processSetup.maxSamplesPerBlock ||
         data.symbolicSampleSize != processSetup.symbolicSampleSize ||
-        ((data.processMode == vst::kOffline) != (processSetup.processMode == vst::kOffline)) ||
-        data.numOutputs != 1 || data.outputs[0].numChannels != 2) {
+        ((data.processMode == vst::kOffline) != (processSetup.processMode == vst::kOffline))) {
         return false;
     }
-    const auto* bus = getAudioOutput(0);
-    const bool active = bus != nullptr && bus->isActive();
+    const bool active = bus->isActive();
+    // The SDK permits omission of trailing inactive buses. Do not even form a
+    // reference to outputs[0] when the sole output has been omitted.
+    if (data.numOutputs == 0) { return !active; }
+    if (data.outputs[0].numChannels != channels) { return false; }
+    const auto valid_channels = [active, channels](const auto buffers) noexcept {
+        if (buffers == nullptr) { return false; }
+        if (active) {
+            for (Steinberg::int32 channel = 0; channel < channels; ++channel) {
+                if (buffers[channel] == nullptr) { return false; }
+            }
+        }
+        return true;
+    };
     if (data.symbolicSampleSize == vst::kSample32) {
-        const auto buffers = data.outputs[0].channelBuffers32;
-        return buffers != nullptr && (!active || (buffers[0] != nullptr && buffers[1] != nullptr));
+        return valid_channels(data.outputs[0].channelBuffers32);
     }
-    const auto buffers = data.outputs[0].channelBuffers64;
-    return buffers != nullptr && (!active || (buffers[0] != nullptr && buffers[1] != nullptr));
+    return valid_channels(data.outputs[0].channelBuffers64);
 }
 
 bool RhodesProcessor::collect_parameters(const vst::ProcessData& data) noexcept {
     gain_count_ = 0;
+    expression_count_ = 0;
     sustain_count_ = 0;
     channel_command_count_ = 0;
     if (data.inputParameterChanges == nullptr) { return true; }
@@ -179,8 +202,8 @@ bool RhodesProcessor::collect_parameters(const vst::ProcessData& data) noexcept 
         if (queue == nullptr) { return false; }
         const auto id = queue->getParameterId();
         const auto channel = all_notes_off_channel(id);
-        if (id != kGainId && id != kSustainId && channel < 0) { return false; }
-        const auto parameter_index = channel >= 0 ? 2 + static_cast<std::size_t>(channel) :
+        if (id != kGainId && id != kSustainId && id != kExpressionId && channel < 0) { return false; }
+        const auto parameter_index = channel >= 0 ? 3 + static_cast<std::size_t>(channel) :
                                                    static_cast<std::size_t>(id);
         if (seen[parameter_index]) { return false; }
         seen[parameter_index] = true;
@@ -191,8 +214,10 @@ bool RhodesProcessor::collect_parameters(const vst::ProcessData& data) noexcept 
                 kMaximumChannelCommands - channel_command_count_)) {
             return false;
         }
-        auto& points = id == kGainId ? gain_points_ : sustain_points_;
-        auto& distinct_count = id == kGainId ? gain_count_ : sustain_count_;
+        auto& points = id == kGainId ? gain_points_ :
+                       id == kExpressionId ? expression_points_ : sustain_points_;
+        auto& distinct_count = id == kGainId ? gain_count_ :
+                               id == kExpressionId ? expression_count_ : sustain_count_;
         Steinberg::int32 previous_offset = -1;
         for (Steinberg::int32 index = 0; index < count; ++index) {
             Steinberg::int32 offset = -1;
@@ -366,21 +391,23 @@ void RhodesProcessor::silence_outputs(vst::ProcessData& data) noexcept {
     }
     auto& bus = data.outputs[0];
     if (data.numSamples == 0) {
-        // Flushes accept an empty or stereo bus, but never inspect pointers.
+        // Cleanup recognizes empty, mono and stereo buses, independently of
+        // the negotiated layout. Flushes never inspect sample pointers.
         if (bus.numChannels == 0) { bus.silenceFlags = 0; }
+        else if (bus.numChannels == 1) { bus.silenceFlags = 1; }
         else if (bus.numChannels == 2) { bus.silenceFlags = 3; }
         return;
     }
-    if (bus.numChannels != 2) { return; }
-    bus.silenceFlags = 3;
+    if (bus.numChannels != 1 && bus.numChannels != 2) { return; }
+    bus.silenceFlags = bus.numChannels == 1 ? 1 : 3;
     if (data.symbolicSampleSize == vst::kSample32 && bus.channelBuffers32 != nullptr) {
-        for (std::size_t channel = 0; channel < 2; ++channel) {
+        for (Steinberg::int32 channel = 0; channel < bus.numChannels; ++channel) {
             if (bus.channelBuffers32[channel] != nullptr) {
                 std::fill_n(bus.channelBuffers32[channel], data.numSamples, 0.0F);
             }
         }
     } else if (data.symbolicSampleSize == vst::kSample64 && bus.channelBuffers64 != nullptr) {
-        for (std::size_t channel = 0; channel < 2; ++channel) {
+        for (Steinberg::int32 channel = 0; channel < bus.numChannels; ++channel) {
             if (bus.channelBuffers64[channel] != nullptr) {
                 std::fill_n(bus.channelBuffers64[channel], data.numSamples, 0.0);
             }
@@ -416,6 +443,9 @@ Steinberg::tresult PLUGIN_API RhodesProcessor::process(vst::ProcessData& data) {
     notes_ = candidate;
     if (data.numSamples == 0) {
         if (gain_count_ > 0) { live_state_.monitoring_gain = gain_points_[gain_count_ - 1].value; }
+        if (expression_count_ > 0) {
+            live_state_.expression = expression_points_[expression_count_ - 1].value;
+        }
         if (sustain_count_ > 0) {
             live_state_.sustain = sustain_points_[sustain_count_ - 1].value == 1.0F;
             (void)engine_.set_sustain(live_state_.sustain);
@@ -439,14 +469,27 @@ Steinberg::tresult PLUGIN_API RhodesProcessor::process(vst::ProcessData& data) {
 Steinberg::tresult RhodesProcessor::render(vst::ProcessData& data,
                                           const StateMailbox::BlockToken& token) noexcept {
     silence_outputs(data);
-    auto& output = data.outputs[0];
+    auto* output = data.numOutputs == 1 ? &data.outputs[0] : nullptr;
+    const Steinberg::int32 channels = output != nullptr ? output->numChannels : 0;
+    const Steinberg::uint64 silent_mask = channels == 1 ? 1 : channels == 2 ? 3 : 0;
     std::size_t gain_index = 0;
+    std::size_t expression_index = 0;
     std::size_t pedal_index = 0;
     std::size_t note_index = 0;
-    Steinberg::int32 left_offset = -1;
+    Steinberg::int32 gain_left_offset = -1;
+    Steinberg::int32 expression_left_offset = -1;
     // Recall and parameter preflight guarantee normalized binary32 storage.
+    // Anchor both curves in the audio owner's state after the selected recall;
+    // a mailbox snapshot may already contain a newer, unapplied UI recall.
     double left_gain = *control::widen(live_state_.monitoring_gain);
+    double left_expression = *control::widen(live_state_.expression);
     bool any_nonzero = false;
+    const auto fault = [&]() noexcept {
+        conversion_fault_ = true;
+        (void)mailbox_.end_block(token, live_state_);
+        if (output != nullptr) { output->silenceFlags = any_nonzero ? 0 : silent_mask; }
+        return Steinberg::kResultFalse;
+    };
     for (Steinberg::int32 frame = 0; frame < data.numSamples; ++frame) {
         double gain = left_gain;
         if (gain_index < gain_count_) {
@@ -454,22 +497,36 @@ Steinberg::tresult RhodesProcessor::render(vst::ProcessData& data,
             if (point.offset == frame) {
                 gain = *control::widen(point.value);
                 left_gain = gain;
-                left_offset = frame;
+                gain_left_offset = frame;
                 ++gain_index;
             } else {
-                const double fraction = static_cast<double>(frame - left_offset) /
-                                        static_cast<double>(point.offset - left_offset);
+                const double fraction = static_cast<double>(frame - gain_left_offset) /
+                                        static_cast<double>(point.offset - gain_left_offset);
                 gain = left_gain + (*control::widen(point.value) - left_gain) * fraction;
             }
         }
-        const auto stored_gain = control::quantize(gain);
-        if (!stored_gain) {
-            conversion_fault_ = true;
-            (void)mailbox_.end_block(token, live_state_);
-            output.silenceFlags = any_nonzero ? 0 : 3;
-            return Steinberg::kResultFalse;
+        double expression = left_expression;
+        if (expression_index < expression_count_) {
+            const auto& point = expression_points_[expression_index];
+            if (point.offset == frame) {
+                expression = *control::widen(point.value);
+                left_expression = expression;
+                expression_left_offset = frame;
+                ++expression_index;
+            } else {
+                const double fraction = static_cast<double>(frame - expression_left_offset) /
+                                        static_cast<double>(point.offset - expression_left_offset);
+                expression = left_expression +
+                    (*control::widen(point.value) - left_expression) * fraction;
+            }
         }
+        const auto stored_gain = control::quantize(gain);
+        const auto stored_expression = control::quantize(expression);
+        if (!stored_gain || !stored_expression) { return fault(); }
+        // Commit the valid pair together before DSP, retaining the existing
+        // accepted-fault policy for the failing frame's configuration.
         live_state_.monitoring_gain = *stored_gain;
+        live_state_.expression = *stored_expression;
 
         std::size_t dispatch_count = 0;
         if (pedal_index < sustain_count_ && sustain_points_[pedal_index].offset == frame) {
@@ -487,37 +544,32 @@ Steinberg::tresult RhodesProcessor::render(vst::ProcessData& data,
         double volts = 0.0;
         const auto result = engine_.process(std::span<double>(&volts, 1),
             std::span<const EngineEvent>(dispatch_.data(), dispatch_count));
-        const double converted = (32.0 * gain) * volts;
-        if (!result.succeeded() || !std::isfinite(converted)) {
-            conversion_fault_ = true;
-            (void)mailbox_.end_block(token, live_state_);
-            output.silenceFlags = any_nonzero ? 0 : 3;
-            return Steinberg::kResultFalse;
-        }
+        const double monitored = (32.0 * gain) * volts;
+        if (!result.succeeded() || !std::isfinite(monitored)) { return fault(); }
+        // Unity preserves the legacy arithmetic path exactly. Attenuation may
+        // bring a finite double into float range, but never hides an engine or
+        // monitoring fault. Conversion still runs when no output was supplied.
+        const double converted = expression == 1.0 ? monitored : monitored * expression;
+        if (!std::isfinite(converted)) { return fault(); }
         if (data.symbolicSampleSize == vst::kSample32) {
             const float sample = static_cast<float>(converted);
-            if (!std::isfinite(sample)) {
-                conversion_fault_ = true;
-                (void)mailbox_.end_block(token, live_state_);
-                output.silenceFlags = any_nonzero ? 0 : 3;
-                return Steinberg::kResultFalse;
-            }
-            for (std::size_t channel = 0; channel < 2; ++channel) {
-                if (output.channelBuffers32[channel] != nullptr) {
-                    output.channelBuffers32[channel][frame] = sample;
+            if (!std::isfinite(sample)) { return fault(); }
+            for (Steinberg::int32 channel = 0; channel < channels; ++channel) {
+                if (output->channelBuffers32[channel] != nullptr) {
+                    output->channelBuffers32[channel][frame] = sample;
                 }
             }
             any_nonzero = any_nonzero || sample != 0.0F;
         } else {
-            for (std::size_t channel = 0; channel < 2; ++channel) {
-                if (output.channelBuffers64[channel] != nullptr) {
-                    output.channelBuffers64[channel][frame] = converted;
+            for (Steinberg::int32 channel = 0; channel < channels; ++channel) {
+                if (output->channelBuffers64[channel] != nullptr) {
+                    output->channelBuffers64[channel][frame] = converted;
                 }
             }
             any_nonzero = any_nonzero || converted != 0.0;
         }
     }
-    output.silenceFlags = any_nonzero ? 0 : 3;
+    if (output != nullptr) { output->silenceFlags = any_nonzero ? 0 : silent_mask; }
     (void)mailbox_.end_block(token, live_state_);
     return Steinberg::kResultOk;
 }

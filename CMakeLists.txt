@@ -79,6 +79,15 @@ target_compile_definitions(rhodes_runtime_benchmark PRIVATE RHODES_BUILD_CONFIGU
 rhodes_target_options(rhodes_runtime_benchmark)
 
 if(BUILD_TESTING)
+    add_executable(rhodes_expression_state_tests tests/cpp/expression_state_test.cpp)
+    target_link_libraries(rhodes_expression_state_tests PRIVATE rhodes_core)
+    rhodes_target_options(rhodes_expression_state_tests)
+    foreach(test_name IN ITEMS defaults_and_goldens codec_domains malformed_packets
+            model_isolation mailbox_words mailbox_transactions floating_point_modes)
+        add_test(NAME expression_state.${test_name}
+            COMMAND rhodes_expression_state_tests ${test_name})
+    endforeach()
+
     add_executable(rhodes_control_text_tests tests/cpp/control_text_test.cpp)
     target_link_libraries(rhodes_control_text_tests PRIVATE rhodes_core)
     rhodes_target_options(rhodes_control_text_tests)

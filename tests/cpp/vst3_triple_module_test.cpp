@@ -158,9 +158,10 @@ public:
         require(static_cast<unsigned>(state[6]) + 256U * state[7] == identity.model,
                 "state model identity");
         require(snapshot(*controller) == state, "controller and processor default state");
-        require(controller->getParameterCount() == 18 &&
+        require(controller->getParameterCount() == 19 &&
                     controller->getParamNormalized(0) == 0.5 &&
-                    controller->getParamNormalized(1) == 0.0,
+                    controller->getParamNormalized(1) == 0.0 &&
+                    controller->getParamNormalized(2) == 1.0,
                 "unchanged public parameter identities and defaults");
     }
 

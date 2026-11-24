@@ -97,6 +97,7 @@ struct ParameterQueue final : FixedHostObject<vst::IParamValueQueue> {
 };
 
 struct ParameterChanges final : FixedHostObject<vst::IParameterChanges> {
+    // Legacy gain/sustain fixture capacity, not the public parameter-queue limit.
     std::array<vst::IParamValueQueue*, 2> values{};
     sdk::int32 count = 0;
 
@@ -131,6 +132,8 @@ struct MemoryStream final : FixedHostObject<sdk::IBStream> {
     bool wrong_restored_position = false;
 
     void load(InstrumentState state, std::size_t prefix = 0, std::uint16_t model = 1) {
+        // This helper deliberately builds legacy v1 packets at Expression unity.
+        // Non-unity/v2 fixtures construct their packet and exact extent separately.
         const auto encoded = encode_instrument_state(state, model);
         require(encoded.has_value() && prefix + encoded->size() <= bytes.size(),
                 "invalid state-stream fixture");

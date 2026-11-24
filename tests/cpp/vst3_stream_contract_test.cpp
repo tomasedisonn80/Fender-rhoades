@@ -430,7 +430,9 @@ void malformed_state() {
                 MemoryStream stream;
                 input(stream, valid, prefix, 7);
                 stream.extent = static_cast<sdk::int64>(prefix) + remaining;
-                reject_read(rig, reader, &stream, 0);
+                // Twenty bytes is now a possible v2 packet. Read that candidate
+                // completely, then reject this v1 packet's trailing bytes.
+                reject_read(rig, reader, &stream, remaining == 20 ? 3U : 0U);
             }
         }
         for (int fault = 0; fault < 6; ++fault) {

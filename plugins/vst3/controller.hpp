@@ -5,7 +5,7 @@
 
 namespace rhodes::vst3 {
 
-// Headless controller: ordinary host controls and CC64/CC123 MIDI mapping.
+// Headless controller: ordinary host controls and CC11/CC64/CC123 MIDI mapping.
 class RhodesController final : public Steinberg::Vst::EditController,
                                public Steinberg::Vst::IMidiMapping {
 public:

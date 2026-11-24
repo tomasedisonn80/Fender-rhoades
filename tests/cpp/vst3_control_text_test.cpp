@@ -58,9 +58,9 @@ std::uint64_t bits(double value) { return std::bit_cast<std::uint64_t>(value); }
 double value(std::uint64_t encoding) { return std::bit_cast<double>(encoding); }
 
 constexpr auto parameter_ids() {
-    std::array<vst::ParamID, 18> ids{plugin::kGainId, plugin::kSustainId};
+    std::array<vst::ParamID, 19> ids{plugin::kGainId, plugin::kSustainId, plugin::kExpressionId};
     for (std::size_t channel = 0; channel < 16; ++channel) {
-        ids[channel + 2] = plugin::kAllNotesOffBaseId + static_cast<vst::ParamID>(channel);
+        ids[channel + 3] = plugin::kAllNotesOffBaseId + static_cast<vst::ParamID>(channel);
     }
     return ids;
 }
@@ -137,19 +137,21 @@ struct Snapshot {
         check(save(controller) == configuration, "text conversion changed saved configuration");
         for (std::size_t index = 0; index < ids.size(); ++index) {
             check(bits(controller.getParamNormalized(ids[index])) == normalized[index],
-                  "text conversion changed a gain, sustain or command parameter");
+                  "text conversion changed a persistent or command parameter");
         }
     }
 };
 
 void seed(vst::IEditController& controller) {
-    check(controller.getParameterCount() == 18, "controller parameter count differs");
+    check(controller.getParameterCount() == 19, "controller parameter count differs");
     check(controller.setParamNormalized(plugin::kGainId, 0.125) == sdk::kResultOk &&
-          controller.setParamNormalized(plugin::kSustainId, 1.0) == sdk::kResultOk,
+          controller.setParamNormalized(plugin::kSustainId, 1.0) == sdk::kResultOk &&
+          controller.setParamNormalized(plugin::kExpressionId, 1.0) == sdk::kResultOk,
           "configuration seed failed");
-    for (std::size_t index = 2; index < ids.size(); ++index) {
+    // Keep the independent 16-byte legacy snapshots by explicitly retaining unity.
+    for (std::size_t index = 3; index < ids.size(); ++index) {
         // Exact binary fractions give every command a nondefault retained value.
-        const double command = static_cast<double>(index - 1) / 32.0;
+        const double command = static_cast<double>(index - 2) / 32.0;
         check(controller.setParamNormalized(ids[index], command) == sdk::kResultOk,
               "command seed failed");
     }
@@ -313,7 +315,7 @@ void valid_parse_cases(vst::IEditController& controller) {
         {"1e-308", 0x000730d67819e8d2ULL},
         {"5e-324", 0x0000000000000001ULL}, {"1e-323", 0x0000000000000002ULL}
     };
-    for (std::size_t index = 2; index < ids.size(); ++index) {
+    for (std::size_t index = 3; index < ids.size(); ++index) {
         for (const auto& item : command_cases) {
             accept(controller, ids[index], item.input, item.normalized);
         }
@@ -342,7 +344,7 @@ void invalid_parse_cases(vst::IEditController& controller) {
     for (const auto* input : {"32.00000000000001", "32.000001", "32.1", "33", "1e2"}) {
         reject(controller, plugin::kGainId, input);
     }
-    for (std::size_t index = 2; index < ids.size(); ++index) {
+    for (std::size_t index = 3; index < ids.size(); ++index) {
         for (const auto* input : {"1.0000000000000002", "1.000001", "1.1", "2", "16",
                                   "0x", "0 x", "1x", "0.5 x", "5e-1x"}) {
             reject(controller, ids[index], input);
@@ -428,7 +430,7 @@ void valid_format_cases(vst::IEditController& controller) {
         {0x0000000000000001ULL, 0x0000000000000001ULL},
         {0x0000000000000002ULL, 0x0000000000000002ULL}
     };
-    for (std::size_t index = 2; index < ids.size(); ++index) {
+    for (std::size_t index = 3; index < ids.size(); ++index) {
         for (const auto& item : command_cases) {
             format(controller, ids[index], item.input, item.normalized);
         }
@@ -464,7 +466,7 @@ void invalid_format_and_id_cases(vst::IEditController& controller) {
         controls.expect_unchanged();
         before.expect_unchanged(controller);
     }
-    for (const auto id : {vst::ParamID{2}, vst::ParamID{0x0fff}, vst::ParamID{0x1010},
+    for (const auto id : {vst::ParamID{3}, vst::ParamID{0x0fff}, vst::ParamID{0x1010},
                           vst::ParamID{0xffffffffU}}) {
         reject(controller, id, "0.5");
         reject_format(controller, id, 0x3fe0000000000000ULL);
@@ -486,8 +488,10 @@ void recall_cases(vst::IEditController& controller) {
         check(bits(controller.getParamNormalized(plugin::kGainId)) ==
               (component ? 0x3fb0000000000000ULL : 0x3fe8000000000000ULL) &&
               bits(controller.getParamNormalized(plugin::kSustainId)) ==
-              (component ? 0x3ff0000000000000ULL : 0ULL), "recalled controls differ");
-        for (std::size_t index = 2; index < ids.size(); ++index) {
+              (component ? 0x3ff0000000000000ULL : 0ULL) &&
+              bits(controller.getParamNormalized(plugin::kExpressionId)) ==
+              0x3ff0000000000000ULL, "recalled controls differ");
+        for (std::size_t index = 3; index < ids.size(); ++index) {
             check(bits(controller.getParamNormalized(ids[index])) == original.normalized[index],
                   "configuration recall reset a transient command value");
         }
@@ -619,9 +623,9 @@ void locale_cases() {
         accept(controller, plugin::kGainId, "0.1", 0x3f699999a0000000ULL);
         reject(controller, plugin::kGainId, "0,1");
         format(controller, plugin::kGainId, 0x3fa0000000000000ULL, 0x3fa0000000000000ULL);
-        accept(controller, ids[2], "0.1", 0x3fb999999999999aULL);
-        reject(controller, ids[2], "0,1");
-        format(controller, ids[2], 0x3fb999999999999aULL, 0x3fb999999999999aULL);
+        accept(controller, ids[3], "0.1", 0x3fb999999999999aULL);
+        reject(controller, ids[3], "0,1");
+        format(controller, ids[3], 0x3fb999999999999aULL, 0x3fb999999999999aULL);
         std::cout << "PASS comma-decimal locale " << candidate << '\n';
         return;
     }

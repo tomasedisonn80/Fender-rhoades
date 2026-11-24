@@ -19,7 +19,8 @@ namespace {
 constexpr std::size_t kTextCapacity = 128;
 
 [[nodiscard]] bool known_parameter(Steinberg::Vst::ParamID tag) noexcept {
-    return tag == kGainId || tag == kSustainId || all_notes_off_channel(tag) >= 0;
+    return tag == kGainId || tag == kSustainId || tag == kExpressionId ||
+           all_notes_off_channel(tag) >= 0;
 }
 
 [[nodiscard]] bool ascii_whitespace(char value) noexcept {
@@ -47,9 +48,10 @@ constexpr std::size_t kTextCapacity = 128;
     return std::nullopt;
 }
 
-[[nodiscard]] std::optional<double> parse_decimal(std::string_view text, bool gain) noexcept {
+[[nodiscard]] std::optional<double> parse_decimal(
+    std::string_view text, bool allow_factor_suffix, std::uint64_t maximum_bits) noexcept {
     text = trim_ascii(text);
-    if (gain && !text.empty() && text.back() == 'x') {
+    if (allow_factor_suffix && !text.empty() && text.back() == 'x') {
         text.remove_suffix(1);
         text = trim_ascii(text);
     }
@@ -58,8 +60,7 @@ constexpr std::size_t kTextCapacity = 128;
     // The portable integer converter rounds to binary64 before this parameter
     // domain check. Classify bits so DAZ cannot hide a negative subnormal.
     const auto bits = std::bit_cast<std::uint64_t>(*parsed);
-    const auto maximum = gain ? 0x4040000000000000ULL : 0x3ff0000000000000ULL;
-    if (bits > maximum && bits != 0x8000000000000000ULL) { return std::nullopt; }
+    if (bits > maximum_bits && bits != 0x8000000000000000ULL) { return std::nullopt; }
     return control::is_zero(*parsed) ? 0.0 : *parsed;
 }
 
@@ -122,6 +123,9 @@ Steinberg::tresult PLUGIN_API RhodesController::initialize(Steinberg::FUnknown* 
     sustain->appendString(STR16("Off"));
     sustain->appendString(STR16("On"));
     parameters.addParameter(sustain);
+    parameters.addParameter(new Steinberg::Vst::RangeParameter(
+        STR16("Expression"), kExpressionId, STR16("x"), 0.0, 1.0, 1.0, 0,
+        Steinberg::Vst::ParameterInfo::kCanAutomate));
     for (std::size_t channel = 0; channel < kMidiChannelCount; ++channel) {
         Steinberg::Vst::String128 title{}, short_title{};
         channel_title("All Notes Off Ch ", static_cast<unsigned>(channel) + 1U, title);
@@ -142,15 +146,18 @@ Steinberg::tresult PLUGIN_API RhodesController::terminate() {
 Steinberg::tresult PLUGIN_API RhodesController::setComponentState(Steinberg::IBStream* stream) {
     const auto decoded = read_state_stream(stream, kStateModel);
     if (!decoded || getParameterObject(kGainId) == nullptr ||
-        getParameterObject(kSustainId) == nullptr) {
+        getParameterObject(kSustainId) == nullptr ||
+        getParameterObject(kExpressionId) == nullptr) {
         return Steinberg::kResultFalse;
     }
     const auto gain = control::widen(decoded->monitoring_gain);
-    if (!gain) { return Steinberg::kResultFalse; }
-    // Both parameters and the entire chunk have been checked before either
+    const auto expression = control::widen(decoded->expression);
+    if (!gain || !expression) { return Steinberg::kResultFalse; }
+    // All three parameters and the entire chunk have been checked before any
     // parameter changes, so malformed recall leaves the controller unchanged.
     (void)setParamNormalized(kGainId, *gain);
     (void)setParamNormalized(kSustainId, decoded->sustain ? 1.0 : 0.0);
+    (void)setParamNormalized(kExpressionId, *expression);
     return Steinberg::kResultOk;
 }
 
@@ -159,12 +166,14 @@ Steinberg::tresult PLUGIN_API RhodesController::setState(Steinberg::IBStream* st
 }
 
 Steinberg::tresult PLUGIN_API RhodesController::getState(Steinberg::IBStream* stream) {
-    if (getParameterObject(kGainId) == nullptr || getParameterObject(kSustainId) == nullptr) {
+    if (getParameterObject(kGainId) == nullptr || getParameterObject(kSustainId) == nullptr ||
+        getParameterObject(kExpressionId) == nullptr) {
         return Steinberg::kResultFalse;
     }
     const auto gain = control::quantize(getParamNormalized(kGainId));
-    if (!gain) { return Steinberg::kResultFalse; }
-    const InstrumentState state{*gain, getParamNormalized(kSustainId) >= 0.5};
+    const auto expression = control::quantize(getParamNormalized(kExpressionId));
+    if (!gain || !expression) { return Steinberg::kResultFalse; }
+    const InstrumentState state{*gain, getParamNormalized(kSustainId) >= 0.5, *expression};
     return write_state_stream(stream, state, kStateModel) ? Steinberg::kResultOk : Steinberg::kResultFalse;
 }
 
@@ -173,7 +182,8 @@ Steinberg::tresult PLUGIN_API RhodesController::setParamNormalized(
     if (!initialized_ || !known_parameter(tag) || !control::valid_normalized(value)) {
         return Steinberg::kInvalidArgument;
     }
-    const double canonical = tag == kGainId ? *control::widen(*control::quantize(value)) :
+    const double canonical = (tag == kGainId || tag == kExpressionId) ?
+        *control::widen(*control::quantize(value)) :
         tag == kSustainId ? (value >= 0.5 ? 1.0 : 0.0) :
         control::is_zero(value) ? 0.0 : value;
     return EditController::setParamNormalized(tag, canonical);
@@ -190,13 +200,14 @@ Steinberg::tresult PLUGIN_API RhodesController::getParamStringByValue(
     if (tag == kSustainId) {
         write_ascii(value >= 0.5 ? "On" : "Off", result);
     } else {
-        // Gain text represents the canonical stored binary32 configuration;
-        // command text instead preserves the complete normalized binary64 value.
+        // Gain and expression text represent the canonical stored binary32
+        // configuration; command text preserves the complete binary64 value.
         // Every nonzero widened binary32 is a normal double, so this power-of-two
         // gain scaling is exact and insensitive to host rounding/flush controls.
-        const double plain = tag == kGainId ?
-            *control::widen(*control::quantize(value)) * 32.0 :
+        const double canonical = (tag == kGainId || tag == kExpressionId) ?
+            *control::widen(*control::quantize(value)) :
             control::is_zero(value) ? 0.0 : value;
+        const double plain = tag == kGainId ? canonical * 32.0 : canonical;
         std::array<char, kTextCapacity> ascii{};
         const auto count = control_text::format_decimal(plain, ascii);
         if (!count) { return Steinberg::kResultFalse; }
@@ -221,7 +232,8 @@ Steinberg::tresult PLUGIN_API RhodesController::getParamValueByString(
         if (*text == "On") { result = 1.0; }
         else if (*text != "Off") { return Steinberg::kResultFalse; }
     } else {
-        const auto parsed = parse_decimal(*text, tag == kGainId);
+        const auto parsed = parse_decimal(*text, tag == kGainId || tag == kExpressionId,
+            tag == kGainId ? 0x4040000000000000ULL : 0x3ff0000000000000ULL);
         if (!parsed) { return Steinberg::kResultFalse; }
         result = *parsed;
         if (tag == kGainId) {
@@ -230,6 +242,8 @@ Steinberg::tresult PLUGIN_API RhodesController::getParamValueByString(
             // underflow/DAZ effects before the existing integer quantizer.
             result = std::bit_cast<std::uint64_t>(result) <= 0x36e0000000000000ULL ?
                 0.0 : *control::widen(*control::quantize(result / 32.0));
+        } else if (tag == kExpressionId) {
+            result = *control::widen(*control::quantize(result));
         }
     }
     value = result;
@@ -240,6 +254,10 @@ Steinberg::tresult PLUGIN_API RhodesController::getMidiControllerAssignment(
     Steinberg::int32 busIndex, Steinberg::int16 channel,
     Steinberg::Vst::CtrlNumber midiControllerNumber, Steinberg::Vst::ParamID& tag) {
     if (busIndex == 0 && channel >= 0 && channel < static_cast<Steinberg::int16>(kMidiChannelCount)) {
+        if (midiControllerNumber == Steinberg::Vst::kCtrlExpression) {
+            tag = kExpressionId;
+            return Steinberg::kResultTrue;
+        }
         if (midiControllerNumber == Steinberg::Vst::kCtrlSustainOnOff) {
             tag = kSustainId;
             return Steinberg::kResultTrue;
