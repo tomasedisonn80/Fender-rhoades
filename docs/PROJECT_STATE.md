@@ -6,7 +6,7 @@
 
 **Fidelity status:** `unvalidated`. Task completion is not a realism percentage.
 
-**State revision:** 25 · **Last state change:** 2026-11-24T05:01:00Z
+**State revision:** 27 · **Last state change:** 2026-11-24T05:26:53Z
 
 blocked: **2** | done: **2** | in_progress: **3** | todo: **7**
 

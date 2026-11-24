@@ -171,10 +171,13 @@ struct AnalyticChecks {
     long double maximum_error = 0.0L;
 
     void check(const Fixture& fixture, const Fractions& fractions = nodes) {
+        const auto cell = fixture.engine->observe_cell(*fixture.plan);
+        require(cell.has_value(), "batched observation missing");
         for (std::size_t node = 0; node < fractions.size(); ++node) {
             const auto actual = fixture.engine->observe(*fixture.plan, node);
             require(actual.has_value() && std::isfinite(*actual),
                     "prepared observation missing or nonfinite");
+            same((*cell)[node], *actual, "batched observation changed scalar output bits");
             const long double expected = reference_voltage(*fixture.engine, fixture.held,
                                                           fixture.sustain, fractions[node]);
             const long double error = std::abs(static_cast<long double>(*actual) - expected);
@@ -220,6 +223,7 @@ void plan_domains() {
     const auto untouched = std::make_unique<Engine>(*fixture.engine);
     const auto original_motion = motion(*fixture.engine);
     const auto empty_plan = std::make_unique<Plan>();
+    require(!fixture.engine->observe_cell(*empty_plan), "batched default plan accepted");
     std::array<double, rhodes::observation_node_count> expected{};
     for (std::size_t node = 0; node < nodes.size(); ++node) {
         require(!fixture.engine->observe(*empty_plan, node), "default plan accepted");
@@ -232,10 +236,13 @@ void plan_domains() {
             "maximum node index accepted");
 
     const auto preserved = [&] {
+        const auto cell = fixture.engine->observe_cell(*fixture.plan);
+        require(cell.has_value(), "rejection invalidated batched observation");
         for (std::size_t node = 0; node < nodes.size(); ++node) {
             const auto value = fixture.engine->observe(*fixture.plan, node);
             require(value.has_value(), "rejection invalidated prior plan");
             same(*value, expected[node], "rejected preparation changed plan results");
+            same((*cell)[node], expected[node], "rejected preparation changed batched results");
         }
         same_motion(*fixture.engine, original_motion);
         same(fixture.engine->sample_rate_hz(), 48000.0, "rejection changed rate");
@@ -281,6 +288,8 @@ void plan_domains() {
     for (const double rate : rates()) {
         const auto other = std::make_unique<Engine>();
         require(other->prepare(rate), "comparison engine preparation failed");
+        require(other->observe_cell(*fixture.plan).has_value() == (rate == 48000.0),
+                "batched rate validation disagrees with scalar API");
         for (std::size_t node = 0; node < nodes.size(); ++node) {
             const auto result = other->observe(*fixture.plan, node);
             if (rate == 48000.0) {
@@ -344,6 +353,9 @@ void observation_nonmutation() {
             require(fixture.engine->prepare_observation_plan(alternate_nodes, *alternative),
                     "alternate preparation failed");
             for (std::size_t pass = 0; pass < 3; ++pass) {
+                require(fixture.engine->observe_cell(*fixture.plan).has_value() &&
+                        fixture.engine->observe_cell(*alternative).has_value(),
+                        "repeated batched observation failed");
                 for (std::size_t node = nodes.size(); node-- > 0;) {
                     require(fixture.engine->observe(*fixture.plan, node).has_value() &&
                             fixture.engine->observe(*alternative, node).has_value(),

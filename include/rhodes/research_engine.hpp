@@ -96,11 +96,12 @@ public:
 
 private:
     friend class ResearchEngine;
-    using Transition = std::array<double, 4>;
+    // Keep the six nodes contiguous for each matrix component. A batched
+    // observation can reuse one mechanical state across all six evaluations.
+    using Transition = std::array<std::array<double, observation_node_count>, 4>;
     using KeyTransitions = std::array<Transition, modes_per_key>;
-    using RegimeTransitions = std::array<KeyTransitions, key_count>;
-    using NodeTransitions = std::array<RegimeTransitions, 2>;
-    std::array<NodeTransitions, observation_node_count> transitions_{};
+    using RegimeTransitions = std::array<KeyTransitions, 2>;
+    std::array<RegimeTransitions, key_count> transitions_{};
     double sample_rate_hz_ = 0.0;
 };
 
@@ -126,6 +127,11 @@ public:
     // matrices and fixed storage; no allocation, locking or transcendental work.
     [[nodiscard]] std::optional<double> observe(
         const FractionalObservationPlan& plan, std::size_t node) const noexcept;
+    // Evaluate all six nodes while loading each modal state once. Per-node
+    // arithmetic and modal/electrical summation order match observe exactly.
+    // Failure returns no cell; neither API advances or mutates mechanics.
+    [[nodiscard]] std::optional<std::array<double, observation_node_count>> observe_cell(
+        const FractionalObservationPlan& plan) const noexcept;
     // key index 0..72 maps to MIDI 28..100 for synthetic equal temperament.
     // intensity 0..1 drives an impulse surrogate, NOT measured hammer velocity.
     // Zero intensity is release; retriggers preserve displacement and velocity.

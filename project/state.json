@@ -4,8 +4,8 @@
   "goal": "Physically model a Fender Rhodes Mark I from evolving mechanical, electromagnetic and circuit states without recorded-note playback.",
   "target": "One documented 73-key Mark I Stage specimen at its specified loaded electrical output; identity and measurements pending.",
   "fidelity_status": "unvalidated",
-  "revision": 25,
-  "updated_at": "2026-11-24T05:01:00Z",
+  "revision": 27,
+  "updated_at": "2026-11-24T05:26:53Z",
   "tasks": [
     {
       "id": "FND-001",
@@ -178,7 +178,9 @@
         "tests/cpp",
         "docs",
         "apps",
-        "CMakeLists.txt"
+        "CMakeLists.txt",
+        "tools",
+        "tests/python"
       ]
     },
     {
@@ -333,7 +335,9 @@
         "include/rhodes",
         "CMakeLists.txt",
         "docs/BENCHMARKING.md",
-        "docs/specs/RUNTIME_AND_ASSETS.md"
+        "docs/specs/RUNTIME_AND_ASSETS.md",
+        "tools",
+        "cmake"
       ]
     },
     {
@@ -670,6 +674,22 @@
       "task": "HOST-001",
       "owner": "development-root",
       "detail": "Lease until 2026-11-25T05:01:00Z"
+    },
+    {
+      "revision": 26,
+      "at": "2026-11-24T05:26:53Z",
+      "action": "define_task",
+      "task": "PHY-002",
+      "owner": "development-root",
+      "detail": "Authorized main-branch continuation: include offline diagnostic, reproducibility and verification paths required by the existing task. Preserve acceptance, dependencies, blockers and fidelity status."
+    },
+    {
+      "revision": 27,
+      "at": "2026-11-24T05:26:53Z",
+      "action": "define_task",
+      "task": "RT-001",
+      "owner": "development-root",
+      "detail": "Authorized main-branch continuation: include offline diagnostic, reproducibility and verification paths required by the existing task. Preserve acceptance, dependencies, blockers and fidelity status."
     }
   ]
 }

@@ -340,6 +340,17 @@ if(BUILD_TESTING)
     add_test(NAME vst3.quadrature_sdk_validator
         COMMAND $<TARGET_FILE:validator> "${rhodes_quadrature_bundle}")
     set_tests_properties(vst3.quadrature_sdk_validator PROPERTIES TIMEOUT 180)
+    # Validate the generated metadata against each actual loadable factory.
+    # The audio validator and resource-presence test cover different contracts.
+    add_dependencies(rhodes_vst3_checks moduleinfotool)
+    add_test(NAME vst3.moduleinfo_validator
+        COMMAND $<TARGET_FILE:moduleinfotool> -validate -path "${rhodes_plugin_bundle}")
+    add_test(NAME vst3.filtered_moduleinfo_validator
+        COMMAND $<TARGET_FILE:moduleinfotool> -validate -path "${rhodes_filtered_bundle}")
+    add_test(NAME vst3.quadrature_moduleinfo_validator
+        COMMAND $<TARGET_FILE:moduleinfotool> -validate -path "${rhodes_quadrature_bundle}")
+    set_tests_properties(vst3.moduleinfo_validator vst3.filtered_moduleinfo_validator
+        vst3.quadrature_moduleinfo_validator PROPERTIES TIMEOUT 60)
     add_test(NAME vst3.bundle_resources COMMAND ${CMAKE_COMMAND}
         "-DDIRECT_BUNDLE=${rhodes_plugin_bundle}"
         "-DFILTERED_BUNDLE=${rhodes_filtered_bundle}"

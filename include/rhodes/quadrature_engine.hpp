@@ -68,13 +68,13 @@ public:
             const auto value = filter_.output();
             bool ok = value.has_value();
             if (ok) {
-                for (std::size_t node = 0; node < quadrature_filter::node_count; ++node) {
-                    const auto observation = engine_.observe(plan_, node);
-                    if (!observation || !std::isfinite(*observation)) {
-                        ok = false;
-                        break;
+                const auto observations = engine_.observe_cell(plan_);
+                ok = observations.has_value();
+                if (ok) {
+                    cell = *observations;
+                    for (const double observation : cell) {
+                        if (!std::isfinite(observation)) { ok = false; break; }
                     }
-                    cell[node] = *observation;
                 }
             }
             if (ok) {

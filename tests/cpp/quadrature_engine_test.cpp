@@ -290,6 +290,16 @@ struct FaultEngine {
         if (fault == Fault::huge_constant) { return std::numeric_limits<double>::max(); }
         return 0.25 + static_cast<double>(frame) * 0.001 + static_cast<double>(node) * 0.01;
     }
+    std::optional<std::array<double, 6>> observe_cell(
+        const rhodes::FractionalObservationPlan& plan) const noexcept {
+        std::array<double, 6> cell{};
+        for (std::size_t node = 0; node < cell.size(); ++node) {
+            const auto value = observe(plan, node);
+            if (!value || !std::isfinite(*value)) { return std::nullopt; }
+            cell[node] = *value;
+        }
+        return cell;
+    }
     bool process(std::span<double> output) noexcept {
         for (auto& value : output) {
             const auto current = frame++;

@@ -280,7 +280,9 @@ bool ResearchEngine::prepare_observation_plan(
                     for (const double value : transition) {
                         if (!std::isfinite(value)) { return false; }
                     }
-                    candidate.transitions_[node][regime][k][m] = transition;
+                    for (std::size_t component = 0; component < transition.size(); ++component) {
+                        candidate.transitions_[k][regime][m][component][node] = transition[component];
+                    }
                 }
             }
         }
@@ -302,11 +304,11 @@ std::optional<double> ResearchEngine::observe(
         double velocity = 0.0;
         for (std::size_t m = 0; m < modes_per_key; ++m) {
             const auto state = keys_[k].modes[m].state();
-            const auto& transition = plan.transitions_[node][regime][k][m];
-            const double q = transition[0] * state.displacement_m +
-                transition[1] * state.velocity_m_per_s;
-            const double v = transition[2] * state.displacement_m +
-                transition[3] * state.velocity_m_per_s;
+            const auto& transition = plan.transitions_[k][regime][m];
+            const double q = transition[0][node] * state.displacement_m +
+                transition[1][node] * state.velocity_m_per_s;
+            const double v = transition[2][node] * state.displacement_m +
+                transition[3][node] * state.velocity_m_per_s;
             if (!std::isfinite(q) || !std::isfinite(v)) { return std::nullopt; }
             x += pickup_observation[m] * q;
             velocity += pickup_observation[m] * v;
@@ -318,6 +320,50 @@ std::optional<double> ResearchEngine::observe(
         sources[k] = *voltage;
     }
     return harp_.voltage(sources);
+}
+
+std::optional<std::array<double, observation_node_count>> ResearchEngine::observe_cell(
+    const FractionalObservationPlan& plan) const noexcept {
+    if (plan.sample_rate_hz_ != sample_rate_hz_) { return std::nullopt; }
+    std::array<std::array<double, key_count>, observation_node_count> sources{};
+    for (std::size_t k = 0; k < key_count; ++k) {
+        const std::size_t regime = keys_[k].held || sustain_ ? 1U : 0U;
+        std::array<double, observation_node_count> x{}, velocity{};
+        for (std::size_t m = 0; m < modes_per_key; ++m) {
+            const auto state = keys_[k].modes[m].state();
+            const auto& transition = plan.transitions_[k][regime][m];
+            std::array<double, observation_node_count> q{}, v{};
+            for (std::size_t node = 0; node < observation_node_count; ++node) {
+                q[node] = transition[0][node] * state.displacement_m +
+                    transition[1][node] * state.velocity_m_per_s;
+                v[node] = transition[2][node] * state.displacement_m +
+                    transition[3][node] * state.velocity_m_per_s;
+            }
+            // Keep validation outside the independent arithmetic loops, so a
+            // compiler may vectorize across nodes without reassociating modes.
+            for (std::size_t node = 0; node < observation_node_count; ++node) {
+                if (!std::isfinite(q[node]) || !std::isfinite(v[node])) {
+                    return std::nullopt;
+                }
+            }
+            for (std::size_t node = 0; node < observation_node_count; ++node) {
+                x[node] += pickup_observation[m] * q[node];
+                velocity[node] += pickup_observation[m] * v[node];
+            }
+        }
+        for (std::size_t node = 0; node < observation_node_count; ++node) {
+            const auto voltage = pickup_.voltage(x[node], velocity[node]);
+            if (!voltage) { return std::nullopt; }
+            sources[node][k] = *voltage;
+        }
+    }
+    std::array<double, observation_node_count> result{};
+    for (std::size_t node = 0; node < observation_node_count; ++node) {
+        const auto voltage = harp_.voltage(sources[node]);
+        if (!voltage) { return std::nullopt; }
+        result[node] = *voltage;
+    }
+    return result;
 }
 
 void ResearchEngine::update_damping(Key& key) noexcept {
