@@ -1,0 +1,1280 @@
+{
+  "schema_version": 1,
+  "kind": "retained-native-ci-validation",
+  "evaluator": "/root/w5_88_current_native_archive",
+  "created_at_utc": "2026-11-24T06:59:21.935751+00:00",
+  "source_commit": "240170673983f9992e4657a2d96c2172ece1ac30",
+  "source_tree": "9868da744c287824c006a49d80756a282f121c39",
+  "scope": "Retained completed hosted runs at the exact latest C++ test checkpoint; no local build or test was executed by this collection.",
+  "retrieval": {
+    "date_utc": "2026-11-24",
+    "tool": "GitHub connector github_fetch and github_fetch_workflow_job_logs",
+    "queries": [
+      {
+        "key": "foundation_run",
+        "url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/runs/45340923223"
+      },
+      {
+        "key": "foundation_jobs",
+        "url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/runs/45340923223/jobs?per_page=100"
+      },
+      {
+        "key": "vst3_run",
+        "url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/runs/45340923158"
+      },
+      {
+        "key": "vst3_jobs",
+        "url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/runs/45340923158/jobs?per_page=100"
+      },
+      {
+        "key": "vst3_artifacts",
+        "url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/runs/45340923158/artifacts?per_page=100"
+      }
+    ],
+    "log_procedure": [
+      {
+        "tool": "github_fetch_workflow_job_logs",
+        "repo_full_name": "baabi-boo/Fender-rhoades",
+        "job_id": 138264122568
+      },
+      {
+        "tool": "github_fetch_workflow_job_logs",
+        "repo_full_name": "baabi-boo/Fender-rhoades",
+        "job_id": 138264122910
+      },
+      {
+        "tool": "github_fetch_workflow_job_logs",
+        "repo_full_name": "baabi-boo/Fender-rhoades",
+        "job_id": 138264122965
+      },
+      {
+        "tool": "github_fetch_workflow_job_logs",
+        "repo_full_name": "baabi-boo/Fender-rhoades",
+        "job_id": 138264122997
+      },
+      {
+        "tool": "github_fetch_workflow_job_logs",
+        "repo_full_name": "baabi-boo/Fender-rhoades",
+        "job_id": 138264123001
+      },
+      {
+        "tool": "github_fetch_workflow_job_logs",
+        "repo_full_name": "baabi-boo/Fender-rhoades",
+        "job_id": 138264123055
+      },
+      {
+        "tool": "github_fetch_workflow_job_logs",
+        "repo_full_name": "baabi-boo/Fender-rhoades",
+        "job_id": 138264123061
+      },
+      {
+        "tool": "github_fetch_workflow_job_logs",
+        "repo_full_name": "baabi-boo/Fender-rhoades",
+        "job_id": 138264122093
+      },
+      {
+        "tool": "github_fetch_workflow_job_logs",
+        "repo_full_name": "baabi-boo/Fender-rhoades",
+        "job_id": 138264122400
+      },
+      {
+        "tool": "github_fetch_workflow_job_logs",
+        "repo_full_name": "baabi-boo/Fender-rhoades",
+        "job_id": 138264122571
+      }
+    ],
+    "normalization": "Decoded log text: replace CRLF and lone CR with LF; remove terminal LF characters; append exactly one LF; encode UTF-8. No other whitespace is changed. These bytes are not claimed as the original server ZIP."
+  },
+  "source_applicability": {
+    "observed_local_head_before": "766dd11c73cf9d1dcf6c1960b4333767356f9937",
+    "observed_local_head_after": "766dd11c73cf9d1dcf6c1960b4333767356f9937",
+    "native_source_count": 83,
+    "native_source_paths": [
+      ".github/workflows/ci.yml",
+      ".github/workflows/vst3.yml",
+      "CMakeLists.txt",
+      "CMakePresets.json",
+      "apps/audio_probe.cpp",
+      "apps/benchmark.cpp",
+      "apps/contact_reference.cpp",
+      "apps/render.cpp",
+      "apps/runtime_benchmark.cpp",
+      "apps/vst3_benchmark.cpp",
+      "cmake/Vst3.cmake",
+      "include/rhodes/audio_engine.hpp",
+      "include/rhodes/audio_filter_coefficients.hpp",
+      "include/rhodes/contact_reference.hpp",
+      "include/rhodes/control_value.hpp",
+      "include/rhodes/event_processor.hpp",
+      "include/rhodes/fir_decimator.hpp",
+      "include/rhodes/instrument_state.hpp",
+      "include/rhodes/note_tracker.hpp",
+      "include/rhodes/quadrature_engine.hpp",
+      "include/rhodes/quadrature_filter_coefficients.hpp",
+      "include/rhodes/quadrature_fir.hpp",
+      "include/rhodes/research_engine.hpp",
+      "plugins/vst3/THIRD_PARTY_NOTICES.md",
+      "plugins/vst3/controller.cpp",
+      "plugins/vst3/controller.hpp",
+      "plugins/vst3/factory.cpp",
+      "plugins/vst3/plugin_ids.hpp",
+      "plugins/vst3/processor.cpp",
+      "plugins/vst3/processor.hpp",
+      "plugins/vst3/state_stream.cpp",
+      "plugins/vst3/state_stream.hpp",
+      "src/contact_reference.cpp",
+      "src/research_engine.cpp",
+      "tests/cpp/audio_engine_test.cpp",
+      "tests/cpp/audio_fir_test.cpp",
+      "tests/cpp/audio_probe_cli.cmake",
+      "tests/cpp/benchmark_json.cmake",
+      "tests/cpp/contact_cli.cmake",
+      "tests/cpp/contact_domain_test.cpp",
+      "tests/cpp/contact_event_split_test.cpp",
+      "tests/cpp/contact_grazing_test.cpp",
+      "tests/cpp/contact_peak_cli.cmake",
+      "tests/cpp/contact_peak_test.cpp",
+      "tests/cpp/contact_reference_test.cpp",
+      "tests/cpp/contact_split_peak_test.cpp",
+      "tests/cpp/control_fp_environment_test.cpp",
+      "tests/cpp/control_value_test.cpp",
+      "tests/cpp/diagnostic_stdout.cmake",
+      "tests/cpp/event_model_test.cpp",
+      "tests/cpp/event_processor_test.cpp",
+      "tests/cpp/expect_cli_failure.cmake",
+      "tests/cpp/filtered_render.cmake",
+      "tests/cpp/fractional_observation_test.cpp",
+      "tests/cpp/instrument_model_state_test.cpp",
+      "tests/cpp/instrument_state_test.cpp",
+      "tests/cpp/modal_transition_cache_test.cpp",
+      "tests/cpp/note_model_test.cpp",
+      "tests/cpp/note_tracker_test.cpp",
+      "tests/cpp/quadrature_cli.cmake",
+      "tests/cpp/quadrature_engine_test.cpp",
+      "tests/cpp/quadrature_fir_test.cpp",
+      "tests/cpp/render_output.cmake",
+      "tests/cpp/research_engine_test.cpp",
+      "tests/cpp/review_regression.cpp",
+      "tests/cpp/runtime_benchmark_json.cmake",
+      "tests/cpp/state_concurrency_test.cpp",
+      "tests/cpp/state_fp_environment_test.cpp",
+      "tests/cpp/state_property_test.cpp",
+      "tests/cpp/vst3_automation_contract_test.cpp",
+      "tests/cpp/vst3_benchmark_json.cmake",
+      "tests/cpp/vst3_buffer_contract_test.cpp",
+      "tests/cpp/vst3_bundle_resources.cmake",
+      "tests/cpp/vst3_dual_module_test.cpp",
+      "tests/cpp/vst3_filtered_test.cpp",
+      "tests/cpp/vst3_fp_environment_test.cpp",
+      "tests/cpp/vst3_host_test.cpp",
+      "tests/cpp/vst3_note_model_test.cpp",
+      "tests/cpp/vst3_quadrature_contract_test.cpp",
+      "tests/cpp/vst3_state_concurrency_test.cpp",
+      "tests/cpp/vst3_stream_contract_test.cpp",
+      "tests/cpp/vst3_test_support.hpp",
+      "tests/cpp/vst3_triple_module_test.cpp"
+    ],
+    "python_tool_test_source_count": 65,
+    "python_tool_test_source_paths": [
+      "tests/python/test_aliasing_audit.py",
+      "tests/python/test_audio_compatibility.py",
+      "tests/python/test_audio_compatibility_adversarial.py",
+      "tests/python/test_audio_filter_generation.py",
+      "tests/python/test_campaign.py",
+      "tests/python/test_contact_auditor_actions.py",
+      "tests/python/test_contact_auditor_adversarial.py",
+      "tests/python/test_contact_auditor_inputs.py",
+      "tests/python/test_contact_auditor_validation.py",
+      "tests/python/test_contact_extension.py",
+      "tests/python/test_contact_matrix_self_check.py",
+      "tests/python/test_contact_peak_backend_boundaries.py",
+      "tests/python/test_contact_peak_cli.py",
+      "tests/python/test_contact_peak_comparison.py",
+      "tests/python/test_contact_peak_oracles.py",
+      "tests/python/test_contact_peak_portability.py",
+      "tests/python/test_contact_peak_retention_errors.py",
+      "tests/python/test_contact_peak_schema.py",
+      "tests/python/test_contact_peak_sweep.py",
+      "tests/python/test_contact_selection.py",
+      "tests/python/test_contact_self_check.py",
+      "tests/python/test_contact_sweep.py",
+      "tests/python/test_continuation_campaign.py",
+      "tests/python/test_data.py",
+      "tests/python/test_development_campaign.py",
+      "tests/python/test_development_waves.py",
+      "tests/python/test_development_waves_adversarial.py",
+      "tests/python/test_docs.py",
+      "tests/python/test_evidence_binding.py",
+      "tests/python/test_filtered_audio_reference.py",
+      "tests/python/test_metadata_boundaries.py",
+      "tests/python/test_payloads.py",
+      "tests/python/test_project.py",
+      "tests/python/test_quadrature_audio_validation.py",
+      "tests/python/test_quadrature_campaign.py",
+      "tests/python/test_quadrature_filter_generation.py",
+      "tests/python/test_revalidation.py",
+      "tests/python/test_schema_patterns.py",
+      "tests/python/test_state_review.py",
+      "tests/python/test_vst3_archive_adversarial.py",
+      "tests/python/test_vst3_matrix.py",
+      "tests/python/test_vst3_matrix_archive.py",
+      "tests/python/test_vst3_matrix_failures.py",
+      "tools/audit_aliasing.py",
+      "tools/campaign.py",
+      "tools/check_docs.py",
+      "tools/contact_peak_oracles.py",
+      "tools/contact_peak_schema.py",
+      "tools/development_campaign.py",
+      "tools/generate_audio_filter.py",
+      "tools/generate_quadrature_filter.py",
+      "tools/project.py",
+      "tools/quadrature_campaign.py",
+      "tools/run_contact_sweep.py",
+      "tools/run_vst3_matrix.py",
+      "tools/validate_contact_peaks.py",
+      "tools/validate_contact_reference.py",
+      "tools/validate_continuation_campaign.py",
+      "tools/validate_data.py",
+      "tools/validate_development_waves.py",
+      "tools/validate_filtered_audio.py",
+      "tools/validate_quadrature_audio.py",
+      "tools/verify_audio_compatibility.py",
+      "tools/verify_payloads.py",
+      "tools/verify_vst3_matrix_archive.py"
+    ],
+    "source_sha256_at_tested_commit": {
+      ".github/workflows/ci.yml": "9a0d441f70dc60be6bdf7ec3b3ab5a3c5e046feed103a043633d1bd27911e94a",
+      ".github/workflows/vst3.yml": "6cf2593353d05a6b122c99736399132b4c813ec8fba5af03b39ed4d5fdd8e3f3",
+      "CMakeLists.txt": "2a70fba5924a3eeb01bf0dfd7c2a0f6a00726d27ac7535660a4bf267cf81ff3e",
+      "CMakePresets.json": "a06e2a16dba0b4947352cbbcec2a7668d29b3f777c6f460f9d65f6bd0bb7f0aa",
+      "apps/audio_probe.cpp": "f9232693eb3a332dcc48f35f0f165a99647b3462e3995e259dbeb014ac189206",
+      "apps/benchmark.cpp": "f05cefbe22b93274bc51f6b3fedad532d333b8c577196059c04e0559530e5705",
+      "apps/contact_reference.cpp": "36f30eebe08856989eeefd940acdff491c8f9cfc217342893f8d113c61865113",
+      "apps/render.cpp": "4fe901544c9faa0992f4517ad1958cc2969d6d4b5d0426b101b4fe52aa265fe2",
+      "apps/runtime_benchmark.cpp": "514955b4245ba5ec6c18fb2379cb790185e029df1d4c387588d2547621c476c0",
+      "apps/vst3_benchmark.cpp": "2129c52bda0337b4cfa71fc39eab31e66696883977dfbfc3c8d52e69ebccc2ed",
+      "cmake/Vst3.cmake": "e779743e238c5b7ac2632d73764eb19974fcef3f4ae5c8699ac6f188fde783a6",
+      "include/rhodes/audio_engine.hpp": "10efac8150c07e69ef41eed415a6e7403b4339179af902f91cd17ef498da7b97",
+      "include/rhodes/audio_filter_coefficients.hpp": "c1ab39356d7e44348f9dc56f9120ff2598889d1fa144e5294b084585655eb76d",
+      "include/rhodes/contact_reference.hpp": "00b99e61dc73686c22675bedf647c3ad1b27ba13332180431f5a42e485057fda",
+      "include/rhodes/control_value.hpp": "d7c282afdcffaef90f7872f97b37bfb34671448da64376d3439649c052d4d48d",
+      "include/rhodes/event_processor.hpp": "36e4b64f3278b0079b20e94a333a657c900e4118dc24433ec9d8c58442651351",
+      "include/rhodes/fir_decimator.hpp": "e54faeb397bcbccb9ed9834cfc264d84550c4ef375d8e5273a720eb1f190071b",
+      "include/rhodes/instrument_state.hpp": "c11c9d982887f4228c76c3ee9e10fe5627c2dc0f1053ad531cfd316285a65616",
+      "include/rhodes/note_tracker.hpp": "76931b326daae3a112b56420f9be9ea5b03b1c30307f1dc68b6c13c710cd830f",
+      "include/rhodes/quadrature_engine.hpp": "c625a82b61eb3e721061177654c12ffa6aac0049e026b9633ae53ea2abaa773d",
+      "include/rhodes/quadrature_filter_coefficients.hpp": "3cca4ea6553ceb01810a6230f2144491364fa48af7d6cfbc43a8e3dcf5d08b51",
+      "include/rhodes/quadrature_fir.hpp": "0ddcf691a5d251979a7adf1ea32d471c8fcf1fd6e5a7a2e203c8fb63974b7b6d",
+      "include/rhodes/research_engine.hpp": "7dca093866c19f18f4403f86daea96ac485d86b3e6aebc4441477bd5a8a16621",
+      "plugins/vst3/THIRD_PARTY_NOTICES.md": "171196ff6346500d42093d0aa0729d960944fc607cb83de415a92f1ee1a51570",
+      "plugins/vst3/controller.cpp": "79800f5df2781fc48dcf0c32afcc5d3b08efa067ba89e1a659bcfed240749349",
+      "plugins/vst3/controller.hpp": "4a279d583722b14ac48b1d2064c0d34dcc5bd523e51620d00ac859bc38359bd4",
+      "plugins/vst3/factory.cpp": "c233a281539fca494fe0e24f1511634731078aeaddb931dcac562be6c1d411a2",
+      "plugins/vst3/plugin_ids.hpp": "1b5744731384e100c2f32cfed42fccf9fe2168d39df5cc29f1ac1108b9d94a81",
+      "plugins/vst3/processor.cpp": "97b449dac4e1eb434af8ad4e279bdf7ba07f4668cb174199980eea0266493cf6",
+      "plugins/vst3/processor.hpp": "0250eaaca92b2aa904b5a05e8aca8cc46cd8a63111d145ddf7d0956f682d1807",
+      "plugins/vst3/state_stream.cpp": "b5f0dd71c5523f80359027168f0df3307c85d70b3d5654f3f936144f3307d172",
+      "plugins/vst3/state_stream.hpp": "db5ec0572c9a3d56f55c71a43997b4fcc208c76ddf186c61368dfbd184f49e12",
+      "src/contact_reference.cpp": "0f9808442b5ddf6ddc6091c9b6294117b7aea85cd54707b9c3743121ac706100",
+      "src/research_engine.cpp": "f0facfcb2c28f989c79407d2e0571a868b07ec7a37511bc05f7a33efcdeb0703",
+      "tests/cpp/audio_engine_test.cpp": "57f8f827e77dfe3a1c143d5e6990d0f7f10f001dbd2599f616a96ed4990f59ad",
+      "tests/cpp/audio_fir_test.cpp": "9868a0439c57211bf384839e0d37ce528ddec611509266485b6f5ac8eec836be",
+      "tests/cpp/audio_probe_cli.cmake": "792aec1ea75cfe3462f60ae015f916ae2d795b689ef6f39d8f796703146e48e6",
+      "tests/cpp/benchmark_json.cmake": "6bfadcd834b377cc887d08a6b3fb9bfbe85d51821d29aeaf6904215bcafb7cea",
+      "tests/cpp/contact_cli.cmake": "6017cc26ce81943c72d85c2203bc9d7f969238c508298a6f8b5ab0cc3201d5a6",
+      "tests/cpp/contact_domain_test.cpp": "e0154c3d7a1e66431d5cb1db4b9430b4a2760f06bbf26fbae55a120558bf241a",
+      "tests/cpp/contact_event_split_test.cpp": "4ee53462c8cf0041e48778ea2e6283d3216e0f9043dcdf2dacc1784cdcd53e4e",
+      "tests/cpp/contact_grazing_test.cpp": "520b8a77673959d26420df31c952492307d5ec670dca65785e7b2138ea7bbd24",
+      "tests/cpp/contact_peak_cli.cmake": "84577b1c3166017cd65c247a6058eddb0911341c94cc4ef18f190bb4b1e58757",
+      "tests/cpp/contact_peak_test.cpp": "e73e7f1634da92f607d74ad66443646d07c2fd5fd216ddce372ccbe95bbd9762",
+      "tests/cpp/contact_reference_test.cpp": "e1d77debc7fc563b6c8b2425b25cd5fdc802ef065f4438d24612f1e43bf174b5",
+      "tests/cpp/contact_split_peak_test.cpp": "bee22064db003fdcfc2445b47d33d7b2e5f30a9a622776caee32e1683db9ff96",
+      "tests/cpp/control_fp_environment_test.cpp": "ce9dd0cdd386d9e5f84622c131202de4bf4ec8c9bd5d78ce85acb6a1683e8b3a",
+      "tests/cpp/control_value_test.cpp": "955f7218b087ccc4ad231443ee4f23970ccc596c2ea55f87d54ad9ce953adb72",
+      "tests/cpp/diagnostic_stdout.cmake": "7f91f038da0d8f19e7623a94bdc47b473bc0fb8e0a87b43b0f9bab3611d07076",
+      "tests/cpp/event_model_test.cpp": "f6ba26ff7f79a370d730abe4b98a819dcab7a46de7995352468027c8e5186ee2",
+      "tests/cpp/event_processor_test.cpp": "f1d9383ad34843dabcca0c58edaecf7cba56b2e19e57b2e065e37c2b5f60793e",
+      "tests/cpp/expect_cli_failure.cmake": "9cf60b2d1888b8aa9bd11d28d375a721b228ab0e82debbab46e53fbb35500ce4",
+      "tests/cpp/filtered_render.cmake": "0e4d7cb3b4827cc659fbe51936b7a71e911fa6d9429d68b52dd9e09678588d7c",
+      "tests/cpp/fractional_observation_test.cpp": "5ea8c5deab6dc8612d680413abd1f6765a463b420d34fa17f48540cd4e8dfa55",
+      "tests/cpp/instrument_model_state_test.cpp": "ab881e0590f3872505231215c95a21ba91de52b719276d93667e6e75122902e7",
+      "tests/cpp/instrument_state_test.cpp": "be54581bb3efab5096bfada65e20eec230716f7c2ff110231157d569c080cecc",
+      "tests/cpp/modal_transition_cache_test.cpp": "50cbca48f767189f17419424d13dcfedc810e998fa6ac436a7bbf7eb95a3fa21",
+      "tests/cpp/note_model_test.cpp": "ce14509e1933ca22aed32b3dab23be11ec3466bf7b2e901f5d58b7d8595135fd",
+      "tests/cpp/note_tracker_test.cpp": "96f00bf3fa5a1b54352fae347e8f6cbdfb7f543bed53c15a8885be4400f365e1",
+      "tests/cpp/quadrature_cli.cmake": "21e4f9eb4025d672996b73715a6735b25c37917f48a13bad59a276325f499147",
+      "tests/cpp/quadrature_engine_test.cpp": "481894129f3dd92ede0875d376c4034d38b3e347b44f82c6bb8ad205f0d37063",
+      "tests/cpp/quadrature_fir_test.cpp": "68ef7b4cee30bd8ba6f8e7aba1ab9ee5d5f67318f4e96b38be84e66517576a04",
+      "tests/cpp/render_output.cmake": "ce1addaee80f5b9361fadd8074593e359a1bc4758dc762f8454e3cd808f3c386",
+      "tests/cpp/research_engine_test.cpp": "cb8c580baea9bd516b8686bffb7fe5b9285f56ce001035c2979374d8a10a1b16",
+      "tests/cpp/review_regression.cpp": "48f9ff033a8f2bff7f0bfd69d86a23493c685e86afa0eca95a770f879cc23b51",
+      "tests/cpp/runtime_benchmark_json.cmake": "37773c8805f235c045e1aab8896765bb7ccf593c09be600e42bcd3e735eb21de",
+      "tests/cpp/state_concurrency_test.cpp": "53d36fc67e34c42296fbbfd70d134521225958ae57ce7cb6c3b2ca2362d571ca",
+      "tests/cpp/state_fp_environment_test.cpp": "90e29f5903c3b67afd5f28f0b8958cf2c6bca04a3f2420655296b6fd7ab81a4d",
+      "tests/cpp/state_property_test.cpp": "338ba2e214a99de3f9ad4533e8f191298f5facb06150b2eb8f00de9e514465b9",
+      "tests/cpp/vst3_automation_contract_test.cpp": "dc6607f0d50e9b47e3b861baf9483e10c814e284a85296fcef5ab5284380f8d2",
+      "tests/cpp/vst3_benchmark_json.cmake": "ac87b93d9079242bc69b66f5305c640e5c3fae697d963ef0fc4dd1071b7509f7",
+      "tests/cpp/vst3_buffer_contract_test.cpp": "2325e255629446bc1866dae665f4c5f515808b106f7015da78e4a57707c47238",
+      "tests/cpp/vst3_bundle_resources.cmake": "8f3c6e19d69cd61f0fdd3de0c879c5adcbdc8f3bdb9271dbf515ecc516c9ac40",
+      "tests/cpp/vst3_dual_module_test.cpp": "534ff28d46f253b0191a9bc693d0b3acd8d6ba67b6cf3a4b10db217294bd879c",
+      "tests/cpp/vst3_filtered_test.cpp": "6445c2df88ff1ec21e546c414e9000d2650ee1c66df4ace44e4838519a9a0582",
+      "tests/cpp/vst3_fp_environment_test.cpp": "05303cc961e4eef33adb2d846e5289922cd77ee5ab09d4f6f2e1f0ec74995136",
+      "tests/cpp/vst3_host_test.cpp": "ca4a6302eebefee1f59a17118bb29492cc2c534d6d166631475c028bc6127da4",
+      "tests/cpp/vst3_note_model_test.cpp": "a408293c3f9f337e04b2f29f95cccfc0e0ff0514c02b3524c2cbcb84aa3d47ed",
+      "tests/cpp/vst3_quadrature_contract_test.cpp": "e6579e640768077e2de380d5daa9b415e99e17b8c9ca781cd5dce6a3b8ce3dd1",
+      "tests/cpp/vst3_state_concurrency_test.cpp": "175141258725b48497a05e48e9386009143d81ca8460a9a4fa1801bd2a422f99",
+      "tests/cpp/vst3_stream_contract_test.cpp": "e97270c36e707ce47b97bd81e82573c179e69129ee37dfdf18bffd6994946a78",
+      "tests/cpp/vst3_test_support.hpp": "7ab3ae32616886bad13f88ffe0d6e2a8409d7b7335529f3e1ca87b8046419a01",
+      "tests/cpp/vst3_triple_module_test.cpp": "28349466d83b136df765355a925ef73511ea40fbcb68ad5259481e1f252d35e6",
+      "tests/python/test_aliasing_audit.py": "ccc42a5b5f11a8d4a5f9a451d76800a141e6ef53f74d560d80edd7b50544ff2c",
+      "tests/python/test_audio_compatibility.py": "9241dd793bc340e42222bf66fb02ff2ffd84819d9386ab8ed76183e4e889e086",
+      "tests/python/test_audio_compatibility_adversarial.py": "e958930693f060a42fd779481ee0b5e9916e878abd82d080487c103ee5e1eb0f",
+      "tests/python/test_audio_filter_generation.py": "846fb70c0f1df30f45a20a889f18ff4ad4ff43b508d12c28af24f537157f1b33",
+      "tests/python/test_campaign.py": "ec4f3b29a2137f9d6f3dc45d6c7546d762c44ad117f9388eb9bb260772fe8250",
+      "tests/python/test_contact_auditor_actions.py": "63b2d19eda1acd413a6ebe3cf7bee74b08f5edfded98af3202a0214bc91d662f",
+      "tests/python/test_contact_auditor_adversarial.py": "88eba5b557465807a130ebed41d1e25eb2e36fd3d0e26d22bf39de4af668f72e",
+      "tests/python/test_contact_auditor_inputs.py": "502c584aab4a1ee5cc74b496177ae7440cc8e947ed2cdfb6184c7a7f181dde73",
+      "tests/python/test_contact_auditor_validation.py": "af00906a893342ef92b3c7b974daffaec8b19a2376337d8ad1a4b3bc18c07945",
+      "tests/python/test_contact_extension.py": "faf6614cdb81f0c5dcafc9675fe4f70d69ded8e01cd321ca9921d39297c3abdb",
+      "tests/python/test_contact_matrix_self_check.py": "d12caf6371414caf7c324230acc064e776be0b7e0b02c76a6277bf501d346a12",
+      "tests/python/test_contact_peak_backend_boundaries.py": "cee18099f3f26a9e71b293b59307bce64e17638e2b3c7a04a5ef69493a4df2e1",
+      "tests/python/test_contact_peak_cli.py": "02cdf8a827c67962ea1b52307debe30ddee4e8e8082a487eb8a537c1d6865450",
+      "tests/python/test_contact_peak_comparison.py": "9f24401f7b5dc4f115ec8ce6a62589c0811e33e9716a347c890561c92f38ef2e",
+      "tests/python/test_contact_peak_oracles.py": "9de8d7907b7a68fccf77788d9f04c93d4059d343bb4e6b1bacdc1b26bc2be1e6",
+      "tests/python/test_contact_peak_portability.py": "14004d860445a1a6075228f641d72fca16ff8b24c55bed9702a01bec21922388",
+      "tests/python/test_contact_peak_retention_errors.py": "9e899b5a5d5c4d19dca7f99cb7a0dc99c3067b3620d3c7dd3c127b78954911e9",
+      "tests/python/test_contact_peak_schema.py": "8556d104c5492257c2be33e022040c66429dd447b832ea116d51dd571ac2edec",
+      "tests/python/test_contact_peak_sweep.py": "69bc0ade362497ec42ba9833cc64e772aa87fcd00a752f6fd1ca188fb379169d",
+      "tests/python/test_contact_selection.py": "017d4975b07d92413e176d17090ecc1579b60110122765e13020d24314b1ae79",
+      "tests/python/test_contact_self_check.py": "18156f9d52c5ee9170846acee22a85f35dbb5a46c99b4f8ec6d9950530db7989",
+      "tests/python/test_contact_sweep.py": "061ed6cdac46ecb8f93ad4b549a94fb0d3cc5d0634c199fc0ed3a06f5b8180d0",
+      "tests/python/test_continuation_campaign.py": "abb56fa9d336d23c0658a21351ff6209d4822126d1e9e7a31014eed323e991b7",
+      "tests/python/test_data.py": "43469232f5c28949bad0677f646e9acab325ef7566e0d782d93d7fdd2b60de18",
+      "tests/python/test_development_campaign.py": "75af182fa4ea4ca48d8a015e463b3013dd366cbc7957fd8bd2c0f8a81f2f52f4",
+      "tests/python/test_development_waves.py": "762424831ef9072ec516cb59072338f7a0d0d1777c90002a359372bec5ecef6c",
+      "tests/python/test_development_waves_adversarial.py": "d9ff42c46face731f8aa66f25e39f9e73155576610b7a6a1d3538b620f8d3a47",
+      "tests/python/test_docs.py": "9ed1495d915726866e3efc9e35918a1824ba6ead01b81c38d8ad6e8621a781c7",
+      "tests/python/test_evidence_binding.py": "cb396faab4504afcaec63d041222fe7eb6c92e0ea69c21307723cc1b974e94e0",
+      "tests/python/test_filtered_audio_reference.py": "562d6b8860f286153addcb18cfc1f25ed2b467898ada1a2a64b354b899dd2ae5",
+      "tests/python/test_metadata_boundaries.py": "9e682befcf5e650f073c68c6d35c99646c87cf3eb831f56aca70c003da03ddd3",
+      "tests/python/test_payloads.py": "e1cd213e7461f77b974f13e2e5c86cf27aea5279d0f882a879c627c0e9606846",
+      "tests/python/test_project.py": "b71b95da0531d388fc521e5090ce589b56e9bb29fdff134ec0c50ef311b7f3b8",
+      "tests/python/test_quadrature_audio_validation.py": "b34d6271a252517803802c0920821ed64bb207f292e8b396ff272c330823ca78",
+      "tests/python/test_quadrature_campaign.py": "9b56bc3cb0deda9fbe0739d238951d61d8249e08eccda80563a50d4a552f89d9",
+      "tests/python/test_quadrature_filter_generation.py": "4f058e06a65a3f2084039a0087858e06141b81b21c78e014771e0cf08f5e51c4",
+      "tests/python/test_revalidation.py": "9aab85dcc163f6140a918b6518739ec702bbc7aeebf1b7568cfd9a2c1b94d68c",
+      "tests/python/test_schema_patterns.py": "059be3330b3e30121c2b16546124552d18297b9c0939c809fee3213efaaedc1d",
+      "tests/python/test_state_review.py": "64be33a2874f966cf22b33fbb43dd32f567cb67d3866825ac6f9b5855f28f986",
+      "tests/python/test_vst3_archive_adversarial.py": "a02a3863004da46d0f085c79c474b76d9ca77bcd6d0b243707382ece35bb6acc",
+      "tests/python/test_vst3_matrix.py": "75000cbb7525aa98a7d3fe39917cddbffed03ac184009d5cd8c91d4401241534",
+      "tests/python/test_vst3_matrix_archive.py": "1a08e72f575f16dc2f0c91aee6a63f14caa4a4eba52a75599984ae5f95c0d6db",
+      "tests/python/test_vst3_matrix_failures.py": "d74bbfec1cd4b54fe66db0b42bd407669354c05dac5f0be68d340b94f024cfaa",
+      "tools/audit_aliasing.py": "13645e0b335a1b9910a86839dcb4f1d0bda7748f4cf9e037686e707479410713",
+      "tools/campaign.py": "a4e43f5badf005f4feb9df9cc70290d2bac2fd7f96144814d7586d8e33a741f5",
+      "tools/check_docs.py": "aefc0b69c5458eede76cd7a3f48aee4123000ca7de7cc12f648393aa6c558f4a",
+      "tools/contact_peak_oracles.py": "e691093a11ef34ea68cbbe25614d42a2dbd4f4576535c2c35b289133e8fc2c50",
+      "tools/contact_peak_schema.py": "af5cbf87d155ecb40c176b78a7527b2a7bd686c7fd515be621af93d910db86c4",
+      "tools/development_campaign.py": "91f45690586ffcc1ee4a88e12bb63d5f12246f05295046855f59a43deec26e2a",
+      "tools/generate_audio_filter.py": "ab97a1cc51f75481efb7b3c76a28b07196a1935109a81ab5ff77040cd34bfcee",
+      "tools/generate_quadrature_filter.py": "58c9f9148334c8c8111b7c9b07773597328d90a39e8ef2ddf595be8417e7fe24",
+      "tools/project.py": "a2c55ccfaf1bbfab78fcafbc2ec0dcd17bc550f46c9b973022172856aa4a68a2",
+      "tools/quadrature_campaign.py": "8441b7ad22f59737bb5c7e2d520fe078d22dba26dce8970251c9dfdeaa229863",
+      "tools/run_contact_sweep.py": "81b45563f7409b4c6378a7867d7b8d33394676482c14e165f9919c1bc40e627a",
+      "tools/run_vst3_matrix.py": "c91f2ec42bd2934120d63599b4d68c68295a99b2090f8bfc0b358ebe1e9c4159",
+      "tools/validate_contact_peaks.py": "5bfc879d0a4a42d48667cc2370bafc85a2bd6c6b08c18071c1d60ab7b85be717",
+      "tools/validate_contact_reference.py": "c910da5da6b6ad957b709a414cef39a08ed6e8b75c6e36c9d73ef535a064dcdc",
+      "tools/validate_continuation_campaign.py": "18cca3768cf2afd8b821e8300bb70028b667783feb2c01f7c052c1d16a8e32df",
+      "tools/validate_data.py": "246f89257c3f201ba3b3d9cf0dce5962f46a56ffe4a2cf637d4a35440ed168f0",
+      "tools/validate_development_waves.py": "5a93e12b045ddc7ee617de954f4a9cd8af625bca3bcc245e47d929bca4449e25",
+      "tools/validate_filtered_audio.py": "0d6e5336cd571e873b22333e9ed8f98d70c4aa443831309c68ad1084171d3ca1",
+      "tools/validate_quadrature_audio.py": "e205f68c0ce0afe145cc1e8af4ee44e0303c6e60998955508789ebafc0821be2",
+      "tools/verify_audio_compatibility.py": "bf688ea37c6d49a3d388d47c8f47ad996bf60229fd56873ada1fba5a804dd1e4",
+      "tools/verify_payloads.py": "21a925cbfacd496c690b4ab1988e6cc07e84c17b31ce6ad42290df5f062ba6f1",
+      "tools/verify_vst3_matrix_archive.py": "4fc824ebe5038fcda4170415b002dd844c53a0ea167705cdbee03a9f23a32162"
+    },
+    "all_148_listed_sources_match_current_bytes_before_and_after": true,
+    "historical_native_manifest_source_commit": "015767fee5635ff85a717739188ff4af60fe84f2",
+    "historical_native_manifest_path_count": 74,
+    "differences_from_historical_74_file_manifest": [
+      "tests/cpp/quadrature_engine_test.cpp"
+    ],
+    "additional_native_build_workflow_paths": [
+      ".github/workflows/ci.yml",
+      ".github/workflows/vst3.yml",
+      "CMakePresets.json",
+      "apps/audio_probe.cpp",
+      "apps/benchmark.cpp",
+      "apps/contact_reference.cpp",
+      "apps/render.cpp",
+      "apps/runtime_benchmark.cpp",
+      "apps/vst3_benchmark.cpp"
+    ],
+    "note": "Git show of the tested commit supplied every manifest digest; local bytes were compared before/after collection. Later documentation, evidence, state and campaign metadata are not relabeled as executed at this checkpoint. The tested Git tree binds other committed inputs; the current local comparison is limited to the listed source/build/workflow paths."
+  },
+  "sdk_pins": {
+    ".": "3cdf9ca5d1f5b1b21e0a86832aa4abe55607bd96",
+    "base": "fcf9da0bd27a16f7f03773a3a39822f28f5c8477",
+    "cmake": "054c9143cbb8d47fc4694e473f2ee3b4d951a8f5",
+    "pluginterfaces": "4f547e8e102b47de4a8b8aaf343c73b700786372",
+    "public.sdk": "586dc5e6c8012c3e4b01c79389375cbe96bdb1da"
+  },
+  "ci_runs": [
+    {
+      "id": 45340923223,
+      "name": "Foundation CI",
+      "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45340923223",
+      "event": "push",
+      "head_branch": "main",
+      "head_sha": "240170673983f9992e4657a2d96c2172ece1ac30",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-24T06:30:14Z",
+      "updated_at": "2026-11-24T06:32:04Z",
+      "run_attempt": 1
+    },
+    {
+      "id": 45340923158,
+      "name": "Experimental VST3 CI",
+      "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45340923158",
+      "event": "push",
+      "head_branch": "main",
+      "head_sha": "240170673983f9992e4657a2d96c2172ece1ac30",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-24T06:30:14Z",
+      "updated_at": "2026-11-24T06:34:10Z",
+      "run_attempt": 1
+    }
+  ],
+  "job_results": [
+    {
+      "job_id": 138264122568,
+      "label": "python-windows",
+      "name": "Project state / windows-latest",
+      "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45340923223/job/138264122568",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "240170673983f9992e4657a2d96c2172ece1ac30",
+      "started_at": "2026-11-24T06:30:17Z",
+      "completed_at": "2026-11-24T06:31:43Z",
+      "operating_system_lines": [
+        "Microsoft Windows Server 2025",
+        "10.0.26100",
+        "Datacenter"
+      ],
+      "runner_image_lines": [
+        "Image: windows-2025-vs2026",
+        "Version: 20261116.315.1",
+        "Included Software: https://github.com/actions/runner-images/blob/win25-vs2026/20261116.315/images/windows/Windows2025-VS2026-Readme.md",
+        "Image Release: https://github.com/actions/runner-images/releases/tag/win25-vs2026%2F20261116.315"
+      ],
+      "log_member": "138264122568-python-windows.log",
+      "log_bytes": 159479,
+      "log_sha256": "338a4052a7cb3103b1e71f3629830dde2eff45b3124c47fccb62406db83199b6",
+      "observed_run_commands": [
+        "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+        "actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+        "python tools/project.py validate",
+        "python tools/project.py sync --check",
+        "python tools/validate_data.py",
+        "python tools/check_docs.py",
+        "python tools/campaign.py validate --require-complete",
+        "python tools/campaign.py sync --check",
+        "python tools/development_campaign.py validate",
+        "python tools/development_campaign.py sync --check",
+        "python tools/validate_continuation_campaign.py",
+        "python tools/quadrature_campaign.py validate",
+        "python tools/quadrature_campaign.py sync --check",
+        "python tools/validate_development_waves.py",
+        "python tools/verify_vst3_matrix_archive.py docs/validation/vst3-matrix-20261124.json docs/validation/vst3-matrix-batched-20261124.json docs/validation/vst3-matrix-batch-final-20261124.json",
+        "python tools/generate_audio_filter.py --check",
+        "python tools/generate_quadrature_filter.py --check",
+        "python -m unittest discover -s tests/python -v"
+      ],
+      "setup_python_version": "3.11.9",
+      "python": {
+        "reported_count_including_skips": 584,
+        "unskipped_passes": 561,
+        "skipped_count": 23,
+        "skipped_verbose_lines": [
+          "test_scipy_coefficients_and_frozen_dense_frequency_gates (test_audio_filter_generation.IndependentAudioFilterTests.test_scipy_coefficients_and_frozen_dense_frequency_gates) ... skipped 'Optional independent audit needs installed NumPy/SciPy'",
+          "test_optional_time_refinement_separates_force_and_compression (test_contact_peak_oracles.ContactPeakOracleTests.test_optional_time_refinement_separates_force_and_compression) ... skipped 'optional SciPy not installed'",
+          "test_posix_surrogate_escaped_paths_survive_retention (test_contact_peak_portability.ContactPeakPortabilityTests.test_posix_surrogate_escaped_paths_survive_retention) ... skipped 'surrogate-escaped filenames are POSIX-specific'",
+          "test_fifo_and_final_symlink_are_refused_before_opening (test_contact_peak_retention_errors.ContactPeakRetentionErrorTests.test_fifo_and_final_symlink_are_refused_before_opening) ... skipped 'requires POSIX FIFO support'",
+          "test_analytic_modes_against_independent_matrix_exponential (test_filtered_audio_reference.FilteredAudioNumericalTests.test_analytic_modes_against_independent_matrix_exponential) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'",
+          "test_both_refinement_gates_are_mandatory_and_failures_remain_inconclusive (test_filtered_audio_reference.FilteredAudioNumericalTests.test_both_refinement_gates_are_mandatory_and_failures_remain_inconclusive) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'",
+          "test_continuous_result_against_separate_adaptive_integrals (test_filtered_audio_reference.FilteredAudioNumericalTests.test_continuous_result_against_separate_adaptive_integrals) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'",
+          "test_fir_recipe_matches_frozen_serialization_without_importing_it (test_filtered_audio_reference.FilteredAudioNumericalTests.test_fir_recipe_matches_frozen_serialization_without_importing_it) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'",
+          "test_full_record_and_inclusive_event_window_metrics (test_filtered_audio_reference.FilteredAudioNumericalTests.test_full_record_and_inclusive_event_window_metrics) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'",
+          "test_incomplete_run_preserves_bad_stdout_and_nonzero_probe_failures (test_filtered_audio_reference.FilteredAudioNumericalTests.test_incomplete_run_preserves_bad_stdout_and_nonzero_probe_failures) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'",
+          "test_local_nonlinearity_then_loaded_sum (test_filtered_audio_reference.FilteredAudioNumericalTests.test_local_nonlinearity_then_loaded_sum) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'",
+          "test_probe_metadata_samples_and_raw_hash_precision (test_filtered_audio_reference.FilteredAudioNumericalTests.test_probe_metadata_samples_and_raw_hash_precision) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'",
+          "test_refinement_rms_and_exploratory_rms_are_separate_limits (test_filtered_audio_reference.FilteredAudioNumericalTests.test_refinement_rms_and_exploratory_rms_are_separate_limits) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'",
+          "test_reset_order_erases_prior_motion_and_history_without_alignment (test_filtered_audio_reference.FilteredAudioNumericalTests.test_reset_order_erases_prior_motion_and_history_without_alignment) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'",
+          "test_retrigger_release_pedal_and_all_off_preserve_mechanics (test_filtered_audio_reference.FilteredAudioNumericalTests.test_retrigger_release_pedal_and_all_off_preserve_mechanics) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'",
+          "test_three_small_production_comparisons_keep_exact_internal_phase (test_filtered_audio_reference.FilteredAudioNumericalTests.test_three_small_production_comparisons_keep_exact_internal_phase) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'",
+          "test_unit_cell_kernel_has_correct_zero_history_delay_and_reset (test_filtered_audio_reference.FilteredAudioNumericalTests.test_unit_cell_kernel_has_correct_zero_history_delay_and_reset) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'",
+          "test_unresolved_reference_raw_arrays_and_hashes_are_retained (test_filtered_audio_reference.FilteredAudioNumericalTests.test_unresolved_reference_raw_arrays_and_hashes_are_retained) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'",
+          "test_path_replacement_after_final_fstat_is_detected (test_payloads.PayloadVerificationTests.test_path_replacement_after_final_fstat_is_detected) ... skipped 'Host cannot replace an open file'",
+          "test_a_b_and_refinement_are_independent_and_preserve_inputs (test_quadrature_audio_validation.QuadratureNumericalAssessmentTests.test_a_b_and_refinement_are_independent_and_preserve_inputs) ... skipped 'Optional numerical assessment/NPZ checks need NumPy/SciPy'",
+          "test_execute_case_retains_exact_five_arrays_even_when_unresolved (test_quadrature_audio_validation.QuadratureNumericalAssessmentTests.test_execute_case_retains_exact_five_arrays_even_when_unresolved) ... skipped 'Optional numerical assessment/NPZ checks need NumPy/SciPy'",
+          "test_execute_case_retains_malformed_stdout_and_probe_failure_streams (test_quadrature_audio_validation.QuadratureNumericalAssessmentTests.test_execute_case_retains_malformed_stdout_and_probe_failure_streams) ... skipped 'Optional numerical assessment/NPZ checks need NumPy/SciPy'",
+          "test_scipy_rule_and_independent_continuous_kernel_recipe (test_quadrature_filter_generation.IndependentQuadratureFilterTests.test_scipy_rule_and_independent_continuous_kernel_recipe) ... skipped 'Optional independent Q6 audit needs NumPy/SciPy'"
+        ],
+        "duration_seconds": 61.642,
+        "result": "OK"
+      }
+    },
+    {
+      "job_id": 138264122910,
+      "label": "core-macos",
+      "name": "C++20 / macos-latest",
+      "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45340923223/job/138264122910",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "240170673983f9992e4657a2d96c2172ece1ac30",
+      "started_at": "2026-11-24T06:30:17Z",
+      "completed_at": "2026-11-24T06:30:48Z",
+      "operating_system_lines": [
+        "macOS",
+        "26.7.2",
+        "25G332"
+      ],
+      "runner_image_lines": [
+        "Image: macos-26-arm64",
+        "Version: 20261117.0516.1",
+        "Included Software: https://github.com/actions/runner-images/blob/macos-26-arm64/20261117.0516/images/macos/macos-26-arm64-Readme.md",
+        "Image Release: https://github.com/actions/runner-images/releases/tag/macos-26-arm64%2F20261117.0516"
+      ],
+      "log_member": "138264122910-core-macos.log",
+      "log_bytes": 49491,
+      "log_sha256": "e05244ca728c507072dec6399edef11037ae143e132eb499e62d4abb40896de1",
+      "observed_run_commands": [
+        "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+        "cmake -S . -B build -DCMAKE_BUILD_TYPE=Release",
+        "cmake --build build --config Release --parallel 2",
+        "ctest --test-dir build -C Release --output-on-failure --no-tests=error"
+      ],
+      "cxx_compiler": "AppleClang 21.0.0.21000101",
+      "ctest": {
+        "registered_tests": 147,
+        "passed_tests": 141,
+        "failed_tests": 0,
+        "skipped_tests": [
+          "state_fp.ftz",
+          "state_fp.daz",
+          "state_fp.ftz_daz",
+          "control_fp.ftz",
+          "control_fp.daz",
+          "control_fp.ftz_daz"
+        ],
+        "quadrature_engine_selectors": {
+          "quadrature.qengine_events": "Passed",
+          "quadrature.qengine_partitions": "Passed",
+          "quadrature.qengine_prepare": "Passed",
+          "quadrature.qengine_faults": "Passed",
+          "quadrature.qengine_allocations": "Passed"
+        }
+      }
+    },
+    {
+      "job_id": 138264122965,
+      "label": "python-macos",
+      "name": "Project state / macos-latest",
+      "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45340923223/job/138264122965",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "240170673983f9992e4657a2d96c2172ece1ac30",
+      "started_at": "2026-11-24T06:30:18Z",
+      "completed_at": "2026-11-24T06:31:12Z",
+      "operating_system_lines": [
+        "macOS",
+        "26.7.2",
+        "25G332"
+      ],
+      "runner_image_lines": [
+        "Image: macos-26-arm64",
+        "Version: 20261117.0516.1",
+        "Included Software: https://github.com/actions/runner-images/blob/macos-26-arm64/20261117.0516/images/macos/macos-26-arm64-Readme.md",
+        "Image Release: https://github.com/actions/runner-images/releases/tag/macos-26-arm64%2F20261117.0516"
+      ],
+      "log_member": "138264122965-python-macos.log",
+      "log_bytes": 159159,
+      "log_sha256": "7f04debb2fd5dcc88698c244d75108bef896fd8a85edb4c43ff5f2b603d00cb5",
+      "observed_run_commands": [
+        "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+        "actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+        "python tools/project.py validate",
+        "python tools/project.py sync --check",
+        "python tools/validate_data.py",
+        "python tools/check_docs.py",
+        "python tools/campaign.py validate --require-complete",
+        "python tools/campaign.py sync --check",
+        "python tools/development_campaign.py validate",
+        "python tools/development_campaign.py sync --check",
+        "python tools/validate_continuation_campaign.py",
+        "python tools/quadrature_campaign.py validate",
+        "python tools/quadrature_campaign.py sync --check",
+        "python tools/validate_development_waves.py",
+        "python tools/verify_vst3_matrix_archive.py docs/validation/vst3-matrix-20261124.json docs/validation/vst3-matrix-batched-20261124.json docs/validation/vst3-matrix-batch-final-20261124.json",
+        "python tools/generate_audio_filter.py --check",
+        "python tools/generate_quadrature_filter.py --check",
+        "python -m unittest discover -s tests/python -v"
+      ],
+      "setup_python_version": "3.11.9",
+      "python": {
+        "reported_count_including_skips": 584,
+        "unskipped_passes": 563,
+        "skipped_count": 21,
+        "skipped_verbose_lines": [
+          "test_scipy_coefficients_and_frozen_dense_frequency_gates (test_audio_filter_generation.IndependentAudioFilterTests.test_scipy_coefficients_and_frozen_dense_frequency_gates) ... skipped 'Optional independent audit needs installed NumPy/SciPy'",
+          "test_optional_time_refinement_separates_force_and_compression (test_contact_peak_oracles.ContactPeakOracleTests.test_optional_time_refinement_separates_force_and_compression) ... skipped 'optional SciPy not installed'",
+          "test_posix_surrogate_escaped_paths_survive_retention (test_contact_peak_portability.ContactPeakPortabilityTests.test_posix_surrogate_escaped_paths_survive_retention) ... skipped 'filesystem rejects undecodable filename bytes'",
+          "test_analytic_modes_against_independent_matrix_exponential (test_filtered_audio_reference.FilteredAudioNumericalTests.test_analytic_modes_against_independent_matrix_exponential) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'",
+          "test_both_refinement_gates_are_mandatory_and_failures_remain_inconclusive (test_filtered_audio_reference.FilteredAudioNumericalTests.test_both_refinement_gates_are_mandatory_and_failures_remain_inconclusive) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'",
+          "test_continuous_result_against_separate_adaptive_integrals (test_filtered_audio_reference.FilteredAudioNumericalTests.test_continuous_result_against_separate_adaptive_integrals) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'",
+          "test_fir_recipe_matches_frozen_serialization_without_importing_it (test_filtered_audio_reference.FilteredAudioNumericalTests.test_fir_recipe_matches_frozen_serialization_without_importing_it) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'",
+          "test_full_record_and_inclusive_event_window_metrics (test_filtered_audio_reference.FilteredAudioNumericalTests.test_full_record_and_inclusive_event_window_metrics) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'",
+          "test_incomplete_run_preserves_bad_stdout_and_nonzero_probe_failures (test_filtered_audio_reference.FilteredAudioNumericalTests.test_incomplete_run_preserves_bad_stdout_and_nonzero_probe_failures) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'",
+          "test_local_nonlinearity_then_loaded_sum (test_filtered_audio_reference.FilteredAudioNumericalTests.test_local_nonlinearity_then_loaded_sum) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'",
+          "test_probe_metadata_samples_and_raw_hash_precision (test_filtered_audio_reference.FilteredAudioNumericalTests.test_probe_metadata_samples_and_raw_hash_precision) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'",
+          "test_refinement_rms_and_exploratory_rms_are_separate_limits (test_filtered_audio_reference.FilteredAudioNumericalTests.test_refinement_rms_and_exploratory_rms_are_separate_limits) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'",
+          "test_reset_order_erases_prior_motion_and_history_without_alignment (test_filtered_audio_reference.FilteredAudioNumericalTests.test_reset_order_erases_prior_motion_and_history_without_alignment) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'",
+          "test_retrigger_release_pedal_and_all_off_preserve_mechanics (test_filtered_audio_reference.FilteredAudioNumericalTests.test_retrigger_release_pedal_and_all_off_preserve_mechanics) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'",
+          "test_three_small_production_comparisons_keep_exact_internal_phase (test_filtered_audio_reference.FilteredAudioNumericalTests.test_three_small_production_comparisons_keep_exact_internal_phase) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'",
+          "test_unit_cell_kernel_has_correct_zero_history_delay_and_reset (test_filtered_audio_reference.FilteredAudioNumericalTests.test_unit_cell_kernel_has_correct_zero_history_delay_and_reset) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'",
+          "test_unresolved_reference_raw_arrays_and_hashes_are_retained (test_filtered_audio_reference.FilteredAudioNumericalTests.test_unresolved_reference_raw_arrays_and_hashes_are_retained) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'",
+          "test_a_b_and_refinement_are_independent_and_preserve_inputs (test_quadrature_audio_validation.QuadratureNumericalAssessmentTests.test_a_b_and_refinement_are_independent_and_preserve_inputs) ... skipped 'Optional numerical assessment/NPZ checks need NumPy/SciPy'",
+          "test_execute_case_retains_exact_five_arrays_even_when_unresolved (test_quadrature_audio_validation.QuadratureNumericalAssessmentTests.test_execute_case_retains_exact_five_arrays_even_when_unresolved) ... skipped 'Optional numerical assessment/NPZ checks need NumPy/SciPy'",
+          "test_execute_case_retains_malformed_stdout_and_probe_failure_streams (test_quadrature_audio_validation.QuadratureNumericalAssessmentTests.test_execute_case_retains_malformed_stdout_and_probe_failure_streams) ... skipped 'Optional numerical assessment/NPZ checks need NumPy/SciPy'",
+          "test_scipy_rule_and_independent_continuous_kernel_recipe (test_quadrature_filter_generation.IndependentQuadratureFilterTests.test_scipy_rule_and_independent_continuous_kernel_recipe) ... skipped 'Optional independent Q6 audit needs NumPy/SciPy'"
+        ],
+        "duration_seconds": 42.066,
+        "result": "OK"
+      }
+    },
+    {
+      "job_id": 138264122997,
+      "label": "sanitizers-linux",
+      "name": "Address and undefined behavior sanitizers",
+      "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45340923223/job/138264122997",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "240170673983f9992e4657a2d96c2172ece1ac30",
+      "started_at": "2026-11-24T06:30:17Z",
+      "completed_at": "2026-11-24T06:32:04Z",
+      "operating_system_lines": [
+        "Ubuntu",
+        "26.04.1",
+        "LTS"
+      ],
+      "runner_image_lines": [
+        "Image: ubuntu-26.04",
+        "Version: 20261116.202.1",
+        "Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261116.202/images/ubuntu/Ubuntu2604-Readme.md",
+        "Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261116.202"
+      ],
+      "log_member": "138264122997-sanitizers-linux.log",
+      "log_bytes": 47048,
+      "log_sha256": "29e4f037e097cf9dc049b1d9099df2b56285ba481f6f1790c5f76d16c5903685",
+      "observed_run_commands": [
+        "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+        "cmake --preset sanitize",
+        "cmake --build --preset sanitize --parallel 2",
+        "ctest --preset sanitize --no-tests=error"
+      ],
+      "cxx_compiler": "GNU 15.2.0",
+      "ctest": {
+        "registered_tests": 150,
+        "passed_tests": 150,
+        "failed_tests": 0,
+        "skipped_tests": [],
+        "quadrature_engine_selectors": {
+          "quadrature.qengine_events": "Passed",
+          "quadrature.qengine_partitions": "Passed",
+          "quadrature.qengine_prepare": "Passed",
+          "quadrature.qengine_faults": "Passed",
+          "quadrature.qengine_allocations": "Passed"
+        }
+      }
+    },
+    {
+      "job_id": 138264123001,
+      "label": "python-linux",
+      "name": "Project state / ubuntu-latest",
+      "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45340923223/job/138264123001",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "240170673983f9992e4657a2d96c2172ece1ac30",
+      "started_at": "2026-11-24T06:30:17Z",
+      "completed_at": "2026-11-24T06:30:57Z",
+      "operating_system_lines": [
+        "Ubuntu",
+        "26.04.1",
+        "LTS"
+      ],
+      "runner_image_lines": [
+        "Image: ubuntu-26.04",
+        "Version: 20261116.202.1",
+        "Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261116.202/images/ubuntu/Ubuntu2604-Readme.md",
+        "Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261116.202"
+      ],
+      "log_member": "138264123001-python-linux.log",
+      "log_bytes": 159295,
+      "log_sha256": "6b71718c7cd8af8f6dcf1695da06586e3a271ecd1d7360824ce8b6c20c1cf9fc",
+      "observed_run_commands": [
+        "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+        "actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+        "python tools/project.py validate",
+        "python tools/project.py sync --check",
+        "python tools/validate_data.py",
+        "python tools/check_docs.py",
+        "python tools/campaign.py validate --require-complete",
+        "python tools/campaign.py sync --check",
+        "python tools/development_campaign.py validate",
+        "python tools/development_campaign.py sync --check",
+        "python tools/validate_continuation_campaign.py",
+        "python tools/quadrature_campaign.py validate",
+        "python tools/quadrature_campaign.py sync --check",
+        "python tools/validate_development_waves.py",
+        "python tools/verify_vst3_matrix_archive.py docs/validation/vst3-matrix-20261124.json docs/validation/vst3-matrix-batched-20261124.json docs/validation/vst3-matrix-batch-final-20261124.json",
+        "python tools/generate_audio_filter.py --check",
+        "python tools/generate_quadrature_filter.py --check",
+        "python -m unittest discover -s tests/python -v"
+      ],
+      "setup_python_version": "3.11.18",
+      "python": {
+        "reported_count_including_skips": 584,
+        "unskipped_passes": 564,
+        "skipped_count": 20,
+        "skipped_verbose_lines": [
+          "test_scipy_coefficients_and_frozen_dense_frequency_gates (test_audio_filter_generation.IndependentAudioFilterTests.test_scipy_coefficients_and_frozen_dense_frequency_gates) ... skipped 'Optional independent audit needs installed NumPy/SciPy'",
+          "test_optional_time_refinement_separates_force_and_compression (test_contact_peak_oracles.ContactPeakOracleTests.test_optional_time_refinement_separates_force_and_compression) ... skipped 'optional SciPy not installed'",
+          "test_analytic_modes_against_independent_matrix_exponential (test_filtered_audio_reference.FilteredAudioNumericalTests.test_analytic_modes_against_independent_matrix_exponential) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'",
+          "test_both_refinement_gates_are_mandatory_and_failures_remain_inconclusive (test_filtered_audio_reference.FilteredAudioNumericalTests.test_both_refinement_gates_are_mandatory_and_failures_remain_inconclusive) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'",
+          "test_continuous_result_against_separate_adaptive_integrals (test_filtered_audio_reference.FilteredAudioNumericalTests.test_continuous_result_against_separate_adaptive_integrals) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'",
+          "test_fir_recipe_matches_frozen_serialization_without_importing_it (test_filtered_audio_reference.FilteredAudioNumericalTests.test_fir_recipe_matches_frozen_serialization_without_importing_it) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'",
+          "test_full_record_and_inclusive_event_window_metrics (test_filtered_audio_reference.FilteredAudioNumericalTests.test_full_record_and_inclusive_event_window_metrics) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'",
+          "test_incomplete_run_preserves_bad_stdout_and_nonzero_probe_failures (test_filtered_audio_reference.FilteredAudioNumericalTests.test_incomplete_run_preserves_bad_stdout_and_nonzero_probe_failures) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'",
+          "test_local_nonlinearity_then_loaded_sum (test_filtered_audio_reference.FilteredAudioNumericalTests.test_local_nonlinearity_then_loaded_sum) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'",
+          "test_probe_metadata_samples_and_raw_hash_precision (test_filtered_audio_reference.FilteredAudioNumericalTests.test_probe_metadata_samples_and_raw_hash_precision) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'",
+          "test_refinement_rms_and_exploratory_rms_are_separate_limits (test_filtered_audio_reference.FilteredAudioNumericalTests.test_refinement_rms_and_exploratory_rms_are_separate_limits) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'",
+          "test_reset_order_erases_prior_motion_and_history_without_alignment (test_filtered_audio_reference.FilteredAudioNumericalTests.test_reset_order_erases_prior_motion_and_history_without_alignment) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'",
+          "test_retrigger_release_pedal_and_all_off_preserve_mechanics (test_filtered_audio_reference.FilteredAudioNumericalTests.test_retrigger_release_pedal_and_all_off_preserve_mechanics) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'",
+          "test_three_small_production_comparisons_keep_exact_internal_phase (test_filtered_audio_reference.FilteredAudioNumericalTests.test_three_small_production_comparisons_keep_exact_internal_phase) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'",
+          "test_unit_cell_kernel_has_correct_zero_history_delay_and_reset (test_filtered_audio_reference.FilteredAudioNumericalTests.test_unit_cell_kernel_has_correct_zero_history_delay_and_reset) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'",
+          "test_unresolved_reference_raw_arrays_and_hashes_are_retained (test_filtered_audio_reference.FilteredAudioNumericalTests.test_unresolved_reference_raw_arrays_and_hashes_are_retained) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'",
+          "test_a_b_and_refinement_are_independent_and_preserve_inputs (test_quadrature_audio_validation.QuadratureNumericalAssessmentTests.test_a_b_and_refinement_are_independent_and_preserve_inputs) ... skipped 'Optional numerical assessment/NPZ checks need NumPy/SciPy'",
+          "test_execute_case_retains_exact_five_arrays_even_when_unresolved (test_quadrature_audio_validation.QuadratureNumericalAssessmentTests.test_execute_case_retains_exact_five_arrays_even_when_unresolved) ... skipped 'Optional numerical assessment/NPZ checks need NumPy/SciPy'",
+          "test_execute_case_retains_malformed_stdout_and_probe_failure_streams (test_quadrature_audio_validation.QuadratureNumericalAssessmentTests.test_execute_case_retains_malformed_stdout_and_probe_failure_streams) ... skipped 'Optional numerical assessment/NPZ checks need NumPy/SciPy'",
+          "test_scipy_rule_and_independent_continuous_kernel_recipe (test_quadrature_filter_generation.IndependentQuadratureFilterTests.test_scipy_rule_and_independent_continuous_kernel_recipe) ... skipped 'Optional independent Q6 audit needs NumPy/SciPy'"
+        ],
+        "duration_seconds": 32.302,
+        "result": "OK"
+      }
+    },
+    {
+      "job_id": 138264123055,
+      "label": "core-linux",
+      "name": "C++20 / ubuntu-latest",
+      "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45340923223/job/138264123055",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "240170673983f9992e4657a2d96c2172ece1ac30",
+      "started_at": "2026-11-24T06:30:17Z",
+      "completed_at": "2026-11-24T06:30:50Z",
+      "operating_system_lines": [
+        "Ubuntu",
+        "26.04.1",
+        "LTS"
+      ],
+      "runner_image_lines": [
+        "Image: ubuntu-26.04",
+        "Version: 20261116.202.1",
+        "Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261116.202/images/ubuntu/Ubuntu2604-Readme.md",
+        "Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261116.202"
+      ],
+      "log_member": "138264123055-core-linux.log",
+      "log_bytes": 49015,
+      "log_sha256": "e6b911937ca7a0534e4531f8092ea2754f468a1579781e0884dc00c45c4c4be3",
+      "observed_run_commands": [
+        "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+        "cmake -S . -B build -DCMAKE_BUILD_TYPE=Release",
+        "cmake --build build --config Release --parallel 2",
+        "ctest --test-dir build -C Release --output-on-failure --no-tests=error"
+      ],
+      "cxx_compiler": "GNU 15.2.0",
+      "ctest": {
+        "registered_tests": 150,
+        "passed_tests": 150,
+        "failed_tests": 0,
+        "skipped_tests": [],
+        "quadrature_engine_selectors": {
+          "quadrature.qengine_events": "Passed",
+          "quadrature.qengine_partitions": "Passed",
+          "quadrature.qengine_prepare": "Passed",
+          "quadrature.qengine_faults": "Passed",
+          "quadrature.qengine_allocations": "Passed"
+        }
+      }
+    },
+    {
+      "job_id": 138264123061,
+      "label": "core-windows",
+      "name": "C++20 / windows-latest",
+      "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45340923223/job/138264123061",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "240170673983f9992e4657a2d96c2172ece1ac30",
+      "started_at": "2026-11-24T06:30:17Z",
+      "completed_at": "2026-11-24T06:31:35Z",
+      "operating_system_lines": [
+        "Microsoft Windows Server 2025",
+        "10.0.26100",
+        "Datacenter"
+      ],
+      "runner_image_lines": [
+        "Image: windows-2025-vs2026",
+        "Version: 20261116.315.1",
+        "Included Software: https://github.com/actions/runner-images/blob/win25-vs2026/20261116.315/images/windows/Windows2025-VS2026-Readme.md",
+        "Image Release: https://github.com/actions/runner-images/releases/tag/win25-vs2026%2F20261116.315"
+      ],
+      "log_member": "138264123061-core-windows.log",
+      "log_bytes": 49898,
+      "log_sha256": "2cbc4df88313b9fbe82f3ae86694c98b26377ecb56db70e51717fc08127e9723",
+      "observed_run_commands": [
+        "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+        "cmake -S . -B build -DCMAKE_BUILD_TYPE=Release",
+        "cmake --build build --config Release --parallel 2",
+        "ctest --test-dir build -C Release --output-on-failure --no-tests=error"
+      ],
+      "cxx_compiler": "MSVC 19.52.37029.0",
+      "ctest": {
+        "registered_tests": 147,
+        "passed_tests": 147,
+        "failed_tests": 0,
+        "skipped_tests": [],
+        "quadrature_engine_selectors": {
+          "quadrature.qengine_events": "Passed",
+          "quadrature.qengine_partitions": "Passed",
+          "quadrature.qengine_prepare": "Passed",
+          "quadrature.qengine_faults": "Passed",
+          "quadrature.qengine_allocations": "Passed"
+        }
+      }
+    },
+    {
+      "job_id": 138264122093,
+      "label": "vst3-macos",
+      "name": "VST3 prototype / macos-latest",
+      "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45340923158/job/138264122093",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "240170673983f9992e4657a2d96c2172ece1ac30",
+      "started_at": "2026-11-24T06:30:18Z",
+      "completed_at": "2026-11-24T06:34:10Z",
+      "operating_system_lines": [
+        "macOS",
+        "26.7.2",
+        "25G332"
+      ],
+      "runner_image_lines": [
+        "Image: macos-26-arm64",
+        "Version: 20261117.0516.1",
+        "Included Software: https://github.com/actions/runner-images/blob/macos-26-arm64/20261117.0516/images/macos/macos-26-arm64-Readme.md",
+        "Image Release: https://github.com/actions/runner-images/releases/tag/macos-26-arm64%2F20261117.0516"
+      ],
+      "log_member": "138264122093-vst3-macos.log",
+      "log_bytes": 123065,
+      "log_sha256": "e03305c01516b77265ce0d069b8f80d889dd9f78c71dce16dbb32f6eb1e5d57a",
+      "observed_run_commands": [
+        "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+        "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+        "actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+        "git -C vst3sdk submodule update --init --depth 1 base cmake pluginterfaces public.sdk",
+        "python - <<'PY'",
+        "cmake -S source -B build/vst3 -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=ON -DRHODES_BUILD_VST3=ON -DRHODES_VST3_SDK_ROOT=\"/Users/runner/work/Fender-rhoades/Fender-rhoades/vst3sdk\" -DSMTG_ENABLE_VSTGUI_SUPPORT=OFF -DSMTG_ENABLE_VST3_PLUGIN_EXAMPLES=OFF -DSMTG_ENABLE_VST3_HOSTING_EXAMPLES=OFF -DSMTG_CREATE_PLUGIN_LINK=OFF -G \"Unix Makefiles\" -DCMAKE_OSX_DEPLOYMENT_TARGET=11.0",
+        "cmake --build build/vst3 --config Release --target rhodes_vst3_checks --parallel 2",
+        "ctest --test-dir build/vst3 -C Release -R '^vst3\\.' --output-on-failure --no-tests=error",
+        "python - <<'PY'",
+        "actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9"
+      ],
+      "cxx_compiler": "AppleClang 21.0.0.21000101",
+      "setup_python_version": "3.11.9",
+      "ctest": {
+        "registered_tests": 134,
+        "passed_tests": 125,
+        "failed_tests": 0,
+        "skipped_tests": [
+          "vst3.fp_ftz",
+          "vst3.filtered_fp_ftz",
+          "vst3.quadrature_fp_ftz",
+          "vst3.fp_daz",
+          "vst3.filtered_fp_daz",
+          "vst3.quadrature_fp_daz",
+          "vst3.fp_ftz_daz",
+          "vst3.filtered_fp_ftz_daz",
+          "vst3.quadrature_fp_ftz_daz"
+        ],
+        "sdk_and_metadata_validators": {
+          "vst3.sdk_validator": "Passed",
+          "vst3.filtered_sdk_validator": "Passed",
+          "vst3.quadrature_sdk_validator": "Passed",
+          "vst3.moduleinfo_validator": "Passed",
+          "vst3.filtered_moduleinfo_validator": "Passed",
+          "vst3.quadrature_moduleinfo_validator": "Passed"
+        },
+        "additional_reviewed_selectors": {
+          "vst3.filtered_scalar_output": "Passed",
+          "vst3.scalar_output": "Passed",
+          "vst3.filtered_regression_scalar_output": "Passed",
+          "vst3.quadrature_regression_scalar_output": "Passed",
+          "vst3.allocation_guard": "Passed",
+          "vst3.filtered_regression_allocation_guard": "Passed",
+          "vst3.quadrature_regression_allocation_guard": "Passed",
+          "vst3.bundle_resources": "Passed"
+        }
+      },
+      "sdk_pins_printed_and_verified": {
+        ".": "3cdf9ca5d1f5b1b21e0a86832aa4abe55607bd96",
+        "base": "fcf9da0bd27a16f7f03773a3a39822f28f5c8477",
+        "cmake": "054c9143cbb8d47fc4694e473f2ee3b4d951a8f5",
+        "pluginterfaces": "4f547e8e102b47de4a8b8aaf343c73b700786372",
+        "public.sdk": "586dc5e6c8012c3e4b01c79389375cbe96bdb1da"
+      },
+      "bundle_archive_steps": [
+        {
+          "name": "Archive all three validated experimental bundles",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-11-24T06:34:01Z",
+          "completed_at": "2026-11-24T06:34:01Z"
+        },
+        {
+          "name": "Upload validated experimental bundles",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-11-24T06:34:01Z",
+          "completed_at": "2026-11-24T06:34:04Z"
+        }
+      ],
+      "bundle_archive_log_line": "Verified 27 entries in build/vst3-artifacts/experimental-vst3-macOS-ARM64-240170673983f9992e4657a2d96c2172ece1ac30.tar.gz"
+    },
+    {
+      "job_id": 138264122400,
+      "label": "vst3-linux",
+      "name": "VST3 prototype / ubuntu-latest",
+      "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45340923158/job/138264122400",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "240170673983f9992e4657a2d96c2172ece1ac30",
+      "started_at": "2026-11-24T06:30:17Z",
+      "completed_at": "2026-11-24T06:32:32Z",
+      "operating_system_lines": [
+        "Ubuntu",
+        "26.04.1",
+        "LTS"
+      ],
+      "runner_image_lines": [
+        "Image: ubuntu-26.04",
+        "Version: 20261116.202.1",
+        "Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261116.202/images/ubuntu/Ubuntu2604-Readme.md",
+        "Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261116.202"
+      ],
+      "log_member": "138264122400-vst3-linux.log",
+      "log_bytes": 391395,
+      "log_sha256": "81fdbeee31eb1131e65999102e396a3e98e2fa1b4b3252112b97e70c23a737fc",
+      "observed_run_commands": [
+        "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+        "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+        "actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+        "git -C vst3sdk submodule update --init --depth 1 base cmake pluginterfaces public.sdk",
+        "python - <<'PY'",
+        "cmake -S source -B build/vst3 -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=ON -DRHODES_BUILD_VST3=ON -DRHODES_VST3_SDK_ROOT=\"/home/runner/work/Fender-rhoades/Fender-rhoades/vst3sdk\" -DSMTG_ENABLE_VSTGUI_SUPPORT=OFF -DSMTG_ENABLE_VST3_PLUGIN_EXAMPLES=OFF -DSMTG_ENABLE_VST3_HOSTING_EXAMPLES=OFF -DSMTG_CREATE_PLUGIN_LINK=OFF -G \"Unix Makefiles\"",
+        "cmake --build build/vst3 --config Release --target rhodes_vst3_checks --parallel 2",
+        "ctest --test-dir build/vst3 -C Release -R '^vst3\\.' --output-on-failure --no-tests=error",
+        "python - <<'PY'",
+        "actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9"
+      ],
+      "cxx_compiler": "GNU 15.2.0",
+      "setup_python_version": "3.11.18",
+      "ctest": {
+        "registered_tests": 138,
+        "passed_tests": 138,
+        "failed_tests": 0,
+        "skipped_tests": [],
+        "sdk_and_metadata_validators": {
+          "vst3.sdk_validator": "Passed",
+          "vst3.filtered_sdk_validator": "Passed",
+          "vst3.quadrature_sdk_validator": "Passed",
+          "vst3.moduleinfo_validator": "Passed",
+          "vst3.filtered_moduleinfo_validator": "Passed",
+          "vst3.quadrature_moduleinfo_validator": "Passed"
+        },
+        "additional_reviewed_selectors": {
+          "vst3.filtered_scalar_output": "Passed",
+          "vst3.scalar_output": "Passed",
+          "vst3.filtered_regression_scalar_output": "Passed",
+          "vst3.quadrature_regression_scalar_output": "Passed",
+          "vst3.allocation_guard": "Passed",
+          "vst3.filtered_regression_allocation_guard": "Passed",
+          "vst3.quadrature_regression_allocation_guard": "Passed",
+          "vst3.dual_module_coexist": "Passed",
+          "vst3.dual_module_duplicate_guard": "Passed",
+          "vst3.triple_module_coexist": "Passed",
+          "vst3.triple_module_duplicate_guard": "Passed",
+          "vst3.bundle_resources": "Passed"
+        }
+      },
+      "sdk_pins_printed_and_verified": {
+        ".": "3cdf9ca5d1f5b1b21e0a86832aa4abe55607bd96",
+        "base": "fcf9da0bd27a16f7f03773a3a39822f28f5c8477",
+        "cmake": "054c9143cbb8d47fc4694e473f2ee3b4d951a8f5",
+        "pluginterfaces": "4f547e8e102b47de4a8b8aaf343c73b700786372",
+        "public.sdk": "586dc5e6c8012c3e4b01c79389375cbe96bdb1da"
+      },
+      "bundle_archive_steps": [
+        {
+          "name": "Archive all three validated experimental bundles",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-11-24T06:32:27Z",
+          "completed_at": "2026-11-24T06:32:27Z"
+        },
+        {
+          "name": "Upload validated experimental bundles",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-11-24T06:32:27Z",
+          "completed_at": "2026-11-24T06:32:29Z"
+        }
+      ],
+      "bundle_archive_log_line": "Verified 24 entries in build/vst3-artifacts/experimental-vst3-Linux-X64-240170673983f9992e4657a2d96c2172ece1ac30.tar.gz"
+    },
+    {
+      "job_id": 138264122571,
+      "label": "vst3-windows",
+      "name": "VST3 prototype / windows-latest",
+      "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45340923158/job/138264122571",
+      "status": "completed",
+      "conclusion": "success",
+      "head_sha": "240170673983f9992e4657a2d96c2172ece1ac30",
+      "started_at": "2026-11-24T06:30:17Z",
+      "completed_at": "2026-11-24T06:34:04Z",
+      "operating_system_lines": [
+        "Microsoft Windows Server 2025",
+        "10.0.26100",
+        "Datacenter"
+      ],
+      "runner_image_lines": [
+        "Image: windows-2025-vs2026",
+        "Version: 20261116.315.1",
+        "Included Software: https://github.com/actions/runner-images/blob/win25-vs2026/20261116.315/images/windows/Windows2025-VS2026-Readme.md",
+        "Image Release: https://github.com/actions/runner-images/releases/tag/win25-vs2026%2F20261116.315"
+      ],
+      "log_member": "138264122571-vst3-windows.log",
+      "log_bytes": 93093,
+      "log_sha256": "90a26d9685665bfef706d0021682d6ec2b2227e4a95a4b0ccb9ffaa4630273fd",
+      "observed_run_commands": [
+        "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+        "actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+        "actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+        "git -C vst3sdk submodule update --init --depth 1 base cmake pluginterfaces public.sdk",
+        "python - <<'PY'",
+        "cmake -S source -B build/vst3 -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=ON -DRHODES_BUILD_VST3=ON -DRHODES_VST3_SDK_ROOT=\"D:\\a\\Fender-rhoades\\Fender-rhoades/vst3sdk\" -DSMTG_ENABLE_VSTGUI_SUPPORT=OFF -DSMTG_ENABLE_VST3_PLUGIN_EXAMPLES=OFF -DSMTG_ENABLE_VST3_HOSTING_EXAMPLES=OFF -DSMTG_CREATE_PLUGIN_LINK=OFF -A x64",
+        "cmake --build build/vst3 --config Release --target rhodes_vst3_checks --parallel 2",
+        "ctest --test-dir build/vst3 -C Release -R '^vst3\\.' --output-on-failure --no-tests=error",
+        "python - <<'PY'",
+        "actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9"
+      ],
+      "cxx_compiler": "MSVC 19.52.37029.0",
+      "setup_python_version": "3.11.9",
+      "ctest": {
+        "registered_tests": 134,
+        "passed_tests": 134,
+        "failed_tests": 0,
+        "skipped_tests": [],
+        "sdk_and_metadata_validators": {
+          "vst3.sdk_validator": "Passed",
+          "vst3.filtered_sdk_validator": "Passed",
+          "vst3.quadrature_sdk_validator": "Passed",
+          "vst3.moduleinfo_validator": "Passed",
+          "vst3.filtered_moduleinfo_validator": "Passed",
+          "vst3.quadrature_moduleinfo_validator": "Passed"
+        },
+        "additional_reviewed_selectors": {
+          "vst3.filtered_scalar_output": "Passed",
+          "vst3.scalar_output": "Passed",
+          "vst3.filtered_regression_scalar_output": "Passed",
+          "vst3.quadrature_regression_scalar_output": "Passed",
+          "vst3.allocation_guard": "Passed",
+          "vst3.filtered_regression_allocation_guard": "Passed",
+          "vst3.quadrature_regression_allocation_guard": "Passed",
+          "vst3.bundle_resources": "Passed"
+        }
+      },
+      "sdk_pins_printed_and_verified": {
+        ".": "3cdf9ca5d1f5b1b21e0a86832aa4abe55607bd96",
+        "base": "fcf9da0bd27a16f7f03773a3a39822f28f5c8477",
+        "cmake": "054c9143cbb8d47fc4694e473f2ee3b4d951a8f5",
+        "pluginterfaces": "4f547e8e102b47de4a8b8aaf343c73b700786372",
+        "public.sdk": "586dc5e6c8012c3e4b01c79389375cbe96bdb1da"
+      },
+      "bundle_archive_steps": [
+        {
+          "name": "Archive all three validated experimental bundles",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-11-24T06:33:56Z",
+          "completed_at": "2026-11-24T06:33:57Z"
+        },
+        {
+          "name": "Upload validated experimental bundles",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-11-24T06:33:57Z",
+          "completed_at": "2026-11-24T06:33:59Z"
+        }
+      ],
+      "bundle_archive_log_line": "Verified 30 entries in build\\vst3-artifacts\\experimental-vst3-Windows-X64-240170673983f9992e4657a2d96c2172ece1ac30.tar.gz"
+    }
+  ],
+  "vst3_artifact_metadata": [
+    {
+      "id": 14896271070,
+      "node_id": "MDg6QXJ0aWZhY3QxNDg5NjI3MTA3MA==",
+      "name": "experimental-vst3-Linux-X64-240170673983f9992e4657a2d96c2172ece1ac30",
+      "size_in_bytes": 482156,
+      "url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/artifacts/14896271070",
+      "archive_download_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/artifacts/14896271070/zip",
+      "expired": false,
+      "digest": "sha256:d787993c568a1085a8a0cc207c5d4ad40cd832366c4524cb7b7705e8ad803d92",
+      "created_at": "2026-11-24T06:32:28Z",
+      "updated_at": "2026-11-24T06:32:28Z",
+      "expires_at": "2026-12-01T06:32:27Z",
+      "workflow_run": {
+        "id": 45340923158,
+        "repository_id": 1468684538,
+        "head_repository_id": 1468684538,
+        "head_branch": "main",
+        "head_sha": "240170673983f9992e4657a2d96c2172ece1ac30"
+      }
+    },
+    {
+      "id": 14896191512,
+      "node_id": "MDg6QXJ0aWZhY3QxNDg5NjE5MTUxMg==",
+      "name": "experimental-vst3-Windows-X64-240170673983f9992e4657a2d96c2172ece1ac30",
+      "size_in_bytes": 1397021,
+      "url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/artifacts/14896191512",
+      "archive_download_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/artifacts/14896191512/zip",
+      "expired": false,
+      "digest": "sha256:1adcab0af3006309b3a88068f80bd3c922ac157d1fcec19abb56098bad82aa01",
+      "created_at": "2026-11-24T06:33:58Z",
+      "updated_at": "2026-11-24T06:33:58Z",
+      "expires_at": "2026-12-01T06:33:57Z",
+      "workflow_run": {
+        "id": 45340923158,
+        "repository_id": 1468684538,
+        "head_repository_id": 1468684538,
+        "head_branch": "main",
+        "head_sha": "240170673983f9992e4657a2d96c2172ece1ac30"
+      }
+    },
+    {
+      "id": 14895634607,
+      "node_id": "MDg6QXJ0aWZhY3QxNDg5NTYzNDYwNw==",
+      "name": "experimental-vst3-macOS-ARM64-240170673983f9992e4657a2d96c2172ece1ac30",
+      "size_in_bytes": 344079,
+      "url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/artifacts/14895634607",
+      "archive_download_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/artifacts/14895634607/zip",
+      "expired": false,
+      "digest": "sha256:b00a6796b602ce3bf3675033f81902c2d66bf2a8135333cb2394155b4a3834c1",
+      "created_at": "2026-11-24T06:34:04Z",
+      "updated_at": "2026-11-24T06:34:04Z",
+      "expires_at": "2026-12-01T06:34:02Z",
+      "workflow_run": {
+        "id": 45340923158,
+        "repository_id": 1468684538,
+        "head_repository_id": 1468684538,
+        "head_branch": "main",
+        "head_sha": "240170673983f9992e4657a2d96c2172ece1ac30"
+      }
+    }
+  ],
+  "artifact_metadata_limit": "Names, sizes, SHA-256 digests and expiry are reported by the GitHub API. This assignment did not download or byte-verify the uploaded bundle artifacts. Archive/upload job steps and their log checks succeeded.",
+  "archive": {
+    "path": "native-final-20261124.tar.gz",
+    "bytes": 199986,
+    "sha256": "77c2f598b07d971d74a7f986a3230bf378e51a710ad652dc8382082943c902a5",
+    "member_count": 12,
+    "members": {
+      "138264122093-vst3-macos.log": {
+        "bytes": 123065,
+        "sha256": "e03305c01516b77265ce0d069b8f80d889dd9f78c71dce16dbb32f6eb1e5d57a"
+      },
+      "138264122400-vst3-linux.log": {
+        "bytes": 391395,
+        "sha256": "81fdbeee31eb1131e65999102e396a3e98e2fa1b4b3252112b97e70c23a737fc"
+      },
+      "138264122568-python-windows.log": {
+        "bytes": 159479,
+        "sha256": "338a4052a7cb3103b1e71f3629830dde2eff45b3124c47fccb62406db83199b6"
+      },
+      "138264122571-vst3-windows.log": {
+        "bytes": 93093,
+        "sha256": "90a26d9685665bfef706d0021682d6ec2b2227e4a95a4b0ccb9ffaa4630273fd"
+      },
+      "138264122910-core-macos.log": {
+        "bytes": 49491,
+        "sha256": "e05244ca728c507072dec6399edef11037ae143e132eb499e62d4abb40896de1"
+      },
+      "138264122965-python-macos.log": {
+        "bytes": 159159,
+        "sha256": "7f04debb2fd5dcc88698c244d75108bef896fd8a85edb4c43ff5f2b603d00cb5"
+      },
+      "138264122997-sanitizers-linux.log": {
+        "bytes": 47048,
+        "sha256": "29e4f037e097cf9dc049b1d9099df2b56285ba481f6f1790c5f76d16c5903685"
+      },
+      "138264123001-python-linux.log": {
+        "bytes": 159295,
+        "sha256": "6b71718c7cd8af8f6dcf1695da06586e3a271ecd1d7360824ce8b6c20c1cf9fc"
+      },
+      "138264123055-core-linux.log": {
+        "bytes": 49015,
+        "sha256": "e6b911937ca7a0534e4531f8092ea2754f468a1579781e0884dc00c45c4c4be3"
+      },
+      "138264123061-core-windows.log": {
+        "bytes": 49898,
+        "sha256": "2cbc4df88313b9fbe82f3ae86694c98b26377ecb56db70e51717fc08127e9723"
+      },
+      "api-records.json": {
+        "bytes": 88355,
+        "sha256": "dfbe08fa2c66815937c1575e5893ed69afc6f8df9d81147b23e9d9d30d636900"
+      },
+      "capture_summary.py": {
+        "bytes": 16410,
+        "sha256": "6007bac7ba5addd5f03006ff075277a21a642342650480a14a1493a4c83f79bf"
+      }
+    },
+    "normalization": "Decoded log text: replace CRLF and lone CR with LF; remove terminal LF characters; append exactly one LF; encode UTF-8. No other whitespace is changed. These bytes are not claimed as the original server ZIP.",
+    "format": "Flat regular-file USTAR, sorted names, mode0644, uid/gid/mtime0; gzip filename empty and mtime0, compression level9. Member bytes verified in memory, without extraction or execution."
+  },
+  "collection_command": "python3 build/w5-88-native-capture/capture_summary.py",
+  "collection_script_member": "capture_summary.py",
+  "limitations": [
+    "Seven CTest runs and three Python CI runs are separate jobs. Registered CTest counts and unittest summary counts include explicitly listed skips; skips are not represented as passes.",
+    "macOS ARM skips six core and nine VST3 x86 MXCSR FTZ/DAZ modes. All five quadrature-engine selectors pass in each core/sanitizer job.",
+    "The four module coexistence/duplicate-guard selectors are Linux-only; no macOS or Windows execution is inferred.",
+    "CI Python3.11 uses platform-specific versions and optional-backend/capability skips. The later local Python3.12/NumPy/SciPy run is separate evidence.",
+    "Decoded normalized text hashes bind retained bytes, not original server ZIP bytes, independent log authenticity or binary reproducibility.",
+    "Native success and sanitizer observations do not establish every host, compiler flag, concurrency schedule, allocator operation or audio-device deadline.",
+    "No DAW session, measured specimen fidelity, minimum deployment baseline, publisher signing/notarization or product release is established. SDK ad-hoc signing messages in the macOS build are not publisher release signing."
+  ]
+}

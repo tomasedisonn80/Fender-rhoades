@@ -739,6 +739,40 @@
         "This test run does not rerun the2097-case audio study, native C++ suites, timing matrices, DAWs or physical measurements.",
         "The fixed input inventory excludes newly created untracked peer reports; exact source and before/after hashes are recorded."
       ]
+    },
+    {
+      "id": "HOST-20261124-current-native",
+      "kind": "numerical",
+      "result": "pass",
+      "summary": "Source-bound current native verification at2401706: all ten Foundation/VST3 jobs succeeded, with exact CTest and Python pass/skip counts, SDK/module-metadata validators and bundle archive/upload results retained.",
+      "command": "python -m unittest discover -s tests/python -v\nctest --test-dir build -C Release --output-on-failure --no-tests=error\nctest --preset sanitize --no-tests=error\nctest --test-dir build/vst3 -C Release -R '^vst3\\.' --output-on-failure --no-tests=error",
+      "created_at": "2026-11-24T07:01:29Z",
+      "source_commit": "240170673983f9992e4657a2d96c2172ece1ac30",
+      "artifacts": [
+        {
+          "path": "docs/validation/native-final-20261124.json",
+          "sha256": "6a31a715bdd9590f9ff789636df1bb948639120bed0811ec43b313e3a96833e2"
+        },
+        {
+          "path": "docs/validation/native-final-20261124.tar.gz",
+          "sha256": "77c2f598b07d971d74a7f986a3230bf378e51a710ad652dc8382082943c902a5"
+        },
+        {
+          "path": "docs/agents/reports/20261124-w5-88-current-native-archive.md",
+          "sha256": "e4346c07788a4d55b2f4a3d0ba19290d220fcbb81b6bba440fa23aa86a756166"
+        }
+      ],
+      "specimen_id": null,
+      "profile_path": null,
+      "session_paths": [],
+      "independent": false,
+      "reference_evidence": [],
+      "limitations": [
+        "Collection retained existing completed CI logs; it did not rerun builds or tests. All148 inspected native/build/workflow/Python files match tested2401706 and the collection checkout.",
+        "CTest and unittest totals include explicitly retained skips; macOS ARM lacks the tested x86 FTZ/DAZ modes. Linux-only module-coexistence selectors do not imply other-OS executions.",
+        "Decoded logs are normalized UTF-8 text, not original server archive bytes. Uploaded bundle names/digests/expiry are API metadata, not locally downloaded binary verification.",
+        "No DAW/device deadlines, calibrated specimen fidelity, minimum deployment baseline, publisher signing or product release is established."
+      ]
     }
   ]
 }

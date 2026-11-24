@@ -1,0 +1,964 @@
+{
+  "schema_version": 1,
+  "kind": "acceptance-source-manifest",
+  "evaluator": "development-root",
+  "python_version": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "review_commit": "766dd11c73cf9d1dcf6c1960b4333767356f9937",
+  "native_test_checkpoint": "240170673983f9992e4657a2d96c2172ece1ac30",
+  "all_native_sources_match_native_test_checkpoint": true,
+  "historical_native_checkpoint": "015767fee5635ff85a717739188ff4af60fe84f2",
+  "differences_from_historical_native_sources": {
+    "tests/cpp/quadrature_engine_test.cpp": {
+      "historical_sha256": "dd69ecb8a5880a72d0f46862086f9ea8b52194289bfbb8a71531354d699760ca",
+      "reviewed_sha256": "481894129f3dd92ede0875d376c4034d38b3e347b44f82c6bb8ad205f0d37063"
+    }
+  },
+  "source_sha256": {
+    "CMakeLists.txt": {
+      "sha256": "2a70fba5924a3eeb01bf0dfd7c2a0f6a00726d27ac7535660a4bf267cf81ff3e",
+      "bytes": 19092,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "cmake/Vst3.cmake": {
+      "sha256": "e779743e238c5b7ac2632d73764eb19974fcef3f4ae5c8699ac6f188fde783a6",
+      "bytes": 24878,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "include/rhodes/audio_engine.hpp": {
+      "sha256": "10efac8150c07e69ef41eed415a6e7403b4339179af902f91cd17ef498da7b97",
+      "bytes": 4216,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "include/rhodes/audio_filter_coefficients.hpp": {
+      "sha256": "c1ab39356d7e44348f9dc56f9120ff2598889d1fa144e5294b084585655eb76d",
+      "bytes": 17719,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "include/rhodes/contact_reference.hpp": {
+      "sha256": "00b99e61dc73686c22675bedf647c3ad1b27ba13332180431f5a42e485057fda",
+      "bytes": 13870,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "include/rhodes/control_value.hpp": {
+      "sha256": "d7c282afdcffaef90f7872f97b37bfb34671448da64376d3439649c052d4d48d",
+      "bytes": 5479,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "include/rhodes/event_processor.hpp": {
+      "sha256": "36e4b64f3278b0079b20e94a333a657c900e4118dc24433ec9d8c58442651351",
+      "bytes": 6398,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "include/rhodes/fir_decimator.hpp": {
+      "sha256": "e54faeb397bcbccb9ed9834cfc264d84550c4ef375d8e5273a720eb1f190071b",
+      "bytes": 2185,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "include/rhodes/instrument_state.hpp": {
+      "sha256": "c11c9d982887f4228c76c3ee9e10fe5627c2dc0f1053ad531cfd316285a65616",
+      "bytes": 6985,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "include/rhodes/note_tracker.hpp": {
+      "sha256": "76931b326daae3a112b56420f9be9ea5b03b1c30307f1dc68b6c13c710cd830f",
+      "bytes": 5432,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "include/rhodes/quadrature_engine.hpp": {
+      "sha256": "c625a82b61eb3e721061177654c12ffa6aac0049e026b9633ae53ea2abaa773d",
+      "bytes": 4801,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "include/rhodes/quadrature_filter_coefficients.hpp": {
+      "sha256": "3cca4ea6553ceb01810a6230f2144491364fa48af7d6cfbc43a8e3dcf5d08b51",
+      "bytes": 16603,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "include/rhodes/quadrature_fir.hpp": {
+      "sha256": "0ddcf691a5d251979a7adf1ea32d471c8fcf1fd6e5a7a2e203c8fb63974b7b6d",
+      "bytes": 2336,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "include/rhodes/research_engine.hpp": {
+      "sha256": "7dca093866c19f18f4403f86daea96ac485d86b3e6aebc4441477bd5a8a16621",
+      "bytes": 8009,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "plugins/vst3/THIRD_PARTY_NOTICES.md": {
+      "sha256": "171196ff6346500d42093d0aa0729d960944fc607cb83de415a92f1ee1a51570",
+      "bytes": 2089,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "plugins/vst3/controller.cpp": {
+      "sha256": "79800f5df2781fc48dcf0c32afcc5d3b08efa067ba89e1a659bcfed240749349",
+      "bytes": 4092,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "plugins/vst3/controller.hpp": {
+      "sha256": "4a279d583722b14ac48b1d2064c0d34dcc5bd523e51620d00ac859bc38359bd4",
+      "bytes": 1436,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "plugins/vst3/factory.cpp": {
+      "sha256": "c233a281539fca494fe0e24f1511634731078aeaddb931dcac562be6c1d411a2",
+      "bytes": 1060,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "plugins/vst3/plugin_ids.hpp": {
+      "sha256": "1b5744731384e100c2f32cfed42fccf9fe2168d39df5cc29f1ac1108b9d94a81",
+      "bytes": 2647,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "plugins/vst3/processor.cpp": {
+      "sha256": "97b449dac4e1eb434af8ad4e279bdf7ba07f4668cb174199980eea0266493cf6",
+      "bytes": 20044,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "plugins/vst3/processor.hpp": {
+      "sha256": "0250eaaca92b2aa904b5a05e8aca8cc46cd8a63111d145ddf7d0956f682d1807",
+      "bytes": 4755,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "plugins/vst3/state_stream.cpp": {
+      "sha256": "b5f0dd71c5523f80359027168f0df3307c85d70b3d5654f3f936144f3307d172",
+      "bytes": 2444,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "plugins/vst3/state_stream.hpp": {
+      "sha256": "db5ec0572c9a3d56f55c71a43997b4fcc208c76ddf186c61368dfbd184f49e12",
+      "bytes": 1027,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "src/contact_reference.cpp": {
+      "sha256": "0f9808442b5ddf6ddc6091c9b6294117b7aea85cd54707b9c3743121ac706100",
+      "bytes": 72847,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "src/research_engine.cpp": {
+      "sha256": "f0facfcb2c28f989c79407d2e0571a868b07ec7a37511bc05f7a33efcdeb0703",
+      "bytes": 19771,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "tests/cpp/audio_engine_test.cpp": {
+      "sha256": "57f8f827e77dfe3a1c143d5e6990d0f7f10f001dbd2599f616a96ed4990f59ad",
+      "bytes": 34806,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "tests/cpp/audio_fir_test.cpp": {
+      "sha256": "9868a0439c57211bf384839e0d37ce528ddec611509266485b6f5ac8eec836be",
+      "bytes": 11474,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "tests/cpp/audio_probe_cli.cmake": {
+      "sha256": "792aec1ea75cfe3462f60ae015f916ae2d795b689ef6f39d8f796703146e48e6",
+      "bytes": 8922,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "tests/cpp/benchmark_json.cmake": {
+      "sha256": "6bfadcd834b377cc887d08a6b3fb9bfbe85d51821d29aeaf6904215bcafb7cea",
+      "bytes": 6068,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "tests/cpp/contact_cli.cmake": {
+      "sha256": "6017cc26ce81943c72d85c2203bc9d7f969238c508298a6f8b5ab0cc3201d5a6",
+      "bytes": 11039,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "tests/cpp/contact_domain_test.cpp": {
+      "sha256": "e0154c3d7a1e66431d5cb1db4b9430b4a2760f06bbf26fbae55a120558bf241a",
+      "bytes": 22888,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "tests/cpp/contact_event_split_test.cpp": {
+      "sha256": "4ee53462c8cf0041e48778ea2e6283d3216e0f9043dcdf2dacc1784cdcd53e4e",
+      "bytes": 5565,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "tests/cpp/contact_grazing_test.cpp": {
+      "sha256": "520b8a77673959d26420df31c952492307d5ec670dca65785e7b2138ea7bbd24",
+      "bytes": 11330,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "tests/cpp/contact_peak_cli.cmake": {
+      "sha256": "84577b1c3166017cd65c247a6058eddb0911341c94cc4ef18f190bb4b1e58757",
+      "bytes": 8269,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "tests/cpp/contact_peak_test.cpp": {
+      "sha256": "e73e7f1634da92f607d74ad66443646d07c2fd5fd216ddce372ccbe95bbd9762",
+      "bytes": 24867,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "tests/cpp/contact_reference_test.cpp": {
+      "sha256": "e1d77debc7fc563b6c8b2425b25cd5fdc802ef065f4438d24612f1e43bf174b5",
+      "bytes": 41121,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "tests/cpp/contact_split_peak_test.cpp": {
+      "sha256": "bee22064db003fdcfc2445b47d33d7b2e5f30a9a622776caee32e1683db9ff96",
+      "bytes": 18110,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "tests/cpp/control_fp_environment_test.cpp": {
+      "sha256": "ce9dd0cdd386d9e5f84622c131202de4bf4ec8c9bd5d78ce85acb6a1683e8b3a",
+      "bytes": 12938,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "tests/cpp/control_value_test.cpp": {
+      "sha256": "955f7218b087ccc4ad231443ee4f23970ccc596c2ea55f87d54ad9ce953adb72",
+      "bytes": 15530,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "tests/cpp/diagnostic_stdout.cmake": {
+      "sha256": "7f91f038da0d8f19e7623a94bdc47b473bc0fb8e0a87b43b0f9bab3611d07076",
+      "bytes": 3314,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "tests/cpp/event_model_test.cpp": {
+      "sha256": "f6ba26ff7f79a370d730abe4b98a819dcab7a46de7995352468027c8e5186ee2",
+      "bytes": 17571,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "tests/cpp/event_processor_test.cpp": {
+      "sha256": "f1d9383ad34843dabcca0c58edaecf7cba56b2e19e57b2e065e37c2b5f60793e",
+      "bytes": 20477,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "tests/cpp/expect_cli_failure.cmake": {
+      "sha256": "9cf60b2d1888b8aa9bd11d28d375a721b228ab0e82debbab46e53fbb35500ce4",
+      "bytes": 600,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "tests/cpp/filtered_render.cmake": {
+      "sha256": "0e4d7cb3b4827cc659fbe51936b7a71e911fa6d9429d68b52dd9e09678588d7c",
+      "bytes": 10694,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "tests/cpp/fractional_observation_test.cpp": {
+      "sha256": "5ea8c5deab6dc8612d680413abd1f6765a463b420d34fa17f48540cd4e8dfa55",
+      "bytes": 21683,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "tests/cpp/instrument_model_state_test.cpp": {
+      "sha256": "ab881e0590f3872505231215c95a21ba91de52b719276d93667e6e75122902e7",
+      "bytes": 21832,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "tests/cpp/instrument_state_test.cpp": {
+      "sha256": "be54581bb3efab5096bfada65e20eec230716f7c2ff110231157d569c080cecc",
+      "bytes": 7329,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "tests/cpp/modal_transition_cache_test.cpp": {
+      "sha256": "50cbca48f767189f17419424d13dcfedc810e998fa6ac436a7bbf7eb95a3fa21",
+      "bytes": 8416,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "tests/cpp/note_model_test.cpp": {
+      "sha256": "ce14509e1933ca22aed32b3dab23be11ec3466bf7b2e901f5d58b7d8595135fd",
+      "bytes": 16985,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "tests/cpp/note_tracker_test.cpp": {
+      "sha256": "96f00bf3fa5a1b54352fae347e8f6cbdfb7f543bed53c15a8885be4400f365e1",
+      "bytes": 13499,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "tests/cpp/quadrature_cli.cmake": {
+      "sha256": "21e4f9eb4025d672996b73715a6735b25c37917f48a13bad59a276325f499147",
+      "bytes": 15690,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "tests/cpp/quadrature_engine_test.cpp": {
+      "sha256": "481894129f3dd92ede0875d376c4034d38b3e347b44f82c6bb8ad205f0d37063",
+      "bytes": 33352,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "tests/cpp/quadrature_fir_test.cpp": {
+      "sha256": "68ef7b4cee30bd8ba6f8e7aba1ab9ee5d5f67318f4e96b38be84e66517576a04",
+      "bytes": 12882,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "tests/cpp/render_output.cmake": {
+      "sha256": "ce1addaee80f5b9361fadd8074593e359a1bc4758dc762f8454e3cd808f3c386",
+      "bytes": 5164,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "tests/cpp/research_engine_test.cpp": {
+      "sha256": "cb8c580baea9bd516b8686bffb7fe5b9285f56ce001035c2979374d8a10a1b16",
+      "bytes": 11892,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "tests/cpp/review_regression.cpp": {
+      "sha256": "48f9ff033a8f2bff7f0bfd69d86a23493c685e86afa0eca95a770f879cc23b51",
+      "bytes": 16240,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "tests/cpp/runtime_benchmark_json.cmake": {
+      "sha256": "37773c8805f235c045e1aab8896765bb7ccf593c09be600e42bcd3e735eb21de",
+      "bytes": 9381,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "tests/cpp/state_concurrency_test.cpp": {
+      "sha256": "53d36fc67e34c42296fbbfd70d134521225958ae57ce7cb6c3b2ca2362d571ca",
+      "bytes": 7000,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "tests/cpp/state_fp_environment_test.cpp": {
+      "sha256": "90e29f5903c3b67afd5f28f0b8958cf2c6bca04a3f2420655296b6fd7ab81a4d",
+      "bytes": 10050,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "tests/cpp/state_property_test.cpp": {
+      "sha256": "338ba2e214a99de3f9ad4533e8f191298f5facb06150b2eb8f00de9e514465b9",
+      "bytes": 11347,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "tests/cpp/vst3_automation_contract_test.cpp": {
+      "sha256": "dc6607f0d50e9b47e3b861baf9483e10c814e284a85296fcef5ab5284380f8d2",
+      "bytes": 22016,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "tests/cpp/vst3_benchmark_json.cmake": {
+      "sha256": "ac87b93d9079242bc69b66f5305c640e5c3fae697d963ef0fc4dd1071b7509f7",
+      "bytes": 16140,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "tests/cpp/vst3_buffer_contract_test.cpp": {
+      "sha256": "2325e255629446bc1866dae665f4c5f515808b106f7015da78e4a57707c47238",
+      "bytes": 30864,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "tests/cpp/vst3_bundle_resources.cmake": {
+      "sha256": "8f3c6e19d69cd61f0fdd3de0c879c5adcbdc8f3bdb9271dbf515ecc516c9ac40",
+      "bytes": 2465,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "tests/cpp/vst3_dual_module_test.cpp": {
+      "sha256": "534ff28d46f253b0191a9bc693d0b3acd8d6ba67b6cf3a4b10db217294bd879c",
+      "bytes": 14463,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "tests/cpp/vst3_filtered_test.cpp": {
+      "sha256": "6445c2df88ff1ec21e546c414e9000d2650ee1c66df4ace44e4838519a9a0582",
+      "bytes": 18689,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "tests/cpp/vst3_fp_environment_test.cpp": {
+      "sha256": "05303cc961e4eef33adb2d846e5289922cd77ee5ab09d4f6f2e1f0ec74995136",
+      "bytes": 18308,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "tests/cpp/vst3_host_test.cpp": {
+      "sha256": "ca4a6302eebefee1f59a17118bb29492cc2c534d6d166631475c028bc6127da4",
+      "bytes": 54236,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "tests/cpp/vst3_note_model_test.cpp": {
+      "sha256": "a408293c3f9f337e04b2f29f95cccfc0e0ff0514c02b3524c2cbcb84aa3d47ed",
+      "bytes": 19434,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "tests/cpp/vst3_quadrature_contract_test.cpp": {
+      "sha256": "e6579e640768077e2de380d5daa9b415e99e17b8c9ca781cd5dce6a3b8ce3dd1",
+      "bytes": 24838,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "tests/cpp/vst3_state_concurrency_test.cpp": {
+      "sha256": "175141258725b48497a05e48e9386009143d81ca8460a9a4fa1801bd2a422f99",
+      "bytes": 17346,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "tests/cpp/vst3_stream_contract_test.cpp": {
+      "sha256": "e97270c36e707ce47b97bd81e82573c179e69129ee37dfdf18bffd6994946a78",
+      "bytes": 23404,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "tests/cpp/vst3_test_support.hpp": {
+      "sha256": "7ab3ae32616886bad13f88ffe0d6e2a8409d7b7335529f3e1ca87b8046419a01",
+      "bytes": 16050,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "tests/cpp/vst3_triple_module_test.cpp": {
+      "sha256": "28349466d83b136df765355a925ef73511ea40fbcb68ad5259481e1f252d35e6",
+      "bytes": 19893,
+      "group": "native_sources",
+      "matches_review_commit": true
+    },
+    "tests/python/test_aliasing_audit.py": {
+      "sha256": "ccc42a5b5f11a8d4a5f9a451d76800a141e6ef53f74d560d80edd7b50544ff2c",
+      "bytes": 11749,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tests/python/test_audio_compatibility.py": {
+      "sha256": "9241dd793bc340e42222bf66fb02ff2ffd84819d9386ab8ed76183e4e889e086",
+      "bytes": 14395,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tests/python/test_audio_compatibility_adversarial.py": {
+      "sha256": "e958930693f060a42fd779481ee0b5e9916e878abd82d080487c103ee5e1eb0f",
+      "bytes": 7863,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tests/python/test_audio_filter_generation.py": {
+      "sha256": "846fb70c0f1df30f45a20a889f18ff4ad4ff43b508d12c28af24f537157f1b33",
+      "bytes": 9821,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tests/python/test_campaign.py": {
+      "sha256": "ec4f3b29a2137f9d6f3dc45d6c7546d762c44ad117f9388eb9bb260772fe8250",
+      "bytes": 20941,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tests/python/test_contact_auditor_actions.py": {
+      "sha256": "63b2d19eda1acd413a6ebe3cf7bee74b08f5edfded98af3202a0214bc91d662f",
+      "bytes": 16957,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tests/python/test_contact_auditor_adversarial.py": {
+      "sha256": "88eba5b557465807a130ebed41d1e25eb2e36fd3d0e26d22bf39de4af668f72e",
+      "bytes": 10157,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tests/python/test_contact_auditor_inputs.py": {
+      "sha256": "502c584aab4a1ee5cc74b496177ae7440cc8e947ed2cdfb6184c7a7f181dde73",
+      "bytes": 10081,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tests/python/test_contact_auditor_validation.py": {
+      "sha256": "af00906a893342ef92b3c7b974daffaec8b19a2376337d8ad1a4b3bc18c07945",
+      "bytes": 13077,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tests/python/test_contact_extension.py": {
+      "sha256": "faf6614cdb81f0c5dcafc9675fe4f70d69ded8e01cd321ca9921d39297c3abdb",
+      "bytes": 28162,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tests/python/test_contact_matrix_self_check.py": {
+      "sha256": "d12caf6371414caf7c324230acc064e776be0b7e0b02c76a6277bf501d346a12",
+      "bytes": 10206,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tests/python/test_contact_peak_backend_boundaries.py": {
+      "sha256": "cee18099f3f26a9e71b293b59307bce64e17638e2b3c7a04a5ef69493a4df2e1",
+      "bytes": 7170,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tests/python/test_contact_peak_cli.py": {
+      "sha256": "02cdf8a827c67962ea1b52307debe30ddee4e8e8082a487eb8a537c1d6865450",
+      "bytes": 16508,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tests/python/test_contact_peak_comparison.py": {
+      "sha256": "9f24401f7b5dc4f115ec8ce6a62589c0811e33e9716a347c890561c92f38ef2e",
+      "bytes": 20311,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tests/python/test_contact_peak_oracles.py": {
+      "sha256": "9de8d7907b7a68fccf77788d9f04c93d4059d343bb4e6b1bacdc1b26bc2be1e6",
+      "bytes": 17429,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tests/python/test_contact_peak_portability.py": {
+      "sha256": "14004d860445a1a6075228f641d72fca16ff8b24c55bed9702a01bec21922388",
+      "bytes": 6311,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tests/python/test_contact_peak_retention_errors.py": {
+      "sha256": "9e899b5a5d5c4d19dca7f99cb7a0dc99c3067b3620d3c7dd3c127b78954911e9",
+      "bytes": 12917,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tests/python/test_contact_peak_schema.py": {
+      "sha256": "8556d104c5492257c2be33e022040c66429dd447b832ea116d51dd571ac2edec",
+      "bytes": 20981,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tests/python/test_contact_peak_sweep.py": {
+      "sha256": "69bc0ade362497ec42ba9833cc64e772aa87fcd00a752f6fd1ca188fb379169d",
+      "bytes": 14342,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tests/python/test_contact_selection.py": {
+      "sha256": "017d4975b07d92413e176d17090ecc1579b60110122765e13020d24314b1ae79",
+      "bytes": 16248,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tests/python/test_contact_self_check.py": {
+      "sha256": "18156f9d52c5ee9170846acee22a85f35dbb5a46c99b4f8ec6d9950530db7989",
+      "bytes": 7263,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tests/python/test_contact_sweep.py": {
+      "sha256": "061ed6cdac46ecb8f93ad4b549a94fb0d3cc5d0634c199fc0ed3a06f5b8180d0",
+      "bytes": 14190,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tests/python/test_continuation_campaign.py": {
+      "sha256": "abb56fa9d336d23c0658a21351ff6209d4822126d1e9e7a31014eed323e991b7",
+      "bytes": 14195,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tests/python/test_data.py": {
+      "sha256": "43469232f5c28949bad0677f646e9acab325ef7566e0d782d93d7fdd2b60de18",
+      "bytes": 14550,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tests/python/test_development_campaign.py": {
+      "sha256": "75af182fa4ea4ca48d8a015e463b3013dd366cbc7957fd8bd2c0f8a81f2f52f4",
+      "bytes": 8129,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tests/python/test_development_waves.py": {
+      "sha256": "762424831ef9072ec516cb59072338f7a0d0d1777c90002a359372bec5ecef6c",
+      "bytes": 15459,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tests/python/test_development_waves_adversarial.py": {
+      "sha256": "d9ff42c46face731f8aa66f25e39f9e73155576610b7a6a1d3538b620f8d3a47",
+      "bytes": 5552,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tests/python/test_docs.py": {
+      "sha256": "9ed1495d915726866e3efc9e35918a1824ba6ead01b81c38d8ad6e8621a781c7",
+      "bytes": 7005,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tests/python/test_evidence_binding.py": {
+      "sha256": "cb396faab4504afcaec63d041222fe7eb6c92e0ea69c21307723cc1b974e94e0",
+      "bytes": 15562,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tests/python/test_filtered_audio_reference.py": {
+      "sha256": "562d6b8860f286153addcb18cfc1f25ed2b467898ada1a2a64b354b899dd2ae5",
+      "bytes": 23108,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tests/python/test_metadata_boundaries.py": {
+      "sha256": "9e682befcf5e650f073c68c6d35c99646c87cf3eb831f56aca70c003da03ddd3",
+      "bytes": 17637,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tests/python/test_payloads.py": {
+      "sha256": "e1cd213e7461f77b974f13e2e5c86cf27aea5279d0f882a879c627c0e9606846",
+      "bytes": 17657,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tests/python/test_project.py": {
+      "sha256": "b71b95da0531d388fc521e5090ce589b56e9bb29fdff134ec0c50ef311b7f3b8",
+      "bytes": 17773,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tests/python/test_quadrature_audio_validation.py": {
+      "sha256": "b34d6271a252517803802c0920821ed64bb207f292e8b396ff272c330823ca78",
+      "bytes": 23092,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tests/python/test_quadrature_campaign.py": {
+      "sha256": "9b56bc3cb0deda9fbe0739d238951d61d8249e08eccda80563a50d4a552f89d9",
+      "bytes": 13153,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tests/python/test_quadrature_filter_generation.py": {
+      "sha256": "4f058e06a65a3f2084039a0087858e06141b81b21c78e014771e0cf08f5e51c4",
+      "bytes": 11413,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tests/python/test_revalidation.py": {
+      "sha256": "9aab85dcc163f6140a918b6518739ec702bbc7aeebf1b7568cfd9a2c1b94d68c",
+      "bytes": 13795,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tests/python/test_schema_patterns.py": {
+      "sha256": "059be3330b3e30121c2b16546124552d18297b9c0939c809fee3213efaaedc1d",
+      "bytes": 1293,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tests/python/test_state_review.py": {
+      "sha256": "64be33a2874f966cf22b33fbb43dd32f567cb67d3866825ac6f9b5855f28f986",
+      "bytes": 10918,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tests/python/test_vst3_archive_adversarial.py": {
+      "sha256": "a02a3863004da46d0f085c79c474b76d9ca77bcd6d0b243707382ece35bb6acc",
+      "bytes": 5071,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tests/python/test_vst3_matrix.py": {
+      "sha256": "75000cbb7525aa98a7d3fe39917cddbffed03ac184009d5cd8c91d4401241534",
+      "bytes": 6380,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tests/python/test_vst3_matrix_archive.py": {
+      "sha256": "1a08e72f575f16dc2f0c91aee6a63f14caa4a4eba52a75599984ae5f95c0d6db",
+      "bytes": 12043,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tests/python/test_vst3_matrix_failures.py": {
+      "sha256": "d74bbfec1cd4b54fe66db0b42bd407669354c05dac5f0be68d340b94f024cfaa",
+      "bytes": 12728,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tools/audit_aliasing.py": {
+      "sha256": "13645e0b335a1b9910a86839dcb4f1d0bda7748f4cf9e037686e707479410713",
+      "bytes": 18076,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tools/campaign.py": {
+      "sha256": "a4e43f5badf005f4feb9df9cc70290d2bac2fd7f96144814d7586d8e33a741f5",
+      "bytes": 8695,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tools/check_docs.py": {
+      "sha256": "aefc0b69c5458eede76cd7a3f48aee4123000ca7de7cc12f648393aa6c558f4a",
+      "bytes": 9551,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tools/contact_peak_oracles.py": {
+      "sha256": "e691093a11ef34ea68cbbe25614d42a2dbd4f4576535c2c35b289133e8fc2c50",
+      "bytes": 28167,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tools/contact_peak_schema.py": {
+      "sha256": "af5cbf87d155ecb40c176b78a7527b2a7bd686c7fd515be621af93d910db86c4",
+      "bytes": 17958,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tools/development_campaign.py": {
+      "sha256": "91f45690586ffcc1ee4a88e12bb63d5f12246f05295046855f59a43deec26e2a",
+      "bytes": 10326,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tools/generate_audio_filter.py": {
+      "sha256": "ab97a1cc51f75481efb7b3c76a28b07196a1935109a81ab5ff77040cd34bfcee",
+      "bytes": 8050,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tools/generate_quadrature_filter.py": {
+      "sha256": "58c9f9148334c8c8111b7c9b07773597328d90a39e8ef2ddf595be8417e7fe24",
+      "bytes": 9578,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tools/project.py": {
+      "sha256": "a2c55ccfaf1bbfab78fcafbc2ec0dcd17bc550f46c9b973022172856aa4a68a2",
+      "bytes": 39837,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tools/quadrature_campaign.py": {
+      "sha256": "8441b7ad22f59737bb5c7e2d520fe078d22dba26dce8970251c9dfdeaa229863",
+      "bytes": 10661,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tools/run_contact_sweep.py": {
+      "sha256": "81b45563f7409b4c6378a7867d7b8d33394676482c14e165f9919c1bc40e627a",
+      "bytes": 20498,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tools/run_vst3_matrix.py": {
+      "sha256": "c91f2ec42bd2934120d63599b4d68c68295a99b2090f8bfc0b358ebe1e9c4159",
+      "bytes": 24180,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tools/validate_contact_peaks.py": {
+      "sha256": "5bfc879d0a4a42d48667cc2370bafc85a2bd6c6b08c18071c1d60ab7b85be717",
+      "bytes": 22027,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tools/validate_contact_reference.py": {
+      "sha256": "c910da5da6b6ad957b709a414cef39a08ed6e8b75c6e36c9d73ef535a064dcdc",
+      "bytes": 83997,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tools/validate_continuation_campaign.py": {
+      "sha256": "18cca3768cf2afd8b821e8300bb70028b667783feb2c01f7c052c1d16a8e32df",
+      "bytes": 6985,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tools/validate_data.py": {
+      "sha256": "246f89257c3f201ba3b3d9cf0dce5962f46a56ffe4a2cf637d4a35440ed168f0",
+      "bytes": 22377,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tools/validate_development_waves.py": {
+      "sha256": "5a93e12b045ddc7ee617de954f4a9cd8af625bca3bcc245e47d929bca4449e25",
+      "bytes": 12858,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tools/validate_filtered_audio.py": {
+      "sha256": "0d6e5336cd571e873b22333e9ed8f98d70c4aa443831309c68ad1084171d3ca1",
+      "bytes": 38471,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tools/validate_quadrature_audio.py": {
+      "sha256": "e205f68c0ce0afe145cc1e8af4ee44e0303c6e60998955508789ebafc0821be2",
+      "bytes": 18822,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tools/verify_audio_compatibility.py": {
+      "sha256": "bf688ea37c6d49a3d388d47c8f47ad996bf60229fd56873ada1fba5a804dd1e4",
+      "bytes": 14157,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tools/verify_payloads.py": {
+      "sha256": "21a925cbfacd496c690b4ab1988e6cc07e84c17b31ce6ad42290df5f062ba6f1",
+      "bytes": 13019,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "tools/verify_vst3_matrix_archive.py": {
+      "sha256": "4fc824ebe5038fcda4170415b002dd844c53a0ea167705cdbee03a9f23a32162",
+      "bytes": 16935,
+      "group": "python_tools_tests",
+      "matches_review_commit": true
+    },
+    "AGENTS.md": {
+      "sha256": "93b35392c4a38468a53b8a97844c941a7a6d92fb8c061439e75f9bac1b99339d",
+      "bytes": 4703,
+      "group": "review_documents",
+      "matches_review_commit": true
+    },
+    "README.md": {
+      "sha256": "b4c3f07eb1c8fcc01527ceedab19b770635f64715e9a157a4e2e3f16a078b038",
+      "bytes": 13615,
+      "group": "review_documents",
+      "matches_review_commit": true
+    },
+    "RIGHTS.md": {
+      "sha256": "b9ceeec2a73487a305be1c0fb579a52ec3b25efd81301983f53d08b3f16562af",
+      "bytes": 1362,
+      "group": "review_documents",
+      "matches_review_commit": true
+    },
+    "CHANGELOG.md": {
+      "sha256": "55aa5393c9207631fd114c5daf173002ec3469fc59a324b0aae07d2aa1cf4b2f",
+      "bytes": 7162,
+      "group": "review_documents",
+      "matches_review_commit": true
+    },
+    "docs/ARCHITECTURE.md": {
+      "sha256": "65116bc34c4beea134acbff8094f1b2c7dca5949ad33334d966e23e332abce51",
+      "bytes": 14341,
+      "group": "review_documents",
+      "matches_review_commit": true
+    },
+    "docs/NUMERICS.md": {
+      "sha256": "c33fc0b391fd6d1e78156b5c7cb1d698ec9d2e6c200a06ca4b0aa48f71336fe9",
+      "bytes": 13731,
+      "group": "review_documents",
+      "matches_review_commit": true
+    },
+    "docs/VST3.md": {
+      "sha256": "9406a1b9883665a040ba58ea488853060526344b09df8c3c27a33f34def62796",
+      "bytes": 24030,
+      "group": "review_documents",
+      "matches_review_commit": true
+    },
+    "docs/DEVELOPMENT.md": {
+      "sha256": "7761d929fff1b9f3d5c7f4956c869f9b806dd0793ebc100f44cd8eb71b91b419",
+      "bytes": 10821,
+      "group": "review_documents",
+      "matches_review_commit": true
+    },
+    "docs/DEPENDENCIES.md": {
+      "sha256": "2da17d8502587a45f83c900633a0a53f1fcbaf60a901bb589370b61c773b2126",
+      "bytes": 8973,
+      "group": "review_documents",
+      "matches_review_commit": true
+    },
+    "docs/BENCHMARKING.md": {
+      "sha256": "02439bddb473c9abeb46714ee48c84030f2e06bafe8144e70a2b61214b82a4e8",
+      "bytes": 31543,
+      "group": "review_documents",
+      "matches_review_commit": true
+    },
+    "docs/CONTACT_REFERENCE.md": {
+      "sha256": "c4b8df7d7be32473eec1a66b4db4f60c0bfe697d21ae7cb5ba0d85308370f981",
+      "bytes": 14285,
+      "group": "review_documents",
+      "matches_review_commit": true
+    },
+    "docs/CONTACT_PEAK_DIAGNOSTIC.md": {
+      "sha256": "37825a75518ddc7baa212b302af4fe403666f055deb54bb3d92dd2b9d6c3cde4",
+      "bytes": 7582,
+      "group": "review_documents",
+      "matches_review_commit": true
+    },
+    "docs/DAW_VALIDATION.md": {
+      "sha256": "18c7362ae9c42f054268efe613b21aed70161ea43c96965b1a13f1a0acfc12af",
+      "bytes": 10288,
+      "group": "review_documents",
+      "matches_review_commit": true
+    },
+    "docs/specs/HOST_PROTOTYPE_20261123.md": {
+      "sha256": "d22d1b4757c6a37655f40ae5d1b6b2b41d6d033504cf613526e3827b47a1cd46",
+      "bytes": 9364,
+      "group": "review_documents",
+      "matches_review_commit": true
+    },
+    "docs/specs/QUADRATURE_AUDIO_20261123.md": {
+      "sha256": "cf47025b89006496ed999036c01dabc347c210a0140679e727580c91601e5006",
+      "bytes": 6088,
+      "group": "review_documents",
+      "matches_review_commit": true
+    },
+    "docs/specs/FILTERED_AUDIO_20261123.md": {
+      "sha256": "d5e154a32944d08b3944ead7fe0eb52b978ff914961c40dfffa6f40b85cdc3c4",
+      "bytes": 5653,
+      "group": "review_documents",
+      "matches_review_commit": true
+    },
+    "docs/agents/ACCEPTANCE_REVIEW.md": {
+      "sha256": "11bbc5feef1017fb99a60ae1967d8c8e775ddf029d981b6af37bed22b75eee85",
+      "bytes": 3960,
+      "group": "review_documents",
+      "matches_review_commit": true
+    }
+  },
+  "frozen_definition_file": {
+    "path": "docs/validation/development-task-definitions-20261124.json",
+    "sha256": "bf352698c5b1c745ada8b6851231eb2104b772ebaca9d39a638cfcdd7ace7d45"
+  },
+  "limits": [
+    "Explicit current source identities do not imply a new execution of old timing/reference studies. Each result retains its actual tested checkpoint and model/input provenance.",
+    "Canonical task/evidence state, live campaign ledgers, generated dashboard and new review reports are excluded from the tested-source snapshot to avoid circular decision claims.",
+    "Native CI and local Python environments and exact commands are retained in their separate immutable execution records.",
+    "Later completion metadata and the final campaign-completeness CI gate may change after this snapshot; applicability must be reviewed separately."
+  ]
+}

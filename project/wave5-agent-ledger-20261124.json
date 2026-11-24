@@ -46,22 +46,67 @@
       "wave": 5,
       "id": "W5-85",
       "agent_task_name": "/root/w5_85_runtime_acceptance",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w5-85-runtime-acceptance.md",
+      "sha256": "2715b1c86a4fea6ac3e816b302486a27f2c8df8c86b72356977747b49398442d"
     },
     {
       "assignment": 86,
       "wave": 5,
       "id": "W5-86",
       "agent_task_name": "/root/w5_86_registry_audit",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w5-86-registry-audit.md",
+      "sha256": "78f76d41af36b04b080d86b7f9b7695e636e83b125047e65cab76db5d972ff70"
     },
     {
       "assignment": 87,
       "wave": 5,
       "id": "W5-87",
       "agent_task_name": "/root/w5_87_specimen_data_gate",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w5-87-specimen-data-gate.md",
+      "sha256": "b52cc2057dcd73e674d3b3f9cd10e94842190071a82247091a59d587b10009d1"
+    },
+    {
+      "assignment": 88,
+      "wave": 5,
+      "id": "W5-88",
+      "agent_task_name": "/root/w5_88_current_native_archive",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w5-88-current-native-archive.md",
+      "sha256": "e4346c07788a4d55b2f4a3d0ba19290d220fcbb81b6bba440fa23aa86a756166"
+    },
+    {
+      "assignment": 89,
+      "wave": 5,
+      "id": "W5-89",
+      "agent_task_name": "/root/w5_89_final_artifact_audit",
+      "status": "running"
+    },
+    {
+      "assignment": 90,
+      "wave": 5,
+      "id": "W5-90",
+      "agent_task_name": "/root/w5_90_main_publication_audit",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w5-90-main-publication-audit.md",
+      "sha256": "ea015bfeb1635926e7af2f1456281a2aa6251db72dc22c5531f802bfa77a1744"
+    },
+    {
+      "assignment": 91,
+      "wave": 5,
+      "id": "W5-91",
+      "agent_task_name": "/root/w5_91_host_final_review",
+      "status": "running"
+    },
+    {
+      "assignment": 92,
+      "wave": 5,
+      "id": "W5-92",
+      "agent_task_name": "/root/w5_92_handoff_review",
       "status": "running"
     }
   ],
-  "completed_actual_agents": 4
+  "completed_actual_agents": 9
 }
