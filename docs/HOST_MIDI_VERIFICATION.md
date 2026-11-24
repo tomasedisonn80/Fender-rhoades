@@ -44,6 +44,38 @@ from [controller](../plugins/vst3/controller.cpp) range/unit handling. Relevant
 implementation also includes [control_text.hpp](../include/rhodes/control_text.hpp)
 and [processor.cpp](../plugins/vst3/processor.cpp).
 
+### Loaded-module lifecycle boundary
+
+The [dual](../tests/cpp/vst3_dual_module_test.cpp) and
+[triple](../tests/cpp/vst3_triple_module_test.cpp) fixtures check distinct
+factories/class identities, independent audio/reset behavior and foreign-model
+state rejection while production modules coexist. Their repeated sessions vary
+the module creation order. The loaded-MIDI fixture visits variants sequentially,
+using separate command/oracle instances within each module.
+
+Normal shutdown stops processing, deactivates and terminates instances, then
+releases all plug-in interfaces before the last harness `Module::Ptr` is reset.
+The `use_count() == 1` checks concern C++ wrapper ownership, not operating-system
+image references. The [pinned SDK](DEPENDENCIES.md#exact-submodule-revisions)
+loaders in `public.sdk/source/vst/hosting/` release their factory reference first:
+
+| Loader source | Subsequent teardown calls |
+| --- | --- |
+| `module_linux.cpp` | `ModuleExit`, then `dlclose`. |
+| `module_win32.cpp` | `ExitDll` if exported, then `FreeLibrary`. |
+| `module_mac.mm` | `bundleExit`, then release the `CFBundleRef`; no explicit `CFBundleUnloadExecutable` call. |
+
+These paths exercise instance and module-wrapper lifecycle. The fixtures do not
+observe OS image unmapping or prove fresh image/static initialization on the next
+load. All peer instances close before module teardown, so continued processing
+through another module's removal is also outside their coverage. The dual-test
+comment naming `ModuleExit/dlclose` describes the Linux path only.
+
+[Platform registration](../cmake/Vst3.cmake) alone supplies no native pass;
+results must identify the tested source and platform. Named-DAW caching, unload
+policy, repeated CC123 delivery and live-device behavior remain separate
+[manual observations](DAW_VALIDATION.md).
+
 ## Identify the frozen observations
 
 The [pre-change baseline](validation/host-midi-baseline-20261124.md) is

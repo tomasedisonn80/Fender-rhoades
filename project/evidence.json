@@ -872,6 +872,168 @@
         "Historical filtered comparison B retains 2085 failures; Q6 and limited legacy compatibility results do not close all retained paths convergence. Shared-host timings are observations, not device deadlines.",
         "No authenticated physical specimen or calibrated measurement was acquired; fidelity remains unvalidated and the acquisition/schema gates stay open."
       ]
+    },
+    {
+      "id": "HOST-002-20261124-linux-integration",
+      "kind": "numerical",
+      "result": "pass",
+      "summary": "Recorded Linux integration: 327/327 CTests, zero failures/skips, including HOST-002 ownership/audio, pressure, control-text, loaded-MIDI, state and SDK/module checks. Ancillary Python ran 888 tests: 887 successful, one optional skip. Frozen source manifests and the later source bridge preserve actual run identity.",
+      "command": "cmake --build build-host -j 2\nctest --test-dir build-host --output-on-failure -j 2\npython3 -m unittest discover -s tests/python -v",
+      "created_at": "2026-11-24T10:53:25Z",
+      "source_commit": null,
+      "artifacts": [
+        {
+          "path": "docs/validation/host-midi-linux-final-20261124.json",
+          "sha256": "d1e662ee01f59e947c6391248b787c0d62e3a622983a8a43e933f96df4f960e3"
+        },
+        {
+          "path": "docs/validation/host-midi-linux-final-20261124-build.log",
+          "sha256": "6f7ceafa47897ead193d12346c29fa1b2656135ef96a292255f7d83441636081"
+        },
+        {
+          "path": "docs/validation/host-midi-linux-final-20261124-ctest.log",
+          "sha256": "b44435dc2c59accdb606b8bb84f31335c8ede6c39821d869876817a283416ee0"
+        },
+        {
+          "path": "docs/validation/host-midi-linux-final-20261124-ctest-detail.log",
+          "sha256": "e24b5ec8cb75f9bc26967d9de1e2fe24e9689991122ebfce7bd8553c77815dce"
+        },
+        {
+          "path": "docs/validation/host-midi-linux-final-20261124-source-bridge.log",
+          "sha256": "6cc32d506d8b43533f9e24b219ddb2355affd7dd3bd430cda360af3f151cedef"
+        },
+        {
+          "path": "docs/validation/host-midi-python-final-20261124.json",
+          "sha256": "8d62352d334217dcf6b1788af73d140b6dd99631370f6324558e2a5c16a0a928"
+        },
+        {
+          "path": "docs/validation/host-midi-python-final-20261124.log",
+          "sha256": "e3cf1f2f47e8e6f0bfae63bd4f3791a984af75d00794832bd90785b9bf0837b0"
+        },
+        {
+          "path": "docs/agents/reports/continuation-c/w4-067.md",
+          "sha256": "b058b9cdb4a266e031e9b09ca0e7b10a396270e6580188660294e473e5883d1e"
+        },
+        {
+          "path": "docs/agents/reports/continuation-c/w4-073.md",
+          "sha256": "dfb1f9af163cd946b711c2418c31ba6cc7e110c7f4f7f64c8de2a191f85bcf98"
+        }
+      ],
+      "specimen_id": null,
+      "profile_path": null,
+      "session_paths": [],
+      "independent": false,
+      "reference_evidence": [],
+      "limitations": [
+        "C++ actually ran in an existing incremental Release build with dirty HEAD ce59b0c254ab99b399f03e63094b10ce10933e71 and two applicable fixture/generator repairs. Its 99-file manifest remained unchanged before build, after build and after CTest. Later equality with d4c8a6b is a source bridge, not a clean d4c8a6b build or independent incremental-binary provenance.",
+        "Python source binding is after-run readback of 89 Python files to d4c8a6b2668e478f48facd2eeb146aff0f551506, without a before/after freeze or complete non-Python input binding. The optional RHODES_AUDIO_PROBE test was skipped; no new independent audio-reference comparison is claimed by that suite.",
+        "The three SDK validators are three of the 327 CTest selectors; their 47 internal checks each are not extra CTests. Thirty retained SDK ERROR lines concern unsupported sample-rate setup rejection, with all validators concluding zero failed checks.",
+        "Independent ownership/scalar comparison is scoped to the exercised synthetic timelines and shares production DSP equations. Exact sustain/channel call order also requires source review; commutative audio alone cannot prove it. Omit --independent because this record does not declare held-out validation conditions.",
+        "Linux/GCC x86_64 only. No physical measurement, calibrated fidelity, PHY-002/RT-001 completion, DAW/device qualification, worst-case timing or release claim."
+      ]
+    },
+    {
+      "id": "HOST-002-20261124-legacy-compatibility",
+      "kind": "numerical",
+      "result": "pass",
+      "summary": "Recorded finite Linux compatibility: 72 actual SDK-loaded baseline/current pairs, 304128 exact paired stereo frames and 2952 configuration checkpoints; 24 direct/filtered WAV fixtures, 44160 frames, match historical fingerprints. Original capture reports, raw preservation and source-binding audit are retained.",
+      "command": "python3 .agent-work/worker033/run_comparison.py\npython3 -B .agent-work/worker036/replay_legacy_wav.py",
+      "created_at": "2026-11-24T10:53:25Z",
+      "source_commit": "a06d2cd60bc53e3939e89f64254aed7ed5586e7c",
+      "artifacts": [
+        {
+          "path": "docs/validation/host-midi-loaded-compatibility-20261124.json",
+          "sha256": "8fadfb8558f77d815a3a54ea7990cfeee7de559c04082d0e71b9770808528a14"
+        },
+        {
+          "path": "docs/validation/host-midi-legacy-wav-20261124.json",
+          "sha256": "f4758fc1ab4bcb8bf00c517b877b9f2eea78d7976f3847190af1659ff77e3b13"
+        },
+        {
+          "path": "docs/validation/legacy-audio-baseline-20261123.json",
+          "sha256": "436244553d4462eab4452a3b318864840f31b41fcf06cf3c8f0978d9a841e914"
+        },
+        {
+          "path": "docs/validation/host-midi-raw-20261124.tar.gz",
+          "sha256": "375ca56a2b0077a15aef1a74c797b8c42a380814479ac3a2cfd5bfb5e5b2e45a"
+        },
+        {
+          "path": "docs/validation/host-midi-raw-20261124-manifest.json",
+          "sha256": "8edb8cb6928721bc29e80671c3274d645bb1a58058f8dcc9898dd6080e96b874"
+        },
+        {
+          "path": "docs/validation/host-midi-source-binding-20261124.json",
+          "sha256": "43d82ec639f8bcaa7af0c6692f323bec36169e1c6ce50627bf2040f7c7de1fde"
+        },
+        {
+          "path": "docs/agents/reports/continuation-c/w2-033.md",
+          "sha256": "71c64e1177cd9dbcdf5602dfa86ff6b9df752a399c531052bab7181eb967d06a"
+        },
+        {
+          "path": "docs/agents/reports/continuation-c/w2-036.md",
+          "sha256": "c3d9d0eeb2b15b028b968333bdfcfb4af2ee3ad9cca327472dc06663ec7b6bd8"
+        },
+        {
+          "path": "docs/agents/reports/continuation-c/w3-044.md",
+          "sha256": "65d37fbe5c3a78029cb80e15ed9cd9f08657c1b824f52bafe90a716928033595"
+        },
+        {
+          "path": "docs/agents/reports/continuation-c/w3-057.md",
+          "sha256": "d9578c89b4716e5438d7a862c5b17c9e83072e587bde5ddcf1d61a210f40c2f0"
+        }
+      ],
+      "specimen_id": null,
+      "profile_path": null,
+      "session_paths": [],
+      "independent": false,
+      "reference_evidence": [],
+      "limitations": [
+        "a06d2cd is the recorded current capture label, not an independently established reproducible build. Loaded-bundle baseline is 20a77e8b2033d435839df594c783837befb07938; WAV fingerprint baseline is 5aac654f8569aaa782e7bce58e82b3213b57da23. These baselines must not be interchanged. Actual module/renderer hashes bind the executions; baseline/build provenance was supplied by the integrator.",
+        "Loaded033 source manifest matches all 23 files at d4c8a6b. WAV036 matches 32/33: cmake/Vst3.cmake differs in later BUILD_TESTING registration/loader support, as reviewed by worker057. Source equality and tree bridges do not independently establish binary build provenance.",
+        "Only recorded legacy valid inputs are covered. Intentional parameter-count change is 2 to 18; legacy FUIDs, models 1/2/3, gain/sustain IDs 0/1, 16-byte configuration and reported 0/48/48-frame latency remain scoped compatibility claims. Configuration does not serialize mechanics, ownership or tails. Text behavior intentionally changes.",
+        "Dense automation supports the recorded partition comparison; sparse ramps compare only identical partitions. CC123, pressure, malformed/saturated input and new text behavior are excluded from this legacy capture and rely on the separate Linux/native records.",
+        "Historical raw WAVs are unavailable; WAV equality is fingerprint-based and covers only 24 direct/filtered fixtures, with zero Q6 cases. Archive integrity preserves bytes; it neither authenticates experiments nor supplies a runnable rebuild. The archive also retains timing/probe material outside this registration claim; no performance or RT-001 promotion follows.",
+        "No physical, DAW/device, cross-platform, calibrated-fidelity, independent numerical-accuracy or release claim."
+      ]
+    },
+    {
+      "id": "HOST-002-20261124-native-linux-windows",
+      "kind": "numerical",
+      "result": "pass",
+      "summary": "Snapshot observation of VST3 run 45373649775 at ce59b0c: Linux x86_64/GNU 15.2.0 job 138374005076 and Windows x64/MSVC 19.52.37029.0 job 138374004751 each passed 157/157 CTests, zero skips, including loaded MIDI and all six SDK/module validators. This is a two-platform observation, not final HOST-002 acceptance.",
+      "command": null,
+      "created_at": "2026-11-24T10:53:25Z",
+      "source_commit": "ce59b0c254ab99b399f03e63094b10ce10933e71",
+      "artifacts": [
+        {
+          "path": "docs/validation/host-midi-native-snapshot-20261124.json",
+          "sha256": "1a5be0bedfab8efdfbb7270eedb56289db7fbfcad859c52b352e204334bc9783"
+        },
+        {
+          "path": "docs/validation/host-midi-native-fix-snapshot-20261124.json",
+          "sha256": "a98c233b04af89308a79b6e78f12b764067b07c8f7f9209be54b6db82370b97a"
+        },
+        {
+          "path": "docs/agents/reports/continuation-c/w4-061.md",
+          "sha256": "29aaeabe646b672bdb139b81ad5b21a9fe22d8fbc56b159682990b16c1778ba5"
+        },
+        {
+          "path": "docs/agents/reports/continuation-c/w4-071.md",
+          "sha256": "434a949d1a79d1cada9619619bbc3a9b5b131cc7c01daa97a82c33fd9c4a54d0"
+        }
+      ],
+      "specimen_id": null,
+      "profile_path": null,
+      "session_paths": [],
+      "independent": false,
+      "reference_evidence": [],
+      "limitations": [
+        "The passing VST3 jobs ran ce59b0c254ab99b399f03e63094b10ce10933e71, not d4c8a6b. Their exact applicable implementation/test/build paths match d4c8a6b; this is source applicability, not relabeling execution. Preserve 061 historical failures and both snapshots verbatim.",
+        "Snapshot ends 2026-11-24T10:42:53.281Z. macOS VST3 job 138374004314 and repaired d4c8a6b Windows Foundation core job 138383892161 were queued. No platform/architecture/compiler/test result may be inferred for those jobs. Later outcomes require a new immutable record; do not update these snapshots.",
+        "The snapshot separately records d4c8a6b Foundation Linux core 170/170 and Windows Python 888 tests with 58 skips. Those are different jobs and source scopes, not additions to either VST3 157-test total. Actual Windows open-file replacement skipped with WinError 5; only the deterministic identity guard passed.",
+        "The --command option is omitted intentionally: the retained evidence is a provider-observed multi-job snapshot, not a newly executed local CI command. Run/job identities, result lines and observation methods are in the artifacts.",
+        "Retained selected CI log lines and API metadata are the evidence available here; this is not a newly downloaded full native log/binary archive or an authenticity attestation. No all-platform completion, native DAW/device, minimum-OS, calibrated-fidelity, RT-001 or release claim."
+      ]
     }
   ]
 }

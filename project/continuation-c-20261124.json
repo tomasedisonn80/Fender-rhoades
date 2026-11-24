@@ -6,7 +6,7 @@
   "requested_agents": 100,
   "requested_waves": 5,
   "concurrency_limit_including_integrator": 4,
-  "completed_agents": 66,
+  "completed_agents": 80,
   "agents": [
     {
       "assignment": 1,
@@ -540,18 +540,130 @@
       "assignment": 67,
       "wave": 4,
       "agent_task_name": "/root/w4_067_final_linux_integration",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w4-067.md",
+      "sha256": "b058b9cdb4a266e031e9b09ca0e7b10a396270e6580188660294e473e5883d1e"
     },
     {
       "assignment": 68,
       "wave": 4,
       "agent_task_name": "/root/w4_068_macos_loader_review",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w4-068.md",
+      "sha256": "01ba15e14873708d00ecf16f0ac581e0ebc2b5ac741e78be3d86172de9faa29f"
     },
     {
       "assignment": 69,
       "wave": 4,
       "agent_task_name": "/root/w4_069_windows_fix_review",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w4-069.md",
+      "sha256": "cd4f64548c0478735e11dec9be9449bb4ccde347ef5e7aa20526cb596583d8ff"
+    },
+    {
+      "assignment": 70,
+      "wave": 4,
+      "agent_task_name": "/root/w4_070_control_text_bounds_proof",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w4-070.md",
+      "sha256": "5409efb8f5a0ad10c8e7218fb7d5f083ca57952e092e8a0745f2793ff72dc2e6"
+    },
+    {
+      "assignment": 71,
+      "wave": 4,
+      "agent_task_name": "/root/w4_071_native_fix_observation",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w4-071.md",
+      "sha256": "434a949d1a79d1cada9619619bbc3a9b5b131cc7c01daa97a82c33fd9c4a54d0"
+    },
+    {
+      "assignment": 72,
+      "wave": 4,
+      "agent_task_name": "/root/w4_072_loaded_lifecycle_scope",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w4-072.md",
+      "sha256": "78f451c2ab51b5e1d4175a87c7639ec8bb102f120601838f683a0afea55caa40"
+    },
+    {
+      "assignment": 73,
+      "wave": 4,
+      "agent_task_name": "/root/w4_073_final_evidence_audit",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w4-073.md",
+      "sha256": "dfb1f9af163cd946b711c2418c31ba6cc7e110c7f4f7f64c8de2a191f85bcf98"
+    },
+    {
+      "assignment": 74,
+      "wave": 4,
+      "agent_task_name": "/root/w4_074_main_lane_preservation",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w4-074.md",
+      "sha256": "06c5309fe4be05d4ac58b8dbe7da05907bf3af06c24d4ef64dbe0919cf4e1a17"
+    },
+    {
+      "assignment": 75,
+      "wave": 4,
+      "agent_task_name": "/root/w4_075_bundle_provenance",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w4-075.md",
+      "sha256": "dc0f6f617ccc4e1c536573e7075ca4ce8a8b9e7b4a26388d706bcd9585893635"
+    },
+    {
+      "assignment": 76,
+      "wave": 4,
+      "agent_task_name": "/root/w4_076_evidence_registration_plan",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w4-076.md",
+      "sha256": "2c1c81eb8c5b1b746ce5cfe1ddb6d343ddd2386ea7043cc8f10b12965cbcf4af"
+    },
+    {
+      "assignment": 77,
+      "wave": 4,
+      "agent_task_name": "/root/w4_077_remaining_coverage_map",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w4-077.md",
+      "sha256": "2676f1f29eeb2a349d4e7a4c59abe61579c7839926e5fa8926df89b0423b5e87"
+    },
+    {
+      "assignment": 78,
+      "wave": 4,
+      "agent_task_name": "/root/w4_078_campaign_integrity_review",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w4-078.md",
+      "sha256": "585ac8cb90256df5e134e52179958e27d57666c283ed4569919b99c3fdce7c1b"
+    },
+    {
+      "assignment": 79,
+      "wave": 4,
+      "agent_task_name": "/root/w4_079_public_source_scope",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w4-079.md",
+      "sha256": "2869093b958a62dc0362b7d7b8662bd7bbe45bbd9562e762b0d1beb1542f0f2e"
+    },
+    {
+      "assignment": 80,
+      "wave": 4,
+      "agent_task_name": "/root/w4_080_wave_gate",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w4-080.md",
+      "sha256": "bc06efe34ae711ed74d35d465d93546ba6829e1b7a741a289c4e6adc7443b178"
+    },
+    {
+      "assignment": 81,
+      "wave": 5,
+      "agent_task_name": "/root/w5_081_native_final_record",
+      "status": "running"
+    },
+    {
+      "assignment": 82,
+      "wave": 5,
+      "agent_task_name": "/root/w5_082_criterion_c01",
+      "status": "running"
+    },
+    {
+      "assignment": 83,
+      "wave": 5,
+      "agent_task_name": "/root/w5_083_criterion_c02",
       "status": "running"
     }
   ]

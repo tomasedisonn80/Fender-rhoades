@@ -19,8 +19,8 @@ acceptance. `python3 tools/validate_continuation_c.py` checks ledger integrity.
 | 1 | 001–020 | Complete | Recover context, reproduce host failures, review contracts and bounds |
 | 2 | 021–040 | Complete | Implement CC123, validated pressure and portable text; independent regression and compatibility checks |
 | 3 | 041–060 | Complete | Close integration gaps and establish portable, reproducible verification |
-| 4 | 061–080 | In progress | Review retained evidence and remaining implementation risks |
-| 5 | 081–100 | Pending | Complete acceptance review and source-bound continuation notes |
+| 4 | 061–080 | Complete | Review retained evidence and remaining implementation risks |
+| 5 | 081–100 | In progress | Complete acceptance review and source-bound continuation notes |
 
 The [MIDI contract](../specs/HOST_MIDI_20261124.md) defines the behavior and
 acceptance scope. [VST3 controls](../VST3.md) and the
@@ -77,3 +77,31 @@ all 400 JSON inputs and their compiled bytes preserved. The callback evidence ch
 Windows fixtures retain strict identity and inventory assertions. Targeted local
 checks pass; these repairs do not establish native success until the corrected
 revision runs.
+
+The corrected checkpoint is
+[d4c8a6b](https://github.com/baabi-boo/Fender-rhoades/commit/d4c8a6b2668e478f48facd2eeb146aff0f551506).
+The [full Linux integration record](../validation/host-midi-linux-final-20261124.json)
+retains 327 passing CTests, zero failures and zero skips, along with build logs,
+SDK pins, binary hashes and the 99-file source bridge to that published commit.
+The [Python integration record](../validation/host-midi-python-final-20261124.json)
+retains 888 tests with no failures and one explicitly optional binary-probe skip.
+The current VST3
+[Linux job](https://github.com/baabi-boo/Fender-rhoades/actions/runs/45373649775/job/138374005076)
+also passed all 157 selectors on ce59b0c. Later fixes change core test literals
+and Python verification; they do not alter that job's VST3 source. Native Windows
+and macOS outcomes for the changed loader wiring remain separately tracked.
+
+The [follow-up native snapshot](../validation/host-midi-native-fix-snapshot-20261124.json)
+records the corrected Windows Python suite (888 tests, zero failures/errors,
+58 explicit skips), the Linux core suite (170 passing tests), and Linux/Windows
+VST3 suites (157 passing tests each). Both prior callback-comparison failures and
+the mandatory path-identity check pass natively on Windows. Its real open-file
+replacement test reports WinError 5 through the narrow capability skip. Windows
+core and macOS VST3 were still queued at that snapshot; it is not a final
+three-platform qualification.
+
+All 80 workers in the first four waves completed before wave 5 began. The
+[wave-4 gate](reports/continuation-c/w4-080.md) reconciles source and retained
+results and preserves the outstanding native/macOS and acceptance limits. Three
+scoped numerical evidence records are now registered; registration alone does
+not complete HOST-002 or promote the instrument's fidelity.

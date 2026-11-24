@@ -1,0 +1,659 @@
+Test project /workspace/scratch/edddd917a86c/Fender-rhoades/build-host
+        Start 322: vst3.filtered_sdk_validator
+        Start 323: vst3.quadrature_sdk_validator
+  1/327 Test #323: vst3.quadrature_sdk_validator .....................   Passed    4.63 sec
+        Start 281: vst3.filtered_stream_write_failures
+  2/327 Test #281: vst3.filtered_stream_write_failures ...............   Passed    2.57 sec
+        Start 193: vst3.filtered_benchmark_json
+  3/327 Test #322: vst3.filtered_sdk_validator .......................   Passed    7.26 sec
+        Start 195: vst3.quadrature_benchmark_json
+  4/327 Test #195: vst3.quadrature_benchmark_json ....................   Passed    2.86 sec
+        Start 278: vst3.filtered_stream_read_failures
+  5/327 Test #193: vst3.filtered_benchmark_json ......................   Passed    3.10 sec
+        Start  88: grazing.anchor_boundaries
+  6/327 Test #278: vst3.filtered_stream_read_failures ................   Passed    2.20 sec
+        Start 316: vst3.sdk_validator
+  7/327 Test  #88: grazing.anchor_boundaries .........................   Passed    2.27 sec
+        Start 282: vst3.quadrature_stream_write_failures
+  8/327 Test #316: vst3.sdk_validator ................................   Passed    1.76 sec
+        Start 284: vst3.filtered_stream_malformed_state
+  9/327 Test #282: vst3.quadrature_stream_write_failures .............   Passed    1.66 sec
+        Start 279: vst3.quadrature_stream_read_failures
+ 10/327 Test #279: vst3.quadrature_stream_read_failures ..............   Passed    1.37 sec
+        Start 269: vst3.filtered_buffer_rejected_buffers
+ 11/327 Test #284: vst3.filtered_stream_malformed_state ..............   Passed    1.55 sec
+        Start 285: vst3.quadrature_stream_malformed_state
+ 12/327 Test #269: vst3.filtered_buffer_rejected_buffers .............   Passed    0.86 sec
+        Start 191: vst3.benchmark_json
+ 13/327 Test #285: vst3.quadrature_stream_malformed_state ............   Passed    0.92 sec
+        Start  41: audio.high_rate_oracle
+ 14/327 Test  #41: audio.high_rate_oracle ............................   Passed    1.21 sec
+        Start  62: contact.scaling
+ 15/327 Test #191: vst3.benchmark_json ...............................   Passed    1.52 sec
+        Start 270: vst3.quadrature_buffer_rejected_buffers
+ 16/327 Test  #62: contact.scaling ...................................   Passed    0.70 sec
+        Start 272: vst3.filtered_buffer_setup_rollback
+ 17/327 Test #270: vst3.quadrature_buffer_rejected_buffers ...........   Passed    0.66 sec
+        Start 280: vst3.write_failures
+ 18/327 Test #272: vst3.filtered_buffer_setup_rollback ...............   Passed    0.57 sec
+        Start  86: grazing.anchor_geometry
+ 19/327 Test #280: vst3.write_failures ...............................   Passed    0.54 sec
+        Start 273: vst3.quadrature_buffer_setup_rollback
+ 20/327 Test  #86: grazing.anchor_geometry ...........................   Passed    0.45 sec
+        Start  50: quadrature.cli
+ 21/327 Test #273: vst3.quadrature_buffer_setup_rollback .............   Passed    0.61 sec
+        Start 314: vst3.filtered_state_state_callback_stress
+ 22/327 Test  #50: quadrature.cli ....................................   Passed    0.53 sec
+        Start  58: contact.preload
+ 23/327 Test #314: vst3.filtered_state_state_callback_stress .........   Passed    0.48 sec
+        Start 163: runtime_benchmark.json
+ 24/327 Test  #58: contact.preload ...................................   Passed    0.27 sec
+        Start 277: vst3.read_failures
+ 25/327 Test #163: runtime_benchmark.json ............................   Passed    0.34 sec
+        Start  49: audio.probe_cli
+ 26/327 Test #277: vst3.read_failures ................................   Passed    0.41 sec
+        Start 309: vst3.quadrature_note_random_note_model
+ 27/327 Test  #49: audio.probe_cli ...................................   Passed    0.45 sec
+        Start 283: vst3.malformed_state
+ 28/327 Test #309: vst3.quadrature_note_random_note_model ............   Passed    0.37 sec
+        Start 297: vst3.quadrature_automation_automation_rejection
+ 29/327 Test #297: vst3.quadrature_automation_automation_rejection ...   Passed    0.54 sec
+        Start 185: vst3.quadrature_qhost_foreign_recall
+ 30/327 Test #283: vst3.malformed_state ..............................   Passed    0.56 sec
+        Start 315: vst3.quadrature_state_state_callback_stress
+ 31/327 Test #315: vst3.quadrature_state_state_callback_stress .......   Passed    0.43 sec
+        Start  69: contact.cli_json
+ 32/327 Test #185: vst3.quadrature_qhost_foreign_recall ..............   Passed    0.48 sec
+        Start 308: vst3.filtered_note_random_note_model
+ 33/327 Test  #69: contact.cli_json ..................................   Passed    0.35 sec
+        Start 287: vst3.filtered_automation_automation_model
+ 34/327 Test #308: vst3.filtered_note_random_note_model ..............   Passed    0.42 sec
+        Start 271: vst3.setup_rollback
+ 35/327 Test #287: vst3.filtered_automation_automation_model .........   Passed    0.29 sec
+        Start 267: vst3.quadrature_buffer_flush_matrix
+ 36/327 Test #271: vst3.setup_rollback ...............................   Passed    0.28 sec
+        Start 296: vst3.filtered_automation_automation_rejection
+ 37/327 Test #267: vst3.quadrature_buffer_flush_matrix ...............   Passed    0.20 sec
+        Start 268: vst3.rejected_buffers
+ 38/327 Test #268: vst3.rejected_buffers .............................   Passed    0.31 sec
+        Start 288: vst3.quadrature_automation_automation_model
+ 39/327 Test #296: vst3.filtered_automation_automation_rejection .....   Passed    0.44 sec
+        Start 200: vst3.filtered_command_partition
+ 40/327 Test #288: vst3.quadrature_automation_automation_model .......   Passed    0.28 sec
+        Start 201: vst3.quadrature_command_partition
+ 41/327 Test #200: vst3.filtered_command_partition ...................   Passed    0.41 sec
+        Start 266: vst3.filtered_buffer_flush_matrix
+ 42/327 Test #201: vst3.quadrature_command_partition .................   Passed    0.34 sec
+        Start 209: vst3.filtered_control_text
+ 43/327 Test #266: vst3.filtered_buffer_flush_matrix .................   Passed    0.28 sec
+        Start  59: contact.moving_damper
+ 44/327 Test #209: vst3.filtered_control_text ........................   Passed    0.16 sec
+        Start 208: vst3.control_text
+ 45/327 Test  #59: contact.moving_damper .............................   Passed    0.18 sec
+        Start 203: vst3.filtered_pressure
+ 46/327 Test #208: vst3.control_text .................................   Passed    0.21 sec
+        Start 291: vst3.quadrature_automation_automation_ties
+ 47/327 Test #291: vst3.quadrature_automation_automation_ties ........   Passed    0.13 sec
+        Start 210: vst3.quadrature_control_text
+ 48/327 Test #203: vst3.filtered_pressure ............................   Passed    0.38 sec
+        Start  57: contact.separated_oscillator
+ 49/327 Test #210: vst3.quadrature_control_text ......................   Passed    0.17 sec
+        Start  30: audio.fir_impulse_phases
+ 50/327 Test  #57: contact.separated_oscillator ......................   Passed    0.17 sec
+        Start   4: control_text.roundtrip
+ 51/327 Test  #30: audio.fir_impulse_phases ..........................   Passed    0.19 sec
+        Start 313: vst3.state_callback_stress
+ 52/327 Test #313: vst3.state_callback_stress ........................   Passed    0.15 sec
+        Start 290: vst3.filtered_automation_automation_ties
+ 53/327 Test #290: vst3.filtered_automation_automation_ties ..........   Passed    0.12 sec
+        Start 294: vst3.quadrature_automation_automation_flush
+ 54/327 Test   #4: control_text.roundtrip ............................   Passed    0.31 sec
+        Start 212: vst3.filtered_command_atomicity
+ 55/327 Test #294: vst3.quadrature_automation_automation_flush .......   Passed    0.11 sec
+        Start 295: vst3.automation_rejection
+ 56/327 Test #295: vst3.automation_rejection .........................   Passed    0.12 sec
+        Start 183: vst3.filtered_rejected_calls
+ 57/327 Test #212: vst3.filtered_command_atomicity ...................   Passed    0.24 sec
+        Start 265: vst3.flush_matrix
+ 58/327 Test #265: vst3.flush_matrix .................................   Passed    0.08 sec
+        Start 307: vst3.random_note_model
+ 59/327 Test #183: vst3.filtered_rejected_calls ......................   Passed    0.12 sec
+        Start   7: events.release_port
+ 60/327 Test   #7: events.release_port ...............................   Passed    0.09 sec
+        Start 286: vst3.automation_model
+ 61/327 Test #307: vst3.random_note_model ............................   Passed    0.11 sec
+        Start 168: cli.filtered_render
+ 62/327 Test #286: vst3.automation_model .............................   Passed    0.11 sec
+        Start 319: vst3.triple_module_coexist
+ 63/327 Test #168: cli.filtered_render ...............................   Passed    0.25 sec
+        Start  85: grazing.anchor_steps
+ 64/327 Test  #85: grazing.anchor_steps ..............................   Passed    0.13 sec
+        Start 204: vst3.quadrature_pressure
+ 65/327 Test #204: vst3.quadrature_pressure ..........................   Passed    0.18 sec
+        Start 187: vst3.quadrature_qhost_reset_tail
+ 66/327 Test #319: vst3.triple_module_coexist ........................   Passed    0.51 sec
+        Start 199: vst3.command_partition
+ 67/327 Test #187: vst3.quadrature_qhost_reset_tail ..................   Passed    0.11 sec
+        Start 293: vst3.filtered_automation_automation_flush
+ 68/327 Test #293: vst3.filtered_automation_automation_flush .........   Passed    0.08 sec
+        Start 213: vst3.quadrature_command_atomicity
+ 69/327 Test #199: vst3.command_partition ............................   Passed    0.18 sec
+        Start  25: quadrature.qengine_partitions
+ 70/327 Test  #25: quadrature.qengine_partitions .....................   Passed    0.06 sec
+        Start 123: runtime.random_partitions
+ 71/327 Test #123: runtime.random_partitions .........................   Passed    0.05 sec
+        Start  44: audio.partition_invariance
+ 72/327 Test  #44: audio.partition_invariance ........................   Passed    0.04 sec
+        Start  87: grazing.anchor_partitions
+ 73/327 Test #213: vst3.quadrature_command_atomicity .................   Passed    0.24 sec
+        Start  76: contact.peak_cli
+ 74/327 Test  #87: grazing.anchor_partitions .........................   Passed    0.04 sec
+        Start 182: vst3.filtered_reset_and_flush
+ 75/327 Test  #76: contact.peak_cli ..................................   Passed    0.03 sec
+        Start  45: audio.prepare_atomicity
+ 76/327 Test  #45: audio.prepare_atomicity ...........................   Passed    0.04 sec
+        Start  18: quadrature.qfir_impulses
+ 77/327 Test #182: vst3.filtered_reset_and_flush .....................   Passed    0.07 sec
+        Start 224: vst3.filtered_regression_dense_automation
+ 78/327 Test #224: vst3.filtered_regression_dense_automation .........   Passed    0.05 sec
+        Start  11: quadrature.damping_regimes
+ 79/327 Test  #18: quadrature.qfir_impulses ..........................   Passed    0.06 sec
+        Start  28: quadrature.qengine_allocations
+ 80/327 Test  #11: quadrature.damping_regimes ........................   Passed    0.05 sec
+        Start 321: vst3.loaded_midi
+ 81/327 Test  #28: quadrature.qengine_allocations ....................   Passed    0.09 sec
+        Start 327: vst3.bundle_resources
+ 82/327 Test #327: vst3.bundle_resources .............................   Passed    0.07 sec
+        Start  31: audio.fir_direct_convolution
+ 83/327 Test  #31: audio.fir_direct_convolution ......................   Passed    0.06 sec
+        Start  27: quadrature.qengine_faults
+ 84/327 Test  #27: quadrature.qengine_faults .........................   Passed    0.04 sec
+        Start  26: quadrature.qengine_prepare
+ 85/327 Test #321: vst3.loaded_midi ..................................   Passed    0.24 sec
+        Start  81: grazing.generalized_harmonics
+ 86/327 Test  #26: quadrature.qengine_prepare ........................   Passed    0.06 sec
+        Start 114: transition_cache.redundant_pedal
+ 87/327 Test  #81: grazing.generalized_harmonics .....................   Passed    0.04 sec
+        Start 312: vst3.quadrature_state_state_preflight_race
+ 88/327 Test #312: vst3.quadrature_state_state_preflight_race ........   Passed    0.01 sec
+        Start 186: vst3.quadrature_qhost_recall_order
+ 89/327 Test #114: transition_cache.redundant_pedal ..................   Passed    0.04 sec
+        Start 167: cli.render_output
+ 90/327 Test #167: cli.render_output .................................   Passed    0.04 sec
+        Start  14: quadrature.silent_lifecycle
+ 91/327 Test #186: vst3.quadrature_qhost_recall_order ................   Passed    0.06 sec
+        Start  24: quadrature.qengine_events
+ 92/327 Test  #14: quadrature.silent_lifecycle .......................   Passed    0.07 sec
+        Start   8: quadrature.analytic_nodes
+ 93/327 Test  #24: quadrature.qengine_events .........................   Passed    0.09 sec
+        Start  10: quadrature.observation_nonmutation
+ 94/327 Test  #10: quadrature.observation_nonmutation ................   Passed    0.03 sec
+        Start 197: vst3.filtered_channel_commands
+ 95/327 Test   #8: quadrature.analytic_nodes .........................   Passed    0.06 sec
+        Start 202: vst3.pressure
+ 96/327 Test #197: vst3.filtered_channel_commands ....................   Passed    0.04 sec
+        Start  46: audio.reset_flush
+ 97/327 Test  #46: audio.reset_flush .................................   Passed    0.05 sec
+        Start  53: contact.stdout
+ 98/327 Test  #53: contact.stdout ....................................   Passed    0.03 sec
+        Start 263: vst3.filtered_buffer_inactive_buffers
+ 99/327 Test #202: vst3.pressure .....................................   Passed    0.12 sec
+        Start 311: vst3.filtered_state_state_preflight_race
+100/327 Test #263: vst3.filtered_buffer_inactive_buffers .............   Passed    0.04 sec
+        Start 292: vst3.automation_flush
+101/327 Test #311: vst3.filtered_state_state_preflight_race ..........   Passed    0.06 sec
+        Start 310: vst3.state_preflight_race
+102/327 Test #310: vst3.state_preflight_race .........................   Passed    0.02 sec
+        Start 207: vst3.quadrature_command_bounds
+103/327 Test #292: vst3.automation_flush .............................   Passed    0.05 sec
+        Start 289: vst3.automation_ties
+104/327 Test #289: vst3.automation_ties ..............................   Passed    0.09 sec
+        Start 179: vst3.filtered_scalar_output
+105/327 Test #179: vst3.filtered_scalar_output .......................   Passed    0.05 sec
+        Start  16: quadrature.silent_fp_environment
+106/327 Test #207: vst3.quadrature_command_bounds ....................   Passed    0.17 sec
+        Start 175: vst3.filtered_benchmark_smoke_32
+107/327 Test #175: vst3.filtered_benchmark_smoke_32 ..................   Passed    0.02 sec
+        Start 198: vst3.quadrature_channel_commands
+108/327 Test  #16: quadrature.silent_fp_environment ..................   Passed    0.06 sec
+        Start 211: vst3.command_atomicity
+109/327 Test #198: vst3.quadrature_channel_commands ..................   Passed    0.05 sec
+        Start  22: quadrature.qfir_ordered_history
+110/327 Test  #22: quadrature.qfir_ordered_history ...................   Passed    0.05 sec
+        Start 165: benchmark.json
+111/327 Test #165: benchmark.json ....................................   Passed    0.03 sec
+        Start 264: vst3.quadrature_buffer_inactive_buffers
+112/327 Test #211: vst3.command_atomicity ............................   Passed    0.12 sec
+        Start  54: contact.conservative_impact
+113/327 Test  #54: contact.conservative_impact .......................   Passed    0.02 sec
+        Start 184: vst3.quadrature_qhost_identity_delay
+114/327 Test #264: vst3.quadrature_buffer_inactive_buffers ...........   Passed    0.05 sec
+        Start  60: contact.relaunch
+115/327 Test #184: vst3.quadrature_qhost_identity_delay ..............   Passed    0.08 sec
+        Start  52: quadrature.probe_stdout
+116/327 Test  #60: contact.relaunch ..................................   Passed    0.10 sec
+        Start 104: core.pedal_release
+117/327 Test  #52: quadrature.probe_stdout ...........................   Passed    0.06 sec
+        Start 223: vst3.dense_automation
+118/327 Test #104: core.pedal_release ................................   Passed    0.05 sec
+        Start 255: vst3.quadrature_fp_ftz
+119/327 Test #223: vst3.dense_automation .............................   Passed    0.03 sec
+        Start 258: vst3.quadrature_fp_daz
+120/327 Test #255: vst3.quadrature_fp_ftz ............................   Passed    0.03 sec
+        Start 225: vst3.quadrature_regression_dense_automation
+121/327 Test #258: vst3.quadrature_fp_daz ............................   Passed    0.03 sec
+        Start  61: contact.event_order
+122/327 Test  #61: contact.event_order ...............................   Passed    0.05 sec
+        Start 252: vst3.quadrature_fp_baseline
+123/327 Test #225: vst3.quadrature_regression_dense_automation .......   Passed    0.08 sec
+        Start  89: grazing.anchor_rollback
+124/327 Test #252: vst3.quadrature_fp_baseline .......................   Passed    0.03 sec
+        Start  47: audio.event_timing
+125/327 Test  #89: grazing.anchor_rollback ...........................   Passed    0.02 sec
+        Start 251: vst3.filtered_fp_baseline
+126/327 Test  #47: audio.event_timing ................................   Passed    0.04 sec
+        Start 134: midi.random_model
+127/327 Test #251: vst3.filtered_fp_baseline .........................   Passed    0.03 sec
+        Start 206: vst3.filtered_command_bounds
+128/327 Test #134: midi.random_model .................................   Passed    0.06 sec
+        Start 261: vst3.quadrature_fp_ftz_daz
+129/327 Test #261: vst3.quadrature_fp_ftz_daz ........................   Passed    0.02 sec
+        Start   5: control_text.environments
+130/327 Test #206: vst3.filtered_command_bounds ......................   Passed    0.10 sec
+        Start 151: control.rounding_modes
+131/327 Test #151: control.rounding_modes ............................   Passed    0.03 sec
+        Start 257: vst3.filtered_fp_daz
+132/327 Test #257: vst3.filtered_fp_daz ..............................   Passed    0.02 sec
+        Start 156: state.ordered_races
+133/327 Test #156: state.ordered_races ...............................   Passed    0.06 sec
+        Start 154: control_fp.daz
+134/327 Test #154: control_fp.daz ....................................   Passed    0.01 sec
+        Start 299: vst3.filtered_note_identity_model
+135/327 Test #299: vst3.filtered_note_identity_model .................   Passed    0.02 sec
+        Start  65: contact.grazing_miss
+136/327 Test  #65: contact.grazing_miss ..............................   Passed    0.00 sec
+        Start  79: contact.split_close_roots
+137/327 Test  #79: contact.split_close_roots .........................   Passed    0.02 sec
+        Start  43: audio.persistent_events
+138/327 Test   #5: control_text.environments .........................   Passed    0.19 sec
+139/327 Test  #43: audio.persistent_events ...........................   Passed    0.01 sec
+        Start 260: vst3.filtered_fp_ftz_daz
+        Start 249: vst3.quadrature_regression_allocation_guard
+140/327 Test #260: vst3.filtered_fp_ftz_daz ..........................   Passed    0.02 sec
+        Start  51: audio.probe_stdout
+141/327 Test  #51: audio.probe_stdout ................................   Passed    0.03 sec
+        Start  42: audio.rate_boundaries
+142/327 Test #249: vst3.quadrature_regression_allocation_guard .......   Passed    0.06 sec
+        Start 103: core.block_partition
+143/327 Test  #42: audio.rate_boundaries .............................   Passed    0.02 sec
+        Start  55: contact.damped_impact
+144/327 Test #103: core.block_partition ..............................   Passed    0.01 sec
+        Start   9: quadrature.plan_domains
+145/327 Test   #9: quadrature.plan_domains ...........................   Passed    0.00 sec
+        Start 300: vst3.quadrature_note_identity_model
+146/327 Test  #55: contact.damped_impact .............................   Passed    0.01 sec
+        Start 262: vst3.inactive_buffers
+147/327 Test #300: vst3.quadrature_note_identity_model ...............   Passed    0.01 sec
+        Start 254: vst3.filtered_fp_ftz
+148/327 Test #262: vst3.inactive_buffers .............................   Passed    0.01 sec
+        Start  12: quadrature.silent_plan_validation
+149/327 Test #254: vst3.filtered_fp_ftz ..............................   Passed    0.01 sec
+        Start 196: vst3.channel_commands
+150/327 Test  #12: quadrature.silent_plan_validation .................   Passed    0.01 sec
+        Start  13: quadrature.silent_network
+151/327 Test #196: vst3.channel_commands .............................   Passed    0.01 sec
+        Start  72: contact.peak_damped
+152/327 Test  #13: quadrature.silent_network .........................   Passed    0.01 sec
+        Start 303: vst3.quadrature_note_capacity_model
+153/327 Test  #72: contact.peak_damped ...............................   Passed    0.02 sec
+        Start  20: quadrature.qfir_rejection
+154/327 Test  #20: quadrature.qfir_rejection .........................   Passed    0.02 sec
+        Start  66: contact.grazing_tangent
+155/327 Test #303: vst3.quadrature_note_capacity_model ...............   Passed    0.04 sec
+        Start  71: contact.peak_conservative
+156/327 Test  #66: contact.grazing_tangent ...........................   Passed    0.01 sec
+        Start 176: vst3.quadrature_benchmark_smoke_32
+157/327 Test  #71: contact.peak_conservative .........................   Passed    0.01 sec
+        Start 112: transition_cache.invalid_cache_updates
+158/327 Test #176: vst3.quadrature_benchmark_smoke_32 ................   Passed    0.01 sec
+        Start 189: vst3.benchmark_smoke_32
+159/327 Test #112: transition_cache.invalid_cache_updates ............   Passed    0.01 sec
+        Start 166: cli.render
+160/327 Test #166: cli.render ........................................   Passed    0.01 sec
+        Start 253: vst3.fp_ftz
+161/327 Test #189: vst3.benchmark_smoke_32 ...........................   Passed    0.01 sec
+        Start 306: vst3.quadrature_note_recall_model
+162/327 Test #253: vst3.fp_ftz .......................................   Passed    0.01 sec
+        Start 144: state_fp.baseline
+163/327 Test #144: state_fp.baseline .................................   Passed    0.05 sec
+        Start 259: vst3.fp_ftz_daz
+164/327 Test #306: vst3.quadrature_note_recall_model .................   Passed    0.07 sec
+        Start 146: state_fp.daz
+165/327 Test #259: vst3.fp_ftz_daz ...................................   Passed    0.01 sec
+166/327 Test #146: state_fp.daz ......................................   Passed    0.01 sec
+        Start 169: cli.reject_nan
+        Start 177: vst3.filtered_benchmark_smoke_64
+167/327 Test #177: vst3.filtered_benchmark_smoke_64 ..................   Passed    0.01 sec
+        Start 305: vst3.filtered_note_recall_model
+168/327 Test #169: cli.reject_nan ....................................   Passed    0.02 sec
+        Start 248: vst3.filtered_regression_allocation_guard
+169/327 Test #305: vst3.filtered_note_recall_model ...................   Passed    0.02 sec
+        Start  17: quadrature.qfir_convolution
+170/327 Test  #17: quadrature.qfir_convolution .......................   Passed    0.01 sec
+        Start 216: vst3.quadrature_regression_scalar_output
+171/327 Test #216: vst3.quadrature_regression_scalar_output ..........   Passed    0.05 sec
+        Start  19: quadrature.qfir_delay
+172/327 Test  #19: quadrature.qfir_delay .............................   Passed    0.01 sec
+        Start 233: vst3.filtered_regression_lifecycle
+173/327 Test #233: vst3.filtered_regression_lifecycle ................   Passed    0.01 sec
+        Start 302: vst3.filtered_note_capacity_model
+174/327 Test #248: vst3.filtered_regression_allocation_guard .........   Passed    0.10 sec
+        Start 102: core.silence
+175/327 Test #302: vst3.filtered_note_capacity_model .................   Passed    0.02 sec
+        Start 157: state.concurrent_stress
+176/327 Test #102: core.silence ......................................   Passed    0.04 sec
+        Start  90: contact.configuration_bounds
+177/327 Test #157: state.concurrent_stress ...........................   Passed    0.03 sec
+178/327 Test  #90: contact.configuration_bounds ......................   Passed    0.01 sec
+        Start  99: core.pickup_intermodulation
+        Start 111: transition_cache.cached_vs_fresh
+179/327 Test #111: transition_cache.cached_vs_fresh ..................   Passed    0.01 sec
+        Start  64: contact.cap_exhaustion
+180/327 Test  #99: core.pickup_intermodulation .......................   Passed    0.01 sec
+        Start 324: vst3.moduleinfo_validator
+181/327 Test  #64: contact.cap_exhaustion ............................   Passed    0.01 sec
+        Start 228: vst3.quadrature_regression_invalid_atomicity
+182/327 Test #324: vst3.moduleinfo_validator .........................   Passed    0.01 sec
+        Start  48: audio.fault_substeps
+183/327 Test  #48: audio.fault_substeps ..............................   Passed    0.01 sec
+        Start 140: state.gain_bit_domain
+184/327 Test #228: vst3.quadrature_regression_invalid_atomicity ......   Passed    0.03 sec
+185/327 Test #140: state.gain_bit_domain .............................   Passed    0.01 sec
+        Start 132: midi.boundary_model
+        Start  70: contact.peak_defaults
+186/327 Test  #70: contact.peak_defaults .............................   Passed    0.01 sec
+        Start 170: cli.reject_unknown
+187/327 Test #132: midi.boundary_model ...............................   Passed    0.02 sec
+        Start 301: vst3.capacity_model
+188/327 Test #301: vst3.capacity_model ...............................   Passed    0.03 sec
+        Start 275: vst3.filtered_stream_partial_roundtrip
+189/327 Test #170: cli.reject_unknown ................................   Passed    0.04 sec
+        Start 105: core.supported_rates
+190/327 Test #275: vst3.filtered_stream_partial_roundtrip ............   Passed    0.01 sec
+        Start  29: audio.fir_coefficients_dc
+191/327 Test  #29: audio.fir_coefficients_dc .........................   Passed    0.01 sec
+        Start  67: contact.grazing_contact
+192/327 Test #105: core.supported_rates ..............................   Passed    0.02 sec
+193/327 Test  #67: contact.grazing_contact ...........................   Passed    0.01 sec
+        Start 304: vst3.recall_model
+        Start 215: vst3.filtered_regression_scalar_output
+194/327 Test #304: vst3.recall_model .................................   Passed    0.01 sec
+        Start  77: contact.event_split
+195/327 Test #215: vst3.filtered_regression_scalar_output ............   Passed    0.02 sec
+        Start 155: control_fp.ftz_daz
+196/327 Test #155: control_fp.ftz_daz ................................   Passed    0.01 sec
+        Start  78: contact.split_simultaneous
+197/327 Test  #77: contact.event_split ...............................   Passed    0.02 sec
+        Start  97: core.retrigger
+198/327 Test  #78: contact.split_simultaneous ........................   Passed    0.02 sec
+        Start 214: vst3.scalar_output
+199/327 Test  #97: core.retrigger ....................................   Passed    0.02 sec
+        Start 153: control_fp.ftz
+200/327 Test #214: vst3.scalar_output ................................   Passed    0.01 sec
+        Start 178: vst3.quadrature_benchmark_smoke_64
+201/327 Test #153: control_fp.ftz ....................................   Passed    0.01 sec
+        Start 164: benchmark.smoke
+202/327 Test #164: benchmark.smoke ...................................   Passed    0.01 sec
+        Start 241: vst3.stream_errors
+203/327 Test #178: vst3.quadrature_benchmark_smoke_64 ................   Passed    0.01 sec
+        Start  35: model_state.model1_golden
+204/327 Test #241: vst3.stream_errors ................................   Passed    0.00 sec
+        Start 130: midi.capacity_and_reuse
+205/327 Test  #35: model_state.model1_golden .........................   Passed    0.00 sec
+        Start 181: vst3.filtered_state_contract
+206/327 Test #130: midi.capacity_and_reuse ...........................   Passed    0.01 sec
+        Start  80: contact.split_peak_rollback
+207/327 Test  #80: contact.split_peak_rollback .......................   Passed    0.00 sec
+        Start 205: vst3.command_bounds
+208/327 Test #181: vst3.filtered_state_contract ......................   Passed    0.01 sec
+        Start  39: model_state.invalid_model
+209/327 Test  #39: model_state.invalid_model .........................   Passed    0.01 sec
+        Start 227: vst3.filtered_regression_invalid_atomicity
+210/327 Test #205: vst3.command_bounds ...............................   Passed    0.02 sec
+        Start 190: vst3.benchmark_smoke_64
+211/327 Test #227: vst3.filtered_regression_invalid_atomicity ........   Passed    0.02 sec
+        Start 174: vst3.model_stream_transfers
+212/327 Test #190: vst3.benchmark_smoke_64 ...........................   Passed    0.01 sec
+        Start 139: state.mailbox_abort
+213/327 Test #174: vst3.model_stream_transfers .......................   Passed    0.02 sec
+214/327 Test #139: state.mailbox_abort ...............................   Passed    0.01 sec
+        Start  91: contact.settings_bounds
+        Start 234: vst3.quadrature_regression_lifecycle
+215/327 Test  #91: contact.settings_bounds ...........................   Passed    0.02 sec
+        Start 172: vst3.model_stream_invalid_model
+216/327 Test #234: vst3.quadrature_regression_lifecycle ..............   Passed    0.01 sec
+        Start 106: review.modal_boundaries
+217/327 Test #172: vst3.model_stream_invalid_model ...................   Passed    0.01 sec
+        Start 128: midi.anonymous_and_zero_velocity
+218/327 Test #106: review.modal_boundaries ...........................   Passed    0.01 sec
+        Start 235: vst3.deferred_state
+219/327 Test #235: vst3.deferred_state ...............................   Passed    0.00 sec
+        Start 142: state.header_lengths
+220/327 Test #128: midi.anonymous_and_zero_velocity ..................   Passed    0.01 sec
+        Start  63: contact.invalid_inputs
+221/327 Test #142: state.header_lengths ..............................   Passed    0.01 sec
+        Start 180: vst3.filtered_rate_contract
+222/327 Test  #63: contact.invalid_inputs ............................   Passed    0.01 sec
+        Start 115: runtime.scalar_partitions
+223/327 Test #180: vst3.filtered_rate_contract .......................   Passed    0.00 sec
+        Start 118: runtime.invalid_events
+224/327 Test #115: runtime.scalar_partitions .........................   Passed    0.01 sec
+        Start 108: review.engine_controls
+225/327 Test #108: review.engine_controls ............................   Passed    0.00 sec
+        Start 107: review.rejected_updates
+226/327 Test #118: runtime.invalid_events ............................   Passed    0.01 sec
+        Start 250: vst3.fp_baseline
+227/327 Test #107: review.rejected_updates ...........................   Passed    0.00 sec
+        Start 152: control_fp.baseline
+228/327 Test #152: control_fp.baseline ...............................   Passed    0.01 sec
+        Start 188: vst3.benchmark_help
+229/327 Test #250: vst3.fp_baseline ..................................   Passed    0.01 sec
+        Start  75: contact.peak_rollback
+230/327 Test #188: vst3.benchmark_help ...............................   Passed    0.00 sec
+        Start  23: quadrature.qfir_prefix_overflow
+231/327 Test  #75: contact.peak_rollback .............................   Passed    0.00 sec
+        Start  15: quadrature.silent_transactions
+232/327 Test  #23: quadrature.qfir_prefix_overflow ...................   Passed    0.01 sec
+        Start  82: grazing.envelope_sign
+233/327 Test  #15: quadrature.silent_transactions ....................   Passed    0.00 sec
+        Start 159: alias.primitive_help
+234/327 Test  #82: grazing.envelope_sign .............................   Passed    0.00 sec
+        Start  32: audio.fir_group_delay
+235/327 Test #159: alias.primitive_help ..............................   Passed    0.01 sec
+236/327 Test  #32: audio.fir_group_delay .............................   Passed    0.01 sec
+        Start 133: midi.capacity_model
+        Start 109: review.engine_combined_pickup
+237/327 Test #109: review.engine_combined_pickup .....................   Passed    0.01 sec
+        Start 120: runtime.sample_fault_reset
+238/327 Test #133: midi.capacity_model ...............................   Passed    0.01 sec
+        Start 231: vst3.quadrature_regression_parameter_flush
+239/327 Test #120: runtime.sample_fault_reset ........................   Passed    0.00 sec
+        Start 145: state_fp.ftz
+240/327 Test #231: vst3.quadrature_regression_parameter_flush ........   Passed    0.01 sec
+241/327 Test #145: state_fp.ftz ......................................   Passed    0.00 sec
+        Start 256: vst3.fp_daz
+        Start 222: vst3.quadrature_regression_linear_automation
+242/327 Test #256: vst3.fp_daz .......................................   Passed    0.02 sec
+        Start 194: vst3.quadrature_benchmark_help
+243/327 Test #222: vst3.quadrature_regression_linear_automation ......   Passed    0.02 sec
+        Start 230: vst3.filtered_regression_parameter_flush
+244/327 Test #194: vst3.quadrature_benchmark_help ....................   Passed    0.00 sec
+        Start  96: core.energy_conservation
+245/327 Test #230: vst3.filtered_regression_parameter_flush ..........   Passed    0.00 sec
+        Start 135: state.codec_golden
+246/327 Test  #96: core.energy_conservation ..........................   Passed    0.01 sec
+247/327 Test #135: state.codec_golden ................................   Passed    0.01 sec
+        Start 147: state_fp.ftz_daz
+        Start 239: vst3.filtered_regression_recall_abort
+248/327 Test #147: state_fp.ftz_daz ..................................   Passed    0.00 sec
+        Start  95: core.energy_loss
+249/327 Test  #95: core.energy_loss ..................................   Passed    0.00 sec
+        Start 150: control.widen
+250/327 Test #239: vst3.filtered_regression_recall_abort .............   Passed    0.01 sec
+        Start 274: vst3.partial_roundtrip
+251/327 Test #274: vst3.partial_roundtrip ............................   Passed    0.01 sec
+        Start  33: audio.fir_transactional_rejection
+252/327 Test #150: control.widen .....................................   Passed    0.01 sec
+        Start 276: vst3.quadrature_stream_partial_roundtrip
+253/327 Test  #33: audio.fir_transactional_rejection .................   Passed    0.01 sec
+254/327 Test #276: vst3.quadrature_stream_partial_roundtrip ..........   Passed    0.01 sec
+        Start 100: core.network_loading
+        Start 119: runtime.block_limits
+255/327 Test #100: core.network_loading ..............................   Passed    0.01 sec
+        Start 220: vst3.linear_automation
+256/327 Test #119: runtime.block_limits ..............................   Passed    0.01 sec
+        Start 218: vst3.filtered_regression_overlapping_notes
+257/327 Test #220: vst3.linear_automation ............................   Passed    0.01 sec
+        Start  83: grazing.partitions
+258/327 Test  #83: grazing.partitions ................................   Passed    0.00 sec
+        Start 143: state.invalid_recall
+259/327 Test #218: vst3.filtered_regression_overlapping_notes ........   Passed    0.01 sec
+260/327 Test #143: state.invalid_recall ..............................   Passed    0.00 sec
+        Start  93: contact.trajectory_guards
+        Start 162: runtime_benchmark.smoke
+261/327 Test  #93: contact.trajectory_guards .........................   Passed    0.01 sec
+        Start 124: runtime.transaction_rejection
+262/327 Test #124: runtime.transaction_rejection .....................   Passed    0.00 sec
+        Start 242: vst3.filtered_regression_stream_errors
+263/327 Test #162: runtime_benchmark.smoke ...........................   Passed    0.01 sec
+        Start 117: runtime.preflight_atomicity
+264/327 Test #242: vst3.filtered_regression_stream_errors ............   Passed    0.01 sec
+        Start 126: midi.range_and_validation
+265/327 Test #117: runtime.preflight_atomicity .......................   Passed    0.01 sec
+266/327 Test #126: midi.range_and_validation .........................   Passed    0.00 sec
+        Start  38: model_state.cross_model_rejection
+        Start  94: core.exact_solution
+267/327 Test  #38: model_state.cross_model_rejection .................   Passed    0.02 sec
+        Start 232: vst3.lifecycle
+268/327 Test  #94: core.exact_solution ...............................   Passed    0.02 sec
+        Start 226: vst3.invalid_atomicity
+269/327 Test #226: vst3.invalid_atomicity ............................   Passed    0.00 sec
+        Start 298: vst3.identity_model
+270/327 Test #232: vst3.lifecycle ....................................   Passed    0.01 sec
+        Start  21: quadrature.qfir_overflow
+271/327 Test #298: vst3.identity_model ...............................   Passed    0.00 sec
+        Start 325: vst3.filtered_moduleinfo_validator
+272/327 Test  #21: quadrature.qfir_overflow ..........................   Passed    0.00 sec
+        Start 148: control.domains
+273/327 Test #325: vst3.filtered_moduleinfo_validator ................   Passed    0.02 sec
+        Start 113: transition_cache.reconfigure_cache
+274/327 Test #148: control.domains ...................................   Passed    0.02 sec
+        Start 149: control.quantize
+275/327 Test #113: transition_cache.reconfigure_cache ................   Passed    0.01 sec
+        Start 116: runtime.equal_offset_order
+276/327 Test #149: control.quantize ..................................   Passed    0.01 sec
+        Start 137: state.mailbox_recall
+277/327 Test #116: runtime.equal_offset_order ........................   Passed    0.01 sec
+278/327 Test #137: state.mailbox_recall ..............................   Passed    0.01 sec
+        Start  92: contact.state_actions
+        Start  37: model_state.model3_roundtrip
+279/327 Test  #92: contact.state_actions .............................   Passed    0.01 sec
+280/327 Test  #37: model_state.model3_roundtrip ......................   Passed    0.01 sec
+        Start 240: vst3.quadrature_regression_recall_abort
+        Start 161: runtime_benchmark.help
+281/327 Test #240: vst3.quadrature_regression_recall_abort ...........   Passed    0.01 sec
+        Start 244: vst3.controller_mapping
+282/327 Test #161: runtime_benchmark.help ............................   Passed    0.00 sec
+        Start  84: grazing.relaunch_invalidation
+283/327 Test #244: vst3.controller_mapping ...........................   Passed    0.00 sec
+        Start 125: runtime.capacity_and_cursor
+284/327 Test  #84: grazing.relaunch_invalidation .....................   Passed    0.00 sec
+        Start 221: vst3.filtered_regression_linear_automation
+285/327 Test #125: runtime.capacity_and_cursor .......................   Passed    0.00 sec
+        Start 101: core.invalid_input
+286/327 Test #221: vst3.filtered_regression_linear_automation ........   Passed    0.01 sec
+        Start 136: state.codec_rejection
+287/327 Test #101: core.invalid_input ................................   Passed    0.01 sec
+        Start 158: cli.help
+288/327 Test #136: state.codec_rejection .............................   Passed    0.00 sec
+        Start  56: contact.forced_clamp
+289/327 Test #158: cli.help ..........................................   Passed    0.00 sec
+        Start 245: vst3.filtered_regression_controller_mapping
+290/327 Test  #56: contact.forced_clamp ..............................   Passed    0.00 sec
+        Start 247: vst3.allocation_guard
+291/327 Test #245: vst3.filtered_regression_controller_mapping .......   Passed    0.00 sec
+        Start  73: contact.peak_damper_face
+292/327 Test  #73: contact.peak_damper_face ..........................   Passed    0.00 sec
+        Start 229: vst3.parameter_flush
+293/327 Test #229: vst3.parameter_flush ..............................   Passed    0.01 sec
+        Start 236: vst3.filtered_regression_deferred_state
+294/327 Test #236: vst3.filtered_regression_deferred_state ...........   Passed    0.00 sec
+        Start 243: vst3.quadrature_regression_stream_errors
+295/327 Test #243: vst3.quadrature_regression_stream_errors ..........   Passed    0.00 sec
+        Start 192: vst3.filtered_benchmark_help
+296/327 Test #192: vst3.filtered_benchmark_help ......................   Passed    0.00 sec
+        Start 171: vst3.model_stream_roundtrip
+297/327 Test #171: vst3.model_stream_roundtrip .......................   Passed    0.00 sec
+        Start 141: state.pedal_bit_domain
+298/327 Test #141: state.pedal_bit_domain ............................   Passed    0.00 sec
+        Start 237: vst3.quadrature_regression_deferred_state
+299/327 Test #247: vst3.allocation_guard .............................   Passed    0.03 sec
+        Start 217: vst3.overlapping_notes
+300/327 Test #237: vst3.quadrature_regression_deferred_state .........   Passed    0.00 sec
+        Start  40: model_state.malformed_models
+301/327 Test  #40: model_state.malformed_models ......................   Passed    0.00 sec
+        Start 219: vst3.quadrature_regression_overlapping_notes
+302/327 Test #217: vst3.overlapping_notes ............................   Passed    0.01 sec
+        Start 246: vst3.quadrature_regression_controller_mapping
+303/327 Test #246: vst3.quadrature_regression_controller_mapping .....   Passed    0.00 sec
+        Start 131: midi.channel_release_and_reset
+304/327 Test #219: vst3.quadrature_regression_overlapping_notes ......   Passed    0.01 sec
+305/327 Test #131: midi.channel_release_and_reset ....................   Passed    0.00 sec
+        Start  36: model_state.model2_roundtrip
+        Start 122: runtime.control_order
+306/327 Test  #36: model_state.model2_roundtrip ......................   Passed    0.00 sec
+        Start 127: midi.identified_overlap
+307/327 Test #122: runtime.control_order .............................   Passed    0.00 sec
+        Start 110: review.network_extreme_divider
+308/327 Test #110: review.network_extreme_divider ....................   Passed    0.00 sec
+        Start  98: core.pickup_derivative
+309/327 Test #127: midi.identified_overlap ...........................   Passed    0.00 sec
+        Start 326: vst3.quadrature_moduleinfo_validator
+310/327 Test  #98: core.pickup_derivative ............................   Passed    0.00 sec
+        Start 121: runtime.event_fault_reset
+311/327 Test #326: vst3.quadrature_moduleinfo_validator ..............   Passed    0.00 sec
+        Start 138: state.mailbox_races
+312/327 Test #121: runtime.event_fault_reset .........................   Passed    0.00 sec
+        Start  68: contact.cli_help
+313/327 Test #138: state.mailbox_races ...............................   Passed    0.00 sec
+        Start 317: vst3.dual_module_coexist
+314/327 Test  #68: contact.cli_help ..................................   Passed    0.00 sec
+        Start 238: vst3.recall_abort
+315/327 Test #238: vst3.recall_abort .................................   Passed    0.00 sec
+        Start 129: midi.conflict_atomicity
+316/327 Test #129: midi.conflict_atomicity ...........................   Passed    0.00 sec
+        Start 173: vst3.model_stream_rejection
+317/327 Test #173: vst3.model_stream_rejection .......................   Passed    0.00 sec
+        Start  34: audio.fir_overflow_reset
+318/327 Test #317: vst3.dual_module_coexist ..........................   Passed    0.01 sec
+        Start 160: benchmark.help
+319/327 Test  #34: audio.fir_overflow_reset ..........................   Passed    0.01 sec
+320/327 Test #160: benchmark.help ....................................   Passed    0.00 sec
+        Start  74: contact.peak_actions
+        Start   3: control_text.formatting
+321/327 Test  #74: contact.peak_actions ..............................   Passed    0.00 sec
+        Start   6: control_text.locale
+322/327 Test   #3: control_text.formatting ...........................   Passed    0.01 sec
+        Start 320: vst3.triple_module_duplicate_guard
+323/327 Test   #6: control_text.locale ...............................   Passed    0.01 sec
+        Start   1: control_text.oracle
+324/327 Test #320: vst3.triple_module_duplicate_guard ................   Passed    0.01 sec
+        Start   2: control_text.bounds
+325/327 Test   #2: control_text.bounds ...............................   Passed    0.00 sec
+        Start 318: vst3.dual_module_duplicate_guard
+326/327 Test   #1: control_text.oracle ...............................   Passed    0.00 sec
+327/327 Test #318: vst3.dual_module_duplicate_guard ..................   Passed    0.00 sec
+
+100% tests passed out of 327
+
+Total Test time (real) =  29.34 sec

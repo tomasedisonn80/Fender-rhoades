@@ -1,0 +1,4826 @@
+{
+  "schema_version": 1,
+  "artifact_id": "host-midi-linux-final-20261124",
+  "worker": "W4-067",
+  "result": "pass",
+  "started_at_utc": "2026-11-24T10:34:10Z",
+  "finished_at_utc": "2026-11-24T10:35:36Z",
+  "repository": "/workspace/scratch/edddd917a86c/Fender-rhoades",
+  "build_directory": "build-host",
+  "scope": "One complete build of the existing Linux Release configuration followed by its complete CTest integration suite, including the W4-064 portable fixture-literal repair. This was an incremental existing-directory build, not a fresh configure/clean build.",
+  "source_identity": {
+    "before": {
+      "head": "ce59b0c254ab99b399f03e63094b10ce10933e71",
+      "head_tree": "46b2e0bdb67a25cc8b20d87ff96c73b2a18a9bec",
+      "branch": "main",
+      "status_command": "git status --short",
+      "status_short": [
+        " M docs/DAW_VALIDATION.md",
+        " M docs/PROJECT_STATE.md",
+        " M docs/agents/CONTINUATION_C_20261124.md",
+        " M project/continuation-c-20261124.json",
+        " M project/state.json",
+        " M tests/fixtures/control_text_vectors.hpp",
+        " M tests/python/test_callback_compare.py",
+        " M tests/python/test_contact_extrema_raw.py",
+        " M tools/compare_vst3_callbacks.py",
+        " M tools/generate_control_text_vectors.py",
+        "?? docs/agents/reports/continuation-c/w3-056.md",
+        "?? docs/agents/reports/continuation-c/w3-057.md",
+        "?? docs/agents/reports/continuation-c/w3-058.md",
+        "?? docs/agents/reports/continuation-c/w3-059.md",
+        "?? docs/agents/reports/continuation-c/w3-060.md",
+        "?? docs/agents/reports/continuation-c/w4-061.md",
+        "?? docs/agents/reports/continuation-c/w4-062.md",
+        "?? docs/agents/reports/continuation-c/w4-063.md",
+        "?? docs/agents/reports/continuation-c/w4-064.md",
+        "?? docs/validation/host-midi-native-snapshot-20261124.json",
+        "?? docs/validation/host-midi-source-binding-20261124.json"
+      ],
+      "tracked_dirty_paths": [
+        "docs/DAW_VALIDATION.md",
+        "docs/PROJECT_STATE.md",
+        "docs/agents/CONTINUATION_C_20261124.md",
+        "project/continuation-c-20261124.json",
+        "project/state.json",
+        "tests/fixtures/control_text_vectors.hpp",
+        "tests/python/test_callback_compare.py",
+        "tests/python/test_contact_extrema_raw.py",
+        "tools/compare_vst3_callbacks.py",
+        "tools/generate_control_text_vectors.py"
+      ],
+      "clean_checkout": false
+    },
+    "after": {
+      "head": "ce59b0c254ab99b399f03e63094b10ce10933e71",
+      "head_tree": "46b2e0bdb67a25cc8b20d87ff96c73b2a18a9bec",
+      "branch": "main",
+      "status_command": "git status --short",
+      "status_short": [
+        " M docs/DAW_VALIDATION.md",
+        " M docs/PROJECT_STATE.md",
+        " M docs/agents/CONTINUATION_C_20261124.md",
+        " M project/continuation-c-20261124.json",
+        " M project/state.json",
+        " M tests/fixtures/control_text_vectors.hpp",
+        " M tests/python/test_callback_compare.py",
+        " M tests/python/test_contact_extrema_raw.py",
+        " M tools/compare_vst3_callbacks.py",
+        " M tools/generate_control_text_vectors.py",
+        "?? docs/agents/reports/continuation-c/w3-056.md",
+        "?? docs/agents/reports/continuation-c/w3-057.md",
+        "?? docs/agents/reports/continuation-c/w3-058.md",
+        "?? docs/agents/reports/continuation-c/w3-059.md",
+        "?? docs/agents/reports/continuation-c/w3-060.md",
+        "?? docs/agents/reports/continuation-c/w4-061.md",
+        "?? docs/agents/reports/continuation-c/w4-062.md",
+        "?? docs/agents/reports/continuation-c/w4-063.md",
+        "?? docs/agents/reports/continuation-c/w4-064.md",
+        "?? docs/agents/reports/continuation-c/w4-065.md",
+        "?? docs/agents/reports/continuation-c/w4-066.md",
+        "?? docs/validation/host-midi-linux-final-20261124-build.log",
+        "?? docs/validation/host-midi-linux-final-20261124-ctest-detail.log",
+        "?? docs/validation/host-midi-linux-final-20261124-ctest.log",
+        "?? docs/validation/host-midi-native-snapshot-20261124.json",
+        "?? docs/validation/host-midi-source-binding-20261124.json"
+      ],
+      "tracked_dirty_paths": [
+        "docs/DAW_VALIDATION.md",
+        "docs/PROJECT_STATE.md",
+        "docs/agents/CONTINUATION_C_20261124.md",
+        "project/continuation-c-20261124.json",
+        "project/state.json",
+        "tests/fixtures/control_text_vectors.hpp",
+        "tests/python/test_callback_compare.py",
+        "tests/python/test_contact_extrema_raw.py",
+        "tools/compare_vst3_callbacks.py",
+        "tools/generate_control_text_vectors.py"
+      ],
+      "clean_checkout": false
+    },
+    "dirty_applicable_inputs": [
+      "tests/fixtures/control_text_vectors.hpp",
+      "tools/generate_control_text_vectors.py"
+    ],
+    "clean_checkout_claimed": false
+  },
+  "source_freeze": {
+    "scope": [
+      "CMakeLists.txt",
+      "CMakePresets.json",
+      "cmake/**",
+      "include/**",
+      "src/**",
+      "plugins/**",
+      "apps/**",
+      "tests/cpp/**",
+      "tests/fixtures/**",
+      "tools/generate_control_text_vectors.py"
+    ],
+    "file_count": 99,
+    "started_at_utc": "2026-11-24T10:34:10Z",
+    "after_build_at_utc": "2026-11-24T10:35:07Z",
+    "after_ctest_at_utc": "2026-11-24T10:35:36Z",
+    "manifest_method": "SHA-256 over UTF-8 concatenation of sorted relative-path records: <file_sha256><two spaces><relative_path><LF>. Each file digest is SHA-256 of raw file bytes.",
+    "manifest_sha256_before": "e3d94b5f9c8d3bb259311ca43e79164f1e65bdd3f6409a5af2746c2eea6786c1",
+    "manifest_sha256_after_build": "e3d94b5f9c8d3bb259311ca43e79164f1e65bdd3f6409a5af2746c2eea6786c1",
+    "manifest_sha256_after_ctest": "e3d94b5f9c8d3bb259311ca43e79164f1e65bdd3f6409a5af2746c2eea6786c1",
+    "unchanged": true,
+    "changed_paths": [],
+    "files": {
+      "CMakeLists.txt": {
+        "sha256_before": "dab767c4bd08e7d509e530a3381c25a872e2d77cdcdbccf13578f5e4c9d4e033",
+        "sha256_after_build": "dab767c4bd08e7d509e530a3381c25a872e2d77cdcdbccf13578f5e4c9d4e033",
+        "sha256_after_ctest": "dab767c4bd08e7d509e530a3381c25a872e2d77cdcdbccf13578f5e4c9d4e033",
+        "bytes": 22009
+      },
+      "CMakePresets.json": {
+        "sha256_before": "a06e2a16dba0b4947352cbbcec2a7668d29b3f777c6f460f9d65f6bd0bb7f0aa",
+        "sha256_after_build": "a06e2a16dba0b4947352cbbcec2a7668d29b3f777c6f460f9d65f6bd0bb7f0aa",
+        "sha256_after_ctest": "a06e2a16dba0b4947352cbbcec2a7668d29b3f777c6f460f9d65f6bd0bb7f0aa",
+        "bytes": 1483
+      },
+      "apps/alias_primitive_probe.cpp": {
+        "sha256_before": "e1cba5cd3b31e07954afae6b6740ab6fd22914becea50eede959506c2a41c808",
+        "sha256_after_build": "e1cba5cd3b31e07954afae6b6740ab6fd22914becea50eede959506c2a41c808",
+        "sha256_after_ctest": "e1cba5cd3b31e07954afae6b6740ab6fd22914becea50eede959506c2a41c808",
+        "bytes": 10473
+      },
+      "apps/audio_probe.cpp": {
+        "sha256_before": "f9232693eb3a332dcc48f35f0f165a99647b3462e3995e259dbeb014ac189206",
+        "sha256_after_build": "f9232693eb3a332dcc48f35f0f165a99647b3462e3995e259dbeb014ac189206",
+        "sha256_after_ctest": "f9232693eb3a332dcc48f35f0f165a99647b3462e3995e259dbeb014ac189206",
+        "bytes": 13080
+      },
+      "apps/benchmark.cpp": {
+        "sha256_before": "f05cefbe22b93274bc51f6b3fedad532d333b8c577196059c04e0559530e5705",
+        "sha256_after_build": "f05cefbe22b93274bc51f6b3fedad532d333b8c577196059c04e0559530e5705",
+        "sha256_after_ctest": "f05cefbe22b93274bc51f6b3fedad532d333b8c577196059c04e0559530e5705",
+        "bytes": 13315
+      },
+      "apps/contact_reference.cpp": {
+        "sha256_before": "36f30eebe08856989eeefd940acdff491c8f9cfc217342893f8d113c61865113",
+        "sha256_after_build": "36f30eebe08856989eeefd940acdff491c8f9cfc217342893f8d113c61865113",
+        "sha256_after_ctest": "36f30eebe08856989eeefd940acdff491c8f9cfc217342893f8d113c61865113",
+        "bytes": 21152
+      },
+      "apps/render.cpp": {
+        "sha256_before": "4fe901544c9faa0992f4517ad1958cc2969d6d4b5d0426b101b4fe52aa265fe2",
+        "sha256_after_build": "4fe901544c9faa0992f4517ad1958cc2969d6d4b5d0426b101b4fe52aa265fe2",
+        "sha256_after_ctest": "4fe901544c9faa0992f4517ad1958cc2969d6d4b5d0426b101b4fe52aa265fe2",
+        "bytes": 15561
+      },
+      "apps/runtime_benchmark.cpp": {
+        "sha256_before": "514955b4245ba5ec6c18fb2379cb790185e029df1d4c387588d2547621c476c0",
+        "sha256_after_build": "514955b4245ba5ec6c18fb2379cb790185e029df1d4c387588d2547621c476c0",
+        "sha256_after_ctest": "514955b4245ba5ec6c18fb2379cb790185e029df1d4c387588d2547621c476c0",
+        "bytes": 20662
+      },
+      "apps/vst3_benchmark.cpp": {
+        "sha256_before": "2129c52bda0337b4cfa71fc39eab31e66696883977dfbfc3c8d52e69ebccc2ed",
+        "sha256_after_build": "2129c52bda0337b4cfa71fc39eab31e66696883977dfbfc3c8d52e69ebccc2ed",
+        "sha256_after_ctest": "2129c52bda0337b4cfa71fc39eab31e66696883977dfbfc3c8d52e69ebccc2ed",
+        "bytes": 26642
+      },
+      "cmake/Vst3.cmake": {
+        "sha256_before": "cfdeb2978cdfb626ae31cf911fa37bb31077d41ed40b0483b9f60c70287e86f2",
+        "sha256_after_build": "cfdeb2978cdfb626ae31cf911fa37bb31077d41ed40b0483b9f60c70287e86f2",
+        "sha256_after_ctest": "cfdeb2978cdfb626ae31cf911fa37bb31077d41ed40b0483b9f60c70287e86f2",
+        "bytes": 31501
+      },
+      "include/rhodes/audio_engine.hpp": {
+        "sha256_before": "10efac8150c07e69ef41eed415a6e7403b4339179af902f91cd17ef498da7b97",
+        "sha256_after_build": "10efac8150c07e69ef41eed415a6e7403b4339179af902f91cd17ef498da7b97",
+        "sha256_after_ctest": "10efac8150c07e69ef41eed415a6e7403b4339179af902f91cd17ef498da7b97",
+        "bytes": 4216
+      },
+      "include/rhodes/audio_filter_coefficients.hpp": {
+        "sha256_before": "c1ab39356d7e44348f9dc56f9120ff2598889d1fa144e5294b084585655eb76d",
+        "sha256_after_build": "c1ab39356d7e44348f9dc56f9120ff2598889d1fa144e5294b084585655eb76d",
+        "sha256_after_ctest": "c1ab39356d7e44348f9dc56f9120ff2598889d1fa144e5294b084585655eb76d",
+        "bytes": 17719
+      },
+      "include/rhodes/contact_reference.hpp": {
+        "sha256_before": "00b99e61dc73686c22675bedf647c3ad1b27ba13332180431f5a42e485057fda",
+        "sha256_after_build": "00b99e61dc73686c22675bedf647c3ad1b27ba13332180431f5a42e485057fda",
+        "sha256_after_ctest": "00b99e61dc73686c22675bedf647c3ad1b27ba13332180431f5a42e485057fda",
+        "bytes": 13870
+      },
+      "include/rhodes/control_text.hpp": {
+        "sha256_before": "de28474739274f4fac20dc1d3d5602cb63c62ddd04a33202cb5375985086e63d",
+        "sha256_after_build": "de28474739274f4fac20dc1d3d5602cb63c62ddd04a33202cb5375985086e63d",
+        "sha256_after_ctest": "de28474739274f4fac20dc1d3d5602cb63c62ddd04a33202cb5375985086e63d",
+        "bytes": 17207
+      },
+      "include/rhodes/control_value.hpp": {
+        "sha256_before": "d7c282afdcffaef90f7872f97b37bfb34671448da64376d3439649c052d4d48d",
+        "sha256_after_build": "d7c282afdcffaef90f7872f97b37bfb34671448da64376d3439649c052d4d48d",
+        "sha256_after_ctest": "d7c282afdcffaef90f7872f97b37bfb34671448da64376d3439649c052d4d48d",
+        "bytes": 5479
+      },
+      "include/rhodes/event_processor.hpp": {
+        "sha256_before": "07e00266db226c50cd379da8d916d63827f24d382d05642a159924a36137f6d9",
+        "sha256_after_build": "07e00266db226c50cd379da8d916d63827f24d382d05642a159924a36137f6d9",
+        "sha256_after_ctest": "07e00266db226c50cd379da8d916d63827f24d382d05642a159924a36137f6d9",
+        "bytes": 6961
+      },
+      "include/rhodes/fir_decimator.hpp": {
+        "sha256_before": "e54faeb397bcbccb9ed9834cfc264d84550c4ef375d8e5273a720eb1f190071b",
+        "sha256_after_build": "e54faeb397bcbccb9ed9834cfc264d84550c4ef375d8e5273a720eb1f190071b",
+        "sha256_after_ctest": "e54faeb397bcbccb9ed9834cfc264d84550c4ef375d8e5273a720eb1f190071b",
+        "bytes": 2185
+      },
+      "include/rhodes/instrument_state.hpp": {
+        "sha256_before": "c11c9d982887f4228c76c3ee9e10fe5627c2dc0f1053ad531cfd316285a65616",
+        "sha256_after_build": "c11c9d982887f4228c76c3ee9e10fe5627c2dc0f1053ad531cfd316285a65616",
+        "sha256_after_ctest": "c11c9d982887f4228c76c3ee9e10fe5627c2dc0f1053ad531cfd316285a65616",
+        "bytes": 6985
+      },
+      "include/rhodes/note_tracker.hpp": {
+        "sha256_before": "76931b326daae3a112b56420f9be9ea5b03b1c30307f1dc68b6c13c710cd830f",
+        "sha256_after_build": "76931b326daae3a112b56420f9be9ea5b03b1c30307f1dc68b6c13c710cd830f",
+        "sha256_after_ctest": "76931b326daae3a112b56420f9be9ea5b03b1c30307f1dc68b6c13c710cd830f",
+        "bytes": 5432
+      },
+      "include/rhodes/quadrature_engine.hpp": {
+        "sha256_before": "c625a82b61eb3e721061177654c12ffa6aac0049e026b9633ae53ea2abaa773d",
+        "sha256_after_build": "c625a82b61eb3e721061177654c12ffa6aac0049e026b9633ae53ea2abaa773d",
+        "sha256_after_ctest": "c625a82b61eb3e721061177654c12ffa6aac0049e026b9633ae53ea2abaa773d",
+        "bytes": 4801
+      },
+      "include/rhodes/quadrature_filter_coefficients.hpp": {
+        "sha256_before": "3cca4ea6553ceb01810a6230f2144491364fa48af7d6cfbc43a8e3dcf5d08b51",
+        "sha256_after_build": "3cca4ea6553ceb01810a6230f2144491364fa48af7d6cfbc43a8e3dcf5d08b51",
+        "sha256_after_ctest": "3cca4ea6553ceb01810a6230f2144491364fa48af7d6cfbc43a8e3dcf5d08b51",
+        "bytes": 16603
+      },
+      "include/rhodes/quadrature_fir.hpp": {
+        "sha256_before": "cf6c85e70036b3f1794ecf131a9db43bcb8da373e47c5335f56b1bb57559b45e",
+        "sha256_after_build": "cf6c85e70036b3f1794ecf131a9db43bcb8da373e47c5335f56b1bb57559b45e",
+        "sha256_after_ctest": "cf6c85e70036b3f1794ecf131a9db43bcb8da373e47c5335f56b1bb57559b45e",
+        "bytes": 2707
+      },
+      "include/rhodes/research_engine.hpp": {
+        "sha256_before": "2a6ba0483a010d9b7a44517c5ed7c215f05d57ed6e96bd6609127322092929e4",
+        "sha256_after_build": "2a6ba0483a010d9b7a44517c5ed7c215f05d57ed6e96bd6609127322092929e4",
+        "sha256_after_ctest": "2a6ba0483a010d9b7a44517c5ed7c215f05d57ed6e96bd6609127322092929e4",
+        "bytes": 8348
+      },
+      "plugins/vst3/THIRD_PARTY_NOTICES.md": {
+        "sha256_before": "171196ff6346500d42093d0aa0729d960944fc607cb83de415a92f1ee1a51570",
+        "sha256_after_build": "171196ff6346500d42093d0aa0729d960944fc607cb83de415a92f1ee1a51570",
+        "sha256_after_ctest": "171196ff6346500d42093d0aa0729d960944fc607cb83de415a92f1ee1a51570",
+        "bytes": 2089
+      },
+      "plugins/vst3/controller.cpp": {
+        "sha256_before": "620e981fa26247ac7b46ce6fe0caeb901c45b197f978e847607e61056bd238b7",
+        "sha256_after_build": "620e981fa26247ac7b46ce6fe0caeb901c45b197f978e847607e61056bd238b7",
+        "sha256_after_ctest": "620e981fa26247ac7b46ce6fe0caeb901c45b197f978e847607e61056bd238b7",
+        "bytes": 11753
+      },
+      "plugins/vst3/controller.hpp": {
+        "sha256_before": "11cfcba41f316bb8f29e29aa4e051cf31476dd874eb9e0fff7fcf4fb98740a9f",
+        "sha256_after_build": "11cfcba41f316bb8f29e29aa4e051cf31476dd874eb9e0fff7fcf4fb98740a9f",
+        "sha256_after_ctest": "11cfcba41f316bb8f29e29aa4e051cf31476dd874eb9e0fff7fcf4fb98740a9f",
+        "bytes": 1790
+      },
+      "plugins/vst3/factory.cpp": {
+        "sha256_before": "c233a281539fca494fe0e24f1511634731078aeaddb931dcac562be6c1d411a2",
+        "sha256_after_build": "c233a281539fca494fe0e24f1511634731078aeaddb931dcac562be6c1d411a2",
+        "sha256_after_ctest": "c233a281539fca494fe0e24f1511634731078aeaddb931dcac562be6c1d411a2",
+        "bytes": 1060
+      },
+      "plugins/vst3/plugin_ids.hpp": {
+        "sha256_before": "6f0929f00edf3103707443c98a6f91a68cda0b05b78b34895b65f24fd6c57d39",
+        "sha256_after_build": "6f0929f00edf3103707443c98a6f91a68cda0b05b78b34895b65f24fd6c57d39",
+        "sha256_after_ctest": "6f0929f00edf3103707443c98a6f91a68cda0b05b78b34895b65f24fd6c57d39",
+        "bytes": 3236
+      },
+      "plugins/vst3/processor.cpp": {
+        "sha256_before": "b51faecea5a80415b80b27551fd6b399669448aedb8a660a480d3f1a5ab90447",
+        "sha256_after_build": "b51faecea5a80415b80b27551fd6b399669448aedb8a660a480d3f1a5ab90447",
+        "sha256_after_ctest": "b51faecea5a80415b80b27551fd6b399669448aedb8a660a480d3f1a5ab90447",
+        "bytes": 24230
+      },
+      "plugins/vst3/processor.hpp": {
+        "sha256_before": "c1338edf6cc3042f9b02127db8d70c03f9e218f1181cc4548852fb05d04e3a91",
+        "sha256_after_build": "c1338edf6cc3042f9b02127db8d70c03f9e218f1181cc4548852fb05d04e3a91",
+        "sha256_after_ctest": "c1338edf6cc3042f9b02127db8d70c03f9e218f1181cc4548852fb05d04e3a91",
+        "bytes": 5154
+      },
+      "plugins/vst3/state_stream.cpp": {
+        "sha256_before": "b5f0dd71c5523f80359027168f0df3307c85d70b3d5654f3f936144f3307d172",
+        "sha256_after_build": "b5f0dd71c5523f80359027168f0df3307c85d70b3d5654f3f936144f3307d172",
+        "sha256_after_ctest": "b5f0dd71c5523f80359027168f0df3307c85d70b3d5654f3f936144f3307d172",
+        "bytes": 2444
+      },
+      "plugins/vst3/state_stream.hpp": {
+        "sha256_before": "db5ec0572c9a3d56f55c71a43997b4fcc208c76ddf186c61368dfbd184f49e12",
+        "sha256_after_build": "db5ec0572c9a3d56f55c71a43997b4fcc208c76ddf186c61368dfbd184f49e12",
+        "sha256_after_ctest": "db5ec0572c9a3d56f55c71a43997b4fcc208c76ddf186c61368dfbd184f49e12",
+        "bytes": 1027
+      },
+      "src/contact_reference.cpp": {
+        "sha256_before": "70dde1bfab9c2e35457da2ebf66ff4638cb6f56f1f19a84dbe55a1752d5166fd",
+        "sha256_after_build": "70dde1bfab9c2e35457da2ebf66ff4638cb6f56f1f19a84dbe55a1752d5166fd",
+        "sha256_after_ctest": "70dde1bfab9c2e35457da2ebf66ff4638cb6f56f1f19a84dbe55a1752d5166fd",
+        "bytes": 78110
+      },
+      "src/research_engine.cpp": {
+        "sha256_before": "01c2a9f7f9f7cfa4f759be56770178f32a71a28667d4ac6ab390e03ff7a95814",
+        "sha256_after_build": "01c2a9f7f9f7cfa4f759be56770178f32a71a28667d4ac6ab390e03ff7a95814",
+        "sha256_after_ctest": "01c2a9f7f9f7cfa4f759be56770178f32a71a28667d4ac6ab390e03ff7a95814",
+        "bytes": 20795
+      },
+      "tests/cpp/audio_engine_test.cpp": {
+        "sha256_before": "57f8f827e77dfe3a1c143d5e6990d0f7f10f001dbd2599f616a96ed4990f59ad",
+        "sha256_after_build": "57f8f827e77dfe3a1c143d5e6990d0f7f10f001dbd2599f616a96ed4990f59ad",
+        "sha256_after_ctest": "57f8f827e77dfe3a1c143d5e6990d0f7f10f001dbd2599f616a96ed4990f59ad",
+        "bytes": 34806
+      },
+      "tests/cpp/audio_fir_test.cpp": {
+        "sha256_before": "9868a0439c57211bf384839e0d37ce528ddec611509266485b6f5ac8eec836be",
+        "sha256_after_build": "9868a0439c57211bf384839e0d37ce528ddec611509266485b6f5ac8eec836be",
+        "sha256_after_ctest": "9868a0439c57211bf384839e0d37ce528ddec611509266485b6f5ac8eec836be",
+        "bytes": 11474
+      },
+      "tests/cpp/audio_probe_cli.cmake": {
+        "sha256_before": "792aec1ea75cfe3462f60ae015f916ae2d795b689ef6f39d8f796703146e48e6",
+        "sha256_after_build": "792aec1ea75cfe3462f60ae015f916ae2d795b689ef6f39d8f796703146e48e6",
+        "sha256_after_ctest": "792aec1ea75cfe3462f60ae015f916ae2d795b689ef6f39d8f796703146e48e6",
+        "bytes": 8922
+      },
+      "tests/cpp/benchmark_json.cmake": {
+        "sha256_before": "6bfadcd834b377cc887d08a6b3fb9bfbe85d51821d29aeaf6904215bcafb7cea",
+        "sha256_after_build": "6bfadcd834b377cc887d08a6b3fb9bfbe85d51821d29aeaf6904215bcafb7cea",
+        "sha256_after_ctest": "6bfadcd834b377cc887d08a6b3fb9bfbe85d51821d29aeaf6904215bcafb7cea",
+        "bytes": 6068
+      },
+      "tests/cpp/contact_cli.cmake": {
+        "sha256_before": "6017cc26ce81943c72d85c2203bc9d7f969238c508298a6f8b5ab0cc3201d5a6",
+        "sha256_after_build": "6017cc26ce81943c72d85c2203bc9d7f969238c508298a6f8b5ab0cc3201d5a6",
+        "sha256_after_ctest": "6017cc26ce81943c72d85c2203bc9d7f969238c508298a6f8b5ab0cc3201d5a6",
+        "bytes": 11039
+      },
+      "tests/cpp/contact_domain_test.cpp": {
+        "sha256_before": "e0154c3d7a1e66431d5cb1db4b9430b4a2760f06bbf26fbae55a120558bf241a",
+        "sha256_after_build": "e0154c3d7a1e66431d5cb1db4b9430b4a2760f06bbf26fbae55a120558bf241a",
+        "sha256_after_ctest": "e0154c3d7a1e66431d5cb1db4b9430b4a2760f06bbf26fbae55a120558bf241a",
+        "bytes": 22888
+      },
+      "tests/cpp/contact_event_split_test.cpp": {
+        "sha256_before": "4ee53462c8cf0041e48778ea2e6283d3216e0f9043dcdf2dacc1784cdcd53e4e",
+        "sha256_after_build": "4ee53462c8cf0041e48778ea2e6283d3216e0f9043dcdf2dacc1784cdcd53e4e",
+        "sha256_after_ctest": "4ee53462c8cf0041e48778ea2e6283d3216e0f9043dcdf2dacc1784cdcd53e4e",
+        "bytes": 5565
+      },
+      "tests/cpp/contact_grazing_anchor_test.cpp": {
+        "sha256_before": "9d2e4d21e94beeaa7c52353826aeb8f319a75dbb64d75f9e8887cb130f7d68e5",
+        "sha256_after_build": "9d2e4d21e94beeaa7c52353826aeb8f319a75dbb64d75f9e8887cb130f7d68e5",
+        "sha256_after_ctest": "9d2e4d21e94beeaa7c52353826aeb8f319a75dbb64d75f9e8887cb130f7d68e5",
+        "bytes": 19474
+      },
+      "tests/cpp/contact_grazing_test.cpp": {
+        "sha256_before": "520b8a77673959d26420df31c952492307d5ec670dca65785e7b2138ea7bbd24",
+        "sha256_after_build": "520b8a77673959d26420df31c952492307d5ec670dca65785e7b2138ea7bbd24",
+        "sha256_after_ctest": "520b8a77673959d26420df31c952492307d5ec670dca65785e7b2138ea7bbd24",
+        "bytes": 11330
+      },
+      "tests/cpp/contact_peak_cli.cmake": {
+        "sha256_before": "84577b1c3166017cd65c247a6058eddb0911341c94cc4ef18f190bb4b1e58757",
+        "sha256_after_build": "84577b1c3166017cd65c247a6058eddb0911341c94cc4ef18f190bb4b1e58757",
+        "sha256_after_ctest": "84577b1c3166017cd65c247a6058eddb0911341c94cc4ef18f190bb4b1e58757",
+        "bytes": 8269
+      },
+      "tests/cpp/contact_peak_test.cpp": {
+        "sha256_before": "e73e7f1634da92f607d74ad66443646d07c2fd5fd216ddce372ccbe95bbd9762",
+        "sha256_after_build": "e73e7f1634da92f607d74ad66443646d07c2fd5fd216ddce372ccbe95bbd9762",
+        "sha256_after_ctest": "e73e7f1634da92f607d74ad66443646d07c2fd5fd216ddce372ccbe95bbd9762",
+        "bytes": 24867
+      },
+      "tests/cpp/contact_reference_test.cpp": {
+        "sha256_before": "e1d77debc7fc563b6c8b2425b25cd5fdc802ef065f4438d24612f1e43bf174b5",
+        "sha256_after_build": "e1d77debc7fc563b6c8b2425b25cd5fdc802ef065f4438d24612f1e43bf174b5",
+        "sha256_after_ctest": "e1d77debc7fc563b6c8b2425b25cd5fdc802ef065f4438d24612f1e43bf174b5",
+        "bytes": 41121
+      },
+      "tests/cpp/contact_split_peak_test.cpp": {
+        "sha256_before": "bee22064db003fdcfc2445b47d33d7b2e5f30a9a622776caee32e1683db9ff96",
+        "sha256_after_build": "bee22064db003fdcfc2445b47d33d7b2e5f30a9a622776caee32e1683db9ff96",
+        "sha256_after_ctest": "bee22064db003fdcfc2445b47d33d7b2e5f30a9a622776caee32e1683db9ff96",
+        "bytes": 18110
+      },
+      "tests/cpp/control_fp_environment_test.cpp": {
+        "sha256_before": "ce9dd0cdd386d9e5f84622c131202de4bf4ec8c9bd5d78ce85acb6a1683e8b3a",
+        "sha256_after_build": "ce9dd0cdd386d9e5f84622c131202de4bf4ec8c9bd5d78ce85acb6a1683e8b3a",
+        "sha256_after_ctest": "ce9dd0cdd386d9e5f84622c131202de4bf4ec8c9bd5d78ce85acb6a1683e8b3a",
+        "bytes": 12938
+      },
+      "tests/cpp/control_text_test.cpp": {
+        "sha256_before": "4ba162092c6cb74a179d719238f6d34ebdd8782dcb8358b53c5c05bc8df33c08",
+        "sha256_after_build": "4ba162092c6cb74a179d719238f6d34ebdd8782dcb8358b53c5c05bc8df33c08",
+        "sha256_after_ctest": "4ba162092c6cb74a179d719238f6d34ebdd8782dcb8358b53c5c05bc8df33c08",
+        "bytes": 27764
+      },
+      "tests/cpp/control_value_test.cpp": {
+        "sha256_before": "955f7218b087ccc4ad231443ee4f23970ccc596c2ea55f87d54ad9ce953adb72",
+        "sha256_after_build": "955f7218b087ccc4ad231443ee4f23970ccc596c2ea55f87d54ad9ce953adb72",
+        "sha256_after_ctest": "955f7218b087ccc4ad231443ee4f23970ccc596c2ea55f87d54ad9ce953adb72",
+        "bytes": 15530
+      },
+      "tests/cpp/diagnostic_stdout.cmake": {
+        "sha256_before": "7f91f038da0d8f19e7623a94bdc47b473bc0fb8e0a87b43b0f9bab3611d07076",
+        "sha256_after_build": "7f91f038da0d8f19e7623a94bdc47b473bc0fb8e0a87b43b0f9bab3611d07076",
+        "sha256_after_ctest": "7f91f038da0d8f19e7623a94bdc47b473bc0fb8e0a87b43b0f9bab3611d07076",
+        "bytes": 3314
+      },
+      "tests/cpp/event_model_test.cpp": {
+        "sha256_before": "f6ba26ff7f79a370d730abe4b98a819dcab7a46de7995352468027c8e5186ee2",
+        "sha256_after_build": "f6ba26ff7f79a370d730abe4b98a819dcab7a46de7995352468027c8e5186ee2",
+        "sha256_after_ctest": "f6ba26ff7f79a370d730abe4b98a819dcab7a46de7995352468027c8e5186ee2",
+        "bytes": 17571
+      },
+      "tests/cpp/event_processor_test.cpp": {
+        "sha256_before": "f1d9383ad34843dabcca0c58edaecf7cba56b2e19e57b2e065e37c2b5f60793e",
+        "sha256_after_build": "f1d9383ad34843dabcca0c58edaecf7cba56b2e19e57b2e065e37c2b5f60793e",
+        "sha256_after_ctest": "f1d9383ad34843dabcca0c58edaecf7cba56b2e19e57b2e065e37c2b5f60793e",
+        "bytes": 20477
+      },
+      "tests/cpp/event_release_port_test.cpp": {
+        "sha256_before": "47dd4222dfd00b8ecadbdf9689cfd9b600bc6ebb0730d77747b2694d73c48681",
+        "sha256_after_build": "47dd4222dfd00b8ecadbdf9689cfd9b600bc6ebb0730d77747b2694d73c48681",
+        "sha256_after_ctest": "47dd4222dfd00b8ecadbdf9689cfd9b600bc6ebb0730d77747b2694d73c48681",
+        "bytes": 20711
+      },
+      "tests/cpp/expect_cli_failure.cmake": {
+        "sha256_before": "9cf60b2d1888b8aa9bd11d28d375a721b228ab0e82debbab46e53fbb35500ce4",
+        "sha256_after_build": "9cf60b2d1888b8aa9bd11d28d375a721b228ab0e82debbab46e53fbb35500ce4",
+        "sha256_after_ctest": "9cf60b2d1888b8aa9bd11d28d375a721b228ab0e82debbab46e53fbb35500ce4",
+        "bytes": 600
+      },
+      "tests/cpp/filtered_render.cmake": {
+        "sha256_before": "0e4d7cb3b4827cc659fbe51936b7a71e911fa6d9429d68b52dd9e09678588d7c",
+        "sha256_after_build": "0e4d7cb3b4827cc659fbe51936b7a71e911fa6d9429d68b52dd9e09678588d7c",
+        "sha256_after_ctest": "0e4d7cb3b4827cc659fbe51936b7a71e911fa6d9429d68b52dd9e09678588d7c",
+        "bytes": 10694
+      },
+      "tests/cpp/fractional_observation_test.cpp": {
+        "sha256_before": "5ea8c5deab6dc8612d680413abd1f6765a463b420d34fa17f48540cd4e8dfa55",
+        "sha256_after_build": "5ea8c5deab6dc8612d680413abd1f6765a463b420d34fa17f48540cd4e8dfa55",
+        "sha256_after_ctest": "5ea8c5deab6dc8612d680413abd1f6765a463b420d34fa17f48540cd4e8dfa55",
+        "bytes": 21683
+      },
+      "tests/cpp/instrument_model_state_test.cpp": {
+        "sha256_before": "ab881e0590f3872505231215c95a21ba91de52b719276d93667e6e75122902e7",
+        "sha256_after_build": "ab881e0590f3872505231215c95a21ba91de52b719276d93667e6e75122902e7",
+        "sha256_after_ctest": "ab881e0590f3872505231215c95a21ba91de52b719276d93667e6e75122902e7",
+        "bytes": 21832
+      },
+      "tests/cpp/instrument_state_test.cpp": {
+        "sha256_before": "be54581bb3efab5096bfada65e20eec230716f7c2ff110231157d569c080cecc",
+        "sha256_after_build": "be54581bb3efab5096bfada65e20eec230716f7c2ff110231157d569c080cecc",
+        "sha256_after_ctest": "be54581bb3efab5096bfada65e20eec230716f7c2ff110231157d569c080cecc",
+        "bytes": 7329
+      },
+      "tests/cpp/modal_transition_cache_test.cpp": {
+        "sha256_before": "50cbca48f767189f17419424d13dcfedc810e998fa6ac436a7bbf7eb95a3fa21",
+        "sha256_after_build": "50cbca48f767189f17419424d13dcfedc810e998fa6ac436a7bbf7eb95a3fa21",
+        "sha256_after_ctest": "50cbca48f767189f17419424d13dcfedc810e998fa6ac436a7bbf7eb95a3fa21",
+        "bytes": 8416
+      },
+      "tests/cpp/note_model_test.cpp": {
+        "sha256_before": "ce14509e1933ca22aed32b3dab23be11ec3466bf7b2e901f5d58b7d8595135fd",
+        "sha256_after_build": "ce14509e1933ca22aed32b3dab23be11ec3466bf7b2e901f5d58b7d8595135fd",
+        "sha256_after_ctest": "ce14509e1933ca22aed32b3dab23be11ec3466bf7b2e901f5d58b7d8595135fd",
+        "bytes": 16985
+      },
+      "tests/cpp/note_tracker_test.cpp": {
+        "sha256_before": "96f00bf3fa5a1b54352fae347e8f6cbdfb7f543bed53c15a8885be4400f365e1",
+        "sha256_after_build": "96f00bf3fa5a1b54352fae347e8f6cbdfb7f543bed53c15a8885be4400f365e1",
+        "sha256_after_ctest": "96f00bf3fa5a1b54352fae347e8f6cbdfb7f543bed53c15a8885be4400f365e1",
+        "bytes": 13499
+      },
+      "tests/cpp/quadrature_cli.cmake": {
+        "sha256_before": "21e4f9eb4025d672996b73715a6735b25c37917f48a13bad59a276325f499147",
+        "sha256_after_build": "21e4f9eb4025d672996b73715a6735b25c37917f48a13bad59a276325f499147",
+        "sha256_after_ctest": "21e4f9eb4025d672996b73715a6735b25c37917f48a13bad59a276325f499147",
+        "bytes": 15690
+      },
+      "tests/cpp/quadrature_engine_test.cpp": {
+        "sha256_before": "481894129f3dd92ede0875d376c4034d38b3e347b44f82c6bb8ad205f0d37063",
+        "sha256_after_build": "481894129f3dd92ede0875d376c4034d38b3e347b44f82c6bb8ad205f0d37063",
+        "sha256_after_ctest": "481894129f3dd92ede0875d376c4034d38b3e347b44f82c6bb8ad205f0d37063",
+        "bytes": 33352
+      },
+      "tests/cpp/quadrature_fir_order_test.cpp": {
+        "sha256_before": "381c77467b48baeef726d7739624161862a8b7af1d99830b93ad3b2dedc6ada5",
+        "sha256_after_build": "381c77467b48baeef726d7739624161862a8b7af1d99830b93ad3b2dedc6ada5",
+        "sha256_after_ctest": "381c77467b48baeef726d7739624161862a8b7af1d99830b93ad3b2dedc6ada5",
+        "bytes": 12350
+      },
+      "tests/cpp/quadrature_fir_test.cpp": {
+        "sha256_before": "68ef7b4cee30bd8ba6f8e7aba1ab9ee5d5f67318f4e96b38be84e66517576a04",
+        "sha256_after_build": "68ef7b4cee30bd8ba6f8e7aba1ab9ee5d5f67318f4e96b38be84e66517576a04",
+        "sha256_after_ctest": "68ef7b4cee30bd8ba6f8e7aba1ab9ee5d5f67318f4e96b38be84e66517576a04",
+        "bytes": 12882
+      },
+      "tests/cpp/render_output.cmake": {
+        "sha256_before": "ce1addaee80f5b9361fadd8074593e359a1bc4758dc762f8454e3cd808f3c386",
+        "sha256_after_build": "ce1addaee80f5b9361fadd8074593e359a1bc4758dc762f8454e3cd808f3c386",
+        "sha256_after_ctest": "ce1addaee80f5b9361fadd8074593e359a1bc4758dc762f8454e3cd808f3c386",
+        "bytes": 5164
+      },
+      "tests/cpp/research_engine_test.cpp": {
+        "sha256_before": "cb8c580baea9bd516b8686bffb7fe5b9285f56ce001035c2979374d8a10a1b16",
+        "sha256_after_build": "cb8c580baea9bd516b8686bffb7fe5b9285f56ce001035c2979374d8a10a1b16",
+        "sha256_after_ctest": "cb8c580baea9bd516b8686bffb7fe5b9285f56ce001035c2979374d8a10a1b16",
+        "bytes": 11892
+      },
+      "tests/cpp/review_regression.cpp": {
+        "sha256_before": "48f9ff033a8f2bff7f0bfd69d86a23493c685e86afa0eca95a770f879cc23b51",
+        "sha256_after_build": "48f9ff033a8f2bff7f0bfd69d86a23493c685e86afa0eca95a770f879cc23b51",
+        "sha256_after_ctest": "48f9ff033a8f2bff7f0bfd69d86a23493c685e86afa0eca95a770f879cc23b51",
+        "bytes": 16240
+      },
+      "tests/cpp/runtime_benchmark_json.cmake": {
+        "sha256_before": "37773c8805f235c045e1aab8896765bb7ccf593c09be600e42bcd3e735eb21de",
+        "sha256_after_build": "37773c8805f235c045e1aab8896765bb7ccf593c09be600e42bcd3e735eb21de",
+        "sha256_after_ctest": "37773c8805f235c045e1aab8896765bb7ccf593c09be600e42bcd3e735eb21de",
+        "bytes": 9381
+      },
+      "tests/cpp/silent_observation_test.cpp": {
+        "sha256_before": "6f9924cf19a18c458c2caaca5af93609e4319333cc421a3feff05e50870bfda1",
+        "sha256_after_build": "6f9924cf19a18c458c2caaca5af93609e4319333cc421a3feff05e50870bfda1",
+        "sha256_after_ctest": "6f9924cf19a18c458c2caaca5af93609e4319333cc421a3feff05e50870bfda1",
+        "bytes": 31253
+      },
+      "tests/cpp/state_concurrency_test.cpp": {
+        "sha256_before": "53d36fc67e34c42296fbbfd70d134521225958ae57ce7cb6c3b2ca2362d571ca",
+        "sha256_after_build": "53d36fc67e34c42296fbbfd70d134521225958ae57ce7cb6c3b2ca2362d571ca",
+        "sha256_after_ctest": "53d36fc67e34c42296fbbfd70d134521225958ae57ce7cb6c3b2ca2362d571ca",
+        "bytes": 7000
+      },
+      "tests/cpp/state_fp_environment_test.cpp": {
+        "sha256_before": "90e29f5903c3b67afd5f28f0b8958cf2c6bca04a3f2420655296b6fd7ab81a4d",
+        "sha256_after_build": "90e29f5903c3b67afd5f28f0b8958cf2c6bca04a3f2420655296b6fd7ab81a4d",
+        "sha256_after_ctest": "90e29f5903c3b67afd5f28f0b8958cf2c6bca04a3f2420655296b6fd7ab81a4d",
+        "bytes": 10050
+      },
+      "tests/cpp/state_property_test.cpp": {
+        "sha256_before": "338ba2e214a99de3f9ad4533e8f191298f5facb06150b2eb8f00de9e514465b9",
+        "sha256_after_build": "338ba2e214a99de3f9ad4533e8f191298f5facb06150b2eb8f00de9e514465b9",
+        "sha256_after_ctest": "338ba2e214a99de3f9ad4533e8f191298f5facb06150b2eb8f00de9e514465b9",
+        "bytes": 11347
+      },
+      "tests/cpp/vst3_automation_contract_test.cpp": {
+        "sha256_before": "dc6607f0d50e9b47e3b861baf9483e10c814e284a85296fcef5ab5284380f8d2",
+        "sha256_after_build": "dc6607f0d50e9b47e3b861baf9483e10c814e284a85296fcef5ab5284380f8d2",
+        "sha256_after_ctest": "dc6607f0d50e9b47e3b861baf9483e10c814e284a85296fcef5ab5284380f8d2",
+        "bytes": 22016
+      },
+      "tests/cpp/vst3_benchmark_json.cmake": {
+        "sha256_before": "ac87b93d9079242bc69b66f5305c640e5c3fae697d963ef0fc4dd1071b7509f7",
+        "sha256_after_build": "ac87b93d9079242bc69b66f5305c640e5c3fae697d963ef0fc4dd1071b7509f7",
+        "sha256_after_ctest": "ac87b93d9079242bc69b66f5305c640e5c3fae697d963ef0fc4dd1071b7509f7",
+        "bytes": 16140
+      },
+      "tests/cpp/vst3_buffer_contract_test.cpp": {
+        "sha256_before": "2325e255629446bc1866dae665f4c5f515808b106f7015da78e4a57707c47238",
+        "sha256_after_build": "2325e255629446bc1866dae665f4c5f515808b106f7015da78e4a57707c47238",
+        "sha256_after_ctest": "2325e255629446bc1866dae665f4c5f515808b106f7015da78e4a57707c47238",
+        "bytes": 30864
+      },
+      "tests/cpp/vst3_bundle_resources.cmake": {
+        "sha256_before": "8f3c6e19d69cd61f0fdd3de0c879c5adcbdc8f3bdb9271dbf515ecc516c9ac40",
+        "sha256_after_build": "8f3c6e19d69cd61f0fdd3de0c879c5adcbdc8f3bdb9271dbf515ecc516c9ac40",
+        "sha256_after_ctest": "8f3c6e19d69cd61f0fdd3de0c879c5adcbdc8f3bdb9271dbf515ecc516c9ac40",
+        "bytes": 2465
+      },
+      "tests/cpp/vst3_channel_commands_test.cpp": {
+        "sha256_before": "13ccb83eacadddaa9ecdcf7be773759d98a9df96d0077ad1ebeaa480928741fa",
+        "sha256_after_build": "13ccb83eacadddaa9ecdcf7be773759d98a9df96d0077ad1ebeaa480928741fa",
+        "sha256_after_ctest": "13ccb83eacadddaa9ecdcf7be773759d98a9df96d0077ad1ebeaa480928741fa",
+        "bytes": 6181
+      },
+      "tests/cpp/vst3_command_atomicity_test.cpp": {
+        "sha256_before": "747e43164e91cfede8277a86fac4f387dbd265a755e93e12d7c2b3beeb6a9755",
+        "sha256_after_build": "747e43164e91cfede8277a86fac4f387dbd265a755e93e12d7c2b3beeb6a9755",
+        "sha256_after_ctest": "747e43164e91cfede8277a86fac4f387dbd265a755e93e12d7c2b3beeb6a9755",
+        "bytes": 38690
+      },
+      "tests/cpp/vst3_command_bounds_test.cpp": {
+        "sha256_before": "1840571beb533754602b76704730d09113b6fbc8f4e2c00a7be603f7345a6faf",
+        "sha256_after_build": "1840571beb533754602b76704730d09113b6fbc8f4e2c00a7be603f7345a6faf",
+        "sha256_after_ctest": "1840571beb533754602b76704730d09113b6fbc8f4e2c00a7be603f7345a6faf",
+        "bytes": 15173
+      },
+      "tests/cpp/vst3_command_partition_test.cpp": {
+        "sha256_before": "e1ab16cb702fc953bb0ff24977460b3d84cc7d928ce22709f9732867e195052f",
+        "sha256_after_build": "e1ab16cb702fc953bb0ff24977460b3d84cc7d928ce22709f9732867e195052f",
+        "sha256_after_ctest": "e1ab16cb702fc953bb0ff24977460b3d84cc7d928ce22709f9732867e195052f",
+        "bytes": 31637
+      },
+      "tests/cpp/vst3_command_test_support.hpp": {
+        "sha256_before": "478365f4d3d9bb8b0994cc743f24bb25dcd271d3041fd8a4c92c4086464579c8",
+        "sha256_after_build": "478365f4d3d9bb8b0994cc743f24bb25dcd271d3041fd8a4c92c4086464579c8",
+        "sha256_after_ctest": "478365f4d3d9bb8b0994cc743f24bb25dcd271d3041fd8a4c92c4086464579c8",
+        "bytes": 2076
+      },
+      "tests/cpp/vst3_control_text_test.cpp": {
+        "sha256_before": "31dd56132a8d678f942633ff027ca95a2ea9580f1495d09b4d7169dd7ca6a6e4",
+        "sha256_after_build": "31dd56132a8d678f942633ff027ca95a2ea9580f1495d09b4d7169dd7ca6a6e4",
+        "sha256_after_ctest": "31dd56132a8d678f942633ff027ca95a2ea9580f1495d09b4d7169dd7ca6a6e4",
+        "bytes": 27877
+      },
+      "tests/cpp/vst3_dual_module_test.cpp": {
+        "sha256_before": "534ff28d46f253b0191a9bc693d0b3acd8d6ba67b6cf3a4b10db217294bd879c",
+        "sha256_after_build": "534ff28d46f253b0191a9bc693d0b3acd8d6ba67b6cf3a4b10db217294bd879c",
+        "sha256_after_ctest": "534ff28d46f253b0191a9bc693d0b3acd8d6ba67b6cf3a4b10db217294bd879c",
+        "bytes": 14463
+      },
+      "tests/cpp/vst3_filtered_test.cpp": {
+        "sha256_before": "6445c2df88ff1ec21e546c414e9000d2650ee1c66df4ace44e4838519a9a0582",
+        "sha256_after_build": "6445c2df88ff1ec21e546c414e9000d2650ee1c66df4ace44e4838519a9a0582",
+        "sha256_after_ctest": "6445c2df88ff1ec21e546c414e9000d2650ee1c66df4ace44e4838519a9a0582",
+        "bytes": 18689
+      },
+      "tests/cpp/vst3_fp_environment_test.cpp": {
+        "sha256_before": "05303cc961e4eef33adb2d846e5289922cd77ee5ab09d4f6f2e1f0ec74995136",
+        "sha256_after_build": "05303cc961e4eef33adb2d846e5289922cd77ee5ab09d4f6f2e1f0ec74995136",
+        "sha256_after_ctest": "05303cc961e4eef33adb2d846e5289922cd77ee5ab09d4f6f2e1f0ec74995136",
+        "bytes": 18308
+      },
+      "tests/cpp/vst3_host_test.cpp": {
+        "sha256_before": "b5238fa479b142c1679c9a09d7d4ea1b98e15a3e87e656ec937bf6917031f3c3",
+        "sha256_after_build": "b5238fa479b142c1679c9a09d7d4ea1b98e15a3e87e656ec937bf6917031f3c3",
+        "sha256_after_ctest": "b5238fa479b142c1679c9a09d7d4ea1b98e15a3e87e656ec937bf6917031f3c3",
+        "bytes": 62730
+      },
+      "tests/cpp/vst3_loaded_midi_test.cpp": {
+        "sha256_before": "ded02dec0a9db5764e84371ebbdcc4b3492514a41a789491a9593400c511d327",
+        "sha256_after_build": "ded02dec0a9db5764e84371ebbdcc4b3492514a41a789491a9593400c511d327",
+        "sha256_after_ctest": "ded02dec0a9db5764e84371ebbdcc4b3492514a41a789491a9593400c511d327",
+        "bytes": 25948
+      },
+      "tests/cpp/vst3_note_model_test.cpp": {
+        "sha256_before": "a408293c3f9f337e04b2f29f95cccfc0e0ff0514c02b3524c2cbcb84aa3d47ed",
+        "sha256_after_build": "a408293c3f9f337e04b2f29f95cccfc0e0ff0514c02b3524c2cbcb84aa3d47ed",
+        "sha256_after_ctest": "a408293c3f9f337e04b2f29f95cccfc0e0ff0514c02b3524c2cbcb84aa3d47ed",
+        "bytes": 19434
+      },
+      "tests/cpp/vst3_pressure_test.cpp": {
+        "sha256_before": "e6d5f64946cf7f580427d5056e856ccaa6f2d700d9d4e5ff3a2d5281e849f4ba",
+        "sha256_after_build": "e6d5f64946cf7f580427d5056e856ccaa6f2d700d9d4e5ff3a2d5281e849f4ba",
+        "sha256_after_ctest": "e6d5f64946cf7f580427d5056e856ccaa6f2d700d9d4e5ff3a2d5281e849f4ba",
+        "bytes": 21055
+      },
+      "tests/cpp/vst3_quadrature_contract_test.cpp": {
+        "sha256_before": "e6579e640768077e2de380d5daa9b415e99e17b8c9ca781cd5dce6a3b8ce3dd1",
+        "sha256_after_build": "e6579e640768077e2de380d5daa9b415e99e17b8c9ca781cd5dce6a3b8ce3dd1",
+        "sha256_after_ctest": "e6579e640768077e2de380d5daa9b415e99e17b8c9ca781cd5dce6a3b8ce3dd1",
+        "bytes": 24838
+      },
+      "tests/cpp/vst3_state_concurrency_test.cpp": {
+        "sha256_before": "175141258725b48497a05e48e9386009143d81ca8460a9a4fa1801bd2a422f99",
+        "sha256_after_build": "175141258725b48497a05e48e9386009143d81ca8460a9a4fa1801bd2a422f99",
+        "sha256_after_ctest": "175141258725b48497a05e48e9386009143d81ca8460a9a4fa1801bd2a422f99",
+        "bytes": 17346
+      },
+      "tests/cpp/vst3_stream_contract_test.cpp": {
+        "sha256_before": "e97270c36e707ce47b97bd81e82573c179e69129ee37dfdf18bffd6994946a78",
+        "sha256_after_build": "e97270c36e707ce47b97bd81e82573c179e69129ee37dfdf18bffd6994946a78",
+        "sha256_after_ctest": "e97270c36e707ce47b97bd81e82573c179e69129ee37dfdf18bffd6994946a78",
+        "bytes": 23404
+      },
+      "tests/cpp/vst3_test_support.hpp": {
+        "sha256_before": "85c7212f1ef0eef129c2c79e456c70c7887dee75e7bc84c95438c6f3850a0f29",
+        "sha256_after_build": "85c7212f1ef0eef129c2c79e456c70c7887dee75e7bc84c95438c6f3850a0f29",
+        "sha256_after_ctest": "85c7212f1ef0eef129c2c79e456c70c7887dee75e7bc84c95438c6f3850a0f29",
+        "bytes": 16090
+      },
+      "tests/cpp/vst3_triple_module_test.cpp": {
+        "sha256_before": "271b4ba87f53865d16caa970e9b9b84222f25eafc63c8c72e3c3963bb00e38d5",
+        "sha256_after_build": "271b4ba87f53865d16caa970e9b9b84222f25eafc63c8c72e3c3963bb00e38d5",
+        "sha256_after_ctest": "271b4ba87f53865d16caa970e9b9b84222f25eafc63c8c72e3c3963bb00e38d5",
+        "bytes": 19894
+      },
+      "tests/fixtures/control_text_vectors.hpp": {
+        "sha256_before": "6dc6602e4831932dfa586accb1fe26c15d93a9128ab420d07989b18b015387d7",
+        "sha256_after_build": "6dc6602e4831932dfa586accb1fe26c15d93a9128ab420d07989b18b015387d7",
+        "sha256_after_ctest": "6dc6602e4831932dfa586accb1fe26c15d93a9128ab420d07989b18b015387d7",
+        "bytes": 53534
+      },
+      "tests/fixtures/control_text_vectors.json": {
+        "sha256_before": "da183a9b183f10d86a258b5aeee1ce4daae0af03099bab7e87c5ec1fecdb75e0",
+        "sha256_after_build": "da183a9b183f10d86a258b5aeee1ce4daae0af03099bab7e87c5ec1fecdb75e0",
+        "sha256_after_ctest": "da183a9b183f10d86a258b5aeee1ce4daae0af03099bab7e87c5ec1fecdb75e0",
+        "bytes": 79330
+      },
+      "tools/generate_control_text_vectors.py": {
+        "sha256_before": "995a88055d3d22c5fc8923767e0ab9c9642b0eb98a2c07e3671e392825eca346",
+        "sha256_after_build": "995a88055d3d22c5fc8923767e0ab9c9642b0eb98a2c07e3671e392825eca346",
+        "sha256_after_ctest": "995a88055d3d22c5fc8923767e0ab9c9642b0eb98a2c07e3671e392825eca346",
+        "bytes": 19512
+      }
+    }
+  },
+  "environment": {
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+    "system": "Linux",
+    "architecture": "x86_64",
+    "uname": {
+      "system": "Linux",
+      "node": "4f398b69b6a5",
+      "release": "6.18.57",
+      "version": "#1 SMP Tue Oct 20 21:56:04 UTC 2026",
+      "machine": "x86_64",
+      "processor": ""
+    },
+    "os_release": {
+      "NAME": "Debian GNU/Linux",
+      "ID": "debian",
+      "PRETTY_NAME": "Debian GNU/Linux 13 (trixie)",
+      "VERSION_ID": "13",
+      "VERSION": "13 (trixie)",
+      "VERSION_CODENAME": "trixie",
+      "DEBIAN_VERSION_FULL": "13.7",
+      "HOME_URL": "https://www.debian.org/",
+      "SUPPORT_URL": "https://www.debian.org/support",
+      "BUG_REPORT_URL": "https://bugs.debian.org/"
+    },
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "logical_cpus": 9,
+    "cpu_model": "AMD EPYC 9V74 80-Core Processor",
+    "selected_environment": {
+      "LC_ALL": "C.UTF-8",
+      "LC_CTYPE": "C.UTF-8",
+      "LANG": "C.UTF-8"
+    },
+    "tool_versions": {
+      "compiler": {
+        "command": "/usr/bin/c++ --version",
+        "argv": [
+          "/usr/bin/c++",
+          "--version"
+        ],
+        "cwd": "/workspace/scratch/edddd917a86c/Fender-rhoades",
+        "exit_code": 0,
+        "stdout": "c++ (Debian 14.2.0-19) 14.2.0\nCopyright (C) 2024 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\n\n",
+        "stderr": ""
+      },
+      "compiler_target": {
+        "command": "/usr/bin/c++ -dumpmachine",
+        "argv": [
+          "/usr/bin/c++",
+          "-dumpmachine"
+        ],
+        "cwd": "/workspace/scratch/edddd917a86c/Fender-rhoades",
+        "exit_code": 0,
+        "stdout": "x86_64-linux-gnu\n",
+        "stderr": ""
+      },
+      "cmake": {
+        "command": "cmake --version",
+        "argv": [
+          "cmake",
+          "--version"
+        ],
+        "cwd": "/workspace/scratch/edddd917a86c/Fender-rhoades",
+        "exit_code": 0,
+        "stdout": "cmake version 4.4.5\n\nCMake suite maintained and supported by Kitware (kitware.com/cmake).\n",
+        "stderr": ""
+      },
+      "ctest": {
+        "command": "ctest --version",
+        "argv": [
+          "ctest",
+          "--version"
+        ],
+        "cwd": "/workspace/scratch/edddd917a86c/Fender-rhoades",
+        "exit_code": 0,
+        "stdout": "ctest version 4.4.5\n\nCMake suite maintained and supported by Kitware (kitware.com/cmake).\n",
+        "stderr": ""
+      },
+      "make": {
+        "command": "make --version",
+        "argv": [
+          "make",
+          "--version"
+        ],
+        "cwd": "/workspace/scratch/edddd917a86c/Fender-rhoades",
+        "exit_code": 0,
+        "stdout": "GNU Make 4.4.1\nBuilt for x86_64-pc-linux-gnu\nCopyright (C) 1988-2023 Free Software Foundation, Inc.\nLicense GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>\nThis is free software: you are free to change and redistribute it.\nThere is NO WARRANTY, to the extent permitted by law.\n",
+        "stderr": ""
+      }
+    },
+    "cache_options": {
+      "BUILD_TESTING": {
+        "type": "BOOL",
+        "value": "ON"
+      },
+      "CMAKE_ADDR2LINE": {
+        "type": "FILEPATH",
+        "value": "/usr/bin/addr2line"
+      },
+      "CMAKE_AR": {
+        "type": "FILEPATH",
+        "value": "/usr/bin/ar"
+      },
+      "CMAKE_BUILD_TYPE": {
+        "type": "STRING",
+        "value": "Release"
+      },
+      "CMAKE_COLOR_MAKEFILE": {
+        "type": "BOOL",
+        "value": "ON"
+      },
+      "CMAKE_CXX_COMPILER": {
+        "type": "FILEPATH",
+        "value": "/usr/bin/c++"
+      },
+      "CMAKE_CXX_COMPILER_AR": {
+        "type": "FILEPATH",
+        "value": "/usr/bin/gcc-ar-14"
+      },
+      "CMAKE_CXX_COMPILER_RANLIB": {
+        "type": "FILEPATH",
+        "value": "/usr/bin/gcc-ranlib-14"
+      },
+      "CMAKE_CXX_FLAGS": {
+        "type": "STRING",
+        "value": ""
+      },
+      "CMAKE_CXX_FLAGS_DEBUG": {
+        "type": "STRING",
+        "value": "-g"
+      },
+      "CMAKE_CXX_FLAGS_MINSIZEREL": {
+        "type": "STRING",
+        "value": "-Os -DNDEBUG"
+      },
+      "CMAKE_CXX_FLAGS_RELEASE": {
+        "type": "STRING",
+        "value": "-O3 -DNDEBUG"
+      },
+      "CMAKE_CXX_FLAGS_RELWITHDEBINFO": {
+        "type": "STRING",
+        "value": "-O2 -g -DNDEBUG"
+      },
+      "CMAKE_C_COMPILER": {
+        "type": "FILEPATH",
+        "value": "/usr/bin/cc"
+      },
+      "CMAKE_C_COMPILER_AR": {
+        "type": "FILEPATH",
+        "value": "/usr/bin/gcc-ar-14"
+      },
+      "CMAKE_C_COMPILER_RANLIB": {
+        "type": "FILEPATH",
+        "value": "/usr/bin/gcc-ranlib-14"
+      },
+      "CMAKE_C_FLAGS": {
+        "type": "STRING",
+        "value": ""
+      },
+      "CMAKE_C_FLAGS_DEBUG": {
+        "type": "STRING",
+        "value": "-g"
+      },
+      "CMAKE_C_FLAGS_MINSIZEREL": {
+        "type": "STRING",
+        "value": "-Os -DNDEBUG"
+      },
+      "CMAKE_C_FLAGS_RELEASE": {
+        "type": "STRING",
+        "value": "-O3 -DNDEBUG"
+      },
+      "CMAKE_C_FLAGS_RELWITHDEBINFO": {
+        "type": "STRING",
+        "value": "-O2 -g -DNDEBUG"
+      },
+      "CMAKE_DLLTOOL": {
+        "type": "FILEPATH",
+        "value": "CMAKE_DLLTOOL-NOTFOUND"
+      },
+      "CMAKE_EXE_LINKER_FLAGS": {
+        "type": "STRING",
+        "value": ""
+      },
+      "CMAKE_EXE_LINKER_FLAGS_DEBUG": {
+        "type": "STRING",
+        "value": ""
+      },
+      "CMAKE_EXE_LINKER_FLAGS_MINSIZEREL": {
+        "type": "STRING",
+        "value": ""
+      },
+      "CMAKE_EXE_LINKER_FLAGS_RELEASE": {
+        "type": "STRING",
+        "value": ""
+      },
+      "CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO": {
+        "type": "STRING",
+        "value": ""
+      },
+      "CMAKE_EXPORT_COMPILE_COMMANDS": {
+        "type": "STRING",
+        "value": "ON"
+      },
+      "CMAKE_FIND_PACKAGE_REDIRECTS_DIR": {
+        "type": "STATIC",
+        "value": "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/CMakeFiles/pkgRedirects"
+      },
+      "CMAKE_INSTALL_PREFIX": {
+        "type": "PATH",
+        "value": "/usr/local"
+      },
+      "CMAKE_LINKER": {
+        "type": "FILEPATH",
+        "value": "/usr/bin/ld"
+      },
+      "CMAKE_MAKE_PROGRAM": {
+        "type": "FILEPATH",
+        "value": "/usr/bin/gmake"
+      },
+      "CMAKE_MODULE_LINKER_FLAGS": {
+        "type": "STRING",
+        "value": ""
+      },
+      "CMAKE_MODULE_LINKER_FLAGS_DEBUG": {
+        "type": "STRING",
+        "value": ""
+      },
+      "CMAKE_MODULE_LINKER_FLAGS_MINSIZEREL": {
+        "type": "STRING",
+        "value": ""
+      },
+      "CMAKE_MODULE_LINKER_FLAGS_RELEASE": {
+        "type": "STRING",
+        "value": ""
+      },
+      "CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO": {
+        "type": "STRING",
+        "value": ""
+      },
+      "CMAKE_NM": {
+        "type": "FILEPATH",
+        "value": "/usr/bin/nm"
+      },
+      "CMAKE_OBJCOPY": {
+        "type": "FILEPATH",
+        "value": "/usr/bin/objcopy"
+      },
+      "CMAKE_OBJDUMP": {
+        "type": "FILEPATH",
+        "value": "/usr/bin/objdump"
+      },
+      "CMAKE_OSX_DEPLOYMENT_TARGET": {
+        "type": "STRING",
+        "value": "10.13"
+      },
+      "CMAKE_PROJECT_COMPAT_VERSION": {
+        "type": "STATIC",
+        "value": ""
+      },
+      "CMAKE_PROJECT_DESCRIPTION": {
+        "type": "STATIC",
+        "value": ""
+      },
+      "CMAKE_PROJECT_HOMEPAGE_URL": {
+        "type": "STATIC",
+        "value": ""
+      },
+      "CMAKE_PROJECT_NAME": {
+        "type": "STATIC",
+        "value": "RhodesResearch"
+      },
+      "CMAKE_PROJECT_SPDX_LICENSE": {
+        "type": "STATIC",
+        "value": ""
+      },
+      "CMAKE_PROJECT_VERSION": {
+        "type": "STATIC",
+        "value": "0.1.0"
+      },
+      "CMAKE_PROJECT_VERSION_MAJOR": {
+        "type": "STATIC",
+        "value": "0"
+      },
+      "CMAKE_PROJECT_VERSION_MINOR": {
+        "type": "STATIC",
+        "value": "1"
+      },
+      "CMAKE_PROJECT_VERSION_PATCH": {
+        "type": "STATIC",
+        "value": "0"
+      },
+      "CMAKE_PROJECT_VERSION_TWEAK": {
+        "type": "STATIC",
+        "value": ""
+      },
+      "CMAKE_RANLIB": {
+        "type": "FILEPATH",
+        "value": "/usr/bin/ranlib"
+      },
+      "CMAKE_READELF": {
+        "type": "FILEPATH",
+        "value": "/usr/bin/readelf"
+      },
+      "CMAKE_SHARED_LINKER_FLAGS": {
+        "type": "STRING",
+        "value": ""
+      },
+      "CMAKE_SHARED_LINKER_FLAGS_DEBUG": {
+        "type": "STRING",
+        "value": ""
+      },
+      "CMAKE_SHARED_LINKER_FLAGS_MINSIZEREL": {
+        "type": "STRING",
+        "value": ""
+      },
+      "CMAKE_SHARED_LINKER_FLAGS_RELEASE": {
+        "type": "STRING",
+        "value": ""
+      },
+      "CMAKE_SHARED_LINKER_FLAGS_RELWITHDEBINFO": {
+        "type": "STRING",
+        "value": ""
+      },
+      "CMAKE_SKIP_INSTALL_RPATH": {
+        "type": "BOOL",
+        "value": "NO"
+      },
+      "CMAKE_SKIP_RPATH": {
+        "type": "BOOL",
+        "value": "NO"
+      },
+      "CMAKE_STATIC_LINKER_FLAGS": {
+        "type": "STRING",
+        "value": ""
+      },
+      "CMAKE_STATIC_LINKER_FLAGS_DEBUG": {
+        "type": "STRING",
+        "value": ""
+      },
+      "CMAKE_STATIC_LINKER_FLAGS_MINSIZEREL": {
+        "type": "STRING",
+        "value": ""
+      },
+      "CMAKE_STATIC_LINKER_FLAGS_RELEASE": {
+        "type": "STRING",
+        "value": ""
+      },
+      "CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO": {
+        "type": "STRING",
+        "value": ""
+      },
+      "CMAKE_STRIP": {
+        "type": "FILEPATH",
+        "value": "/usr/bin/strip"
+      },
+      "CMAKE_TAPI": {
+        "type": "FILEPATH",
+        "value": "CMAKE_TAPI-NOTFOUND"
+      },
+      "CMAKE_VERBOSE_MAKEFILE": {
+        "type": "BOOL",
+        "value": "FALSE"
+      },
+      "RHODES_BUILD_VST3": {
+        "type": "BOOL",
+        "value": "ON"
+      },
+      "RHODES_ENABLE_SANITIZERS": {
+        "type": "BOOL",
+        "value": "OFF"
+      },
+      "RHODES_VST3_SDK_ROOT": {
+        "type": "PATH",
+        "value": "/workspace/scratch/d6370337c6a4/vst3sdk"
+      },
+      "RHODES_WARNINGS_AS_ERRORS": {
+        "type": "BOOL",
+        "value": "ON"
+      },
+      "SMTG_ADD_VST3_UTILITIES": {
+        "type": "BOOL",
+        "value": "ON"
+      },
+      "SMTG_CREATE_MODULE_INFO": {
+        "type": "BOOL",
+        "value": "ON"
+      },
+      "SMTG_CREATE_PLUGIN_LINK": {
+        "type": "BOOL",
+        "value": "OFF"
+      },
+      "SMTG_CUSTOM_BINARY_LOCATION": {
+        "type": "PATH",
+        "value": ""
+      },
+      "SMTG_CXX_STANDARD": {
+        "type": "STRING",
+        "value": ""
+      },
+      "SMTG_ENABLE_ADDRESS_SANITIZER": {
+        "type": "BOOL",
+        "value": "OFF"
+      },
+      "SMTG_ENABLE_TARGET_VARS_LOG": {
+        "type": "BOOL",
+        "value": "OFF"
+      },
+      "SMTG_ENABLE_VST3_HOSTING_EXAMPLES": {
+        "type": "BOOL",
+        "value": "OFF"
+      },
+      "SMTG_ENABLE_VST3_PLUGIN_EXAMPLES": {
+        "type": "BOOL",
+        "value": "OFF"
+      },
+      "SMTG_ENABLE_VSTGUI_SUPPORT": {
+        "type": "BOOL",
+        "value": "OFF"
+      },
+      "SMTG_ENABLE_WAYLAND_SUPPORT": {
+        "type": "BOOL",
+        "value": "OFF"
+      },
+      "SMTG_RENAME_ASSERT": {
+        "type": "BOOL",
+        "value": "ON"
+      },
+      "SMTG_RUN_VST_VALIDATOR": {
+        "type": "BOOL",
+        "value": "OFF"
+      },
+      "SMTG_VSTSDK_GENERATE_MACOS_IOS_COLLECTION_TARGETS": {
+        "type": "BOOL",
+        "value": "OFF"
+      },
+      "CMAKE_ADDR2LINE-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_AR-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_CACHEFILE_DIR": {
+        "type": "INTERNAL",
+        "value": "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host"
+      },
+      "CMAKE_CACHE_MAJOR_VERSION": {
+        "type": "INTERNAL",
+        "value": "4"
+      },
+      "CMAKE_CACHE_MINOR_VERSION": {
+        "type": "INTERNAL",
+        "value": "4"
+      },
+      "CMAKE_CACHE_PATCH_VERSION": {
+        "type": "INTERNAL",
+        "value": "5"
+      },
+      "CMAKE_COLOR_MAKEFILE-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_COMMAND": {
+        "type": "INTERNAL",
+        "value": "/home/agent/.local/lib/python3.12/site-packages/cmake/data/bin/cmake"
+      },
+      "CMAKE_CPACK_COMMAND": {
+        "type": "INTERNAL",
+        "value": "/home/agent/.local/lib/python3.12/site-packages/cmake/data/bin/cpack"
+      },
+      "CMAKE_CTEST_COMMAND-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_CTEST_COMMAND": {
+        "type": "INTERNAL",
+        "value": "/home/agent/.local/lib/python3.12/site-packages/cmake/data/bin/ctest"
+      },
+      "CMAKE_CXX_COMPILER-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_CXX_COMPILER_AR-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_CXX_COMPILER_RANLIB-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_CXX_FLAGS-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_CXX_FLAGS_DEBUG-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_CXX_FLAGS_MINSIZEREL-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_CXX_FLAGS_RELEASE-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_CXX_FLAGS_RELWITHDEBINFO-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_C_COMPILER-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_C_COMPILER_AR-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_C_COMPILER_RANLIB-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_C_FLAGS-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_C_FLAGS_DEBUG-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_C_FLAGS_MINSIZEREL-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_C_FLAGS_RELEASE-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_C_FLAGS_RELWITHDEBINFO-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_DIAGNOSTIC_INIT": {
+        "type": "INTERNAL",
+        "value": "CMD_AUTHOR=WARN;CMD_DEPRECATED=WARN;CMD_EXPERIMENTAL=WARN;CMD_INSTALL_ABSOLUTE_DESTINATION=IGNORE;CMD_POLICY=WARN;CMD_UNINITIALIZED=IGNORE;CMD_UNUSED_CLI=WARN"
+      },
+      "CMAKE_DLLTOOL-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_ERROR_DEPRECATED": {
+        "type": "INTERNAL",
+        "value": "OFF"
+      },
+      "CMAKE_EXECUTABLE_FORMAT": {
+        "type": "INTERNAL",
+        "value": "ELF"
+      },
+      "CMAKE_EXE_LINKER_FLAGS-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_EXE_LINKER_FLAGS_DEBUG-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_EXE_LINKER_FLAGS_MINSIZEREL-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_EXE_LINKER_FLAGS_RELEASE-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_EXPORT_COMPILE_COMMANDS-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_EXTRA_GENERATOR": {
+        "type": "INTERNAL",
+        "value": ""
+      },
+      "CMAKE_GENERATOR": {
+        "type": "INTERNAL",
+        "value": "Unix Makefiles"
+      },
+      "CMAKE_GENERATOR_INSTANCE": {
+        "type": "INTERNAL",
+        "value": ""
+      },
+      "CMAKE_GENERATOR_PLATFORM": {
+        "type": "INTERNAL",
+        "value": ""
+      },
+      "CMAKE_GENERATOR_TOOLSET": {
+        "type": "INTERNAL",
+        "value": ""
+      },
+      "CMAKE_HAVE_LIBC_PTHREAD": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_HOME_DIRECTORY": {
+        "type": "INTERNAL",
+        "value": "/workspace/scratch/edddd917a86c/Fender-rhoades"
+      },
+      "CMAKE_INSTALL_SO_NO_EXE": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_LINKER-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_LIST_FILE_NAME": {
+        "type": "INTERNAL",
+        "value": "CMakeLists.txt"
+      },
+      "CMAKE_MAKE_PROGRAM-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_MODULE_LINKER_FLAGS-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_MODULE_LINKER_FLAGS_DEBUG-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_MODULE_LINKER_FLAGS_MINSIZEREL-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_MODULE_LINKER_FLAGS_RELEASE-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_NM-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_NUMBER_OF_MAKEFILES": {
+        "type": "INTERNAL",
+        "value": "10"
+      },
+      "CMAKE_OBJCOPY-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_OBJDUMP-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_PLATFORM_INFO_INITIALIZED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_RANLIB-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_READELF-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_ROOT": {
+        "type": "INTERNAL",
+        "value": "/home/agent/.local/lib/python3.12/site-packages/cmake/data/share/cmake-4.4"
+      },
+      "CMAKE_SHARED_LINKER_FLAGS-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_SHARED_LINKER_FLAGS_DEBUG-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_SHARED_LINKER_FLAGS_MINSIZEREL-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_SHARED_LINKER_FLAGS_RELEASE-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_SHARED_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_SKIP_INSTALL_RPATH-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_SKIP_RPATH-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_STATIC_LINKER_FLAGS-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_STATIC_LINKER_FLAGS_DEBUG-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_STATIC_LINKER_FLAGS_MINSIZEREL-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_STATIC_LINKER_FLAGS_RELEASE-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_STATIC_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_STRIP-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_TAPI-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_UNAME": {
+        "type": "INTERNAL",
+        "value": "/usr/bin/uname"
+      },
+      "CMAKE_VERBOSE_MAKEFILE-ADVANCED": {
+        "type": "INTERNAL",
+        "value": "1"
+      },
+      "CMAKE_WARN_DEPRECATED": {
+        "type": "INTERNAL",
+        "value": "ON"
+      },
+      "SMTG_LINUX": {
+        "type": "INTERNAL",
+        "value": "TRUE"
+      },
+      "SMTG_USE_STDATOMIC_H": {
+        "type": "INTERNAL",
+        "value": ""
+      }
+    },
+    "cache_sha256_before": "3408d1f4a1df158187acc42bdf1e0c0fe05b9f4dacfc82ddae07469309cf626d",
+    "sdk_root": "/workspace/scratch/d6370337c6a4/vst3sdk",
+    "sdk_components": {
+      ".": {
+        "head": {
+          "command": "git rev-parse HEAD",
+          "argv": [
+            "git",
+            "rev-parse",
+            "HEAD"
+          ],
+          "cwd": "/workspace/scratch/d6370337c6a4/vst3sdk",
+          "exit_code": 0,
+          "stdout": "3cdf9ca5d1f5b1b21e0a86832aa4abe55607bd96\n",
+          "stderr": ""
+        },
+        "tree": {
+          "command": "git rev-parse 'HEAD^{tree}'",
+          "argv": [
+            "git",
+            "rev-parse",
+            "HEAD^{tree}"
+          ],
+          "cwd": "/workspace/scratch/d6370337c6a4/vst3sdk",
+          "exit_code": 0,
+          "stdout": "38343890fd1a0cedd48b7ec80ef17da15231b6c8\n",
+          "stderr": ""
+        },
+        "status": {
+          "command": "git status --short",
+          "argv": [
+            "git",
+            "status",
+            "--short"
+          ],
+          "cwd": "/workspace/scratch/d6370337c6a4/vst3sdk",
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        "tracked_diff": {
+          "command": "git diff --quiet --ignore-submodules=all HEAD --",
+          "argv": [
+            "git",
+            "diff",
+            "--quiet",
+            "--ignore-submodules=all",
+            "HEAD",
+            "--"
+          ],
+          "cwd": "/workspace/scratch/d6370337c6a4/vst3sdk",
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "base": {
+        "head": {
+          "command": "git rev-parse HEAD",
+          "argv": [
+            "git",
+            "rev-parse",
+            "HEAD"
+          ],
+          "cwd": "/workspace/scratch/d6370337c6a4/vst3sdk/base",
+          "exit_code": 0,
+          "stdout": "fcf9da0bd27a16f7f03773a3a39822f28f5c8477\n",
+          "stderr": ""
+        },
+        "tree": {
+          "command": "git rev-parse 'HEAD^{tree}'",
+          "argv": [
+            "git",
+            "rev-parse",
+            "HEAD^{tree}"
+          ],
+          "cwd": "/workspace/scratch/d6370337c6a4/vst3sdk/base",
+          "exit_code": 0,
+          "stdout": "a0d44d03448ad45786314f98e48b37ac741c32ff\n",
+          "stderr": ""
+        },
+        "status": {
+          "command": "git status --short",
+          "argv": [
+            "git",
+            "status",
+            "--short"
+          ],
+          "cwd": "/workspace/scratch/d6370337c6a4/vst3sdk/base",
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        "tracked_diff": {
+          "command": "git diff --quiet --ignore-submodules=all HEAD --",
+          "argv": [
+            "git",
+            "diff",
+            "--quiet",
+            "--ignore-submodules=all",
+            "HEAD",
+            "--"
+          ],
+          "cwd": "/workspace/scratch/d6370337c6a4/vst3sdk/base",
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "cmake": {
+        "head": {
+          "command": "git rev-parse HEAD",
+          "argv": [
+            "git",
+            "rev-parse",
+            "HEAD"
+          ],
+          "cwd": "/workspace/scratch/d6370337c6a4/vst3sdk/cmake",
+          "exit_code": 0,
+          "stdout": "054c9143cbb8d47fc4694e473f2ee3b4d951a8f5\n",
+          "stderr": ""
+        },
+        "tree": {
+          "command": "git rev-parse 'HEAD^{tree}'",
+          "argv": [
+            "git",
+            "rev-parse",
+            "HEAD^{tree}"
+          ],
+          "cwd": "/workspace/scratch/d6370337c6a4/vst3sdk/cmake",
+          "exit_code": 0,
+          "stdout": "66e270515fda6819074add0e0218c00bb8707736\n",
+          "stderr": ""
+        },
+        "status": {
+          "command": "git status --short",
+          "argv": [
+            "git",
+            "status",
+            "--short"
+          ],
+          "cwd": "/workspace/scratch/d6370337c6a4/vst3sdk/cmake",
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        "tracked_diff": {
+          "command": "git diff --quiet --ignore-submodules=all HEAD --",
+          "argv": [
+            "git",
+            "diff",
+            "--quiet",
+            "--ignore-submodules=all",
+            "HEAD",
+            "--"
+          ],
+          "cwd": "/workspace/scratch/d6370337c6a4/vst3sdk/cmake",
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "pluginterfaces": {
+        "head": {
+          "command": "git rev-parse HEAD",
+          "argv": [
+            "git",
+            "rev-parse",
+            "HEAD"
+          ],
+          "cwd": "/workspace/scratch/d6370337c6a4/vst3sdk/pluginterfaces",
+          "exit_code": 0,
+          "stdout": "4f547e8e102b47de4a8b8aaf343c73b700786372\n",
+          "stderr": ""
+        },
+        "tree": {
+          "command": "git rev-parse 'HEAD^{tree}'",
+          "argv": [
+            "git",
+            "rev-parse",
+            "HEAD^{tree}"
+          ],
+          "cwd": "/workspace/scratch/d6370337c6a4/vst3sdk/pluginterfaces",
+          "exit_code": 0,
+          "stdout": "3a72116929403d82ea37efafe2540926008822c9\n",
+          "stderr": ""
+        },
+        "status": {
+          "command": "git status --short",
+          "argv": [
+            "git",
+            "status",
+            "--short"
+          ],
+          "cwd": "/workspace/scratch/d6370337c6a4/vst3sdk/pluginterfaces",
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        "tracked_diff": {
+          "command": "git diff --quiet --ignore-submodules=all HEAD --",
+          "argv": [
+            "git",
+            "diff",
+            "--quiet",
+            "--ignore-submodules=all",
+            "HEAD",
+            "--"
+          ],
+          "cwd": "/workspace/scratch/d6370337c6a4/vst3sdk/pluginterfaces",
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": ""
+        }
+      },
+      "public.sdk": {
+        "head": {
+          "command": "git rev-parse HEAD",
+          "argv": [
+            "git",
+            "rev-parse",
+            "HEAD"
+          ],
+          "cwd": "/workspace/scratch/d6370337c6a4/vst3sdk/public.sdk",
+          "exit_code": 0,
+          "stdout": "586dc5e6c8012c3e4b01c79389375cbe96bdb1da\n",
+          "stderr": ""
+        },
+        "tree": {
+          "command": "git rev-parse 'HEAD^{tree}'",
+          "argv": [
+            "git",
+            "rev-parse",
+            "HEAD^{tree}"
+          ],
+          "cwd": "/workspace/scratch/d6370337c6a4/vst3sdk/public.sdk",
+          "exit_code": 0,
+          "stdout": "b4cae9f995e3c5c3408e1f87cc81c6564bac56a3\n",
+          "stderr": ""
+        },
+        "status": {
+          "command": "git status --short",
+          "argv": [
+            "git",
+            "status",
+            "--short"
+          ],
+          "cwd": "/workspace/scratch/d6370337c6a4/vst3sdk/public.sdk",
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": ""
+        },
+        "tracked_diff": {
+          "command": "git diff --quiet --ignore-submodules=all HEAD --",
+          "argv": [
+            "git",
+            "diff",
+            "--quiet",
+            "--ignore-submodules=all",
+            "HEAD",
+            "--"
+          ],
+          "cwd": "/workspace/scratch/d6370337c6a4/vst3sdk/public.sdk",
+          "exit_code": 0,
+          "stdout": "",
+          "stderr": ""
+        }
+      }
+    },
+    "sdk_submodules": {
+      "command": "git submodule status",
+      "argv": [
+        "git",
+        "submodule",
+        "status"
+      ],
+      "cwd": "/workspace/scratch/d6370337c6a4/vst3sdk",
+      "exit_code": 0,
+      "stdout": " fcf9da0bd27a16f7f03773a3a39822f28f5c8477 base (v3.8.1_build_84)\n 054c9143cbb8d47fc4694e473f2ee3b4d951a8f5 cmake (v3.8.1_build_84)\n-8bfca19d3b76a61d093951ba9297047f544caea1 doc\n 4f547e8e102b47de4a8b8aaf343c73b700786372 pluginterfaces (v3.8.1_build_84)\n 586dc5e6c8012c3e4b01c79389375cbe96bdb1da public.sdk (v3.8.1_build_84)\n-33b73dfbb87f3fde3bce8c0a10cae934dc66ad34 tutorials\n-5db272256172557818b6158cf0bb2c4410bddb25 vstgui4\n",
+      "stderr": ""
+    },
+    "cache_sha256_after": "3408d1f4a1df158187acc42bdf1e0c0fe05b9f4dacfc82ddae07469309cf626d"
+  },
+  "preflight": [
+    {
+      "command": "python3 tools/project.py validate",
+      "exit_code": 0,
+      "stdout": "Valid: 15 tasks, 26 evidence records; fidelity=unvalidated\n"
+    },
+    {
+      "command": "python3 tools/project.py sync --check",
+      "exit_code": 0,
+      "stdout": "Generated state is current.\n"
+    },
+    {
+      "command": "python3 tools/project.py next --json",
+      "exit_code": 0,
+      "state_revision": 39,
+      "available": [],
+      "blocked": [
+        "SPEC-001",
+        "DATA-001"
+      ]
+    }
+  ],
+  "build": {
+    "command": "cmake --build build-host -j 2",
+    "argv": [
+      "cmake",
+      "--build",
+      "build-host",
+      "-j",
+      "2"
+    ],
+    "cwd": "/workspace/scratch/edddd917a86c/Fender-rhoades",
+    "started_at_utc": "2026-11-24T10:34:10Z",
+    "log": "docs/validation/host-midi-linux-final-20261124-build.log",
+    "exit_code": 0,
+    "finished_at_utc": "2026-11-24T10:35:07Z",
+    "elapsed_seconds": 56.245407,
+    "log_sha256": "6f7ceafa47897ead193d12346c29fa1b2656135ef96a292255f7d83441636081",
+    "log_bytes": 10094
+  },
+  "ctest": {
+    "command": "ctest --test-dir build-host --output-on-failure -j 2",
+    "argv": [
+      "ctest",
+      "--test-dir",
+      "build-host",
+      "--output-on-failure",
+      "-j",
+      "2"
+    ],
+    "cwd": "/workspace/scratch/edddd917a86c/Fender-rhoades",
+    "started_at_utc": "2026-11-24T10:35:07Z",
+    "log": "docs/validation/host-midi-linux-final-20261124-ctest.log",
+    "exit_code": 0,
+    "finished_at_utc": "2026-11-24T10:35:36Z",
+    "elapsed_seconds": 29.44931,
+    "log_sha256": "b44435dc2c59accdb606b8bb84f31335c8ede6c39821d869876817a283416ee0",
+    "log_bytes": 45236,
+    "inventory_command": "ctest --test-dir build-host --show-only=json-v1",
+    "inventory_exit_code": 0,
+    "registered": 327,
+    "passed": 327,
+    "failed": 0,
+    "skipped": 0,
+    "failed_tests": [],
+    "skipped_tests": [],
+    "ctest_reported_real_seconds": 29.34,
+    "summary_line": "100% tests passed out of 327",
+    "tests": [
+      {
+        "number": 1,
+        "name": "control_text.oracle",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 2,
+        "name": "control_text.bounds",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 3,
+        "name": "control_text.formatting",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 4,
+        "name": "control_text.roundtrip",
+        "status": "Passed",
+        "elapsed_seconds": 0.31
+      },
+      {
+        "number": 5,
+        "name": "control_text.environments",
+        "status": "Passed",
+        "elapsed_seconds": 0.19
+      },
+      {
+        "number": 6,
+        "name": "control_text.locale",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 7,
+        "name": "events.release_port",
+        "status": "Passed",
+        "elapsed_seconds": 0.09
+      },
+      {
+        "number": 8,
+        "name": "quadrature.analytic_nodes",
+        "status": "Passed",
+        "elapsed_seconds": 0.06
+      },
+      {
+        "number": 9,
+        "name": "quadrature.plan_domains",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 10,
+        "name": "quadrature.observation_nonmutation",
+        "status": "Passed",
+        "elapsed_seconds": 0.03
+      },
+      {
+        "number": 11,
+        "name": "quadrature.damping_regimes",
+        "status": "Passed",
+        "elapsed_seconds": 0.05
+      },
+      {
+        "number": 12,
+        "name": "quadrature.silent_plan_validation",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 13,
+        "name": "quadrature.silent_network",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 14,
+        "name": "quadrature.silent_lifecycle",
+        "status": "Passed",
+        "elapsed_seconds": 0.07
+      },
+      {
+        "number": 15,
+        "name": "quadrature.silent_transactions",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 16,
+        "name": "quadrature.silent_fp_environment",
+        "status": "Passed",
+        "elapsed_seconds": 0.06
+      },
+      {
+        "number": 17,
+        "name": "quadrature.qfir_convolution",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 18,
+        "name": "quadrature.qfir_impulses",
+        "status": "Passed",
+        "elapsed_seconds": 0.06
+      },
+      {
+        "number": 19,
+        "name": "quadrature.qfir_delay",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 20,
+        "name": "quadrature.qfir_rejection",
+        "status": "Passed",
+        "elapsed_seconds": 0.02
+      },
+      {
+        "number": 21,
+        "name": "quadrature.qfir_overflow",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 22,
+        "name": "quadrature.qfir_ordered_history",
+        "status": "Passed",
+        "elapsed_seconds": 0.05
+      },
+      {
+        "number": 23,
+        "name": "quadrature.qfir_prefix_overflow",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 24,
+        "name": "quadrature.qengine_events",
+        "status": "Passed",
+        "elapsed_seconds": 0.09
+      },
+      {
+        "number": 25,
+        "name": "quadrature.qengine_partitions",
+        "status": "Passed",
+        "elapsed_seconds": 0.06
+      },
+      {
+        "number": 26,
+        "name": "quadrature.qengine_prepare",
+        "status": "Passed",
+        "elapsed_seconds": 0.06
+      },
+      {
+        "number": 27,
+        "name": "quadrature.qengine_faults",
+        "status": "Passed",
+        "elapsed_seconds": 0.04
+      },
+      {
+        "number": 28,
+        "name": "quadrature.qengine_allocations",
+        "status": "Passed",
+        "elapsed_seconds": 0.09
+      },
+      {
+        "number": 29,
+        "name": "audio.fir_coefficients_dc",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 30,
+        "name": "audio.fir_impulse_phases",
+        "status": "Passed",
+        "elapsed_seconds": 0.19
+      },
+      {
+        "number": 31,
+        "name": "audio.fir_direct_convolution",
+        "status": "Passed",
+        "elapsed_seconds": 0.06
+      },
+      {
+        "number": 32,
+        "name": "audio.fir_group_delay",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 33,
+        "name": "audio.fir_transactional_rejection",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 34,
+        "name": "audio.fir_overflow_reset",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 35,
+        "name": "model_state.model1_golden",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 36,
+        "name": "model_state.model2_roundtrip",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 37,
+        "name": "model_state.model3_roundtrip",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 38,
+        "name": "model_state.cross_model_rejection",
+        "status": "Passed",
+        "elapsed_seconds": 0.02
+      },
+      {
+        "number": 39,
+        "name": "model_state.invalid_model",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 40,
+        "name": "model_state.malformed_models",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 41,
+        "name": "audio.high_rate_oracle",
+        "status": "Passed",
+        "elapsed_seconds": 1.21
+      },
+      {
+        "number": 42,
+        "name": "audio.rate_boundaries",
+        "status": "Passed",
+        "elapsed_seconds": 0.02
+      },
+      {
+        "number": 43,
+        "name": "audio.persistent_events",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 44,
+        "name": "audio.partition_invariance",
+        "status": "Passed",
+        "elapsed_seconds": 0.04
+      },
+      {
+        "number": 45,
+        "name": "audio.prepare_atomicity",
+        "status": "Passed",
+        "elapsed_seconds": 0.04
+      },
+      {
+        "number": 46,
+        "name": "audio.reset_flush",
+        "status": "Passed",
+        "elapsed_seconds": 0.05
+      },
+      {
+        "number": 47,
+        "name": "audio.event_timing",
+        "status": "Passed",
+        "elapsed_seconds": 0.04
+      },
+      {
+        "number": 48,
+        "name": "audio.fault_substeps",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 49,
+        "name": "audio.probe_cli",
+        "status": "Passed",
+        "elapsed_seconds": 0.45
+      },
+      {
+        "number": 50,
+        "name": "quadrature.cli",
+        "status": "Passed",
+        "elapsed_seconds": 0.53
+      },
+      {
+        "number": 51,
+        "name": "audio.probe_stdout",
+        "status": "Passed",
+        "elapsed_seconds": 0.03
+      },
+      {
+        "number": 52,
+        "name": "quadrature.probe_stdout",
+        "status": "Passed",
+        "elapsed_seconds": 0.06
+      },
+      {
+        "number": 53,
+        "name": "contact.stdout",
+        "status": "Passed",
+        "elapsed_seconds": 0.03
+      },
+      {
+        "number": 54,
+        "name": "contact.conservative_impact",
+        "status": "Passed",
+        "elapsed_seconds": 0.02
+      },
+      {
+        "number": 55,
+        "name": "contact.damped_impact",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 56,
+        "name": "contact.forced_clamp",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 57,
+        "name": "contact.separated_oscillator",
+        "status": "Passed",
+        "elapsed_seconds": 0.17
+      },
+      {
+        "number": 58,
+        "name": "contact.preload",
+        "status": "Passed",
+        "elapsed_seconds": 0.27
+      },
+      {
+        "number": 59,
+        "name": "contact.moving_damper",
+        "status": "Passed",
+        "elapsed_seconds": 0.18
+      },
+      {
+        "number": 60,
+        "name": "contact.relaunch",
+        "status": "Passed",
+        "elapsed_seconds": 0.1
+      },
+      {
+        "number": 61,
+        "name": "contact.event_order",
+        "status": "Passed",
+        "elapsed_seconds": 0.05
+      },
+      {
+        "number": 62,
+        "name": "contact.scaling",
+        "status": "Passed",
+        "elapsed_seconds": 0.7
+      },
+      {
+        "number": 63,
+        "name": "contact.invalid_inputs",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 64,
+        "name": "contact.cap_exhaustion",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 65,
+        "name": "contact.grazing_miss",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 66,
+        "name": "contact.grazing_tangent",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 67,
+        "name": "contact.grazing_contact",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 68,
+        "name": "contact.cli_help",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 69,
+        "name": "contact.cli_json",
+        "status": "Passed",
+        "elapsed_seconds": 0.35
+      },
+      {
+        "number": 70,
+        "name": "contact.peak_defaults",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 71,
+        "name": "contact.peak_conservative",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 72,
+        "name": "contact.peak_damped",
+        "status": "Passed",
+        "elapsed_seconds": 0.02
+      },
+      {
+        "number": 73,
+        "name": "contact.peak_damper_face",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 74,
+        "name": "contact.peak_actions",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 75,
+        "name": "contact.peak_rollback",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 76,
+        "name": "contact.peak_cli",
+        "status": "Passed",
+        "elapsed_seconds": 0.03
+      },
+      {
+        "number": 77,
+        "name": "contact.event_split",
+        "status": "Passed",
+        "elapsed_seconds": 0.02
+      },
+      {
+        "number": 78,
+        "name": "contact.split_simultaneous",
+        "status": "Passed",
+        "elapsed_seconds": 0.02
+      },
+      {
+        "number": 79,
+        "name": "contact.split_close_roots",
+        "status": "Passed",
+        "elapsed_seconds": 0.02
+      },
+      {
+        "number": 80,
+        "name": "contact.split_peak_rollback",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 81,
+        "name": "grazing.generalized_harmonics",
+        "status": "Passed",
+        "elapsed_seconds": 0.04
+      },
+      {
+        "number": 82,
+        "name": "grazing.envelope_sign",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 83,
+        "name": "grazing.partitions",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 84,
+        "name": "grazing.relaunch_invalidation",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 85,
+        "name": "grazing.anchor_steps",
+        "status": "Passed",
+        "elapsed_seconds": 0.13
+      },
+      {
+        "number": 86,
+        "name": "grazing.anchor_geometry",
+        "status": "Passed",
+        "elapsed_seconds": 0.45
+      },
+      {
+        "number": 87,
+        "name": "grazing.anchor_partitions",
+        "status": "Passed",
+        "elapsed_seconds": 0.04
+      },
+      {
+        "number": 88,
+        "name": "grazing.anchor_boundaries",
+        "status": "Passed",
+        "elapsed_seconds": 2.27
+      },
+      {
+        "number": 89,
+        "name": "grazing.anchor_rollback",
+        "status": "Passed",
+        "elapsed_seconds": 0.02
+      },
+      {
+        "number": 90,
+        "name": "contact.configuration_bounds",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 91,
+        "name": "contact.settings_bounds",
+        "status": "Passed",
+        "elapsed_seconds": 0.02
+      },
+      {
+        "number": 92,
+        "name": "contact.state_actions",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 93,
+        "name": "contact.trajectory_guards",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 94,
+        "name": "core.exact_solution",
+        "status": "Passed",
+        "elapsed_seconds": 0.02
+      },
+      {
+        "number": 95,
+        "name": "core.energy_loss",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 96,
+        "name": "core.energy_conservation",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 97,
+        "name": "core.retrigger",
+        "status": "Passed",
+        "elapsed_seconds": 0.02
+      },
+      {
+        "number": 98,
+        "name": "core.pickup_derivative",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 99,
+        "name": "core.pickup_intermodulation",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 100,
+        "name": "core.network_loading",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 101,
+        "name": "core.invalid_input",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 102,
+        "name": "core.silence",
+        "status": "Passed",
+        "elapsed_seconds": 0.04
+      },
+      {
+        "number": 103,
+        "name": "core.block_partition",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 104,
+        "name": "core.pedal_release",
+        "status": "Passed",
+        "elapsed_seconds": 0.05
+      },
+      {
+        "number": 105,
+        "name": "core.supported_rates",
+        "status": "Passed",
+        "elapsed_seconds": 0.02
+      },
+      {
+        "number": 106,
+        "name": "review.modal_boundaries",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 107,
+        "name": "review.rejected_updates",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 108,
+        "name": "review.engine_controls",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 109,
+        "name": "review.engine_combined_pickup",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 110,
+        "name": "review.network_extreme_divider",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 111,
+        "name": "transition_cache.cached_vs_fresh",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 112,
+        "name": "transition_cache.invalid_cache_updates",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 113,
+        "name": "transition_cache.reconfigure_cache",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 114,
+        "name": "transition_cache.redundant_pedal",
+        "status": "Passed",
+        "elapsed_seconds": 0.04
+      },
+      {
+        "number": 115,
+        "name": "runtime.scalar_partitions",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 116,
+        "name": "runtime.equal_offset_order",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 117,
+        "name": "runtime.preflight_atomicity",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 118,
+        "name": "runtime.invalid_events",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 119,
+        "name": "runtime.block_limits",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 120,
+        "name": "runtime.sample_fault_reset",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 121,
+        "name": "runtime.event_fault_reset",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 122,
+        "name": "runtime.control_order",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 123,
+        "name": "runtime.random_partitions",
+        "status": "Passed",
+        "elapsed_seconds": 0.05
+      },
+      {
+        "number": 124,
+        "name": "runtime.transaction_rejection",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 125,
+        "name": "runtime.capacity_and_cursor",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 126,
+        "name": "midi.range_and_validation",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 127,
+        "name": "midi.identified_overlap",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 128,
+        "name": "midi.anonymous_and_zero_velocity",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 129,
+        "name": "midi.conflict_atomicity",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 130,
+        "name": "midi.capacity_and_reuse",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 131,
+        "name": "midi.channel_release_and_reset",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 132,
+        "name": "midi.boundary_model",
+        "status": "Passed",
+        "elapsed_seconds": 0.02
+      },
+      {
+        "number": 133,
+        "name": "midi.capacity_model",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 134,
+        "name": "midi.random_model",
+        "status": "Passed",
+        "elapsed_seconds": 0.06
+      },
+      {
+        "number": 135,
+        "name": "state.codec_golden",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 136,
+        "name": "state.codec_rejection",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 137,
+        "name": "state.mailbox_recall",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 138,
+        "name": "state.mailbox_races",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 139,
+        "name": "state.mailbox_abort",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 140,
+        "name": "state.gain_bit_domain",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 141,
+        "name": "state.pedal_bit_domain",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 142,
+        "name": "state.header_lengths",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 143,
+        "name": "state.invalid_recall",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 144,
+        "name": "state_fp.baseline",
+        "status": "Passed",
+        "elapsed_seconds": 0.05
+      },
+      {
+        "number": 145,
+        "name": "state_fp.ftz",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 146,
+        "name": "state_fp.daz",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 147,
+        "name": "state_fp.ftz_daz",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 148,
+        "name": "control.domains",
+        "status": "Passed",
+        "elapsed_seconds": 0.02
+      },
+      {
+        "number": 149,
+        "name": "control.quantize",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 150,
+        "name": "control.widen",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 151,
+        "name": "control.rounding_modes",
+        "status": "Passed",
+        "elapsed_seconds": 0.03
+      },
+      {
+        "number": 152,
+        "name": "control_fp.baseline",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 153,
+        "name": "control_fp.ftz",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 154,
+        "name": "control_fp.daz",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 155,
+        "name": "control_fp.ftz_daz",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 156,
+        "name": "state.ordered_races",
+        "status": "Passed",
+        "elapsed_seconds": 0.06
+      },
+      {
+        "number": 157,
+        "name": "state.concurrent_stress",
+        "status": "Passed",
+        "elapsed_seconds": 0.03
+      },
+      {
+        "number": 158,
+        "name": "cli.help",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 159,
+        "name": "alias.primitive_help",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 160,
+        "name": "benchmark.help",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 161,
+        "name": "runtime_benchmark.help",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 162,
+        "name": "runtime_benchmark.smoke",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 163,
+        "name": "runtime_benchmark.json",
+        "status": "Passed",
+        "elapsed_seconds": 0.34
+      },
+      {
+        "number": 164,
+        "name": "benchmark.smoke",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 165,
+        "name": "benchmark.json",
+        "status": "Passed",
+        "elapsed_seconds": 0.03
+      },
+      {
+        "number": 166,
+        "name": "cli.render",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 167,
+        "name": "cli.render_output",
+        "status": "Passed",
+        "elapsed_seconds": 0.04
+      },
+      {
+        "number": 168,
+        "name": "cli.filtered_render",
+        "status": "Passed",
+        "elapsed_seconds": 0.25
+      },
+      {
+        "number": 169,
+        "name": "cli.reject_nan",
+        "status": "Passed",
+        "elapsed_seconds": 0.02
+      },
+      {
+        "number": 170,
+        "name": "cli.reject_unknown",
+        "status": "Passed",
+        "elapsed_seconds": 0.04
+      },
+      {
+        "number": 171,
+        "name": "vst3.model_stream_roundtrip",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 172,
+        "name": "vst3.model_stream_invalid_model",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 173,
+        "name": "vst3.model_stream_rejection",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 174,
+        "name": "vst3.model_stream_transfers",
+        "status": "Passed",
+        "elapsed_seconds": 0.02
+      },
+      {
+        "number": 175,
+        "name": "vst3.filtered_benchmark_smoke_32",
+        "status": "Passed",
+        "elapsed_seconds": 0.02
+      },
+      {
+        "number": 176,
+        "name": "vst3.quadrature_benchmark_smoke_32",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 177,
+        "name": "vst3.filtered_benchmark_smoke_64",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 178,
+        "name": "vst3.quadrature_benchmark_smoke_64",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 179,
+        "name": "vst3.filtered_scalar_output",
+        "status": "Passed",
+        "elapsed_seconds": 0.05
+      },
+      {
+        "number": 180,
+        "name": "vst3.filtered_rate_contract",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 181,
+        "name": "vst3.filtered_state_contract",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 182,
+        "name": "vst3.filtered_reset_and_flush",
+        "status": "Passed",
+        "elapsed_seconds": 0.07
+      },
+      {
+        "number": 183,
+        "name": "vst3.filtered_rejected_calls",
+        "status": "Passed",
+        "elapsed_seconds": 0.12
+      },
+      {
+        "number": 184,
+        "name": "vst3.quadrature_qhost_identity_delay",
+        "status": "Passed",
+        "elapsed_seconds": 0.08
+      },
+      {
+        "number": 185,
+        "name": "vst3.quadrature_qhost_foreign_recall",
+        "status": "Passed",
+        "elapsed_seconds": 0.48
+      },
+      {
+        "number": 186,
+        "name": "vst3.quadrature_qhost_recall_order",
+        "status": "Passed",
+        "elapsed_seconds": 0.06
+      },
+      {
+        "number": 187,
+        "name": "vst3.quadrature_qhost_reset_tail",
+        "status": "Passed",
+        "elapsed_seconds": 0.11
+      },
+      {
+        "number": 188,
+        "name": "vst3.benchmark_help",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 189,
+        "name": "vst3.benchmark_smoke_32",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 190,
+        "name": "vst3.benchmark_smoke_64",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 191,
+        "name": "vst3.benchmark_json",
+        "status": "Passed",
+        "elapsed_seconds": 1.52
+      },
+      {
+        "number": 192,
+        "name": "vst3.filtered_benchmark_help",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 193,
+        "name": "vst3.filtered_benchmark_json",
+        "status": "Passed",
+        "elapsed_seconds": 3.1
+      },
+      {
+        "number": 194,
+        "name": "vst3.quadrature_benchmark_help",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 195,
+        "name": "vst3.quadrature_benchmark_json",
+        "status": "Passed",
+        "elapsed_seconds": 2.86
+      },
+      {
+        "number": 196,
+        "name": "vst3.channel_commands",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 197,
+        "name": "vst3.filtered_channel_commands",
+        "status": "Passed",
+        "elapsed_seconds": 0.04
+      },
+      {
+        "number": 198,
+        "name": "vst3.quadrature_channel_commands",
+        "status": "Passed",
+        "elapsed_seconds": 0.05
+      },
+      {
+        "number": 199,
+        "name": "vst3.command_partition",
+        "status": "Passed",
+        "elapsed_seconds": 0.18
+      },
+      {
+        "number": 200,
+        "name": "vst3.filtered_command_partition",
+        "status": "Passed",
+        "elapsed_seconds": 0.41
+      },
+      {
+        "number": 201,
+        "name": "vst3.quadrature_command_partition",
+        "status": "Passed",
+        "elapsed_seconds": 0.34
+      },
+      {
+        "number": 202,
+        "name": "vst3.pressure",
+        "status": "Passed",
+        "elapsed_seconds": 0.12
+      },
+      {
+        "number": 203,
+        "name": "vst3.filtered_pressure",
+        "status": "Passed",
+        "elapsed_seconds": 0.38
+      },
+      {
+        "number": 204,
+        "name": "vst3.quadrature_pressure",
+        "status": "Passed",
+        "elapsed_seconds": 0.18
+      },
+      {
+        "number": 205,
+        "name": "vst3.command_bounds",
+        "status": "Passed",
+        "elapsed_seconds": 0.02
+      },
+      {
+        "number": 206,
+        "name": "vst3.filtered_command_bounds",
+        "status": "Passed",
+        "elapsed_seconds": 0.1
+      },
+      {
+        "number": 207,
+        "name": "vst3.quadrature_command_bounds",
+        "status": "Passed",
+        "elapsed_seconds": 0.17
+      },
+      {
+        "number": 208,
+        "name": "vst3.control_text",
+        "status": "Passed",
+        "elapsed_seconds": 0.21
+      },
+      {
+        "number": 209,
+        "name": "vst3.filtered_control_text",
+        "status": "Passed",
+        "elapsed_seconds": 0.16
+      },
+      {
+        "number": 210,
+        "name": "vst3.quadrature_control_text",
+        "status": "Passed",
+        "elapsed_seconds": 0.17
+      },
+      {
+        "number": 211,
+        "name": "vst3.command_atomicity",
+        "status": "Passed",
+        "elapsed_seconds": 0.12
+      },
+      {
+        "number": 212,
+        "name": "vst3.filtered_command_atomicity",
+        "status": "Passed",
+        "elapsed_seconds": 0.24
+      },
+      {
+        "number": 213,
+        "name": "vst3.quadrature_command_atomicity",
+        "status": "Passed",
+        "elapsed_seconds": 0.24
+      },
+      {
+        "number": 214,
+        "name": "vst3.scalar_output",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 215,
+        "name": "vst3.filtered_regression_scalar_output",
+        "status": "Passed",
+        "elapsed_seconds": 0.02
+      },
+      {
+        "number": 216,
+        "name": "vst3.quadrature_regression_scalar_output",
+        "status": "Passed",
+        "elapsed_seconds": 0.05
+      },
+      {
+        "number": 217,
+        "name": "vst3.overlapping_notes",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 218,
+        "name": "vst3.filtered_regression_overlapping_notes",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 219,
+        "name": "vst3.quadrature_regression_overlapping_notes",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 220,
+        "name": "vst3.linear_automation",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 221,
+        "name": "vst3.filtered_regression_linear_automation",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 222,
+        "name": "vst3.quadrature_regression_linear_automation",
+        "status": "Passed",
+        "elapsed_seconds": 0.02
+      },
+      {
+        "number": 223,
+        "name": "vst3.dense_automation",
+        "status": "Passed",
+        "elapsed_seconds": 0.03
+      },
+      {
+        "number": 224,
+        "name": "vst3.filtered_regression_dense_automation",
+        "status": "Passed",
+        "elapsed_seconds": 0.05
+      },
+      {
+        "number": 225,
+        "name": "vst3.quadrature_regression_dense_automation",
+        "status": "Passed",
+        "elapsed_seconds": 0.08
+      },
+      {
+        "number": 226,
+        "name": "vst3.invalid_atomicity",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 227,
+        "name": "vst3.filtered_regression_invalid_atomicity",
+        "status": "Passed",
+        "elapsed_seconds": 0.02
+      },
+      {
+        "number": 228,
+        "name": "vst3.quadrature_regression_invalid_atomicity",
+        "status": "Passed",
+        "elapsed_seconds": 0.03
+      },
+      {
+        "number": 229,
+        "name": "vst3.parameter_flush",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 230,
+        "name": "vst3.filtered_regression_parameter_flush",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 231,
+        "name": "vst3.quadrature_regression_parameter_flush",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 232,
+        "name": "vst3.lifecycle",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 233,
+        "name": "vst3.filtered_regression_lifecycle",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 234,
+        "name": "vst3.quadrature_regression_lifecycle",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 235,
+        "name": "vst3.deferred_state",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 236,
+        "name": "vst3.filtered_regression_deferred_state",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 237,
+        "name": "vst3.quadrature_regression_deferred_state",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 238,
+        "name": "vst3.recall_abort",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 239,
+        "name": "vst3.filtered_regression_recall_abort",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 240,
+        "name": "vst3.quadrature_regression_recall_abort",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 241,
+        "name": "vst3.stream_errors",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 242,
+        "name": "vst3.filtered_regression_stream_errors",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 243,
+        "name": "vst3.quadrature_regression_stream_errors",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 244,
+        "name": "vst3.controller_mapping",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 245,
+        "name": "vst3.filtered_regression_controller_mapping",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 246,
+        "name": "vst3.quadrature_regression_controller_mapping",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 247,
+        "name": "vst3.allocation_guard",
+        "status": "Passed",
+        "elapsed_seconds": 0.03
+      },
+      {
+        "number": 248,
+        "name": "vst3.filtered_regression_allocation_guard",
+        "status": "Passed",
+        "elapsed_seconds": 0.1
+      },
+      {
+        "number": 249,
+        "name": "vst3.quadrature_regression_allocation_guard",
+        "status": "Passed",
+        "elapsed_seconds": 0.06
+      },
+      {
+        "number": 250,
+        "name": "vst3.fp_baseline",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 251,
+        "name": "vst3.filtered_fp_baseline",
+        "status": "Passed",
+        "elapsed_seconds": 0.03
+      },
+      {
+        "number": 252,
+        "name": "vst3.quadrature_fp_baseline",
+        "status": "Passed",
+        "elapsed_seconds": 0.03
+      },
+      {
+        "number": 253,
+        "name": "vst3.fp_ftz",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 254,
+        "name": "vst3.filtered_fp_ftz",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 255,
+        "name": "vst3.quadrature_fp_ftz",
+        "status": "Passed",
+        "elapsed_seconds": 0.03
+      },
+      {
+        "number": 256,
+        "name": "vst3.fp_daz",
+        "status": "Passed",
+        "elapsed_seconds": 0.02
+      },
+      {
+        "number": 257,
+        "name": "vst3.filtered_fp_daz",
+        "status": "Passed",
+        "elapsed_seconds": 0.02
+      },
+      {
+        "number": 258,
+        "name": "vst3.quadrature_fp_daz",
+        "status": "Passed",
+        "elapsed_seconds": 0.03
+      },
+      {
+        "number": 259,
+        "name": "vst3.fp_ftz_daz",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 260,
+        "name": "vst3.filtered_fp_ftz_daz",
+        "status": "Passed",
+        "elapsed_seconds": 0.02
+      },
+      {
+        "number": 261,
+        "name": "vst3.quadrature_fp_ftz_daz",
+        "status": "Passed",
+        "elapsed_seconds": 0.02
+      },
+      {
+        "number": 262,
+        "name": "vst3.inactive_buffers",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 263,
+        "name": "vst3.filtered_buffer_inactive_buffers",
+        "status": "Passed",
+        "elapsed_seconds": 0.04
+      },
+      {
+        "number": 264,
+        "name": "vst3.quadrature_buffer_inactive_buffers",
+        "status": "Passed",
+        "elapsed_seconds": 0.05
+      },
+      {
+        "number": 265,
+        "name": "vst3.flush_matrix",
+        "status": "Passed",
+        "elapsed_seconds": 0.08
+      },
+      {
+        "number": 266,
+        "name": "vst3.filtered_buffer_flush_matrix",
+        "status": "Passed",
+        "elapsed_seconds": 0.28
+      },
+      {
+        "number": 267,
+        "name": "vst3.quadrature_buffer_flush_matrix",
+        "status": "Passed",
+        "elapsed_seconds": 0.2
+      },
+      {
+        "number": 268,
+        "name": "vst3.rejected_buffers",
+        "status": "Passed",
+        "elapsed_seconds": 0.31
+      },
+      {
+        "number": 269,
+        "name": "vst3.filtered_buffer_rejected_buffers",
+        "status": "Passed",
+        "elapsed_seconds": 0.86
+      },
+      {
+        "number": 270,
+        "name": "vst3.quadrature_buffer_rejected_buffers",
+        "status": "Passed",
+        "elapsed_seconds": 0.66
+      },
+      {
+        "number": 271,
+        "name": "vst3.setup_rollback",
+        "status": "Passed",
+        "elapsed_seconds": 0.28
+      },
+      {
+        "number": 272,
+        "name": "vst3.filtered_buffer_setup_rollback",
+        "status": "Passed",
+        "elapsed_seconds": 0.57
+      },
+      {
+        "number": 273,
+        "name": "vst3.quadrature_buffer_setup_rollback",
+        "status": "Passed",
+        "elapsed_seconds": 0.61
+      },
+      {
+        "number": 274,
+        "name": "vst3.partial_roundtrip",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 275,
+        "name": "vst3.filtered_stream_partial_roundtrip",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 276,
+        "name": "vst3.quadrature_stream_partial_roundtrip",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 277,
+        "name": "vst3.read_failures",
+        "status": "Passed",
+        "elapsed_seconds": 0.41
+      },
+      {
+        "number": 278,
+        "name": "vst3.filtered_stream_read_failures",
+        "status": "Passed",
+        "elapsed_seconds": 2.2
+      },
+      {
+        "number": 279,
+        "name": "vst3.quadrature_stream_read_failures",
+        "status": "Passed",
+        "elapsed_seconds": 1.37
+      },
+      {
+        "number": 280,
+        "name": "vst3.write_failures",
+        "status": "Passed",
+        "elapsed_seconds": 0.54
+      },
+      {
+        "number": 281,
+        "name": "vst3.filtered_stream_write_failures",
+        "status": "Passed",
+        "elapsed_seconds": 2.57
+      },
+      {
+        "number": 282,
+        "name": "vst3.quadrature_stream_write_failures",
+        "status": "Passed",
+        "elapsed_seconds": 1.66
+      },
+      {
+        "number": 283,
+        "name": "vst3.malformed_state",
+        "status": "Passed",
+        "elapsed_seconds": 0.56
+      },
+      {
+        "number": 284,
+        "name": "vst3.filtered_stream_malformed_state",
+        "status": "Passed",
+        "elapsed_seconds": 1.55
+      },
+      {
+        "number": 285,
+        "name": "vst3.quadrature_stream_malformed_state",
+        "status": "Passed",
+        "elapsed_seconds": 0.92
+      },
+      {
+        "number": 286,
+        "name": "vst3.automation_model",
+        "status": "Passed",
+        "elapsed_seconds": 0.11
+      },
+      {
+        "number": 287,
+        "name": "vst3.filtered_automation_automation_model",
+        "status": "Passed",
+        "elapsed_seconds": 0.29
+      },
+      {
+        "number": 288,
+        "name": "vst3.quadrature_automation_automation_model",
+        "status": "Passed",
+        "elapsed_seconds": 0.28
+      },
+      {
+        "number": 289,
+        "name": "vst3.automation_ties",
+        "status": "Passed",
+        "elapsed_seconds": 0.09
+      },
+      {
+        "number": 290,
+        "name": "vst3.filtered_automation_automation_ties",
+        "status": "Passed",
+        "elapsed_seconds": 0.12
+      },
+      {
+        "number": 291,
+        "name": "vst3.quadrature_automation_automation_ties",
+        "status": "Passed",
+        "elapsed_seconds": 0.13
+      },
+      {
+        "number": 292,
+        "name": "vst3.automation_flush",
+        "status": "Passed",
+        "elapsed_seconds": 0.05
+      },
+      {
+        "number": 293,
+        "name": "vst3.filtered_automation_automation_flush",
+        "status": "Passed",
+        "elapsed_seconds": 0.08
+      },
+      {
+        "number": 294,
+        "name": "vst3.quadrature_automation_automation_flush",
+        "status": "Passed",
+        "elapsed_seconds": 0.11
+      },
+      {
+        "number": 295,
+        "name": "vst3.automation_rejection",
+        "status": "Passed",
+        "elapsed_seconds": 0.12
+      },
+      {
+        "number": 296,
+        "name": "vst3.filtered_automation_automation_rejection",
+        "status": "Passed",
+        "elapsed_seconds": 0.44
+      },
+      {
+        "number": 297,
+        "name": "vst3.quadrature_automation_automation_rejection",
+        "status": "Passed",
+        "elapsed_seconds": 0.54
+      },
+      {
+        "number": 298,
+        "name": "vst3.identity_model",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 299,
+        "name": "vst3.filtered_note_identity_model",
+        "status": "Passed",
+        "elapsed_seconds": 0.02
+      },
+      {
+        "number": 300,
+        "name": "vst3.quadrature_note_identity_model",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 301,
+        "name": "vst3.capacity_model",
+        "status": "Passed",
+        "elapsed_seconds": 0.03
+      },
+      {
+        "number": 302,
+        "name": "vst3.filtered_note_capacity_model",
+        "status": "Passed",
+        "elapsed_seconds": 0.02
+      },
+      {
+        "number": 303,
+        "name": "vst3.quadrature_note_capacity_model",
+        "status": "Passed",
+        "elapsed_seconds": 0.04
+      },
+      {
+        "number": 304,
+        "name": "vst3.recall_model",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 305,
+        "name": "vst3.filtered_note_recall_model",
+        "status": "Passed",
+        "elapsed_seconds": 0.02
+      },
+      {
+        "number": 306,
+        "name": "vst3.quadrature_note_recall_model",
+        "status": "Passed",
+        "elapsed_seconds": 0.07
+      },
+      {
+        "number": 307,
+        "name": "vst3.random_note_model",
+        "status": "Passed",
+        "elapsed_seconds": 0.11
+      },
+      {
+        "number": 308,
+        "name": "vst3.filtered_note_random_note_model",
+        "status": "Passed",
+        "elapsed_seconds": 0.42
+      },
+      {
+        "number": 309,
+        "name": "vst3.quadrature_note_random_note_model",
+        "status": "Passed",
+        "elapsed_seconds": 0.37
+      },
+      {
+        "number": 310,
+        "name": "vst3.state_preflight_race",
+        "status": "Passed",
+        "elapsed_seconds": 0.02
+      },
+      {
+        "number": 311,
+        "name": "vst3.filtered_state_state_preflight_race",
+        "status": "Passed",
+        "elapsed_seconds": 0.06
+      },
+      {
+        "number": 312,
+        "name": "vst3.quadrature_state_state_preflight_race",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 313,
+        "name": "vst3.state_callback_stress",
+        "status": "Passed",
+        "elapsed_seconds": 0.15
+      },
+      {
+        "number": 314,
+        "name": "vst3.filtered_state_state_callback_stress",
+        "status": "Passed",
+        "elapsed_seconds": 0.48
+      },
+      {
+        "number": 315,
+        "name": "vst3.quadrature_state_state_callback_stress",
+        "status": "Passed",
+        "elapsed_seconds": 0.43
+      },
+      {
+        "number": 316,
+        "name": "vst3.sdk_validator",
+        "status": "Passed",
+        "elapsed_seconds": 1.76
+      },
+      {
+        "number": 317,
+        "name": "vst3.dual_module_coexist",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 318,
+        "name": "vst3.dual_module_duplicate_guard",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 319,
+        "name": "vst3.triple_module_coexist",
+        "status": "Passed",
+        "elapsed_seconds": 0.51
+      },
+      {
+        "number": 320,
+        "name": "vst3.triple_module_duplicate_guard",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 321,
+        "name": "vst3.loaded_midi",
+        "status": "Passed",
+        "elapsed_seconds": 0.24
+      },
+      {
+        "number": 322,
+        "name": "vst3.filtered_sdk_validator",
+        "status": "Passed",
+        "elapsed_seconds": 7.26
+      },
+      {
+        "number": 323,
+        "name": "vst3.quadrature_sdk_validator",
+        "status": "Passed",
+        "elapsed_seconds": 4.63
+      },
+      {
+        "number": 324,
+        "name": "vst3.moduleinfo_validator",
+        "status": "Passed",
+        "elapsed_seconds": 0.01
+      },
+      {
+        "number": 325,
+        "name": "vst3.filtered_moduleinfo_validator",
+        "status": "Passed",
+        "elapsed_seconds": 0.02
+      },
+      {
+        "number": 326,
+        "name": "vst3.quadrature_moduleinfo_validator",
+        "status": "Passed",
+        "elapsed_seconds": 0.0
+      },
+      {
+        "number": 327,
+        "name": "vst3.bundle_resources",
+        "status": "Passed",
+        "elapsed_seconds": 0.07
+      }
+    ],
+    "per_test_exit_codes_note": "CTest status and elapsed time are recorded for each test. The process exit codes captured directly are those of the build, CTest, inventory, preflight, and environment commands."
+  },
+  "focused_outcomes": {
+    "sdk_validators": [
+      {
+        "number": 316,
+        "name": "vst3.sdk_validator",
+        "status": "Passed",
+        "elapsed_seconds": 1.76,
+        "command": "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/bin/Release/validator /workspace/scratch/edddd917a86c/Fender-rhoades/build-host/VST3/Release/RhodesResearch.vst3",
+        "sdk_checks_passed": 47,
+        "sdk_checks_failed": 0,
+        "result_line": "Result: 47 tests passed, 0 tests failed",
+        "setup_rejection_diagnostics": [
+          "ERROR: IAudioProcessor::setupProcessing (..) failed for samplerate 1234.568 Hz! ",
+          "ERROR: IAudioProcessor::setupProcessing (..) failed for samplerate 12345.678 Hz! ",
+          "ERROR: IAudioProcessor::setupProcessing (..) failed for samplerate 1234567.800 Hz! ",
+          "ERROR: IAudioProcessor::setupProcessing (..) failed for samplerate 22050.000 Hz! ",
+          "ERROR: IAudioProcessor::setupProcessing (..) failed for samplerate 384000.000 Hz! "
+        ]
+      },
+      {
+        "number": 322,
+        "name": "vst3.filtered_sdk_validator",
+        "status": "Passed",
+        "elapsed_seconds": 7.26,
+        "command": "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/bin/Release/validator /workspace/scratch/edddd917a86c/Fender-rhoades/build-host/VST3/Release/RhodesResearchFiltered.vst3",
+        "sdk_checks_passed": 47,
+        "sdk_checks_failed": 0,
+        "result_line": "Result: 47 tests passed, 0 tests failed",
+        "setup_rejection_diagnostics": [
+          "ERROR: IAudioProcessor::setupProcessing (..) failed for samplerate 1234.568 Hz! ",
+          "ERROR: IAudioProcessor::setupProcessing (..) failed for samplerate 12345.678 Hz! ",
+          "ERROR: IAudioProcessor::setupProcessing (..) failed for samplerate 1234567.800 Hz! ",
+          "ERROR: IAudioProcessor::setupProcessing (..) failed for samplerate 22050.000 Hz! ",
+          "ERROR: IAudioProcessor::setupProcessing (..) failed for samplerate 384000.000 Hz! "
+        ]
+      },
+      {
+        "number": 323,
+        "name": "vst3.quadrature_sdk_validator",
+        "status": "Passed",
+        "elapsed_seconds": 4.63,
+        "command": "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/bin/Release/validator /workspace/scratch/edddd917a86c/Fender-rhoades/build-host/VST3/Release/RhodesResearchQuadrature.vst3",
+        "sdk_checks_passed": 47,
+        "sdk_checks_failed": 0,
+        "result_line": "Result: 47 tests passed, 0 tests failed",
+        "setup_rejection_diagnostics": [
+          "ERROR: IAudioProcessor::setupProcessing (..) failed for samplerate 1234.568 Hz! ",
+          "ERROR: IAudioProcessor::setupProcessing (..) failed for samplerate 12345.678 Hz! ",
+          "ERROR: IAudioProcessor::setupProcessing (..) failed for samplerate 1234567.800 Hz! ",
+          "ERROR: IAudioProcessor::setupProcessing (..) failed for samplerate 22050.000 Hz! ",
+          "ERROR: IAudioProcessor::setupProcessing (..) failed for samplerate 384000.000 Hz! "
+        ]
+      }
+    ],
+    "moduleinfo_validators": [
+      {
+        "number": 324,
+        "name": "vst3.moduleinfo_validator",
+        "status": "Passed",
+        "elapsed_seconds": 0.01,
+        "command": "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/bin/Release/moduleinfotool -validate -path /workspace/scratch/edddd917a86c/Fender-rhoades/build-host/VST3/Release/RhodesResearch.vst3",
+        "argv": [
+          "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/bin/Release/moduleinfotool",
+          "-validate",
+          "-path",
+          "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/VST3/Release/RhodesResearch.vst3"
+        ],
+        "stdout": ""
+      },
+      {
+        "number": 325,
+        "name": "vst3.filtered_moduleinfo_validator",
+        "status": "Passed",
+        "elapsed_seconds": 0.02,
+        "command": "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/bin/Release/moduleinfotool -validate -path /workspace/scratch/edddd917a86c/Fender-rhoades/build-host/VST3/Release/RhodesResearchFiltered.vst3",
+        "argv": [
+          "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/bin/Release/moduleinfotool",
+          "-validate",
+          "-path",
+          "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/VST3/Release/RhodesResearchFiltered.vst3"
+        ],
+        "stdout": ""
+      },
+      {
+        "number": 326,
+        "name": "vst3.quadrature_moduleinfo_validator",
+        "status": "Passed",
+        "elapsed_seconds": 0.0,
+        "command": "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/bin/Release/moduleinfotool -validate -path /workspace/scratch/edddd917a86c/Fender-rhoades/build-host/VST3/Release/RhodesResearchQuadrature.vst3",
+        "argv": [
+          "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/bin/Release/moduleinfotool",
+          "-validate",
+          "-path",
+          "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/VST3/Release/RhodesResearchQuadrature.vst3"
+        ],
+        "stdout": ""
+      }
+    ],
+    "model_state": [
+      {
+        "number": 35,
+        "name": "model_state.model1_golden",
+        "status": "Passed",
+        "elapsed_seconds": 0.0,
+        "command": "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_model_state_tests model1_golden",
+        "argv": [
+          "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_model_state_tests",
+          "model1_golden"
+        ],
+        "stdout": "PASS model1_golden (7 always-active checks)"
+      },
+      {
+        "number": 36,
+        "name": "model_state.model2_roundtrip",
+        "status": "Passed",
+        "elapsed_seconds": 0.0,
+        "command": "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_model_state_tests model2_roundtrip",
+        "argv": [
+          "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_model_state_tests",
+          "model2_roundtrip"
+        ],
+        "stdout": "PASS model2_roundtrip (136 always-active checks)"
+      },
+      {
+        "number": 37,
+        "name": "model_state.model3_roundtrip",
+        "status": "Passed",
+        "elapsed_seconds": 0.01,
+        "command": "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_model_state_tests model3_roundtrip",
+        "argv": [
+          "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_model_state_tests",
+          "model3_roundtrip"
+        ],
+        "stdout": "PASS model3_roundtrip (136 always-active checks)"
+      },
+      {
+        "number": 38,
+        "name": "model_state.cross_model_rejection",
+        "status": "Passed",
+        "elapsed_seconds": 0.02,
+        "command": "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_model_state_tests cross_model_rejection",
+        "argv": [
+          "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_model_state_tests",
+          "cross_model_rejection"
+        ],
+        "stdout": "PASS cross_model_rejection (221 always-active checks)"
+      },
+      {
+        "number": 39,
+        "name": "model_state.invalid_model",
+        "status": "Passed",
+        "elapsed_seconds": 0.01,
+        "command": "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_model_state_tests invalid_model",
+        "argv": [
+          "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_model_state_tests",
+          "invalid_model"
+        ],
+        "stdout": "PASS invalid_model (524265 always-active checks)"
+      },
+      {
+        "number": 40,
+        "name": "model_state.malformed_models",
+        "status": "Passed",
+        "elapsed_seconds": 0.0,
+        "command": "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_model_state_tests malformed_models",
+        "argv": [
+          "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_model_state_tests",
+          "malformed_models"
+        ],
+        "stdout": "PASS malformed_models (12372 always-active checks)"
+      },
+      {
+        "number": 171,
+        "name": "vst3.model_stream_roundtrip",
+        "status": "Passed",
+        "elapsed_seconds": 0.0,
+        "command": "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_model_stream_tests stream_roundtrip",
+        "argv": [
+          "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_model_stream_tests",
+          "stream_roundtrip"
+        ],
+        "stdout": "PASS stream_roundtrip (3316 always-active checks)"
+      },
+      {
+        "number": 172,
+        "name": "vst3.model_stream_invalid_model",
+        "status": "Passed",
+        "elapsed_seconds": 0.01,
+        "command": "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_model_stream_tests stream_invalid_model",
+        "argv": [
+          "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_model_stream_tests",
+          "stream_invalid_model"
+        ],
+        "stdout": "PASS stream_invalid_model (589798 always-active checks)"
+      },
+      {
+        "number": 173,
+        "name": "vst3.model_stream_rejection",
+        "status": "Passed",
+        "elapsed_seconds": 0.0,
+        "command": "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_model_stream_tests stream_rejection",
+        "argv": [
+          "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_model_stream_tests",
+          "stream_rejection"
+        ],
+        "stdout": "PASS stream_rejection (105 always-active checks)"
+      },
+      {
+        "number": 174,
+        "name": "vst3.model_stream_transfers",
+        "status": "Passed",
+        "elapsed_seconds": 0.02,
+        "command": "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_model_stream_tests stream_transfers",
+        "argv": [
+          "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_model_stream_tests",
+          "stream_transfers"
+        ],
+        "stdout": "PASS stream_transfers (1584 always-active checks)"
+      }
+    ],
+    "loaded_midi": {
+      "number": 321,
+      "name": "vst3.loaded_midi",
+      "status": "Passed",
+      "elapsed_seconds": 0.24,
+      "command": "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_vst3_loaded_midi_tests /workspace/scratch/edddd917a86c/Fender-rhoades/build-host/VST3/Release/RhodesResearch.vst3 /workspace/scratch/edddd917a86c/Fender-rhoades/build-host/VST3/Release/RhodesResearchFiltered.vst3 /workspace/scratch/edddd917a86c/Fender-rhoades/build-host/VST3/Release/RhodesResearchQuadrature.vst3",
+      "argv": [
+        "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_vst3_loaded_midi_tests",
+        "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/VST3/Release/RhodesResearch.vst3",
+        "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/VST3/Release/RhodesResearchFiltered.vst3",
+        "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/VST3/Release/RhodesResearchQuadrature.vst3"
+      ],
+      "stdout": "PASS loaded MIDI: 3 modules, 2 formats, 336 exact audio pairs, 780 loaded callbacks, 6 zero-frame releases, 102 rejected blocks, 1002 rejected texts, 263965 checks",
+      "counters": {
+        "modules": 3,
+        "sample_formats": 2,
+        "exact_audio_pairs": 336,
+        "loaded_callbacks": 780,
+        "zero_frame_releases": 6,
+        "rejected_blocks": 102,
+        "rejected_texts": 1002,
+        "checks": 263965
+      }
+    },
+    "module_coexistence": [
+      {
+        "number": 317,
+        "name": "vst3.dual_module_coexist",
+        "status": "Passed",
+        "elapsed_seconds": 0.01,
+        "command": "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_vst3_dual_module_tests coexist /workspace/scratch/edddd917a86c/Fender-rhoades/build-host/VST3/Release/RhodesResearch.vst3 /workspace/scratch/edddd917a86c/Fender-rhoades/build-host/VST3/Release/RhodesResearchFiltered.vst3",
+        "argv": [
+          "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_vst3_dual_module_tests",
+          "coexist",
+          "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/VST3/Release/RhodesResearch.vst3",
+          "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/VST3/Release/RhodesResearchFiltered.vst3"
+        ],
+        "stdout": "PASS dual module coexist: 6418 checks, 24 loaded callbacks"
+      },
+      {
+        "number": 318,
+        "name": "vst3.dual_module_duplicate_guard",
+        "status": "Passed",
+        "elapsed_seconds": 0.0,
+        "command": "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_vst3_dual_module_tests duplicate_guard /workspace/scratch/edddd917a86c/Fender-rhoades/build-host/VST3/Release/RhodesResearch.vst3",
+        "argv": [
+          "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_vst3_dual_module_tests",
+          "duplicate_guard",
+          "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/VST3/Release/RhodesResearch.vst3"
+        ],
+        "stdout": "PASS dual module duplicate_guard: 3 checks, 0 loaded callbacks"
+      },
+      {
+        "number": 319,
+        "name": "vst3.triple_module_coexist",
+        "status": "Passed",
+        "elapsed_seconds": 0.51,
+        "command": "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_vst3_triple_module_tests coexist /workspace/scratch/edddd917a86c/Fender-rhoades/build-host/VST3/Release/RhodesResearch.vst3 /workspace/scratch/edddd917a86c/Fender-rhoades/build-host/VST3/Release/RhodesResearchFiltered.vst3 /workspace/scratch/edddd917a86c/Fender-rhoades/build-host/VST3/Release/RhodesResearchQuadrature.vst3",
+        "argv": [
+          "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_vst3_triple_module_tests",
+          "coexist",
+          "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/VST3/Release/RhodesResearch.vst3",
+          "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/VST3/Release/RhodesResearchFiltered.vst3",
+          "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/VST3/Release/RhodesResearchQuadrature.vst3"
+        ],
+        "stdout": "PASS triple module coexist: 381457 checks, 1368 loaded callbacks, 144 rejected foreign recalls"
+      },
+      {
+        "number": 320,
+        "name": "vst3.triple_module_duplicate_guard",
+        "status": "Passed",
+        "elapsed_seconds": 0.01,
+        "command": "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_vst3_triple_module_tests duplicate_guard /workspace/scratch/edddd917a86c/Fender-rhoades/build-host/VST3/Release/RhodesResearch.vst3 /workspace/scratch/edddd917a86c/Fender-rhoades/build-host/VST3/Release/RhodesResearchFiltered.vst3 /workspace/scratch/edddd917a86c/Fender-rhoades/build-host/VST3/Release/RhodesResearchQuadrature.vst3",
+        "argv": [
+          "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_vst3_triple_module_tests",
+          "duplicate_guard",
+          "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/VST3/Release/RhodesResearch.vst3",
+          "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/VST3/Release/RhodesResearchFiltered.vst3",
+          "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/VST3/Release/RhodesResearchQuadrature.vst3"
+        ],
+        "stdout": "PASS triple module duplicate_guard: 51 checks, 0 loaded callbacks, 0 rejected foreign recalls"
+      }
+    ],
+    "core_control_text": [
+      {
+        "number": 1,
+        "name": "control_text.oracle",
+        "status": "Passed",
+        "elapsed_seconds": 0.0,
+        "command": "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_control_text_tests oracle",
+        "argv": [
+          "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_control_text_tests",
+          "oracle"
+        ],
+        "stdout": "PASS oracle (400 conversions, 1903 always-active checks)"
+      },
+      {
+        "number": 2,
+        "name": "control_text.bounds",
+        "status": "Passed",
+        "elapsed_seconds": 0.0,
+        "command": "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_control_text_tests bounds",
+        "argv": [
+          "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_control_text_tests",
+          "bounds"
+        ],
+        "stdout": "PASS bounds (2491 conversions, 10236 always-active checks)"
+      },
+      {
+        "number": 3,
+        "name": "control_text.formatting",
+        "status": "Passed",
+        "elapsed_seconds": 0.01,
+        "command": "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_control_text_tests formatting",
+        "argv": [
+          "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_control_text_tests",
+          "formatting"
+        ],
+        "stdout": "PASS formatting (406 conversions, 4499 always-active checks)"
+      },
+      {
+        "number": 4,
+        "name": "control_text.roundtrip",
+        "status": "Passed",
+        "elapsed_seconds": 0.31,
+        "command": "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_control_text_tests roundtrip",
+        "argv": [
+          "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_control_text_tests",
+          "roundtrip"
+        ],
+        "stdout": "PASS roundtrip (30000 conversions, 1084198 always-active checks)"
+      },
+      {
+        "number": 5,
+        "name": "control_text.environments",
+        "status": "Passed",
+        "elapsed_seconds": 0.19,
+        "command": "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_control_text_tests environments",
+        "argv": [
+          "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_control_text_tests",
+          "environments"
+        ],
+        "stdout": "checked 16 supported rounding/flush combinations\nPASS environments (19068 conversions, 381203 always-active checks)"
+      },
+      {
+        "number": 6,
+        "name": "control_text.locale",
+        "status": "Passed",
+        "elapsed_seconds": 0.01,
+        "command": "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_control_text_tests locale",
+        "argv": [
+          "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_control_text_tests",
+          "locale"
+        ],
+        "stdout": "checked comma-decimal locale de_DE.UTF-8\nPASS locale (808 conversions, 3929 always-active checks)"
+      }
+    ],
+    "host_control_text": [
+      {
+        "number": 208,
+        "name": "vst3.control_text",
+        "status": "Passed",
+        "elapsed_seconds": 0.21,
+        "command": "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_vst3_control_text_tests",
+        "argv": [
+          "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_vst3_control_text_tests"
+        ],
+        "stdout": "PASS comma-decimal locale de_DE.UTF-8\nPASS controller text model=1 (16 floating-point environments, 41752 conversions, 1221041 always-active checks)"
+      },
+      {
+        "number": 209,
+        "name": "vst3.filtered_control_text",
+        "status": "Passed",
+        "elapsed_seconds": 0.16,
+        "command": "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_vst3_filtered_control_text_tests",
+        "argv": [
+          "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_vst3_filtered_control_text_tests"
+        ],
+        "stdout": "PASS comma-decimal locale de_DE.UTF-8\nPASS controller text model=2 (16 floating-point environments, 41752 conversions, 1221041 always-active checks)"
+      },
+      {
+        "number": 210,
+        "name": "vst3.quadrature_control_text",
+        "status": "Passed",
+        "elapsed_seconds": 0.17,
+        "command": "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_vst3_quadrature_control_text_tests",
+        "argv": [
+          "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_vst3_quadrature_control_text_tests"
+        ],
+        "stdout": "PASS comma-decimal locale de_DE.UTF-8\nPASS controller text model=3 (16 floating-point environments, 41752 conversions, 1221041 always-active checks)"
+      }
+    ],
+    "channel_command_and_pressure": [
+      {
+        "number": 196,
+        "name": "vst3.channel_commands",
+        "status": "Passed",
+        "elapsed_seconds": 0.01,
+        "command": "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_vst3_channel_commands_tests",
+        "argv": [
+          "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_vst3_channel_commands_tests"
+        ],
+        "stdout": "Channel commands: explicit release oracle, repeated zero, shared holders, sustain, retrigger and zero-frame state passed (both formats, four rates)."
+      },
+      {
+        "number": 197,
+        "name": "vst3.filtered_channel_commands",
+        "status": "Passed",
+        "elapsed_seconds": 0.04,
+        "command": "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_vst3_filtered_channel_commands_tests",
+        "argv": [
+          "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_vst3_filtered_channel_commands_tests"
+        ],
+        "stdout": "Channel commands: explicit release oracle, repeated zero, shared holders, sustain, retrigger and zero-frame state passed (both formats, four rates)."
+      },
+      {
+        "number": 198,
+        "name": "vst3.quadrature_channel_commands",
+        "status": "Passed",
+        "elapsed_seconds": 0.05,
+        "command": "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_vst3_quadrature_channel_commands_tests",
+        "argv": [
+          "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_vst3_quadrature_channel_commands_tests"
+        ],
+        "stdout": "Channel commands: explicit release oracle, repeated zero, shared holders, sustain, retrigger and zero-frame state passed (both formats, four rates)."
+      },
+      {
+        "number": 199,
+        "name": "vst3.command_partition",
+        "status": "Passed",
+        "elapsed_seconds": 0.18,
+        "command": "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_vst3_command_partition_tests",
+        "argv": [
+          "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_vst3_command_partition_tests"
+        ],
+        "stdout": "Rhodes Research Prototype: 6536 callbacks, 24608 exact scalar-checked samples; whole/one-frame/fixed64/ragged CC123, pressure, notes and sustain agree in both formats at four rates."
+      },
+      {
+        "number": 200,
+        "name": "vst3.filtered_command_partition",
+        "status": "Passed",
+        "elapsed_seconds": 0.41,
+        "command": "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_vst3_filtered_command_partition_tests",
+        "argv": [
+          "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_vst3_filtered_command_partition_tests"
+        ],
+        "stdout": "Rhodes Research Filtered: 6536 callbacks, 24608 exact scalar-checked samples; whole/one-frame/fixed64/ragged CC123, pressure, notes and sustain agree in both formats at four rates."
+      },
+      {
+        "number": 201,
+        "name": "vst3.quadrature_command_partition",
+        "status": "Passed",
+        "elapsed_seconds": 0.34,
+        "command": "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_vst3_quadrature_command_partition_tests",
+        "argv": [
+          "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_vst3_quadrature_command_partition_tests"
+        ],
+        "stdout": "Rhodes Research Quadrature: 6536 callbacks, 24608 exact scalar-checked samples; whole/one-frame/fixed64/ragged CC123, pressure, notes and sustain agree in both formats at four rates."
+      },
+      {
+        "number": 202,
+        "name": "vst3.pressure",
+        "status": "Passed",
+        "elapsed_seconds": 0.12,
+        "command": "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_vst3_pressure_tests",
+        "argv": [
+          "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_vst3_pressure_tests"
+        ],
+        "stdout": "PASS pressure raw binary32 baseline\nPASS pressure raw binary32 ftz\nPASS pressure raw binary32 daz\nPASS pressure raw binary32 ftz_daz\nPASS model 1 pressure: 288 process calls, 110 paired audio/ownership comparisons, 68 atomic rejections; float and double"
+      },
+      {
+        "number": 203,
+        "name": "vst3.filtered_pressure",
+        "status": "Passed",
+        "elapsed_seconds": 0.38,
+        "command": "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_vst3_filtered_pressure_tests",
+        "argv": [
+          "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_vst3_filtered_pressure_tests"
+        ],
+        "stdout": "PASS pressure raw binary32 baseline\nPASS pressure raw binary32 ftz\nPASS pressure raw binary32 daz\nPASS pressure raw binary32 ftz_daz\nPASS model 2 pressure: 288 process calls, 110 paired audio/ownership comparisons, 68 atomic rejections; float and double"
+      },
+      {
+        "number": 204,
+        "name": "vst3.quadrature_pressure",
+        "status": "Passed",
+        "elapsed_seconds": 0.18,
+        "command": "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_vst3_quadrature_pressure_tests",
+        "argv": [
+          "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_vst3_quadrature_pressure_tests"
+        ],
+        "stdout": "PASS pressure raw binary32 baseline\nPASS pressure raw binary32 ftz\nPASS pressure raw binary32 daz\nPASS pressure raw binary32 ftz_daz\nPASS model 3 pressure: 288 process calls, 110 paired audio/ownership comparisons, 68 atomic rejections; float and double"
+      },
+      {
+        "number": 205,
+        "name": "vst3.command_bounds",
+        "status": "Passed",
+        "elapsed_seconds": 0.02,
+        "command": "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_vst3_command_bounds_tests",
+        "argv": [
+          "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_vst3_command_bounds_tests"
+        ],
+        "stdout": "Rhodes Research Prototype: 585-action expansion, 256 raw commands across 1/16 queues, bounded 257-point rejection and 256/257 per-sample dispatch passed with scalar audio/ownership and atomic snapshots (both formats)."
+      },
+      {
+        "number": 206,
+        "name": "vst3.filtered_command_bounds",
+        "status": "Passed",
+        "elapsed_seconds": 0.1,
+        "command": "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_vst3_filtered_command_bounds_tests",
+        "argv": [
+          "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_vst3_filtered_command_bounds_tests"
+        ],
+        "stdout": "Rhodes Research Filtered: 585-action expansion, 256 raw commands across 1/16 queues, bounded 257-point rejection and 256/257 per-sample dispatch passed with scalar audio/ownership and atomic snapshots (both formats)."
+      },
+      {
+        "number": 207,
+        "name": "vst3.quadrature_command_bounds",
+        "status": "Passed",
+        "elapsed_seconds": 0.17,
+        "command": "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_vst3_quadrature_command_bounds_tests",
+        "argv": [
+          "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_vst3_quadrature_command_bounds_tests"
+        ],
+        "stdout": "Rhodes Research Quadrature: 585-action expansion, 256 raw commands across 1/16 queues, bounded 257-point rejection and 256/257 per-sample dispatch passed with scalar audio/ownership and atomic snapshots (both formats)."
+      }
+    ]
+  },
+  "binaries": {
+    "captured_at_utc": "2026-11-24T10:37:16Z",
+    "vst3_modules": [
+      {
+        "path": "build-host/VST3/Release/RhodesResearch.vst3/Contents/x86_64-linux/RhodesResearch.so",
+        "sha256": "e4f9812a59ef1bb5168ad9fdca61d0aba94988ca4f413c98a013fae87a3038bf",
+        "bytes": 343176
+      },
+      {
+        "path": "build-host/VST3/Release/RhodesResearchFiltered.vst3/Contents/x86_64-linux/RhodesResearchFiltered.so",
+        "sha256": "a410ba3073e99335187d711a3c5effaff197962afbdc43207175c511b63b9b08",
+        "bytes": 351368
+      },
+      {
+        "path": "build-host/VST3/Release/RhodesResearchQuadrature.vst3/Contents/x86_64-linux/RhodesResearchQuadrature.so",
+        "sha256": "1deda8ab23b8b21ec26ab353eb497ad7bd703df024330527c7736be09eca5739",
+        "bytes": 351368
+      }
+    ],
+    "ctest_project_executables": [
+      {
+        "path": "build-host/bin/Release/moduleinfotool",
+        "sha256": "cee393f3b24fa10ae73398471f5351350155c0bf98f3b137c064e3d400b0289d",
+        "bytes": 274080
+      },
+      {
+        "path": "build-host/bin/Release/validator",
+        "sha256": "6f98b44911b34626934056edbf8d79a7bb4d261b5cbc81c3eee63eab2ee4fd76",
+        "bytes": 935200
+      },
+      {
+        "path": "build-host/rhodes_alias_primitive_probe",
+        "sha256": "a02c6412fa97503e8703b98f791604641b5ccbb4c1d60b014d695e3d05270cd7",
+        "bytes": 46656
+      },
+      {
+        "path": "build-host/rhodes_audio_engine_tests",
+        "sha256": "cf78faaa3d03495baf4cbdf403285ad422546ec4813301fa7d1306f5c7080f97",
+        "bytes": 129240
+      },
+      {
+        "path": "build-host/rhodes_audio_fir_tests",
+        "sha256": "f7333dcd4ceafd2a138e974703414e033ed0cf59e31ccf98241bf96f84e9a414",
+        "bytes": 44184
+      },
+      {
+        "path": "build-host/rhodes_benchmark",
+        "sha256": "73e2982c893fbefac3663f91386075da30707f424d39d67987c1ee6e05986dd2",
+        "bytes": 51920
+      },
+      {
+        "path": "build-host/rhodes_contact_domain_tests",
+        "sha256": "d5fb046e824f267c85eae3005a2100c3bbaa53d363cc861e5684bb254727bf85",
+        "bytes": 223864
+      },
+      {
+        "path": "build-host/rhodes_contact_event_split_tests",
+        "sha256": "d0368fe84c5418e54ebb2fd2ca86cc2bf85acd1fe9242af08b15b2cbc799cbac",
+        "bytes": 125176
+      },
+      {
+        "path": "build-host/rhodes_contact_grazing_anchor_tests",
+        "sha256": "d867123bf8afe626a3d9d24f7c97e415d345780c01e94651fa6042516e3026dd",
+        "bytes": 156376
+      },
+      {
+        "path": "build-host/rhodes_contact_grazing_tests",
+        "sha256": "16c6f71b2b49ef99991164e6ab9ad3b846ba7b73d9655fdedaf194a59f1a84e2",
+        "bytes": 135656
+      },
+      {
+        "path": "build-host/rhodes_contact_peak_tests",
+        "sha256": "eae535e7f755c15a03165d1c023628cce5d68ad0f43f9b9ca4ece302775a16ae",
+        "bytes": 161432
+      },
+      {
+        "path": "build-host/rhodes_contact_reference",
+        "sha256": "3f5fc5ed244f320fc7d18889a5266ae923a11cee13b99e4bfab0b1348867dbec",
+        "bytes": 131352
+      },
+      {
+        "path": "build-host/rhodes_contact_split_peak_tests",
+        "sha256": "3cc9f3b7882506ed838a8ae65144e8856da989644dedd52c81ded7ce3378aaa4",
+        "bytes": 149192
+      },
+      {
+        "path": "build-host/rhodes_contact_tests",
+        "sha256": "318c78c891e355657ee0921cebe3cdfcd6f8988494d5dc15fe3fec789001c1e7",
+        "bytes": 188160
+      },
+      {
+        "path": "build-host/rhodes_control_fp_tests",
+        "sha256": "77b0e746c85d5e53a9cddff3c593f4a97c9824439e63c8e2fd73cdbd7bb33b8c",
+        "bytes": 56184
+      },
+      {
+        "path": "build-host/rhodes_control_text_tests",
+        "sha256": "ee038ab0a688539dcef32f974a12f2a8d1685e4105fb645ae4008fc2c8cb45a4",
+        "bytes": 121544
+      },
+      {
+        "path": "build-host/rhodes_control_value_tests",
+        "sha256": "bffd4ab22e7f247b99caa9f9e05fd95a1ff23c6e56d65455cc037d9fc10d615e",
+        "bytes": 36776
+      },
+      {
+        "path": "build-host/rhodes_event_model_tests",
+        "sha256": "e3ac31fd1cc1eef35029ff002e68040d0fc1488f3a223e9814bd7eb756c3f6d0",
+        "bytes": 70664
+      },
+      {
+        "path": "build-host/rhodes_event_release_port_tests",
+        "sha256": "74a305db49ff250dc349c53c36cad24ddf1c68dc48323fecdbc7f66b33b147af",
+        "bytes": 126568
+      },
+      {
+        "path": "build-host/rhodes_event_tests",
+        "sha256": "81ceaed557ef8d0ac0c746fcc83f9bd8ba562276409bed5442865449af8ac72d",
+        "bytes": 76592
+      },
+      {
+        "path": "build-host/rhodes_fractional_observation_tests",
+        "sha256": "6cfc3a3d8315c06ce6985104815c9881b66e5f80c2d963a203faf83cae6f59fb",
+        "bytes": 80728
+      },
+      {
+        "path": "build-host/rhodes_model_state_tests",
+        "sha256": "5309b39da7cde0799f0c6dc7264ca3b0c0ec85e0063d860b2c7fea87c984ec30",
+        "bytes": 27688
+      },
+      {
+        "path": "build-host/rhodes_model_stream_tests",
+        "sha256": "53c28802022d054a5dff7bfcc8d3d206f3ca645288b1f031cbf256546e0a724f",
+        "bytes": 50240
+      },
+      {
+        "path": "build-host/rhodes_note_model_tests",
+        "sha256": "1af4a416dfed2b1e37a1ca6c957ddee69210505c73a79f893037aaf762b90aec",
+        "bytes": 92296
+      },
+      {
+        "path": "build-host/rhodes_note_tests",
+        "sha256": "700a2a3ba82b448e2eca0b27606b363808313fd90826a5b98df69f61fa13d4d2",
+        "bytes": 56248
+      },
+      {
+        "path": "build-host/rhodes_quadrature_engine_tests",
+        "sha256": "9c0cb36967023f5e9c6786cb4406b5691f828f76c53c1600f2ae36b46ecd6941",
+        "bytes": 144096
+      },
+      {
+        "path": "build-host/rhodes_quadrature_fir_order_tests",
+        "sha256": "8edf8dfdd7314ef813730f4f19503c461557a854ad118ec04463a288067ac6e2",
+        "bytes": 49512
+      },
+      {
+        "path": "build-host/rhodes_quadrature_fir_tests",
+        "sha256": "f0f734fd00d413c84b0ce7fb2389c767ae8f4556c5a00f13b8044f76fe484797",
+        "bytes": 52464
+      },
+      {
+        "path": "build-host/rhodes_render",
+        "sha256": "44d32bd09440090aeff07ccb4784bdc3c7dd6db6e71fc3ca69b85f50dbedd9e2",
+        "bytes": 85144
+      },
+      {
+        "path": "build-host/rhodes_review_tests",
+        "sha256": "a55b82465598c9e15852ba3b9aa820a45dba2954eb0480e37413e732f9d8014d",
+        "bytes": 59560
+      },
+      {
+        "path": "build-host/rhodes_runtime_benchmark",
+        "sha256": "54010c1e7e0b527d7225f72e76694f0774ee419dff8713c3f81da271da99599c",
+        "bytes": 69336
+      },
+      {
+        "path": "build-host/rhodes_silent_observation_tests",
+        "sha256": "78b606182ec9b3319130e6e5faa58174f2bea9293f3af722207898cde7399984",
+        "bytes": 78104
+      },
+      {
+        "path": "build-host/rhodes_state_concurrency_tests",
+        "sha256": "e9ac3a6a8166e07eb2256c53d8d57c6161adb0b7ee4aeab9ec71af4335cad066",
+        "bytes": 39416
+      },
+      {
+        "path": "build-host/rhodes_state_fp_tests",
+        "sha256": "db54cbd70cb9a9adada5bd6186cc364e2599147bf7782153904fd668563041e5",
+        "bytes": 22968
+      },
+      {
+        "path": "build-host/rhodes_state_property_tests",
+        "sha256": "898d5cfa4e652fb90cdaa45909859290b435d95845d90eb8c9b3cfc8f49db132",
+        "bytes": 44392
+      },
+      {
+        "path": "build-host/rhodes_state_tests",
+        "sha256": "4a5e03bf26f091e38cb402c58a18eb0c6f260e5f40648912fd65deb1878334c9",
+        "bytes": 22952
+      },
+      {
+        "path": "build-host/rhodes_tests",
+        "sha256": "5ecf5e2c6b8aacdd2ca7cfa6706f5861c1ca15efe0098b46db4feed9c084c654",
+        "bytes": 51048
+      },
+      {
+        "path": "build-host/rhodes_transition_cache_tests",
+        "sha256": "b948719ffac7b1b6597459da4060e247a6d24df3d53bc0a82aeac233373cd0d3",
+        "bytes": 51104
+      },
+      {
+        "path": "build-host/rhodes_vst3_automation_tests",
+        "sha256": "1f5746e9b7c3c9876ac09e206ec79670118320c453ca32396b233916a2db7a4a",
+        "bytes": 538512
+      },
+      {
+        "path": "build-host/rhodes_vst3_benchmark",
+        "sha256": "a1947aa9d323ea6d130927d33e37e07c8f2e360d303b1034c709eaa60293d3a8",
+        "bytes": 299736
+      },
+      {
+        "path": "build-host/rhodes_vst3_buffer_tests",
+        "sha256": "d0de5441e18e5521ff34e3c37f3ecc4155f59c8e84396d89148eecf0be11cf3f",
+        "bytes": 516984
+      },
+      {
+        "path": "build-host/rhodes_vst3_channel_commands_tests",
+        "sha256": "b40424823c1d0ad55345c8cf86435db5be4fbab40cfc1d3741b8d13ac02dd8ba",
+        "bytes": 460864
+      },
+      {
+        "path": "build-host/rhodes_vst3_command_atomicity_tests",
+        "sha256": "6ccaa65d8fb0b0a72f7976e1eb9d754f539bef20d4d14023376d80e6a1700d5c",
+        "bytes": 540776
+      },
+      {
+        "path": "build-host/rhodes_vst3_command_bounds_tests",
+        "sha256": "f61e7e6c56a06dd24c1c1e5142795af1eba7f7d6679417854a6c41151b2fcac0",
+        "bytes": 486848
+      },
+      {
+        "path": "build-host/rhodes_vst3_command_partition_tests",
+        "sha256": "b4380892aa1874289a46e8d8310f5998b9a9835a83b64c93383c65630b39ae90",
+        "bytes": 491760
+      },
+      {
+        "path": "build-host/rhodes_vst3_control_text_tests",
+        "sha256": "e1c9910db0e7a65e967490aed0226eb1a58d2d104eaac34a40000227332ec539",
+        "bytes": 413992
+      },
+      {
+        "path": "build-host/rhodes_vst3_dual_module_tests",
+        "sha256": "0424f39c5abc16f0f1a4e9c727c28d63202eb833db5963c5f774b511ab0fa02a",
+        "bytes": 184272
+      },
+      {
+        "path": "build-host/rhodes_vst3_filtered_automation_tests",
+        "sha256": "930d7c57b5e1197d1609cc9e928db7253458acb1f3ddcb0c2bf79582ec7f5cf8",
+        "bytes": 547256
+      },
+      {
+        "path": "build-host/rhodes_vst3_filtered_benchmark",
+        "sha256": "4977bc787f4710b61a9724179984fcfefae82216225cda13cc64adf1fdeb0e7f",
+        "bytes": 312312
+      },
+      {
+        "path": "build-host/rhodes_vst3_filtered_buffer_tests",
+        "sha256": "cc433488fa9266d6c357357c9bb3e5c0a1db11cfb75540a5681d782a062c04f0",
+        "bytes": 525488
+      },
+      {
+        "path": "build-host/rhodes_vst3_filtered_channel_commands_tests",
+        "sha256": "e56df617c9e5cfcd6b5d6df80e2c50ec8200b2b738a8bd83e0aa17d5ef6d013d",
+        "bytes": 469344
+      },
+      {
+        "path": "build-host/rhodes_vst3_filtered_command_atomicity_tests",
+        "sha256": "364730eb21f747911a3c6a63d945aa9e0c6351f1dc9f31da89eb8bfb212ca9ea",
+        "bytes": 557816
+      },
+      {
+        "path": "build-host/rhodes_vst3_filtered_command_bounds_tests",
+        "sha256": "ee8f65986f38121b2d8fc7b08059c35550a03f4a42e84f060badca1f8c321788",
+        "bytes": 507752
+      },
+      {
+        "path": "build-host/rhodes_vst3_filtered_command_partition_tests",
+        "sha256": "aba2799a1346d35c984ee8e45b33bcbf4f5e59a24acc087d4ff2924998e82dae",
+        "bytes": 508432
+      },
+      {
+        "path": "build-host/rhodes_vst3_filtered_control_text_tests",
+        "sha256": "dc592cda756326a768c81e264b7f9889a04d48a22363515ae05c7d8f3f152a93",
+        "bytes": 413992
+      },
+      {
+        "path": "build-host/rhodes_vst3_filtered_fp_tests",
+        "sha256": "71ab6541dc6066842ea526d3d56b98a021df467b73ec924663af59c87c31b61d",
+        "bytes": 508472
+      },
+      {
+        "path": "build-host/rhodes_vst3_filtered_note_model_tests",
+        "sha256": "62865093ef55f9dbd8171bc7939f19f258dc3bc57f10ae244dadb51f921754c3",
+        "bytes": 515592
+      },
+      {
+        "path": "build-host/rhodes_vst3_filtered_pressure_tests",
+        "sha256": "1446236e85bbce4818c33420a0a71df755704a3fc5d64850466735cdcfd113e1",
+        "bytes": 515720
+      },
+      {
+        "path": "build-host/rhodes_vst3_filtered_regression_tests",
+        "sha256": "0515cd5f17b0b1c43648dc61d905b6decad9679198b5be9411c466da5b0f10eb",
+        "bytes": 542528
+      },
+      {
+        "path": "build-host/rhodes_vst3_filtered_state_concurrency_tests",
+        "sha256": "0dd014d4a49e3f7e52cad9710381f078d6592529585b3c95ad24a0d4171ceaa9",
+        "bytes": 515256
+      },
+      {
+        "path": "build-host/rhodes_vst3_filtered_stream_tests",
+        "sha256": "3f25ffe68c082aa1d66c8da52cc88db2378a72b60362b5e13bcef7036068c386",
+        "bytes": 485488
+      },
+      {
+        "path": "build-host/rhodes_vst3_filtered_tests",
+        "sha256": "39c4043366c22047d0fae877b39f35698f6afa8ee9708d7db21573fc575fd3eb",
+        "bytes": 529784
+      },
+      {
+        "path": "build-host/rhodes_vst3_fp_tests",
+        "sha256": "5d3e18d370743ee5b4f5f64d2cfef00f66b26a34c79b9012fe5243b9794d64d1",
+        "bytes": 503968
+      },
+      {
+        "path": "build-host/rhodes_vst3_host_tests",
+        "sha256": "b673bef7fdf493e2eb52155aefd9eae71cda7bcf826304b117be1d6af8cfa7d2",
+        "bytes": 538008
+      },
+      {
+        "path": "build-host/rhodes_vst3_loaded_midi_tests",
+        "sha256": "ef1cefd7e1184a61f2954564ab4ecadebd7524b06d7c83e0a816e00967024965",
+        "bytes": 247640
+      },
+      {
+        "path": "build-host/rhodes_vst3_note_model_tests",
+        "sha256": "1680609531d870d07c59489160a8a202ef421f42f253e8b14acf847d5779a794",
+        "bytes": 506992
+      },
+      {
+        "path": "build-host/rhodes_vst3_pressure_tests",
+        "sha256": "3149c7975458287c584fd28b185347bc0b13bb840db0b9f12159b371049e67eb",
+        "bytes": 503144
+      },
+      {
+        "path": "build-host/rhodes_vst3_quadrature_automation_tests",
+        "sha256": "85cf399df52aa9a4dbe4588c352b2f31c77f7c1646a3a9255ebebbb20eedba32",
+        "bytes": 551184
+      },
+      {
+        "path": "build-host/rhodes_vst3_quadrature_benchmark",
+        "sha256": "da645f27406f26d82fd76b3280167d7a52a79351dbc618befa41ecb7c2a22e6a",
+        "bytes": 312240
+      },
+      {
+        "path": "build-host/rhodes_vst3_quadrature_buffer_tests",
+        "sha256": "0fd2f884491faad9348c17e66c0d25df44067121d221131fd461ba2e5bc8a24a",
+        "bytes": 529520
+      },
+      {
+        "path": "build-host/rhodes_vst3_quadrature_channel_commands_tests",
+        "sha256": "1b34bcdcc7c277baccccb5e7707b6986d4a6db231ba152e76ab880d13ddc030c",
+        "bytes": 473376
+      },
+      {
+        "path": "build-host/rhodes_vst3_quadrature_command_atomicity_tests",
+        "sha256": "3efc90bf77f5446fa1895cf90ca2e3e8788b2c71a6bfb8ea386cafeb90ccbb66",
+        "bytes": 566096
+      },
+      {
+        "path": "build-host/rhodes_vst3_quadrature_command_bounds_tests",
+        "sha256": "3249162ed96b8d70df4a97c7786b09675e5b3fcc0c9c44ee41e8f244486561da",
+        "bytes": 519984
+      },
+      {
+        "path": "build-host/rhodes_vst3_quadrature_command_partition_tests",
+        "sha256": "41f605f90aaebe20a7bebff8e3c9f3b21daff4a7e14a5059218edc1840989589",
+        "bytes": 512464
+      },
+      {
+        "path": "build-host/rhodes_vst3_quadrature_contract_tests",
+        "sha256": "685c729e5b416824da00f2d17c598cb7772e45efebd46d93e83a8b5ca7988515",
+        "bytes": 516640
+      },
+      {
+        "path": "build-host/rhodes_vst3_quadrature_control_text_tests",
+        "sha256": "36acd25910443a10b08da73d608e8db3f8a64e253c9bf2888f2eee044bfa7d35",
+        "bytes": 413992
+      },
+      {
+        "path": "build-host/rhodes_vst3_quadrature_fp_tests",
+        "sha256": "1440be53aeab665283e2ae26419f89c9b966dbb99ecafceccff72d452b44eae7",
+        "bytes": 512504
+      },
+      {
+        "path": "build-host/rhodes_vst3_quadrature_note_model_tests",
+        "sha256": "0b4361fda0cbf92c6ce3fabdb21b71623fc70ebf32d8807ed285b69233ba2f2d",
+        "bytes": 519760
+      },
+      {
+        "path": "build-host/rhodes_vst3_quadrature_pressure_tests",
+        "sha256": "451d650e69c48eed0fc29a10c33f2a1cef6e39d4a7eb35025d76609416dfe86a",
+        "bytes": 515656
+      },
+      {
+        "path": "build-host/rhodes_vst3_quadrature_regression_tests",
+        "sha256": "f57c83914d745bcf26d9bd7366380351d71f4c5ac865c3c19c80fe865f0d7705",
+        "bytes": 546568
+      },
+      {
+        "path": "build-host/rhodes_vst3_quadrature_state_concurrency_tests",
+        "sha256": "00cd28803dba9b484a4b8c225d0ca83458e24b87311bcee432fbf0390177e5fe",
+        "bytes": 515192
+      },
+      {
+        "path": "build-host/rhodes_vst3_quadrature_stream_tests",
+        "sha256": "810a1f80d400edab4e479f1bdbd1713702d3f321ada7c59ca60b3a37080df7ab",
+        "bytes": 489520
+      },
+      {
+        "path": "build-host/rhodes_vst3_state_concurrency_tests",
+        "sha256": "3988916c15550b5ba2e72b96f4ead55c0dec03f140958871c358bf5448aefc9a",
+        "bytes": 506784
+      },
+      {
+        "path": "build-host/rhodes_vst3_stream_tests",
+        "sha256": "607f8791822c45910abe47281112a439d2c6b028352bf5dc4cbdcc0d03b11778",
+        "bytes": 472912
+      },
+      {
+        "path": "build-host/rhodes_vst3_triple_module_tests",
+        "sha256": "f1cdd5af2d05068149a9cd2bf1535dc89375344109e5c98907e1e8eef9ee7b82",
+        "bytes": 205032
+      }
+    ],
+    "core_archives": [
+      {
+        "path": "build-host/librhodes_core.a",
+        "sha256": "b21d7e3e1a4e22ec4555b6cb5bb249b0dc78df16b6766a99dff9f621ddcc3418",
+        "bytes": 27512
+      }
+    ]
+  },
+  "logs": {
+    "build": {
+      "path": "docs/validation/host-midi-linux-final-20261124-build.log",
+      "sha256": "6f7ceafa47897ead193d12346c29fa1b2656135ef96a292255f7d83441636081",
+      "bytes": 10094,
+      "content": "Combined process stdout/stderr"
+    },
+    "ctest": {
+      "path": "docs/validation/host-midi-linux-final-20261124-ctest.log",
+      "sha256": "b44435dc2c59accdb606b8bb84f31335c8ede6c39821d869876817a283416ee0",
+      "bytes": 45236,
+      "content": "Combined process stdout/stderr"
+    },
+    "ctest-detail": {
+      "path": "docs/validation/host-midi-linux-final-20261124-ctest-detail.log",
+      "sha256": "e24b5ec8cb75f9bc26967d9de1e2fe24e9689991122ebfce7bd8553c77815dce",
+      "bytes": 319469,
+      "content": "Byte-for-byte copy of build-host/Testing/Temporary/LastTest.log immediately after this CTest run"
+    }
+  },
+  "limitations": [
+    "This artifact supports the recorded Linux/GCC x86_64 source integration only; it does not assert Windows/MSVC or macOS success.",
+    "The source tree was dirty: the intended generated-header and generator edits are explicitly hashed, and unrelated concurrent documentation/state/Python edits are listed in Git status.",
+    "No independent numerical-fidelity study, recorded specimen comparison, native DAW session, audio-device deadline test, or plug-in release was performed.",
+    "SDK validator output retains setupProcessing rejection messages labelled ERROR for out-of-range sample rates; each validator itself concluded 47 tests passed and 0 tests failed."
+  ]
+}
