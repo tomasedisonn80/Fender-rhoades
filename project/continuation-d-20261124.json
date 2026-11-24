@@ -6,7 +6,7 @@
   "requested_waves": 5,
   "concurrency_limit_including_integrator": 4,
   "status": "in_progress",
-  "completed_agents": 26,
+  "completed_agents": 29,
   "agents": [
     {
       "assignment": 1,
@@ -220,18 +220,42 @@
       "assignment": 27,
       "wave": 2,
       "agent_task_name": "/root/w2_027_mono_buffers",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-d/w2-027.md",
+      "sha256": "44467c5ac02a358db862575e022443abb8a59108934aa14e2b0ee54d3847ff5a"
     },
     {
       "assignment": 28,
       "wave": 2,
       "agent_task_name": "/root/w2_028_loaded_feature",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-d/w2-028.md",
+      "sha256": "39b09cfbf53c240580552f2eefdeeab29cf85abed051ebc1840a661a07f86e59"
     },
     {
       "assignment": 29,
       "wave": 2,
       "agent_task_name": "/root/w2_029_expression_concurrency",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-d/w2-029.md",
+      "sha256": "227afc6e95b275a6bd930a13f41320035ae05bb416759f8a2f752150f716a20d"
+    },
+    {
+      "assignment": 30,
+      "wave": 2,
+      "agent_task_name": "/root/w2_030_expression_controls",
+      "status": "running"
+    },
+    {
+      "assignment": 31,
+      "wave": 2,
+      "agent_task_name": "/root/w2_031_expression_transactions",
+      "status": "running"
+    },
+    {
+      "assignment": 32,
+      "wave": 2,
+      "agent_task_name": "/root/w2_032_expression_bounds",
       "status": "running"
     }
   ]

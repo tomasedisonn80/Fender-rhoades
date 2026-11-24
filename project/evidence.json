@@ -1138,6 +1138,33 @@
         "The review uses the immutable 11:09:46.569 UTC status cutoff; the separately retained 11:20:37 UTC readback records the macOS VST3 retry cancelled without execution and both replacement Foundation macOS jobs queued.",
         "Successful Linux/Windows execution claims remain bound to their original source, logs and finite coverage; source bridges do not convert later documentation/state into remotely tested inputs."
       ]
+    },
+    {
+      "id": "HOST-002-20261124-macos-recovered",
+      "kind": "numerical",
+      "result": "pass",
+      "summary": "Recovered source-applicable macOS VST3/core/Python terminal results: 148+161+837 successful tests, with 9+6+51 explicit skips; prior incomplete observations preserved.",
+      "command": "Observed GitHub Actions terminal job logs 138433222551, 138433242328 and 138445208261; verified retained source manifests against 6c91dab.",
+      "created_at": "2026-11-24T12:50:12Z",
+      "source_commit": "6c91dab00855b67a559e92edb79ae49e567be469",
+      "artifacts": [
+        {
+          "path": "docs/validation/host-midi-macos-recovered-20261124.json",
+          "sha256": "a62a4c5fa63d3516e6840e02f4395512f0475832ea0eac8ce2d9a51771657c2c"
+        },
+        {
+          "path": "docs/validation/host-midi-macos-recovered-20261124.tar.gz",
+          "sha256": "d83a793218b52db8319e21805bdf4ce0cc1642621cc079749ed55ab80553c768"
+        }
+      ],
+      "specimen_id": null,
+      "profile_path": null,
+      "session_paths": [],
+      "independent": false,
+      "reference_evidence": [],
+      "limitations": [
+        "These are pre-Expression sources. HOST-002 still needs a new criterion review; no current HOST-003, DAW, device deadline or physical fidelity conclusion."
+      ]
     }
   ]
 }

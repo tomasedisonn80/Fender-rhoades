@@ -1,0 +1,53 @@
+Test project /tmp/rhodes-d-build
+      Start 207: vst3.mono_negotiation
+      Start 208: vst3.filtered_mono_negotiation
+ 1/24 Test #207: vst3.mono_negotiation ...................   Passed    0.03 sec
+      Start 209: vst3.quadrature_mono_negotiation
+ 2/24 Test #209: vst3.quadrature_mono_negotiation ........   Passed    0.10 sec
+      Start 210: vst3.mono_scalar
+ 3/24 Test #208: vst3.filtered_mono_negotiation ..........   Passed    0.14 sec
+      Start 211: vst3.filtered_mono_scalar
+ 4/24 Test #210: vst3.mono_scalar ........................   Passed    0.04 sec
+      Start 212: vst3.quadrature_mono_scalar
+ 5/24 Test #212: vst3.quadrature_mono_scalar .............   Passed    0.07 sec
+      Start 213: vst3.mono_pointers
+ 6/24 Test #211: vst3.filtered_mono_scalar ...............   Passed    0.10 sec
+      Start 214: vst3.filtered_mono_pointers
+ 7/24 Test #213: vst3.mono_pointers ......................   Passed    0.02 sec
+      Start 215: vst3.quadrature_mono_pointers
+ 8/24 Test #215: vst3.quadrature_mono_pointers ...........   Passed    0.06 sec
+      Start 216: vst3.mono_omission
+ 9/24 Test #214: vst3.filtered_mono_pointers .............   Passed    0.09 sec
+      Start 217: vst3.filtered_mono_omission
+10/24 Test #216: vst3.mono_omission ......................   Passed    0.03 sec
+      Start 218: vst3.quadrature_mono_omission
+11/24 Test #218: vst3.quadrature_mono_omission ...........   Passed    0.08 sec
+      Start 219: vst3.mono_flush
+12/24 Test #219: vst3.mono_flush .........................   Passed    0.03 sec
+      Start 220: vst3.filtered_mono_flush
+13/24 Test #217: vst3.filtered_mono_omission .............   Passed    0.14 sec
+      Start 221: vst3.quadrature_mono_flush
+14/24 Test #221: vst3.quadrature_mono_flush ..............   Passed    0.09 sec
+      Start 222: vst3.mono_rejection
+15/24 Test #220: vst3.filtered_mono_flush ................   Passed    0.12 sec
+      Start 223: vst3.filtered_mono_rejection
+16/24 Test #222: vst3.mono_rejection .....................   Passed    0.06 sec
+      Start 224: vst3.quadrature_mono_rejection
+17/24 Test #223: vst3.filtered_mono_rejection ............   Passed    0.21 sec
+      Start 225: vst3.mono_lifecycle
+18/24 Test #224: vst3.quadrature_mono_rejection ..........   Passed    0.16 sec
+      Start 226: vst3.filtered_mono_lifecycle
+19/24 Test #225: vst3.mono_lifecycle .....................   Passed    0.02 sec
+      Start 227: vst3.quadrature_mono_lifecycle
+20/24 Test #227: vst3.quadrature_mono_lifecycle ..........   Passed    0.04 sec
+      Start 375: vst3.loaded_expression_controls_state
+21/24 Test #226: vst3.filtered_mono_lifecycle ............   Passed    0.05 sec
+      Start 376: vst3.loaded_expression_audio_layout
+22/24 Test #375: vst3.loaded_expression_controls_state ...   Passed    0.09 sec
+      Start 377: vst3.loaded_expression_coexist
+23/24 Test #376: vst3.loaded_expression_audio_layout .....   Passed    0.32 sec
+24/24 Test #377: vst3.loaded_expression_coexist ..........   Passed    0.30 sec
+
+100% tests passed out of 24
+
+Total Test time (real) =   1.25 sec

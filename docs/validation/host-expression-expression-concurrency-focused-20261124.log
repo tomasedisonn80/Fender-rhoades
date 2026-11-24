@@ -1,0 +1,35 @@
+Test project /tmp/rhodes-d-build
+      Start 369: vst3.expression_concurrency_mailbox_ordered
+      Start 370: vst3.filtered_expression_concurrency_mailbox_ordered
+ 1/15 Test #369: vst3.expression_concurrency_mailbox_ordered .................   Passed    0.00 sec
+ 2/15 Test #370: vst3.filtered_expression_concurrency_mailbox_ordered ........   Passed    0.00 sec
+      Start 371: vst3.quadrature_expression_concurrency_mailbox_ordered
+      Start 372: vst3.expression_concurrency_host_preflight
+ 3/15 Test #371: vst3.quadrature_expression_concurrency_mailbox_ordered ......   Passed    0.00 sec
+      Start 373: vst3.filtered_expression_concurrency_host_preflight
+ 4/15 Test #372: vst3.expression_concurrency_host_preflight ..................   Passed    0.03 sec
+      Start 374: vst3.quadrature_expression_concurrency_host_preflight
+ 5/15 Test #374: vst3.quadrature_expression_concurrency_host_preflight .......   Passed    0.08 sec
+      Start 375: vst3.expression_concurrency_adaptive_snapshots
+ 6/15 Test #373: vst3.filtered_expression_concurrency_host_preflight .........   Passed    0.11 sec
+      Start 376: vst3.filtered_expression_concurrency_adaptive_snapshots
+ 7/15 Test #375: vst3.expression_concurrency_adaptive_snapshots ..............   Passed    0.00 sec
+      Start 377: vst3.quadrature_expression_concurrency_adaptive_snapshots
+ 8/15 Test #377: vst3.quadrature_expression_concurrency_adaptive_snapshots ...   Passed    0.00 sec
+      Start 378: vst3.expression_concurrency_live_anchors
+ 9/15 Test #376: vst3.filtered_expression_concurrency_adaptive_snapshots .....   Passed    0.01 sec
+      Start 379: vst3.filtered_expression_concurrency_live_anchors
+10/15 Test #378: vst3.expression_concurrency_live_anchors ....................   Passed    0.05 sec
+      Start 380: vst3.quadrature_expression_concurrency_live_anchors
+11/15 Test #380: vst3.quadrature_expression_concurrency_live_anchors .........   Passed    0.11 sec
+      Start 381: vst3.expression_concurrency_callback_stress
+12/15 Test #381: vst3.expression_concurrency_callback_stress .................   Passed    0.04 sec
+      Start 382: vst3.filtered_expression_concurrency_callback_stress
+13/15 Test #379: vst3.filtered_expression_concurrency_live_anchors ...........   Passed    0.22 sec
+      Start 383: vst3.quadrature_expression_concurrency_callback_stress
+14/15 Test #382: vst3.filtered_expression_concurrency_callback_stress ........   Passed    0.09 sec
+15/15 Test #383: vst3.quadrature_expression_concurrency_callback_stress ......   Passed    0.08 sec
+
+100% tests passed out of 15
+
+Total Test time (real) =   0.43 sec

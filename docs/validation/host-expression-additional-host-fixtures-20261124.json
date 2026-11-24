@@ -1,0 +1,53 @@
+{
+  "schema_version": 1,
+  "task_id": "HOST-003",
+  "kind": "additional-independent-host-fixtures",
+  "production_commit": "41c9d85b1b5292297e66bcc476dae33cb85de79f",
+  "tested_working_tree": "That production commit plus three new test sources and CMake registrations; all previously captured source bytes unchanged except CMake registration.",
+  "source_sha256": {
+    "tests/cpp/vst3_mono_contract_test.cpp": "ce1685a76f3fb91717935fe6fc125638196054a5323934b053dd329266039a93",
+    "tests/cpp/vst3_loaded_expression_test.cpp": "4bac5dc96b4aeec78da810f5ff57d3f14176843984a1b8a24325dcffd07eb876",
+    "tests/cpp/vst3_expression_concurrency_test.cpp": "d0a137a958eb257fb1530b8462d416b9e39deb87f33a7b289966985035a78585",
+    "cmake/Vst3.cmake": "55422914f36d7ff9315453abccf46cce2e45fd6800242342bf459851971bb82e"
+  },
+  "runs": [
+    {
+      "selector_regex": "^vst3\\.((filtered_|quadrature_)?mono_|loaded_expression_)",
+      "passed": 24,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 1.25
+    },
+    {
+      "selector_regex": "^vst3\\.(filtered_|quadrature_)?expression_concurrency_",
+      "passed": 15,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 0.43
+    }
+  ],
+  "artifacts": {
+    "docs/validation/host-expression-mono-loaded-focused-20261124.log": {
+      "sha256": "94b5339a3aab635963cc74ad01f3eb427bd1f3f017cefce41133c6f303bd811a",
+      "bytes": 3071
+    },
+    "docs/validation/host-expression-mono-loaded-focused-20261124.xml": {
+      "sha256": "ef963e21df9304b22a97962500395b9cdf447b49c20a7f58fac7556671404f2c",
+      "bytes": 6846
+    },
+    "docs/validation/host-expression-expression-concurrency-focused-20261124.log": {
+      "sha256": "ce268ae85ddb4a7712eb8ef479675aa433b12def3f8fcf043b5c30d0327510fb",
+      "bytes": 2611
+    },
+    "docs/validation/host-expression-expression-concurrency-focused-20261124.xml": {
+      "sha256": "bbfa16b21e73ebaf58db1c35e77bb7ac29b0eae7cb62d1b8cda4b4c5953a11b5",
+      "bytes": 6473
+    }
+  },
+  "initial_build_attempt": "The first named-target build ran before reconfiguration and returned no rule to make target. Explicit cmake -S . -B /tmp/rhodes-d-build then generated the targets; all subsequent builds and focused executions passed.",
+  "limits": [
+    "Linux GCC Release only; private worker mutation sensitivity is retained in its report.",
+    "These are focused runs, not a claim that the enlarged full suite ran in a single invocation.",
+    "No host arithmetic fault injection, historical binary replay, DAW or physical fidelity conclusion."
+  ]
+}

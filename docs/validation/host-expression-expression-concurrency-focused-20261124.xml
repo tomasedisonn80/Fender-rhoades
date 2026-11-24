@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Linux-c++"
+	tests="15"
+	failures="0"
+	disabled="0"
+	skipped="0"
+	hostname="4f398b69b6a5"
+	time="0"
+	timestamp="2026-11-24T05:48:06"
+	>
+	<testcase name="vst3.expression_concurrency_mailbox_ordered" classname="vst3.expression_concurrency_mailbox_ordered" time="0.00351924" status="run">
+		<properties/>
+		<system-out>mailbox ordered_scenarios=20
+mailbox_ordered model=1 checks=244 process_calls=0 set_calls=0 get_calls=0
+PASS mailbox_ordered
+</system-out>
+	</testcase>
+	<testcase name="vst3.filtered_expression_concurrency_mailbox_ordered" classname="vst3.filtered_expression_concurrency_mailbox_ordered" time="0.00301053" status="run">
+		<properties/>
+		<system-out>mailbox ordered_scenarios=20
+mailbox_ordered model=2 checks=244 process_calls=0 set_calls=0 get_calls=0
+PASS mailbox_ordered
+</system-out>
+	</testcase>
+	<testcase name="vst3.quadrature_expression_concurrency_mailbox_ordered" classname="vst3.quadrature_expression_concurrency_mailbox_ordered" time="0.00333687" status="run">
+		<properties/>
+		<system-out>mailbox ordered_scenarios=20
+mailbox_ordered model=3 checks=244 process_calls=0 set_calls=0 get_calls=0
+PASS mailbox_ordered
+</system-out>
+	</testcase>
+	<testcase name="vst3.expression_concurrency_host_preflight" classname="vst3.expression_concurrency_host_preflight" time="0.0259613" status="run">
+		<properties/>
+		<system-out>host ordered_scenarios=36 formats=2
+host_preflight model=1 checks=2448 process_calls=264 set_calls=144 get_calls=108
+PASS host_preflight
+</system-out>
+	</testcase>
+	<testcase name="vst3.filtered_expression_concurrency_host_preflight" classname="vst3.filtered_expression_concurrency_host_preflight" time="0.111263" status="run">
+		<properties/>
+		<system-out>host ordered_scenarios=36 formats=2
+host_preflight model=2 checks=2448 process_calls=264 set_calls=144 get_calls=108
+PASS host_preflight
+</system-out>
+	</testcase>
+	<testcase name="vst3.quadrature_expression_concurrency_host_preflight" classname="vst3.quadrature_expression_concurrency_host_preflight" time="0.0845244" status="run">
+		<properties/>
+		<system-out>host ordered_scenarios=36 formats=2
+host_preflight model=3 checks=2448 process_calls=264 set_calls=144 get_calls=108
+PASS host_preflight
+</system-out>
+	</testcase>
+	<testcase name="vst3.expression_concurrency_adaptive_snapshots" classname="vst3.expression_concurrency_adaptive_snapshots" time="0.00431574" status="run">
+		<properties/>
+		<system-out>adaptive ordered_scenarios=8 max_transfer_bytes=1
+adaptive_snapshots model=1 checks=56 process_calls=16 set_calls=16 get_calls=24
+PASS adaptive_snapshots
+</system-out>
+	</testcase>
+	<testcase name="vst3.filtered_expression_concurrency_adaptive_snapshots" classname="vst3.filtered_expression_concurrency_adaptive_snapshots" time="0.00682742" status="run">
+		<properties/>
+		<system-out>adaptive ordered_scenarios=8 max_transfer_bytes=1
+adaptive_snapshots model=2 checks=56 process_calls=16 set_calls=16 get_calls=24
+PASS adaptive_snapshots
+</system-out>
+	</testcase>
+	<testcase name="vst3.quadrature_expression_concurrency_adaptive_snapshots" classname="vst3.quadrature_expression_concurrency_adaptive_snapshots" time="0.00498912" status="run">
+		<properties/>
+		<system-out>adaptive ordered_scenarios=8 max_transfer_bytes=1
+adaptive_snapshots model=3 checks=56 process_calls=16 set_calls=16 get_calls=24
+PASS adaptive_snapshots
+</system-out>
+	</testcase>
+	<testcase name="vst3.expression_concurrency_live_anchors" classname="vst3.expression_concurrency_live_anchors" time="0.0482321" status="run">
+		<properties/>
+		<system-out>anchor bits=32 blocks=48 selected_recalls=48 differing_published_after_join=48 audible_samples=12288
+anchor bits=64 blocks=48 selected_recalls=47 differing_published_after_join=47 audible_samples=12288
+live_anchors model=1 checks=58471 process_calls=100 set_calls=12290 get_calls=0
+PASS live_anchors
+</system-out>
+	</testcase>
+	<testcase name="vst3.filtered_expression_concurrency_live_anchors" classname="vst3.filtered_expression_concurrency_live_anchors" time="0.217683" status="run">
+		<properties/>
+		<system-out>anchor bits=32 blocks=48 selected_recalls=47 differing_published_after_join=47 audible_samples=12288
+anchor bits=64 blocks=48 selected_recalls=48 differing_published_after_join=48 audible_samples=12288
+live_anchors model=2 checks=58471 process_calls=100 set_calls=12290 get_calls=0
+PASS live_anchors
+</system-out>
+	</testcase>
+	<testcase name="vst3.quadrature_expression_concurrency_live_anchors" classname="vst3.quadrature_expression_concurrency_live_anchors" time="0.110708" status="run">
+		<properties/>
+		<system-out>anchor bits=32 blocks=48 selected_recalls=47 differing_published_after_join=48 audible_samples=12241
+anchor bits=64 blocks=48 selected_recalls=47 differing_published_after_join=48 audible_samples=12241
+live_anchors model=3 checks=58470 process_calls=100 set_calls=12290 get_calls=0
+PASS live_anchors
+</system-out>
+	</testcase>
+	<testcase name="vst3.expression_concurrency_callback_stress" classname="vst3.expression_concurrency_callback_stress" time="0.0364329" status="run">
+		<properties/>
+		<system-out>stress bits=32 rate=48000 blocks=256 writer_iterations=4096 observer_iterations=4096
+stress bits=64 rate=192000 blocks=256 writer_iterations=4096 observer_iterations=4096
+callback_stress model=1 checks=58892 process_calls=518 set_calls=8194 get_calls=16388
+PASS callback_stress
+</system-out>
+	</testcase>
+	<testcase name="vst3.filtered_expression_concurrency_callback_stress" classname="vst3.filtered_expression_concurrency_callback_stress" time="0.0874629" status="run">
+		<properties/>
+		<system-out>stress bits=32 rate=48000 blocks=256 writer_iterations=4096 observer_iterations=4096
+stress bits=64 rate=192000 blocks=256 writer_iterations=4096 observer_iterations=4096
+callback_stress model=2 checks=58892 process_calls=518 set_calls=8194 get_calls=16388
+PASS callback_stress
+</system-out>
+	</testcase>
+	<testcase name="vst3.quadrature_expression_concurrency_callback_stress" classname="vst3.quadrature_expression_concurrency_callback_stress" time="0.0777421" status="run">
+		<properties/>
+		<system-out>stress bits=32 rate=48000 blocks=256 writer_iterations=4096 observer_iterations=4096
+stress bits=64 rate=192000 blocks=256 writer_iterations=4096 observer_iterations=4096
+callback_stress model=3 checks=58892 process_calls=518 set_calls=8194 get_calls=16388
+PASS callback_stress
+</system-out>
+	</testcase>
+</testsuite>
