@@ -64,22 +64,49 @@
       "wave": 4,
       "id": "W4-67",
       "agent_task_name": "/root/w4_67_daw_protocol",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w4-67-daw-protocol.md",
+      "sha256": "7489a6130007df3e73ad42a76023b1fba6ffbb38e900303988ee6bdd6f4d875b"
     },
     {
       "assignment": 68,
       "wave": 4,
       "id": "W4-68",
       "agent_task_name": "/root/w4_68_bundle_audit",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w4-68-bundle-audit.md",
+      "sha256": "f929be16585e4ff58c2ec6a9e521303dd53801da05b24dfed4e2a68b8d76b7d8"
     },
     {
       "assignment": 69,
       "wave": 4,
       "id": "W4-69",
       "agent_task_name": "/root/w4_69_command_audit",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w4-69-command-audit.md",
+      "sha256": "c0ec22fe5252d2701d346e23b38646796ec7f8edc312356409d8d1d24ca3c733"
+    },
+    {
+      "assignment": 70,
+      "wave": 4,
+      "id": "W4-70",
+      "agent_task_name": "/root/w4_70_native_fault_coverage",
+      "status": "running"
+    },
+    {
+      "assignment": 71,
+      "wave": 4,
+      "id": "W4-71",
+      "agent_task_name": "/root/w4_71_fp_build_boundary",
+      "status": "running"
+    },
+    {
+      "assignment": 72,
+      "wave": 4,
+      "id": "W4-72",
+      "agent_task_name": "/root/w4_72_dependency_provenance",
       "status": "running"
     }
   ],
-  "completed_actual_agents": 6
+  "completed_actual_agents": 9
 }

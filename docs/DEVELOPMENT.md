@@ -46,7 +46,8 @@ Ninja presets provide `dev`, `release`, and supported-compiler `sanitize` builds
 The supplied `sanitize` preset is disabled on Windows, regardless of compiler.
 On Windows, the generic CMake commands work with Visual Studio's generator;
 executables normally appear under `build/Release/`. Substitute `python` for
-`python3` where appropriate.
+`python3` where appropriate. The `sh` examples use POSIX backslash continuations;
+in PowerShell, put each wrapped command on one line.
 
 `RHODES_ENABLE_SANITIZERS=ON` requires a GNU, Clang or AppleClang compiler with a
 GNU-style driver and the corresponding sanitizer runtime. Unsupported families

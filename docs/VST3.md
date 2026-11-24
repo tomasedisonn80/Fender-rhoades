@@ -183,6 +183,10 @@ the complete bundle, then insert **Rhodes Research Prototype**,
 track. Their category is `Instrument|Synth|Stereo`. A host may show its generic
 parameter editor because the prototype supplies no custom view.
 
+For a reproducible host trial, use the proposed
+[manual DAW evaluation protocol](DAW_VALIDATION.md). It explains what to record
+and which observations remain separate from the automated harness results.
+
 ## Playing and controlling the prototype
 
 | Behavior | Current contract |

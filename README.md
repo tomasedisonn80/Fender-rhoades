@@ -70,6 +70,7 @@ validation gates.
 | Inspect the quadrature audio design | [Frozen Q6 timing and verification contract](docs/specs/QUADRATURE_AUDIO_20261123.md) |
 | Inspect the VST3 prototype contract | [Host behavior and limits](docs/specs/HOST_PROTOTYPE_20261123.md) |
 | Build and try the VST3 instrument | [VST3 setup and controls](docs/VST3.md) |
+| Evaluate a build in a named DAW | [Proposed manual evaluation protocol](docs/DAW_VALIDATION.md) |
 | Run the separate hammer/damper experiments | [Offline contact reference](docs/CONTACT_REFERENCE.md) |
 | Compare the four analytic contact fixtures | [Contact peak diagnostic](docs/CONTACT_PEAK_DIAGNOSTIC.md) |
 
@@ -142,8 +143,10 @@ python3 tools/generate_quadrature_filter.py --check
 python3 -m unittest discover -s tests/python -v
 ```
 
-On Windows, substitute `python` for `python3` where appropriate. Ninja users may
-use the `dev`, `release`, and supported-platform `sanitize` CMake presets;
+On Windows, substitute `python` for `python3` where appropriate. The `sh`
+examples use POSIX backslash continuations; in PowerShell, put each wrapped
+command on one line. Ninja users may use the `dev`, `release`, and
+supported-platform `sanitize` CMake presets;
 the sanitizer preset excludes Windows. See
 [development instructions](docs/DEVELOPMENT.md) for platform and CI details.
 
