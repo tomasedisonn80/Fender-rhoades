@@ -67,6 +67,19 @@ public:
         return true;
     }
 
+    // Audio-owner release port for a fully preflighted parameter-only flush.
+    // A release changes damping without rendering, advancing the cursor or
+    // clearing mechanical/filter state. Invalid keys do not introduce a fault;
+    // unexpected failure of a valid release fences subsequent processing.
+    [[nodiscard]] bool release_key(std::size_t key) noexcept {
+        if (key >= key_count || faulted_) { return false; }
+        if (!engine_.note_off(key)) {
+            faulted_ = true;
+            return false;
+        }
+        return true;
+    }
+
     [[nodiscard]] ProcessResult process(std::span<double> output,
                                         std::span<const EngineEvent> events = {}) noexcept {
         const auto reject = [&](std::size_t event) noexcept {

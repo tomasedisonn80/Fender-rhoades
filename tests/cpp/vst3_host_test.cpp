@@ -903,7 +903,7 @@ void controller_mapping() {
     MemoryStream host_context;
     ControllerHost host;
     auto& controller = host.controller;
-    require(controller.getParameterCount() == 2, "controller parameter count");
+    require(controller.getParameterCount() == 18, "controller parameter count");
     vst::ParameterInfo gain_info{}, pedal_info{};
     require(controller.getParameterInfo(0, gain_info) == sdk::kResultOk &&
             controller.getParameterInfo(1, pedal_info) == sdk::kResultOk &&
@@ -919,17 +919,29 @@ void controller_mapping() {
         require(controller.getMidiControllerAssignment(0, channel, vst::kCtrlSustainOnOff, tag)
                     == sdk::kResultOk && tag == kSustainId,
                 "CC64 missing on a supported MIDI channel");
+        const auto expected_command = vst::ParamID{0x1000} + static_cast<vst::ParamID>(channel);
+        require(controller.getMidiControllerAssignment(0, channel, vst::kCtrlAllNotesOff, tag)
+                    == sdk::kResultOk && tag == expected_command,
+                "CC123 missing or assigned to another channel");
+        vst::ParameterInfo command_info{};
+        require(controller.getParameterInfo(2 + channel, command_info) == sdk::kResultOk &&
+                command_info.id == expected_command && command_info.stepCount == 0 &&
+                command_info.flags == vst::ParameterInfo::kNoFlags &&
+                command_info.defaultNormalizedValue == 0.0 && command_info.units[0] == 0,
+                "channel command must be writable, visible, nonautomatable and transient");
     }
     for (const auto& [bus, channel] :
          std::array<std::pair<sdk::int32, sdk::int16>, 4>{{{-1, 0}, {1, 0}, {0, -1}, {0, 16}}}) {
         vst::ParamID tag = 999;
-        require(controller.getMidiControllerAssignment(bus, channel, vst::kCtrlSustainOnOff, tag)
-                    != sdk::kResultOk && tag == 999,
-                "invalid MIDI mapping changed the output tag");
+        for (const auto number : {vst::kCtrlSustainOnOff, vst::kCtrlAllNotesOff}) {
+            require(controller.getMidiControllerAssignment(bus, channel, number, tag)
+                        != sdk::kResultOk && tag == 999,
+                    "invalid MIDI mapping changed the output tag");
+        }
     }
     vst::ParamID tag = 999;
-    require(controller.getMidiControllerAssignment(0, 0, vst::kCtrlAllNotesOff, tag)
-                != sdk::kResultOk && tag == 999, "unsupported CC123 mapped to a parameter");
+    require(controller.getMidiControllerAssignment(0, 0, vst::kCtrlAllSoundsOff, tag)
+                != sdk::kResultOk && tag == 999, "unsupported CC120 mapped to a parameter");
     void* mapping = nullptr;
     require(controller.queryInterface(vst::IMidiMapping::iid, &mapping) == sdk::kResultOk &&
             mapping != nullptr, "controller did not expose IMidiMapping");
@@ -993,7 +1005,7 @@ void controller_mapping() {
         const auto pedal_value = controller.getParamNormalized(kSustainId);
         require(controller.initialize(context) != sdk::kResultOk,
                 "duplicate controller initialization succeeded");
-        require(controller.getParameterCount() == 2 &&
+        require(controller.getParameterCount() == 18 &&
                 controller.getParameterObject(kGainId) == gain &&
                 controller.getParameterObject(kSustainId) == pedal &&
                 controller.getParamNormalized(kGainId) == gain_value &&
@@ -1008,7 +1020,7 @@ void controller_mapping() {
     require(controller.terminate() == sdk::kResultOk &&
             controller.getParameterCount() == 0, "controller termination retained parameters");
     require(controller.initialize(&host_context) == sdk::kResultOk &&
-            controller.getParameterCount() == 2 &&
+            controller.getParameterCount() == 18 &&
             controller.getParamNormalized(kGainId) == 0.5 &&
             controller.getParamNormalized(kSustainId) == 0.0,
             "controller nonnull-context reinitialization failed");
@@ -1019,7 +1031,7 @@ void controller_mapping() {
     reject_duplicate(nullptr);
     require(controller.terminate() == sdk::kResultOk &&
             controller.initialize(nullptr) == sdk::kResultOk &&
-            controller.getParameterCount() == 2 &&
+            controller.getParameterCount() == 18 &&
             controller.getParamNormalized(kGainId) == 0.5 &&
             controller.getParamNormalized(kSustainId) == 0.0,
             "controller null-context reinitialization failed");

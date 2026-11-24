@@ -16,7 +16,9 @@ any of these plug-ins. No specimen calibration or measured fidelity is establish
 
 Each variant has its own processor/controller FUID pair, defined in
 [plugin_ids.hpp](../plugins/vst3/plugin_ids.hpp). The original model-1 and model-2
-identities and saved-state interpretation remain unchanged. A project can load
+identities and saved-state interpretation remain unchanged. The MIDI
+interoperability update also preserves all three variants' class IDs, model IDs
+and reported latencies. A project can load
 the three instruments together; there is no live sound-path or latency switch.
 
 The filtered variant uses 4x internal rate through 48 kHz, 2x above 48 through
@@ -45,7 +47,8 @@ continuous-reference error was `8.318901123516298e-12 V`, against the unchanged
 synthetic matrix. The [legacy compatibility record](validation/quadrature-legacy-compatibility-20261123.json)
 also retains 24 byte-identical direct/filtered WAV reproductions.
 
-The implementation contract is [HOST_PROTOTYPE_20261123](specs/HOST_PROTOTYPE_20261123.md).
+The implementation contracts are [HOST_PROTOTYPE_20261123](specs/HOST_PROTOTYPE_20261123.md)
+and its [MIDI interoperability continuation](specs/HOST_MIDI_20261124.md).
 The [dependency inventory](DEPENDENCIES.md) records the official SDK revision,
 submodules and notices. [NUMERICS.md](NUMERICS.md) describes the underlying core.
 
@@ -199,30 +202,85 @@ and which observations remain separate from the automated harness results.
 | Processing | Float32 or float64; sample rates 32–192 kHz inclusive; at most **8192 frames** per host call |
 | Monitoring Gain | Host parameter `0`, displayed multiplier `0..32x`, default `16x`; normalized value `0..1`, default `0.5` |
 | Sustain | Host parameter `1`, `Off`/`On`; normalized values at least `0.5` select `On`; MIDI CC64 maps to it on all channels |
+| All Notes Off | 16 writable, nonautomatable command parameters, `All Notes Off Ch 1` through `All Notes Off Ch 16`; IDs `0x1000..0x100f` map MIDI CC123 to the corresponding channel |
+| Polyphonic pressure | Well-formed typed pressure events are validated and ignored; there is no pressure-responsive synthesis |
 | Latency and tail | Direct: 0 frames; filtered and quadrature: 48 frames (1 ms at 48 kHz); all advertise an infinite asymptotic tail |
+
+There are **18 host parameters** in total. Every delivered CC123 parameter point
+releases that channel's note holders, including zero and repeated unchanged
+values. Values must be finite and normalized to `0..1`; they are not interpolated,
+edge-triggered or automatically reset. Duplicate commands at the same channel
+and offset have the same result as one. A physical key receives an ordinary
+release only when its last holder disappears, so other channels' holders, the
+shared sustain setting, mechanical motion and filter tails are preserved.
+With sustain on, released keys can continue ringing. CC123 is not All Sound Off;
+CC120 remains unmapped. A host may deduplicate unchanged controller values before
+delivery, and the plug-in cannot recover omitted commands. Repeated CC123 delivery
+therefore needs a separate check in each native DAW.
 
 Monitoring gain multiplies synthetic harp voltage; it is not a calibrated
 instrument amplifier. Gain automation is linearly interpolated and sustain is
 stepped. Gain points are quantized to binary32 using nearest, ties-to-even;
 the preceding block's final gain anchors interpolation at offset `-1`, and the
-last duplicate point wins. At an equal sample offset, parameter changes precede
-notes, which preserve their input-list order. The adapter
-accepts at most 256 input note events, two parameter queues and 8192 points per
-queue; each sample has a separate 256-event combined note/pedal limit. Invalid
-input rejects the block while preserving configuration, mechanical and ownership
-state. With a supported output declaration (float32/float64, one stereo bus,
+last duplicate gain/sustain point wins. At an equal sample offset, sustain takes
+effect first, CC123 releases follow in ascending channel order, then notes retain
+their input-list order. A new strike at that offset survives the channel release.
+
+The adapter accepts at most **256 input events**, including pressure, **18 unique
+parameter queues**, **8192 raw points each for gain and sustain**, and **256 raw
+CC123 points in total across all channels**, including duplicates. Translation
+uses fixed storage for at most **585 physical note actions per block**; each
+sample has a separate **256-action limit including sustain**. Pressure consumes
+the input-event budget and participates in offset ordering but emits no physical
+action or ownership change. It requires bus 0, an ordered valid sample offset,
+finite PPQ, SDK channel 0–15 (MIDI channel 1–16), pitch 0–127 and finite binary32
+pressure `0..1`; all signed note IDs are accepted. Other unsupported input event
+kinds still reject the block.
+
+Invalid or over-budget input rejects the block atomically, preserving
+configuration, mechanical state, ownership and any pending recall. With a
+supported output declaration (float32/float64, one stereo bus,
 1–8192 frames), rejection clears each supplied non-null channel buffer in full
 and sets stereo silence flags. This includes malformed events/automation and a
 configured-block-limit breach within the global 8192-frame limit. Unsupported
 output frame, bus or channel counts, or sample formats, leave samples and silence
 flags untouched. Zero-frame flushes access no sample pointers; an empty bus gets
 silence flags `0`, a stereo bus gets `3`, and no output bus requires no work.
-The [host contract](specs/HOST_PROTOTYPE_20261123.md) specifies full ordering,
-pointer requirements and rejection behavior.
+They accept only offset-zero parameter points and an empty event list. A selected
+recall is installed first, followed by final gain/sustain and staged CC123
+releases. Ordinary releases do not advance mechanics, frame cursors or filter
+history; an accepted recall intentionally resets them. The
+[host contract](specs/HOST_PROTOTYPE_20261123.md) and
+[MIDI continuation](specs/HOST_MIDI_20261124.md) specify full ordering, pointer
+requirements and rejection behavior.
 
-Pitch bend, note expression, physical half-pedal, CC120/CC123 mappings, effects
+Pitch bend, note expression, physical half-pedal, CC120 mapping, effects
 and additional historical circuits are outside this version. Host naming of
 octaves differs, so use the MIDI pitch numbers when checking the range.
+
+### Generic parameter text
+
+Text conversion is portable and locale-independent. Input must be ASCII, at most
+**127 characters**, with a NUL terminator within 128 UTF-16 code units, including
+any whitespace and unit suffix in that limit.
+
+| Control | Accepted text |
+| --- | --- |
+| Monitoring Gain | Decimal multiplier `0..32`, optional leading sign, fraction and `e`/`E` exponent; surrounding ASCII whitespace and an optional lowercase `x` suffix are allowed, for example `16x` or `+1.6e1 x` |
+| Sustain | Exactly `Off` or `On`, case-sensitive, without extra whitespace; the normalized threshold remains `0.5` |
+| All Notes Off commands | Decimal normalized value `0..1`, using the gain decimal grammar and surrounding ASCII whitespace, with no unit suffix; numeric display retains enough digits for a binary64 round trip |
+
+Numeric input must be consumed completely. NaN, infinity, hexadecimal numbers,
+commas, trailing garbage, overflow, nonzero decimals that underflow to binary64
+zero, and out-of-range values are rejected without clamping. Range checks use
+the rounded finite binary64 value before gain normalization; for example,
+`32.000000000000000001` can round to 32 and be accepted. Negative nonzero values,
+including subnormals, are
+rejected; signed zero is canonicalized. Gain display is numeric, with `x` kept
+in the parameter's unit metadata; sustain retains its `Off`/`On` display.
+Invalid IDs, null pointers, uninitialized controllers and invalid normalized
+display values also fail conversion without changing caller output or saved
+configuration. Converting command text does not execute a channel release.
 
 ## Saving and resetting state
 
@@ -232,17 +290,19 @@ in the quadrature variant. Every variant rejects both other model IDs: all six
 ordered cross-model recalls are rejected without conversion. Rejection also
 preserves any valid own-model recall already waiting for an audio boundary.
 The format version remains 1; the model field
-identifies the separate sound path. It does not store ringing notes. A valid recall is
-queued through a lock-free mailbox and installed at a valid audio boundary:
+identifies the separate sound path. It does not store ringing notes or transient
+CC123 command values. Gain and sustain retain parameter IDs `0` and `1`. A valid
+recall is queued through a lock-free mailbox and installed at a valid audio boundary:
 mechanics, note holders, cursor, FIR history when present, and interpolation history reset before the
 recalled configuration is applied. A malformed, short, extended or incompatible
 chunk is rejected. Saving takes a coherent configuration snapshot without
 resetting the sound.
 
 Control-value conversion and state encoding preserve their bit-level contract
-under supported host rounding and FTZ/DAZ modes without changing the host's
-floating-point environment. This does not promise identical audio underflow
-behavior across those modes; see the [control audit](agents/development-20261123/W3-A053.md)
+under supported host rounding and FTZ/DAZ modes while preserving those controls.
+Text conversion does not promise unchanged floating-point status flags. This
+does not promise identical audio underflow behavior across those modes; see the
+[control audit](agents/development-20261123/W3-A053.md)
 and [actual host checks](agents/development-20261123/W3-A055.md).
 
 Activation and processing lifecycle transitions also reset mechanics and
@@ -253,6 +313,12 @@ hard reset before processing continues. A lifecycle transition or a valid
 configuration recall installed at an accepted audio boundary supplies that reset.
 
 ## Observed verification and remaining gates
+
+The dated checkpoints below predate the CC123, pressure and text-conversion
+continuation. They retain their original source-bound scope and do not establish
+native-platform or DAW acceptance of those changes. Current acceptance follows
+the [MIDI continuation](specs/HOST_MIDI_20261124.md) and
+[project state](PROJECT_STATE.md); the instruments remain synthetic and unvalidated.
 
 ### Native platform checkpoint — 24 November 2026
 

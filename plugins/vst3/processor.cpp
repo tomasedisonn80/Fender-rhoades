@@ -168,18 +168,27 @@ bool RhodesProcessor::validate_buffers(const vst::ProcessData& data) noexcept {
 bool RhodesProcessor::collect_parameters(const vst::ProcessData& data) noexcept {
     gain_count_ = 0;
     sustain_count_ = 0;
+    channel_command_count_ = 0;
     if (data.inputParameterChanges == nullptr) { return true; }
     const auto queue_count = data.inputParameterChanges->getParameterCount();
-    if (queue_count < 0 || queue_count > 2) { return false; }
-    std::array<bool, 2> seen{};
+    if (queue_count < 0 ||
+        queue_count > static_cast<Steinberg::int32>(kControllerParameterCount)) { return false; }
+    std::array<bool, kControllerParameterCount> seen{};
     for (Steinberg::int32 queue_index = 0; queue_index < queue_count; ++queue_index) {
         auto* queue = data.inputParameterChanges->getParameterData(queue_index);
         if (queue == nullptr) { return false; }
         const auto id = queue->getParameterId();
-        if ((id != kGainId && id != kSustainId) || seen[id]) { return false; }
-        seen[id] = true;
+        const auto channel = all_notes_off_channel(id);
+        if (id != kGainId && id != kSustainId && channel < 0) { return false; }
+        const auto parameter_index = channel >= 0 ? 2 + static_cast<std::size_t>(channel) :
+                                                   static_cast<std::size_t>(id);
+        if (seen[parameter_index]) { return false; }
+        seen[parameter_index] = true;
         const auto count = queue->getPointCount();
-        if (count < 0 || count > static_cast<Steinberg::int32>(kMaximumHostFrames)) {
+        const auto point_limit = channel >= 0 ? kMaximumChannelCommands : kMaximumHostFrames;
+        if (count < 0 || count > static_cast<Steinberg::int32>(point_limit) ||
+            (channel >= 0 && static_cast<std::size_t>(count) >
+                kMaximumChannelCommands - channel_command_count_)) {
             return false;
         }
         auto& points = id == kGainId ? gain_points_ : sustain_points_;
@@ -193,6 +202,14 @@ bool RhodesProcessor::collect_parameters(const vst::ProcessData& data) noexcept 
                 !control::valid_normalized(value)) {
                 return false;
             }
+            if (channel >= 0) {
+                // Values are validated but never interpolated or edge-detected.
+                // Every delivered CC123 point, including zero, is a command.
+                channel_commands_[channel_command_count_++] =
+                    {offset, static_cast<Steinberg::int16>(channel)};
+                previous_offset = offset;
+                continue;
+            }
             const float canonical = id == kSustainId ? (value >= 0.5 ? 1.0F : 0.0F) :
                 *control::quantize(value);
             // A duplicate offset replaces the complete prior point, including
@@ -204,6 +221,20 @@ bool RhodesProcessor::collect_parameters(const vst::ProcessData& data) noexcept 
             }
             previous_offset = offset;
         }
+    }
+    // Fixed-bound stable insertion sort; no allocation, recursion or host calls.
+    // Equal-offset channel order must not depend on the host's queue order.
+    for (std::size_t index = 1; index < channel_command_count_; ++index) {
+        const auto command = channel_commands_[index];
+        auto position = index;
+        while (position > 0) {
+            const auto& previous = channel_commands_[position - 1];
+            if (previous.offset < command.offset ||
+                (previous.offset == command.offset && previous.channel <= command.channel)) { break; }
+            channel_commands_[position] = previous;
+            --position;
+        }
+        channel_commands_[position] = command;
     }
     return true;
 }
@@ -237,6 +268,17 @@ bool RhodesProcessor::collect_notes(const vst::ProcessData& data) noexcept {
                     event.noteOff.noteId, 0.0};
             raw_velocity = event.noteOff.velocity;
             tuning = event.noteOff.tuning;
+        } else if (event.type == vst::Event::kPolyPressureEvent) {
+            // This synthetic model has no pressure response. Validate and
+            // ignore the typed event without discarding accompanying releases.
+            // All signed note IDs are legal; no ownership lookup is needed.
+            if (event.polyPressure.channel < 0 || event.polyPressure.channel > 15 ||
+                event.polyPressure.pitch < 0 || event.polyPressure.pitch > 127 ||
+                !control::valid_normalized(event.polyPressure.pressure)) {
+                return false;
+            }
+            previous_offset = event.sampleOffset;
+            continue;
         } else {
             // In particular, LegacyMIDICCOutEvent is an output-only SDK type.
             // Unsupported input event kinds are rejected, never guessed at.
@@ -260,13 +302,32 @@ bool RhodesProcessor::collect_notes(const vst::ProcessData& data) noexcept {
 
 bool RhodesProcessor::translate_notes(NoteTracker& candidate) noexcept {
     physical_note_count_ = 0;
-    for (std::size_t index = 0; index < host_note_count_; ++index) {
-        const auto& input = host_notes_[index];
-        const auto result = candidate.apply(input.note);
-        if (!result.succeeded()) { return false; }
-        if (result.change) {
-            if (physical_note_count_ == physical_notes_.size()) { return false; }
-            physical_notes_[physical_note_count_++] = {input.offset, *result.change};
+    std::size_t note_index = 0;
+    std::size_t command_index = 0;
+    const auto append = [&](Steinberg::int32 offset, NoteChange change) noexcept {
+        if (physical_note_count_ == physical_notes_.size()) { return false; }
+        physical_notes_[physical_note_count_++] = {offset, change};
+        return true;
+    };
+    while (note_index < host_note_count_ || command_index < channel_command_count_) {
+        const auto note_offset = note_index < host_note_count_ ? host_notes_[note_index].offset :
+            std::numeric_limits<Steinberg::int32>::max();
+        const auto command_offset = command_index < channel_command_count_ ?
+            channel_commands_[command_index].offset : std::numeric_limits<Steinberg::int32>::max();
+        const auto offset = std::min(note_offset, command_offset);
+        // Channel commands precede notes at ties. Sustain is dispatched before
+        // these physical actions by render(), and does not affect ownership.
+        while (command_index < channel_command_count_ &&
+               channel_commands_[command_index].offset == offset) {
+            const auto result = candidate.release_channel(channel_commands_[command_index++].channel);
+            if (!result.succeeded()) { return false; }
+            for (std::size_t key = 0; key < result.count; ++key) {
+                if (!append(offset, {EventType::note_off, result.keys[key], 0.0})) { return false; }
+            }
+        }
+        while (note_index < host_note_count_ && host_notes_[note_index].offset == offset) {
+            const auto result = candidate.apply(host_notes_[note_index++].note);
+            if (!result.succeeded() || (result.change && !append(offset, *result.change))) { return false; }
         }
     }
     return validate_dispatch_bound();
@@ -358,6 +419,15 @@ Steinberg::tresult PLUGIN_API RhodesProcessor::process(vst::ProcessData& data) {
         if (sustain_count_ > 0) {
             live_state_.sustain = sustain_points_[sustain_count_ - 1].value == 1.0F;
             (void)engine_.set_sustain(live_state_.sustain);
+        }
+        for (std::size_t index = 0; index < physical_note_count_; ++index) {
+            // Nonempty input event lists are rejected for zero-frame calls,
+            // so these actions can only be preflighted CC123 releases.
+            if (!engine_.release_key(physical_notes_[index].change.key)) {
+                silence_outputs(data);
+                (void)mailbox_.end_block(token, live_state_);
+                return Steinberg::kResultFalse;
+            }
         }
         silence_outputs(data);
         (void)mailbox_.end_block(token, live_state_);

@@ -4,8 +4,8 @@
   "goal": "Physically model a Fender Rhodes Mark I from evolving mechanical, electromagnetic and circuit states without recorded-note playback.",
   "target": "One documented 73-key Mark I Stage specimen at its specified loaded electrical output; identity and measurements pending.",
   "fidelity_status": "unvalidated",
-  "revision": 34,
-  "updated_at": "2026-11-24T09:05:30Z",
+  "revision": 37,
+  "updated_at": "2026-11-24T09:35:20Z",
   "tasks": [
     {
       "id": "FND-001",
@@ -507,7 +507,11 @@
         "docs",
         "project/continuation-c-20261124.json",
         "tools/validate_continuation_c.py",
-        "README.md"
+        "README.md",
+        "include/rhodes/control_text.hpp",
+        "tools/generate_control_text_vectors.py",
+        "CMakeLists.txt",
+        ".github/workflows/ci.yml"
       ]
     }
   ],
@@ -783,6 +787,30 @@
       "task": "HOST-002",
       "owner": "continuation-c-root",
       "detail": "Lease until 2026-11-24T13:05:30Z"
+    },
+    {
+      "revision": 35,
+      "at": "2026-11-24T09:27:41Z",
+      "action": "define_task",
+      "task": "HOST-002",
+      "owner": "continuation-c-root",
+      "detail": "Add narrowly scoped portable control-text helper and independent oracle generator to preserve the existing macOS deployment target; acceptance and other task ownership unchanged."
+    },
+    {
+      "revision": 36,
+      "at": "2026-11-24T09:31:39Z",
+      "action": "define_task",
+      "task": "HOST-002",
+      "owner": "continuation-c-root",
+      "detail": "Include top-level registration of dependency-free host control tests in HOST-002 scope; no acceptance or dependency changes."
+    },
+    {
+      "revision": 37,
+      "at": "2026-11-24T09:35:20Z",
+      "action": "definition_updated",
+      "task": "HOST-002",
+      "owner": "continuation-c-root",
+      "detail": "Add CI regeneration check for independent control-text vectors; no platform baseline or dependency changes."
     }
   ]
 }

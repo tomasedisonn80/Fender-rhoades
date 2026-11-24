@@ -79,6 +79,17 @@ target_compile_definitions(rhodes_runtime_benchmark PRIVATE RHODES_BUILD_CONFIGU
 rhodes_target_options(rhodes_runtime_benchmark)
 
 if(BUILD_TESTING)
+    add_executable(rhodes_control_text_tests tests/cpp/control_text_test.cpp)
+    target_link_libraries(rhodes_control_text_tests PRIVATE rhodes_core)
+    rhodes_target_options(rhodes_control_text_tests)
+    foreach(test_name IN ITEMS oracle bounds formatting roundtrip environments locale)
+        add_test(NAME control_text.${test_name} COMMAND rhodes_control_text_tests ${test_name})
+    endforeach()
+
+    add_executable(rhodes_event_release_port_tests tests/cpp/event_release_port_test.cpp)
+    target_link_libraries(rhodes_event_release_port_tests PRIVATE rhodes_core)
+    rhodes_target_options(rhodes_event_release_port_tests)
+    add_test(NAME events.release_port COMMAND rhodes_event_release_port_tests)
     add_executable(rhodes_fractional_observation_tests tests/cpp/fractional_observation_test.cpp)
     target_link_libraries(rhodes_fractional_observation_tests PRIVATE rhodes_core)
     rhodes_target_options(rhodes_fractional_observation_tests)

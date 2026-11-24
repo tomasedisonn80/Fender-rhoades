@@ -154,13 +154,17 @@ if(BUILD_TESTING)
     add_dependencies(rhodes_vst3_checks rhodes_vst3 rhodes_vst3_benchmark
         rhodes_vst3_filtered rhodes_vst3_filtered_benchmark
         rhodes_vst3_quadrature rhodes_vst3_quadrature_benchmark)
-    # Optional third/fourth arguments select filtered/quadrature respectively.
+    # Optional third/fourth arguments select filtered/quadrature respectively;
+    # the fifth omits the processor for controller-only public-interface tests.
     function(rhodes_add_vst3_test target source)
-        add_executable(${target}
+        set(test_sources
             "${PROJECT_SOURCE_DIR}/${source}"
-            "${PROJECT_SOURCE_DIR}/plugins/vst3/processor.cpp"
             "${PROJECT_SOURCE_DIR}/plugins/vst3/controller.cpp"
             "${PROJECT_SOURCE_DIR}/plugins/vst3/state_stream.cpp")
+        if(NOT (ARGC GREATER 4 AND ARGV4))
+            list(APPEND test_sources "${PROJECT_SOURCE_DIR}/plugins/vst3/processor.cpp")
+        endif()
+        add_executable(${target} ${test_sources})
         target_compile_features(${target} PRIVATE cxx_std_20)
         target_include_directories(${target} PRIVATE "${PROJECT_SOURCE_DIR}")
         target_include_directories(${target} SYSTEM PRIVATE "${RHODES_VST3_SDK_ROOT}")
@@ -225,6 +229,36 @@ if(BUILD_TESTING)
         -DEXPECT_AUDIO_PATH=quadrature
         -P "${PROJECT_SOURCE_DIR}/tests/cpp/vst3_benchmark_json.cmake")
     rhodes_add_vst3_test(rhodes_vst3_host_tests tests/cpp/vst3_host_test.cpp)
+    rhodes_add_vst3_test(rhodes_vst3_channel_commands_tests tests/cpp/vst3_channel_commands_test.cpp)
+    rhodes_add_vst3_test(rhodes_vst3_filtered_channel_commands_tests tests/cpp/vst3_channel_commands_test.cpp TRUE)
+    rhodes_add_vst3_test(rhodes_vst3_quadrature_channel_commands_tests tests/cpp/vst3_channel_commands_test.cpp FALSE TRUE)
+    add_test(NAME vst3.channel_commands COMMAND rhodes_vst3_channel_commands_tests)
+    add_test(NAME vst3.filtered_channel_commands COMMAND rhodes_vst3_filtered_channel_commands_tests)
+    add_test(NAME vst3.quadrature_channel_commands COMMAND rhodes_vst3_quadrature_channel_commands_tests)
+    rhodes_add_vst3_test(rhodes_vst3_pressure_tests tests/cpp/vst3_pressure_test.cpp)
+    rhodes_add_vst3_test(rhodes_vst3_filtered_pressure_tests tests/cpp/vst3_pressure_test.cpp TRUE)
+    rhodes_add_vst3_test(rhodes_vst3_quadrature_pressure_tests tests/cpp/vst3_pressure_test.cpp FALSE TRUE)
+    add_test(NAME vst3.pressure COMMAND rhodes_vst3_pressure_tests)
+    add_test(NAME vst3.filtered_pressure COMMAND rhodes_vst3_filtered_pressure_tests)
+    add_test(NAME vst3.quadrature_pressure COMMAND rhodes_vst3_quadrature_pressure_tests)
+    rhodes_add_vst3_test(rhodes_vst3_command_bounds_tests tests/cpp/vst3_command_bounds_test.cpp)
+    rhodes_add_vst3_test(rhodes_vst3_filtered_command_bounds_tests tests/cpp/vst3_command_bounds_test.cpp TRUE)
+    rhodes_add_vst3_test(rhodes_vst3_quadrature_command_bounds_tests tests/cpp/vst3_command_bounds_test.cpp FALSE TRUE)
+    add_test(NAME vst3.command_bounds COMMAND rhodes_vst3_command_bounds_tests)
+    add_test(NAME vst3.filtered_command_bounds COMMAND rhodes_vst3_filtered_command_bounds_tests)
+    add_test(NAME vst3.quadrature_command_bounds COMMAND rhodes_vst3_quadrature_command_bounds_tests)
+    rhodes_add_vst3_test(rhodes_vst3_control_text_tests tests/cpp/vst3_control_text_test.cpp FALSE FALSE TRUE)
+    rhodes_add_vst3_test(rhodes_vst3_filtered_control_text_tests tests/cpp/vst3_control_text_test.cpp TRUE FALSE TRUE)
+    rhodes_add_vst3_test(rhodes_vst3_quadrature_control_text_tests tests/cpp/vst3_control_text_test.cpp FALSE TRUE TRUE)
+    add_test(NAME vst3.control_text COMMAND rhodes_vst3_control_text_tests)
+    add_test(NAME vst3.filtered_control_text COMMAND rhodes_vst3_filtered_control_text_tests)
+    add_test(NAME vst3.quadrature_control_text COMMAND rhodes_vst3_quadrature_control_text_tests)
+    rhodes_add_vst3_test(rhodes_vst3_command_atomicity_tests tests/cpp/vst3_command_atomicity_test.cpp)
+    rhodes_add_vst3_test(rhodes_vst3_filtered_command_atomicity_tests tests/cpp/vst3_command_atomicity_test.cpp TRUE)
+    rhodes_add_vst3_test(rhodes_vst3_quadrature_command_atomicity_tests tests/cpp/vst3_command_atomicity_test.cpp FALSE TRUE)
+    add_test(NAME vst3.command_atomicity COMMAND rhodes_vst3_command_atomicity_tests)
+    add_test(NAME vst3.filtered_command_atomicity COMMAND rhodes_vst3_filtered_command_atomicity_tests)
+    add_test(NAME vst3.quadrature_command_atomicity COMMAND rhodes_vst3_quadrature_command_atomicity_tests)
     rhodes_add_vst3_test(rhodes_vst3_filtered_regression_tests tests/cpp/vst3_host_test.cpp TRUE)
     rhodes_add_vst3_test(rhodes_vst3_quadrature_regression_tests tests/cpp/vst3_host_test.cpp FALSE TRUE)
     foreach(test_name IN ITEMS scalar_output overlapping_notes linear_automation

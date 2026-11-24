@@ -47,6 +47,17 @@ inline constexpr const char* kPluginVersion = "0.1.0";
 #endif
 inline constexpr Steinberg::Vst::ParamID kGainId = 0;
 inline constexpr Steinberg::Vst::ParamID kSustainId = 1;
+// Transient per-channel CC123 commands. Existing configuration IDs stay stable.
+inline constexpr Steinberg::Vst::ParamID kAllNotesOffBaseId = 0x1000;
+inline constexpr std::size_t kMidiChannelCount = 16;
+inline constexpr std::size_t kControllerParameterCount = 2 + kMidiChannelCount;
+inline constexpr std::size_t kMaximumChannelCommands = 256;
+
+[[nodiscard]] inline constexpr int all_notes_off_channel(
+    Steinberg::Vst::ParamID id) noexcept {
+    return id >= kAllNotesOffBaseId && id < kAllNotesOffBaseId + kMidiChannelCount ?
+        static_cast<int>(id - kAllNotesOffBaseId) : -1;
+}
 // The pinned SDK validator configures 8192-frame host blocks. The adapter
 // preflights this fixed bound, then calls the unchanged core one sample at a time.
 inline constexpr std::size_t kMaximumHostFrames = 8192;

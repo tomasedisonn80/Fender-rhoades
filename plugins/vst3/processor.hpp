@@ -65,6 +65,10 @@ private:
         Steinberg::int32 offset = 0;
         MidiNote note{};
     };
+    struct ChannelCommand {
+        Steinberg::int32 offset = 0;
+        Steinberg::int16 channel = 0;
+    };
     struct PhysicalNote {
         Steinberg::int32 offset = 0;
         NoteChange change{};
@@ -93,11 +97,15 @@ private:
     // mechanics, configuration or the mailbox, even on a late invalid point.
     std::array<ParameterPoint, kMaximumHostFrames> gain_points_{};
     std::array<ParameterPoint, kMaximumHostFrames> sustain_points_{};
+    std::array<ChannelCommand, kMaximumChannelCommands> channel_commands_{};
     std::array<HostNote, maximum_block_events> host_notes_{};
-    std::array<PhysicalNote, maximum_block_events> physical_notes_{};
+    // Every release consumes an initially held key or a preceding note-on.
+    // At most 256 input-note actions plus 73+256 releases can be produced.
+    std::array<PhysicalNote, 2 * maximum_block_events + key_count> physical_notes_{};
     std::array<EngineEvent, maximum_block_events> dispatch_{};
     std::size_t gain_count_ = 0;
     std::size_t sustain_count_ = 0;
+    std::size_t channel_command_count_ = 0;
     std::size_t host_note_count_ = 0;
     std::size_t physical_note_count_ = 0;
 };

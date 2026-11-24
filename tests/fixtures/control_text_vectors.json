@@ -1,0 +1,2531 @@
+{
+  "schema_version": 1,
+  "generator": "tools/generate_control_text_vectors.py",
+  "oracle": "Python float(text), checked by exact Decimal/Fraction neighbor distances and even ties",
+  "contract": {
+    "layer": "rhodes::control_text::parse_decimal (raw token; no whitespace or units)",
+    "maximum_ascii_characters": 127,
+    "maximum_rounded_magnitude": 32,
+    "negative_values": "accepted by this raw helper; controller range validation is separate",
+    "zero": "preserve literal sign; reject nonzero literals rounded to zero",
+    "expected_bits": "16-digit hexadecimal binary64 encoding, or null for rejection",
+    "midpoint_limit": "Subnormal and smallest-normal exact ties exceed 127 characters; 110-significant-digit directed decimal brackets straddle their exact rational midpoints."
+  },
+  "counts": {
+    "total": 400,
+    "accepted": 302,
+    "rejected": 98,
+    "categories": {
+      "binary32_gain_midpoint": 57,
+      "binary64_midpoint": 60,
+      "binary64_midpoint_bracket": 34,
+      "decimal_sweep": 40,
+      "exponent_sweep": 44,
+      "grammar_reject": 60,
+      "grammar_valid": 49,
+      "literal_boundaries": 31,
+      "maximum_length": 13,
+      "spelling_variants": 12
+    }
+  },
+  "vectors": [
+    {
+      "id": "grammar-valid-00",
+      "category": "grammar_valid",
+      "input": "0",
+      "expected_bits": "0x0000000000000000"
+    },
+    {
+      "id": "grammar-valid-01",
+      "category": "grammar_valid",
+      "input": "-0",
+      "expected_bits": "0x8000000000000000"
+    },
+    {
+      "id": "grammar-valid-02",
+      "category": "grammar_valid",
+      "input": "+0",
+      "expected_bits": "0x0000000000000000"
+    },
+    {
+      "id": "grammar-valid-03",
+      "category": "grammar_valid",
+      "input": "0.0",
+      "expected_bits": "0x0000000000000000"
+    },
+    {
+      "id": "grammar-valid-04",
+      "category": "grammar_valid",
+      "input": "-0.000",
+      "expected_bits": "0x8000000000000000"
+    },
+    {
+      "id": "grammar-valid-05",
+      "category": "grammar_valid",
+      "input": "+.0",
+      "expected_bits": "0x0000000000000000"
+    },
+    {
+      "id": "grammar-valid-06",
+      "category": "grammar_valid",
+      "input": "-.0",
+      "expected_bits": "0x8000000000000000"
+    },
+    {
+      "id": "grammar-valid-07",
+      "category": "grammar_valid",
+      "input": "0.",
+      "expected_bits": "0x0000000000000000"
+    },
+    {
+      "id": "grammar-valid-08",
+      "category": "grammar_valid",
+      "input": "-0.",
+      "expected_bits": "0x8000000000000000"
+    },
+    {
+      "id": "grammar-valid-09",
+      "category": "grammar_valid",
+      "input": "0e0",
+      "expected_bits": "0x0000000000000000"
+    },
+    {
+      "id": "grammar-valid-10",
+      "category": "grammar_valid",
+      "input": "-0e+99999",
+      "expected_bits": "0x8000000000000000"
+    },
+    {
+      "id": "grammar-valid-11",
+      "category": "grammar_valid",
+      "input": "+0E-99999",
+      "expected_bits": "0x0000000000000000"
+    },
+    {
+      "id": "grammar-valid-12",
+      "category": "grammar_valid",
+      "input": "1",
+      "expected_bits": "0x3ff0000000000000"
+    },
+    {
+      "id": "grammar-valid-13",
+      "category": "grammar_valid",
+      "input": "-1",
+      "expected_bits": "0xbff0000000000000"
+    },
+    {
+      "id": "grammar-valid-14",
+      "category": "grammar_valid",
+      "input": "+1",
+      "expected_bits": "0x3ff0000000000000"
+    },
+    {
+      "id": "grammar-valid-15",
+      "category": "grammar_valid",
+      "input": ".5",
+      "expected_bits": "0x3fe0000000000000"
+    },
+    {
+      "id": "grammar-valid-16",
+      "category": "grammar_valid",
+      "input": "-.5",
+      "expected_bits": "0xbfe0000000000000"
+    },
+    {
+      "id": "grammar-valid-17",
+      "category": "grammar_valid",
+      "input": "+.5",
+      "expected_bits": "0x3fe0000000000000"
+    },
+    {
+      "id": "grammar-valid-18",
+      "category": "grammar_valid",
+      "input": "1.",
+      "expected_bits": "0x3ff0000000000000"
+    },
+    {
+      "id": "grammar-valid-19",
+      "category": "grammar_valid",
+      "input": "-1.",
+      "expected_bits": "0xbff0000000000000"
+    },
+    {
+      "id": "grammar-valid-20",
+      "category": "grammar_valid",
+      "input": "0001.2500",
+      "expected_bits": "0x3ff4000000000000"
+    },
+    {
+      "id": "grammar-valid-21",
+      "category": "grammar_valid",
+      "input": "+0001.2500",
+      "expected_bits": "0x3ff4000000000000"
+    },
+    {
+      "id": "grammar-valid-22",
+      "category": "grammar_valid",
+      "input": "-0001.2500",
+      "expected_bits": "0xbff4000000000000"
+    },
+    {
+      "id": "grammar-valid-23",
+      "category": "grammar_valid",
+      "input": "1e0",
+      "expected_bits": "0x3ff0000000000000"
+    },
+    {
+      "id": "grammar-valid-24",
+      "category": "grammar_valid",
+      "input": "1E+0",
+      "expected_bits": "0x3ff0000000000000"
+    },
+    {
+      "id": "grammar-valid-25",
+      "category": "grammar_valid",
+      "input": "1e-0",
+      "expected_bits": "0x3ff0000000000000"
+    },
+    {
+      "id": "grammar-valid-26",
+      "category": "grammar_valid",
+      "input": "1.25e+0000",
+      "expected_bits": "0x3ff4000000000000"
+    },
+    {
+      "id": "grammar-valid-27",
+      "category": "grammar_valid",
+      "input": "125e-002",
+      "expected_bits": "0x3ff4000000000000"
+    },
+    {
+      "id": "grammar-valid-28",
+      "category": "grammar_valid",
+      "input": "00125E-0002",
+      "expected_bits": "0x3ff4000000000000"
+    },
+    {
+      "id": "grammar-valid-29",
+      "category": "grammar_valid",
+      "input": "0.1",
+      "expected_bits": "0x3fb999999999999a"
+    },
+    {
+      "id": "grammar-valid-30",
+      "category": "grammar_valid",
+      "input": "-0.1",
+      "expected_bits": "0xbfb999999999999a"
+    },
+    {
+      "id": "grammar-valid-31",
+      "category": "grammar_valid",
+      "input": "16",
+      "expected_bits": "0x4030000000000000"
+    },
+    {
+      "id": "grammar-valid-32",
+      "category": "grammar_valid",
+      "input": "-16",
+      "expected_bits": "0xc030000000000000"
+    },
+    {
+      "id": "grammar-valid-33",
+      "category": "grammar_valid",
+      "input": "32",
+      "expected_bits": "0x4040000000000000"
+    },
+    {
+      "id": "grammar-valid-34",
+      "category": "grammar_valid",
+      "input": "-32",
+      "expected_bits": "0xc040000000000000"
+    },
+    {
+      "id": "grammar-valid-35",
+      "category": "grammar_valid",
+      "input": "3.2e1",
+      "expected_bits": "0x4040000000000000"
+    },
+    {
+      "id": "grammar-valid-36",
+      "category": "grammar_valid",
+      "input": "320e-1",
+      "expected_bits": "0x4040000000000000"
+    },
+    {
+      "id": "grammar-valid-37",
+      "category": "grammar_valid",
+      "input": "0.00032E+000005",
+      "expected_bits": "0x4040000000000000"
+    },
+    {
+      "id": "grammar-valid-38",
+      "category": "grammar_valid",
+      "input": "32.000000000000000001",
+      "expected_bits": "0x4040000000000000"
+    },
+    {
+      "id": "grammar-valid-39",
+      "category": "grammar_valid",
+      "input": "-32.000000000000000001",
+      "expected_bits": "0xc040000000000000"
+    },
+    {
+      "id": "grammar-valid-40",
+      "category": "grammar_valid",
+      "input": "31.999999999999999999",
+      "expected_bits": "0x4040000000000000"
+    },
+    {
+      "id": "grammar-valid-41",
+      "category": "grammar_valid",
+      "input": "1.000000000000000001",
+      "expected_bits": "0x3ff0000000000000"
+    },
+    {
+      "id": "grammar-valid-42",
+      "category": "grammar_valid",
+      "input": "2.2250738585072014e-308",
+      "expected_bits": "0x0010000000000000"
+    },
+    {
+      "id": "grammar-valid-43",
+      "category": "grammar_valid",
+      "input": "2.225073858507201e-308",
+      "expected_bits": "0x000fffffffffffff"
+    },
+    {
+      "id": "grammar-valid-44",
+      "category": "grammar_valid",
+      "input": "1e-308",
+      "expected_bits": "0x000730d67819e8d2"
+    },
+    {
+      "id": "grammar-valid-45",
+      "category": "grammar_valid",
+      "input": "5e-324",
+      "expected_bits": "0x0000000000000001"
+    },
+    {
+      "id": "grammar-valid-46",
+      "category": "grammar_valid",
+      "input": "-5e-324",
+      "expected_bits": "0x8000000000000001"
+    },
+    {
+      "id": "grammar-valid-47",
+      "category": "grammar_valid",
+      "input": "1e-323",
+      "expected_bits": "0x0000000000000002"
+    },
+    {
+      "id": "grammar-valid-48",
+      "category": "grammar_valid",
+      "input": "4.9406564584124654e-324",
+      "expected_bits": "0x0000000000000001"
+    },
+    {
+      "id": "grammar-reject-00",
+      "category": "grammar_reject",
+      "input": "",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-01",
+      "category": "grammar_reject",
+      "input": ".",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-02",
+      "category": "grammar_reject",
+      "input": "+",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-03",
+      "category": "grammar_reject",
+      "input": "-",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-04",
+      "category": "grammar_reject",
+      "input": "+.",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-05",
+      "category": "grammar_reject",
+      "input": "-.",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-06",
+      "category": "grammar_reject",
+      "input": "e1",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-07",
+      "category": "grammar_reject",
+      "input": "E-1",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-08",
+      "category": "grammar_reject",
+      "input": "1e",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-09",
+      "category": "grammar_reject",
+      "input": "1e+",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-10",
+      "category": "grammar_reject",
+      "input": "1e-",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-11",
+      "category": "grammar_reject",
+      "input": "1e.0",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-12",
+      "category": "grammar_reject",
+      "input": "1e++1",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-13",
+      "category": "grammar_reject",
+      "input": "1e--1",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-14",
+      "category": "grammar_reject",
+      "input": "1e+-1",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-15",
+      "category": "grammar_reject",
+      "input": "1ee0",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-16",
+      "category": "grammar_reject",
+      "input": "1E1e0",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-17",
+      "category": "grammar_reject",
+      "input": "1..0",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-18",
+      "category": "grammar_reject",
+      "input": "1.2.3",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-19",
+      "category": "grammar_reject",
+      "input": "++1",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-20",
+      "category": "grammar_reject",
+      "input": "--1",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-21",
+      "category": "grammar_reject",
+      "input": "+-1",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-22",
+      "category": "grammar_reject",
+      "input": "-+1",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-23",
+      "category": "grammar_reject",
+      "input": "0x0",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-24",
+      "category": "grammar_reject",
+      "input": "0x1p-1",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-25",
+      "category": "grammar_reject",
+      "input": "0X10",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-26",
+      "category": "grammar_reject",
+      "input": "nan",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-27",
+      "category": "grammar_reject",
+      "input": "NaN",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-28",
+      "category": "grammar_reject",
+      "input": "NAN",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-29",
+      "category": "grammar_reject",
+      "input": "nan(1)",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-30",
+      "category": "grammar_reject",
+      "input": "+nan",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-31",
+      "category": "grammar_reject",
+      "input": "inf",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-32",
+      "category": "grammar_reject",
+      "input": "-inf",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-33",
+      "category": "grammar_reject",
+      "input": "Infinity",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-34",
+      "category": "grammar_reject",
+      "input": "+Infinity",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-35",
+      "category": "grammar_reject",
+      "input": "1,0",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-36",
+      "category": "grammar_reject",
+      "input": "1_0",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-37",
+      "category": "grammar_reject",
+      "input": "1'0",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-38",
+      "category": "grammar_reject",
+      "input": "16junk",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-39",
+      "category": "grammar_reject",
+      "input": "1x",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-40",
+      "category": "grammar_reject",
+      "input": "1 x",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-41",
+      "category": "grammar_reject",
+      "input": "x",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-42",
+      "category": "grammar_reject",
+      "input": " ",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-43",
+      "category": "grammar_reject",
+      "input": "\t",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-44",
+      "category": "grammar_reject",
+      "input": "\n",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-45",
+      "category": "grammar_reject",
+      "input": " 1",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-46",
+      "category": "grammar_reject",
+      "input": "1 ",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-47",
+      "category": "grammar_reject",
+      "input": "1\t0",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-48",
+      "category": "grammar_reject",
+      "input": "+ 1",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-49",
+      "category": "grammar_reject",
+      "input": "1 e0",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-50",
+      "category": "grammar_reject",
+      "input": "1\u0000",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-51",
+      "category": "grammar_reject",
+      "input": "\u00001",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-52",
+      "category": "grammar_reject",
+      "input": "1\u0001",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-53",
+      "category": "grammar_reject",
+      "input": "\u00071",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-54",
+      "category": "grammar_reject",
+      "input": "\u007f1",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-55",
+      "category": "grammar_reject",
+      "input": "1\r",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-56",
+      "category": "grammar_reject",
+      "input": "\u000b1",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-57",
+      "category": "grammar_reject",
+      "input": "1\f",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-58",
+      "category": "grammar_reject",
+      "input": "Off",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "grammar-reject-59",
+      "category": "grammar_reject",
+      "input": "On",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "boundary-literal-00",
+      "category": "literal_boundaries",
+      "input": "33",
+      "expected_bits": null,
+      "rejection": "range"
+    },
+    {
+      "id": "boundary-literal-01",
+      "category": "literal_boundaries",
+      "input": "-33",
+      "expected_bits": null,
+      "rejection": "range"
+    },
+    {
+      "id": "boundary-literal-02",
+      "category": "literal_boundaries",
+      "input": "32.00000000000001",
+      "expected_bits": null,
+      "rejection": "range"
+    },
+    {
+      "id": "boundary-literal-03",
+      "category": "literal_boundaries",
+      "input": "-32.00000000000001",
+      "expected_bits": null,
+      "rejection": "range"
+    },
+    {
+      "id": "boundary-literal-04",
+      "category": "literal_boundaries",
+      "input": "32.1",
+      "expected_bits": null,
+      "rejection": "range"
+    },
+    {
+      "id": "boundary-literal-05",
+      "category": "literal_boundaries",
+      "input": "-32.1",
+      "expected_bits": null,
+      "rejection": "range"
+    },
+    {
+      "id": "boundary-literal-06",
+      "category": "literal_boundaries",
+      "input": "1e2",
+      "expected_bits": null,
+      "rejection": "range"
+    },
+    {
+      "id": "boundary-literal-07",
+      "category": "literal_boundaries",
+      "input": "-1e2",
+      "expected_bits": null,
+      "rejection": "range"
+    },
+    {
+      "id": "boundary-literal-08",
+      "category": "literal_boundaries",
+      "input": "1e308",
+      "expected_bits": null,
+      "rejection": "range"
+    },
+    {
+      "id": "boundary-literal-09",
+      "category": "literal_boundaries",
+      "input": "-1e308",
+      "expected_bits": null,
+      "rejection": "range"
+    },
+    {
+      "id": "boundary-literal-10",
+      "category": "literal_boundaries",
+      "input": "1e309",
+      "expected_bits": null,
+      "rejection": "overflow"
+    },
+    {
+      "id": "boundary-literal-11",
+      "category": "literal_boundaries",
+      "input": "-1e309",
+      "expected_bits": null,
+      "rejection": "overflow"
+    },
+    {
+      "id": "boundary-literal-12",
+      "category": "literal_boundaries",
+      "input": "1.7976931348623157e308",
+      "expected_bits": null,
+      "rejection": "range"
+    },
+    {
+      "id": "boundary-literal-13",
+      "category": "literal_boundaries",
+      "input": "1.7976931348623158e308",
+      "expected_bits": null,
+      "rejection": "range"
+    },
+    {
+      "id": "boundary-literal-14",
+      "category": "literal_boundaries",
+      "input": "1.7976931348623159e308",
+      "expected_bits": null,
+      "rejection": "overflow"
+    },
+    {
+      "id": "boundary-literal-15",
+      "category": "literal_boundaries",
+      "input": "1e99999",
+      "expected_bits": null,
+      "rejection": "overflow"
+    },
+    {
+      "id": "boundary-literal-16",
+      "category": "literal_boundaries",
+      "input": "-1e99999",
+      "expected_bits": null,
+      "rejection": "overflow"
+    },
+    {
+      "id": "boundary-literal-17",
+      "category": "literal_boundaries",
+      "input": "1e-99999",
+      "expected_bits": null,
+      "rejection": "underflow"
+    },
+    {
+      "id": "boundary-literal-18",
+      "category": "literal_boundaries",
+      "input": "-1e-99999",
+      "expected_bits": null,
+      "rejection": "underflow"
+    },
+    {
+      "id": "boundary-literal-19",
+      "category": "literal_boundaries",
+      "input": "1e-324",
+      "expected_bits": null,
+      "rejection": "underflow"
+    },
+    {
+      "id": "boundary-literal-20",
+      "category": "literal_boundaries",
+      "input": "-1e-324",
+      "expected_bits": null,
+      "rejection": "underflow"
+    },
+    {
+      "id": "boundary-literal-21",
+      "category": "literal_boundaries",
+      "input": "2e-324",
+      "expected_bits": null,
+      "rejection": "underflow"
+    },
+    {
+      "id": "boundary-literal-22",
+      "category": "literal_boundaries",
+      "input": "-2e-324",
+      "expected_bits": null,
+      "rejection": "underflow"
+    },
+    {
+      "id": "boundary-literal-23",
+      "category": "literal_boundaries",
+      "input": "3e-324",
+      "expected_bits": "0x0000000000000001"
+    },
+    {
+      "id": "boundary-literal-24",
+      "category": "literal_boundaries",
+      "input": "-3e-324",
+      "expected_bits": "0x8000000000000001"
+    },
+    {
+      "id": "boundary-literal-25",
+      "category": "literal_boundaries",
+      "input": "2.4703282292062327e-324",
+      "expected_bits": null,
+      "rejection": "underflow"
+    },
+    {
+      "id": "boundary-literal-26",
+      "category": "literal_boundaries",
+      "input": "2.4703282292062328e-324",
+      "expected_bits": "0x0000000000000001"
+    },
+    {
+      "id": "boundary-literal-27",
+      "category": "literal_boundaries",
+      "input": "7.410984687618698e-324",
+      "expected_bits": "0x0000000000000001"
+    },
+    {
+      "id": "boundary-literal-28",
+      "category": "literal_boundaries",
+      "input": "7.410984687618699e-324",
+      "expected_bits": "0x0000000000000002"
+    },
+    {
+      "id": "boundary-literal-29",
+      "category": "literal_boundaries",
+      "input": "2.2250738585072009e-308",
+      "expected_bits": "0x000fffffffffffff"
+    },
+    {
+      "id": "boundary-literal-30",
+      "category": "literal_boundaries",
+      "input": "2.2250738585072011e-308",
+      "expected_bits": "0x000fffffffffffff"
+    },
+    {
+      "id": "maximum-length-00",
+      "category": "maximum_length",
+      "input": "0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001",
+      "expected_bits": "0x3ff0000000000000"
+    },
+    {
+      "id": "maximum-length-01",
+      "category": "maximum_length",
+      "input": "+000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001",
+      "expected_bits": "0x3ff0000000000000"
+    },
+    {
+      "id": "maximum-length-02",
+      "category": "maximum_length",
+      "input": "-000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001",
+      "expected_bits": "0xbff0000000000000"
+    },
+    {
+      "id": "maximum-length-03",
+      "category": "maximum_length",
+      "input": "32.0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "expected_bits": "0x4040000000000000"
+    },
+    {
+      "id": "maximum-length-04",
+      "category": "maximum_length",
+      "input": "-32.000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+      "expected_bits": "0xc040000000000000"
+    },
+    {
+      "id": "maximum-length-05",
+      "category": "maximum_length",
+      "input": "0.00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001",
+      "expected_bits": "0x25fb13ac9aaf4c0f"
+    },
+    {
+      "id": "maximum-length-06",
+      "category": "maximum_length",
+      "input": "1e99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999",
+      "expected_bits": null,
+      "rejection": "overflow"
+    },
+    {
+      "id": "maximum-length-07",
+      "category": "maximum_length",
+      "input": "1e-9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999",
+      "expected_bits": null,
+      "rejection": "underflow"
+    },
+    {
+      "id": "maximum-length-08",
+      "category": "maximum_length",
+      "input": "0e99999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999",
+      "expected_bits": "0x0000000000000000"
+    },
+    {
+      "id": "maximum-length-09",
+      "category": "maximum_length",
+      "input": "-0e-999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999",
+      "expected_bits": "0x8000000000000000"
+    },
+    {
+      "id": "maximum-length-10",
+      "category": "maximum_length",
+      "input": "1e+0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001",
+      "expected_bits": "0x4024000000000000"
+    },
+    {
+      "id": "maximum-length-11",
+      "category": "maximum_length",
+      "input": "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000.",
+      "expected_bits": "0x0000000000000000"
+    },
+    {
+      "id": "maximum-length-12",
+      "category": "maximum_length",
+      "input": "000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000x",
+      "expected_bits": null,
+      "rejection": "syntax"
+    },
+    {
+      "id": "subnormal-00-below",
+      "category": "binary64_midpoint_bracket",
+      "input": "2.4703282292062327208828439643411068618252990130716238221279284125033775363510437593264991818081799618989828234e-324",
+      "expected_bits": null,
+      "rejection": "underflow"
+    },
+    {
+      "id": "subnormal-00-above",
+      "category": "binary64_midpoint_bracket",
+      "input": "2.4703282292062327208828439643411068618252990130716238221279284125033775363510437593264991818081799618989828235e-324",
+      "expected_bits": "0x0000000000000001"
+    },
+    {
+      "id": "subnormal-01-below",
+      "category": "binary64_midpoint_bracket",
+      "input": "7.4109846876186981626485318930233205854758970392148714663837852375101326090531312779794975454245398856969484704e-324",
+      "expected_bits": "0x0000000000000001"
+    },
+    {
+      "id": "subnormal-01-above",
+      "category": "binary64_midpoint_bracket",
+      "input": "7.4109846876186981626485318930233205854758970392148714663837852375101326090531312779794975454245398856969484705e-324",
+      "expected_bits": "0x0000000000000002"
+    },
+    {
+      "id": "subnormal-02-below",
+      "category": "binary64_midpoint_bracket",
+      "input": "1.2351641146031163604414219821705534309126495065358119110639642062516887681755218796632495909040899809494914117e-323",
+      "expected_bits": "0x0000000000000002"
+    },
+    {
+      "id": "subnormal-02-above",
+      "category": "binary64_midpoint_bracket",
+      "input": "1.2351641146031163604414219821705534309126495065358119110639642062516887681755218796632495909040899809494914118e-323",
+      "expected_bits": "0x0000000000000003"
+    },
+    {
+      "id": "subnormal-03-below",
+      "category": "binary64_midpoint_bracket",
+      "input": "1.7292297604443629046179907750387748032777093091501366754895498887523642754457306315285494272657259733292879764e-323",
+      "expected_bits": "0x0000000000000003"
+    },
+    {
+      "id": "subnormal-03-above",
+      "category": "binary64_midpoint_bracket",
+      "input": "1.7292297604443629046179907750387748032777093091501366754895498887523642754457306315285494272657259733292879765e-323",
+      "expected_bits": "0x0000000000000004"
+    },
+    {
+      "id": "subnormal-04-below",
+      "category": "binary64_midpoint_bracket",
+      "input": "1.112536929253600444512293438042929943825211556120479732746762401281220004614117847589387944401879577632115489e-308",
+      "expected_bits": "0x0007ffffffffffff"
+    },
+    {
+      "id": "subnormal-04-above",
+      "category": "binary64_midpoint_bracket",
+      "input": "1.1125369292536004445122934380429299438252115561204797327467624012812200046141178475893879444018795776321154891e-308",
+      "expected_bits": "0x0008000000000000"
+    },
+    {
+      "id": "subnormal-05-below",
+      "category": "binary64_midpoint_bracket",
+      "input": "2.2250738585072006419917639554625877993660266781302732829636234954000577964353944448410222536993832226143127972e-308",
+      "expected_bits": "0x000ffffffffffffe"
+    },
+    {
+      "id": "subnormal-05-above",
+      "category": "binary64_midpoint_bracket",
+      "input": "2.2250738585072006419917639554625877993660266781302732829636234954000577964353944448410222536993832226143127973e-308",
+      "expected_bits": "0x000fffffffffffff"
+    },
+    {
+      "id": "subnormal-06-below",
+      "category": "binary64_midpoint_bracket",
+      "input": "2.2250738585072011360574097967091319759348195463516456480234261097248222220210769455165295239081350879141491589e-308",
+      "expected_bits": "0x000fffffffffffff"
+    },
+    {
+      "id": "subnormal-06-above",
+      "category": "binary64_midpoint_bracket",
+      "input": "2.225073858507201136057409796709131975934819546351645648023426109724822222021076945516529523908135087914149159e-308",
+      "expected_bits": "0x0010000000000000"
+    },
+    {
+      "id": "subnormal-07-below",
+      "category": "binary64_midpoint_bracket",
+      "input": "2.2250738585072016301230556379556761525036124145730180130832287240495866476067594461920367941168869532139855205e-308",
+      "expected_bits": "0x0010000000000000"
+    },
+    {
+      "id": "subnormal-07-above",
+      "category": "binary64_midpoint_bracket",
+      "input": "2.2250738585072016301230556379556761525036124145730180130832287240495866476067594461920367941168869532139855206e-308",
+      "expected_bits": "0x0010000000000001"
+    },
+    {
+      "id": "subnormal-08-below",
+      "category": "binary64_midpoint_bracket",
+      "input": "2.2250738585072021241887014792022203290724052827943903781430313383743510731924419468675440643256388185138218821e-308",
+      "expected_bits": "0x0010000000000001"
+    },
+    {
+      "id": "subnormal-08-above",
+      "category": "binary64_midpoint_bracket",
+      "input": "2.2250738585072021241887014792022203290724052827943903781430313383743510731924419468675440643256388185138218822e-308",
+      "expected_bits": "0x0010000000000002"
+    },
+    {
+      "id": "power--1000-parity-0-below",
+      "category": "binary64_midpoint_bracket",
+      "input": "9.3326361850321898260316527545000443091505115648932677443470385701960774744036215722010446937116354154132323247e-302",
+      "expected_bits": "0x0170000000000000"
+    },
+    {
+      "id": "power--1000-parity-0-above",
+      "category": "binary64_midpoint_bracket",
+      "input": "9.3326361850321898260316527545000443091505115648932677443470385701960774744036215722010446937116354154132323248e-302",
+      "expected_bits": "0x0170000000000001"
+    },
+    {
+      "id": "power--1000-parity-1-below",
+      "category": "binary64_midpoint_bracket",
+      "input": "9.3326361850321918982931673690237895351097057672456427406068289146688942036953520275143275391772841990477971757e-302",
+      "expected_bits": "0x0170000000000001"
+    },
+    {
+      "id": "power--1000-parity-1-above",
+      "category": "binary64_midpoint_bracket",
+      "input": "9.3326361850321918982931673690237895351097057672456427406068289146688942036953520275143275391772841990477971758e-302",
+      "expected_bits": "0x0170000000000002"
+    },
+    {
+      "id": "power--512-parity-0-below",
+      "category": "binary64_midpoint_bracket",
+      "input": "7.4583407312002075713331258432724507153232559826876584205842575359246381696995314062649386114898049218481401961e-155",
+      "expected_bits": "0x1ff0000000000000"
+    },
+    {
+      "id": "power--512-parity-0-above",
+      "category": "binary64_midpoint_bracket",
+      "input": "7.4583407312002075713331258432724507153232559826876584205842575359246381696995314062649386114898049218481401962e-155",
+      "expected_bits": "0x1ff0000000000001"
+    },
+    {
+      "id": "power--512-parity-1-below",
+      "category": "binary64_midpoint_bracket",
+      "input": "7.4583407312002092274174468988914844712168248788621614732097359413613577389583576089224660536685591588213973818e-155",
+      "expected_bits": "0x1ff0000000000001"
+    },
+    {
+      "id": "power--512-parity-1-above",
+      "category": "binary64_midpoint_bracket",
+      "input": "7.4583407312002092274174468988914844712168248788621614732097359413613577389583576089224660536685591588213973819e-155",
+      "expected_bits": "0x1ff0000000000002"
+    },
+    {
+      "id": "power--256-parity-0-below",
+      "category": "binary64_midpoint_bracket",
+      "input": "8.6361685550944455841936693037626169726339603226932429036204832552173349890118640085780025663074164414234152699e-78",
+      "expected_bits": "0x2ff0000000000000"
+    },
+    {
+      "id": "power--256-parity-0-above",
+      "category": "binary64_midpoint_bracket",
+      "input": "8.63616855509444558419366930376261697263396032269324290362048325521733498901186400857800256630741644142341527e-78",
+      "expected_bits": "0x2ff0000000000001"
+    },
+    {
+      "id": "power--256-parity-1-below",
+      "category": "binary64_midpoint_bracket",
+      "input": "8.636168555094447501808304185687051775669880239207165940814042825314821360710737909790992691977672871149151222e-78",
+      "expected_bits": "0x2ff0000000000001"
+    },
+    {
+      "id": "power--256-parity-1-above",
+      "category": "binary64_midpoint_bracket",
+      "input": "8.6361685550944475018083041856870517756698802392071659408140428253148213607107379097909926919776728711491512221e-78",
+      "expected_bits": "0x2ff0000000000002"
+    },
+    {
+      "id": "power--128-parity-0-below",
+      "category": "binary64_midpoint_bracket",
+      "input": "2.9387358770557190961870647429818405300613693547575965888300921691443705365686407056150684798743113611448063426e-39",
+      "expected_bits": "0x37f0000000000000"
+    },
+    {
+      "id": "power--128-parity-0-above",
+      "category": "binary64_midpoint_bracket",
+      "input": "2.9387358770557190961870647429818405300613693547575965888300921691443705365686407056150684798743113611448063427e-39",
+      "expected_bits": "0x37f0000000000001"
+    },
+    {
+      "id": "power--128-parity-1-below",
+      "category": "binary64_midpoint_bracket",
+      "input": "2.938735877055719748717511542834293201090780280412352158946517976041025312432286252587392939622934083434419028e-39",
+      "expected_bits": "0x37f0000000000001"
+    },
+    {
+      "id": "power--128-parity-1-above",
+      "category": "binary64_midpoint_bracket",
+      "input": "2.9387358770557197487175115428342932010907802804123521589465179760410253124322862525873929396229340834344190281e-39",
+      "expected_bits": "0x37f0000000000002"
+    },
+    {
+      "id": "power--90-parity-0-below",
+      "category": "binary64_midpoint",
+      "input": "8.07793566946316178424711767637865638304056720106271958821529905097009392452370168946629291895078495144844055175781249e-28",
+      "expected_bits": "0x3a50000000000000"
+    },
+    {
+      "id": "power--90-parity-0-tie",
+      "category": "binary64_midpoint",
+      "input": "8.0779356694631617842471176763786563830405672010627195882152990509700939245237016894662929189507849514484405517578125e-28",
+      "expected_bits": "0x3a50000000000000"
+    },
+    {
+      "id": "power--90-parity-0-above",
+      "category": "binary64_midpoint",
+      "input": "8.07793566946316178424711767637865638304056720106271958821529905097009392452370168946629291895078495144844055175781251e-28",
+      "expected_bits": "0x3a50000000000001"
+    },
+    {
+      "id": "power--90-parity-1-below",
+      "category": "binary64_midpoint",
+      "input": "8.07793566946316357790915201214450716541443381215536762695058465291028177357110506839887875685235485434532165527343749e-28",
+      "expected_bits": "0x3a50000000000001"
+    },
+    {
+      "id": "power--90-parity-1-tie",
+      "category": "binary64_midpoint",
+      "input": "8.0779356694631635779091520121445071654144338121553676269505846529102817735711050683988787568523548543453216552734375e-28",
+      "expected_bits": "0x3a50000000000002"
+    },
+    {
+      "id": "power--90-parity-1-above",
+      "category": "binary64_midpoint",
+      "input": "8.07793566946316357790915201214450716541443381215536762695058465291028177357110506839887875685235485434532165527343751e-28",
+      "expected_bits": "0x3a50000000000002"
+    },
+    {
+      "id": "power--60-parity-0-below",
+      "category": "binary64_midpoint",
+      "input": "8.67361737988403643502459460057746021939522129246365926905082410769409761996939778327941894531249e-19",
+      "expected_bits": "0x3c30000000000000"
+    },
+    {
+      "id": "power--60-parity-0-tie",
+      "category": "binary64_midpoint",
+      "input": "8.6736173798840364350245946005774602193952212924636592690508241076940976199693977832794189453125e-19",
+      "expected_bits": "0x3c30000000000000"
+    },
+    {
+      "id": "power--60-parity-0-above",
+      "category": "binary64_midpoint",
+      "input": "8.67361737988403643502459460057746021939522129246365926905082410769409761996939778327941894531251e-19",
+      "expected_bits": "0x3c30000000000001"
+    },
+    {
+      "id": "power--60-parity-1-below",
+      "category": "binary64_midpoint",
+      "input": "8.67361737988403836095453898781331327537316387739097780715247232308229285990819334983825683593749e-19",
+      "expected_bits": "0x3c30000000000001"
+    },
+    {
+      "id": "power--60-parity-1-tie",
+      "category": "binary64_midpoint",
+      "input": "8.6736173798840383609545389878133132753731638773909778071524723230822928599081933498382568359375e-19",
+      "expected_bits": "0x3c30000000000002"
+    },
+    {
+      "id": "power--60-parity-1-above",
+      "category": "binary64_midpoint",
+      "input": "8.67361737988403836095453898781331327537316387739097780715247232308229285990819334983825683593751e-19",
+      "expected_bits": "0x3c30000000000002"
+    },
+    {
+      "id": "power--20-parity-0-below",
+      "category": "binary64_midpoint",
+      "input": "9.5367431640625010587911840678754238354031258495524525642395019531249e-7",
+      "expected_bits": "0x3eb0000000000000"
+    },
+    {
+      "id": "power--20-parity-0-tie",
+      "category": "binary64_midpoint",
+      "input": "9.536743164062501058791184067875423835403125849552452564239501953125e-7",
+      "expected_bits": "0x3eb0000000000000"
+    },
+    {
+      "id": "power--20-parity-0-above",
+      "category": "binary64_midpoint",
+      "input": "9.5367431640625010587911840678754238354031258495524525642395019531251e-7",
+      "expected_bits": "0x3eb0000000000001"
+    },
+    {
+      "id": "power--20-parity-1-below",
+      "category": "binary64_midpoint",
+      "input": "9.5367431640625031763735522036262715062093775486573576927185058593749e-7",
+      "expected_bits": "0x3eb0000000000001"
+    },
+    {
+      "id": "power--20-parity-1-tie",
+      "category": "binary64_midpoint",
+      "input": "9.536743164062503176373552203626271506209377548657357692718505859375e-7",
+      "expected_bits": "0x3eb0000000000002"
+    },
+    {
+      "id": "power--20-parity-1-above",
+      "category": "binary64_midpoint",
+      "input": "9.5367431640625031763735522036262715062093775486573576927185058593751e-7",
+      "expected_bits": "0x3eb0000000000002"
+    },
+    {
+      "id": "power--1-parity-0-below",
+      "category": "binary64_midpoint",
+      "input": "0.5000000000000000555111512312578270211815834045410156249",
+      "expected_bits": "0x3fe0000000000000"
+    },
+    {
+      "id": "power--1-parity-0-tie",
+      "category": "binary64_midpoint",
+      "input": "0.500000000000000055511151231257827021181583404541015625",
+      "expected_bits": "0x3fe0000000000000"
+    },
+    {
+      "id": "power--1-parity-0-above",
+      "category": "binary64_midpoint",
+      "input": "0.5000000000000000555111512312578270211815834045410156251",
+      "expected_bits": "0x3fe0000000000001"
+    },
+    {
+      "id": "power--1-parity-1-below",
+      "category": "binary64_midpoint",
+      "input": "0.5000000000000001665334536937734810635447502136230468749",
+      "expected_bits": "0x3fe0000000000001"
+    },
+    {
+      "id": "power--1-parity-1-tie",
+      "category": "binary64_midpoint",
+      "input": "0.500000000000000166533453693773481063544750213623046875",
+      "expected_bits": "0x3fe0000000000002"
+    },
+    {
+      "id": "power--1-parity-1-above",
+      "category": "binary64_midpoint",
+      "input": "0.5000000000000001665334536937734810635447502136230468751",
+      "expected_bits": "0x3fe0000000000002"
+    },
+    {
+      "id": "power-0-parity-0-below",
+      "category": "binary64_midpoint",
+      "input": "1.000000000000000111022302462515654042363166809082031249",
+      "expected_bits": "0x3ff0000000000000"
+    },
+    {
+      "id": "power-0-parity-0-tie",
+      "category": "binary64_midpoint",
+      "input": "1.00000000000000011102230246251565404236316680908203125",
+      "expected_bits": "0x3ff0000000000000"
+    },
+    {
+      "id": "power-0-parity-0-above",
+      "category": "binary64_midpoint",
+      "input": "1.000000000000000111022302462515654042363166809082031251",
+      "expected_bits": "0x3ff0000000000001"
+    },
+    {
+      "id": "power-0-parity-1-below",
+      "category": "binary64_midpoint",
+      "input": "1.000000000000000333066907387546962127089500427246093749",
+      "expected_bits": "0x3ff0000000000001"
+    },
+    {
+      "id": "power-0-parity-1-tie",
+      "category": "binary64_midpoint",
+      "input": "1.00000000000000033306690738754696212708950042724609375",
+      "expected_bits": "0x3ff0000000000002"
+    },
+    {
+      "id": "power-0-parity-1-above",
+      "category": "binary64_midpoint",
+      "input": "1.000000000000000333066907387546962127089500427246093751",
+      "expected_bits": "0x3ff0000000000002"
+    },
+    {
+      "id": "power-1-parity-0-below",
+      "category": "binary64_midpoint",
+      "input": "2.00000000000000022204460492503130808472633361816406249",
+      "expected_bits": "0x4000000000000000"
+    },
+    {
+      "id": "power-1-parity-0-tie",
+      "category": "binary64_midpoint",
+      "input": "2.0000000000000002220446049250313080847263336181640625",
+      "expected_bits": "0x4000000000000000"
+    },
+    {
+      "id": "power-1-parity-0-above",
+      "category": "binary64_midpoint",
+      "input": "2.00000000000000022204460492503130808472633361816406251",
+      "expected_bits": "0x4000000000000001"
+    },
+    {
+      "id": "power-1-parity-1-below",
+      "category": "binary64_midpoint",
+      "input": "2.00000000000000066613381477509392425417900085449218749",
+      "expected_bits": "0x4000000000000001"
+    },
+    {
+      "id": "power-1-parity-1-tie",
+      "category": "binary64_midpoint",
+      "input": "2.0000000000000006661338147750939242541790008544921875",
+      "expected_bits": "0x4000000000000002"
+    },
+    {
+      "id": "power-1-parity-1-above",
+      "category": "binary64_midpoint",
+      "input": "2.00000000000000066613381477509392425417900085449218751",
+      "expected_bits": "0x4000000000000002"
+    },
+    {
+      "id": "power-4-parity-0-below",
+      "category": "binary64_midpoint",
+      "input": "16.00000000000000177635683940025046467781066894531249",
+      "expected_bits": "0x4030000000000000"
+    },
+    {
+      "id": "power-4-parity-0-tie",
+      "category": "binary64_midpoint",
+      "input": "16.0000000000000017763568394002504646778106689453125",
+      "expected_bits": "0x4030000000000000"
+    },
+    {
+      "id": "power-4-parity-0-above",
+      "category": "binary64_midpoint",
+      "input": "16.00000000000000177635683940025046467781066894531251",
+      "expected_bits": "0x4030000000000001"
+    },
+    {
+      "id": "power-4-parity-1-below",
+      "category": "binary64_midpoint",
+      "input": "16.00000000000000532907051820075139403343200683593749",
+      "expected_bits": "0x4030000000000001"
+    },
+    {
+      "id": "power-4-parity-1-tie",
+      "category": "binary64_midpoint",
+      "input": "16.0000000000000053290705182007513940334320068359375",
+      "expected_bits": "0x4030000000000002"
+    },
+    {
+      "id": "power-4-parity-1-above",
+      "category": "binary64_midpoint",
+      "input": "16.00000000000000532907051820075139403343200683593751",
+      "expected_bits": "0x4030000000000002"
+    },
+    {
+      "id": "power--90-predecessor-below",
+      "category": "binary64_midpoint",
+      "input": "8.077935669463160439000591924554268296260167242743233559163834849514953037738149155266853540524607524275779724121093749e-28",
+      "expected_bits": "0x3a4fffffffffffff"
+    },
+    {
+      "id": "power--90-predecessor-tie",
+      "category": "binary64_midpoint",
+      "input": "8.07793566946316043900059192455426829626016724274323355916383484951495303773814915526685354052460752427577972412109375e-28",
+      "expected_bits": "0x3a50000000000000"
+    },
+    {
+      "id": "power--90-predecessor-above",
+      "category": "binary64_midpoint",
+      "input": "8.077935669463160439000591924554268296260167242743233559163834849514953037738149155266853540524607524275779724121093751e-28",
+      "expected_bits": "0x3a50000000000000"
+    },
+    {
+      "id": "power--1-predecessor-below",
+      "category": "binary64_midpoint",
+      "input": "0.49999999999999997224442438437108648940920829772949218749",
+      "expected_bits": "0x3fdfffffffffffff"
+    },
+    {
+      "id": "power--1-predecessor-tie",
+      "category": "binary64_midpoint",
+      "input": "0.4999999999999999722444243843710864894092082977294921875",
+      "expected_bits": "0x3fe0000000000000"
+    },
+    {
+      "id": "power--1-predecessor-above",
+      "category": "binary64_midpoint",
+      "input": "0.49999999999999997224442438437108648940920829772949218751",
+      "expected_bits": "0x3fe0000000000000"
+    },
+    {
+      "id": "power-0-predecessor-below",
+      "category": "binary64_midpoint",
+      "input": "0.9999999999999999444888487687421729788184165954589843749",
+      "expected_bits": "0x3fefffffffffffff"
+    },
+    {
+      "id": "power-0-predecessor-tie",
+      "category": "binary64_midpoint",
+      "input": "0.999999999999999944488848768742172978818416595458984375",
+      "expected_bits": "0x3ff0000000000000"
+    },
+    {
+      "id": "power-0-predecessor-above",
+      "category": "binary64_midpoint",
+      "input": "0.9999999999999999444888487687421729788184165954589843751",
+      "expected_bits": "0x3ff0000000000000"
+    },
+    {
+      "id": "power-4-predecessor-below",
+      "category": "binary64_midpoint",
+      "input": "15.999999999999999111821580299874767661094665527343749",
+      "expected_bits": "0x402fffffffffffff"
+    },
+    {
+      "id": "power-4-predecessor-tie",
+      "category": "binary64_midpoint",
+      "input": "15.99999999999999911182158029987476766109466552734375",
+      "expected_bits": "0x4030000000000000"
+    },
+    {
+      "id": "power-4-predecessor-above",
+      "category": "binary64_midpoint",
+      "input": "15.999999999999999111821580299874767661094665527343751",
+      "expected_bits": "0x4030000000000000"
+    },
+    {
+      "id": "power-5-predecessor-below",
+      "category": "binary64_midpoint",
+      "input": "31.99999999999999822364316059974953532218933105468749",
+      "expected_bits": "0x403fffffffffffff"
+    },
+    {
+      "id": "power-5-predecessor-tie",
+      "category": "binary64_midpoint",
+      "input": "31.9999999999999982236431605997495353221893310546875",
+      "expected_bits": "0x4040000000000000"
+    },
+    {
+      "id": "power-5-predecessor-above",
+      "category": "binary64_midpoint",
+      "input": "31.99999999999999822364316059974953532218933105468751",
+      "expected_bits": "0x4040000000000000"
+    },
+    {
+      "id": "upper-range-below",
+      "category": "binary64_midpoint",
+      "input": "32.0000000000000035527136788005009293556213378906249",
+      "expected_bits": "0x4040000000000000"
+    },
+    {
+      "id": "upper-range-tie",
+      "category": "binary64_midpoint",
+      "input": "32.000000000000003552713678800500929355621337890625",
+      "expected_bits": "0x4040000000000000"
+    },
+    {
+      "id": "upper-range-above",
+      "category": "binary64_midpoint",
+      "input": "32.0000000000000035527136788005009293556213378906251",
+      "expected_bits": null,
+      "rejection": "range"
+    },
+    {
+      "id": "binary32-gain-00-below",
+      "category": "binary32_gain_midpoint",
+      "input": "7.0064923216240846e-46",
+      "expected_bits": "0x368fffffffffffff"
+    },
+    {
+      "id": "binary32-gain-00-tie",
+      "category": "binary32_gain_midpoint",
+      "input": "7.00649232162408535461864791644958065640130970938257885878534141944895541342930300743319094181060791015625e-46",
+      "expected_bits": "0x3690000000000000"
+    },
+    {
+      "id": "binary32-gain-00-above",
+      "category": "binary32_gain_midpoint",
+      "input": "7.0064923216240869e-46",
+      "expected_bits": "0x3690000000000001"
+    },
+    {
+      "id": "binary32-gain-01-below",
+      "category": "binary32_gain_midpoint",
+      "input": "2.1019476964872253e-45",
+      "expected_bits": "0x36a7ffffffffffff"
+    },
+    {
+      "id": "binary32-gain-01-tie",
+      "category": "binary32_gain_midpoint",
+      "input": "2.101947696487225606385594374934874196920392912814773657635602425834686624028790902229957282543182373046875e-45",
+      "expected_bits": "0x36a8000000000000"
+    },
+    {
+      "id": "binary32-gain-01-above",
+      "category": "binary32_gain_midpoint",
+      "input": "2.1019476964872259e-45",
+      "expected_bits": "0x36a8000000000001"
+    },
+    {
+      "id": "binary32-gain-02-below",
+      "category": "binary32_gain_midpoint",
+      "input": "3.5032461608120421e-45",
+      "expected_bits": "0x36b3ffffffffffff"
+    },
+    {
+      "id": "binary32-gain-02-tie",
+      "category": "binary32_gain_midpoint",
+      "input": "3.503246160812042677309323958224790328200654854691289429392670709724477706714651503716595470905303955078125e-45",
+      "expected_bits": "0x36b4000000000000"
+    },
+    {
+      "id": "binary32-gain-02-above",
+      "category": "binary32_gain_midpoint",
+      "input": "3.5032461608120433e-45",
+      "expected_bits": "0x36b4000000000001"
+    },
+    {
+      "id": "binary32-gain-03-below",
+      "category": "binary32_gain_midpoint",
+      "input": "4.9045446251368591e-45",
+      "expected_bits": "0x36bbffffffffffff"
+    },
+    {
+      "id": "binary32-gain-03-tie",
+      "category": "binary32_gain_midpoint",
+      "input": "4.904544625136859748233053541514706459480916796567805201149738993614268789400512105203233659267425537109375e-45",
+      "expected_bits": "0x36bc000000000000"
+    },
+    {
+      "id": "binary32-gain-03-above",
+      "category": "binary32_gain_midpoint",
+      "input": "4.9045446251368604e-45",
+      "expected_bits": "0x36bc000000000001"
+    },
+    {
+      "id": "binary32-gain-04-below",
+      "category": "binary32_gain_midpoint",
+      "input": "1.1754941406275177e-38",
+      "expected_bits": "0x380fffff9fffffff"
+    },
+    {
+      "id": "binary32-gain-04-tie",
+      "category": "binary32_gain_midpoint",
+      "input": "1.1754941406275178592461758986628081843312458647327962400313859427181746759860647699724722770042717456817626953125e-38",
+      "expected_bits": "0x380fffffa0000000"
+    },
+    {
+      "id": "binary32-gain-04-above",
+      "category": "binary32_gain_midpoint",
+      "input": "1.175494140627518e-38",
+      "expected_bits": "0x380fffffa0000001"
+    },
+    {
+      "id": "binary32-gain-05-below",
+      "category": "binary32_gain_midpoint",
+      "input": "1.1754942807573642e-38",
+      "expected_bits": "0x380fffffdfffffff"
+    },
+    {
+      "id": "binary32-gain-05-tie",
+      "category": "binary32_gain_midpoint",
+      "input": "1.1754942807573642917278829910357665133228589927589904276829631184250030649651730385585324256680905818939208984375e-38",
+      "expected_bits": "0x380fffffe0000000"
+    },
+    {
+      "id": "binary32-gain-05-above",
+      "category": "binary32_gain_midpoint",
+      "input": "1.1754942807573644e-38",
+      "expected_bits": "0x380fffffe0000001"
+    },
+    {
+      "id": "binary32-gain-06-below",
+      "category": "binary32_gain_midpoint",
+      "input": "1.1754944208872105e-38",
+      "expected_bits": "0x381000000fffffff"
+    },
+    {
+      "id": "binary32-gain-06-tie",
+      "category": "binary32_gain_midpoint",
+      "input": "1.1754944208872107242095900834087248423144721207851846153345402941318314539442813071445925743319094181060791015625e-38",
+      "expected_bits": "0x3810000010000000"
+    },
+    {
+      "id": "binary32-gain-06-above",
+      "category": "binary32_gain_midpoint",
+      "input": "1.175494420887211e-38",
+      "expected_bits": "0x3810000010000001"
+    },
+    {
+      "id": "binary32-gain-07-below",
+      "category": "binary32_gain_midpoint",
+      "input": "1.1754945610170569e-38",
+      "expected_bits": "0x381000002fffffff"
+    },
+    {
+      "id": "binary32-gain-07-tie",
+      "category": "binary32_gain_midpoint",
+      "input": "1.1754945610170571566912971757816831713060852488113788029861174698386598429233895757306527229957282543182373046875e-38",
+      "expected_bits": "0x3810000030000000"
+    },
+    {
+      "id": "binary32-gain-07-above",
+      "category": "binary32_gain_midpoint",
+      "input": "1.1754945610170574e-38",
+      "expected_bits": "0x3810000030000001"
+    },
+    {
+      "id": "binary32-gain-08-below",
+      "category": "binary32_gain_midpoint",
+      "input": "5.9604648328104291e-08",
+      "expected_bits": "0x3e7000000fffffff"
+    },
+    {
+      "id": "binary32-gain-08-tie",
+      "category": "binary32_gain_midpoint",
+      "input": "5.9604648328104303800500929355621337890625e-8",
+      "expected_bits": "0x3e70000010000000"
+    },
+    {
+      "id": "binary32-gain-08-above",
+      "category": "binary32_gain_midpoint",
+      "input": "5.9604648328104317e-08",
+      "expected_bits": "0x3e70000010000001"
+    },
+    {
+      "id": "binary32-gain-09-below",
+      "category": "binary32_gain_midpoint",
+      "input": "0.099999997764825807",
+      "expected_bits": "0x3fb999998fffffff"
+    },
+    {
+      "id": "binary32-gain-09-tie",
+      "category": "binary32_gain_midpoint",
+      "input": "0.0999999977648258209228515625",
+      "expected_bits": "0x3fb9999990000000"
+    },
+    {
+      "id": "binary32-gain-09-above",
+      "category": "binary32_gain_midpoint",
+      "input": "0.099999997764825835",
+      "expected_bits": "0x3fb9999990000001"
+    },
+    {
+      "id": "binary32-gain-10-below",
+      "category": "binary32_gain_midpoint",
+      "input": "0.50000002980232228",
+      "expected_bits": "0x3fe000000fffffff"
+    },
+    {
+      "id": "binary32-gain-10-tie",
+      "category": "binary32_gain_midpoint",
+      "input": "0.5000000298023223876953125",
+      "expected_bits": "0x3fe0000010000000"
+    },
+    {
+      "id": "binary32-gain-10-above",
+      "category": "binary32_gain_midpoint",
+      "input": "0.5000000298023225",
+      "expected_bits": "0x3fe0000010000001"
+    },
+    {
+      "id": "binary32-gain-11-below",
+      "category": "binary32_gain_midpoint",
+      "input": "0.50000008940696705",
+      "expected_bits": "0x3fe000002fffffff"
+    },
+    {
+      "id": "binary32-gain-11-tie",
+      "category": "binary32_gain_midpoint",
+      "input": "0.5000000894069671630859375",
+      "expected_bits": "0x3fe0000030000000"
+    },
+    {
+      "id": "binary32-gain-11-above",
+      "category": "binary32_gain_midpoint",
+      "input": "0.50000008940696727",
+      "expected_bits": "0x3fe0000030000001"
+    },
+    {
+      "id": "binary32-gain-12-below",
+      "category": "binary32_gain_midpoint",
+      "input": "0.9999999701976775",
+      "expected_bits": "0x3fefffffefffffff"
+    },
+    {
+      "id": "binary32-gain-12-tie",
+      "category": "binary32_gain_midpoint",
+      "input": "0.9999999701976776123046875",
+      "expected_bits": "0x3feffffff0000000"
+    },
+    {
+      "id": "binary32-gain-12-above",
+      "category": "binary32_gain_midpoint",
+      "input": "0.99999997019767772",
+      "expected_bits": "0x3feffffff0000001"
+    },
+    {
+      "id": "binary32-gain-13-below",
+      "category": "binary32_gain_midpoint",
+      "input": "1.0000000596046446",
+      "expected_bits": "0x3ff000000fffffff"
+    },
+    {
+      "id": "binary32-gain-13-tie",
+      "category": "binary32_gain_midpoint",
+      "input": "1.000000059604644775390625",
+      "expected_bits": "0x3ff0000010000000"
+    },
+    {
+      "id": "binary32-gain-13-above",
+      "category": "binary32_gain_midpoint",
+      "input": "1.000000059604645",
+      "expected_bits": "0x3ff0000010000001"
+    },
+    {
+      "id": "binary32-gain-14-below",
+      "category": "binary32_gain_midpoint",
+      "input": "1.0000001788139341",
+      "expected_bits": "0x3ff000002fffffff"
+    },
+    {
+      "id": "binary32-gain-14-tie",
+      "category": "binary32_gain_midpoint",
+      "input": "1.000000178813934326171875",
+      "expected_bits": "0x3ff0000030000000"
+    },
+    {
+      "id": "binary32-gain-14-above",
+      "category": "binary32_gain_midpoint",
+      "input": "1.0000001788139345",
+      "expected_bits": "0x3ff0000030000001"
+    },
+    {
+      "id": "binary32-gain-15-below",
+      "category": "binary32_gain_midpoint",
+      "input": "15.99999952316284",
+      "expected_bits": "0x402fffffefffffff"
+    },
+    {
+      "id": "binary32-gain-15-tie",
+      "category": "binary32_gain_midpoint",
+      "input": "15.999999523162841796875",
+      "expected_bits": "0x402ffffff0000000"
+    },
+    {
+      "id": "binary32-gain-15-above",
+      "category": "binary32_gain_midpoint",
+      "input": "15.999999523162844",
+      "expected_bits": "0x402ffffff0000001"
+    },
+    {
+      "id": "binary32-gain-16-below",
+      "category": "binary32_gain_midpoint",
+      "input": "16.000000953674313",
+      "expected_bits": "0x403000000fffffff"
+    },
+    {
+      "id": "binary32-gain-16-tie",
+      "category": "binary32_gain_midpoint",
+      "input": "16.00000095367431640625",
+      "expected_bits": "0x4030000010000000"
+    },
+    {
+      "id": "binary32-gain-16-above",
+      "category": "binary32_gain_midpoint",
+      "input": "16.00000095367432",
+      "expected_bits": "0x4030000010000001"
+    },
+    {
+      "id": "binary32-gain-17-below",
+      "category": "binary32_gain_midpoint",
+      "input": "16.000002861022946",
+      "expected_bits": "0x403000002fffffff"
+    },
+    {
+      "id": "binary32-gain-17-tie",
+      "category": "binary32_gain_midpoint",
+      "input": "16.00000286102294921875",
+      "expected_bits": "0x4030000030000000"
+    },
+    {
+      "id": "binary32-gain-17-above",
+      "category": "binary32_gain_midpoint",
+      "input": "16.000002861022953",
+      "expected_bits": "0x4030000030000001"
+    },
+    {
+      "id": "binary32-gain-18-below",
+      "category": "binary32_gain_midpoint",
+      "input": "31.99999904632568",
+      "expected_bits": "0x403fffffefffffff"
+    },
+    {
+      "id": "binary32-gain-18-tie",
+      "category": "binary32_gain_midpoint",
+      "input": "31.99999904632568359375",
+      "expected_bits": "0x403ffffff0000000"
+    },
+    {
+      "id": "binary32-gain-18-above",
+      "category": "binary32_gain_midpoint",
+      "input": "31.999999046325687",
+      "expected_bits": "0x403ffffff0000001"
+    },
+    {
+      "id": "exponent-sweep-00-123456789abcd",
+      "category": "exponent_sweep",
+      "input": "1.5822747438273386e-309",
+      "expected_bits": "0x000123456789abcd"
+    },
+    {
+      "id": "exponent-sweep-00-fedcba9876543",
+      "category": "exponent_sweep",
+      "input": "2.2151846413582804e-308",
+      "expected_bits": "0x000fedcba9876543"
+    },
+    {
+      "id": "exponent-sweep-01-123456789abcd",
+      "category": "exponent_sweep",
+      "input": "2.3833013328899352e-308",
+      "expected_bits": "0x001123456789abcd"
+    },
+    {
+      "id": "exponent-sweep-01-fedcba9876543",
+      "category": "exponent_sweep",
+      "input": "4.4402584998654818e-308",
+      "expected_bits": "0x001fedcba9876543"
+    },
+    {
+      "id": "exponent-sweep-02-123456789abcd",
+      "category": "exponent_sweep",
+      "input": "4.7666026657798705e-308",
+      "expected_bits": "0x002123456789abcd"
+    },
+    {
+      "id": "exponent-sweep-02-fedcba9876543",
+      "category": "exponent_sweep",
+      "input": "8.8805169997309636e-308",
+      "expected_bits": "0x002fedcba9876543"
+    },
+    {
+      "id": "exponent-sweep-03-123456789abcd",
+      "category": "exponent_sweep",
+      "input": "9.533205331559741e-308",
+      "expected_bits": "0x003123456789abcd"
+    },
+    {
+      "id": "exponent-sweep-03-fedcba9876543",
+      "category": "exponent_sweep",
+      "input": "1.7761033999461927e-307",
+      "expected_bits": "0x003fedcba9876543"
+    },
+    {
+      "id": "exponent-sweep-04-123456789abcd",
+      "category": "exponent_sweep",
+      "input": "3.8132821326238964e-307",
+      "expected_bits": "0x005123456789abcd"
+    },
+    {
+      "id": "exponent-sweep-04-fedcba9876543",
+      "category": "exponent_sweep",
+      "input": "7.1044135997847709e-307",
+      "expected_bits": "0x005fedcba9876543"
+    },
+    {
+      "id": "exponent-sweep-05-123456789abcd",
+      "category": "exponent_sweep",
+      "input": "7.8096018076137398e-304",
+      "expected_bits": "0x010123456789abcd"
+    },
+    {
+      "id": "exponent-sweep-05-fedcba9876543",
+      "category": "exponent_sweep",
+      "input": "1.4549839052359211e-303",
+      "expected_bits": "0x010fedcba9876543"
+    },
+    {
+      "id": "exponent-sweep-06-123456789abcd",
+      "category": "exponent_sweep",
+      "input": "2.1982074869175744e-289",
+      "expected_bits": "0x040123456789abcd"
+    },
+    {
+      "id": "exponent-sweep-06-fedcba9876543",
+      "category": "exponent_sweep",
+      "input": "4.095415608406602e-289",
+      "expected_bits": "0x040fedcba9876543"
+    },
+    {
+      "id": "exponent-sweep-07-123456789abcd",
+      "category": "exponent_sweep",
+      "input": "4.0549770932080732e-270",
+      "expected_bits": "0x080123456789abcd"
+    },
+    {
+      "id": "exponent-sweep-07-fedcba9876543",
+      "category": "exponent_sweep",
+      "input": "7.5547083603752084e-270",
+      "expected_bits": "0x080fedcba9876543"
+    },
+    {
+      "id": "exponent-sweep-08-123456789abcd",
+      "category": "exponent_sweep",
+      "input": "1.3798372030870301e-231",
+      "expected_bits": "0x100123456789abcd"
+    },
+    {
+      "id": "exponent-sweep-08-fedcba9876543",
+      "category": "exponent_sweep",
+      "input": "2.5707340422658781e-231",
+      "expected_bits": "0x100fedcba9876543"
+    },
+    {
+      "id": "exponent-sweep-09-123456789abcd",
+      "category": "exponent_sweep",
+      "input": "1.5977423255282218e-154",
+      "expected_bits": "0x200123456789abcd"
+    },
+    {
+      "id": "exponent-sweep-09-fedcba9876543",
+      "category": "exponent_sweep",
+      "input": "2.9767066562745714e-154",
+      "expected_bits": "0x200fedcba9876543"
+    },
+    {
+      "id": "exponent-sweep-10-123456789abcd",
+      "category": "exponent_sweep",
+      "input": "7.9459438428059412e-68",
+      "expected_bits": "0x320123456789abcd"
+    },
+    {
+      "id": "exponent-sweep-10-fedcba9876543",
+      "category": "exponent_sweep",
+      "input": "1.4803853881410242e-67",
+      "expected_bits": "0x320fedcba9876543"
+    },
+    {
+      "id": "exponent-sweep-11-123456789abcd",
+      "category": "exponent_sweep",
+      "input": "1.2768639458550345e-07",
+      "expected_bits": "0x3e8123456789abcd"
+    },
+    {
+      "id": "exponent-sweep-11-fedcba9876543",
+      "category": "exponent_sweep",
+      "input": "2.3788876003689236e-07",
+      "expected_bits": "0x3e8fedcba9876543"
+    },
+    {
+      "id": "exponent-sweep-12-123456789abcd",
+      "category": "exponent_sweep",
+      "input": "0.00013075086805555553",
+      "expected_bits": "0x3f2123456789abcd"
+    },
+    {
+      "id": "exponent-sweep-12-fedcba9876543",
+      "category": "exponent_sweep",
+      "input": "0.00024359809027777777",
+      "expected_bits": "0x3f2fedcba9876543"
+    },
+    {
+      "id": "exponent-sweep-13-123456789abcd",
+      "category": "exponent_sweep",
+      "input": "0.033472222222222216",
+      "expected_bits": "0x3fa123456789abcd"
+    },
+    {
+      "id": "exponent-sweep-13-fedcba9876543",
+      "category": "exponent_sweep",
+      "input": "0.06236111111111111",
+      "expected_bits": "0x3fafedcba9876543"
+    },
+    {
+      "id": "exponent-sweep-14-123456789abcd",
+      "category": "exponent_sweep",
+      "input": "0.13388888888888886",
+      "expected_bits": "0x3fc123456789abcd"
+    },
+    {
+      "id": "exponent-sweep-14-fedcba9876543",
+      "category": "exponent_sweep",
+      "input": "0.24944444444444444",
+      "expected_bits": "0x3fcfedcba9876543"
+    },
+    {
+      "id": "exponent-sweep-15-123456789abcd",
+      "category": "exponent_sweep",
+      "input": "0.26777777777777773",
+      "expected_bits": "0x3fd123456789abcd"
+    },
+    {
+      "id": "exponent-sweep-15-fedcba9876543",
+      "category": "exponent_sweep",
+      "input": "0.49888888888888888",
+      "expected_bits": "0x3fdfedcba9876543"
+    },
+    {
+      "id": "exponent-sweep-16-123456789abcd",
+      "category": "exponent_sweep",
+      "input": "0.53555555555555545",
+      "expected_bits": "0x3fe123456789abcd"
+    },
+    {
+      "id": "exponent-sweep-16-fedcba9876543",
+      "category": "exponent_sweep",
+      "input": "0.99777777777777776",
+      "expected_bits": "0x3fefedcba9876543"
+    },
+    {
+      "id": "exponent-sweep-17-123456789abcd",
+      "category": "exponent_sweep",
+      "input": "1.0711111111111109",
+      "expected_bits": "0x3ff123456789abcd"
+    },
+    {
+      "id": "exponent-sweep-17-fedcba9876543",
+      "category": "exponent_sweep",
+      "input": "1.9955555555555555",
+      "expected_bits": "0x3fffedcba9876543"
+    },
+    {
+      "id": "exponent-sweep-18-123456789abcd",
+      "category": "exponent_sweep",
+      "input": "2.1422222222222218",
+      "expected_bits": "0x400123456789abcd"
+    },
+    {
+      "id": "exponent-sweep-18-fedcba9876543",
+      "category": "exponent_sweep",
+      "input": "3.9911111111111111",
+      "expected_bits": "0x400fedcba9876543"
+    },
+    {
+      "id": "exponent-sweep-19-123456789abcd",
+      "category": "exponent_sweep",
+      "input": "4.2844444444444436",
+      "expected_bits": "0x401123456789abcd"
+    },
+    {
+      "id": "exponent-sweep-19-fedcba9876543",
+      "category": "exponent_sweep",
+      "input": "7.9822222222222221",
+      "expected_bits": "0x401fedcba9876543"
+    },
+    {
+      "id": "exponent-sweep-20-123456789abcd",
+      "category": "exponent_sweep",
+      "input": "8.5688888888888872",
+      "expected_bits": "0x402123456789abcd"
+    },
+    {
+      "id": "exponent-sweep-20-fedcba9876543",
+      "category": "exponent_sweep",
+      "input": "15.964444444444444",
+      "expected_bits": "0x402fedcba9876543"
+    },
+    {
+      "id": "exponent-sweep-21-123456789abcd",
+      "category": "exponent_sweep",
+      "input": "17.137777777777774",
+      "expected_bits": "0x403123456789abcd"
+    },
+    {
+      "id": "exponent-sweep-21-fedcba9876543",
+      "category": "exponent_sweep",
+      "input": "31.928888888888888",
+      "expected_bits": "0x403fedcba9876543"
+    },
+    {
+      "id": "spelling-variant-00",
+      "category": "spelling_variants",
+      "input": "+000.100000E+00000",
+      "expected_bits": "0x3fb999999999999a"
+    },
+    {
+      "id": "spelling-variant-01",
+      "category": "spelling_variants",
+      "input": "-000.100000e-00000",
+      "expected_bits": "0xbfb999999999999a"
+    },
+    {
+      "id": "spelling-variant-02",
+      "category": "spelling_variants",
+      "input": "+00032.00000e000000",
+      "expected_bits": "0x4040000000000000"
+    },
+    {
+      "id": "spelling-variant-03",
+      "category": "spelling_variants",
+      "input": "-00032.00000E-000000",
+      "expected_bits": "0xc040000000000000"
+    },
+    {
+      "id": "spelling-variant-04",
+      "category": "spelling_variants",
+      "input": "+00000005e-00324",
+      "expected_bits": "0x0000000000000001"
+    },
+    {
+      "id": "spelling-variant-05",
+      "category": "spelling_variants",
+      "input": "-00000005E-00324",
+      "expected_bits": "0x8000000000000001"
+    },
+    {
+      "id": "spelling-variant-06",
+      "category": "spelling_variants",
+      "input": "000000000000001e+00000000000000000000000000000000000000000000000000",
+      "expected_bits": "0x3ff0000000000000"
+    },
+    {
+      "id": "spelling-variant-07",
+      "category": "spelling_variants",
+      "input": "0.000000000000000000000000000000000000000000000000000000000000001e+63",
+      "expected_bits": "0x3ff0000000000000"
+    },
+    {
+      "id": "spelling-variant-08",
+      "category": "spelling_variants",
+      "input": "-2.2250738585072014e-308",
+      "expected_bits": "0x8010000000000000"
+    },
+    {
+      "id": "spelling-variant-09",
+      "category": "spelling_variants",
+      "input": "-2.225073858507201e-308",
+      "expected_bits": "0x800fffffffffffff"
+    },
+    {
+      "id": "spelling-variant-10",
+      "category": "spelling_variants",
+      "input": "-31.999999999999999999",
+      "expected_bits": "0xc040000000000000"
+    },
+    {
+      "id": "spelling-variant-11",
+      "category": "spelling_variants",
+      "input": "-1.000000000000000001",
+      "expected_bits": "0xbff0000000000000"
+    },
+    {
+      "id": "decimal-sweep-000",
+      "category": "decimal_sweep",
+      "input": "1.000e-324",
+      "expected_bits": null,
+      "rejection": "underflow"
+    },
+    {
+      "id": "decimal-sweep-001",
+      "category": "decimal_sweep",
+      "input": "100234190953178201e-325",
+      "expected_bits": "0x000735261abf1aec"
+    },
+    {
+      "id": "decimal-sweep-002",
+      "category": "decimal_sweep",
+      "input": "+15419920561795145695309580966460420e-184",
+      "expected_bits": "0x20d430aeeeb1c68c"
+    },
+    {
+      "id": "decimal-sweep-003",
+      "category": "decimal_sweep",
+      "input": "-8139398695522155650116197728162353524498139398695522.000e-142",
+      "expected_bits": "0xad3a87450266e767"
+    },
+    {
+      "id": "decimal-sweep-004",
+      "category": "decimal_sweep",
+      "input": "133672356941629117857508833428948799274133672356941629117857508833428e-108",
+      "expected_bits": "0x37a749fc81127802"
+    },
+    {
+      "id": "decimal-sweep-005",
+      "category": "decimal_sweep",
+      "input": "40502245055393626015288498039518508167405022450553936260152884980395185081674050224505e-86",
+      "expected_bits": "0x3fd9ebe348d19882"
+    },
+    {
+      "id": "decimal-sweep-006",
+      "category": "decimal_sweep",
+      "input": "+1354130524092201203576632039922907434241354130524092201203576632039922907434241354130524092201203576632.000e-102",
+      "expected_bits": "0x3ff5aa84c4b7dc8c"
+    },
+    {
+      "id": "decimal-sweep-007",
+      "category": "decimal_sweep",
+      "input": "-61699059859115e-12",
+      "expected_bits": null,
+      "rejection": "range"
+    },
+    {
+      "id": "decimal-sweep-008",
+      "category": "decimal_sweep",
+      "input": "1054485006911378545348919289494e-28",
+      "expected_bits": null,
+      "rejection": "range"
+    },
+    {
+      "id": "decimal-sweep-009",
+      "category": "decimal_sweep",
+      "input": "301353492416151640817899398658843176571301353492.000e-371",
+      "expected_bits": "0x0000000000000001"
+    },
+    {
+      "id": "decimal-sweep-010",
+      "category": "decimal_sweep",
+      "input": "+15616493799497016679652358305432127588156164937994970166796523583e-372",
+      "expected_bits": "0x000b3abe3fe1cfb1"
+    },
+    {
+      "id": "decimal-sweep-011",
+      "category": "decimal_sweep",
+      "input": "-1518294922743166909821670255771108976915182949227431669098216702557711089769151829e-231",
+      "expected_bits": "0xa0d3e1406ddb6d37"
+    },
+    {
+      "id": "decimal-sweep-012",
+      "category": "decimal_sweep",
+      "input": "140276842504792358251376151724682313714140276842504792358251376151724682313714140276842504792358251.000e-189",
+      "expected_bits": "0x2d1249b611705a68"
+    },
+    {
+      "id": "decimal-sweep-013",
+      "category": "decimal_sweep",
+      "input": "3646173027e-49",
+      "expected_bits": "0x37bfc33cd0e52da0"
+    },
+    {
+      "id": "decimal-sweep-014",
+      "category": "decimal_sweep",
+      "input": "+776945987266121101913431951e-27",
+      "expected_bits": "0x3fe8dcbdd4c22022"
+    },
+    {
+      "id": "decimal-sweep-015",
+      "category": "decimal_sweep",
+      "input": "-24764859812827160941757627042388755372524764.000e-43",
+      "expected_bits": "0xc003cfd7e1d4e4d5"
+    },
+    {
+      "id": "decimal-sweep-016",
+      "category": "decimal_sweep",
+      "input": "1830823385784564149144737754645911523101830823385784564149144e-59",
+      "expected_bits": "0x40324ee86a02f78a"
+    },
+    {
+      "id": "decimal-sweep-017",
+      "category": "decimal_sweep",
+      "input": "183064053592330038083438534170269260835183064053592330038083438534170269260835e-75",
+      "expected_bits": null,
+      "rejection": "range"
+    },
+    {
+      "id": "decimal-sweep-018",
+      "category": "decimal_sweep",
+      "input": "+17923636588155749359295683162159219889217923636588155749359295683162159219889217923636588155749.000e-418",
+      "expected_bits": null,
+      "rejection": "underflow"
+    },
+    {
+      "id": "decimal-sweep-019",
+      "category": "decimal_sweep",
+      "input": "-123245e-313",
+      "expected_bits": "0x8008dcbd920c2b3e"
+    },
+    {
+      "id": "decimal-sweep-020",
+      "category": "decimal_sweep",
+      "input": "95609844382410518336132e-172",
+      "expected_bits": "0x20ff4bfd7ccd2c67"
+    },
+    {
+      "id": "decimal-sweep-021",
+      "category": "decimal_sweep",
+      "input": "1406579925710965064413349080836947112551.000e-130",
+      "expected_bits": "0x2d12566e9832997a"
+    },
+    {
+      "id": "decimal-sweep-022",
+      "category": "decimal_sweep",
+      "input": "+993259049410717249963689127167146771369932590494107172499e-96",
+      "expected_bits": "0x37d5a19aafc07adf"
+    },
+    {
+      "id": "decimal-sweep-023",
+      "category": "decimal_sweep",
+      "input": "-16579120160965078566400865199683100752516579120160965078566400865199683100e-74",
+      "expected_bits": "0xbfc538a566706210"
+    },
+    {
+      "id": "decimal-sweep-024",
+      "category": "decimal_sweep",
+      "input": "1656380824057632972537771807654768545261656380824057632972537771807654768545261656380824057.000e-90",
+      "expected_bits": "0x3ffa80892dd0c8f7"
+    },
+    {
+      "id": "decimal-sweep-025",
+      "category": "decimal_sweep",
+      "input": "41e0",
+      "expected_bits": null,
+      "rejection": "range"
+    },
+    {
+      "id": "decimal-sweep-026",
+      "category": "decimal_sweep",
+      "input": "+5338404874521779063e-16",
+      "expected_bits": null,
+      "rejection": "range"
+    },
+    {
+      "id": "decimal-sweep-027",
+      "category": "decimal_sweep",
+      "input": "-807699414853922770611647000575828308.000e-359",
+      "expected_bits": "0x8000000000000002"
+    },
+    {
+      "id": "decimal-sweep-028",
+      "category": "decimal_sweep",
+      "input": "26923407770426632971764745147966709619426923407770426e-360",
+      "expected_bits": "0x00135c299fa71b92"
+    },
+    {
+      "id": "decimal-sweep-029",
+      "category": "decimal_sweep",
+      "input": "1630836596848498329237401672135306805751630836596848498329237401672135e-219",
+      "expected_bits": "0x20d55a7c6821984a"
+    },
+    {
+      "id": "decimal-sweep-030",
+      "category": "decimal_sweep",
+      "input": "+165025630160630739473797004605047624600165025630160630739473797004605047624600165025630.000e-177",
+      "expected_bits": "0x2d1583b26d2d3680"
+    },
+    {
+      "id": "decimal-sweep-031",
+      "category": "decimal_sweep",
+      "input": "-96594806288925592466320824372164201101965948062889255924663208243721642011019659480628892559246632082437e-143",
+      "expected_bits": "0xb7d5095724df5010"
+    },
+    {
+      "id": "decimal-sweep-032",
+      "category": "decimal_sweep",
+      "input": "465197944356779e-15",
+      "expected_bits": "0x3fddc5cd994b715b"
+    },
+    {
+      "id": "decimal-sweep-033",
+      "category": "decimal_sweep",
+      "input": "14438238342775415664186777058824.000e-31",
+      "expected_bits": "0x3ff719e705568491"
+    },
+    {
+      "id": "decimal-sweep-034",
+      "category": "decimal_sweep",
+      "input": "+1098248151281393971153223647622339724761098248151e-47",
+      "expected_bits": "0x4025f707d11cebc4"
+    },
+    {
+      "id": "decimal-sweep-035",
+      "category": "decimal_sweep",
+      "input": "-108184428952884790616048068836359156513108184428952884790616048068e-63",
+      "expected_bits": null,
+      "rejection": "range"
+    },
+    {
+      "id": "decimal-sweep-036",
+      "category": "decimal_sweep",
+      "input": "12584202311350971209915620001462534305012584202311350971209915620001462534305012584.000e-406",
+      "expected_bits": null,
+      "rejection": "underflow"
+    },
+    {
+      "id": "decimal-sweep-037",
+      "category": "decimal_sweep",
+      "input": "1794291124017021443629338978282336074631794291124017021443629338978282336074631794291124017021443629e-407",
+      "expected_bits": "0x000ce6ffb60d53a3"
+    },
+    {
+      "id": "decimal-sweep-038",
+      "category": "decimal_sweep",
+      "input": "+21728852238e-160",
+      "expected_bits": "0x20dc73682ccd6948"
+    },
+    {
+      "id": "decimal-sweep-039",
+      "category": "decimal_sweep",
+      "input": "-1497747516142902219821932227.000e-118",
+      "expected_bits": "0xad1386b3b605c5f6"
+    }
+  ]
+}
