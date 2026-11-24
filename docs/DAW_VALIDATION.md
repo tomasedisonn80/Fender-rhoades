@@ -17,6 +17,11 @@ A displayed plug-in version alone does not identify the build. Record the
 loaded bundle path if the host exposes it, so an older installed copy is not
 mistaken for the selected artifact.
 
+For comparisons between builds, start a fresh DAW and any separate plug-in-host
+process where possible, and record whether that restart occurred. A hash of the
+file currently on disk does not identify bytes already loaded by a running host;
+keep uncertainty about the loaded module explicit when the host cannot show it.
+
 Use a new disposable project. Record DAW name/version/build, OS version, CPU
 architecture, audio interface and driver/version, sample rate, device buffer
 request, host processing precision if exposed, delay-compensation settings,

@@ -14,10 +14,10 @@ participant. Every completed assignment has a separate immutable report.
 | 1 | 1–20 | Platform repair, batched quadrature design, baseline observations | [Completed ledger](../../project/wave1-agent-ledger-20261124.json) |
 | 2 | 21–40 | Independent four-fixture contact peak diagnostic | [Completed ledger](../../project/wave2-agent-ledger-20261124.json) |
 | 3 | 41–60 | Runtime preservation, evidence verification and error handling | [Completed ledger](../../project/wave3-agent-ledger-20261124.json) |
+| 4 | 61–80 | Documentation, native fault coverage and evidence integration | [Completed ledger](../../project/wave4-agent-ledger-20261124.json) |
 
-Wave 4 is now in progress; its [live ledger](../../project/wave4-agent-ledger-20261124.json)
-records documentation, usability and targeted coverage work. Wave 5 remains planned
-until its actual participants are spawned and recorded. The live ledgers contain only assigned agents. Their report digests
+Wave 5 remains planned until its actual participants are spawned and recorded.
+The ledgers contain only assigned agents. Their report digests
 bind the bytes reviewed; neither a populated ledger nor a matching digest can
 authenticate execution or establish scientific acceptance.
 

@@ -2,7 +2,7 @@
   "schema_version": 1,
   "wave": 4,
   "requested_actual_agents": 20,
-  "status": "in_progress",
+  "status": "complete",
   "scope": "Bounded actual-agent development and independent review. Metadata does not attest scientific acceptance.",
   "agents": [
     {
@@ -145,22 +145,46 @@
       "wave": 4,
       "id": "W4-76",
       "agent_task_name": "/root/w4_76_sdk_isolation",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w4-76-sdk-isolation.md",
+      "sha256": "5108cd81ed4ae8dc81bf3779def66f1c5bf6e51396c74fdfdce7bd4144c972e6"
     },
     {
       "assignment": 77,
       "wave": 4,
       "id": "W4-77",
       "agent_task_name": "/root/w4_77_state_user_contract",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w4-77-state-user-contract.md",
+      "sha256": "18c12a28b6111034a3319e597a5d3b2d1de7a7f6b2085770be4d36e33dfb7e87"
     },
     {
       "assignment": 78,
       "wave": 4,
       "id": "W4-78",
       "agent_task_name": "/root/w4_78_daw_observability",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w4-78-daw-observability.md",
+      "sha256": "665556bee36bab9bc516bc28dd10b8a06d058384eee113b6425d2c3eac195194"
+    },
+    {
+      "assignment": 79,
+      "wave": 4,
+      "id": "W4-79",
+      "agent_task_name": "/root/w4_79_docs_evidence_audit",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w4-79-docs-evidence-audit.md",
+      "sha256": "8e376dd4be1d12d5d4c31abb31513d5eac8f279535eeff9992463abe42d77919"
+    },
+    {
+      "assignment": 80,
+      "wave": 4,
+      "id": "W4-80",
+      "agent_task_name": "/root/w4_80_closing_audit",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w4-80-closing-audit.md",
+      "sha256": "48efbb89477b319e73071b84f03c6aa3db4b429c971a55b33eb7ce770b4ae12d"
     }
   ],
-  "completed_actual_agents": 15
+  "completed_actual_agents": 20
 }

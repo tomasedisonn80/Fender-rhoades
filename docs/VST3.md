@@ -248,8 +248,9 @@ and [actual host checks](agents/development-20261123/W3-A055.md).
 Activation and processing lifecycle transitions also reset mechanics and
 ownership while preserving configuration. Ordinary note release preserves
 mechanical state. Arithmetic/output-conversion faults silence the failed sample
-and remainder, preserve an already rendered prefix, and require a lifecycle
-reset before processing continues.
+and remainder, preserve an already rendered prefix, and require an explicit
+hard reset before processing continues. A lifecycle transition or a valid
+configuration recall installed at an accepted audio boundary supplies that reset.
 
 ## Observed verification and remaining gates
 
