@@ -30,7 +30,7 @@ calibration, physical fidelity, DAW qualification or release is assumed.
 
 | Wave | Assignments | Purpose |
 | --- | --- | --- |
-| 1 | 001–020 | Audit current code, public references and the frozen next experiments |
+| 1 | 001–020 | Audit public references and implement the first bounded diagnostics, optimizations and regression checks |
 | 2 | 021–040 | Implement independently specified diagnostics and targeted regression checks |
 | 3 | 041–060 | Execute retained experiments, investigate failures and improve implementation |
 | 4 | 061–080 | Integrate, verify native behavior and review numerical and runtime boundaries |

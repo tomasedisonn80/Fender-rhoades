@@ -1,0 +1,3549 @@
+{
+  "kind": "retained-contact-extrema-reference-summaries",
+  "references": [
+    {
+      "analytic_checks": {
+        "disabled_damper_exact_zero": true,
+        "first_onset_absolute_error_s": 2.9802302661287305e-13,
+        "first_onset_expected_s": 0.0002,
+        "first_onset_observed_s": 0.00019999999970197698,
+        "hammer_force_equals_k_times_compression": true
+      },
+      "branches": [
+        {
+          "branch": "separated",
+          "first_segment_id": 0,
+          "interval_s": [
+            0.0,
+            0.00020000000000000006
+          ],
+          "last_segment_id": 39
+        },
+        {
+          "branch": "positive_compression",
+          "first_segment_id": 39,
+          "interval_s": [
+            0.00020000000000000006,
+            0.0011620363213854991
+          ],
+          "last_segment_id": 521
+        },
+        {
+          "branch": "separated",
+          "first_segment_id": 521,
+          "interval_s": [
+            0.0011620363213854991,
+            0.0016603645048872701
+          ],
+          "last_segment_id": 683
+        },
+        {
+          "branch": "positive_compression",
+          "first_segment_id": 683,
+          "interval_s": [
+            0.0016603645048872701,
+            0.0036046701738305033
+          ],
+          "last_segment_id": 1450
+        },
+        {
+          "branch": "separated",
+          "first_segment_id": 1450,
+          "interval_s": [
+            0.0036046701738305033,
+            0.003989597414214288
+          ],
+          "last_segment_id": 1577
+        },
+        {
+          "branch": "positive_compression",
+          "first_segment_id": 1577,
+          "interval_s": [
+            0.003989597414214288,
+            0.005165705045040431
+          ],
+          "last_segment_id": 2187
+        },
+        {
+          "branch": "separated",
+          "first_segment_id": 2187,
+          "interval_s": [
+            0.005165705045040431,
+            0.02
+          ],
+          "last_segment_id": 6849
+        }
+      ],
+      "complete_duration": true,
+      "counts": {
+        "accepted_steps": 6850,
+        "candidates": 9788,
+        "elapsed_s": 10.451916240001083,
+        "rhs_evaluations": 49425,
+        "search_evaluations": 166010
+      },
+      "coverage": "uncertified_independent_search",
+      "duration_s": 0.02,
+      "failure": null,
+      "final_time_s": 0.02,
+      "fixture": "supported_impact",
+      "fixture_definition": {
+        "bd": [
+          1.0,
+          -0.25
+        ],
+        "beta": [
+          1.0,
+          3.0
+        ],
+        "bh": [
+          1.0,
+          0.35
+        ],
+        "cd": 0.0,
+        "ch": 0.0,
+        "clearance": 0.0,
+        "duration": 0.02,
+        "energy_scale": 0.004,
+        "evaluated_damping_ns_per_m": [
+          0.004,
+          0.006
+        ],
+        "evaluated_stiffness_n_per_m": [
+          3158.273408348595,
+          16679.631437841013
+        ],
+        "face": "constant",
+        "face_amplitude": 0.0,
+        "face_offset": 0.0,
+        "face_omega": 0.0,
+        "face_velocity": 0.0,
+        "frequency": [
+          200.0,
+          650.0
+        ],
+        "hammer_mass": 0.008,
+        "kd": 0.0,
+        "kh": 20000.0,
+        "mass": [
+          0.002,
+          0.001
+        ],
+        "name": "supported_impact",
+        "pickup": [
+          1.0,
+          0.2
+        ],
+        "q": [
+          0.0,
+          0.0
+        ],
+        "relaunch": [],
+        "scaled": false,
+        "v": [
+          0.0,
+          0.0
+        ],
+        "vh": 1.0,
+        "x": -0.0002
+      },
+      "fixture_sha256": "7a8778c66a118885c001d3d7c11c343dc1b93e555bc3cb17a485d084af7033b8",
+      "interpretation": "Independent numerical evidence only; no trajectory error enclosure, coverage certificate, candidate acceptance or physical-fidelity claim.",
+      "level": "R0",
+      "limits": {
+        "accepted_steps": 200000,
+        "candidates": 100000,
+        "rhs_evaluations": 5000000,
+        "search_evaluations": 1000000,
+        "wall_seconds": 300.0
+      },
+      "peaks": {
+        "damper_compression": {
+          "classification": "disabled",
+          "coverage": "uncertified_independent_search",
+          "identity": "kd=cd=0: diagnostic compression and force are identically zero",
+          "kind": "disabled",
+          "maximizer_intervals_s": [
+            [
+              0.0,
+              0.02
+            ]
+          ],
+          "maximizing_candidates": [],
+          "time_status": "disabled",
+          "unit": "m",
+          "value_m": 0.0,
+          "value_status": "analytic_disabled_identity"
+        },
+        "damper_force": {
+          "classification": "disabled",
+          "coverage": "uncertified_independent_search",
+          "identity": "kd=cd=0: diagnostic compression and force are identically zero",
+          "kind": "disabled",
+          "maximizer_intervals_s": [
+            [
+              0.0,
+              0.02
+            ]
+          ],
+          "maximizing_candidates": [],
+          "time_status": "disabled",
+          "unit": "N",
+          "value_n": 0.0,
+          "value_status": "analytic_disabled_identity"
+        },
+        "hammer_compression": {
+          "classification": "stationary",
+          "coverage": "uncertified_independent_search",
+          "kind": "isolated_candidate",
+          "maximizer_intervals_s": [
+            [
+              0.004602537499890615,
+              0.004602537500614123
+            ]
+          ],
+          "maximizing_candidates": [
+            {
+              "candidate_id": 2738,
+              "details": [
+                {
+                  "bracket_hi_s": 0.004602537500614123,
+                  "bracket_lo_s": 0.004602537499890615,
+                  "crossing": "positive_to_negative",
+                  "role": "physical_rhs_derivative",
+                  "status": "resolved_numerical"
+                }
+              ],
+              "gap_m": 0.000356919949843275,
+              "origin_bits": 8,
+              "segment_id": 1897,
+              "time_s": 0.004602537500252369
+            }
+          ],
+          "time_status": "numerical_candidates",
+          "unit": "m",
+          "value_m": 0.000356919949843275,
+          "value_status": "requires_refinement"
+        },
+        "hammer_force": {
+          "classification": "stationary",
+          "coverage": "uncertified_independent_search",
+          "kind": "isolated_candidate",
+          "maximizer_intervals_s": [
+            [
+              0.004602537499890615,
+              0.004602537500614123
+            ]
+          ],
+          "maximizing_candidates": [
+            {
+              "candidate_id": 2738,
+              "details": [
+                {
+                  "bracket_hi_s": 0.004602537500614123,
+                  "bracket_lo_s": 0.004602537499890615,
+                  "crossing": "positive_to_negative",
+                  "role": "physical_rhs_derivative",
+                  "status": "resolved_numerical"
+                }
+              ],
+              "gap_m": 0.000356919949843275,
+              "origin_bits": 8,
+              "segment_id": 1897,
+              "time_s": 0.004602537500252369
+            }
+          ],
+          "time_status": "numerical_candidates",
+          "unit": "N",
+          "value_n": 7.138398996865501,
+          "value_status": "requires_refinement"
+        }
+      },
+      "raw": {
+        "arrays": {
+          "candidate_origin_bits": {
+            "dtype": "<u8",
+            "sha256": "d96aace3f6e6a93a19fc81d0550e92ef019932d862ee973e2c915ef1c111e95b",
+            "shape": [
+              9788
+            ]
+          },
+          "candidate_segment_id": {
+            "dtype": "<i8",
+            "sha256": "c5abe1582303cd2cc3be1d3e06df30f0562cee11b6b495cffffb8263b684d887",
+            "shape": [
+              9788
+            ]
+          },
+          "candidate_time_s": {
+            "dtype": "<f8",
+            "sha256": "879bbeaa423ef078b863d3547bece6705bac5f5427b96f2ea058f93579d6a80e",
+            "shape": [
+              9788
+            ]
+          },
+          "candidate_y": {
+            "dtype": "<f8",
+            "sha256": "ca7fea7375292eaadf1b5189389ccd48b7202cfa739263942b7c9affc5fb95e7",
+            "shape": [
+              9788,
+              13
+            ]
+          },
+          "dense_coefficients": {
+            "dtype": "<f8",
+            "sha256": "d2f2ba8ace8d716322dcb1f6b923a3e9a0e638af8faada530d4b9856db270f7b",
+            "shape": [
+              6850,
+              13,
+              4
+            ]
+          },
+          "dense_t0_s": {
+            "dtype": "<f8",
+            "sha256": "73bee64eea4bfea8d46c5969f2d40265c40f7cfff7dcba8c7c1d974f890ce859",
+            "shape": [
+              6850
+            ]
+          },
+          "dense_t1_s": {
+            "dtype": "<f8",
+            "sha256": "ec422fff5aef8e8e566661b42164276c3d4e70b2eee84b0aaf936d77c39b790c",
+            "shape": [
+              6850
+            ]
+          },
+          "mesh_t_s": {
+            "dtype": "<f8",
+            "sha256": "c8d55485d21385f25ad0b3194688c112877a19ce75582724e6ef53cafdb44828",
+            "shape": [
+              6851
+            ]
+          },
+          "mesh_y": {
+            "dtype": "<f8",
+            "sha256": "c6026aba53bf569ffc71cbb7a6bdf8c158d24dd39457e506d318df378902804a",
+            "shape": [
+              6851,
+              13
+            ]
+          },
+          "reconstruction_limit": {
+            "dtype": "<f8",
+            "sha256": "0ee1441a012ac23390845103a543cd87b4225d20fe7a3df0019105051859d2fd",
+            "shape": [
+              6850,
+              13
+            ]
+          },
+          "reconstruction_residual": {
+            "dtype": "<f8",
+            "sha256": "53fb9d30d33ea311309b5652ff184df5f5f665c416733d9200bb9cc8282bf171",
+            "shape": [
+              6850,
+              13
+            ]
+          }
+        },
+        "basis": "ascending normalized u=(t-t0)/(t1-t0)",
+        "candidate_origin_bits": {
+          "branch_boundary": 4,
+          "dense_derivative": 16,
+          "dense_endpoint": 2,
+          "mesh_endpoint": 1,
+          "physical_rhs_derivative": 8,
+          "plateau_endpoint": 32
+        },
+        "path": "/workspace/scratch/cc294adc3e2f/Fender-rhoades/build/supported-extrema-initial/references/supported_impact-R0/reference.npz",
+        "sha256": "f06d2b6fd00f5d6dd50f6c81f0ff1a2df84596936f8c15c619d9233323a66c2e",
+        "state_coordinates": [
+          "q0_m",
+          "q1_m",
+          "v0_m_per_s",
+          "v1_m_per_s",
+          "hammer_position_m",
+          "hammer_velocity_m_per_s",
+          "modal_loss_j",
+          "hammer_loss_j",
+          "damper_loss_j",
+          "actuator_work_j",
+          "launch_work_j",
+          "hammer_impulse_ns",
+          "damper_impulse_ns"
+        ]
+      },
+      "reference_file": {
+        "bytes": 490233,
+        "path": "build/supported-extrema-initial/references/supported_impact-R0/reference.json",
+        "sha256": "7b88862cd78cb7a15e10c3ac21e3d1d6d3df942363d3bd9a567530df91f3db8c"
+      },
+      "reference_kind": "independent_supported_contact_extrema",
+      "resolved_peak_clusters": [
+        {
+          "bracket_hi_s": 0.0006211797410606444,
+          "bracket_lo_s": 0.0006211797404596441,
+          "bracket_residuals": [
+            1.9934691532046134e-09,
+            -4.1596417716532885e-11
+          ],
+          "candidate_id": 486,
+          "cell_u": [
+            0.0,
+            1.0
+          ],
+          "contact": "hammer",
+          "crossing": "positive_to_negative",
+          "eligible_positive_branch": true,
+          "gap_m": 0.0002634531577325797,
+          "imaginary_part": 0.0,
+          "initial_polynomial_residual": -1.5916087892087205e-16,
+          "initial_signs": [
+            1,
+            -1
+          ],
+          "isolation": "sign_bracket",
+          "iterations": 22,
+          "methods": [
+            "polynomial_enumeration",
+            "polynomial_cell_bisection",
+            "quarter_sign_scan"
+          ],
+          "observables": [
+            "hammer_compression",
+            "hammer_force"
+          ],
+          "polishing_iterations": 1,
+          "polynomial_candidate_residual": 0.0,
+          "polynomial_residual_status": "within_roundoff_diagnostic",
+          "polynomial_root_u": 0.38755774010668187,
+          "residual": 9.759361838633518e-10,
+          "residual_limit": 7.528705338862891e-16,
+          "role": "physical_rhs_derivative",
+          "scan_bracket_s": [
+            0.0006211797404596439,
+            0.0006211797410606442
+          ],
+          "segment_id": 293,
+          "slope_per_u": -0.008535684430056475,
+          "status": "resolved_numerical",
+          "time_s": 0.0006211797407601443,
+          "u": 0.3875576257706621
+        },
+        {
+          "bracket_hi_s": 0.0029133361229349147,
+          "bracket_lo_s": 0.0029133361222823746,
+          "bracket_residuals": [
+            7.690533231942409e-10,
+            -1.3481868399445318e-10
+          ],
+          "candidate_id": 1675,
+          "cell_u": [
+            0.0,
+            1.0
+          ],
+          "contact": "hammer",
+          "crossing": "positive_to_negative",
+          "eligible_positive_branch": true,
+          "gap_m": 0.0002961997020139799,
+          "imaginary_part": 0.0,
+          "initial_polynomial_residual": -9.194034422677078e-17,
+          "initial_signs": [
+            1,
+            -1
+          ],
+          "isolation": "sign_bracket",
+          "iterations": 22,
+          "methods": [
+            "polynomial_enumeration",
+            "polynomial_cell_bisection",
+            "quarter_sign_scan"
+          ],
+          "observables": [
+            "hammer_compression",
+            "hammer_force"
+          ],
+          "polishing_iterations": 1,
+          "polynomial_candidate_residual": 0.0,
+          "polynomial_residual_status": "within_roundoff_diagnostic",
+          "polynomial_root_u": 0.9345528723818617,
+          "residual": 3.171176203575765e-10,
+          "residual_limit": 8.025749624020616e-16,
+          "role": "physical_rhs_derivative",
+          "scan_bracket_s": [
+            0.0029133361222823746,
+            0.0029133361229349147
+          ],
+          "segment_id": 1150,
+          "slope_per_u": -0.0037911151645085885,
+          "status": "resolved_numerical",
+          "time_s": 0.0029133361226086445,
+          "u": 0.9345527887342786
+        },
+        {
+          "bracket_hi_s": 0.004602537500614123,
+          "bracket_lo_s": 0.004602537499890615,
+          "bracket_residuals": [
+            2.910889216299617e-10,
+            -2.1818430174548598e-09
+          ],
+          "candidate_id": 2738,
+          "cell_u": [
+            0.0,
+            1.0
+          ],
+          "contact": "hammer",
+          "crossing": "positive_to_negative",
+          "eligible_positive_branch": true,
+          "gap_m": 0.000356919949843275,
+          "imaginary_part": 0.0,
+          "initial_polynomial_residual": -9.540979117872439e-17,
+          "initial_signs": [
+            1,
+            -1
+          ],
+          "isolation": "sign_bracket",
+          "iterations": 22,
+          "methods": [
+            "polynomial_enumeration",
+            "polynomial_cell_bisection",
+            "quarter_sign_scan"
+          ],
+          "observables": [
+            "hammer_compression",
+            "hammer_force"
+          ],
+          "polishing_iterations": 1,
+          "polynomial_candidate_residual": 0.0,
+          "polynomial_residual_status": "within_roundoff_diagnostic",
+          "polynomial_root_u": 0.26295068686322554,
+          "residual": -9.45377047912449e-10,
+          "residual_limit": 6.201025215623006e-16,
+          "role": "physical_rhs_derivative",
+          "scan_bracket_s": [
+            0.004602537499890614,
+            0.004602537500614122
+          ],
+          "segment_id": 1897,
+          "slope_per_u": -0.010372228632821617,
+          "status": "resolved_numerical",
+          "time_s": 0.004602537500252369,
+          "u": 0.2629507780082515
+        }
+      ],
+      "schema_version": 1,
+      "search_statistics": {
+        "derivative_discrepancy_probe": "one midpoint of every accepted dense segment",
+        "endpoint_discrepancy_count": 2925,
+        "maximum_endpoint_state_discrepancy": 2.220446049250313e-16,
+        "maximum_physical_dense_derivative_discrepancy_m_per_s": 6.728065995824373e-09,
+        "maximum_reconstruction_residual": 2.220446049250313e-16,
+        "polynomial_plateau_count": 0,
+        "polynomial_roots_without_scan_sign_change": 0,
+        "quarter_scan_sign_changes": 12
+      },
+      "settings": {
+        "absolute_tolerance_vector": [
+          1e-15,
+          1e-15,
+          1e-12,
+          1e-12,
+          1e-15,
+          1e-12,
+          1e-15,
+          1e-15,
+          1e-15,
+          1e-15,
+          1e-15,
+          1e-15,
+          1e-15
+        ],
+        "absolute_vector_multiplier": 10.0,
+        "maximum_step_s": 5e-06,
+        "relative_tolerance": 1e-10
+      },
+      "solver": {
+        "method": "scipy.integrate.Radau",
+        "nfev": 49391,
+        "njev": 2,
+        "nlu": 308,
+        "rhs_count_includes_finite_difference_jacobian": true,
+        "status": "finished"
+      },
+      "source_sha256": {
+        "contact_extrema_reference.py": "35b1f822cef0da3036faaf8dffcfd37e9091ca3df5098650d3d306fac1e7908b",
+        "validate_contact_reference.py": "c910da5da6b6ad957b709a414cef39a08ed6e8b75c6e36c9d73ef535a064dcdc"
+      },
+      "status": "completed",
+      "unresolved": [],
+      "value_status": "requires_refinement",
+      "versions": {
+        "numpy": "2.3.5",
+        "python": "3.12.14",
+        "scipy": "1.17.0"
+      }
+    },
+    {
+      "analytic_checks": {
+        "disabled_damper_exact_zero": true,
+        "first_onset_absolute_error_s": 2.980228639825472e-13,
+        "first_onset_expected_s": 0.0002,
+        "first_onset_observed_s": 0.00019999999970197715,
+        "hammer_force_equals_k_times_compression": true
+      },
+      "branches": [
+        {
+          "branch": "separated",
+          "first_segment_id": 0,
+          "interval_s": [
+            0.0,
+            0.00019999999999999985
+          ],
+          "last_segment_id": 79
+        },
+        {
+          "branch": "positive_compression",
+          "first_segment_id": 79,
+          "interval_s": [
+            0.00019999999999999985,
+            0.001162036321385475
+          ],
+          "last_segment_id": 1288
+        },
+        {
+          "branch": "separated",
+          "first_segment_id": 1288,
+          "interval_s": [
+            0.001162036321385475,
+            0.0016603645048437216
+          ],
+          "last_segment_id": 1758
+        },
+        {
+          "branch": "positive_compression",
+          "first_segment_id": 1758,
+          "interval_s": [
+            0.0016603645048437216,
+            0.003604670173830504
+          ],
+          "last_segment_id": 3817
+        },
+        {
+          "branch": "separated",
+          "first_segment_id": 3817,
+          "interval_s": [
+            0.003604670173830504,
+            0.0039895974142134406
+          ],
+          "last_segment_id": 4176
+        },
+        {
+          "branch": "positive_compression",
+          "first_segment_id": 4176,
+          "interval_s": [
+            0.0039895974142134406,
+            0.005165705044997682
+          ],
+          "last_segment_id": 5569
+        },
+        {
+          "branch": "separated",
+          "first_segment_id": 5569,
+          "interval_s": [
+            0.005165705044997682,
+            0.02
+          ],
+          "last_segment_id": 19099
+        }
+      ],
+      "complete_duration": true,
+      "counts": {
+        "accepted_steps": 19100,
+        "candidates": 22961,
+        "elapsed_s": 29.17419529200015,
+        "rhs_evaluations": 134189,
+        "search_evaluations": 452160
+      },
+      "coverage": "uncertified_independent_search",
+      "duration_s": 0.02,
+      "failure": null,
+      "final_time_s": 0.02,
+      "fixture": "supported_impact",
+      "fixture_definition": {
+        "bd": [
+          1.0,
+          -0.25
+        ],
+        "beta": [
+          1.0,
+          3.0
+        ],
+        "bh": [
+          1.0,
+          0.35
+        ],
+        "cd": 0.0,
+        "ch": 0.0,
+        "clearance": 0.0,
+        "duration": 0.02,
+        "energy_scale": 0.004,
+        "evaluated_damping_ns_per_m": [
+          0.004,
+          0.006
+        ],
+        "evaluated_stiffness_n_per_m": [
+          3158.273408348595,
+          16679.631437841013
+        ],
+        "face": "constant",
+        "face_amplitude": 0.0,
+        "face_offset": 0.0,
+        "face_omega": 0.0,
+        "face_velocity": 0.0,
+        "frequency": [
+          200.0,
+          650.0
+        ],
+        "hammer_mass": 0.008,
+        "kd": 0.0,
+        "kh": 20000.0,
+        "mass": [
+          0.002,
+          0.001
+        ],
+        "name": "supported_impact",
+        "pickup": [
+          1.0,
+          0.2
+        ],
+        "q": [
+          0.0,
+          0.0
+        ],
+        "relaunch": [],
+        "scaled": false,
+        "v": [
+          0.0,
+          0.0
+        ],
+        "vh": 1.0,
+        "x": -0.0002
+      },
+      "fixture_sha256": "7a8778c66a118885c001d3d7c11c343dc1b93e555bc3cb17a485d084af7033b8",
+      "interpretation": "Independent numerical evidence only; no trajectory error enclosure, coverage certificate, candidate acceptance or physical-fidelity claim.",
+      "level": "R1",
+      "limits": {
+        "accepted_steps": 200000,
+        "candidates": 100000,
+        "rhs_evaluations": 5000000,
+        "search_evaluations": 1000000,
+        "wall_seconds": 300.0
+      },
+      "peaks": {
+        "damper_compression": {
+          "classification": "disabled",
+          "coverage": "uncertified_independent_search",
+          "identity": "kd=cd=0: diagnostic compression and force are identically zero",
+          "kind": "disabled",
+          "maximizer_intervals_s": [
+            [
+              0.0,
+              0.02
+            ]
+          ],
+          "maximizing_candidates": [],
+          "time_status": "disabled",
+          "unit": "m",
+          "value_m": 0.0,
+          "value_status": "analytic_disabled_identity"
+        },
+        "damper_force": {
+          "classification": "disabled",
+          "coverage": "uncertified_independent_search",
+          "identity": "kd=cd=0: diagnostic compression and force are identically zero",
+          "kind": "disabled",
+          "maximizer_intervals_s": [
+            [
+              0.0,
+              0.02
+            ]
+          ],
+          "maximizing_candidates": [],
+          "time_status": "disabled",
+          "unit": "N",
+          "value_n": 0.0,
+          "value_status": "analytic_disabled_identity"
+        },
+        "hammer_compression": {
+          "classification": "stationary",
+          "coverage": "uncertified_independent_search",
+          "kind": "isolated_candidate",
+          "maximizer_intervals_s": [
+            [
+              0.004602537499632071,
+              0.004602537500166086
+            ]
+          ],
+          "maximizing_candidates": [
+            {
+              "candidate_id": 5923,
+              "details": [
+                {
+                  "bracket_hi_s": 0.004602537500166086,
+                  "bracket_lo_s": 0.004602537499632071,
+                  "crossing": "positive_to_negative",
+                  "role": "physical_rhs_derivative",
+                  "status": "resolved_numerical"
+                },
+                {
+                  "bracket_hi_s": 0.004602537500166086,
+                  "bracket_lo_s": 0.004602537499632071,
+                  "crossing": "positive_to_negative",
+                  "role": "dense_derivative",
+                  "status": "resolved_numerical"
+                }
+              ],
+              "gap_m": 0.0003569199498537359,
+              "origin_bits": 24,
+              "segment_id": 4875,
+              "time_s": 0.004602537499899079
+            }
+          ],
+          "time_status": "numerical_candidates",
+          "unit": "m",
+          "value_m": 0.0003569199498537359,
+          "value_status": "requires_refinement"
+        },
+        "hammer_force": {
+          "classification": "stationary",
+          "coverage": "uncertified_independent_search",
+          "kind": "isolated_candidate",
+          "maximizer_intervals_s": [
+            [
+              0.004602537499632071,
+              0.004602537500166086
+            ]
+          ],
+          "maximizing_candidates": [
+            {
+              "candidate_id": 5923,
+              "details": [
+                {
+                  "bracket_hi_s": 0.004602537500166086,
+                  "bracket_lo_s": 0.004602537499632071,
+                  "crossing": "positive_to_negative",
+                  "role": "physical_rhs_derivative",
+                  "status": "resolved_numerical"
+                },
+                {
+                  "bracket_hi_s": 0.004602537500166086,
+                  "bracket_lo_s": 0.004602537499632071,
+                  "crossing": "positive_to_negative",
+                  "role": "dense_derivative",
+                  "status": "resolved_numerical"
+                }
+              ],
+              "gap_m": 0.0003569199498537359,
+              "origin_bits": 24,
+              "segment_id": 4875,
+              "time_s": 0.004602537499899079
+            }
+          ],
+          "time_status": "numerical_candidates",
+          "unit": "N",
+          "value_n": 7.138398997074718,
+          "value_status": "requires_refinement"
+        }
+      },
+      "raw": {
+        "arrays": {
+          "candidate_origin_bits": {
+            "dtype": "<u8",
+            "sha256": "7e1949287d37619e2577ddb14139f9b9b2f47e8ba2670089ed6c5044ddbf21ac",
+            "shape": [
+              22961
+            ]
+          },
+          "candidate_segment_id": {
+            "dtype": "<i8",
+            "sha256": "d18be9d2f991515108c6f8fb4d64c6fd063330bf7a2a910e4bc2ed24617056be",
+            "shape": [
+              22961
+            ]
+          },
+          "candidate_time_s": {
+            "dtype": "<f8",
+            "sha256": "7d0c2fa644173903b84b5983e96000edf8dfc3c2cbef8b1a633ddce5e6d8fe7c",
+            "shape": [
+              22961
+            ]
+          },
+          "candidate_y": {
+            "dtype": "<f8",
+            "sha256": "bf1b14d1f44dfa8c0cd5a5fd5b865282ce4678e40527546709e3959809dbf9c8",
+            "shape": [
+              22961,
+              13
+            ]
+          },
+          "dense_coefficients": {
+            "dtype": "<f8",
+            "sha256": "99000ee89692845778fabfb136f5a2cf84ce6403b86efd1369d068b289dc6f40",
+            "shape": [
+              19100,
+              13,
+              4
+            ]
+          },
+          "dense_t0_s": {
+            "dtype": "<f8",
+            "sha256": "c3621e4edeb7c082d9b1d332200aed78066d6869c86a00292ded466b04c15058",
+            "shape": [
+              19100
+            ]
+          },
+          "dense_t1_s": {
+            "dtype": "<f8",
+            "sha256": "021646a59b9f5d95c437a28ee39122f38e3badc5035c097fec0687ed4ef640a4",
+            "shape": [
+              19100
+            ]
+          },
+          "mesh_t_s": {
+            "dtype": "<f8",
+            "sha256": "ede5990bdb624ceea2df567eda1ad27035626f4568cd7eec43001d0a46e0691f",
+            "shape": [
+              19101
+            ]
+          },
+          "mesh_y": {
+            "dtype": "<f8",
+            "sha256": "6f50081ec253cb3be0331a695616eb7c3b40ebef034de41ee79489116e80d216",
+            "shape": [
+              19101,
+              13
+            ]
+          },
+          "reconstruction_limit": {
+            "dtype": "<f8",
+            "sha256": "11af99efecad4925fa0491d6e064b7cdfef058159542ec35c8a690bed34afe8d",
+            "shape": [
+              19100,
+              13
+            ]
+          },
+          "reconstruction_residual": {
+            "dtype": "<f8",
+            "sha256": "e935ee8cbd2281e7fe4d9fd5bb783ed0c172cd289f23331717a3ec8481a2432a",
+            "shape": [
+              19100,
+              13
+            ]
+          }
+        },
+        "basis": "ascending normalized u=(t-t0)/(t1-t0)",
+        "candidate_origin_bits": {
+          "branch_boundary": 4,
+          "dense_derivative": 16,
+          "dense_endpoint": 2,
+          "mesh_endpoint": 1,
+          "physical_rhs_derivative": 8,
+          "plateau_endpoint": 32
+        },
+        "path": "/workspace/scratch/cc294adc3e2f/Fender-rhoades/build/supported-extrema-initial/references/supported_impact-R1/reference.npz",
+        "sha256": "bac03a66080ede1c970649559478a0e17d066e5cf780f46834f6b25cbc9e07e3",
+        "state_coordinates": [
+          "q0_m",
+          "q1_m",
+          "v0_m_per_s",
+          "v1_m_per_s",
+          "hammer_position_m",
+          "hammer_velocity_m_per_s",
+          "modal_loss_j",
+          "hammer_loss_j",
+          "damper_loss_j",
+          "actuator_work_j",
+          "launch_work_j",
+          "hammer_impulse_ns",
+          "damper_impulse_ns"
+        ]
+      },
+      "reference_file": {
+        "bytes": 637253,
+        "path": "build/supported-extrema-initial/references/supported_impact-R1/reference.json",
+        "sha256": "367e1187dcea70dfcd3d643fbf2ae381f9be553133509f0b609a8a792f18e5ff"
+      },
+      "reference_kind": "independent_supported_contact_extrema",
+      "resolved_peak_clusters": [
+        {
+          "bracket_hi_s": 0.0006211797414385514,
+          "bracket_lo_s": 0.0006211797405842824,
+          "bracket_residuals": [
+            1.5717567831020213e-09,
+            -1.3209099758004078e-09
+          ],
+          "candidate_id": 919,
+          "cell_u": [
+            0.0,
+            1.0
+          ],
+          "contact": "hammer",
+          "crossing": "positive_to_negative",
+          "eligible_positive_branch": true,
+          "gap_m": 0.00026345315773238377,
+          "imaginary_part": 0.0,
+          "initial_polynomial_residual": -1.6501557065229377e-16,
+          "initial_signs": [
+            1,
+            -1
+          ],
+          "isolation": "sign_bracket",
+          "iterations": 20,
+          "methods": [
+            "polynomial_enumeration",
+            "polynomial_cell_bisection",
+            "quarter_sign_scan"
+          ],
+          "observables": [
+            "hammer_compression",
+            "hammer_force"
+          ],
+          "polishing_iterations": 1,
+          "polynomial_candidate_residual": 0.0,
+          "polynomial_residual_status": "within_roundoff_diagnostic",
+          "polynomial_root_u": 0.510844748839477,
+          "residual": 1.2542358709781432e-10,
+          "residual_limit": 3.524668291971208e-16,
+          "role": "physical_rhs_derivative",
+          "scan_bracket_s": [
+            0.0006211797405842824,
+            0.0006211797414385514
+          ],
+          "segment_id": 676,
+          "slope_per_u": -0.0030331810047357095,
+          "status": "resolved_numerical",
+          "time_s": 0.0006211797410114169,
+          "u": 0.510844707488965
+        },
+        {
+          "bracket_hi_s": 0.002913336123040674,
+          "bracket_lo_s": 0.0029133361221167857,
+          "bracket_residuals": [
+            1.0580865528360406e-09,
+            -2.216457484129769e-10
+          ],
+          "candidate_id": 3733,
+          "cell_u": [
+            0.0,
+            1.0
+          ],
+          "contact": "hammer",
+          "crossing": "positive_to_negative",
+          "eligible_positive_branch": true,
+          "gap_m": 0.0002961997020057576,
+          "imaginary_part": 0.0,
+          "initial_polynomial_residual": -2.3201926491189795e-17,
+          "initial_signs": [
+            1,
+            -1
+          ],
+          "isolation": "sign_bracket",
+          "iterations": 20,
+          "methods": [
+            "polynomial_enumeration",
+            "polynomial_cell_bisection",
+            "quarter_sign_scan"
+          ],
+          "observables": [
+            "hammer_compression",
+            "hammer_force"
+          ],
+          "polishing_iterations": 3,
+          "polynomial_candidate_residual": 0.0,
+          "polynomial_residual_status": "within_roundoff_diagnostic",
+          "polynomial_root_u": 0.8207405345943186,
+          "residual": 4.182201022127907e-10,
+          "residual_limit": 2.50126908982663e-16,
+          "role": "physical_rhs_derivative",
+          "scan_bracket_s": [
+            0.0029133361221167857,
+            0.002913336123040674
+          ],
+          "segment_id": 3054,
+          "slope_per_u": -0.001341896329113423,
+          "status": "resolved_numerical",
+          "time_s": 0.00291333612257873,
+          "u": 0.8207402229308216
+        },
+        {
+          "bracket_hi_s": 0.004602537500166086,
+          "bracket_lo_s": 0.004602537499632071,
+          "bracket_residuals": [
+            1.0741760746949686e-09,
+            -7.510723434248773e-10
+          ],
+          "candidate_id": 5923,
+          "cell_u": [
+            0.0,
+            1.0
+          ],
+          "contact": "hammer",
+          "crossing": "positive_to_negative",
+          "eligible_positive_branch": true,
+          "gap_m": 0.0003569199498537359,
+          "imaginary_part": 0.0,
+          "initial_polynomial_residual": 1.0798653637955624e-16,
+          "initial_signs": [
+            1,
+            -1
+          ],
+          "isolation": "sign_bracket",
+          "iterations": 21,
+          "methods": [
+            "polynomial_enumeration",
+            "polynomial_cell_bisection",
+            "quarter_sign_scan"
+          ],
+          "observables": [
+            "hammer_compression",
+            "hammer_force"
+          ],
+          "polishing_iterations": 2,
+          "polynomial_candidate_residual": 0.0,
+          "polynomial_residual_status": "within_roundoff_diagnostic",
+          "polynomial_root_u": 0.4085176413114196,
+          "residual": 1.6155038331383542e-10,
+          "residual_limit": 3.5554071227177487e-16,
+          "role": "physical_rhs_derivative",
+          "scan_bracket_s": [
+            0.004602537499632071,
+            0.004602537500166086
+          ],
+          "segment_id": 4875,
+          "slope_per_u": -0.0038278205568820435,
+          "status": "resolved_numerical",
+          "time_s": 0.004602537499899079,
+          "u": 0.4085175991071467
+        }
+      ],
+      "schema_version": 1,
+      "search_statistics": {
+        "derivative_discrepancy_probe": "one midpoint of every accepted dense segment",
+        "endpoint_discrepancy_count": 3851,
+        "maximum_endpoint_state_discrepancy": 2.220446049250313e-16,
+        "maximum_physical_dense_derivative_discrepancy_m_per_s": 7.753802044874192e-10,
+        "maximum_reconstruction_residual": 2.220446049250313e-16,
+        "polynomial_plateau_count": 0,
+        "polynomial_roots_without_scan_sign_change": 0,
+        "quarter_scan_sign_changes": 12
+      },
+      "settings": {
+        "absolute_tolerance_vector": [
+          1e-16,
+          1e-16,
+          1e-13,
+          1e-13,
+          1e-16,
+          1e-13,
+          1e-16,
+          1e-16,
+          1e-16,
+          1e-16,
+          1e-16,
+          1e-16,
+          1e-16
+        ],
+        "absolute_vector_multiplier": 1.0,
+        "maximum_step_s": 2.5e-06,
+        "relative_tolerance": 1e-12
+      },
+      "solver": {
+        "method": "scipy.integrate.Radau",
+        "nfev": 134155,
+        "njev": 2,
+        "nlu": 432,
+        "rhs_count_includes_finite_difference_jacobian": true,
+        "status": "finished"
+      },
+      "source_sha256": {
+        "contact_extrema_reference.py": "35b1f822cef0da3036faaf8dffcfd37e9091ca3df5098650d3d306fac1e7908b",
+        "validate_contact_reference.py": "c910da5da6b6ad957b709a414cef39a08ed6e8b75c6e36c9d73ef535a064dcdc"
+      },
+      "status": "completed",
+      "unresolved": [],
+      "value_status": "requires_refinement",
+      "versions": {
+        "numpy": "2.3.5",
+        "python": "3.12.14",
+        "scipy": "1.17.0"
+      }
+    },
+    {
+      "analytic_checks": {
+        "disabled_damper_exact_zero": true,
+        "first_onset_absolute_error_s": 2.9802280977243856e-13,
+        "first_onset_expected_s": 0.0002,
+        "first_onset_observed_s": 0.0001999999997019772,
+        "hammer_force_equals_k_times_compression": true
+      },
+      "branches": [
+        {
+          "branch": "separated",
+          "first_segment_id": 0,
+          "interval_s": [
+            0.0,
+            0.00019999999999999993
+          ],
+          "last_segment_id": 159
+        },
+        {
+          "branch": "positive_compression",
+          "first_segment_id": 159,
+          "interval_s": [
+            0.00019999999999999993,
+            0.0011620363213854725
+          ],
+          "last_segment_id": 2244
+        },
+        {
+          "branch": "separated",
+          "first_segment_id": 2244,
+          "interval_s": [
+            0.0011620363213854725,
+            0.0016603645048434666
+          ],
+          "last_segment_id": 3070
+        },
+        {
+          "branch": "positive_compression",
+          "first_segment_id": 3070,
+          "interval_s": [
+            0.0016603645048434666,
+            0.0036046701738305102
+          ],
+          "last_segment_id": 6721
+        },
+        {
+          "branch": "separated",
+          "first_segment_id": 6721,
+          "interval_s": [
+            0.0036046701738305102,
+            0.0039895974142135394
+          ],
+          "last_segment_id": 7341
+        },
+        {
+          "branch": "positive_compression",
+          "first_segment_id": 7341,
+          "interval_s": [
+            0.0039895974142135394,
+            0.005165705044997345
+          ],
+          "last_segment_id": 9807
+        },
+        {
+          "branch": "separated",
+          "first_segment_id": 9807,
+          "interval_s": [
+            0.005165705044997345,
+            0.02
+          ],
+          "last_segment_id": 33865
+        }
+      ],
+      "complete_duration": true,
+      "counts": {
+        "accepted_steps": 33866,
+        "candidates": 38105,
+        "elapsed_s": 50.10150726399843,
+        "rhs_evaluations": 237481,
+        "search_evaluations": 798003
+      },
+      "coverage": "uncertified_independent_search",
+      "duration_s": 0.02,
+      "failure": null,
+      "final_time_s": 0.02,
+      "fixture": "supported_impact",
+      "fixture_definition": {
+        "bd": [
+          1.0,
+          -0.25
+        ],
+        "beta": [
+          1.0,
+          3.0
+        ],
+        "bh": [
+          1.0,
+          0.35
+        ],
+        "cd": 0.0,
+        "ch": 0.0,
+        "clearance": 0.0,
+        "duration": 0.02,
+        "energy_scale": 0.004,
+        "evaluated_damping_ns_per_m": [
+          0.004,
+          0.006
+        ],
+        "evaluated_stiffness_n_per_m": [
+          3158.273408348595,
+          16679.631437841013
+        ],
+        "face": "constant",
+        "face_amplitude": 0.0,
+        "face_offset": 0.0,
+        "face_omega": 0.0,
+        "face_velocity": 0.0,
+        "frequency": [
+          200.0,
+          650.0
+        ],
+        "hammer_mass": 0.008,
+        "kd": 0.0,
+        "kh": 20000.0,
+        "mass": [
+          0.002,
+          0.001
+        ],
+        "name": "supported_impact",
+        "pickup": [
+          1.0,
+          0.2
+        ],
+        "q": [
+          0.0,
+          0.0
+        ],
+        "relaunch": [],
+        "scaled": false,
+        "v": [
+          0.0,
+          0.0
+        ],
+        "vh": 1.0,
+        "x": -0.0002
+      },
+      "fixture_sha256": "7a8778c66a118885c001d3d7c11c343dc1b93e555bc3cb17a485d084af7033b8",
+      "interpretation": "Independent numerical evidence only; no trajectory error enclosure, coverage certificate, candidate acceptance or physical-fidelity claim.",
+      "level": "R2",
+      "limits": {
+        "accepted_steps": 200000,
+        "candidates": 100000,
+        "rhs_evaluations": 5000000,
+        "search_evaluations": 1000000,
+        "wall_seconds": 300.0
+      },
+      "peaks": {
+        "damper_compression": {
+          "classification": "disabled",
+          "coverage": "uncertified_independent_search",
+          "identity": "kd=cd=0: diagnostic compression and force are identically zero",
+          "kind": "disabled",
+          "maximizer_intervals_s": [
+            [
+              0.0,
+              0.02
+            ]
+          ],
+          "maximizing_candidates": [],
+          "time_status": "disabled",
+          "unit": "m",
+          "value_m": 0.0,
+          "value_status": "analytic_disabled_identity"
+        },
+        "damper_force": {
+          "classification": "disabled",
+          "coverage": "uncertified_independent_search",
+          "identity": "kd=cd=0: diagnostic compression and force are identically zero",
+          "kind": "disabled",
+          "maximizer_intervals_s": [
+            [
+              0.0,
+              0.02
+            ]
+          ],
+          "maximizing_candidates": [],
+          "time_status": "disabled",
+          "unit": "N",
+          "value_n": 0.0,
+          "value_status": "analytic_disabled_identity"
+        },
+        "hammer_compression": {
+          "classification": "stationary",
+          "coverage": "uncertified_independent_search",
+          "kind": "isolated_candidate",
+          "maximizer_intervals_s": [
+            [
+              0.0046025374997157465,
+              0.00460253750031824
+            ]
+          ],
+          "maximizing_candidates": [
+            {
+              "candidate_id": 9795,
+              "details": [
+                {
+                  "bracket_hi_s": 0.00460253750031824,
+                  "bracket_lo_s": 0.0046025374997157465,
+                  "crossing": "positive_to_negative",
+                  "role": "physical_rhs_derivative",
+                  "status": "resolved_numerical"
+                },
+                {
+                  "bracket_hi_s": 0.00460253750031824,
+                  "bracket_lo_s": 0.0046025374997157465,
+                  "crossing": "positive_to_negative",
+                  "role": "dense_derivative",
+                  "status": "resolved_numerical"
+                }
+              ],
+              "gap_m": 0.00035691994985386573,
+              "origin_bits": 24,
+              "segment_id": 8579,
+              "time_s": 0.004602537500016993
+            }
+          ],
+          "time_status": "numerical_candidates",
+          "unit": "m",
+          "value_m": 0.00035691994985386573,
+          "value_status": "requires_refinement"
+        },
+        "hammer_force": {
+          "classification": "stationary",
+          "coverage": "uncertified_independent_search",
+          "kind": "isolated_candidate",
+          "maximizer_intervals_s": [
+            [
+              0.0046025374997157465,
+              0.00460253750031824
+            ]
+          ],
+          "maximizing_candidates": [
+            {
+              "candidate_id": 9795,
+              "details": [
+                {
+                  "bracket_hi_s": 0.00460253750031824,
+                  "bracket_lo_s": 0.0046025374997157465,
+                  "crossing": "positive_to_negative",
+                  "role": "physical_rhs_derivative",
+                  "status": "resolved_numerical"
+                },
+                {
+                  "bracket_hi_s": 0.00460253750031824,
+                  "bracket_lo_s": 0.0046025374997157465,
+                  "crossing": "positive_to_negative",
+                  "role": "dense_derivative",
+                  "status": "resolved_numerical"
+                }
+              ],
+              "gap_m": 0.00035691994985386573,
+              "origin_bits": 24,
+              "segment_id": 8579,
+              "time_s": 0.004602537500016993
+            }
+          ],
+          "time_status": "numerical_candidates",
+          "unit": "N",
+          "value_n": 7.1383989970773145,
+          "value_status": "requires_refinement"
+        }
+      },
+      "raw": {
+        "arrays": {
+          "candidate_origin_bits": {
+            "dtype": "<u8",
+            "sha256": "3cdb1351efba1204c4975a1d80364a8d18275a4a799e73daf72c0e1c727e5b75",
+            "shape": [
+              38105
+            ]
+          },
+          "candidate_segment_id": {
+            "dtype": "<i8",
+            "sha256": "ca56a9558da677d628f07c37bfdd8756fab4a4921f09b2a1300a35e6d17f94de",
+            "shape": [
+              38105
+            ]
+          },
+          "candidate_time_s": {
+            "dtype": "<f8",
+            "sha256": "b1dddc0f8e2cfb698b0e43a9c028db031324dc968f422950ac0dfd032eb2f1c0",
+            "shape": [
+              38105
+            ]
+          },
+          "candidate_y": {
+            "dtype": "<f8",
+            "sha256": "8b4e9985da4f1fff56fbe457b6786c86788b635592b6b5f2e3c81b9af25ebec3",
+            "shape": [
+              38105,
+              13
+            ]
+          },
+          "dense_coefficients": {
+            "dtype": "<f8",
+            "sha256": "47bede80dfc6f5511bd9bd673b74e87bca942f16ed5bdaaa5ccee52eb55e0233",
+            "shape": [
+              33866,
+              13,
+              4
+            ]
+          },
+          "dense_t0_s": {
+            "dtype": "<f8",
+            "sha256": "4a71f3b4239ba9d149fa9ae729911200ea5e9abeee92ff616b98321d20584df3",
+            "shape": [
+              33866
+            ]
+          },
+          "dense_t1_s": {
+            "dtype": "<f8",
+            "sha256": "bb69a1d9eca6da1298593f5d43eb5d62df0433c9cfc4796bc79b27c95b53079a",
+            "shape": [
+              33866
+            ]
+          },
+          "mesh_t_s": {
+            "dtype": "<f8",
+            "sha256": "a85845c25e23d6635b13aee2c93ebb313ce25abb290dfd1013a8699fd788bfa7",
+            "shape": [
+              33867
+            ]
+          },
+          "mesh_y": {
+            "dtype": "<f8",
+            "sha256": "88cdd267fe11c6fa2b6f3a1e6ebe24570ef67e6d962ef2104a130243143c09ec",
+            "shape": [
+              33867,
+              13
+            ]
+          },
+          "reconstruction_limit": {
+            "dtype": "<f8",
+            "sha256": "8eb3dd4ee66bc54fb9450aff4b1c525cd3f2a4d7174ef3244f28d3313a68cf50",
+            "shape": [
+              33866,
+              13
+            ]
+          },
+          "reconstruction_residual": {
+            "dtype": "<f8",
+            "sha256": "a91a811192705b16933be2e7636bd054b9068117bc674170045b4eb8d9d60c32",
+            "shape": [
+              33866,
+              13
+            ]
+          }
+        },
+        "basis": "ascending normalized u=(t-t0)/(t1-t0)",
+        "candidate_origin_bits": {
+          "branch_boundary": 4,
+          "dense_derivative": 16,
+          "dense_endpoint": 2,
+          "mesh_endpoint": 1,
+          "physical_rhs_derivative": 8,
+          "plateau_endpoint": 32
+        },
+        "path": "/workspace/scratch/cc294adc3e2f/Fender-rhoades/build/supported-extrema-initial/references/supported_impact-R2/reference.npz",
+        "sha256": "6050e896342c290be5f5c4aeccc6ce00a19332f3a0c863494ce303b1611cb559",
+        "state_coordinates": [
+          "q0_m",
+          "q1_m",
+          "v0_m_per_s",
+          "v1_m_per_s",
+          "hammer_position_m",
+          "hammer_velocity_m_per_s",
+          "modal_loss_j",
+          "hammer_loss_j",
+          "damper_loss_j",
+          "actuator_work_j",
+          "launch_work_j",
+          "hammer_impulse_ns",
+          "damper_impulse_ns"
+        ]
+      },
+      "reference_file": {
+        "bytes": 697714,
+        "path": "build/supported-extrema-initial/references/supported_impact-R2/reference.json",
+        "sha256": "fb53aa277bbbc12d976ab6b190a56707065ee3f9507e912e70563ef33a17a080"
+      },
+      "reference_kind": "independent_supported_contact_extrema",
+      "resolved_peak_clusters": [
+        {
+          "bracket_hi_s": 0.0006211797413182279,
+          "bracket_lo_s": 0.0006211797408044633,
+          "bracket_residuals": [
+            8.261678793343441e-10,
+            -9.13506309875925e-10
+          ],
+          "candidate_id": 1515,
+          "cell_u": [
+            0.0,
+            1.0
+          ],
+          "contact": "hammer",
+          "crossing": "positive_to_negative",
+          "eligible_positive_branch": true,
+          "gap_m": 0.00026345315773240193,
+          "imaginary_part": 0.0,
+          "initial_polynomial_residual": -1.1167282376600696e-16,
+          "initial_signs": [
+            1,
+            -1
+          ],
+          "isolation": "sign_bracket",
+          "iterations": 20,
+          "methods": [
+            "polynomial_enumeration",
+            "polynomial_cell_bisection",
+            "quarter_sign_scan"
+          ],
+          "observables": [
+            "hammer_compression",
+            "hammer_force"
+          ],
+          "polishing_iterations": 2,
+          "polynomial_candidate_residual": 0.0,
+          "polynomial_residual_status": "within_roundoff_diagnostic",
+          "polynomial_root_u": 0.5933651684741177,
+          "residual": -4.3669215379210646e-11,
+          "residual_limit": 2.461861034062193e-16,
+          "role": "physical_rhs_derivative",
+          "scan_bracket_s": [
+            0.0006211797408044633,
+            0.0006211797413182279
+          ],
+          "segment_id": 1198,
+          "slope_per_u": -0.001824180619024817,
+          "status": "resolved_numerical",
+          "time_s": 0.0006211797410613456,
+          "u": 0.593365192413203
+        },
+        {
+          "bracket_hi_s": 0.002913336123392363,
+          "bracket_lo_s": 0.0029133361228730896,
+          "bracket_residuals": [
+            1.1102425883757327e-11,
+            -7.081740231596324e-10
+          ],
+          "candidate_id": 6213,
+          "cell_u": [
+            0.0,
+            1.0
+          ],
+          "contact": "hammer",
+          "crossing": "positive_to_negative",
+          "eligible_positive_branch": true,
+          "gap_m": 0.00029619970200565334,
+          "imaginary_part": 0.0,
+          "initial_polynomial_residual": -2.1812792457692742e-17,
+          "initial_signs": [
+            1,
+            -1
+          ],
+          "isolation": "sign_bracket",
+          "iterations": 20,
+          "methods": [
+            "polynomial_enumeration",
+            "polynomial_cell_bisection",
+            "quarter_sign_scan"
+          ],
+          "observables": [
+            "hammer_compression",
+            "hammer_force"
+          ],
+          "polishing_iterations": 2,
+          "polynomial_candidate_residual": 0.0,
+          "polynomial_residual_status": "within_roundoff_diagnostic",
+          "polynomial_root_u": 0.03760816138819174,
+          "residual": -3.4853549814114104e-10,
+          "residual_limit": 6.449189074915197e-18,
+          "role": "physical_rhs_derivative",
+          "scan_bracket_s": [
+            0.0029133361228730896,
+            0.002913336123392363
+          ],
+          "segment_id": 5375,
+          "slope_per_u": -0.0007542161268220205,
+          "status": "resolved_numerical",
+          "time_s": 0.002913336123132726,
+          "u": 0.03760862350440169
+        },
+        {
+          "bracket_hi_s": 0.00460253750031824,
+          "bracket_lo_s": 0.0046025374997157465,
+          "bracket_residuals": [
+            7.877658542848609e-10,
+            -1.2715422866103193e-09
+          ],
+          "candidate_id": 9795,
+          "cell_u": [
+            0.0,
+            1.0
+          ],
+          "contact": "hammer",
+          "crossing": "positive_to_negative",
+          "eligible_positive_branch": true,
+          "gap_m": 0.00035691994985386573,
+          "imaginary_part": 0.0,
+          "initial_polynomial_residual": -2.638948087829718e-16,
+          "initial_signs": [
+            1,
+            -1
+          ],
+          "isolation": "sign_bracket",
+          "iterations": 20,
+          "methods": [
+            "polynomial_enumeration",
+            "polynomial_cell_bisection",
+            "quarter_sign_scan"
+          ],
+          "observables": [
+            "hammer_compression",
+            "hammer_force"
+          ],
+          "polishing_iterations": 2,
+          "polynomial_candidate_residual": 0.0,
+          "polynomial_residual_status": "within_roundoff_diagnostic",
+          "polynomial_root_u": 0.6648191285520313,
+          "residual": -2.418882162711494e-10,
+          "residual_limit": 3.264015696922911e-16,
+          "role": "physical_rhs_derivative",
+          "scan_bracket_s": [
+            0.0046025374997157465,
+            0.00460253750031824
+          ],
+          "segment_id": 8579,
+          "slope_per_u": -0.0021593383384626978,
+          "status": "resolved_numerical",
+          "time_s": 0.004602537500016993,
+          "u": 0.6648192405716309
+        }
+      ],
+      "schema_version": 1,
+      "search_statistics": {
+        "derivative_discrepancy_probe": "one midpoint of every accepted dense segment",
+        "endpoint_discrepancy_count": 4229,
+        "maximum_endpoint_state_discrepancy": 2.220446049250313e-16,
+        "maximum_physical_dense_derivative_discrepancy_m_per_s": 1.0815404127839656e-09,
+        "maximum_reconstruction_residual": 2.220446049250313e-16,
+        "polynomial_plateau_count": 0,
+        "polynomial_roots_without_scan_sign_change": 0,
+        "quarter_scan_sign_changes": 12
+      },
+      "settings": {
+        "absolute_tolerance_vector": [
+          1e-17,
+          1e-17,
+          1.0000000000000002e-14,
+          1.0000000000000002e-14,
+          1e-17,
+          1.0000000000000002e-14,
+          1e-17,
+          1e-17,
+          1e-17,
+          1e-17,
+          1e-17,
+          1e-17,
+          1e-17
+        ],
+        "absolute_vector_multiplier": 0.1,
+        "maximum_step_s": 1.25e-06,
+        "relative_tolerance": 1e-13
+      },
+      "solver": {
+        "method": "scipy.integrate.Radau",
+        "nfev": 237447,
+        "njev": 2,
+        "nlu": 548,
+        "rhs_count_includes_finite_difference_jacobian": true,
+        "status": "finished"
+      },
+      "source_sha256": {
+        "contact_extrema_reference.py": "35b1f822cef0da3036faaf8dffcfd37e9091ca3df5098650d3d306fac1e7908b",
+        "validate_contact_reference.py": "c910da5da6b6ad957b709a414cef39a08ed6e8b75c6e36c9d73ef535a064dcdc"
+      },
+      "status": "completed",
+      "unresolved": [],
+      "value_status": "requires_refinement",
+      "versions": {
+        "numpy": "2.3.5",
+        "python": "3.12.14",
+        "scipy": "1.17.0"
+      }
+    },
+    {
+      "analytic_checks": {
+        "disabled_damper_exact_zero": true,
+        "first_onset_absolute_error_s": 2.9802302661287305e-13,
+        "first_onset_expected_s": 0.0002,
+        "first_onset_observed_s": 0.00019999999970197698,
+        "hammer_force_equals_k_times_compression": true
+      },
+      "branches": [
+        {
+          "branch": "separated",
+          "first_segment_id": 0,
+          "interval_s": [
+            0.0,
+            0.00020000000000000006
+          ],
+          "last_segment_id": 39
+        },
+        {
+          "branch": "positive_compression",
+          "first_segment_id": 39,
+          "interval_s": [
+            0.00020000000000000006,
+            0.0011620363213855004
+          ],
+          "last_segment_id": 541
+        },
+        {
+          "branch": "separated",
+          "first_segment_id": 541,
+          "interval_s": [
+            0.0011620363213855004,
+            0.0016603645048544886
+          ],
+          "last_segment_id": 708
+        },
+        {
+          "branch": "positive_compression",
+          "first_segment_id": 708,
+          "interval_s": [
+            0.0016603645048544886,
+            0.0036046701737965574
+          ],
+          "last_segment_id": 1488
+        },
+        {
+          "branch": "separated",
+          "first_segment_id": 1488,
+          "interval_s": [
+            0.0036046701737965574,
+            0.003989597414132895
+          ],
+          "last_segment_id": 1618
+        },
+        {
+          "branch": "positive_compression",
+          "first_segment_id": 1618,
+          "interval_s": [
+            0.003989597414132895,
+            0.005165705045170718
+          ],
+          "last_segment_id": 2268
+        },
+        {
+          "branch": "separated",
+          "first_segment_id": 2268,
+          "interval_s": [
+            0.005165705045170718,
+            0.02
+          ],
+          "last_segment_id": 6971
+        }
+      ],
+      "complete_duration": true,
+      "counts": {
+        "accepted_steps": 6972,
+        "candidates": 9961,
+        "elapsed_s": 9.921201140999983,
+        "rhs_evaluations": 50577,
+        "search_evaluations": 169353
+      },
+      "coverage": "uncertified_independent_search",
+      "duration_s": 0.02,
+      "failure": null,
+      "final_time_s": 0.02,
+      "fixture": "supported_impact_scaled",
+      "fixture_definition": {
+        "bd": [
+          0.5,
+          0.08333333333333333
+        ],
+        "beta": [
+          1.0,
+          3.0
+        ],
+        "bh": [
+          0.5,
+          -0.11666666666666665
+        ],
+        "cd": 0.0,
+        "ch": 0.0,
+        "clearance": 0.0,
+        "duration": 0.02,
+        "energy_scale": 0.004,
+        "evaluated_damping_ns_per_m": [
+          0.001,
+          0.0006666666666666668
+        ],
+        "evaluated_stiffness_n_per_m": [
+          789.5683520871487,
+          1853.292381982335
+        ],
+        "face": "constant",
+        "face_amplitude": 0.0,
+        "face_offset": 0.0,
+        "face_omega": 0.0,
+        "face_velocity": 0.0,
+        "frequency": [
+          200.0,
+          650.0
+        ],
+        "hammer_mass": 0.008,
+        "kd": 0.0,
+        "kh": 20000.0,
+        "mass": [
+          0.0005,
+          0.00011111111111111112
+        ],
+        "name": "supported_impact_scaled",
+        "pickup": [
+          0.5,
+          -0.06666666666666667
+        ],
+        "q": [
+          0.0,
+          -0.0
+        ],
+        "relaunch": [],
+        "scaled": true,
+        "v": [
+          0.0,
+          -0.0
+        ],
+        "vh": 1.0,
+        "x": -0.0002
+      },
+      "fixture_sha256": "f4c3599e63f34854d6d67a04dcd0ed76554fd128a9fe6f52e6026b4e9bb483fe",
+      "interpretation": "Independent numerical evidence only; no trajectory error enclosure, coverage certificate, candidate acceptance or physical-fidelity claim.",
+      "level": "R0",
+      "limits": {
+        "accepted_steps": 200000,
+        "candidates": 100000,
+        "rhs_evaluations": 5000000,
+        "search_evaluations": 1000000,
+        "wall_seconds": 300.0
+      },
+      "peaks": {
+        "damper_compression": {
+          "classification": "disabled",
+          "coverage": "uncertified_independent_search",
+          "identity": "kd=cd=0: diagnostic compression and force are identically zero",
+          "kind": "disabled",
+          "maximizer_intervals_s": [
+            [
+              0.0,
+              0.02
+            ]
+          ],
+          "maximizing_candidates": [],
+          "time_status": "disabled",
+          "unit": "m",
+          "value_m": 0.0,
+          "value_status": "analytic_disabled_identity"
+        },
+        "damper_force": {
+          "classification": "disabled",
+          "coverage": "uncertified_independent_search",
+          "identity": "kd=cd=0: diagnostic compression and force are identically zero",
+          "kind": "disabled",
+          "maximizer_intervals_s": [
+            [
+              0.0,
+              0.02
+            ]
+          ],
+          "maximizing_candidates": [],
+          "time_status": "disabled",
+          "unit": "N",
+          "value_n": 0.0,
+          "value_status": "analytic_disabled_identity"
+        },
+        "hammer_compression": {
+          "classification": "stationary",
+          "coverage": "uncertified_independent_search",
+          "kind": "isolated_candidate",
+          "maximizer_intervals_s": [
+            [
+              0.004602537497431182,
+              0.00460253749811851
+            ]
+          ],
+          "maximizing_candidates": [
+            {
+              "candidate_id": 2808,
+              "details": [
+                {
+                  "bracket_hi_s": 0.00460253749811851,
+                  "bracket_lo_s": 0.004602537497431182,
+                  "crossing": "positive_to_negative",
+                  "role": "dense_derivative",
+                  "status": "resolved_numerical"
+                }
+              ],
+              "gap_m": 0.00035691994976261765,
+              "origin_bits": 16,
+              "segment_id": 1970,
+              "time_s": 0.004602537497774846
+            }
+          ],
+          "time_status": "numerical_candidates",
+          "unit": "m",
+          "value_m": 0.00035691994976261765,
+          "value_status": "requires_refinement"
+        },
+        "hammer_force": {
+          "classification": "stationary",
+          "coverage": "uncertified_independent_search",
+          "kind": "isolated_candidate",
+          "maximizer_intervals_s": [
+            [
+              0.004602537497431182,
+              0.00460253749811851
+            ]
+          ],
+          "maximizing_candidates": [
+            {
+              "candidate_id": 2808,
+              "details": [
+                {
+                  "bracket_hi_s": 0.00460253749811851,
+                  "bracket_lo_s": 0.004602537497431182,
+                  "crossing": "positive_to_negative",
+                  "role": "dense_derivative",
+                  "status": "resolved_numerical"
+                }
+              ],
+              "gap_m": 0.00035691994976261765,
+              "origin_bits": 16,
+              "segment_id": 1970,
+              "time_s": 0.004602537497774846
+            }
+          ],
+          "time_status": "numerical_candidates",
+          "unit": "N",
+          "value_n": 7.138398995252353,
+          "value_status": "requires_refinement"
+        }
+      },
+      "raw": {
+        "arrays": {
+          "candidate_origin_bits": {
+            "dtype": "<u8",
+            "sha256": "b5455deaa4e09919095d74eb8cb92c67644380dc6e584ae6df216ec4c369dd31",
+            "shape": [
+              9961
+            ]
+          },
+          "candidate_segment_id": {
+            "dtype": "<i8",
+            "sha256": "90e72d4c6d205cf13946e6c5405eb283a1854cf8df02b632cba1d92027f7f346",
+            "shape": [
+              9961
+            ]
+          },
+          "candidate_time_s": {
+            "dtype": "<f8",
+            "sha256": "03fe09c9ec515e6a2233d0c16482fb35c6ddcb4e9cf0978710709002c38d6a57",
+            "shape": [
+              9961
+            ]
+          },
+          "candidate_y": {
+            "dtype": "<f8",
+            "sha256": "bd770c5e37a4cc8d75a2c1523ebe0c564c04ad4794062e4c015f809a2c8487c6",
+            "shape": [
+              9961,
+              13
+            ]
+          },
+          "dense_coefficients": {
+            "dtype": "<f8",
+            "sha256": "0dc0a6612d874d4546da1ab0ec9d5e1a2bbffb3e9ce876f2fbdb08745575bfc9",
+            "shape": [
+              6972,
+              13,
+              4
+            ]
+          },
+          "dense_t0_s": {
+            "dtype": "<f8",
+            "sha256": "3d9a03be3172069039991f3bcdba4284339405de4ec642b0bf68753ac77a0e09",
+            "shape": [
+              6972
+            ]
+          },
+          "dense_t1_s": {
+            "dtype": "<f8",
+            "sha256": "a170ac89e64fbe759f17ab7b0ec2964b06b5d798cfbcfa1e9426e931275183a9",
+            "shape": [
+              6972
+            ]
+          },
+          "mesh_t_s": {
+            "dtype": "<f8",
+            "sha256": "9585f747b8b4a0658af2c806f050026491a88de79dfb92a4e886fee734e2d091",
+            "shape": [
+              6973
+            ]
+          },
+          "mesh_y": {
+            "dtype": "<f8",
+            "sha256": "55553cac24e91323a7bf85b20da6d058ddd39353c1dee3441a00fc856234eca7",
+            "shape": [
+              6973,
+              13
+            ]
+          },
+          "reconstruction_limit": {
+            "dtype": "<f8",
+            "sha256": "29b971e8e981320ac45bc5dbc76ab6c6b7af2d877ecc7cbcb10651b84742a1b6",
+            "shape": [
+              6972,
+              13
+            ]
+          },
+          "reconstruction_residual": {
+            "dtype": "<f8",
+            "sha256": "53343df017e69b3b616976cbafcab9d82c1c9254cbbbc1581d38ec9cb8cf5ea0",
+            "shape": [
+              6972,
+              13
+            ]
+          }
+        },
+        "basis": "ascending normalized u=(t-t0)/(t1-t0)",
+        "candidate_origin_bits": {
+          "branch_boundary": 4,
+          "dense_derivative": 16,
+          "dense_endpoint": 2,
+          "mesh_endpoint": 1,
+          "physical_rhs_derivative": 8,
+          "plateau_endpoint": 32
+        },
+        "path": "/workspace/scratch/cc294adc3e2f/Fender-rhoades/build/supported-extrema-initial/references/supported_impact_scaled-R0/reference.npz",
+        "sha256": "9b16b0b494a738641157a7470e16d2de80be29e6fe7e674b9541808853d2985e",
+        "state_coordinates": [
+          "q0_m",
+          "q1_m",
+          "v0_m_per_s",
+          "v1_m_per_s",
+          "hammer_position_m",
+          "hammer_velocity_m_per_s",
+          "modal_loss_j",
+          "hammer_loss_j",
+          "damper_loss_j",
+          "actuator_work_j",
+          "launch_work_j",
+          "hammer_impulse_ns",
+          "damper_impulse_ns"
+        ]
+      },
+      "reference_file": {
+        "bytes": 498152,
+        "path": "build/supported-extrema-initial/references/supported_impact_scaled-R0/reference.json",
+        "sha256": "02293a7dab867b6d7a50d99b30eba0bf8a95785d09be5fb711309515d3bb2d2b"
+      },
+      "reference_kind": "independent_supported_contact_extrema",
+      "resolved_peak_clusters": [
+        {
+          "bracket_hi_s": 0.0006211797412639703,
+          "bracket_lo_s": 0.0006211797406602832,
+          "bracket_residuals": [
+            1.31640263013183e-09,
+            -7.277606746403098e-10
+          ],
+          "candidate_id": 519,
+          "cell_u": [
+            0.0,
+            1.0
+          ],
+          "contact": "hammer",
+          "crossing": "positive_to_negative",
+          "eligible_positive_branch": true,
+          "gap_m": 0.0002634531577310157,
+          "imaginary_part": 0.0,
+          "initial_polynomial_residual": -1.9949319973733282e-16,
+          "initial_signs": [
+            1,
+            -1
+          ],
+          "isolation": "sign_bracket",
+          "iterations": 22,
+          "methods": [
+            "polynomial_enumeration",
+            "polynomial_cell_bisection",
+            "quarter_sign_scan"
+          ],
+          "observables": [
+            "hammer_compression",
+            "hammer_force"
+          ],
+          "polishing_iterations": 2,
+          "polynomial_candidate_residual": 0.0,
+          "polynomial_residual_status": "within_roundoff_diagnostic",
+          "polynomial_root_u": 0.7879637823059561,
+          "residual": 2.943209773120792e-10,
+          "residual_limit": 1.5390107767205403e-15,
+          "role": "physical_rhs_derivative",
+          "scan_bracket_s": [
+            0.0006211797406602832,
+            0.0006211797412639703
+          ],
+          "segment_id": 314,
+          "slope_per_u": -0.008573841962691599,
+          "status": "resolved_numerical",
+          "time_s": 0.0006211797409621267,
+          "u": 0.7879637479781743
+        },
+        {
+          "bracket_hi_s": 0.0029133361228719165,
+          "bracket_lo_s": 0.0029133361221346694,
+          "bracket_residuals": [
+            7.727693736650498e-10,
+            -2.4843532266116686e-10
+          ],
+          "candidate_id": 1721,
+          "cell_u": [
+            0.0,
+            1.0
+          ],
+          "contact": "hammer",
+          "crossing": "positive_to_negative",
+          "eligible_positive_branch": true,
+          "gap_m": 0.0002961997020759833,
+          "imaginary_part": 0.0,
+          "initial_polynomial_residual": -2.168404344971009e-17,
+          "initial_signs": [
+            1,
+            -1
+          ],
+          "isolation": "sign_bracket",
+          "iterations": 22,
+          "methods": [
+            "polynomial_enumeration",
+            "polynomial_cell_bisection",
+            "quarter_sign_scan"
+          ],
+          "observables": [
+            "hammer_compression",
+            "hammer_force"
+          ],
+          "polishing_iterations": 2,
+          "polynomial_candidate_residual": 0.0,
+          "polynomial_residual_status": "within_roundoff_diagnostic",
+          "polynomial_root_u": 0.2741875068481596,
+          "residual": 2.621670257187819e-10,
+          "residual_limit": 2.6669969266992604e-16,
+          "role": "physical_rhs_derivative",
+          "scan_bracket_s": [
+            0.0029133361221346694,
+            0.0029133361228719165
+          ],
+          "segment_id": 1184,
+          "slope_per_u": -0.0042832437004152344,
+          "status": "resolved_numerical",
+          "time_s": 0.002913336122503293,
+          "u": 0.2741874456405693
+        },
+        {
+          "bracket_hi_s": 0.004602537500180498,
+          "bracket_lo_s": 0.004602537499493169,
+          "bracket_residuals": [
+            1.66726665806749e-09,
+            -6.820050453201776e-10
+          ],
+          "candidate_id": 2807,
+          "cell_u": [
+            0.0,
+            1.0
+          ],
+          "contact": "hammer",
+          "crossing": "positive_to_negative",
+          "eligible_positive_branch": true,
+          "gap_m": 0.0003569199497626175,
+          "imaginary_part": 0.0,
+          "initial_polynomial_residual": -8.673617379884035e-17,
+          "initial_signs": [
+            1,
+            -1
+          ],
+          "isolation": "sign_bracket",
+          "iterations": 22,
+          "methods": [
+            "polynomial_enumeration",
+            "polynomial_cell_bisection",
+            "quarter_sign_scan"
+          ],
+          "observables": [
+            "hammer_compression",
+            "hammer_force"
+          ],
+          "polishing_iterations": 1,
+          "polynomial_candidate_residual": 0.0,
+          "polynomial_residual_status": "within_roundoff_diagnostic",
+          "polynomial_root_u": 0.4703313612211755,
+          "residual": 4.926308068073371e-10,
+          "residual_limit": 1.0536550140605946e-15,
+          "role": "physical_rhs_derivative",
+          "scan_bracket_s": [
+            0.004602537499493169,
+            0.004602537500180498
+          ],
+          "segment_id": 1970,
+          "slope_per_u": -0.009853568259906763,
+          "status": "resolved_numerical",
+          "time_s": 0.004602537499836834,
+          "u": 0.47033131122600685
+        }
+      ],
+      "schema_version": 1,
+      "search_statistics": {
+        "derivative_discrepancy_probe": "one midpoint of every accepted dense segment",
+        "endpoint_discrepancy_count": 2976,
+        "maximum_endpoint_state_discrepancy": 4.440892098500626e-16,
+        "maximum_physical_dense_derivative_discrepancy_m_per_s": 6.316688616614385e-09,
+        "maximum_reconstruction_residual": 4.440892098500626e-16,
+        "polynomial_plateau_count": 0,
+        "polynomial_roots_without_scan_sign_change": 0,
+        "quarter_scan_sign_changes": 12
+      },
+      "settings": {
+        "absolute_tolerance_vector": [
+          1e-15,
+          1e-15,
+          1e-12,
+          1e-12,
+          1e-15,
+          1e-12,
+          1e-15,
+          1e-15,
+          1e-15,
+          1e-15,
+          1e-15,
+          1e-15,
+          1e-15
+        ],
+        "absolute_vector_multiplier": 10.0,
+        "maximum_step_s": 5e-06,
+        "relative_tolerance": 1e-10
+      },
+      "solver": {
+        "method": "scipy.integrate.Radau",
+        "nfev": 50543,
+        "njev": 2,
+        "nlu": 366,
+        "rhs_count_includes_finite_difference_jacobian": true,
+        "status": "finished"
+      },
+      "source_sha256": {
+        "contact_extrema_reference.py": "35b1f822cef0da3036faaf8dffcfd37e9091ca3df5098650d3d306fac1e7908b",
+        "validate_contact_reference.py": "c910da5da6b6ad957b709a414cef39a08ed6e8b75c6e36c9d73ef535a064dcdc"
+      },
+      "status": "completed",
+      "unresolved": [],
+      "value_status": "requires_refinement",
+      "versions": {
+        "numpy": "2.3.5",
+        "python": "3.12.14",
+        "scipy": "1.17.0"
+      }
+    },
+    {
+      "analytic_checks": {
+        "disabled_damper_exact_zero": true,
+        "first_onset_absolute_error_s": 2.980228639825472e-13,
+        "first_onset_expected_s": 0.0002,
+        "first_onset_observed_s": 0.00019999999970197715,
+        "hammer_force_equals_k_times_compression": true
+      },
+      "branches": [
+        {
+          "branch": "separated",
+          "first_segment_id": 0,
+          "interval_s": [
+            0.0,
+            0.00019999999999999985
+          ],
+          "last_segment_id": 79
+        },
+        {
+          "branch": "positive_compression",
+          "first_segment_id": 79,
+          "interval_s": [
+            0.00019999999999999985,
+            0.0011620363213854746
+          ],
+          "last_segment_id": 1394
+        },
+        {
+          "branch": "separated",
+          "first_segment_id": 1394,
+          "interval_s": [
+            0.0011620363213854746,
+            0.0016603645048443559
+          ],
+          "last_segment_id": 1889
+        },
+        {
+          "branch": "positive_compression",
+          "first_segment_id": 1889,
+          "interval_s": [
+            0.0016603645048443559,
+            0.00360467017383063
+          ],
+          "last_segment_id": 4105
+        },
+        {
+          "branch": "separated",
+          "first_segment_id": 4105,
+          "interval_s": [
+            0.00360467017383063,
+            0.003989597414214143
+          ],
+          "last_segment_id": 4483
+        },
+        {
+          "branch": "positive_compression",
+          "first_segment_id": 4483,
+          "interval_s": [
+            0.003989597414214143,
+            0.005165705044997555
+          ],
+          "last_segment_id": 6095
+        },
+        {
+          "branch": "separated",
+          "first_segment_id": 6095,
+          "interval_s": [
+            0.005165705044997555,
+            0.02
+          ],
+          "last_segment_id": 20431
+        }
+      ],
+      "complete_duration": true,
+      "counts": {
+        "accepted_steps": 20432,
+        "candidates": 24275,
+        "elapsed_s": 29.595307232000778,
+        "rhs_evaluations": 143448,
+        "search_evaluations": 484936
+      },
+      "coverage": "uncertified_independent_search",
+      "duration_s": 0.02,
+      "failure": null,
+      "final_time_s": 0.02,
+      "fixture": "supported_impact_scaled",
+      "fixture_definition": {
+        "bd": [
+          0.5,
+          0.08333333333333333
+        ],
+        "beta": [
+          1.0,
+          3.0
+        ],
+        "bh": [
+          0.5,
+          -0.11666666666666665
+        ],
+        "cd": 0.0,
+        "ch": 0.0,
+        "clearance": 0.0,
+        "duration": 0.02,
+        "energy_scale": 0.004,
+        "evaluated_damping_ns_per_m": [
+          0.001,
+          0.0006666666666666668
+        ],
+        "evaluated_stiffness_n_per_m": [
+          789.5683520871487,
+          1853.292381982335
+        ],
+        "face": "constant",
+        "face_amplitude": 0.0,
+        "face_offset": 0.0,
+        "face_omega": 0.0,
+        "face_velocity": 0.0,
+        "frequency": [
+          200.0,
+          650.0
+        ],
+        "hammer_mass": 0.008,
+        "kd": 0.0,
+        "kh": 20000.0,
+        "mass": [
+          0.0005,
+          0.00011111111111111112
+        ],
+        "name": "supported_impact_scaled",
+        "pickup": [
+          0.5,
+          -0.06666666666666667
+        ],
+        "q": [
+          0.0,
+          -0.0
+        ],
+        "relaunch": [],
+        "scaled": true,
+        "v": [
+          0.0,
+          -0.0
+        ],
+        "vh": 1.0,
+        "x": -0.0002
+      },
+      "fixture_sha256": "f4c3599e63f34854d6d67a04dcd0ed76554fd128a9fe6f52e6026b4e9bb483fe",
+      "interpretation": "Independent numerical evidence only; no trajectory error enclosure, coverage certificate, candidate acceptance or physical-fidelity claim.",
+      "level": "R1",
+      "limits": {
+        "accepted_steps": 200000,
+        "candidates": 100000,
+        "rhs_evaluations": 5000000,
+        "search_evaluations": 1000000,
+        "wall_seconds": 300.0
+      },
+      "peaks": {
+        "damper_compression": {
+          "classification": "disabled",
+          "coverage": "uncertified_independent_search",
+          "identity": "kd=cd=0: diagnostic compression and force are identically zero",
+          "kind": "disabled",
+          "maximizer_intervals_s": [
+            [
+              0.0,
+              0.02
+            ]
+          ],
+          "maximizing_candidates": [],
+          "time_status": "disabled",
+          "unit": "m",
+          "value_m": 0.0,
+          "value_status": "analytic_disabled_identity"
+        },
+        "damper_force": {
+          "classification": "disabled",
+          "coverage": "uncertified_independent_search",
+          "identity": "kd=cd=0: diagnostic compression and force are identically zero",
+          "kind": "disabled",
+          "maximizer_intervals_s": [
+            [
+              0.0,
+              0.02
+            ]
+          ],
+          "maximizing_candidates": [],
+          "time_status": "disabled",
+          "unit": "N",
+          "value_n": 0.0,
+          "value_status": "analytic_disabled_identity"
+        },
+        "hammer_compression": {
+          "classification": "stationary",
+          "coverage": "uncertified_independent_search",
+          "kind": "isolated_candidate",
+          "maximizer_intervals_s": [
+            [
+              0.0046025374991232396,
+              0.004602537500084446
+            ]
+          ],
+          "maximizing_candidates": [
+            {
+              "candidate_id": 6419,
+              "details": [
+                {
+                  "bracket_hi_s": 0.004602537500084446,
+                  "bracket_lo_s": 0.0046025374991232396,
+                  "crossing": "positive_to_negative",
+                  "role": "physical_rhs_derivative",
+                  "status": "resolved_numerical"
+                },
+                {
+                  "bracket_hi_s": 0.004602537500084446,
+                  "bracket_lo_s": 0.0046025374991232396,
+                  "crossing": "positive_to_negative",
+                  "role": "dense_derivative",
+                  "status": "resolved_numerical"
+                }
+              ],
+              "gap_m": 0.0003569199498539736,
+              "origin_bits": 24,
+              "segment_id": 5327,
+              "time_s": 0.004602537499603843
+            }
+          ],
+          "time_status": "numerical_candidates",
+          "unit": "m",
+          "value_m": 0.0003569199498539736,
+          "value_status": "requires_refinement"
+        },
+        "hammer_force": {
+          "classification": "stationary",
+          "coverage": "uncertified_independent_search",
+          "kind": "isolated_candidate",
+          "maximizer_intervals_s": [
+            [
+              0.0046025374991232396,
+              0.004602537500084446
+            ]
+          ],
+          "maximizing_candidates": [
+            {
+              "candidate_id": 6419,
+              "details": [
+                {
+                  "bracket_hi_s": 0.004602537500084446,
+                  "bracket_lo_s": 0.0046025374991232396,
+                  "crossing": "positive_to_negative",
+                  "role": "physical_rhs_derivative",
+                  "status": "resolved_numerical"
+                },
+                {
+                  "bracket_hi_s": 0.004602537500084446,
+                  "bracket_lo_s": 0.0046025374991232396,
+                  "crossing": "positive_to_negative",
+                  "role": "dense_derivative",
+                  "status": "resolved_numerical"
+                }
+              ],
+              "gap_m": 0.0003569199498539736,
+              "origin_bits": 24,
+              "segment_id": 5327,
+              "time_s": 0.004602537499603843
+            }
+          ],
+          "time_status": "numerical_candidates",
+          "unit": "N",
+          "value_n": 7.138398997079472,
+          "value_status": "requires_refinement"
+        }
+      },
+      "raw": {
+        "arrays": {
+          "candidate_origin_bits": {
+            "dtype": "<u8",
+            "sha256": "afe86d042ab312e84227bc787f238b841930f00cb8e396d76b561c9d62562191",
+            "shape": [
+              24275
+            ]
+          },
+          "candidate_segment_id": {
+            "dtype": "<i8",
+            "sha256": "5fa681178a6dddbd95918e9879fc159024a81b15af71b8911070b511d75f068a",
+            "shape": [
+              24275
+            ]
+          },
+          "candidate_time_s": {
+            "dtype": "<f8",
+            "sha256": "3d91a799eb57aced4d52568dc4ff0fdc5531324c1fc76b2785ae2fa5ff712f4e",
+            "shape": [
+              24275
+            ]
+          },
+          "candidate_y": {
+            "dtype": "<f8",
+            "sha256": "d4f20ad4280dc3e11e40f0e10913a49bb10f962bfe6c14c35cf9b1960494e530",
+            "shape": [
+              24275,
+              13
+            ]
+          },
+          "dense_coefficients": {
+            "dtype": "<f8",
+            "sha256": "34670bfd3953b973b28b3c42ee0b4ab0bdbd534d1ea26d9ee892bcd7af609bf9",
+            "shape": [
+              20432,
+              13,
+              4
+            ]
+          },
+          "dense_t0_s": {
+            "dtype": "<f8",
+            "sha256": "6bc5d6583830720a41f5db2e59733188578aa8b658287aba296b1a9c87c838e8",
+            "shape": [
+              20432
+            ]
+          },
+          "dense_t1_s": {
+            "dtype": "<f8",
+            "sha256": "01dde6bab81dc81e6fcd191a9794107fbe47dcae9d1829c308a4c4e844aae162",
+            "shape": [
+              20432
+            ]
+          },
+          "mesh_t_s": {
+            "dtype": "<f8",
+            "sha256": "2302bd5909c5686cae87e8723c60f5a784241c3116b35e068aeeb53c573711f5",
+            "shape": [
+              20433
+            ]
+          },
+          "mesh_y": {
+            "dtype": "<f8",
+            "sha256": "52ba36e4107fd8d5f0fbf56702e8db25eaaa8a47dd1139254423e538517d50e8",
+            "shape": [
+              20433,
+              13
+            ]
+          },
+          "reconstruction_limit": {
+            "dtype": "<f8",
+            "sha256": "aac887ee5af9f1bcfcb1b613e551ec623abadf14e9c2169aab5f9625457f64cb",
+            "shape": [
+              20432,
+              13
+            ]
+          },
+          "reconstruction_residual": {
+            "dtype": "<f8",
+            "sha256": "4f83f90d34791434e457eb2c10ec21a5d2d82bc6c436ea1b0c7324cdbbaae84c",
+            "shape": [
+              20432,
+              13
+            ]
+          }
+        },
+        "basis": "ascending normalized u=(t-t0)/(t1-t0)",
+        "candidate_origin_bits": {
+          "branch_boundary": 4,
+          "dense_derivative": 16,
+          "dense_endpoint": 2,
+          "mesh_endpoint": 1,
+          "physical_rhs_derivative": 8,
+          "plateau_endpoint": 32
+        },
+        "path": "/workspace/scratch/cc294adc3e2f/Fender-rhoades/build/supported-extrema-initial/references/supported_impact_scaled-R1/reference.npz",
+        "sha256": "0bbf17f96d7ce2534c368cc67e25b8a83935b7ecd68b79bec365e46117c10e88",
+        "state_coordinates": [
+          "q0_m",
+          "q1_m",
+          "v0_m_per_s",
+          "v1_m_per_s",
+          "hammer_position_m",
+          "hammer_velocity_m_per_s",
+          "modal_loss_j",
+          "hammer_loss_j",
+          "damper_loss_j",
+          "actuator_work_j",
+          "launch_work_j",
+          "hammer_impulse_ns",
+          "damper_impulse_ns"
+        ]
+      },
+      "reference_file": {
+        "bytes": 635034,
+        "path": "build/supported-extrema-initial/references/supported_impact_scaled-R1/reference.json",
+        "sha256": "9c33581fe6f1981e424f7e44bcfb7a475595db6c512071a57b0bb5428a73c46e"
+      },
+      "reference_kind": "independent_supported_contact_extrema",
+      "resolved_peak_clusters": [
+        {
+          "bracket_hi_s": 0.0006211797411785005,
+          "bracket_lo_s": 0.0006211797403530555,
+          "bracket_residuals": [
+            2.3546982640641756e-09,
+            -4.403668328427368e-10
+          ],
+          "candidate_id": 999,
+          "cell_u": [
+            0.0,
+            1.0
+          ],
+          "contact": "hammer",
+          "crossing": "positive_to_negative",
+          "eligible_positive_branch": true,
+          "gap_m": 0.0002634531577323982,
+          "imaginary_part": 0.0,
+          "initial_polynomial_residual": 1.5872719805187785e-16,
+          "initial_signs": [
+            1,
+            -1
+          ],
+          "isolation": "sign_bracket",
+          "iterations": 20,
+          "methods": [
+            "polynomial_enumeration",
+            "polynomial_cell_bisection",
+            "quarter_sign_scan"
+          ],
+          "observables": [
+            "hammer_compression",
+            "hammer_force"
+          ],
+          "polishing_iterations": 1,
+          "polynomial_candidate_residual": 0.0,
+          "polynomial_residual_status": "within_roundoff_diagnostic",
+          "polynomial_root_u": 0.88946136708108,
+          "residual": 9.57165531730031e-10,
+          "residual_limit": 5.931699738842304e-16,
+          "role": "physical_rhs_derivative",
+          "scan_bracket_s": [
+            0.0006211797403530555,
+            0.0006211797411785005
+          ],
+          "segment_id": 740,
+          "slope_per_u": -0.0029308380798453142,
+          "status": "resolved_numerical",
+          "time_s": 0.0006211797407657781,
+          "u": 0.8894610404968384
+        },
+        {
+          "bracket_hi_s": 0.002913336123302521,
+          "bracket_lo_s": 0.0029133361224506823,
+          "bracket_residuals": [
+            5.959430564317098e-10,
+            -5.839891076145701e-10
+          ],
+          "candidate_id": 4002,
+          "cell_u": [
+            0.0,
+            1.0
+          ],
+          "contact": "hammer",
+          "crossing": "positive_to_negative",
+          "eligible_positive_branch": true,
+          "gap_m": 0.00029619970200561155,
+          "imaginary_part": 0.0,
+          "initial_polynomial_residual": -2.564138137928218e-17,
+          "initial_signs": [
+            1,
+            -1
+          ],
+          "isolation": "sign_bracket",
+          "iterations": 20,
+          "methods": [
+            "polynomial_enumeration",
+            "polynomial_cell_bisection",
+            "quarter_sign_scan"
+          ],
+          "observables": [
+            "hammer_compression",
+            "hammer_force"
+          ],
+          "polishing_iterations": 1,
+          "polynomial_candidate_residual": 0.0,
+          "polynomial_residual_status": "within_roundoff_diagnostic",
+          "polynomial_root_u": 0.11049318796663303,
+          "residual": 5.9769747744881085e-12,
+          "residual_limit": 3.107921691148002e-17,
+          "role": "physical_rhs_derivative",
+          "scan_bracket_s": [
+            0.0029133361224506823,
+            0.002913336123302521
+          ],
+          "segment_id": 3286,
+          "slope_per_u": -0.0012372486426055899,
+          "status": "resolved_numerical",
+          "time_s": 0.0029133361228766016,
+          "u": 0.11049318313577319
+        },
+        {
+          "bracket_hi_s": 0.004602537500084446,
+          "bracket_lo_s": 0.0046025374991232396,
+          "bracket_residuals": [
+            2.8145635099906946e-09,
+            -4.708166419665344e-10
+          ],
+          "candidate_id": 6419,
+          "cell_u": [
+            0.0,
+            1.0
+          ],
+          "contact": "hammer",
+          "crossing": "positive_to_negative",
+          "eligible_positive_branch": true,
+          "gap_m": 0.0003569199498539736,
+          "imaginary_part": 0.0,
+          "initial_polynomial_residual": 1.240327285323417e-16,
+          "initial_signs": [
+            1,
+            -1
+          ],
+          "isolation": "sign_bracket",
+          "iterations": 20,
+          "methods": [
+            "polynomial_enumeration",
+            "polynomial_cell_bisection",
+            "quarter_sign_scan"
+          ],
+          "observables": [
+            "hammer_compression",
+            "hammer_force"
+          ],
+          "polishing_iterations": 8,
+          "polynomial_candidate_residual": -2.168404344971009e-19,
+          "polynomial_residual_status": "within_roundoff_diagnostic",
+          "polynomial_root_u": 0.548295838062622,
+          "residual": 1.1718734340120801e-09,
+          "residual_limit": 4.2946173997076473e-16,
+          "role": "physical_rhs_derivative",
+          "scan_bracket_s": [
+            0.0046025374991232396,
+            0.004602537500084446
+          ],
+          "segment_id": 5327,
+          "slope_per_u": -0.003444969084851612,
+          "status": "resolved_numerical",
+          "time_s": 0.004602537499603843,
+          "u": 0.5482954978931154
+        }
+      ],
+      "schema_version": 1,
+      "search_statistics": {
+        "derivative_discrepancy_probe": "one midpoint of every accepted dense segment",
+        "endpoint_discrepancy_count": 3833,
+        "maximum_endpoint_state_discrepancy": 4.440892098500626e-16,
+        "maximum_physical_dense_derivative_discrepancy_m_per_s": 4.3797210302898293e-10,
+        "maximum_reconstruction_residual": 4.440892098500626e-16,
+        "polynomial_plateau_count": 0,
+        "polynomial_roots_without_scan_sign_change": 0,
+        "quarter_scan_sign_changes": 12
+      },
+      "settings": {
+        "absolute_tolerance_vector": [
+          1e-16,
+          1e-16,
+          1e-13,
+          1e-13,
+          1e-16,
+          1e-13,
+          1e-16,
+          1e-16,
+          1e-16,
+          1e-16,
+          1e-16,
+          1e-16,
+          1e-16
+        ],
+        "absolute_vector_multiplier": 1.0,
+        "maximum_step_s": 2.5e-06,
+        "relative_tolerance": 1e-12
+      },
+      "solver": {
+        "method": "scipy.integrate.Radau",
+        "nfev": 143414,
+        "njev": 2,
+        "nlu": 394,
+        "rhs_count_includes_finite_difference_jacobian": true,
+        "status": "finished"
+      },
+      "source_sha256": {
+        "contact_extrema_reference.py": "35b1f822cef0da3036faaf8dffcfd37e9091ca3df5098650d3d306fac1e7908b",
+        "validate_contact_reference.py": "c910da5da6b6ad957b709a414cef39a08ed6e8b75c6e36c9d73ef535a064dcdc"
+      },
+      "status": "completed",
+      "unresolved": [],
+      "value_status": "requires_refinement",
+      "versions": {
+        "numpy": "2.3.5",
+        "python": "3.12.14",
+        "scipy": "1.17.0"
+      }
+    },
+    {
+      "analytic_checks": {
+        "disabled_damper_exact_zero": true,
+        "first_onset_absolute_error_s": 2.9802280977243856e-13,
+        "first_onset_expected_s": 0.0002,
+        "first_onset_observed_s": 0.0001999999997019772,
+        "hammer_force_equals_k_times_compression": true
+      },
+      "branches": [
+        {
+          "branch": "separated",
+          "first_segment_id": 0,
+          "interval_s": [
+            0.0,
+            0.00019999999999999993
+          ],
+          "last_segment_id": 159
+        },
+        {
+          "branch": "positive_compression",
+          "first_segment_id": 159,
+          "interval_s": [
+            0.00019999999999999993,
+            0.0011620363213854727
+          ],
+          "last_segment_id": 2566
+        },
+        {
+          "branch": "separated",
+          "first_segment_id": 2566,
+          "interval_s": [
+            0.0011620363213854727,
+            0.0016603645048436507
+          ],
+          "last_segment_id": 3441
+        },
+        {
+          "branch": "positive_compression",
+          "first_segment_id": 3441,
+          "interval_s": [
+            0.0016603645048436507,
+            0.0036046701738305306
+          ],
+          "last_segment_id": 7415
+        },
+        {
+          "branch": "separated",
+          "first_segment_id": 7415,
+          "interval_s": [
+            0.0036046701738305306,
+            0.003989597414213715
+          ],
+          "last_segment_id": 8079
+        },
+        {
+          "branch": "positive_compression",
+          "first_segment_id": 8079,
+          "interval_s": [
+            0.003989597414213715,
+            0.005165705044997423
+          ],
+          "last_segment_id": 10939
+        },
+        {
+          "branch": "separated",
+          "first_segment_id": 10939,
+          "interval_s": [
+            0.005165705044997423,
+            0.02
+          ],
+          "last_segment_id": 36427
+        }
+      ],
+      "complete_duration": true,
+      "counts": {
+        "accepted_steps": 36428,
+        "candidates": 41145,
+        "elapsed_s": 49.78301375900082,
+        "rhs_evaluations": 255465,
+        "search_evaluations": 862678
+      },
+      "coverage": "uncertified_independent_search",
+      "duration_s": 0.02,
+      "failure": null,
+      "final_time_s": 0.02,
+      "fixture": "supported_impact_scaled",
+      "fixture_definition": {
+        "bd": [
+          0.5,
+          0.08333333333333333
+        ],
+        "beta": [
+          1.0,
+          3.0
+        ],
+        "bh": [
+          0.5,
+          -0.11666666666666665
+        ],
+        "cd": 0.0,
+        "ch": 0.0,
+        "clearance": 0.0,
+        "duration": 0.02,
+        "energy_scale": 0.004,
+        "evaluated_damping_ns_per_m": [
+          0.001,
+          0.0006666666666666668
+        ],
+        "evaluated_stiffness_n_per_m": [
+          789.5683520871487,
+          1853.292381982335
+        ],
+        "face": "constant",
+        "face_amplitude": 0.0,
+        "face_offset": 0.0,
+        "face_omega": 0.0,
+        "face_velocity": 0.0,
+        "frequency": [
+          200.0,
+          650.0
+        ],
+        "hammer_mass": 0.008,
+        "kd": 0.0,
+        "kh": 20000.0,
+        "mass": [
+          0.0005,
+          0.00011111111111111112
+        ],
+        "name": "supported_impact_scaled",
+        "pickup": [
+          0.5,
+          -0.06666666666666667
+        ],
+        "q": [
+          0.0,
+          -0.0
+        ],
+        "relaunch": [],
+        "scaled": true,
+        "v": [
+          0.0,
+          -0.0
+        ],
+        "vh": 1.0,
+        "x": -0.0002
+      },
+      "fixture_sha256": "f4c3599e63f34854d6d67a04dcd0ed76554fd128a9fe6f52e6026b4e9bb483fe",
+      "interpretation": "Independent numerical evidence only; no trajectory error enclosure, coverage certificate, candidate acceptance or physical-fidelity claim.",
+      "level": "R2",
+      "limits": {
+        "accepted_steps": 200000,
+        "candidates": 100000,
+        "rhs_evaluations": 5000000,
+        "search_evaluations": 1000000,
+        "wall_seconds": 300.0
+      },
+      "peaks": {
+        "damper_compression": {
+          "classification": "disabled",
+          "coverage": "uncertified_independent_search",
+          "identity": "kd=cd=0: diagnostic compression and force are identically zero",
+          "kind": "disabled",
+          "maximizer_intervals_s": [
+            [
+              0.0,
+              0.02
+            ]
+          ],
+          "maximizing_candidates": [],
+          "time_status": "disabled",
+          "unit": "m",
+          "value_m": 0.0,
+          "value_status": "analytic_disabled_identity"
+        },
+        "damper_force": {
+          "classification": "disabled",
+          "coverage": "uncertified_independent_search",
+          "identity": "kd=cd=0: diagnostic compression and force are identically zero",
+          "kind": "disabled",
+          "maximizer_intervals_s": [
+            [
+              0.0,
+              0.02
+            ]
+          ],
+          "maximizing_candidates": [],
+          "time_status": "disabled",
+          "unit": "N",
+          "value_n": 0.0,
+          "value_status": "analytic_disabled_identity"
+        },
+        "hammer_compression": {
+          "classification": "stationary",
+          "coverage": "uncertified_independent_search",
+          "kind": "isolated_candidate",
+          "maximizer_intervals_s": [
+            [
+              0.0046025374994905135,
+              0.00460253750003207
+            ]
+          ],
+          "maximizing_candidates": [
+            {
+              "candidate_id": 10831,
+              "details": [
+                {
+                  "bracket_hi_s": 0.00460253750003207,
+                  "bracket_lo_s": 0.0046025374994905135,
+                  "crossing": "positive_to_negative",
+                  "role": "physical_rhs_derivative",
+                  "status": "resolved_numerical"
+                },
+                {
+                  "bracket_hi_s": 0.00460253750003207,
+                  "bracket_lo_s": 0.0046025374994905135,
+                  "crossing": "positive_to_negative",
+                  "role": "dense_derivative",
+                  "status": "resolved_numerical"
+                }
+              ],
+              "gap_m": 0.0003569199498538999,
+              "origin_bits": 24,
+              "segment_id": 9577,
+              "time_s": 0.004602537499761292
+            }
+          ],
+          "time_status": "numerical_candidates",
+          "unit": "m",
+          "value_m": 0.0003569199498538999,
+          "value_status": "requires_refinement"
+        },
+        "hammer_force": {
+          "classification": "stationary",
+          "coverage": "uncertified_independent_search",
+          "kind": "isolated_candidate",
+          "maximizer_intervals_s": [
+            [
+              0.0046025374994905135,
+              0.00460253750003207
+            ]
+          ],
+          "maximizing_candidates": [
+            {
+              "candidate_id": 10831,
+              "details": [
+                {
+                  "bracket_hi_s": 0.00460253750003207,
+                  "bracket_lo_s": 0.0046025374994905135,
+                  "crossing": "positive_to_negative",
+                  "role": "physical_rhs_derivative",
+                  "status": "resolved_numerical"
+                },
+                {
+                  "bracket_hi_s": 0.00460253750003207,
+                  "bracket_lo_s": 0.0046025374994905135,
+                  "crossing": "positive_to_negative",
+                  "role": "dense_derivative",
+                  "status": "resolved_numerical"
+                }
+              ],
+              "gap_m": 0.0003569199498538999,
+              "origin_bits": 24,
+              "segment_id": 9577,
+              "time_s": 0.004602537499761292
+            }
+          ],
+          "time_status": "numerical_candidates",
+          "unit": "N",
+          "value_n": 7.1383989970779975,
+          "value_status": "requires_refinement"
+        }
+      },
+      "raw": {
+        "arrays": {
+          "candidate_origin_bits": {
+            "dtype": "<u8",
+            "sha256": "c6a2325f0b28fe5b67db0417a756523a68a420dff160ebc1d1b62f2a9a3df3c6",
+            "shape": [
+              41145
+            ]
+          },
+          "candidate_segment_id": {
+            "dtype": "<i8",
+            "sha256": "706b20bcbfe79352faa91b10e4fda2045ee5c1afb39c181ae035013a219907bd",
+            "shape": [
+              41145
+            ]
+          },
+          "candidate_time_s": {
+            "dtype": "<f8",
+            "sha256": "1c355738f980fece414a693308966abb48d18553c54f2be8f2e3e4a495c0d396",
+            "shape": [
+              41145
+            ]
+          },
+          "candidate_y": {
+            "dtype": "<f8",
+            "sha256": "a0860b165a4d6ec6ac943481ea12585fae18e6ec52adc3f13fa5c0e33bc442da",
+            "shape": [
+              41145,
+              13
+            ]
+          },
+          "dense_coefficients": {
+            "dtype": "<f8",
+            "sha256": "3dfcfd9e51ad410f9dbb5819490f79c2108d9a98aab01ae1ec48142d4a3ae74b",
+            "shape": [
+              36428,
+              13,
+              4
+            ]
+          },
+          "dense_t0_s": {
+            "dtype": "<f8",
+            "sha256": "0b601107ef543c82637207b8c4f9f7f1410efd19cffba5bbb5c9b316bad342b9",
+            "shape": [
+              36428
+            ]
+          },
+          "dense_t1_s": {
+            "dtype": "<f8",
+            "sha256": "c581b1c82ec30efd154c07af7de598df6421650b3bfd391bc58ed1e771ddcc8a",
+            "shape": [
+              36428
+            ]
+          },
+          "mesh_t_s": {
+            "dtype": "<f8",
+            "sha256": "e4214dd8b7f53637757349e6c6612cce8dc43a5a38c490950d5868910261e71c",
+            "shape": [
+              36429
+            ]
+          },
+          "mesh_y": {
+            "dtype": "<f8",
+            "sha256": "2673a8f87a6cb0bbc537a56c1795dec09530b7779919788d0568d38ee230f077",
+            "shape": [
+              36429,
+              13
+            ]
+          },
+          "reconstruction_limit": {
+            "dtype": "<f8",
+            "sha256": "80b5e5a68fd2d26af7c23a0c957c6552b7e07b6414723cac8f3baac3f2bd1116",
+            "shape": [
+              36428,
+              13
+            ]
+          },
+          "reconstruction_residual": {
+            "dtype": "<f8",
+            "sha256": "0a487cf43329c70cc984231a15afc3c5c94daea6c545203db9e638182a867c60",
+            "shape": [
+              36428,
+              13
+            ]
+          }
+        },
+        "basis": "ascending normalized u=(t-t0)/(t1-t0)",
+        "candidate_origin_bits": {
+          "branch_boundary": 4,
+          "dense_derivative": 16,
+          "dense_endpoint": 2,
+          "mesh_endpoint": 1,
+          "physical_rhs_derivative": 8,
+          "plateau_endpoint": 32
+        },
+        "path": "/workspace/scratch/cc294adc3e2f/Fender-rhoades/build/supported-extrema-initial/references/supported_impact_scaled-R2/reference.npz",
+        "sha256": "63237bc8b023d4afc10cef66a96f9ae8d6a5226fc3693811fb3b7881e9ae0c5d",
+        "state_coordinates": [
+          "q0_m",
+          "q1_m",
+          "v0_m_per_s",
+          "v1_m_per_s",
+          "hammer_position_m",
+          "hammer_velocity_m_per_s",
+          "modal_loss_j",
+          "hammer_loss_j",
+          "damper_loss_j",
+          "actuator_work_j",
+          "launch_work_j",
+          "hammer_impulse_ns",
+          "damper_impulse_ns"
+        ]
+      },
+      "reference_file": {
+        "bytes": 773485,
+        "path": "build/supported-extrema-initial/references/supported_impact_scaled-R2/reference.json",
+        "sha256": "fc613100deffcc0d92805586b4d938a9365b6d267a975c5f3fabae70b17588ca"
+      },
+      "reference_kind": "independent_supported_contact_extrema",
+      "resolved_peak_clusters": [
+        {
+          "bracket_hi_s": 0.0006211797416627481,
+          "bracket_lo_s": 0.0006211797407944281,
+          "bracket_residuals": [
+            8.601447026423265e-10,
+            -2.0801003618132682e-09
+          ],
+          "candidate_id": 1679,
+          "cell_u": [
+            0.0,
+            1.0
+          ],
+          "contact": "hammer",
+          "crossing": "positive_to_negative",
+          "eligible_positive_branch": true,
+          "gap_m": 0.00026345315773240415,
+          "imaginary_part": 0.0,
+          "initial_polynomial_residual": -3.475952164988527e-16,
+          "initial_signs": [
+            1,
+            -1
+          ],
+          "isolation": "sign_bracket",
+          "iterations": 19,
+          "methods": [
+            "polynomial_enumeration",
+            "polynomial_cell_bisection",
+            "quarter_sign_scan"
+          ],
+          "observables": [
+            "hammer_compression",
+            "hammer_force"
+          ],
+          "polishing_iterations": 1,
+          "polynomial_candidate_residual": 0.0,
+          "polynomial_residual_status": "within_roundoff_diagnostic",
+          "polynomial_root_u": 0.5433488703567965,
+          "residual": -6.099778299649417e-10,
+          "residual_limit": 1.904915532890448e-16,
+          "role": "physical_rhs_derivative",
+          "scan_bracket_s": [
+            0.0006211797407944281,
+            0.0006211797416627481
+          ],
+          "segment_id": 1355,
+          "slope_per_u": -0.0015415351148287133,
+          "status": "resolved_numerical",
+          "time_s": 0.0006211797412285881,
+          "u": 0.5433492660518566
+        },
+        {
+          "bracket_hi_s": 0.0029133361232881153,
+          "bracket_lo_s": 0.0029133361223082667,
+          "bracket_residuals": [
+            7.933602628543428e-10,
+            -5.638861728829328e-10
+          ],
+          "candidate_id": 6739,
+          "cell_u": [
+            0.0,
+            1.0
+          ],
+          "contact": "hammer",
+          "crossing": "positive_to_negative",
+          "eligible_positive_branch": true,
+          "gap_m": 0.0002961997020056579,
+          "imaginary_part": 0.0,
+          "initial_polynomial_residual": -1.22514845490862e-17,
+          "initial_signs": [
+            1,
+            -1
+          ],
+          "isolation": "sign_bracket",
+          "iterations": 19,
+          "methods": [
+            "polynomial_enumeration",
+            "polynomial_cell_bisection",
+            "quarter_sign_scan"
+          ],
+          "observables": [
+            "hammer_compression",
+            "hammer_force"
+          ],
+          "polishing_iterations": 2,
+          "polynomial_candidate_residual": 0.0,
+          "polynomial_residual_status": "within_roundoff_diagnostic",
+          "polynomial_root_u": 0.02574841411010863,
+          "residual": 1.1473734583147908e-10,
+          "residual_limit": 4.1659203605483195e-18,
+          "role": "physical_rhs_derivative",
+          "scan_bracket_s": [
+            0.0029133361223082667,
+            0.0029133361232881153
+          ],
+          "segment_id": 5910,
+          "slope_per_u": -0.0007115881153186063,
+          "status": "resolved_numerical",
+          "time_s": 0.0029133361227981908,
+          "u": 0.025748252868874586
+        },
+        {
+          "bracket_hi_s": 0.00460253750003207,
+          "bracket_lo_s": 0.0046025374994905135,
+          "bracket_residuals": [
+            1.5580316314444537e-09,
+            -2.9299415866580747e-10
+          ],
+          "candidate_id": 10831,
+          "cell_u": [
+            0.0,
+            1.0
+          ],
+          "contact": "hammer",
+          "crossing": "positive_to_negative",
+          "eligible_positive_branch": true,
+          "gap_m": 0.0003569199498538999,
+          "imaginary_part": 0.0,
+          "initial_polynomial_residual": 6.158268339717665e-17,
+          "initial_signs": [
+            1,
+            -1
+          ],
+          "isolation": "sign_bracket",
+          "iterations": 20,
+          "methods": [
+            "polynomial_enumeration",
+            "polynomial_cell_bisection",
+            "quarter_sign_scan"
+          ],
+          "observables": [
+            "hammer_compression",
+            "hammer_force"
+          ],
+          "polishing_iterations": 2,
+          "polynomial_candidate_residual": 0.0,
+          "polynomial_residual_status": "within_roundoff_diagnostic",
+          "polynomial_root_u": 0.787259904584889,
+          "residual": 6.325187363893231e-10,
+          "residual_limit": 3.47422373273545e-16,
+          "role": "physical_rhs_derivative",
+          "scan_bracket_s": [
+            0.0046025374994905135,
+            0.00460253750003207
+          ],
+          "segment_id": 9577,
+          "slope_per_u": -0.0019409412739112293,
+          "status": "resolved_numerical",
+          "time_s": 0.004602537499761292,
+          "u": 0.787259578702419
+        }
+      ],
+      "schema_version": 1,
+      "search_statistics": {
+        "derivative_discrepancy_probe": "one midpoint of every accepted dense segment",
+        "endpoint_discrepancy_count": 4707,
+        "maximum_endpoint_state_discrepancy": 4.440892098500626e-16,
+        "maximum_physical_dense_derivative_discrepancy_m_per_s": 4.1261964955907615e-09,
+        "maximum_reconstruction_residual": 4.440892098500626e-16,
+        "polynomial_plateau_count": 0,
+        "polynomial_roots_without_scan_sign_change": 0,
+        "quarter_scan_sign_changes": 12
+      },
+      "settings": {
+        "absolute_tolerance_vector": [
+          1e-17,
+          1e-17,
+          1.0000000000000002e-14,
+          1.0000000000000002e-14,
+          1e-17,
+          1.0000000000000002e-14,
+          1e-17,
+          1e-17,
+          1e-17,
+          1e-17,
+          1e-17,
+          1e-17,
+          1e-17
+        ],
+        "absolute_vector_multiplier": 0.1,
+        "maximum_step_s": 1.25e-06,
+        "relative_tolerance": 1e-13
+      },
+      "solver": {
+        "method": "scipy.integrate.Radau",
+        "nfev": 255452,
+        "njev": 1,
+        "nlu": 600,
+        "rhs_count_includes_finite_difference_jacobian": true,
+        "status": "finished"
+      },
+      "source_sha256": {
+        "contact_extrema_reference.py": "35b1f822cef0da3036faaf8dffcfd37e9091ca3df5098650d3d306fac1e7908b",
+        "validate_contact_reference.py": "c910da5da6b6ad957b709a414cef39a08ed6e8b75c6e36c9d73ef535a064dcdc"
+      },
+      "status": "completed",
+      "unresolved": [],
+      "value_status": "requires_refinement",
+      "versions": {
+        "numpy": "2.3.5",
+        "python": "3.12.14",
+        "scipy": "1.17.0"
+      }
+    }
+  ],
+  "schema_version": 1,
+  "scope": "Six independently generated full-duration numerical searches; no certified continuous coverage. Raw mesh and cubic arrays are reproducible and hash-bound in the local manifest, not embedded here."
+}

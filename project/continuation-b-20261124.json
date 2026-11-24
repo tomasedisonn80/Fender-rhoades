@@ -67,7 +67,9 @@
       "assignment": 8,
       "wave": 1,
       "agent_task_name": "/root/w1_008_contact_oracle",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/20261124b-w1-008-contact-oracle.md",
+      "sha256": "3ec94d0802547cf14b5b9ff52cbcb32e9758c3caf564a90855725bf2a1174080"
     },
     {
       "assignment": 9,
@@ -89,14 +91,76 @@
       "assignment": 11,
       "wave": 1,
       "agent_task_name": "/root/w1_011_contact_driver",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/20261124b-w1-011-contact-driver.md",
+      "sha256": "068fec479302a02b65264b87c657e3801849c03a08af8dbb770f89bfc3ffd55e"
     },
     {
       "assignment": 12,
       "wave": 1,
       "agent_task_name": "/root/w1_012_qfir_regression",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124b-w1-012-qfir-regression.md",
+      "sha256": "ded72d79f9a270f74928910186f0ac758bfd34198f086352b4f37f1a0e679760"
+    },
+    {
+      "assignment": 13,
+      "wave": 1,
+      "agent_task_name": "/root/w1_013_silent_observation",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124b-w1-013-silent-observation.md",
+      "sha256": "b1c698e95eccddd056f149bf65a049cb0cfdfeacfb66f51d2d83160ee5b20c6b"
+    },
+    {
+      "assignment": 14,
+      "wave": 1,
+      "agent_task_name": "/root/w1_014_silent_tests",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124b-w1-014-silent-tests.md",
+      "sha256": "b10ea17bb8385fea6940b4c878c7863a74a5480adecf444d84e0da6232f0e5ce"
+    },
+    {
+      "assignment": 15,
+      "wave": 1,
+      "agent_task_name": "/root/w1_015_decomposition_cli_tests",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124b-w1-015-decomposition-cli-tests.md",
+      "sha256": "6d88a73af99fa11ce7b0965117ca0312089a3fe2ac31181f613e976c40ee60e7"
+    },
+    {
+      "assignment": 16,
+      "wave": 1,
+      "agent_task_name": "/root/w1_016_extrema_tests",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124b-w1-016-extrema-tests.md",
+      "sha256": "d5a43641c07052cc52747fd17a76c87e5b58df62cbf4d3098cb4b1d087fc5bd1"
+    },
+    {
+      "assignment": 17,
+      "wave": 1,
+      "agent_task_name": "/root/w1_017_supported_schema_tests",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124b-w1-017-supported-schema-tests.md",
+      "sha256": "d9805924c34ed3af9c37092fce9d28c02b9b8354e9a2d13eab5d5543207a7d77"
+    },
+    {
+      "assignment": 18,
+      "wave": 1,
+      "agent_task_name": "/root/w1_018_contact_driver_tests",
+      "status": "running"
+    },
+    {
+      "assignment": 19,
+      "wave": 1,
+      "agent_task_name": "/root/w1_019_grazing_timestamp",
+      "status": "running"
+    },
+    {
+      "assignment": 20,
+      "wave": 1,
+      "agent_task_name": "/root/w1_020_callback_compare",
       "status": "running"
     }
   ],
-  "completed_agents": 9
+  "completed_agents": 17
 }
