@@ -2,6 +2,37 @@
 
 ## Unreleased — experimental VST3 and research foundation
 
+- Batched six-node quadrature observation with adjacent prepared coefficients.
+  The [retained Linux/GCC replay](docs/validation/batched-quadrature-20261124.md)
+  preserves all 2,097 Q6 outputs and 24 legacy WAVs exactly; model identities,
+  48-frame quadrature latency and numerical budgets remain unchanged.
+- macOS CoreFoundation linkage and scoped Clang floating-point repairs, with
+  unchanged exact continuation assertions. All three variants pass their SDK
+  and new `moduleinfotool` metadata validators on Linux, Windows and macOS at
+  the [recorded native checkpoint](docs/validation/native-platforms-20261124.md).
+- Separate [four-fixture contact peak diagnostic](docs/CONTACT_PEAK_DIAGNOSTIC.md)
+  with bounded parsing, independent value references, optional damped timing,
+  explicit incomplete results and retained partial inputs. Finite contact stays
+  offline; general extrema acceptance and positive preload timing remain open.
+- Three retained [72-process callback captures](docs/BENCHMARKING.md), including
+  the worse first batch and every timing outlier, plus separate whole-child CPU
+  observations. These do not establish a general speedup or device deadlines.
+- Read-only [archive verification](tools/verify_vst3_matrix_archive.py) checks
+  bounded contents and recomputes the frozen workload/timing summaries without
+  extracting or executing archived files. Corrupt inputs retain their rejection
+  while later arguments are checked; matching hashes do not authenticate capture.
+- [Benchmark](tools/run_vst3_matrix.py) and
+  [audio replay](tools/verify_audio_compatibility.py) failure handling now retains
+  attempted outputs, validates consumed comparison inputs before execution, and
+  prevents timeouts or secondary snapshot errors from claiming completion.
+- [48 additional invalid-cell scenarios](docs/agents/reports/20261124-w4-63-invalid-cell.md)
+  exercise the wrapper's own NaN/Inf rejection, preserved output/history and
+  reset fence. All 84 earlier fault scenarios and exact assertions remain; the
+  five local wrapper CTests pass, and a removed-guard mutation fails as intended.
+- [Current development-wave validation](docs/agents/DEVELOPMENT_WAVES_20261124.md)
+  records actual assignments and immutable report hashes. Campaign progress is
+  separate from task acceptance; PHY-002 and RT-001 remain incomplete.
+
 - Additional model-3 **Rhodes Research Quadrature** instrument: six prepared
   fractional observations per host interval, fixed convolution storage and
   48-frame latency. Existing direct and filtered identities and saved states

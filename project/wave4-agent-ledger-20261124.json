@@ -46,14 +46,18 @@
       "wave": 4,
       "id": "W4-65",
       "agent_task_name": "/root/w4_65_development_guide",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w4-65-development-guide.md",
+      "sha256": "9f48c65eef907f3594515aa3ab0089aaa3d3a109d6bde4c2d4bdf5914f544e06"
     },
     {
       "assignment": 66,
       "wave": 4,
       "id": "W4-66",
       "agent_task_name": "/root/w4_66_changelog",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w4-66-changelog.md",
+      "sha256": "59feb2e95c59a196c718e818567d00ada3f28e4c45828d2cefc3588d0a3f2e97"
     },
     {
       "assignment": 67,
@@ -61,7 +65,21 @@
       "id": "W4-67",
       "agent_task_name": "/root/w4_67_daw_protocol",
       "status": "running"
+    },
+    {
+      "assignment": 68,
+      "wave": 4,
+      "id": "W4-68",
+      "agent_task_name": "/root/w4_68_bundle_audit",
+      "status": "running"
+    },
+    {
+      "assignment": 69,
+      "wave": 4,
+      "id": "W4-69",
+      "agent_task_name": "/root/w4_69_command_audit",
+      "status": "running"
     }
   ],
-  "completed_actual_agents": 4
+  "completed_actual_agents": 6
 }

@@ -29,6 +29,16 @@ python3 tools/campaign.py validate
 python3 tools/campaign.py sync --check
 python3 tools/development_campaign.py validate
 python3 tools/development_campaign.py sync --check
+python3 tools/validate_continuation_campaign.py
+python3 tools/quadrature_campaign.py validate
+python3 tools/quadrature_campaign.py sync --check
+python3 tools/validate_development_waves.py
+python3 tools/verify_vst3_matrix_archive.py \
+  docs/validation/vst3-matrix-20261124.json \
+  docs/validation/vst3-matrix-batched-20261124.json \
+  docs/validation/vst3-matrix-batch-final-20261124.json
+python3 tools/generate_audio_filter.py --check
+python3 tools/generate_quadrature_filter.py --check
 python3 -m unittest discover -s tests/python -v
 ```
 
@@ -50,19 +60,74 @@ sets fail-on-UB and stack-trace options, matching CI's diagnostic policy. These
 are supported by the declared CMake minimum. Record any environment-specific
 sanitizer override and its reduced coverage in the evidence report.
 
+### Floating-point build configuration
+
+The tested macOS VST3 workflow uses `Unix Makefiles` and does not request
+`-ffast-math` or `-ffp-contract=fast`. The Clang-only control helpers use a scoped
+precise/exception policy, and `QuadratureFir::output()` disables contraction in
+its function body. The [scope review](agents/reports/20261124-w3-47-clang-scope.md)
+binds these changes to the native regression results; it does not establish
+equivalence across arbitrary toolchains or flags.
+
+Clang's [floating-point options](https://clang.llvm.org/docs/UsersManual.html#controlling-floating-point-behavior)
+specify that `-ffp-contract=fast` overrides contraction pragmas, while
+`-ffast-math` enables that setting and additional unsafe transformations. The
+pinned SDK's Xcode-generator branch adds both flags. Changing to that generator
+or adding external fast-math flags therefore requires a new verification result;
+the scoped pragmas alone do not preserve the tested configuration. See the
+[pragma semantics](https://clang.llvm.org/docs/LanguageExtensions.html#extensions-to-specify-floating-point-flags)
+and [VST3 build instructions](VST3.md#build-the-optional-adapter). Keep exact
+control, state and continuation assertions when changing flags; do not widen
+tolerances to make a different configuration appear equivalent.
+
+## Offline tools and numerical dependencies
+
+The project/data/document checks, campaign validators, filter generators and
+retained timing-archive verifier use the Python standard library. The
+[current-wave validator](agents/DEVELOPMENT_WAVES_20261124.md) accepts honest
+progress records; add `--require-complete` only when checking the completed
+five-wave campaign. It checks metadata and report bytes, not whether agents
+executed or scientific acceptance was earned.
+
+The archive command above verifies all three retained captures without extracting
+files or executing archived commands. It recomputes the declared workload and
+timing summaries from raw records. It does not rerun a benchmark, authenticate
+the original acquisition, or validate current binaries. See
+[benchmark methodology](BENCHMARKING.md) for actual measurement prerequisites.
+
+| Work | Python dependency boundary |
+| --- | --- |
+| Native candidate sweep and default four-fixture peak comparison | Standard library; native candidate generation is a separate C++ executable. |
+| Contact peak comparison with `--with-damped-time` | Optional SciPy timing worker; unavailable or inconclusive timing remains explicit. |
+| General contact audit, full audio reference studies and exact audio replay tool | Optional NumPy/SciPy numerical environment, with actual versions recorded. |
+
+Follow the [contact peak guide](CONTACT_PEAK_DIAGNOSTIC.md) for byte-preserving
+candidate capture, exclusive output directories and exit meanings. A default
+four-fixture pass does not complete PHY-002. The
+[dependency notes](DEPENDENCIES.md#optional-independent-python-audit) identify
+the numerical packages and observed versions; those versions are not a complete
+environment lock. Missing optional packages cause explicitly marked numerical
+test skips, dependency errors or unavailable requested references. Such a run
+does not establish the omitted numerical coverage, and these packages are not
+VST3 runtime dependencies.
+
 ## Automated checks
 
 `.github/workflows/ci.yml` configures project/data/campaign validation and Python
 tests on Linux, Windows and macOS, C++ builds on the same three platforms, and an
-additional Linux sanitizer build. Symlink/FIFO fixtures explicitly skip only when
-the host lacks the needed facility or permission; a skipped case is not a pass
-for that facility. Inspect job summaries before claiming platform coverage.
+additional Linux sanitizer build. It also checks the current development-wave
+ledger and all three retained timing archives. Symlink/FIFO and undecodable-path
+fixtures explicitly skip when the host lacks the required facility or permission;
+macOS ARM skips the x86 FTZ/DAZ modes. A skipped case is not a pass for that
+condition. Inspect skip reasons and optional-dependency coverage before claiming
+platform results.
 The workflow has read-only repository permissions and never commits or pushes.
 Actions are pinned by commit. Dependency update proposals are limited to the
 GitHub Actions ecosystem because the initial runtime has no external packages.
 
 A separate `.github/workflows/vst3.yml` configures the optional module, retained
-host harness and official SDK validator on the same three platforms. It checks
+host harness, all three official SDK validators and all three module metadata
+validators on the same three platforms. It checks
 the SDK root and all four initialized submodule revisions, and leaves plugin
 installation links disabled. The development campaign has its own ledger;
 unfinished assignments remain visible until their actual reports are complete.
@@ -71,6 +136,14 @@ A configured CI job is not a completed test result. Read the Actions run for the
 specific commit before reporting a platform as passing. Local Linux verification
 cannot establish that Windows or macOS passed. There is no plugin binary release
 or installer pipeline in this prototype.
+
+The [retained native checkpoint](validation/native-platforms-20261124.md) at
+`015767f` records successful core and three-variant VST3 jobs on Linux, Windows
+and macOS, including exact passed/skipped/registered counts. The later
+[Foundation run at `510141e`](https://github.com/baabi-boo/Fender-rhoades/actions/runs/45340189549)
+passed all seven jobs, including the ledger/archive checks and Python tooling
+on all three platforms. These are results for those revisions, not automatic
+coverage of later source edits, native DAWs, audio devices or deployment baselines.
 
 The current C++ command-line interfaces use narrow process arguments. Arbitrary
 Unicode filesystem paths and non-ASCII machine labels have not been validated on
