@@ -1,0 +1,4231 @@
+{
+  "schema_version": 1,
+  "kind": "final_source_applicability_bridge",
+  "task": "HOST-004",
+  "worker": "w5-092",
+  "wave": 5,
+  "started_utc": "2026-11-24T20:02:40.492819+00:00",
+  "finished_utc": "2026-11-24T20:02:41.196812+00:00",
+  "status": "passed_with_explicit_historical_cmake_difference",
+  "scope": "Source and actual Linux binary applicability of retained final native, module-gate, legacy and strengthened loaded-panel observations to the integrator-designated published code commit. This record is a read-only hash bridge, not a new execution or compilation record.",
+  "target": {
+    "published_code_commit": "8c5d819e9d99767372cf1a74a971433edce6da35",
+    "designation": "Published code commit supplied by the integration owner; local commit object and file blobs verified.",
+    "previous_native_source_bridge_commit": "4369547403735c957689b547f478540e3277a79c",
+    "recorded_loaded_manifest_git_head": "4f658c2fbfc350e1ac6db626a1328c1232b39178"
+  },
+  "method": {
+    "hash_algorithm": "SHA-256 over exact file/blob bytes",
+    "read_only_git_operations": true,
+    "operations": [
+      "git cat-file -t <commit>",
+      "git show <commit>:<path>",
+      "git rev-parse <commit>:<path>",
+      "git ls-tree -r --name-only <commit> -- include src plugins assets",
+      "git diff --no-ext-diff / --numstat / --name-only <previous> <published> -- <scoped paths>",
+      "Python pathlib/hashlib byte readback, JSON/XML parsing and equality checks"
+    ],
+    "builds_run": 0,
+    "test_invocations_run": 0,
+    "native_executions_run": 0,
+    "git_mutations": 0,
+    "canonical_state_mutations": 0,
+    "written_paths": [
+      "docs/validation/photo-continuation-20261124/final-source-bridge.json",
+      "docs/agents/reports/photo-continuation-20261124/w5-092.md"
+    ]
+  },
+  "summary": {
+    "checks": 15,
+    "checks_passed": 15,
+    "checks_failed": 0,
+    "distinct_source_paths": 57,
+    "current_source_paths_matching_published": 57,
+    "recorded_source_bindings": 232,
+    "recorded_source_bindings_matching_published": 228,
+    "historical_difference_instances": 4,
+    "distinct_historical_difference_paths": 1,
+    "production_and_asset_paths_unchanged": 40,
+    "actual_shared_objects_matched": 3,
+    "actual_bundle_files_matched": 30,
+    "historical_records_preserved": 12,
+    "source_applicability_blockers": []
+  },
+  "checks": [
+    {
+      "id": "target_commit_available",
+      "status": "pass",
+      "commit": "8c5d819e9d99767372cf1a74a971433edce6da35"
+    },
+    {
+      "id": "native_original_48_source_bridge_rechecked",
+      "status": "pass",
+      "count": 48,
+      "commit": "4369547403735c957689b547f478540e3277a79c",
+      "all_tested_hashes_match_original_commit_and_native_input_manifest": true
+    },
+    {
+      "id": "current_published_source_union",
+      "status": "pass",
+      "distinct_paths": 57,
+      "matched": 57
+    },
+    {
+      "id": "historical_source_differences_explained",
+      "status": "pass",
+      "distinct_changed_paths": [
+        "cmake/Vst3.cmake"
+      ],
+      "affected_source_sets": 4
+    },
+    {
+      "id": "cmake_delta_exactly_fixture_registration_and_macos_list",
+      "status": "pass",
+      "reversing_only_two_reviewed_edits_restores_original_bytes": true
+    },
+    {
+      "id": "production_and_asset_bytes_unchanged",
+      "status": "pass",
+      "tracked_paths": 40,
+      "matches_previous_published_and_current": 40
+    },
+    {
+      "id": "strengthened_44_sources_match_published",
+      "status": "pass",
+      "count": 44,
+      "matches": 44,
+      "unexplained_differences": 0
+    },
+    {
+      "id": "strengthened_fixture_sha256",
+      "status": "pass",
+      "path": "tests/cpp/vst3_loaded_panel_audio_test.cpp",
+      "sha256": "a76cba87f5682a53a4aca46911fe2be2d8824171fee6bc3de45c25566a56fac1"
+    },
+    {
+      "id": "actual_final_shared_objects",
+      "status": "pass",
+      "module_count": 3,
+      "matched_modules": 3,
+      "applicable_recorded_hash_comparisons": 13
+    },
+    {
+      "id": "actual_final_bundle_files",
+      "status": "pass",
+      "file_count": 30,
+      "module_and_legacy_matches": 30,
+      "native_direct_matches": 10
+    },
+    {
+      "id": "historical_record_bytes_preserved",
+      "status": "pass",
+      "record_count": 12,
+      "matches_published_bytes": 12
+    },
+    {
+      "id": "historical_input_and_output_sha_links_preserved",
+      "status": "pass",
+      "links_checked": 5
+    },
+    {
+      "id": "retained_module_stream_hashes",
+      "status": "pass",
+      "streams_checked": 68
+    },
+    {
+      "id": "retained_strengthened_output_hashes",
+      "status": "pass",
+      "files_checked": 7,
+      "executable_hash_matches": true
+    },
+    {
+      "id": "retained_result_counts_consistent",
+      "status": "pass",
+      "native_checks": 136,
+      "module_commands": 34,
+      "legacy_pairs": 144,
+      "strengthened_ctests": 1
+    }
+  ],
+  "historical_records": [
+    {
+      "path": "docs/validation/photo-continuation-20261124/final-native/committed-source-bridge.json",
+      "sha256": "f0fe5e0d60e7edae02b26bd0d44751d738755bea3e7a349776eaf4f80239f64e",
+      "bytes": 13125,
+      "published_commit_sha256": "f0fe5e0d60e7edae02b26bd0d44751d738755bea3e7a349776eaf4f80239f64e",
+      "published_git_blob_oid": "59f6429656690cf3b1e253719518dfa4de1e5788",
+      "matches_published_bytes": true,
+      "unchanged_during_bridge": true
+    },
+    {
+      "path": "docs/validation/photo-continuation-20261124/final-native/input-manifest.json",
+      "sha256": "8695d9046ce26f8caf7e38ca176213bdc3d58f8990e45be0784f7f767a42b86e",
+      "bytes": 76673,
+      "published_commit_sha256": "8695d9046ce26f8caf7e38ca176213bdc3d58f8990e45be0784f7f767a42b86e",
+      "published_git_blob_oid": "21a073d39a4bdf6f73daf5711b30bbf5cc43799f",
+      "matches_published_bytes": true,
+      "unchanged_during_bridge": true
+    },
+    {
+      "path": "docs/validation/photo-continuation-20261124/final-native/output-manifest.json",
+      "sha256": "9824155e66bacd9d8b909cb8a3bd0a9a315f6fcfcfdfaa76ab9992ed545a1a31",
+      "bytes": 44648,
+      "published_commit_sha256": "9824155e66bacd9d8b909cb8a3bd0a9a315f6fcfcfdfaa76ab9992ed545a1a31",
+      "published_git_blob_oid": "1f98eb2ed66d9b78f7a97b81ad5dfd28c6c4db55",
+      "matches_published_bytes": true,
+      "unchanged_during_bridge": true
+    },
+    {
+      "path": "docs/validation/photo-continuation-20261124/final-native/evidence-summary.json",
+      "sha256": "4df3088f3243f3df323a3894c632d02b2f40ae1181481f19b7c909596a97db26",
+      "bytes": 2724,
+      "published_commit_sha256": "4df3088f3243f3df323a3894c632d02b2f40ae1181481f19b7c909596a97db26",
+      "published_git_blob_oid": "a52929ac8e355fd7990585b6658172254ac1bfe8",
+      "matches_published_bytes": true,
+      "unchanged_during_bridge": true
+    },
+    {
+      "path": "docs/validation/photo-continuation-20261124/final-native/outcome.json",
+      "sha256": "4cea37b19b127a7ef70aabaa4ab7f2aaf450248002dc1bbd5b8294400f6f6add",
+      "bytes": 385440,
+      "published_commit_sha256": "4cea37b19b127a7ef70aabaa4ab7f2aaf450248002dc1bbd5b8294400f6f6add",
+      "published_git_blob_oid": "eb98da495a9c65e9e6fd25a183ded6dbc107992b",
+      "matches_published_bytes": true,
+      "unchanged_during_bridge": true
+    },
+    {
+      "path": "docs/validation/photo-continuation-20261124/final-module-gates/input-manifest.json",
+      "sha256": "7c87777c7e5acb301a5e31067e86ac078f36060b5c87d5d74dceacf7dcd79c73",
+      "bytes": 33571,
+      "published_commit_sha256": "7c87777c7e5acb301a5e31067e86ac078f36060b5c87d5d74dceacf7dcd79c73",
+      "published_git_blob_oid": "04a436f448dc54c04b507b3cee6ec2c4dac539d9",
+      "matches_published_bytes": true,
+      "unchanged_during_bridge": true
+    },
+    {
+      "path": "docs/validation/photo-continuation-20261124/final-module-gates/summary.json",
+      "sha256": "bd6c52163e7d0fb92f703b33ea66b6cd66233663d45656ad87e6142a01f6872d",
+      "bytes": 50082,
+      "published_commit_sha256": "bd6c52163e7d0fb92f703b33ea66b6cd66233663d45656ad87e6142a01f6872d",
+      "published_git_blob_oid": "6e8f5708876c4b710207ec188119e0a1df7c337f",
+      "matches_published_bytes": true,
+      "unchanged_during_bridge": true
+    },
+    {
+      "path": "docs/validation/photo-continuation-20261124/final-legacy/source-applicability-bridge.json",
+      "sha256": "48f4519ee47227b8a60a9f357d5ef2191e327a54b68312245b09bf23f700ccb0",
+      "bytes": 12720,
+      "published_commit_sha256": "48f4519ee47227b8a60a9f357d5ef2191e327a54b68312245b09bf23f700ccb0",
+      "published_git_blob_oid": "d5a1786bcfa9f5781089ec491766fbcc033ad17e",
+      "matches_published_bytes": true,
+      "unchanged_during_bridge": true
+    },
+    {
+      "path": "docs/validation/photo-continuation-20261124/final-legacy/fresh-comparison.json",
+      "sha256": "8e697b170fa6e98a684c3130086d93d5f480c61c05afae48404c511f196fc4bc",
+      "bytes": 555339,
+      "published_commit_sha256": "8e697b170fa6e98a684c3130086d93d5f480c61c05afae48404c511f196fc4bc",
+      "published_git_blob_oid": "beab45ebda0f78bafe122a607e1961fc33ad934a",
+      "matches_published_bytes": true,
+      "unchanged_during_bridge": true
+    },
+    {
+      "path": "docs/validation/photo-continuation-20261124/final-loaded-audio/strengthened/manifest.json",
+      "sha256": "7e9b761b42064beaf7bfa10049a9f167580a9a61e3e0f214616109035fa56343",
+      "bytes": 10416,
+      "published_commit_sha256": "7e9b761b42064beaf7bfa10049a9f167580a9a61e3e0f214616109035fa56343",
+      "published_git_blob_oid": "54c89c404534850b8736cc2d813f2e8f2d4c991a",
+      "matches_published_bytes": true,
+      "unchanged_during_bridge": true
+    },
+    {
+      "path": "docs/validation/photo-continuation-20261124/final-loaded-audio/strengthened/run-summary.json",
+      "sha256": "afb96fc70b73ce8dba3fead5f184c92b3f8a567c338be6a646de285860fabed6",
+      "bytes": 6945,
+      "published_commit_sha256": "afb96fc70b73ce8dba3fead5f184c92b3f8a567c338be6a646de285860fabed6",
+      "published_git_blob_oid": "932198f778feaaf81291d3390444998804ec9865",
+      "matches_published_bytes": true,
+      "unchanged_during_bridge": true
+    },
+    {
+      "path": "docs/validation/photo-continuation-20261124/final-loaded-audio/before-review/manifest.json",
+      "sha256": "41403c42228f1670616fac45c06db0eba1256ef365f934459d89512ae09f1f6f",
+      "bytes": 802,
+      "published_commit_sha256": "41403c42228f1670616fac45c06db0eba1256ef365f934459d89512ae09f1f6f",
+      "published_git_blob_oid": "0994638951280f76a8dd7d5dfb906c396db85501",
+      "matches_published_bytes": true,
+      "unchanged_during_bridge": true
+    }
+  ],
+  "historical_recorded_sha_links": [
+    {
+      "from": "docs/validation/photo-continuation-20261124/final-native/evidence-summary.json",
+      "field": "input_manifest_sha256",
+      "to": "docs/validation/photo-continuation-20261124/final-native/input-manifest.json",
+      "recorded_sha256": "8695d9046ce26f8caf7e38ca176213bdc3d58f8990e45be0784f7f767a42b86e",
+      "current_sha256": "8695d9046ce26f8caf7e38ca176213bdc3d58f8990e45be0784f7f767a42b86e",
+      "matches": true
+    },
+    {
+      "from": "docs/validation/photo-continuation-20261124/final-native/evidence-summary.json",
+      "field": "outcome_sha256",
+      "to": "docs/validation/photo-continuation-20261124/final-native/outcome.json",
+      "recorded_sha256": "4cea37b19b127a7ef70aabaa4ab7f2aaf450248002dc1bbd5b8294400f6f6add",
+      "current_sha256": "4cea37b19b127a7ef70aabaa4ab7f2aaf450248002dc1bbd5b8294400f6f6add",
+      "matches": true
+    },
+    {
+      "from": "docs/validation/photo-continuation-20261124/final-native/evidence-summary.json",
+      "field": "raw_host_log_sha256",
+      "to": "docs/validation/photo-continuation-20261124/final-native/editorhost.log",
+      "recorded_sha256": "f69e526825cce8fe8ea83d91b3ac0037b47c4ba38dfd101e7b9aee4a12517112",
+      "current_sha256": "f69e526825cce8fe8ea83d91b3ac0037b47c4ba38dfd101e7b9aee4a12517112",
+      "matches": true
+    },
+    {
+      "from": "docs/validation/photo-continuation-20261124/final-module-gates/summary.json",
+      "field": "input_manifest_sha256",
+      "to": "docs/validation/photo-continuation-20261124/final-module-gates/input-manifest.json",
+      "recorded_sha256": "7c87777c7e5acb301a5e31067e86ac078f36060b5c87d5d74dceacf7dcd79c73",
+      "current_sha256": "7c87777c7e5acb301a5e31067e86ac078f36060b5c87d5d74dceacf7dcd79c73",
+      "matches": true
+    },
+    {
+      "from": "docs/validation/photo-continuation-20261124/final-legacy/source-applicability-bridge.json",
+      "field": "native_output_bridge.sha256",
+      "to": "docs/validation/photo-continuation-20261124/final-legacy/fresh-comparison.json",
+      "recorded_sha256": "8e697b170fa6e98a684c3130086d93d5f480c61c05afae48404c511f196fc4bc",
+      "current_sha256": "8e697b170fa6e98a684c3130086d93d5f480c61c05afae48404c511f196fc4bc",
+      "matches": true
+    }
+  ],
+  "source_sets": {
+    "final_native_48": {
+      "record": "docs/validation/photo-continuation-20261124/final-native/committed-source-bridge.json",
+      "source_count": 48,
+      "matches_published_count": 47,
+      "differences_from_recorded": [
+        "cmake/Vst3.cmake"
+      ],
+      "current_matches_published_count": 48,
+      "paths": [
+        "CMakeLists.txt",
+        "CMakePresets.json",
+        "assets/reference/rhodes-suitcase-reference.webp",
+        "cmake/Vst3.cmake",
+        "cmake/VstguiWin32Timer.cmake",
+        "cmake/VstguiX11ChildWindow.cmake",
+        "cmake/VstguiX11Keyboard.cmake",
+        "cmake/VstguiX11Lifetime.cmake",
+        "docs/specs/PHOTO_EDITOR_20261124.md",
+        "include/rhodes/audio_engine.hpp",
+        "include/rhodes/audio_filter_coefficients.hpp",
+        "include/rhodes/contact_reference.hpp",
+        "include/rhodes/control_text.hpp",
+        "include/rhodes/control_value.hpp",
+        "include/rhodes/editor_audition.hpp",
+        "include/rhodes/event_processor.hpp",
+        "include/rhodes/fir_decimator.hpp",
+        "include/rhodes/front_panel_effects.hpp",
+        "include/rhodes/front_panel_state.hpp",
+        "include/rhodes/instrument_state.hpp",
+        "include/rhodes/note_tracker.hpp",
+        "include/rhodes/plugin_state.hpp",
+        "include/rhodes/quadrature_engine.hpp",
+        "include/rhodes/quadrature_filter_coefficients.hpp",
+        "include/rhodes/quadrature_fir.hpp",
+        "include/rhodes/research_engine.hpp",
+        "plugins/vst3/THIRD_PARTY_NOTICES.md",
+        "plugins/vst3/controller.cpp",
+        "plugins/vst3/controller.hpp",
+        "plugins/vst3/factory.cpp",
+        "plugins/vst3/photo_editor.cpp",
+        "plugins/vst3/photo_editor.hpp",
+        "plugins/vst3/photo_geometry.hpp",
+        "plugins/vst3/photo_key_highlight.hpp",
+        "plugins/vst3/photo_native_focus.cpp",
+        "plugins/vst3/photo_native_focus.hpp",
+        "plugins/vst3/plugin_ids.hpp",
+        "plugins/vst3/processor.cpp",
+        "plugins/vst3/processor.hpp",
+        "plugins/vst3/resources/Expat-LICENSE.txt",
+        "plugins/vst3/resources/rhodes-suitcase.png",
+        "plugins/vst3/resources/rhodes-suitcase.uidesc",
+        "plugins/vst3/state_stream.cpp",
+        "plugins/vst3/state_stream.hpp",
+        "src/contact_reference.cpp",
+        "src/research_engine.cpp",
+        "tools/verify_native_photo_editor.py",
+        "tools/verify_photo_interactions.py"
+      ]
+    },
+    "final_module_gates_47": {
+      "record": "docs/validation/photo-continuation-20261124/final-module-gates/input-manifest.json",
+      "source_count": 47,
+      "matches_published_count": 46,
+      "differences_from_recorded": [
+        "cmake/Vst3.cmake"
+      ],
+      "current_matches_published_count": 47,
+      "paths": [
+        "CMakeLists.txt",
+        "cmake/Vst3.cmake",
+        "cmake/VstguiWin32Timer.cmake",
+        "cmake/VstguiX11ChildWindow.cmake",
+        "cmake/VstguiX11Keyboard.cmake",
+        "cmake/VstguiX11Lifetime.cmake",
+        "include/rhodes/audio_engine.hpp",
+        "include/rhodes/audio_filter_coefficients.hpp",
+        "include/rhodes/contact_reference.hpp",
+        "include/rhodes/control_text.hpp",
+        "include/rhodes/control_value.hpp",
+        "include/rhodes/editor_audition.hpp",
+        "include/rhodes/event_processor.hpp",
+        "include/rhodes/fir_decimator.hpp",
+        "include/rhodes/front_panel_effects.hpp",
+        "include/rhodes/front_panel_state.hpp",
+        "include/rhodes/instrument_state.hpp",
+        "include/rhodes/note_tracker.hpp",
+        "include/rhodes/plugin_state.hpp",
+        "include/rhodes/quadrature_engine.hpp",
+        "include/rhodes/quadrature_filter_coefficients.hpp",
+        "include/rhodes/quadrature_fir.hpp",
+        "include/rhodes/research_engine.hpp",
+        "plugins/vst3/THIRD_PARTY_NOTICES.md",
+        "plugins/vst3/controller.cpp",
+        "plugins/vst3/controller.hpp",
+        "plugins/vst3/factory.cpp",
+        "plugins/vst3/photo_editor.cpp",
+        "plugins/vst3/photo_editor.hpp",
+        "plugins/vst3/photo_geometry.hpp",
+        "plugins/vst3/photo_key_highlight.hpp",
+        "plugins/vst3/photo_native_focus.cpp",
+        "plugins/vst3/photo_native_focus.hpp",
+        "plugins/vst3/plugin_ids.hpp",
+        "plugins/vst3/processor.cpp",
+        "plugins/vst3/processor.hpp",
+        "plugins/vst3/resources/Expat-LICENSE.txt",
+        "plugins/vst3/resources/rhodes-suitcase.png",
+        "plugins/vst3/resources/rhodes-suitcase.uidesc",
+        "plugins/vst3/state_stream.cpp",
+        "plugins/vst3/state_stream.hpp",
+        "src/contact_reference.cpp",
+        "src/research_engine.cpp",
+        "tests/cpp/vst3_loaded_expression_test.cpp",
+        "tests/cpp/vst3_photo_editor_test.cpp",
+        "tests/cpp/vst3_photo_lifecycle_test.cpp",
+        "tools/run_xvfb_test.py"
+      ]
+    },
+    "final_legacy_execution_46": {
+      "record": "docs/validation/photo-continuation-20261124/final-legacy/fresh-comparison.json",
+      "source_count": 46,
+      "matches_published_count": 45,
+      "differences_from_recorded": [
+        "cmake/Vst3.cmake"
+      ],
+      "current_matches_published_count": 46,
+      "paths": [
+        "CMakeLists.txt",
+        "cmake/Vst3.cmake",
+        "cmake/VstguiWin32Timer.cmake",
+        "cmake/VstguiX11ChildWindow.cmake",
+        "cmake/VstguiX11Keyboard.cmake",
+        "cmake/VstguiX11Lifetime.cmake",
+        "docs/specs/HOST_EXPRESSION_MONO_20261124.md",
+        "include/rhodes/audio_engine.hpp",
+        "include/rhodes/audio_filter_coefficients.hpp",
+        "include/rhodes/contact_reference.hpp",
+        "include/rhodes/control_text.hpp",
+        "include/rhodes/control_value.hpp",
+        "include/rhodes/editor_audition.hpp",
+        "include/rhodes/event_processor.hpp",
+        "include/rhodes/fir_decimator.hpp",
+        "include/rhodes/front_panel_effects.hpp",
+        "include/rhodes/front_panel_state.hpp",
+        "include/rhodes/instrument_state.hpp",
+        "include/rhodes/note_tracker.hpp",
+        "include/rhodes/plugin_state.hpp",
+        "include/rhodes/quadrature_engine.hpp",
+        "include/rhodes/quadrature_filter_coefficients.hpp",
+        "include/rhodes/quadrature_fir.hpp",
+        "include/rhodes/research_engine.hpp",
+        "plugins/vst3/THIRD_PARTY_NOTICES.md",
+        "plugins/vst3/controller.cpp",
+        "plugins/vst3/controller.hpp",
+        "plugins/vst3/factory.cpp",
+        "plugins/vst3/photo_editor.cpp",
+        "plugins/vst3/photo_editor.hpp",
+        "plugins/vst3/photo_geometry.hpp",
+        "plugins/vst3/photo_key_highlight.hpp",
+        "plugins/vst3/photo_native_focus.cpp",
+        "plugins/vst3/photo_native_focus.hpp",
+        "plugins/vst3/plugin_ids.hpp",
+        "plugins/vst3/processor.cpp",
+        "plugins/vst3/processor.hpp",
+        "plugins/vst3/resources/Expat-LICENSE.txt",
+        "plugins/vst3/resources/rhodes-suitcase.png",
+        "plugins/vst3/resources/rhodes-suitcase.uidesc",
+        "plugins/vst3/state_stream.cpp",
+        "plugins/vst3/state_stream.hpp",
+        "src/contact_reference.cpp",
+        "src/research_engine.cpp",
+        "tests/cpp/vst3_legacy_capture.cpp",
+        "tools/compare_vst3_legacy.py"
+      ]
+    },
+    "final_legacy_bridge_current_47": {
+      "record": "docs/validation/photo-continuation-20261124/final-legacy/source-applicability-bridge.json",
+      "source_count": 47,
+      "matches_published_count": 46,
+      "differences_from_recorded": [
+        "cmake/Vst3.cmake"
+      ],
+      "current_matches_published_count": 47,
+      "paths": [
+        "CMakeLists.txt",
+        "cmake/Vst3.cmake",
+        "cmake/VstguiWin32Timer.cmake",
+        "cmake/VstguiX11ChildWindow.cmake",
+        "cmake/VstguiX11Keyboard.cmake",
+        "cmake/VstguiX11Lifetime.cmake",
+        "docs/specs/HOST_EXPRESSION_MONO_20261124.md",
+        "include/rhodes/audio_engine.hpp",
+        "include/rhodes/audio_filter_coefficients.hpp",
+        "include/rhodes/contact_reference.hpp",
+        "include/rhodes/control_text.hpp",
+        "include/rhodes/control_value.hpp",
+        "include/rhodes/editor_audition.hpp",
+        "include/rhodes/event_processor.hpp",
+        "include/rhodes/fir_decimator.hpp",
+        "include/rhodes/front_panel_effects.hpp",
+        "include/rhodes/front_panel_state.hpp",
+        "include/rhodes/instrument_state.hpp",
+        "include/rhodes/note_tracker.hpp",
+        "include/rhodes/plugin_state.hpp",
+        "include/rhodes/quadrature_engine.hpp",
+        "include/rhodes/quadrature_filter_coefficients.hpp",
+        "include/rhodes/quadrature_fir.hpp",
+        "include/rhodes/research_engine.hpp",
+        "plugins/vst3/THIRD_PARTY_NOTICES.md",
+        "plugins/vst3/controller.cpp",
+        "plugins/vst3/controller.hpp",
+        "plugins/vst3/factory.cpp",
+        "plugins/vst3/photo_editor.cpp",
+        "plugins/vst3/photo_editor.hpp",
+        "plugins/vst3/photo_geometry.hpp",
+        "plugins/vst3/photo_key_highlight.hpp",
+        "plugins/vst3/photo_native_focus.cpp",
+        "plugins/vst3/photo_native_focus.hpp",
+        "plugins/vst3/plugin_ids.hpp",
+        "plugins/vst3/processor.cpp",
+        "plugins/vst3/processor.hpp",
+        "plugins/vst3/resources/Expat-LICENSE.txt",
+        "plugins/vst3/resources/rhodes-suitcase.png",
+        "plugins/vst3/resources/rhodes-suitcase.uidesc",
+        "plugins/vst3/state_stream.cpp",
+        "plugins/vst3/state_stream.hpp",
+        "src/contact_reference.cpp",
+        "src/research_engine.cpp",
+        "tests/cpp/vst3_legacy_capture.cpp",
+        "tests/python/test_compare_vst3_legacy.py",
+        "tools/compare_vst3_legacy.py"
+      ]
+    },
+    "final_loaded_audio_strengthened_44": {
+      "record": "docs/validation/photo-continuation-20261124/final-loaded-audio/strengthened/manifest.json",
+      "source_count": 44,
+      "matches_published_count": 44,
+      "differences_from_recorded": [],
+      "current_matches_published_count": 44,
+      "paths": [
+        "CMakeLists.txt",
+        "cmake/Vst3.cmake",
+        "cmake/VstguiWin32Timer.cmake",
+        "cmake/VstguiX11ChildWindow.cmake",
+        "cmake/VstguiX11Keyboard.cmake",
+        "cmake/VstguiX11Lifetime.cmake",
+        "include/rhodes/audio_engine.hpp",
+        "include/rhodes/audio_filter_coefficients.hpp",
+        "include/rhodes/contact_reference.hpp",
+        "include/rhodes/control_text.hpp",
+        "include/rhodes/control_value.hpp",
+        "include/rhodes/editor_audition.hpp",
+        "include/rhodes/event_processor.hpp",
+        "include/rhodes/fir_decimator.hpp",
+        "include/rhodes/front_panel_effects.hpp",
+        "include/rhodes/front_panel_state.hpp",
+        "include/rhodes/instrument_state.hpp",
+        "include/rhodes/note_tracker.hpp",
+        "include/rhodes/plugin_state.hpp",
+        "include/rhodes/quadrature_engine.hpp",
+        "include/rhodes/quadrature_filter_coefficients.hpp",
+        "include/rhodes/quadrature_fir.hpp",
+        "include/rhodes/research_engine.hpp",
+        "plugins/vst3/THIRD_PARTY_NOTICES.md",
+        "plugins/vst3/controller.cpp",
+        "plugins/vst3/controller.hpp",
+        "plugins/vst3/factory.cpp",
+        "plugins/vst3/photo_editor.cpp",
+        "plugins/vst3/photo_editor.hpp",
+        "plugins/vst3/photo_geometry.hpp",
+        "plugins/vst3/photo_key_highlight.hpp",
+        "plugins/vst3/photo_native_focus.cpp",
+        "plugins/vst3/photo_native_focus.hpp",
+        "plugins/vst3/plugin_ids.hpp",
+        "plugins/vst3/processor.cpp",
+        "plugins/vst3/processor.hpp",
+        "plugins/vst3/resources/Expat-LICENSE.txt",
+        "plugins/vst3/resources/rhodes-suitcase.png",
+        "plugins/vst3/resources/rhodes-suitcase.uidesc",
+        "plugins/vst3/state_stream.cpp",
+        "plugins/vst3/state_stream.hpp",
+        "src/contact_reference.cpp",
+        "src/research_engine.cpp",
+        "tests/cpp/vst3_loaded_panel_audio_test.cpp"
+      ]
+    }
+  },
+  "source_files": [
+    {
+      "path": "CMakeLists.txt",
+      "published": {
+        "sha256": "4619d0aa41be71b7946664ac07c5e381205afc901dcf15319f21ae4d42c07adc",
+        "bytes": 25550,
+        "git_blob_oid": "fe7f80caf84c20dea86b02754346eef66fa16319"
+      },
+      "current": {
+        "sha256": "4619d0aa41be71b7946664ac07c5e381205afc901dcf15319f21ae4d42c07adc",
+        "bytes": 25550
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "4619d0aa41be71b7946664ac07c5e381205afc901dcf15319f21ae4d42c07adc",
+      "recorded_sha256": {
+        "final_native_48": "4619d0aa41be71b7946664ac07c5e381205afc901dcf15319f21ae4d42c07adc",
+        "final_module_gates_47": "4619d0aa41be71b7946664ac07c5e381205afc901dcf15319f21ae4d42c07adc",
+        "final_legacy_execution_46": "4619d0aa41be71b7946664ac07c5e381205afc901dcf15319f21ae4d42c07adc",
+        "final_legacy_bridge_current_47": "4619d0aa41be71b7946664ac07c5e381205afc901dcf15319f21ae4d42c07adc",
+        "final_loaded_audio_strengthened_44": "4619d0aa41be71b7946664ac07c5e381205afc901dcf15319f21ae4d42c07adc"
+      },
+      "recorded_matches_published": {
+        "final_native_48": true,
+        "final_module_gates_47": true,
+        "final_legacy_execution_46": true,
+        "final_legacy_bridge_current_47": true,
+        "final_loaded_audio_strengthened_44": true
+      }
+    },
+    {
+      "path": "CMakePresets.json",
+      "published": {
+        "sha256": "a06e2a16dba0b4947352cbbcec2a7668d29b3f777c6f460f9d65f6bd0bb7f0aa",
+        "bytes": 1483,
+        "git_blob_oid": "a5010844fc09d58589bc69bd3a92ee2709a0278d"
+      },
+      "current": {
+        "sha256": "a06e2a16dba0b4947352cbbcec2a7668d29b3f777c6f460f9d65f6bd0bb7f0aa",
+        "bytes": 1483
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "a06e2a16dba0b4947352cbbcec2a7668d29b3f777c6f460f9d65f6bd0bb7f0aa",
+      "recorded_sha256": {
+        "final_native_48": "a06e2a16dba0b4947352cbbcec2a7668d29b3f777c6f460f9d65f6bd0bb7f0aa"
+      },
+      "recorded_matches_published": {
+        "final_native_48": true
+      }
+    },
+    {
+      "path": "assets/reference/rhodes-suitcase-reference.webp",
+      "published": {
+        "sha256": "782b4c83a2bf827ed0d363bc567cdc2211485da6e650db4ae99448e78b7da24b",
+        "bytes": 257616,
+        "git_blob_oid": "9b1676572d7324f1f41e826cec39ad58e81311fb"
+      },
+      "current": {
+        "sha256": "782b4c83a2bf827ed0d363bc567cdc2211485da6e650db4ae99448e78b7da24b",
+        "bytes": 257616
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "782b4c83a2bf827ed0d363bc567cdc2211485da6e650db4ae99448e78b7da24b",
+      "recorded_sha256": {
+        "final_native_48": "782b4c83a2bf827ed0d363bc567cdc2211485da6e650db4ae99448e78b7da24b"
+      },
+      "recorded_matches_published": {
+        "final_native_48": true
+      }
+    },
+    {
+      "path": "cmake/Vst3.cmake",
+      "published": {
+        "sha256": "d223ac5f42521ce3be0f72a0023e35e601ec737a1bd9e6123d530c92e0ad6959",
+        "bytes": 61093,
+        "git_blob_oid": "4bed5d2c9e6a50dae2eecc2199bc5080cd9b64ac"
+      },
+      "current": {
+        "sha256": "d223ac5f42521ce3be0f72a0023e35e601ec737a1bd9e6123d530c92e0ad6959",
+        "bytes": 61093
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "48715fcf593fbb0338a51fceb6f0edc106e227dc6725a57df5c024aac7a28fc4",
+      "recorded_sha256": {
+        "final_native_48": "48715fcf593fbb0338a51fceb6f0edc106e227dc6725a57df5c024aac7a28fc4",
+        "final_module_gates_47": "48715fcf593fbb0338a51fceb6f0edc106e227dc6725a57df5c024aac7a28fc4",
+        "final_legacy_execution_46": "48715fcf593fbb0338a51fceb6f0edc106e227dc6725a57df5c024aac7a28fc4",
+        "final_legacy_bridge_current_47": "48715fcf593fbb0338a51fceb6f0edc106e227dc6725a57df5c024aac7a28fc4",
+        "final_loaded_audio_strengthened_44": "d223ac5f42521ce3be0f72a0023e35e601ec737a1bd9e6123d530c92e0ad6959"
+      },
+      "recorded_matches_published": {
+        "final_native_48": false,
+        "final_module_gates_47": false,
+        "final_legacy_execution_46": false,
+        "final_legacy_bridge_current_47": false,
+        "final_loaded_audio_strengthened_44": true
+      }
+    },
+    {
+      "path": "cmake/VstguiWin32Timer.cmake",
+      "published": {
+        "sha256": "211484666fff1fe57c8e442dbc98b3a0c76fd1119fbd21a5ce1d280368fd5c85",
+        "bytes": 2532,
+        "git_blob_oid": "85c1a9edcc4c3d6ff6020c9d2282355a2d87e442"
+      },
+      "current": {
+        "sha256": "211484666fff1fe57c8e442dbc98b3a0c76fd1119fbd21a5ce1d280368fd5c85",
+        "bytes": 2532
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "211484666fff1fe57c8e442dbc98b3a0c76fd1119fbd21a5ce1d280368fd5c85",
+      "recorded_sha256": {
+        "final_native_48": "211484666fff1fe57c8e442dbc98b3a0c76fd1119fbd21a5ce1d280368fd5c85",
+        "final_module_gates_47": "211484666fff1fe57c8e442dbc98b3a0c76fd1119fbd21a5ce1d280368fd5c85",
+        "final_legacy_execution_46": "211484666fff1fe57c8e442dbc98b3a0c76fd1119fbd21a5ce1d280368fd5c85",
+        "final_legacy_bridge_current_47": "211484666fff1fe57c8e442dbc98b3a0c76fd1119fbd21a5ce1d280368fd5c85",
+        "final_loaded_audio_strengthened_44": "211484666fff1fe57c8e442dbc98b3a0c76fd1119fbd21a5ce1d280368fd5c85"
+      },
+      "recorded_matches_published": {
+        "final_native_48": true,
+        "final_module_gates_47": true,
+        "final_legacy_execution_46": true,
+        "final_legacy_bridge_current_47": true,
+        "final_loaded_audio_strengthened_44": true
+      }
+    },
+    {
+      "path": "cmake/VstguiX11ChildWindow.cmake",
+      "published": {
+        "sha256": "74ad962f03a3581fcc424d85a2a6f7bf836655843e858285609f087033754e3e",
+        "bytes": 3567,
+        "git_blob_oid": "acad209040d2bb53a1a1645dfb73c9311464b9ab"
+      },
+      "current": {
+        "sha256": "74ad962f03a3581fcc424d85a2a6f7bf836655843e858285609f087033754e3e",
+        "bytes": 3567
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "74ad962f03a3581fcc424d85a2a6f7bf836655843e858285609f087033754e3e",
+      "recorded_sha256": {
+        "final_native_48": "74ad962f03a3581fcc424d85a2a6f7bf836655843e858285609f087033754e3e",
+        "final_module_gates_47": "74ad962f03a3581fcc424d85a2a6f7bf836655843e858285609f087033754e3e",
+        "final_legacy_execution_46": "74ad962f03a3581fcc424d85a2a6f7bf836655843e858285609f087033754e3e",
+        "final_legacy_bridge_current_47": "74ad962f03a3581fcc424d85a2a6f7bf836655843e858285609f087033754e3e",
+        "final_loaded_audio_strengthened_44": "74ad962f03a3581fcc424d85a2a6f7bf836655843e858285609f087033754e3e"
+      },
+      "recorded_matches_published": {
+        "final_native_48": true,
+        "final_module_gates_47": true,
+        "final_legacy_execution_46": true,
+        "final_legacy_bridge_current_47": true,
+        "final_loaded_audio_strengthened_44": true
+      }
+    },
+    {
+      "path": "cmake/VstguiX11Keyboard.cmake",
+      "published": {
+        "sha256": "3f1b1de7d27a74c1d6d2dae21152b125e4b5c1bf349a78f3aa4bfa3848a76a9c",
+        "bytes": 2424,
+        "git_blob_oid": "6ed7ac3e80a30f615db400d18a357d8938485bd0"
+      },
+      "current": {
+        "sha256": "3f1b1de7d27a74c1d6d2dae21152b125e4b5c1bf349a78f3aa4bfa3848a76a9c",
+        "bytes": 2424
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "3f1b1de7d27a74c1d6d2dae21152b125e4b5c1bf349a78f3aa4bfa3848a76a9c",
+      "recorded_sha256": {
+        "final_native_48": "3f1b1de7d27a74c1d6d2dae21152b125e4b5c1bf349a78f3aa4bfa3848a76a9c",
+        "final_module_gates_47": "3f1b1de7d27a74c1d6d2dae21152b125e4b5c1bf349a78f3aa4bfa3848a76a9c",
+        "final_legacy_execution_46": "3f1b1de7d27a74c1d6d2dae21152b125e4b5c1bf349a78f3aa4bfa3848a76a9c",
+        "final_legacy_bridge_current_47": "3f1b1de7d27a74c1d6d2dae21152b125e4b5c1bf349a78f3aa4bfa3848a76a9c",
+        "final_loaded_audio_strengthened_44": "3f1b1de7d27a74c1d6d2dae21152b125e4b5c1bf349a78f3aa4bfa3848a76a9c"
+      },
+      "recorded_matches_published": {
+        "final_native_48": true,
+        "final_module_gates_47": true,
+        "final_legacy_execution_46": true,
+        "final_legacy_bridge_current_47": true,
+        "final_loaded_audio_strengthened_44": true
+      }
+    },
+    {
+      "path": "cmake/VstguiX11Lifetime.cmake",
+      "published": {
+        "sha256": "2b1291c584fc285d219a09b84a752b548b3085a0f7b725464a2806a21afffb60",
+        "bytes": 7796,
+        "git_blob_oid": "6abbb5ef824079cbff348ec353b91072536022f6"
+      },
+      "current": {
+        "sha256": "2b1291c584fc285d219a09b84a752b548b3085a0f7b725464a2806a21afffb60",
+        "bytes": 7796
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "2b1291c584fc285d219a09b84a752b548b3085a0f7b725464a2806a21afffb60",
+      "recorded_sha256": {
+        "final_native_48": "2b1291c584fc285d219a09b84a752b548b3085a0f7b725464a2806a21afffb60",
+        "final_module_gates_47": "2b1291c584fc285d219a09b84a752b548b3085a0f7b725464a2806a21afffb60",
+        "final_legacy_execution_46": "2b1291c584fc285d219a09b84a752b548b3085a0f7b725464a2806a21afffb60",
+        "final_legacy_bridge_current_47": "2b1291c584fc285d219a09b84a752b548b3085a0f7b725464a2806a21afffb60",
+        "final_loaded_audio_strengthened_44": "2b1291c584fc285d219a09b84a752b548b3085a0f7b725464a2806a21afffb60"
+      },
+      "recorded_matches_published": {
+        "final_native_48": true,
+        "final_module_gates_47": true,
+        "final_legacy_execution_46": true,
+        "final_legacy_bridge_current_47": true,
+        "final_loaded_audio_strengthened_44": true
+      }
+    },
+    {
+      "path": "docs/specs/HOST_EXPRESSION_MONO_20261124.md",
+      "published": {
+        "sha256": "16a617fb45448f7cad16d7de94ccd0c05b98706aeea99a36c4cea59bd4ea7229",
+        "bytes": 9518,
+        "git_blob_oid": "b02c42521b0bcc6c55d6ea51030a9a7b79a73f2e"
+      },
+      "current": {
+        "sha256": "16a617fb45448f7cad16d7de94ccd0c05b98706aeea99a36c4cea59bd4ea7229",
+        "bytes": 9518
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "16a617fb45448f7cad16d7de94ccd0c05b98706aeea99a36c4cea59bd4ea7229",
+      "recorded_sha256": {
+        "final_legacy_execution_46": "16a617fb45448f7cad16d7de94ccd0c05b98706aeea99a36c4cea59bd4ea7229",
+        "final_legacy_bridge_current_47": "16a617fb45448f7cad16d7de94ccd0c05b98706aeea99a36c4cea59bd4ea7229"
+      },
+      "recorded_matches_published": {
+        "final_legacy_execution_46": true,
+        "final_legacy_bridge_current_47": true
+      }
+    },
+    {
+      "path": "docs/specs/PHOTO_EDITOR_20261124.md",
+      "published": {
+        "sha256": "9b68c304da33113797543314fedc722db6da00ce981db28d7ab2742f5f955ed1",
+        "bytes": 3329,
+        "git_blob_oid": "4deec83588fe97ae6659b622638843f4700dec1b"
+      },
+      "current": {
+        "sha256": "9b68c304da33113797543314fedc722db6da00ce981db28d7ab2742f5f955ed1",
+        "bytes": 3329
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "9b68c304da33113797543314fedc722db6da00ce981db28d7ab2742f5f955ed1",
+      "recorded_sha256": {
+        "final_native_48": "9b68c304da33113797543314fedc722db6da00ce981db28d7ab2742f5f955ed1"
+      },
+      "recorded_matches_published": {
+        "final_native_48": true
+      }
+    },
+    {
+      "path": "include/rhodes/audio_engine.hpp",
+      "published": {
+        "sha256": "10efac8150c07e69ef41eed415a6e7403b4339179af902f91cd17ef498da7b97",
+        "bytes": 4216,
+        "git_blob_oid": "24a84b82b56717b06001ba71fa2a1b0c8f8b5058"
+      },
+      "current": {
+        "sha256": "10efac8150c07e69ef41eed415a6e7403b4339179af902f91cd17ef498da7b97",
+        "bytes": 4216
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "10efac8150c07e69ef41eed415a6e7403b4339179af902f91cd17ef498da7b97",
+      "recorded_sha256": {
+        "final_native_48": "10efac8150c07e69ef41eed415a6e7403b4339179af902f91cd17ef498da7b97",
+        "final_module_gates_47": "10efac8150c07e69ef41eed415a6e7403b4339179af902f91cd17ef498da7b97",
+        "final_legacy_execution_46": "10efac8150c07e69ef41eed415a6e7403b4339179af902f91cd17ef498da7b97",
+        "final_legacy_bridge_current_47": "10efac8150c07e69ef41eed415a6e7403b4339179af902f91cd17ef498da7b97",
+        "final_loaded_audio_strengthened_44": "10efac8150c07e69ef41eed415a6e7403b4339179af902f91cd17ef498da7b97"
+      },
+      "recorded_matches_published": {
+        "final_native_48": true,
+        "final_module_gates_47": true,
+        "final_legacy_execution_46": true,
+        "final_legacy_bridge_current_47": true,
+        "final_loaded_audio_strengthened_44": true
+      }
+    },
+    {
+      "path": "include/rhodes/audio_filter_coefficients.hpp",
+      "published": {
+        "sha256": "c1ab39356d7e44348f9dc56f9120ff2598889d1fa144e5294b084585655eb76d",
+        "bytes": 17719,
+        "git_blob_oid": "751c1123d4178f2e4074d78d740087025aabe2a0"
+      },
+      "current": {
+        "sha256": "c1ab39356d7e44348f9dc56f9120ff2598889d1fa144e5294b084585655eb76d",
+        "bytes": 17719
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "c1ab39356d7e44348f9dc56f9120ff2598889d1fa144e5294b084585655eb76d",
+      "recorded_sha256": {
+        "final_native_48": "c1ab39356d7e44348f9dc56f9120ff2598889d1fa144e5294b084585655eb76d",
+        "final_module_gates_47": "c1ab39356d7e44348f9dc56f9120ff2598889d1fa144e5294b084585655eb76d",
+        "final_legacy_execution_46": "c1ab39356d7e44348f9dc56f9120ff2598889d1fa144e5294b084585655eb76d",
+        "final_legacy_bridge_current_47": "c1ab39356d7e44348f9dc56f9120ff2598889d1fa144e5294b084585655eb76d",
+        "final_loaded_audio_strengthened_44": "c1ab39356d7e44348f9dc56f9120ff2598889d1fa144e5294b084585655eb76d"
+      },
+      "recorded_matches_published": {
+        "final_native_48": true,
+        "final_module_gates_47": true,
+        "final_legacy_execution_46": true,
+        "final_legacy_bridge_current_47": true,
+        "final_loaded_audio_strengthened_44": true
+      }
+    },
+    {
+      "path": "include/rhodes/contact_reference.hpp",
+      "published": {
+        "sha256": "00b99e61dc73686c22675bedf647c3ad1b27ba13332180431f5a42e485057fda",
+        "bytes": 13870,
+        "git_blob_oid": "fa0e7035de8068aa8660e83f4aeee8b7936f79d6"
+      },
+      "current": {
+        "sha256": "00b99e61dc73686c22675bedf647c3ad1b27ba13332180431f5a42e485057fda",
+        "bytes": 13870
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "00b99e61dc73686c22675bedf647c3ad1b27ba13332180431f5a42e485057fda",
+      "recorded_sha256": {
+        "final_native_48": "00b99e61dc73686c22675bedf647c3ad1b27ba13332180431f5a42e485057fda",
+        "final_module_gates_47": "00b99e61dc73686c22675bedf647c3ad1b27ba13332180431f5a42e485057fda",
+        "final_legacy_execution_46": "00b99e61dc73686c22675bedf647c3ad1b27ba13332180431f5a42e485057fda",
+        "final_legacy_bridge_current_47": "00b99e61dc73686c22675bedf647c3ad1b27ba13332180431f5a42e485057fda",
+        "final_loaded_audio_strengthened_44": "00b99e61dc73686c22675bedf647c3ad1b27ba13332180431f5a42e485057fda"
+      },
+      "recorded_matches_published": {
+        "final_native_48": true,
+        "final_module_gates_47": true,
+        "final_legacy_execution_46": true,
+        "final_legacy_bridge_current_47": true,
+        "final_loaded_audio_strengthened_44": true
+      }
+    },
+    {
+      "path": "include/rhodes/control_text.hpp",
+      "published": {
+        "sha256": "de28474739274f4fac20dc1d3d5602cb63c62ddd04a33202cb5375985086e63d",
+        "bytes": 17207,
+        "git_blob_oid": "e27751eb3829ef30217ef6969547d54093eda133"
+      },
+      "current": {
+        "sha256": "de28474739274f4fac20dc1d3d5602cb63c62ddd04a33202cb5375985086e63d",
+        "bytes": 17207
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "de28474739274f4fac20dc1d3d5602cb63c62ddd04a33202cb5375985086e63d",
+      "recorded_sha256": {
+        "final_native_48": "de28474739274f4fac20dc1d3d5602cb63c62ddd04a33202cb5375985086e63d",
+        "final_module_gates_47": "de28474739274f4fac20dc1d3d5602cb63c62ddd04a33202cb5375985086e63d",
+        "final_legacy_execution_46": "de28474739274f4fac20dc1d3d5602cb63c62ddd04a33202cb5375985086e63d",
+        "final_legacy_bridge_current_47": "de28474739274f4fac20dc1d3d5602cb63c62ddd04a33202cb5375985086e63d",
+        "final_loaded_audio_strengthened_44": "de28474739274f4fac20dc1d3d5602cb63c62ddd04a33202cb5375985086e63d"
+      },
+      "recorded_matches_published": {
+        "final_native_48": true,
+        "final_module_gates_47": true,
+        "final_legacy_execution_46": true,
+        "final_legacy_bridge_current_47": true,
+        "final_loaded_audio_strengthened_44": true
+      }
+    },
+    {
+      "path": "include/rhodes/control_value.hpp",
+      "published": {
+        "sha256": "d7c282afdcffaef90f7872f97b37bfb34671448da64376d3439649c052d4d48d",
+        "bytes": 5479,
+        "git_blob_oid": "12bb1d05a20bbdb1a947a84662707773ff71d542"
+      },
+      "current": {
+        "sha256": "d7c282afdcffaef90f7872f97b37bfb34671448da64376d3439649c052d4d48d",
+        "bytes": 5479
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "d7c282afdcffaef90f7872f97b37bfb34671448da64376d3439649c052d4d48d",
+      "recorded_sha256": {
+        "final_native_48": "d7c282afdcffaef90f7872f97b37bfb34671448da64376d3439649c052d4d48d",
+        "final_module_gates_47": "d7c282afdcffaef90f7872f97b37bfb34671448da64376d3439649c052d4d48d",
+        "final_legacy_execution_46": "d7c282afdcffaef90f7872f97b37bfb34671448da64376d3439649c052d4d48d",
+        "final_legacy_bridge_current_47": "d7c282afdcffaef90f7872f97b37bfb34671448da64376d3439649c052d4d48d",
+        "final_loaded_audio_strengthened_44": "d7c282afdcffaef90f7872f97b37bfb34671448da64376d3439649c052d4d48d"
+      },
+      "recorded_matches_published": {
+        "final_native_48": true,
+        "final_module_gates_47": true,
+        "final_legacy_execution_46": true,
+        "final_legacy_bridge_current_47": true,
+        "final_loaded_audio_strengthened_44": true
+      }
+    },
+    {
+      "path": "include/rhodes/editor_audition.hpp",
+      "published": {
+        "sha256": "6c4ea15ddd2bb3c7498f848c5c123de8c69b28fe14aaa2aa694c5adcaf6442c9",
+        "bytes": 7536,
+        "git_blob_oid": "7ef9e22f6d7b7995f0ab5e0446a07353201029ee"
+      },
+      "current": {
+        "sha256": "6c4ea15ddd2bb3c7498f848c5c123de8c69b28fe14aaa2aa694c5adcaf6442c9",
+        "bytes": 7536
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "6c4ea15ddd2bb3c7498f848c5c123de8c69b28fe14aaa2aa694c5adcaf6442c9",
+      "recorded_sha256": {
+        "final_native_48": "6c4ea15ddd2bb3c7498f848c5c123de8c69b28fe14aaa2aa694c5adcaf6442c9",
+        "final_module_gates_47": "6c4ea15ddd2bb3c7498f848c5c123de8c69b28fe14aaa2aa694c5adcaf6442c9",
+        "final_legacy_execution_46": "6c4ea15ddd2bb3c7498f848c5c123de8c69b28fe14aaa2aa694c5adcaf6442c9",
+        "final_legacy_bridge_current_47": "6c4ea15ddd2bb3c7498f848c5c123de8c69b28fe14aaa2aa694c5adcaf6442c9",
+        "final_loaded_audio_strengthened_44": "6c4ea15ddd2bb3c7498f848c5c123de8c69b28fe14aaa2aa694c5adcaf6442c9"
+      },
+      "recorded_matches_published": {
+        "final_native_48": true,
+        "final_module_gates_47": true,
+        "final_legacy_execution_46": true,
+        "final_legacy_bridge_current_47": true,
+        "final_loaded_audio_strengthened_44": true
+      }
+    },
+    {
+      "path": "include/rhodes/event_processor.hpp",
+      "published": {
+        "sha256": "cbfebb44d5d7eee06ab6952209a4683c7a7da58c04ea81f6583b98cfb981517d",
+        "bytes": 7620,
+        "git_blob_oid": "671804b8dfdbf8789770539d58fc89680fb0731a"
+      },
+      "current": {
+        "sha256": "cbfebb44d5d7eee06ab6952209a4683c7a7da58c04ea81f6583b98cfb981517d",
+        "bytes": 7620
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "cbfebb44d5d7eee06ab6952209a4683c7a7da58c04ea81f6583b98cfb981517d",
+      "recorded_sha256": {
+        "final_native_48": "cbfebb44d5d7eee06ab6952209a4683c7a7da58c04ea81f6583b98cfb981517d",
+        "final_module_gates_47": "cbfebb44d5d7eee06ab6952209a4683c7a7da58c04ea81f6583b98cfb981517d",
+        "final_legacy_execution_46": "cbfebb44d5d7eee06ab6952209a4683c7a7da58c04ea81f6583b98cfb981517d",
+        "final_legacy_bridge_current_47": "cbfebb44d5d7eee06ab6952209a4683c7a7da58c04ea81f6583b98cfb981517d",
+        "final_loaded_audio_strengthened_44": "cbfebb44d5d7eee06ab6952209a4683c7a7da58c04ea81f6583b98cfb981517d"
+      },
+      "recorded_matches_published": {
+        "final_native_48": true,
+        "final_module_gates_47": true,
+        "final_legacy_execution_46": true,
+        "final_legacy_bridge_current_47": true,
+        "final_loaded_audio_strengthened_44": true
+      }
+    },
+    {
+      "path": "include/rhodes/fir_decimator.hpp",
+      "published": {
+        "sha256": "e54faeb397bcbccb9ed9834cfc264d84550c4ef375d8e5273a720eb1f190071b",
+        "bytes": 2185,
+        "git_blob_oid": "9869c27f5f7e9b5529f132ab726a2715041faa88"
+      },
+      "current": {
+        "sha256": "e54faeb397bcbccb9ed9834cfc264d84550c4ef375d8e5273a720eb1f190071b",
+        "bytes": 2185
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "e54faeb397bcbccb9ed9834cfc264d84550c4ef375d8e5273a720eb1f190071b",
+      "recorded_sha256": {
+        "final_native_48": "e54faeb397bcbccb9ed9834cfc264d84550c4ef375d8e5273a720eb1f190071b",
+        "final_module_gates_47": "e54faeb397bcbccb9ed9834cfc264d84550c4ef375d8e5273a720eb1f190071b",
+        "final_legacy_execution_46": "e54faeb397bcbccb9ed9834cfc264d84550c4ef375d8e5273a720eb1f190071b",
+        "final_legacy_bridge_current_47": "e54faeb397bcbccb9ed9834cfc264d84550c4ef375d8e5273a720eb1f190071b",
+        "final_loaded_audio_strengthened_44": "e54faeb397bcbccb9ed9834cfc264d84550c4ef375d8e5273a720eb1f190071b"
+      },
+      "recorded_matches_published": {
+        "final_native_48": true,
+        "final_module_gates_47": true,
+        "final_legacy_execution_46": true,
+        "final_legacy_bridge_current_47": true,
+        "final_loaded_audio_strengthened_44": true
+      }
+    },
+    {
+      "path": "include/rhodes/front_panel_effects.hpp",
+      "published": {
+        "sha256": "e8998a71f848a14b617317f88447a8655dde60fefb7981762fb15ad0de3fa7d0",
+        "bytes": 10035,
+        "git_blob_oid": "244c16e8855e9033094947ae95bdb7cccdbb9865"
+      },
+      "current": {
+        "sha256": "e8998a71f848a14b617317f88447a8655dde60fefb7981762fb15ad0de3fa7d0",
+        "bytes": 10035
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "e8998a71f848a14b617317f88447a8655dde60fefb7981762fb15ad0de3fa7d0",
+      "recorded_sha256": {
+        "final_native_48": "e8998a71f848a14b617317f88447a8655dde60fefb7981762fb15ad0de3fa7d0",
+        "final_module_gates_47": "e8998a71f848a14b617317f88447a8655dde60fefb7981762fb15ad0de3fa7d0",
+        "final_legacy_execution_46": "e8998a71f848a14b617317f88447a8655dde60fefb7981762fb15ad0de3fa7d0",
+        "final_legacy_bridge_current_47": "e8998a71f848a14b617317f88447a8655dde60fefb7981762fb15ad0de3fa7d0",
+        "final_loaded_audio_strengthened_44": "e8998a71f848a14b617317f88447a8655dde60fefb7981762fb15ad0de3fa7d0"
+      },
+      "recorded_matches_published": {
+        "final_native_48": true,
+        "final_module_gates_47": true,
+        "final_legacy_execution_46": true,
+        "final_legacy_bridge_current_47": true,
+        "final_loaded_audio_strengthened_44": true
+      }
+    },
+    {
+      "path": "include/rhodes/front_panel_state.hpp",
+      "published": {
+        "sha256": "fe4181f15b328db42cec646a22de186636d0dfa27d4a384b016ad47e6d5a7a71",
+        "bytes": 2299,
+        "git_blob_oid": "6d1f3c69cf2f1e709864e2f8d25777277def80c3"
+      },
+      "current": {
+        "sha256": "fe4181f15b328db42cec646a22de186636d0dfa27d4a384b016ad47e6d5a7a71",
+        "bytes": 2299
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "fe4181f15b328db42cec646a22de186636d0dfa27d4a384b016ad47e6d5a7a71",
+      "recorded_sha256": {
+        "final_native_48": "fe4181f15b328db42cec646a22de186636d0dfa27d4a384b016ad47e6d5a7a71",
+        "final_module_gates_47": "fe4181f15b328db42cec646a22de186636d0dfa27d4a384b016ad47e6d5a7a71",
+        "final_legacy_execution_46": "fe4181f15b328db42cec646a22de186636d0dfa27d4a384b016ad47e6d5a7a71",
+        "final_legacy_bridge_current_47": "fe4181f15b328db42cec646a22de186636d0dfa27d4a384b016ad47e6d5a7a71",
+        "final_loaded_audio_strengthened_44": "fe4181f15b328db42cec646a22de186636d0dfa27d4a384b016ad47e6d5a7a71"
+      },
+      "recorded_matches_published": {
+        "final_native_48": true,
+        "final_module_gates_47": true,
+        "final_legacy_execution_46": true,
+        "final_legacy_bridge_current_47": true,
+        "final_loaded_audio_strengthened_44": true
+      }
+    },
+    {
+      "path": "include/rhodes/instrument_state.hpp",
+      "published": {
+        "sha256": "1550dbbd83ea20838a6cac1579c716f7d01a94429450c19b62d18df14d102043",
+        "bytes": 8896,
+        "git_blob_oid": "174db4f2c87cdd8c515ff9cdc1cc7637b76d42a7"
+      },
+      "current": {
+        "sha256": "1550dbbd83ea20838a6cac1579c716f7d01a94429450c19b62d18df14d102043",
+        "bytes": 8896
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "1550dbbd83ea20838a6cac1579c716f7d01a94429450c19b62d18df14d102043",
+      "recorded_sha256": {
+        "final_native_48": "1550dbbd83ea20838a6cac1579c716f7d01a94429450c19b62d18df14d102043",
+        "final_module_gates_47": "1550dbbd83ea20838a6cac1579c716f7d01a94429450c19b62d18df14d102043",
+        "final_legacy_execution_46": "1550dbbd83ea20838a6cac1579c716f7d01a94429450c19b62d18df14d102043",
+        "final_legacy_bridge_current_47": "1550dbbd83ea20838a6cac1579c716f7d01a94429450c19b62d18df14d102043",
+        "final_loaded_audio_strengthened_44": "1550dbbd83ea20838a6cac1579c716f7d01a94429450c19b62d18df14d102043"
+      },
+      "recorded_matches_published": {
+        "final_native_48": true,
+        "final_module_gates_47": true,
+        "final_legacy_execution_46": true,
+        "final_legacy_bridge_current_47": true,
+        "final_loaded_audio_strengthened_44": true
+      }
+    },
+    {
+      "path": "include/rhodes/note_tracker.hpp",
+      "published": {
+        "sha256": "76931b326daae3a112b56420f9be9ea5b03b1c30307f1dc68b6c13c710cd830f",
+        "bytes": 5432,
+        "git_blob_oid": "8f82aa55ad670c7a5bdfc46fc11905d120e3ca20"
+      },
+      "current": {
+        "sha256": "76931b326daae3a112b56420f9be9ea5b03b1c30307f1dc68b6c13c710cd830f",
+        "bytes": 5432
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "76931b326daae3a112b56420f9be9ea5b03b1c30307f1dc68b6c13c710cd830f",
+      "recorded_sha256": {
+        "final_native_48": "76931b326daae3a112b56420f9be9ea5b03b1c30307f1dc68b6c13c710cd830f",
+        "final_module_gates_47": "76931b326daae3a112b56420f9be9ea5b03b1c30307f1dc68b6c13c710cd830f",
+        "final_legacy_execution_46": "76931b326daae3a112b56420f9be9ea5b03b1c30307f1dc68b6c13c710cd830f",
+        "final_legacy_bridge_current_47": "76931b326daae3a112b56420f9be9ea5b03b1c30307f1dc68b6c13c710cd830f",
+        "final_loaded_audio_strengthened_44": "76931b326daae3a112b56420f9be9ea5b03b1c30307f1dc68b6c13c710cd830f"
+      },
+      "recorded_matches_published": {
+        "final_native_48": true,
+        "final_module_gates_47": true,
+        "final_legacy_execution_46": true,
+        "final_legacy_bridge_current_47": true,
+        "final_loaded_audio_strengthened_44": true
+      }
+    },
+    {
+      "path": "include/rhodes/plugin_state.hpp",
+      "published": {
+        "sha256": "973576bb1db6fe6830b60193065a3acd4d0522f45eb0e33ca8a26524726dab15",
+        "bytes": 11445,
+        "git_blob_oid": "7d7aec6f53e0274a757be019d3ef0ae2d709f6f0"
+      },
+      "current": {
+        "sha256": "973576bb1db6fe6830b60193065a3acd4d0522f45eb0e33ca8a26524726dab15",
+        "bytes": 11445
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "973576bb1db6fe6830b60193065a3acd4d0522f45eb0e33ca8a26524726dab15",
+      "recorded_sha256": {
+        "final_native_48": "973576bb1db6fe6830b60193065a3acd4d0522f45eb0e33ca8a26524726dab15",
+        "final_module_gates_47": "973576bb1db6fe6830b60193065a3acd4d0522f45eb0e33ca8a26524726dab15",
+        "final_legacy_execution_46": "973576bb1db6fe6830b60193065a3acd4d0522f45eb0e33ca8a26524726dab15",
+        "final_legacy_bridge_current_47": "973576bb1db6fe6830b60193065a3acd4d0522f45eb0e33ca8a26524726dab15",
+        "final_loaded_audio_strengthened_44": "973576bb1db6fe6830b60193065a3acd4d0522f45eb0e33ca8a26524726dab15"
+      },
+      "recorded_matches_published": {
+        "final_native_48": true,
+        "final_module_gates_47": true,
+        "final_legacy_execution_46": true,
+        "final_legacy_bridge_current_47": true,
+        "final_loaded_audio_strengthened_44": true
+      }
+    },
+    {
+      "path": "include/rhodes/quadrature_engine.hpp",
+      "published": {
+        "sha256": "c625a82b61eb3e721061177654c12ffa6aac0049e026b9633ae53ea2abaa773d",
+        "bytes": 4801,
+        "git_blob_oid": "553b93f9f48f428f01a890bc80ebad102de6c685"
+      },
+      "current": {
+        "sha256": "c625a82b61eb3e721061177654c12ffa6aac0049e026b9633ae53ea2abaa773d",
+        "bytes": 4801
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "c625a82b61eb3e721061177654c12ffa6aac0049e026b9633ae53ea2abaa773d",
+      "recorded_sha256": {
+        "final_native_48": "c625a82b61eb3e721061177654c12ffa6aac0049e026b9633ae53ea2abaa773d",
+        "final_module_gates_47": "c625a82b61eb3e721061177654c12ffa6aac0049e026b9633ae53ea2abaa773d",
+        "final_legacy_execution_46": "c625a82b61eb3e721061177654c12ffa6aac0049e026b9633ae53ea2abaa773d",
+        "final_legacy_bridge_current_47": "c625a82b61eb3e721061177654c12ffa6aac0049e026b9633ae53ea2abaa773d",
+        "final_loaded_audio_strengthened_44": "c625a82b61eb3e721061177654c12ffa6aac0049e026b9633ae53ea2abaa773d"
+      },
+      "recorded_matches_published": {
+        "final_native_48": true,
+        "final_module_gates_47": true,
+        "final_legacy_execution_46": true,
+        "final_legacy_bridge_current_47": true,
+        "final_loaded_audio_strengthened_44": true
+      }
+    },
+    {
+      "path": "include/rhodes/quadrature_filter_coefficients.hpp",
+      "published": {
+        "sha256": "3cca4ea6553ceb01810a6230f2144491364fa48af7d6cfbc43a8e3dcf5d08b51",
+        "bytes": 16603,
+        "git_blob_oid": "f3b4f5fe30ac74f45e68ef4f415ae3ec6b505da2"
+      },
+      "current": {
+        "sha256": "3cca4ea6553ceb01810a6230f2144491364fa48af7d6cfbc43a8e3dcf5d08b51",
+        "bytes": 16603
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "3cca4ea6553ceb01810a6230f2144491364fa48af7d6cfbc43a8e3dcf5d08b51",
+      "recorded_sha256": {
+        "final_native_48": "3cca4ea6553ceb01810a6230f2144491364fa48af7d6cfbc43a8e3dcf5d08b51",
+        "final_module_gates_47": "3cca4ea6553ceb01810a6230f2144491364fa48af7d6cfbc43a8e3dcf5d08b51",
+        "final_legacy_execution_46": "3cca4ea6553ceb01810a6230f2144491364fa48af7d6cfbc43a8e3dcf5d08b51",
+        "final_legacy_bridge_current_47": "3cca4ea6553ceb01810a6230f2144491364fa48af7d6cfbc43a8e3dcf5d08b51",
+        "final_loaded_audio_strengthened_44": "3cca4ea6553ceb01810a6230f2144491364fa48af7d6cfbc43a8e3dcf5d08b51"
+      },
+      "recorded_matches_published": {
+        "final_native_48": true,
+        "final_module_gates_47": true,
+        "final_legacy_execution_46": true,
+        "final_legacy_bridge_current_47": true,
+        "final_loaded_audio_strengthened_44": true
+      }
+    },
+    {
+      "path": "include/rhodes/quadrature_fir.hpp",
+      "published": {
+        "sha256": "cf6c85e70036b3f1794ecf131a9db43bcb8da373e47c5335f56b1bb57559b45e",
+        "bytes": 2707,
+        "git_blob_oid": "94645b5b16e1e1d3c183678d649ff2c1978806b9"
+      },
+      "current": {
+        "sha256": "cf6c85e70036b3f1794ecf131a9db43bcb8da373e47c5335f56b1bb57559b45e",
+        "bytes": 2707
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "cf6c85e70036b3f1794ecf131a9db43bcb8da373e47c5335f56b1bb57559b45e",
+      "recorded_sha256": {
+        "final_native_48": "cf6c85e70036b3f1794ecf131a9db43bcb8da373e47c5335f56b1bb57559b45e",
+        "final_module_gates_47": "cf6c85e70036b3f1794ecf131a9db43bcb8da373e47c5335f56b1bb57559b45e",
+        "final_legacy_execution_46": "cf6c85e70036b3f1794ecf131a9db43bcb8da373e47c5335f56b1bb57559b45e",
+        "final_legacy_bridge_current_47": "cf6c85e70036b3f1794ecf131a9db43bcb8da373e47c5335f56b1bb57559b45e",
+        "final_loaded_audio_strengthened_44": "cf6c85e70036b3f1794ecf131a9db43bcb8da373e47c5335f56b1bb57559b45e"
+      },
+      "recorded_matches_published": {
+        "final_native_48": true,
+        "final_module_gates_47": true,
+        "final_legacy_execution_46": true,
+        "final_legacy_bridge_current_47": true,
+        "final_loaded_audio_strengthened_44": true
+      }
+    },
+    {
+      "path": "include/rhodes/research_engine.hpp",
+      "published": {
+        "sha256": "2a6ba0483a010d9b7a44517c5ed7c215f05d57ed6e96bd6609127322092929e4",
+        "bytes": 8348,
+        "git_blob_oid": "8935f4ab6f9f39fadc80e90ac75d6055e38c5371"
+      },
+      "current": {
+        "sha256": "2a6ba0483a010d9b7a44517c5ed7c215f05d57ed6e96bd6609127322092929e4",
+        "bytes": 8348
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "2a6ba0483a010d9b7a44517c5ed7c215f05d57ed6e96bd6609127322092929e4",
+      "recorded_sha256": {
+        "final_native_48": "2a6ba0483a010d9b7a44517c5ed7c215f05d57ed6e96bd6609127322092929e4",
+        "final_module_gates_47": "2a6ba0483a010d9b7a44517c5ed7c215f05d57ed6e96bd6609127322092929e4",
+        "final_legacy_execution_46": "2a6ba0483a010d9b7a44517c5ed7c215f05d57ed6e96bd6609127322092929e4",
+        "final_legacy_bridge_current_47": "2a6ba0483a010d9b7a44517c5ed7c215f05d57ed6e96bd6609127322092929e4",
+        "final_loaded_audio_strengthened_44": "2a6ba0483a010d9b7a44517c5ed7c215f05d57ed6e96bd6609127322092929e4"
+      },
+      "recorded_matches_published": {
+        "final_native_48": true,
+        "final_module_gates_47": true,
+        "final_legacy_execution_46": true,
+        "final_legacy_bridge_current_47": true,
+        "final_loaded_audio_strengthened_44": true
+      }
+    },
+    {
+      "path": "plugins/vst3/THIRD_PARTY_NOTICES.md",
+      "published": {
+        "sha256": "f3ed30cd41b48ce88753de641057f51f51e78ea19b60a40e4398f29fe191f901",
+        "bytes": 8653,
+        "git_blob_oid": "8068b0f48531be9a692b3d491eb495cacc07bb50"
+      },
+      "current": {
+        "sha256": "f3ed30cd41b48ce88753de641057f51f51e78ea19b60a40e4398f29fe191f901",
+        "bytes": 8653
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "f3ed30cd41b48ce88753de641057f51f51e78ea19b60a40e4398f29fe191f901",
+      "recorded_sha256": {
+        "final_native_48": "f3ed30cd41b48ce88753de641057f51f51e78ea19b60a40e4398f29fe191f901",
+        "final_module_gates_47": "f3ed30cd41b48ce88753de641057f51f51e78ea19b60a40e4398f29fe191f901",
+        "final_legacy_execution_46": "f3ed30cd41b48ce88753de641057f51f51e78ea19b60a40e4398f29fe191f901",
+        "final_legacy_bridge_current_47": "f3ed30cd41b48ce88753de641057f51f51e78ea19b60a40e4398f29fe191f901",
+        "final_loaded_audio_strengthened_44": "f3ed30cd41b48ce88753de641057f51f51e78ea19b60a40e4398f29fe191f901"
+      },
+      "recorded_matches_published": {
+        "final_native_48": true,
+        "final_module_gates_47": true,
+        "final_legacy_execution_46": true,
+        "final_legacy_bridge_current_47": true,
+        "final_loaded_audio_strengthened_44": true
+      }
+    },
+    {
+      "path": "plugins/vst3/controller.cpp",
+      "published": {
+        "sha256": "2c77542e1aeb58bceaab8e7d6dd59250d17b5e4bc8f7d489b367ea5e805a0e36",
+        "bytes": 25101,
+        "git_blob_oid": "f4523370050d52552c191adfb26171611d260503"
+      },
+      "current": {
+        "sha256": "2c77542e1aeb58bceaab8e7d6dd59250d17b5e4bc8f7d489b367ea5e805a0e36",
+        "bytes": 25101
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "2c77542e1aeb58bceaab8e7d6dd59250d17b5e4bc8f7d489b367ea5e805a0e36",
+      "recorded_sha256": {
+        "final_native_48": "2c77542e1aeb58bceaab8e7d6dd59250d17b5e4bc8f7d489b367ea5e805a0e36",
+        "final_module_gates_47": "2c77542e1aeb58bceaab8e7d6dd59250d17b5e4bc8f7d489b367ea5e805a0e36",
+        "final_legacy_execution_46": "2c77542e1aeb58bceaab8e7d6dd59250d17b5e4bc8f7d489b367ea5e805a0e36",
+        "final_legacy_bridge_current_47": "2c77542e1aeb58bceaab8e7d6dd59250d17b5e4bc8f7d489b367ea5e805a0e36",
+        "final_loaded_audio_strengthened_44": "2c77542e1aeb58bceaab8e7d6dd59250d17b5e4bc8f7d489b367ea5e805a0e36"
+      },
+      "recorded_matches_published": {
+        "final_native_48": true,
+        "final_module_gates_47": true,
+        "final_legacy_execution_46": true,
+        "final_legacy_bridge_current_47": true,
+        "final_loaded_audio_strengthened_44": true
+      }
+    },
+    {
+      "path": "plugins/vst3/controller.hpp",
+      "published": {
+        "sha256": "a0dcf316c8d6a013a7a8b6a75485b451e21b070e6b57f62ef52fdf605b252183",
+        "bytes": 3901,
+        "git_blob_oid": "c837be9fd8af89c07aa46aad3737dfb1ef050f57"
+      },
+      "current": {
+        "sha256": "a0dcf316c8d6a013a7a8b6a75485b451e21b070e6b57f62ef52fdf605b252183",
+        "bytes": 3901
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "a0dcf316c8d6a013a7a8b6a75485b451e21b070e6b57f62ef52fdf605b252183",
+      "recorded_sha256": {
+        "final_native_48": "a0dcf316c8d6a013a7a8b6a75485b451e21b070e6b57f62ef52fdf605b252183",
+        "final_module_gates_47": "a0dcf316c8d6a013a7a8b6a75485b451e21b070e6b57f62ef52fdf605b252183",
+        "final_legacy_execution_46": "a0dcf316c8d6a013a7a8b6a75485b451e21b070e6b57f62ef52fdf605b252183",
+        "final_legacy_bridge_current_47": "a0dcf316c8d6a013a7a8b6a75485b451e21b070e6b57f62ef52fdf605b252183",
+        "final_loaded_audio_strengthened_44": "a0dcf316c8d6a013a7a8b6a75485b451e21b070e6b57f62ef52fdf605b252183"
+      },
+      "recorded_matches_published": {
+        "final_native_48": true,
+        "final_module_gates_47": true,
+        "final_legacy_execution_46": true,
+        "final_legacy_bridge_current_47": true,
+        "final_loaded_audio_strengthened_44": true
+      }
+    },
+    {
+      "path": "plugins/vst3/factory.cpp",
+      "published": {
+        "sha256": "16e5da7194a8f548dd91b84e3c66ed81b5bdf5ff618e66dbafa3abdc1a16158c",
+        "bytes": 1037,
+        "git_blob_oid": "6559dd1f42afe40854bc9ea20784e4146a0848a9"
+      },
+      "current": {
+        "sha256": "16e5da7194a8f548dd91b84e3c66ed81b5bdf5ff618e66dbafa3abdc1a16158c",
+        "bytes": 1037
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "16e5da7194a8f548dd91b84e3c66ed81b5bdf5ff618e66dbafa3abdc1a16158c",
+      "recorded_sha256": {
+        "final_native_48": "16e5da7194a8f548dd91b84e3c66ed81b5bdf5ff618e66dbafa3abdc1a16158c",
+        "final_module_gates_47": "16e5da7194a8f548dd91b84e3c66ed81b5bdf5ff618e66dbafa3abdc1a16158c",
+        "final_legacy_execution_46": "16e5da7194a8f548dd91b84e3c66ed81b5bdf5ff618e66dbafa3abdc1a16158c",
+        "final_legacy_bridge_current_47": "16e5da7194a8f548dd91b84e3c66ed81b5bdf5ff618e66dbafa3abdc1a16158c",
+        "final_loaded_audio_strengthened_44": "16e5da7194a8f548dd91b84e3c66ed81b5bdf5ff618e66dbafa3abdc1a16158c"
+      },
+      "recorded_matches_published": {
+        "final_native_48": true,
+        "final_module_gates_47": true,
+        "final_legacy_execution_46": true,
+        "final_legacy_bridge_current_47": true,
+        "final_loaded_audio_strengthened_44": true
+      }
+    },
+    {
+      "path": "plugins/vst3/photo_editor.cpp",
+      "published": {
+        "sha256": "caf54d88c871bab05ec572904ef4e3de7c985c0b713e65c398e0010786679fcf",
+        "bytes": 43422,
+        "git_blob_oid": "132a2228ac495ab749795c8b7a7ca78659e5d23e"
+      },
+      "current": {
+        "sha256": "caf54d88c871bab05ec572904ef4e3de7c985c0b713e65c398e0010786679fcf",
+        "bytes": 43422
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "caf54d88c871bab05ec572904ef4e3de7c985c0b713e65c398e0010786679fcf",
+      "recorded_sha256": {
+        "final_native_48": "caf54d88c871bab05ec572904ef4e3de7c985c0b713e65c398e0010786679fcf",
+        "final_module_gates_47": "caf54d88c871bab05ec572904ef4e3de7c985c0b713e65c398e0010786679fcf",
+        "final_legacy_execution_46": "caf54d88c871bab05ec572904ef4e3de7c985c0b713e65c398e0010786679fcf",
+        "final_legacy_bridge_current_47": "caf54d88c871bab05ec572904ef4e3de7c985c0b713e65c398e0010786679fcf",
+        "final_loaded_audio_strengthened_44": "caf54d88c871bab05ec572904ef4e3de7c985c0b713e65c398e0010786679fcf"
+      },
+      "recorded_matches_published": {
+        "final_native_48": true,
+        "final_module_gates_47": true,
+        "final_legacy_execution_46": true,
+        "final_legacy_bridge_current_47": true,
+        "final_loaded_audio_strengthened_44": true
+      }
+    },
+    {
+      "path": "plugins/vst3/photo_editor.hpp",
+      "published": {
+        "sha256": "0c421cae0d330f22b00bab37bb17e73cddd948dbd56a0834c6cb086d6cec97db",
+        "bytes": 383,
+        "git_blob_oid": "cee35a2f193bdaa165fea89b9f4f9e333eda1f85"
+      },
+      "current": {
+        "sha256": "0c421cae0d330f22b00bab37bb17e73cddd948dbd56a0834c6cb086d6cec97db",
+        "bytes": 383
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "0c421cae0d330f22b00bab37bb17e73cddd948dbd56a0834c6cb086d6cec97db",
+      "recorded_sha256": {
+        "final_native_48": "0c421cae0d330f22b00bab37bb17e73cddd948dbd56a0834c6cb086d6cec97db",
+        "final_module_gates_47": "0c421cae0d330f22b00bab37bb17e73cddd948dbd56a0834c6cb086d6cec97db",
+        "final_legacy_execution_46": "0c421cae0d330f22b00bab37bb17e73cddd948dbd56a0834c6cb086d6cec97db",
+        "final_legacy_bridge_current_47": "0c421cae0d330f22b00bab37bb17e73cddd948dbd56a0834c6cb086d6cec97db",
+        "final_loaded_audio_strengthened_44": "0c421cae0d330f22b00bab37bb17e73cddd948dbd56a0834c6cb086d6cec97db"
+      },
+      "recorded_matches_published": {
+        "final_native_48": true,
+        "final_module_gates_47": true,
+        "final_legacy_execution_46": true,
+        "final_legacy_bridge_current_47": true,
+        "final_loaded_audio_strengthened_44": true
+      }
+    },
+    {
+      "path": "plugins/vst3/photo_geometry.hpp",
+      "published": {
+        "sha256": "77fe4f4ac93ee0b212ef3f5399eb5cfa8884076d8eef51d2adf2123e6d85e0bd",
+        "bytes": 11936,
+        "git_blob_oid": "5cfcbc031a1dad70a4f018c5fc6668eed9a0ed51"
+      },
+      "current": {
+        "sha256": "77fe4f4ac93ee0b212ef3f5399eb5cfa8884076d8eef51d2adf2123e6d85e0bd",
+        "bytes": 11936
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "77fe4f4ac93ee0b212ef3f5399eb5cfa8884076d8eef51d2adf2123e6d85e0bd",
+      "recorded_sha256": {
+        "final_native_48": "77fe4f4ac93ee0b212ef3f5399eb5cfa8884076d8eef51d2adf2123e6d85e0bd",
+        "final_module_gates_47": "77fe4f4ac93ee0b212ef3f5399eb5cfa8884076d8eef51d2adf2123e6d85e0bd",
+        "final_legacy_execution_46": "77fe4f4ac93ee0b212ef3f5399eb5cfa8884076d8eef51d2adf2123e6d85e0bd",
+        "final_legacy_bridge_current_47": "77fe4f4ac93ee0b212ef3f5399eb5cfa8884076d8eef51d2adf2123e6d85e0bd",
+        "final_loaded_audio_strengthened_44": "77fe4f4ac93ee0b212ef3f5399eb5cfa8884076d8eef51d2adf2123e6d85e0bd"
+      },
+      "recorded_matches_published": {
+        "final_native_48": true,
+        "final_module_gates_47": true,
+        "final_legacy_execution_46": true,
+        "final_legacy_bridge_current_47": true,
+        "final_loaded_audio_strengthened_44": true
+      }
+    },
+    {
+      "path": "plugins/vst3/photo_key_highlight.hpp",
+      "published": {
+        "sha256": "9302c59a677564253ea80fb92deeef811864def11a4fdd7e03b3a20c2477c58a",
+        "bytes": 16080,
+        "git_blob_oid": "d2c77f17aea35a14c44732923a739e53990c890a"
+      },
+      "current": {
+        "sha256": "9302c59a677564253ea80fb92deeef811864def11a4fdd7e03b3a20c2477c58a",
+        "bytes": 16080
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "9302c59a677564253ea80fb92deeef811864def11a4fdd7e03b3a20c2477c58a",
+      "recorded_sha256": {
+        "final_native_48": "9302c59a677564253ea80fb92deeef811864def11a4fdd7e03b3a20c2477c58a",
+        "final_module_gates_47": "9302c59a677564253ea80fb92deeef811864def11a4fdd7e03b3a20c2477c58a",
+        "final_legacy_execution_46": "9302c59a677564253ea80fb92deeef811864def11a4fdd7e03b3a20c2477c58a",
+        "final_legacy_bridge_current_47": "9302c59a677564253ea80fb92deeef811864def11a4fdd7e03b3a20c2477c58a",
+        "final_loaded_audio_strengthened_44": "9302c59a677564253ea80fb92deeef811864def11a4fdd7e03b3a20c2477c58a"
+      },
+      "recorded_matches_published": {
+        "final_native_48": true,
+        "final_module_gates_47": true,
+        "final_legacy_execution_46": true,
+        "final_legacy_bridge_current_47": true,
+        "final_loaded_audio_strengthened_44": true
+      }
+    },
+    {
+      "path": "plugins/vst3/photo_native_focus.cpp",
+      "published": {
+        "sha256": "c24f8d70731a193b0b7bf833984c00df5a60375d2d306986f1440757af938c5f",
+        "bytes": 11355,
+        "git_blob_oid": "0e85c46b3ab1eb3f2d8e63c9ee08ac157b2f7721"
+      },
+      "current": {
+        "sha256": "c24f8d70731a193b0b7bf833984c00df5a60375d2d306986f1440757af938c5f",
+        "bytes": 11355
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "c24f8d70731a193b0b7bf833984c00df5a60375d2d306986f1440757af938c5f",
+      "recorded_sha256": {
+        "final_native_48": "c24f8d70731a193b0b7bf833984c00df5a60375d2d306986f1440757af938c5f",
+        "final_module_gates_47": "c24f8d70731a193b0b7bf833984c00df5a60375d2d306986f1440757af938c5f",
+        "final_legacy_execution_46": "c24f8d70731a193b0b7bf833984c00df5a60375d2d306986f1440757af938c5f",
+        "final_legacy_bridge_current_47": "c24f8d70731a193b0b7bf833984c00df5a60375d2d306986f1440757af938c5f",
+        "final_loaded_audio_strengthened_44": "c24f8d70731a193b0b7bf833984c00df5a60375d2d306986f1440757af938c5f"
+      },
+      "recorded_matches_published": {
+        "final_native_48": true,
+        "final_module_gates_47": true,
+        "final_legacy_execution_46": true,
+        "final_legacy_bridge_current_47": true,
+        "final_loaded_audio_strengthened_44": true
+      }
+    },
+    {
+      "path": "plugins/vst3/photo_native_focus.hpp",
+      "published": {
+        "sha256": "9bf4553ec6a1418747d5379ba531bf15bbfb7e589f3923ff9c8131485704396a",
+        "bytes": 1697,
+        "git_blob_oid": "82e84aede6bf9ce8e84f5bf9c1e2f5a26f0c181f"
+      },
+      "current": {
+        "sha256": "9bf4553ec6a1418747d5379ba531bf15bbfb7e589f3923ff9c8131485704396a",
+        "bytes": 1697
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "9bf4553ec6a1418747d5379ba531bf15bbfb7e589f3923ff9c8131485704396a",
+      "recorded_sha256": {
+        "final_native_48": "9bf4553ec6a1418747d5379ba531bf15bbfb7e589f3923ff9c8131485704396a",
+        "final_module_gates_47": "9bf4553ec6a1418747d5379ba531bf15bbfb7e589f3923ff9c8131485704396a",
+        "final_legacy_execution_46": "9bf4553ec6a1418747d5379ba531bf15bbfb7e589f3923ff9c8131485704396a",
+        "final_legacy_bridge_current_47": "9bf4553ec6a1418747d5379ba531bf15bbfb7e589f3923ff9c8131485704396a",
+        "final_loaded_audio_strengthened_44": "9bf4553ec6a1418747d5379ba531bf15bbfb7e589f3923ff9c8131485704396a"
+      },
+      "recorded_matches_published": {
+        "final_native_48": true,
+        "final_module_gates_47": true,
+        "final_legacy_execution_46": true,
+        "final_legacy_bridge_current_47": true,
+        "final_loaded_audio_strengthened_44": true
+      }
+    },
+    {
+      "path": "plugins/vst3/plugin_ids.hpp",
+      "published": {
+        "sha256": "558491751250799eadce1eb95ad1cf59cde728c8bf9490a2962aafeaa8ca128d",
+        "bytes": 3577,
+        "git_blob_oid": "7dbada03e6c961374f70f60ab6aa615c24cc0209"
+      },
+      "current": {
+        "sha256": "558491751250799eadce1eb95ad1cf59cde728c8bf9490a2962aafeaa8ca128d",
+        "bytes": 3577
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "558491751250799eadce1eb95ad1cf59cde728c8bf9490a2962aafeaa8ca128d",
+      "recorded_sha256": {
+        "final_native_48": "558491751250799eadce1eb95ad1cf59cde728c8bf9490a2962aafeaa8ca128d",
+        "final_module_gates_47": "558491751250799eadce1eb95ad1cf59cde728c8bf9490a2962aafeaa8ca128d",
+        "final_legacy_execution_46": "558491751250799eadce1eb95ad1cf59cde728c8bf9490a2962aafeaa8ca128d",
+        "final_legacy_bridge_current_47": "558491751250799eadce1eb95ad1cf59cde728c8bf9490a2962aafeaa8ca128d",
+        "final_loaded_audio_strengthened_44": "558491751250799eadce1eb95ad1cf59cde728c8bf9490a2962aafeaa8ca128d"
+      },
+      "recorded_matches_published": {
+        "final_native_48": true,
+        "final_module_gates_47": true,
+        "final_legacy_execution_46": true,
+        "final_legacy_bridge_current_47": true,
+        "final_loaded_audio_strengthened_44": true
+      }
+    },
+    {
+      "path": "plugins/vst3/processor.cpp",
+      "published": {
+        "sha256": "1ef121c4afb190c45fa1ff41a2127fb7487919dc69d8856c4a05e79844f760a9",
+        "bytes": 37967,
+        "git_blob_oid": "f6d05daab4db7b08a5c07dd40421ed755f092487"
+      },
+      "current": {
+        "sha256": "1ef121c4afb190c45fa1ff41a2127fb7487919dc69d8856c4a05e79844f760a9",
+        "bytes": 37967
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "1ef121c4afb190c45fa1ff41a2127fb7487919dc69d8856c4a05e79844f760a9",
+      "recorded_sha256": {
+        "final_native_48": "1ef121c4afb190c45fa1ff41a2127fb7487919dc69d8856c4a05e79844f760a9",
+        "final_module_gates_47": "1ef121c4afb190c45fa1ff41a2127fb7487919dc69d8856c4a05e79844f760a9",
+        "final_legacy_execution_46": "1ef121c4afb190c45fa1ff41a2127fb7487919dc69d8856c4a05e79844f760a9",
+        "final_legacy_bridge_current_47": "1ef121c4afb190c45fa1ff41a2127fb7487919dc69d8856c4a05e79844f760a9",
+        "final_loaded_audio_strengthened_44": "1ef121c4afb190c45fa1ff41a2127fb7487919dc69d8856c4a05e79844f760a9"
+      },
+      "recorded_matches_published": {
+        "final_native_48": true,
+        "final_module_gates_47": true,
+        "final_legacy_execution_46": true,
+        "final_legacy_bridge_current_47": true,
+        "final_loaded_audio_strengthened_44": true
+      }
+    },
+    {
+      "path": "plugins/vst3/processor.hpp",
+      "published": {
+        "sha256": "5206559cf6a05e6b53e8f6d043a4860b1c4afb995ca8253ed1f75762a5270574",
+        "bytes": 6905,
+        "git_blob_oid": "a24298dd47e10185399a9c9b18d266e27d66fc0d"
+      },
+      "current": {
+        "sha256": "5206559cf6a05e6b53e8f6d043a4860b1c4afb995ca8253ed1f75762a5270574",
+        "bytes": 6905
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "5206559cf6a05e6b53e8f6d043a4860b1c4afb995ca8253ed1f75762a5270574",
+      "recorded_sha256": {
+        "final_native_48": "5206559cf6a05e6b53e8f6d043a4860b1c4afb995ca8253ed1f75762a5270574",
+        "final_module_gates_47": "5206559cf6a05e6b53e8f6d043a4860b1c4afb995ca8253ed1f75762a5270574",
+        "final_legacy_execution_46": "5206559cf6a05e6b53e8f6d043a4860b1c4afb995ca8253ed1f75762a5270574",
+        "final_legacy_bridge_current_47": "5206559cf6a05e6b53e8f6d043a4860b1c4afb995ca8253ed1f75762a5270574",
+        "final_loaded_audio_strengthened_44": "5206559cf6a05e6b53e8f6d043a4860b1c4afb995ca8253ed1f75762a5270574"
+      },
+      "recorded_matches_published": {
+        "final_native_48": true,
+        "final_module_gates_47": true,
+        "final_legacy_execution_46": true,
+        "final_legacy_bridge_current_47": true,
+        "final_loaded_audio_strengthened_44": true
+      }
+    },
+    {
+      "path": "plugins/vst3/resources/Expat-LICENSE.txt",
+      "published": {
+        "sha256": "f6eeb2310d0b00e5cecac39c73a0696a5bdbfb754b26325ed5a502fc1a6c338c",
+        "bytes": 1208,
+        "git_blob_oid": "dcb4506429684b253cc440ca40a109fb6b9253a9"
+      },
+      "current": {
+        "sha256": "f6eeb2310d0b00e5cecac39c73a0696a5bdbfb754b26325ed5a502fc1a6c338c",
+        "bytes": 1208
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "f6eeb2310d0b00e5cecac39c73a0696a5bdbfb754b26325ed5a502fc1a6c338c",
+      "recorded_sha256": {
+        "final_native_48": "f6eeb2310d0b00e5cecac39c73a0696a5bdbfb754b26325ed5a502fc1a6c338c",
+        "final_module_gates_47": "f6eeb2310d0b00e5cecac39c73a0696a5bdbfb754b26325ed5a502fc1a6c338c",
+        "final_legacy_execution_46": "f6eeb2310d0b00e5cecac39c73a0696a5bdbfb754b26325ed5a502fc1a6c338c",
+        "final_legacy_bridge_current_47": "f6eeb2310d0b00e5cecac39c73a0696a5bdbfb754b26325ed5a502fc1a6c338c",
+        "final_loaded_audio_strengthened_44": "f6eeb2310d0b00e5cecac39c73a0696a5bdbfb754b26325ed5a502fc1a6c338c"
+      },
+      "recorded_matches_published": {
+        "final_native_48": true,
+        "final_module_gates_47": true,
+        "final_legacy_execution_46": true,
+        "final_legacy_bridge_current_47": true,
+        "final_loaded_audio_strengthened_44": true
+      }
+    },
+    {
+      "path": "plugins/vst3/resources/rhodes-suitcase.png",
+      "published": {
+        "sha256": "84e2d48fc0311eb923083cc3e1f96dc5fa1b3f8a6e085daee7c973e54d754d26",
+        "bytes": 1434362,
+        "git_blob_oid": "937034ec30834d928320f9646059744f3f6fd43d"
+      },
+      "current": {
+        "sha256": "84e2d48fc0311eb923083cc3e1f96dc5fa1b3f8a6e085daee7c973e54d754d26",
+        "bytes": 1434362
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "84e2d48fc0311eb923083cc3e1f96dc5fa1b3f8a6e085daee7c973e54d754d26",
+      "recorded_sha256": {
+        "final_native_48": "84e2d48fc0311eb923083cc3e1f96dc5fa1b3f8a6e085daee7c973e54d754d26",
+        "final_module_gates_47": "84e2d48fc0311eb923083cc3e1f96dc5fa1b3f8a6e085daee7c973e54d754d26",
+        "final_legacy_execution_46": "84e2d48fc0311eb923083cc3e1f96dc5fa1b3f8a6e085daee7c973e54d754d26",
+        "final_legacy_bridge_current_47": "84e2d48fc0311eb923083cc3e1f96dc5fa1b3f8a6e085daee7c973e54d754d26",
+        "final_loaded_audio_strengthened_44": "84e2d48fc0311eb923083cc3e1f96dc5fa1b3f8a6e085daee7c973e54d754d26"
+      },
+      "recorded_matches_published": {
+        "final_native_48": true,
+        "final_module_gates_47": true,
+        "final_legacy_execution_46": true,
+        "final_legacy_bridge_current_47": true,
+        "final_loaded_audio_strengthened_44": true
+      }
+    },
+    {
+      "path": "plugins/vst3/resources/rhodes-suitcase.uidesc",
+      "published": {
+        "sha256": "7554fecedf67cf744b3aa7f6cf12dc4f874d8b5e0b97ec66959ba2b42ea5825e",
+        "bytes": 651,
+        "git_blob_oid": "df26b3db8887c3b42939085f5e1b5ed025d27b23"
+      },
+      "current": {
+        "sha256": "7554fecedf67cf744b3aa7f6cf12dc4f874d8b5e0b97ec66959ba2b42ea5825e",
+        "bytes": 651
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "7554fecedf67cf744b3aa7f6cf12dc4f874d8b5e0b97ec66959ba2b42ea5825e",
+      "recorded_sha256": {
+        "final_native_48": "7554fecedf67cf744b3aa7f6cf12dc4f874d8b5e0b97ec66959ba2b42ea5825e",
+        "final_module_gates_47": "7554fecedf67cf744b3aa7f6cf12dc4f874d8b5e0b97ec66959ba2b42ea5825e",
+        "final_legacy_execution_46": "7554fecedf67cf744b3aa7f6cf12dc4f874d8b5e0b97ec66959ba2b42ea5825e",
+        "final_legacy_bridge_current_47": "7554fecedf67cf744b3aa7f6cf12dc4f874d8b5e0b97ec66959ba2b42ea5825e",
+        "final_loaded_audio_strengthened_44": "7554fecedf67cf744b3aa7f6cf12dc4f874d8b5e0b97ec66959ba2b42ea5825e"
+      },
+      "recorded_matches_published": {
+        "final_native_48": true,
+        "final_module_gates_47": true,
+        "final_legacy_execution_46": true,
+        "final_legacy_bridge_current_47": true,
+        "final_loaded_audio_strengthened_44": true
+      }
+    },
+    {
+      "path": "plugins/vst3/state_stream.cpp",
+      "published": {
+        "sha256": "30b057afe520c81bb87e0298b32835ea47957ff46b452cf417244dbb51b55051",
+        "bytes": 5052,
+        "git_blob_oid": "2b85c57e97509f7a5c994804d183137b2f2c1b7b"
+      },
+      "current": {
+        "sha256": "30b057afe520c81bb87e0298b32835ea47957ff46b452cf417244dbb51b55051",
+        "bytes": 5052
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "30b057afe520c81bb87e0298b32835ea47957ff46b452cf417244dbb51b55051",
+      "recorded_sha256": {
+        "final_native_48": "30b057afe520c81bb87e0298b32835ea47957ff46b452cf417244dbb51b55051",
+        "final_module_gates_47": "30b057afe520c81bb87e0298b32835ea47957ff46b452cf417244dbb51b55051",
+        "final_legacy_execution_46": "30b057afe520c81bb87e0298b32835ea47957ff46b452cf417244dbb51b55051",
+        "final_legacy_bridge_current_47": "30b057afe520c81bb87e0298b32835ea47957ff46b452cf417244dbb51b55051",
+        "final_loaded_audio_strengthened_44": "30b057afe520c81bb87e0298b32835ea47957ff46b452cf417244dbb51b55051"
+      },
+      "recorded_matches_published": {
+        "final_native_48": true,
+        "final_module_gates_47": true,
+        "final_legacy_execution_46": true,
+        "final_legacy_bridge_current_47": true,
+        "final_loaded_audio_strengthened_44": true
+      }
+    },
+    {
+      "path": "plugins/vst3/state_stream.hpp",
+      "published": {
+        "sha256": "a0885ed2c7a381fac06a65e37c02fa115f5c29930a7881ffd5186297fb9d3b28",
+        "bytes": 2227,
+        "git_blob_oid": "3e05fa559099c776ed9e7f0dac238488dfbe3a08"
+      },
+      "current": {
+        "sha256": "a0885ed2c7a381fac06a65e37c02fa115f5c29930a7881ffd5186297fb9d3b28",
+        "bytes": 2227
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "a0885ed2c7a381fac06a65e37c02fa115f5c29930a7881ffd5186297fb9d3b28",
+      "recorded_sha256": {
+        "final_native_48": "a0885ed2c7a381fac06a65e37c02fa115f5c29930a7881ffd5186297fb9d3b28",
+        "final_module_gates_47": "a0885ed2c7a381fac06a65e37c02fa115f5c29930a7881ffd5186297fb9d3b28",
+        "final_legacy_execution_46": "a0885ed2c7a381fac06a65e37c02fa115f5c29930a7881ffd5186297fb9d3b28",
+        "final_legacy_bridge_current_47": "a0885ed2c7a381fac06a65e37c02fa115f5c29930a7881ffd5186297fb9d3b28",
+        "final_loaded_audio_strengthened_44": "a0885ed2c7a381fac06a65e37c02fa115f5c29930a7881ffd5186297fb9d3b28"
+      },
+      "recorded_matches_published": {
+        "final_native_48": true,
+        "final_module_gates_47": true,
+        "final_legacy_execution_46": true,
+        "final_legacy_bridge_current_47": true,
+        "final_loaded_audio_strengthened_44": true
+      }
+    },
+    {
+      "path": "src/contact_reference.cpp",
+      "published": {
+        "sha256": "70dde1bfab9c2e35457da2ebf66ff4638cb6f56f1f19a84dbe55a1752d5166fd",
+        "bytes": 78110,
+        "git_blob_oid": "767dc8599834e7894dd08667a0bfe7fc189b3ed9"
+      },
+      "current": {
+        "sha256": "70dde1bfab9c2e35457da2ebf66ff4638cb6f56f1f19a84dbe55a1752d5166fd",
+        "bytes": 78110
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "70dde1bfab9c2e35457da2ebf66ff4638cb6f56f1f19a84dbe55a1752d5166fd",
+      "recorded_sha256": {
+        "final_native_48": "70dde1bfab9c2e35457da2ebf66ff4638cb6f56f1f19a84dbe55a1752d5166fd",
+        "final_module_gates_47": "70dde1bfab9c2e35457da2ebf66ff4638cb6f56f1f19a84dbe55a1752d5166fd",
+        "final_legacy_execution_46": "70dde1bfab9c2e35457da2ebf66ff4638cb6f56f1f19a84dbe55a1752d5166fd",
+        "final_legacy_bridge_current_47": "70dde1bfab9c2e35457da2ebf66ff4638cb6f56f1f19a84dbe55a1752d5166fd",
+        "final_loaded_audio_strengthened_44": "70dde1bfab9c2e35457da2ebf66ff4638cb6f56f1f19a84dbe55a1752d5166fd"
+      },
+      "recorded_matches_published": {
+        "final_native_48": true,
+        "final_module_gates_47": true,
+        "final_legacy_execution_46": true,
+        "final_legacy_bridge_current_47": true,
+        "final_loaded_audio_strengthened_44": true
+      }
+    },
+    {
+      "path": "src/research_engine.cpp",
+      "published": {
+        "sha256": "01c2a9f7f9f7cfa4f759be56770178f32a71a28667d4ac6ab390e03ff7a95814",
+        "bytes": 20795,
+        "git_blob_oid": "bedf9f36b7a15adb0eb8346adef3f34e5d2c1920"
+      },
+      "current": {
+        "sha256": "01c2a9f7f9f7cfa4f759be56770178f32a71a28667d4ac6ab390e03ff7a95814",
+        "bytes": 20795
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "01c2a9f7f9f7cfa4f759be56770178f32a71a28667d4ac6ab390e03ff7a95814",
+      "recorded_sha256": {
+        "final_native_48": "01c2a9f7f9f7cfa4f759be56770178f32a71a28667d4ac6ab390e03ff7a95814",
+        "final_module_gates_47": "01c2a9f7f9f7cfa4f759be56770178f32a71a28667d4ac6ab390e03ff7a95814",
+        "final_legacy_execution_46": "01c2a9f7f9f7cfa4f759be56770178f32a71a28667d4ac6ab390e03ff7a95814",
+        "final_legacy_bridge_current_47": "01c2a9f7f9f7cfa4f759be56770178f32a71a28667d4ac6ab390e03ff7a95814",
+        "final_loaded_audio_strengthened_44": "01c2a9f7f9f7cfa4f759be56770178f32a71a28667d4ac6ab390e03ff7a95814"
+      },
+      "recorded_matches_published": {
+        "final_native_48": true,
+        "final_module_gates_47": true,
+        "final_legacy_execution_46": true,
+        "final_legacy_bridge_current_47": true,
+        "final_loaded_audio_strengthened_44": true
+      }
+    },
+    {
+      "path": "tests/cpp/vst3_legacy_capture.cpp",
+      "published": {
+        "sha256": "671b246932106e6041166c6aea3d9246d1865f8d8fb0c0ca3e91e084ce31ac4d",
+        "bytes": 25736,
+        "git_blob_oid": "2e6d4504067027e7b5f57d543a91a371c3edd986"
+      },
+      "current": {
+        "sha256": "671b246932106e6041166c6aea3d9246d1865f8d8fb0c0ca3e91e084ce31ac4d",
+        "bytes": 25736
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "671b246932106e6041166c6aea3d9246d1865f8d8fb0c0ca3e91e084ce31ac4d",
+      "recorded_sha256": {
+        "final_legacy_execution_46": "671b246932106e6041166c6aea3d9246d1865f8d8fb0c0ca3e91e084ce31ac4d",
+        "final_legacy_bridge_current_47": "671b246932106e6041166c6aea3d9246d1865f8d8fb0c0ca3e91e084ce31ac4d"
+      },
+      "recorded_matches_published": {
+        "final_legacy_execution_46": true,
+        "final_legacy_bridge_current_47": true
+      }
+    },
+    {
+      "path": "tests/cpp/vst3_loaded_expression_test.cpp",
+      "published": {
+        "sha256": "c31de34334de4ec33fb3a2680520e6950956344ebe17cc5bc82cb363ccd813c5",
+        "bytes": 71010,
+        "git_blob_oid": "da7459e6192f12e96b1abc4b7899e07d1c12cf0a"
+      },
+      "current": {
+        "sha256": "c31de34334de4ec33fb3a2680520e6950956344ebe17cc5bc82cb363ccd813c5",
+        "bytes": 71010
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "c31de34334de4ec33fb3a2680520e6950956344ebe17cc5bc82cb363ccd813c5",
+      "recorded_sha256": {
+        "final_module_gates_47": "c31de34334de4ec33fb3a2680520e6950956344ebe17cc5bc82cb363ccd813c5"
+      },
+      "recorded_matches_published": {
+        "final_module_gates_47": true
+      }
+    },
+    {
+      "path": "tests/cpp/vst3_loaded_panel_audio_test.cpp",
+      "published": {
+        "sha256": "a76cba87f5682a53a4aca46911fe2be2d8824171fee6bc3de45c25566a56fac1",
+        "bytes": 25393,
+        "git_blob_oid": "433e255a4e42d9b634c27d2aa786c85294f9e95f"
+      },
+      "current": {
+        "sha256": "a76cba87f5682a53a4aca46911fe2be2d8824171fee6bc3de45c25566a56fac1",
+        "bytes": 25393
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": null,
+      "recorded_sha256": {
+        "final_loaded_audio_strengthened_44": "a76cba87f5682a53a4aca46911fe2be2d8824171fee6bc3de45c25566a56fac1"
+      },
+      "recorded_matches_published": {
+        "final_loaded_audio_strengthened_44": true
+      }
+    },
+    {
+      "path": "tests/cpp/vst3_photo_editor_test.cpp",
+      "published": {
+        "sha256": "4c2564d1606793371206889eea9e1c68f5b72a9599e05a6a9d52c6d8952bc9a8",
+        "bytes": 30369,
+        "git_blob_oid": "c6d5427833786aab433b6acfa0f62c8e4fe9089f"
+      },
+      "current": {
+        "sha256": "4c2564d1606793371206889eea9e1c68f5b72a9599e05a6a9d52c6d8952bc9a8",
+        "bytes": 30369
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "4c2564d1606793371206889eea9e1c68f5b72a9599e05a6a9d52c6d8952bc9a8",
+      "recorded_sha256": {
+        "final_module_gates_47": "4c2564d1606793371206889eea9e1c68f5b72a9599e05a6a9d52c6d8952bc9a8"
+      },
+      "recorded_matches_published": {
+        "final_module_gates_47": true
+      }
+    },
+    {
+      "path": "tests/cpp/vst3_photo_lifecycle_test.cpp",
+      "published": {
+        "sha256": "b650178fa148db07faee9dfae14ac5e7fdb4215b9240d71c03a9c9011e883830",
+        "bytes": 37641,
+        "git_blob_oid": "ccca5b2255a9accc8190e3a9a73f62cf9391eec4"
+      },
+      "current": {
+        "sha256": "b650178fa148db07faee9dfae14ac5e7fdb4215b9240d71c03a9c9011e883830",
+        "bytes": 37641
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "b650178fa148db07faee9dfae14ac5e7fdb4215b9240d71c03a9c9011e883830",
+      "recorded_sha256": {
+        "final_module_gates_47": "b650178fa148db07faee9dfae14ac5e7fdb4215b9240d71c03a9c9011e883830"
+      },
+      "recorded_matches_published": {
+        "final_module_gates_47": true
+      }
+    },
+    {
+      "path": "tests/python/test_compare_vst3_legacy.py",
+      "published": {
+        "sha256": "b064b26cf40620c231039f91f60690693c2ff695d786d8dc740cb7b141dd45ab",
+        "bytes": 20690,
+        "git_blob_oid": "325ccab1b1d75978672140b7ed9a4bc67ef1b8a1"
+      },
+      "current": {
+        "sha256": "b064b26cf40620c231039f91f60690693c2ff695d786d8dc740cb7b141dd45ab",
+        "bytes": 20690
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "b064b26cf40620c231039f91f60690693c2ff695d786d8dc740cb7b141dd45ab",
+      "recorded_sha256": {
+        "final_legacy_bridge_current_47": "b064b26cf40620c231039f91f60690693c2ff695d786d8dc740cb7b141dd45ab"
+      },
+      "recorded_matches_published": {
+        "final_legacy_bridge_current_47": true
+      }
+    },
+    {
+      "path": "tools/compare_vst3_legacy.py",
+      "published": {
+        "sha256": "dde69e127376fd6c24d63fc9e260d036151d30eb8ad73a1bd29e5def09e307d5",
+        "bytes": 33798,
+        "git_blob_oid": "1405990ccc8fde7496042cc5f1ba66af0ad7a665"
+      },
+      "current": {
+        "sha256": "dde69e127376fd6c24d63fc9e260d036151d30eb8ad73a1bd29e5def09e307d5",
+        "bytes": 33798
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "dde69e127376fd6c24d63fc9e260d036151d30eb8ad73a1bd29e5def09e307d5",
+      "recorded_sha256": {
+        "final_legacy_execution_46": "dde69e127376fd6c24d63fc9e260d036151d30eb8ad73a1bd29e5def09e307d5",
+        "final_legacy_bridge_current_47": "dde69e127376fd6c24d63fc9e260d036151d30eb8ad73a1bd29e5def09e307d5"
+      },
+      "recorded_matches_published": {
+        "final_legacy_execution_46": true,
+        "final_legacy_bridge_current_47": true
+      }
+    },
+    {
+      "path": "tools/run_xvfb_test.py",
+      "published": {
+        "sha256": "653ae79a00c3455511b7c89c3396044e70ca5a6e341781bf2c1d5a82f9850c4e",
+        "bytes": 6139,
+        "git_blob_oid": "4dc7c9bb0fdad84e668a32dc4801ce1c26bdf0b9"
+      },
+      "current": {
+        "sha256": "653ae79a00c3455511b7c89c3396044e70ca5a6e341781bf2c1d5a82f9850c4e",
+        "bytes": 6139
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "653ae79a00c3455511b7c89c3396044e70ca5a6e341781bf2c1d5a82f9850c4e",
+      "recorded_sha256": {
+        "final_module_gates_47": "653ae79a00c3455511b7c89c3396044e70ca5a6e341781bf2c1d5a82f9850c4e"
+      },
+      "recorded_matches_published": {
+        "final_module_gates_47": true
+      }
+    },
+    {
+      "path": "tools/verify_native_photo_editor.py",
+      "published": {
+        "sha256": "ce0f2d5c3e74e34c478186bef80ee6879ab0a5328b45d682d9d34d45b6dfda47",
+        "bytes": 31258,
+        "git_blob_oid": "8e0995c9abe61a68b41a47cc6e35d43bdc773dae"
+      },
+      "current": {
+        "sha256": "ce0f2d5c3e74e34c478186bef80ee6879ab0a5328b45d682d9d34d45b6dfda47",
+        "bytes": 31258
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "ce0f2d5c3e74e34c478186bef80ee6879ab0a5328b45d682d9d34d45b6dfda47",
+      "recorded_sha256": {
+        "final_native_48": "ce0f2d5c3e74e34c478186bef80ee6879ab0a5328b45d682d9d34d45b6dfda47"
+      },
+      "recorded_matches_published": {
+        "final_native_48": true
+      }
+    },
+    {
+      "path": "tools/verify_photo_interactions.py",
+      "published": {
+        "sha256": "ccfad904084c57a0870bd0c2ba10a1603421482547c2dee03f0c2a595cc7c3b5",
+        "bytes": 23758,
+        "git_blob_oid": "47071985f8a68991da61500c1b5302bfd69fd94f"
+      },
+      "current": {
+        "sha256": "ccfad904084c57a0870bd0c2ba10a1603421482547c2dee03f0c2a595cc7c3b5",
+        "bytes": 23758
+      },
+      "current_matches_published": true,
+      "previous_commit_sha256": "ccfad904084c57a0870bd0c2ba10a1603421482547c2dee03f0c2a595cc7c3b5",
+      "recorded_sha256": {
+        "final_native_48": "ccfad904084c57a0870bd0c2ba10a1603421482547c2dee03f0c2a595cc7c3b5"
+      },
+      "recorded_matches_published": {
+        "final_native_48": true
+      }
+    }
+  ],
+  "production_and_asset_identity": {
+    "roots": [
+      "include",
+      "src",
+      "plugins",
+      "assets"
+    ],
+    "tracked_file_count": 40,
+    "changed_between_commits": [],
+    "files": [
+      {
+        "path": "assets/reference/README.md",
+        "sha256": "79307be95b4321d803fcfef9a8f83a89699bc502e84bf9ceb1a90975a8e78e90",
+        "bytes": 1118,
+        "previous_commit_sha256": "79307be95b4321d803fcfef9a8f83a89699bc502e84bf9ceb1a90975a8e78e90",
+        "current_sha256": "79307be95b4321d803fcfef9a8f83a89699bc502e84bf9ceb1a90975a8e78e90",
+        "all_three_equal": true
+      },
+      {
+        "path": "assets/reference/manifest.json",
+        "sha256": "f2b7ff86fe5ac76de07c5098fab03e0ca11a7e7ff1e8e14152933892977aeda4",
+        "bytes": 1743,
+        "previous_commit_sha256": "f2b7ff86fe5ac76de07c5098fab03e0ca11a7e7ff1e8e14152933892977aeda4",
+        "current_sha256": "f2b7ff86fe5ac76de07c5098fab03e0ca11a7e7ff1e8e14152933892977aeda4",
+        "all_three_equal": true
+      },
+      {
+        "path": "assets/reference/rhodes-suitcase-reference.webp",
+        "sha256": "782b4c83a2bf827ed0d363bc567cdc2211485da6e650db4ae99448e78b7da24b",
+        "bytes": 257616,
+        "previous_commit_sha256": "782b4c83a2bf827ed0d363bc567cdc2211485da6e650db4ae99448e78b7da24b",
+        "current_sha256": "782b4c83a2bf827ed0d363bc567cdc2211485da6e650db4ae99448e78b7da24b",
+        "all_three_equal": true
+      },
+      {
+        "path": "include/rhodes/audio_engine.hpp",
+        "sha256": "10efac8150c07e69ef41eed415a6e7403b4339179af902f91cd17ef498da7b97",
+        "bytes": 4216,
+        "previous_commit_sha256": "10efac8150c07e69ef41eed415a6e7403b4339179af902f91cd17ef498da7b97",
+        "current_sha256": "10efac8150c07e69ef41eed415a6e7403b4339179af902f91cd17ef498da7b97",
+        "all_three_equal": true
+      },
+      {
+        "path": "include/rhodes/audio_filter_coefficients.hpp",
+        "sha256": "c1ab39356d7e44348f9dc56f9120ff2598889d1fa144e5294b084585655eb76d",
+        "bytes": 17719,
+        "previous_commit_sha256": "c1ab39356d7e44348f9dc56f9120ff2598889d1fa144e5294b084585655eb76d",
+        "current_sha256": "c1ab39356d7e44348f9dc56f9120ff2598889d1fa144e5294b084585655eb76d",
+        "all_three_equal": true
+      },
+      {
+        "path": "include/rhodes/contact_reference.hpp",
+        "sha256": "00b99e61dc73686c22675bedf647c3ad1b27ba13332180431f5a42e485057fda",
+        "bytes": 13870,
+        "previous_commit_sha256": "00b99e61dc73686c22675bedf647c3ad1b27ba13332180431f5a42e485057fda",
+        "current_sha256": "00b99e61dc73686c22675bedf647c3ad1b27ba13332180431f5a42e485057fda",
+        "all_three_equal": true
+      },
+      {
+        "path": "include/rhodes/control_text.hpp",
+        "sha256": "de28474739274f4fac20dc1d3d5602cb63c62ddd04a33202cb5375985086e63d",
+        "bytes": 17207,
+        "previous_commit_sha256": "de28474739274f4fac20dc1d3d5602cb63c62ddd04a33202cb5375985086e63d",
+        "current_sha256": "de28474739274f4fac20dc1d3d5602cb63c62ddd04a33202cb5375985086e63d",
+        "all_three_equal": true
+      },
+      {
+        "path": "include/rhodes/control_value.hpp",
+        "sha256": "d7c282afdcffaef90f7872f97b37bfb34671448da64376d3439649c052d4d48d",
+        "bytes": 5479,
+        "previous_commit_sha256": "d7c282afdcffaef90f7872f97b37bfb34671448da64376d3439649c052d4d48d",
+        "current_sha256": "d7c282afdcffaef90f7872f97b37bfb34671448da64376d3439649c052d4d48d",
+        "all_three_equal": true
+      },
+      {
+        "path": "include/rhodes/editor_audition.hpp",
+        "sha256": "6c4ea15ddd2bb3c7498f848c5c123de8c69b28fe14aaa2aa694c5adcaf6442c9",
+        "bytes": 7536,
+        "previous_commit_sha256": "6c4ea15ddd2bb3c7498f848c5c123de8c69b28fe14aaa2aa694c5adcaf6442c9",
+        "current_sha256": "6c4ea15ddd2bb3c7498f848c5c123de8c69b28fe14aaa2aa694c5adcaf6442c9",
+        "all_three_equal": true
+      },
+      {
+        "path": "include/rhodes/event_processor.hpp",
+        "sha256": "cbfebb44d5d7eee06ab6952209a4683c7a7da58c04ea81f6583b98cfb981517d",
+        "bytes": 7620,
+        "previous_commit_sha256": "cbfebb44d5d7eee06ab6952209a4683c7a7da58c04ea81f6583b98cfb981517d",
+        "current_sha256": "cbfebb44d5d7eee06ab6952209a4683c7a7da58c04ea81f6583b98cfb981517d",
+        "all_three_equal": true
+      },
+      {
+        "path": "include/rhodes/fir_decimator.hpp",
+        "sha256": "e54faeb397bcbccb9ed9834cfc264d84550c4ef375d8e5273a720eb1f190071b",
+        "bytes": 2185,
+        "previous_commit_sha256": "e54faeb397bcbccb9ed9834cfc264d84550c4ef375d8e5273a720eb1f190071b",
+        "current_sha256": "e54faeb397bcbccb9ed9834cfc264d84550c4ef375d8e5273a720eb1f190071b",
+        "all_three_equal": true
+      },
+      {
+        "path": "include/rhodes/front_panel_effects.hpp",
+        "sha256": "e8998a71f848a14b617317f88447a8655dde60fefb7981762fb15ad0de3fa7d0",
+        "bytes": 10035,
+        "previous_commit_sha256": "e8998a71f848a14b617317f88447a8655dde60fefb7981762fb15ad0de3fa7d0",
+        "current_sha256": "e8998a71f848a14b617317f88447a8655dde60fefb7981762fb15ad0de3fa7d0",
+        "all_three_equal": true
+      },
+      {
+        "path": "include/rhodes/front_panel_state.hpp",
+        "sha256": "fe4181f15b328db42cec646a22de186636d0dfa27d4a384b016ad47e6d5a7a71",
+        "bytes": 2299,
+        "previous_commit_sha256": "fe4181f15b328db42cec646a22de186636d0dfa27d4a384b016ad47e6d5a7a71",
+        "current_sha256": "fe4181f15b328db42cec646a22de186636d0dfa27d4a384b016ad47e6d5a7a71",
+        "all_three_equal": true
+      },
+      {
+        "path": "include/rhodes/instrument_state.hpp",
+        "sha256": "1550dbbd83ea20838a6cac1579c716f7d01a94429450c19b62d18df14d102043",
+        "bytes": 8896,
+        "previous_commit_sha256": "1550dbbd83ea20838a6cac1579c716f7d01a94429450c19b62d18df14d102043",
+        "current_sha256": "1550dbbd83ea20838a6cac1579c716f7d01a94429450c19b62d18df14d102043",
+        "all_three_equal": true
+      },
+      {
+        "path": "include/rhodes/note_tracker.hpp",
+        "sha256": "76931b326daae3a112b56420f9be9ea5b03b1c30307f1dc68b6c13c710cd830f",
+        "bytes": 5432,
+        "previous_commit_sha256": "76931b326daae3a112b56420f9be9ea5b03b1c30307f1dc68b6c13c710cd830f",
+        "current_sha256": "76931b326daae3a112b56420f9be9ea5b03b1c30307f1dc68b6c13c710cd830f",
+        "all_three_equal": true
+      },
+      {
+        "path": "include/rhodes/plugin_state.hpp",
+        "sha256": "973576bb1db6fe6830b60193065a3acd4d0522f45eb0e33ca8a26524726dab15",
+        "bytes": 11445,
+        "previous_commit_sha256": "973576bb1db6fe6830b60193065a3acd4d0522f45eb0e33ca8a26524726dab15",
+        "current_sha256": "973576bb1db6fe6830b60193065a3acd4d0522f45eb0e33ca8a26524726dab15",
+        "all_three_equal": true
+      },
+      {
+        "path": "include/rhodes/quadrature_engine.hpp",
+        "sha256": "c625a82b61eb3e721061177654c12ffa6aac0049e026b9633ae53ea2abaa773d",
+        "bytes": 4801,
+        "previous_commit_sha256": "c625a82b61eb3e721061177654c12ffa6aac0049e026b9633ae53ea2abaa773d",
+        "current_sha256": "c625a82b61eb3e721061177654c12ffa6aac0049e026b9633ae53ea2abaa773d",
+        "all_three_equal": true
+      },
+      {
+        "path": "include/rhodes/quadrature_filter_coefficients.hpp",
+        "sha256": "3cca4ea6553ceb01810a6230f2144491364fa48af7d6cfbc43a8e3dcf5d08b51",
+        "bytes": 16603,
+        "previous_commit_sha256": "3cca4ea6553ceb01810a6230f2144491364fa48af7d6cfbc43a8e3dcf5d08b51",
+        "current_sha256": "3cca4ea6553ceb01810a6230f2144491364fa48af7d6cfbc43a8e3dcf5d08b51",
+        "all_three_equal": true
+      },
+      {
+        "path": "include/rhodes/quadrature_fir.hpp",
+        "sha256": "cf6c85e70036b3f1794ecf131a9db43bcb8da373e47c5335f56b1bb57559b45e",
+        "bytes": 2707,
+        "previous_commit_sha256": "cf6c85e70036b3f1794ecf131a9db43bcb8da373e47c5335f56b1bb57559b45e",
+        "current_sha256": "cf6c85e70036b3f1794ecf131a9db43bcb8da373e47c5335f56b1bb57559b45e",
+        "all_three_equal": true
+      },
+      {
+        "path": "include/rhodes/research_engine.hpp",
+        "sha256": "2a6ba0483a010d9b7a44517c5ed7c215f05d57ed6e96bd6609127322092929e4",
+        "bytes": 8348,
+        "previous_commit_sha256": "2a6ba0483a010d9b7a44517c5ed7c215f05d57ed6e96bd6609127322092929e4",
+        "current_sha256": "2a6ba0483a010d9b7a44517c5ed7c215f05d57ed6e96bd6609127322092929e4",
+        "all_three_equal": true
+      },
+      {
+        "path": "plugins/vst3/THIRD_PARTY_NOTICES.md",
+        "sha256": "f3ed30cd41b48ce88753de641057f51f51e78ea19b60a40e4398f29fe191f901",
+        "bytes": 8653,
+        "previous_commit_sha256": "f3ed30cd41b48ce88753de641057f51f51e78ea19b60a40e4398f29fe191f901",
+        "current_sha256": "f3ed30cd41b48ce88753de641057f51f51e78ea19b60a40e4398f29fe191f901",
+        "all_three_equal": true
+      },
+      {
+        "path": "plugins/vst3/controller.cpp",
+        "sha256": "2c77542e1aeb58bceaab8e7d6dd59250d17b5e4bc8f7d489b367ea5e805a0e36",
+        "bytes": 25101,
+        "previous_commit_sha256": "2c77542e1aeb58bceaab8e7d6dd59250d17b5e4bc8f7d489b367ea5e805a0e36",
+        "current_sha256": "2c77542e1aeb58bceaab8e7d6dd59250d17b5e4bc8f7d489b367ea5e805a0e36",
+        "all_three_equal": true
+      },
+      {
+        "path": "plugins/vst3/controller.hpp",
+        "sha256": "a0dcf316c8d6a013a7a8b6a75485b451e21b070e6b57f62ef52fdf605b252183",
+        "bytes": 3901,
+        "previous_commit_sha256": "a0dcf316c8d6a013a7a8b6a75485b451e21b070e6b57f62ef52fdf605b252183",
+        "current_sha256": "a0dcf316c8d6a013a7a8b6a75485b451e21b070e6b57f62ef52fdf605b252183",
+        "all_three_equal": true
+      },
+      {
+        "path": "plugins/vst3/factory.cpp",
+        "sha256": "16e5da7194a8f548dd91b84e3c66ed81b5bdf5ff618e66dbafa3abdc1a16158c",
+        "bytes": 1037,
+        "previous_commit_sha256": "16e5da7194a8f548dd91b84e3c66ed81b5bdf5ff618e66dbafa3abdc1a16158c",
+        "current_sha256": "16e5da7194a8f548dd91b84e3c66ed81b5bdf5ff618e66dbafa3abdc1a16158c",
+        "all_three_equal": true
+      },
+      {
+        "path": "plugins/vst3/photo_editor.cpp",
+        "sha256": "caf54d88c871bab05ec572904ef4e3de7c985c0b713e65c398e0010786679fcf",
+        "bytes": 43422,
+        "previous_commit_sha256": "caf54d88c871bab05ec572904ef4e3de7c985c0b713e65c398e0010786679fcf",
+        "current_sha256": "caf54d88c871bab05ec572904ef4e3de7c985c0b713e65c398e0010786679fcf",
+        "all_three_equal": true
+      },
+      {
+        "path": "plugins/vst3/photo_editor.hpp",
+        "sha256": "0c421cae0d330f22b00bab37bb17e73cddd948dbd56a0834c6cb086d6cec97db",
+        "bytes": 383,
+        "previous_commit_sha256": "0c421cae0d330f22b00bab37bb17e73cddd948dbd56a0834c6cb086d6cec97db",
+        "current_sha256": "0c421cae0d330f22b00bab37bb17e73cddd948dbd56a0834c6cb086d6cec97db",
+        "all_three_equal": true
+      },
+      {
+        "path": "plugins/vst3/photo_geometry.hpp",
+        "sha256": "77fe4f4ac93ee0b212ef3f5399eb5cfa8884076d8eef51d2adf2123e6d85e0bd",
+        "bytes": 11936,
+        "previous_commit_sha256": "77fe4f4ac93ee0b212ef3f5399eb5cfa8884076d8eef51d2adf2123e6d85e0bd",
+        "current_sha256": "77fe4f4ac93ee0b212ef3f5399eb5cfa8884076d8eef51d2adf2123e6d85e0bd",
+        "all_three_equal": true
+      },
+      {
+        "path": "plugins/vst3/photo_key_highlight.hpp",
+        "sha256": "9302c59a677564253ea80fb92deeef811864def11a4fdd7e03b3a20c2477c58a",
+        "bytes": 16080,
+        "previous_commit_sha256": "9302c59a677564253ea80fb92deeef811864def11a4fdd7e03b3a20c2477c58a",
+        "current_sha256": "9302c59a677564253ea80fb92deeef811864def11a4fdd7e03b3a20c2477c58a",
+        "all_three_equal": true
+      },
+      {
+        "path": "plugins/vst3/photo_native_focus.cpp",
+        "sha256": "c24f8d70731a193b0b7bf833984c00df5a60375d2d306986f1440757af938c5f",
+        "bytes": 11355,
+        "previous_commit_sha256": "c24f8d70731a193b0b7bf833984c00df5a60375d2d306986f1440757af938c5f",
+        "current_sha256": "c24f8d70731a193b0b7bf833984c00df5a60375d2d306986f1440757af938c5f",
+        "all_three_equal": true
+      },
+      {
+        "path": "plugins/vst3/photo_native_focus.hpp",
+        "sha256": "9bf4553ec6a1418747d5379ba531bf15bbfb7e589f3923ff9c8131485704396a",
+        "bytes": 1697,
+        "previous_commit_sha256": "9bf4553ec6a1418747d5379ba531bf15bbfb7e589f3923ff9c8131485704396a",
+        "current_sha256": "9bf4553ec6a1418747d5379ba531bf15bbfb7e589f3923ff9c8131485704396a",
+        "all_three_equal": true
+      },
+      {
+        "path": "plugins/vst3/plugin_ids.hpp",
+        "sha256": "558491751250799eadce1eb95ad1cf59cde728c8bf9490a2962aafeaa8ca128d",
+        "bytes": 3577,
+        "previous_commit_sha256": "558491751250799eadce1eb95ad1cf59cde728c8bf9490a2962aafeaa8ca128d",
+        "current_sha256": "558491751250799eadce1eb95ad1cf59cde728c8bf9490a2962aafeaa8ca128d",
+        "all_three_equal": true
+      },
+      {
+        "path": "plugins/vst3/processor.cpp",
+        "sha256": "1ef121c4afb190c45fa1ff41a2127fb7487919dc69d8856c4a05e79844f760a9",
+        "bytes": 37967,
+        "previous_commit_sha256": "1ef121c4afb190c45fa1ff41a2127fb7487919dc69d8856c4a05e79844f760a9",
+        "current_sha256": "1ef121c4afb190c45fa1ff41a2127fb7487919dc69d8856c4a05e79844f760a9",
+        "all_three_equal": true
+      },
+      {
+        "path": "plugins/vst3/processor.hpp",
+        "sha256": "5206559cf6a05e6b53e8f6d043a4860b1c4afb995ca8253ed1f75762a5270574",
+        "bytes": 6905,
+        "previous_commit_sha256": "5206559cf6a05e6b53e8f6d043a4860b1c4afb995ca8253ed1f75762a5270574",
+        "current_sha256": "5206559cf6a05e6b53e8f6d043a4860b1c4afb995ca8253ed1f75762a5270574",
+        "all_three_equal": true
+      },
+      {
+        "path": "plugins/vst3/resources/Expat-LICENSE.txt",
+        "sha256": "f6eeb2310d0b00e5cecac39c73a0696a5bdbfb754b26325ed5a502fc1a6c338c",
+        "bytes": 1208,
+        "previous_commit_sha256": "f6eeb2310d0b00e5cecac39c73a0696a5bdbfb754b26325ed5a502fc1a6c338c",
+        "current_sha256": "f6eeb2310d0b00e5cecac39c73a0696a5bdbfb754b26325ed5a502fc1a6c338c",
+        "all_three_equal": true
+      },
+      {
+        "path": "plugins/vst3/resources/rhodes-suitcase.png",
+        "sha256": "84e2d48fc0311eb923083cc3e1f96dc5fa1b3f8a6e085daee7c973e54d754d26",
+        "bytes": 1434362,
+        "previous_commit_sha256": "84e2d48fc0311eb923083cc3e1f96dc5fa1b3f8a6e085daee7c973e54d754d26",
+        "current_sha256": "84e2d48fc0311eb923083cc3e1f96dc5fa1b3f8a6e085daee7c973e54d754d26",
+        "all_three_equal": true
+      },
+      {
+        "path": "plugins/vst3/resources/rhodes-suitcase.uidesc",
+        "sha256": "7554fecedf67cf744b3aa7f6cf12dc4f874d8b5e0b97ec66959ba2b42ea5825e",
+        "bytes": 651,
+        "previous_commit_sha256": "7554fecedf67cf744b3aa7f6cf12dc4f874d8b5e0b97ec66959ba2b42ea5825e",
+        "current_sha256": "7554fecedf67cf744b3aa7f6cf12dc4f874d8b5e0b97ec66959ba2b42ea5825e",
+        "all_three_equal": true
+      },
+      {
+        "path": "plugins/vst3/state_stream.cpp",
+        "sha256": "30b057afe520c81bb87e0298b32835ea47957ff46b452cf417244dbb51b55051",
+        "bytes": 5052,
+        "previous_commit_sha256": "30b057afe520c81bb87e0298b32835ea47957ff46b452cf417244dbb51b55051",
+        "current_sha256": "30b057afe520c81bb87e0298b32835ea47957ff46b452cf417244dbb51b55051",
+        "all_three_equal": true
+      },
+      {
+        "path": "plugins/vst3/state_stream.hpp",
+        "sha256": "a0885ed2c7a381fac06a65e37c02fa115f5c29930a7881ffd5186297fb9d3b28",
+        "bytes": 2227,
+        "previous_commit_sha256": "a0885ed2c7a381fac06a65e37c02fa115f5c29930a7881ffd5186297fb9d3b28",
+        "current_sha256": "a0885ed2c7a381fac06a65e37c02fa115f5c29930a7881ffd5186297fb9d3b28",
+        "all_three_equal": true
+      },
+      {
+        "path": "src/contact_reference.cpp",
+        "sha256": "70dde1bfab9c2e35457da2ebf66ff4638cb6f56f1f19a84dbe55a1752d5166fd",
+        "bytes": 78110,
+        "previous_commit_sha256": "70dde1bfab9c2e35457da2ebf66ff4638cb6f56f1f19a84dbe55a1752d5166fd",
+        "current_sha256": "70dde1bfab9c2e35457da2ebf66ff4638cb6f56f1f19a84dbe55a1752d5166fd",
+        "all_three_equal": true
+      },
+      {
+        "path": "src/research_engine.cpp",
+        "sha256": "01c2a9f7f9f7cfa4f759be56770178f32a71a28667d4ac6ab390e03ff7a95814",
+        "bytes": 20795,
+        "previous_commit_sha256": "01c2a9f7f9f7cfa4f759be56770178f32a71a28667d4ac6ab390e03ff7a95814",
+        "current_sha256": "01c2a9f7f9f7cfa4f759be56770178f32a71a28667d4ac6ab390e03ff7a95814",
+        "all_three_equal": true
+      }
+    ]
+  },
+  "explicit_differences": [
+    {
+      "path": "cmake/Vst3.cmake",
+      "recorded_native_module_legacy_sha256": "48715fcf593fbb0338a51fceb6f0edc106e227dc6725a57df5c024aac7a28fc4",
+      "published_and_current_sha256": "d223ac5f42521ce3be0f72a0023e35e601ec737a1bd9e6123d530c92e0ad6959",
+      "recorded_bytes": 60032,
+      "published_bytes": 61093,
+      "inserted_lines": 15,
+      "deleted_lines": 1,
+      "diff_sha256": "c9ce80a8c99eb7d46fb176975fa592ee1666259f6518b04eb67c4ade01b51f4f",
+      "reason": "Adds the SDK-only rhodes_vst3_loaded_panel_audio_tests executable, its fixture source, include/link/options/dependency declarations, its CTest registration and 120-second timeout, and includes that executable in the existing SMTG_MAC universal-binary/signing foreach. The production module declarations and production code/assets are unchanged.",
+      "exact_scope_check": "Removing the one new target/CTest block and restoring the prior macOS foreach line reproduces the previous cmake/Vst3.cmake byte for byte.",
+      "unified_diff": "diff --git a/cmake/Vst3.cmake b/cmake/Vst3.cmake\nindex e9d4640..4bed5d2 100644\n--- a/cmake/Vst3.cmake\n+++ b/cmake/Vst3.cmake\n@@ -691,6 +691,19 @@ int main() { return 0; }\" RHODES_FAULT_LIBSTDCXX)\n         add_test(NAME vst3.loaded_midi COMMAND rhodes_vst3_loaded_midi_tests\n             \"${rhodes_plugin_bundle}\" \"${rhodes_filtered_bundle}\" \"${rhodes_quadrature_bundle}\")\n         set_tests_properties(vst3.loaded_midi PROPERTIES TIMEOUT 60)\n+        add_executable(rhodes_vst3_loaded_panel_audio_tests\n+            \"${PROJECT_SOURCE_DIR}/tests/cpp/vst3_loaded_panel_audio_test.cpp\")\n+        target_compile_features(rhodes_vst3_loaded_panel_audio_tests PRIVATE cxx_std_20)\n+        target_include_directories(rhodes_vst3_loaded_panel_audio_tests SYSTEM PRIVATE\n+            \"${RHODES_VST3_SDK_ROOT}\")\n+        target_link_libraries(rhodes_vst3_loaded_panel_audio_tests PRIVATE rhodes_vst3_loader_support)\n+        rhodes_target_options(rhodes_vst3_loaded_panel_audio_tests)\n+        add_dependencies(rhodes_vst3_loaded_panel_audio_tests\n+            rhodes_vst3 rhodes_vst3_filtered rhodes_vst3_quadrature)\n+        add_dependencies(rhodes_vst3_checks rhodes_vst3_loaded_panel_audio_tests)\n+        add_test(NAME vst3.loaded_panel_audio COMMAND rhodes_vst3_loaded_panel_audio_tests\n+            \"${rhodes_plugin_bundle}\" \"${rhodes_filtered_bundle}\" \"${rhodes_quadrature_bundle}\")\n+        set_tests_properties(vst3.loaded_panel_audio PROPERTIES TIMEOUT 120)\n         if(RHODES_BUILD_VST3_EDITOR)\n             add_executable(rhodes_vst3_photo_editor_tests\n                 \"${PROJECT_SOURCE_DIR}/tests/cpp/vst3_photo_editor_test.cpp\")\n@@ -777,7 +790,8 @@ int main() { return 0; }\" RHODES_FAULT_LIBSTDCXX)\n         if(SMTG_MAC)\n             foreach(target IN ITEMS rhodes_vst3_dual_module_tests\n                     rhodes_vst3_triple_module_tests rhodes_vst3_loaded_midi_tests\n-                    rhodes_vst3_loaded_expression_tests rhodes_vst3_legacy_capture)\n+                    rhodes_vst3_loaded_expression_tests rhodes_vst3_loaded_panel_audio_tests\n+                    rhodes_vst3_legacy_capture)\n                 smtg_target_setup_universal_binary(${target})\n                 smtg_target_codesign(${target})\n             endforeach()\n"
+    }
+  ],
+  "loaded_manifest_git_head_caveat": {
+    "recorded_git_head": "4f658c2fbfc350e1ac6db626a1328c1232b39178",
+    "recorded_source_count": 44,
+    "sources_matching_recorded_git_head": 42,
+    "source_differences_from_recorded_git_head": [
+      {
+        "path": "cmake/Vst3.cmake",
+        "present_at_recorded_git_head": true,
+        "recorded_git_head_sha256": "48715fcf593fbb0338a51fceb6f0edc106e227dc6725a57df5c024aac7a28fc4",
+        "observed_test_input_sha256": "d223ac5f42521ce3be0f72a0023e35e601ec737a1bd9e6123d530c92e0ad6959",
+        "published_sha256": "d223ac5f42521ce3be0f72a0023e35e601ec737a1bd9e6123d530c92e0ad6959",
+        "current_sha256": "d223ac5f42521ce3be0f72a0023e35e601ec737a1bd9e6123d530c92e0ad6959",
+        "observed_input_matches_published_and_current": true
+      },
+      {
+        "path": "tests/cpp/vst3_loaded_panel_audio_test.cpp",
+        "present_at_recorded_git_head": false,
+        "recorded_git_head_sha256": null,
+        "observed_test_input_sha256": "a76cba87f5682a53a4aca46911fe2be2d8824171fee6bc3de45c25566a56fac1",
+        "published_sha256": "a76cba87f5682a53a4aca46911fe2be2d8824171fee6bc3de45c25566a56fac1",
+        "current_sha256": "a76cba87f5682a53a4aca46911fe2be2d8824171fee6bc3de45c25566a56fac1",
+        "observed_input_matches_published_and_current": true
+      }
+    ],
+    "observed_sources_match_published_commit": 44,
+    "interpretation": "The manifest records HEAD 4f658c2fbfc350e1ac6db626a1328c1232b39178 while also binding a later CMake edit and a newly added fixture. Those exact 44 observed file hashes match 8c5d819 and current bytes. Preserve the original HEAD and input hashes; this bridge does not relabel the historical run as a clean checkout or full rebuild of 8c5d819.",
+    "historical_build_command": [
+      "cmake",
+      "--build",
+      "/home/agent/rhoades-9a04c9726e31/build",
+      "--target",
+      "rhodes_vst3_loaded_panel_audio_tests",
+      "--parallel",
+      "2"
+    ],
+    "historical_build_scope": "The recorded build targeted rhodes_vst3_loaded_panel_audio_tests; the three production module bytes were recorded unchanged before/after. No full rebuild at the published commit is claimed."
+  },
+  "actual_module_bindings": [
+    {
+      "variant": "RhodesResearch",
+      "path": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/Contents/x86_64-linux/RhodesResearch.so",
+      "actual": {
+        "sha256": "5facf72c9367a5849c124833673d68e2d74b8b64c88b22e95d66663fa65d1959",
+        "bytes": 3204856
+      },
+      "recorded": {
+        "final_module_gates_expected": {
+          "sha256": "5facf72c9367a5849c124833673d68e2d74b8b64c88b22e95d66663fa65d1959"
+        },
+        "final_legacy_current_module": {
+          "bytes": 3204856,
+          "sha256": "5facf72c9367a5849c124833673d68e2d74b8b64c88b22e95d66663fa65d1959"
+        },
+        "final_loaded_audio_before": {
+          "sha256": "5facf72c9367a5849c124833673d68e2d74b8b64c88b22e95d66663fa65d1959",
+          "bytes": 3204856
+        },
+        "final_loaded_audio_after": {
+          "sha256": "5facf72c9367a5849c124833673d68e2d74b8b64c88b22e95d66663fa65d1959",
+          "bytes": 3204856
+        },
+        "final_native_direct": {
+          "sha256": "5facf72c9367a5849c124833673d68e2d74b8b64c88b22e95d66663fa65d1959",
+          "bytes": 3204856
+        }
+      },
+      "matches": {
+        "final_module_gates_expected": true,
+        "final_legacy_current_module": true,
+        "final_loaded_audio_before": true,
+        "final_loaded_audio_after": true,
+        "final_native_direct": true
+      },
+      "all_applicable_recorded_bindings_match": true,
+      "native_replay_coverage": "Direct module recorded and matched"
+    },
+    {
+      "variant": "RhodesResearchFiltered",
+      "path": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3/Contents/x86_64-linux/RhodesResearchFiltered.so",
+      "actual": {
+        "sha256": "aa698bc10af7df69bb7c8d1f5f16cbb3ff1472fa6794abc17316fc22e367f2cd",
+        "bytes": 3217144
+      },
+      "recorded": {
+        "final_module_gates_expected": {
+          "sha256": "aa698bc10af7df69bb7c8d1f5f16cbb3ff1472fa6794abc17316fc22e367f2cd"
+        },
+        "final_legacy_current_module": {
+          "bytes": 3217144,
+          "sha256": "aa698bc10af7df69bb7c8d1f5f16cbb3ff1472fa6794abc17316fc22e367f2cd"
+        },
+        "final_loaded_audio_before": {
+          "sha256": "aa698bc10af7df69bb7c8d1f5f16cbb3ff1472fa6794abc17316fc22e367f2cd",
+          "bytes": 3217144
+        },
+        "final_loaded_audio_after": {
+          "sha256": "aa698bc10af7df69bb7c8d1f5f16cbb3ff1472fa6794abc17316fc22e367f2cd",
+          "bytes": 3217144
+        }
+      },
+      "matches": {
+        "final_module_gates_expected": true,
+        "final_legacy_current_module": true,
+        "final_loaded_audio_before": true,
+        "final_loaded_audio_after": true
+      },
+      "all_applicable_recorded_bindings_match": true,
+      "native_replay_coverage": "Not present in final-native input manifest; no Direct replay claim is extended to this variant."
+    },
+    {
+      "variant": "RhodesResearchQuadrature",
+      "path": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3/Contents/x86_64-linux/RhodesResearchQuadrature.so",
+      "actual": {
+        "sha256": "d2213f5a635a2f819f8932c8cd18575ddd3c07bc3fdc386f99115ed72cd4078e",
+        "bytes": 3208952
+      },
+      "recorded": {
+        "final_module_gates_expected": {
+          "sha256": "d2213f5a635a2f819f8932c8cd18575ddd3c07bc3fdc386f99115ed72cd4078e"
+        },
+        "final_legacy_current_module": {
+          "bytes": 3208952,
+          "sha256": "d2213f5a635a2f819f8932c8cd18575ddd3c07bc3fdc386f99115ed72cd4078e"
+        },
+        "final_loaded_audio_before": {
+          "sha256": "d2213f5a635a2f819f8932c8cd18575ddd3c07bc3fdc386f99115ed72cd4078e",
+          "bytes": 3208952
+        },
+        "final_loaded_audio_after": {
+          "sha256": "d2213f5a635a2f819f8932c8cd18575ddd3c07bc3fdc386f99115ed72cd4078e",
+          "bytes": 3208952
+        }
+      },
+      "matches": {
+        "final_module_gates_expected": true,
+        "final_legacy_current_module": true,
+        "final_loaded_audio_before": true,
+        "final_loaded_audio_after": true
+      },
+      "all_applicable_recorded_bindings_match": true,
+      "native_replay_coverage": "Not present in final-native input manifest; no Direct replay claim is extended to this variant."
+    }
+  ],
+  "actual_bundle_bindings": [
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/Contents/Resources/Expat-LICENSE.txt",
+      "sha256": "f6eeb2310d0b00e5cecac39c73a0696a5bdbfb754b26325ed5a502fc1a6c338c",
+      "bytes": 1208,
+      "matches": {
+        "final_module_gates": true,
+        "final_legacy": true,
+        "final_native_direct": true
+      }
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/Contents/Resources/LICENSE.txt",
+      "sha256": "e86d79e19e4a33ebc442d2e0d083887dfc75a2a8de9fe17eeddedb84810ad74e",
+      "bytes": 1094,
+      "matches": {
+        "final_module_gates": true,
+        "final_legacy": true,
+        "final_native_direct": true
+      }
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/Contents/Resources/RapidJSON-LICENSE.txt",
+      "sha256": "a140e5d46fe734a1c78f1a3c3ef207871dd75648be71fdda8e309b23ab8b1f32",
+      "bytes": 5152,
+      "matches": {
+        "final_module_gates": true,
+        "final_legacy": true,
+        "final_native_direct": true
+      }
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/Contents/Resources/THIRD_PARTY_NOTICES.md",
+      "sha256": "f3ed30cd41b48ce88753de641057f51f51e78ea19b60a40e4398f29fe191f901",
+      "bytes": 8653,
+      "matches": {
+        "final_module_gates": true,
+        "final_legacy": true,
+        "final_native_direct": true
+      }
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/Contents/Resources/VSTGUI-LICENSE.txt",
+      "sha256": "605bcd2152176b365cf0ba6cca331a988fa885b4f43f20ceff4e264e6576ca66",
+      "bytes": 1858,
+      "matches": {
+        "final_module_gates": true,
+        "final_legacy": true,
+        "final_native_direct": true
+      }
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/Contents/Resources/miniz-LICENSE.txt",
+      "sha256": "6f20fa7672b00e2e975c291df737cf227addf3ad32e36fef3fe0f416e4664d3d",
+      "bytes": 1162,
+      "matches": {
+        "final_module_gates": true,
+        "final_legacy": true,
+        "final_native_direct": true
+      }
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/Contents/Resources/moduleinfo.json",
+      "sha256": "28b44aaa74a32dbe415b3553b37b019440ebe17bad7708b217790d47bb6adfb9",
+      "bytes": 1065,
+      "matches": {
+        "final_module_gates": true,
+        "final_legacy": true,
+        "final_native_direct": true
+      }
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/Contents/Resources/rhodes-suitcase.png",
+      "sha256": "84e2d48fc0311eb923083cc3e1f96dc5fa1b3f8a6e085daee7c973e54d754d26",
+      "bytes": 1434362,
+      "matches": {
+        "final_module_gates": true,
+        "final_legacy": true,
+        "final_native_direct": true
+      }
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/Contents/Resources/rhodes-suitcase.uidesc",
+      "sha256": "7554fecedf67cf744b3aa7f6cf12dc4f874d8b5e0b97ec66959ba2b42ea5825e",
+      "bytes": 651,
+      "matches": {
+        "final_module_gates": true,
+        "final_legacy": true,
+        "final_native_direct": true
+      }
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/Contents/x86_64-linux/RhodesResearch.so",
+      "sha256": "5facf72c9367a5849c124833673d68e2d74b8b64c88b22e95d66663fa65d1959",
+      "bytes": 3204856,
+      "matches": {
+        "final_module_gates": true,
+        "final_legacy": true,
+        "final_native_direct": true
+      }
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3/Contents/Resources/Expat-LICENSE.txt",
+      "sha256": "f6eeb2310d0b00e5cecac39c73a0696a5bdbfb754b26325ed5a502fc1a6c338c",
+      "bytes": 1208,
+      "matches": {
+        "final_module_gates": true,
+        "final_legacy": true
+      }
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3/Contents/Resources/LICENSE.txt",
+      "sha256": "e86d79e19e4a33ebc442d2e0d083887dfc75a2a8de9fe17eeddedb84810ad74e",
+      "bytes": 1094,
+      "matches": {
+        "final_module_gates": true,
+        "final_legacy": true
+      }
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3/Contents/Resources/RapidJSON-LICENSE.txt",
+      "sha256": "a140e5d46fe734a1c78f1a3c3ef207871dd75648be71fdda8e309b23ab8b1f32",
+      "bytes": 5152,
+      "matches": {
+        "final_module_gates": true,
+        "final_legacy": true
+      }
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3/Contents/Resources/THIRD_PARTY_NOTICES.md",
+      "sha256": "f3ed30cd41b48ce88753de641057f51f51e78ea19b60a40e4398f29fe191f901",
+      "bytes": 8653,
+      "matches": {
+        "final_module_gates": true,
+        "final_legacy": true
+      }
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3/Contents/Resources/VSTGUI-LICENSE.txt",
+      "sha256": "605bcd2152176b365cf0ba6cca331a988fa885b4f43f20ceff4e264e6576ca66",
+      "bytes": 1858,
+      "matches": {
+        "final_module_gates": true,
+        "final_legacy": true
+      }
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3/Contents/Resources/miniz-LICENSE.txt",
+      "sha256": "6f20fa7672b00e2e975c291df737cf227addf3ad32e36fef3fe0f416e4664d3d",
+      "bytes": 1162,
+      "matches": {
+        "final_module_gates": true,
+        "final_legacy": true
+      }
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3/Contents/Resources/moduleinfo.json",
+      "sha256": "2fe60cbd8af98408de9ca23dfc68be089f0878ea832c8d1df9674e29d43eaaa5",
+      "bytes": 1072,
+      "matches": {
+        "final_module_gates": true,
+        "final_legacy": true
+      }
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3/Contents/Resources/rhodes-suitcase.png",
+      "sha256": "84e2d48fc0311eb923083cc3e1f96dc5fa1b3f8a6e085daee7c973e54d754d26",
+      "bytes": 1434362,
+      "matches": {
+        "final_module_gates": true,
+        "final_legacy": true
+      }
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3/Contents/Resources/rhodes-suitcase.uidesc",
+      "sha256": "7554fecedf67cf744b3aa7f6cf12dc4f874d8b5e0b97ec66959ba2b42ea5825e",
+      "bytes": 651,
+      "matches": {
+        "final_module_gates": true,
+        "final_legacy": true
+      }
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3/Contents/x86_64-linux/RhodesResearchFiltered.so",
+      "sha256": "aa698bc10af7df69bb7c8d1f5f16cbb3ff1472fa6794abc17316fc22e367f2cd",
+      "bytes": 3217144,
+      "matches": {
+        "final_module_gates": true,
+        "final_legacy": true
+      }
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3/Contents/Resources/Expat-LICENSE.txt",
+      "sha256": "f6eeb2310d0b00e5cecac39c73a0696a5bdbfb754b26325ed5a502fc1a6c338c",
+      "bytes": 1208,
+      "matches": {
+        "final_module_gates": true,
+        "final_legacy": true
+      }
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3/Contents/Resources/LICENSE.txt",
+      "sha256": "e86d79e19e4a33ebc442d2e0d083887dfc75a2a8de9fe17eeddedb84810ad74e",
+      "bytes": 1094,
+      "matches": {
+        "final_module_gates": true,
+        "final_legacy": true
+      }
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3/Contents/Resources/RapidJSON-LICENSE.txt",
+      "sha256": "a140e5d46fe734a1c78f1a3c3ef207871dd75648be71fdda8e309b23ab8b1f32",
+      "bytes": 5152,
+      "matches": {
+        "final_module_gates": true,
+        "final_legacy": true
+      }
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3/Contents/Resources/THIRD_PARTY_NOTICES.md",
+      "sha256": "f3ed30cd41b48ce88753de641057f51f51e78ea19b60a40e4398f29fe191f901",
+      "bytes": 8653,
+      "matches": {
+        "final_module_gates": true,
+        "final_legacy": true
+      }
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3/Contents/Resources/VSTGUI-LICENSE.txt",
+      "sha256": "605bcd2152176b365cf0ba6cca331a988fa885b4f43f20ceff4e264e6576ca66",
+      "bytes": 1858,
+      "matches": {
+        "final_module_gates": true,
+        "final_legacy": true
+      }
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3/Contents/Resources/miniz-LICENSE.txt",
+      "sha256": "6f20fa7672b00e2e975c291df737cf227addf3ad32e36fef3fe0f416e4664d3d",
+      "bytes": 1162,
+      "matches": {
+        "final_module_gates": true,
+        "final_legacy": true
+      }
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3/Contents/Resources/moduleinfo.json",
+      "sha256": "de4f71acdf1ade24acac28abe8b0f8997524fb025777cab2fdf0113fa2923b9f",
+      "bytes": 1078,
+      "matches": {
+        "final_module_gates": true,
+        "final_legacy": true
+      }
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3/Contents/Resources/rhodes-suitcase.png",
+      "sha256": "84e2d48fc0311eb923083cc3e1f96dc5fa1b3f8a6e085daee7c973e54d754d26",
+      "bytes": 1434362,
+      "matches": {
+        "final_module_gates": true,
+        "final_legacy": true
+      }
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3/Contents/Resources/rhodes-suitcase.uidesc",
+      "sha256": "7554fecedf67cf744b3aa7f6cf12dc4f874d8b5e0b97ec66959ba2b42ea5825e",
+      "bytes": 651,
+      "matches": {
+        "final_module_gates": true,
+        "final_legacy": true
+      }
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3/Contents/x86_64-linux/RhodesResearchQuadrature.so",
+      "sha256": "d2213f5a635a2f819f8932c8cd18575ddd3c07bc3fdc386f99115ed72cd4078e",
+      "bytes": 3208952,
+      "matches": {
+        "final_module_gates": true,
+        "final_legacy": true
+      }
+    }
+  ],
+  "retained_output_bindings": {
+    "module_streams": [
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/loaded-expression-controls-state/stdout.log",
+        "sha256": "67f5f237148907513ca1205ffbcf3b6627f2ea35134630fad0125ca8dff0902f",
+        "bytes": 285,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/loaded-expression-controls-state/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/moduleinfo-validator-direct/stdout.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/moduleinfo-validator-direct/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/moduleinfo-validator-filtered/stdout.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/moduleinfo-validator-filtered/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/moduleinfo-validator-quadrature/stdout.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/moduleinfo-validator-quadrature/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/native-filtered-focus_remove/stdout.log",
+        "sha256": "e44ef8f2248d1586a4cc81a48868739e77088840969f2cf37e1ece33048d3916",
+        "bytes": 41,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/native-filtered-focus_remove/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/native-filtered-nested_pump/stdout.log",
+        "sha256": "76de67fd1133f73dd9f2f0a47b915f36415e983e086c8d0b49b05d73f9d38dad",
+        "bytes": 40,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/native-filtered-nested_pump/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/native-filtered-normal_close/stdout.log",
+        "sha256": "8a1d49922f7afba036ef358482e9fb5615a6745c9ebf3f82a5753d09545eb4ec",
+        "bytes": 41,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/native-filtered-normal_close/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/native-filtered-parent_destroy_after_remove/stdout.log",
+        "sha256": "0cb304adfad3fd47d941108f8791684c0169f7bdb9b4117a1a11d0d5b83159cf",
+        "bytes": 56,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/native-filtered-parent_destroy_after_remove/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/native-filtered-release_host_reference_after_remove/stdout.log",
+        "sha256": "3a6b731e1a9db9c304c1aeaa84794f466dc2e3ce6383da3e7e1c68a75df876c3",
+        "bytes": 64,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/native-filtered-release_host_reference_after_remove/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/native-filtered-remove_begin/stdout.log",
+        "sha256": "b765fe7148e7c406501e6dbd6bae7fb39004a64675e0d45208bc26d544d21aed",
+        "bytes": 41,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/native-filtered-remove_begin/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/native-filtered-remove_end/stdout.log",
+        "sha256": "fd85aba258b51ed7aef88480fe86499e5a7577f4eb2e6275bef44f857311875d",
+        "bytes": 39,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/native-filtered-remove_end/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/native-filtered-remove_perform/stdout.log",
+        "sha256": "25ee86f1057e650f45daa81754cdabc0880d9432e164d74fdbfc262078d1ada4",
+        "bytes": 43,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/native-filtered-remove_perform/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/native-filtered-reopen/stdout.log",
+        "sha256": "56668298433bc00ef1bfeca10e28d0b5f38c5885a701e1daf5c40f73198070da",
+        "bytes": 35,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/native-filtered-reopen/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/native-filtered-reopen_cycles/stdout.log",
+        "sha256": "d7e66f742f8523d034cd610601eff5fe2e47d4aaba67551d95171e0e83fac257",
+        "bytes": 42,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/native-filtered-reopen_cycles/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/native-filtered-repeated_remove/stdout.log",
+        "sha256": "52df61b00ade5afa693fc4ab0d06403f0cf72bc6499fd76ad7c4426c9d1acbd6",
+        "bytes": 44,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/native-filtered-repeated_remove/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/native-filtered-sibling_survives/stdout.log",
+        "sha256": "3bd654ea6647a3a4fb24a24214f461e8d7c016ff05c150469b414d5e09a933ca",
+        "bytes": 45,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/native-filtered-sibling_survives/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/native-filtered-timer_refused/stdout.log",
+        "sha256": "5536fa47544c73e5aa1e7c29180a565f834e2665f2befd3d787451d5b49ab456",
+        "bytes": 42,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/native-filtered-timer_refused/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/native-quadrature-focus_remove/stdout.log",
+        "sha256": "e44ef8f2248d1586a4cc81a48868739e77088840969f2cf37e1ece33048d3916",
+        "bytes": 41,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/native-quadrature-focus_remove/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/native-quadrature-nested_pump/stdout.log",
+        "sha256": "76de67fd1133f73dd9f2f0a47b915f36415e983e086c8d0b49b05d73f9d38dad",
+        "bytes": 40,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/native-quadrature-nested_pump/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/native-quadrature-normal_close/stdout.log",
+        "sha256": "8a1d49922f7afba036ef358482e9fb5615a6745c9ebf3f82a5753d09545eb4ec",
+        "bytes": 41,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/native-quadrature-normal_close/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/native-quadrature-parent_destroy_after_remove/stdout.log",
+        "sha256": "0cb304adfad3fd47d941108f8791684c0169f7bdb9b4117a1a11d0d5b83159cf",
+        "bytes": 56,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/native-quadrature-parent_destroy_after_remove/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/native-quadrature-release_host_reference_after_remove/stdout.log",
+        "sha256": "3a6b731e1a9db9c304c1aeaa84794f466dc2e3ce6383da3e7e1c68a75df876c3",
+        "bytes": 64,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/native-quadrature-release_host_reference_after_remove/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/native-quadrature-remove_begin/stdout.log",
+        "sha256": "b765fe7148e7c406501e6dbd6bae7fb39004a64675e0d45208bc26d544d21aed",
+        "bytes": 41,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/native-quadrature-remove_begin/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/native-quadrature-remove_end/stdout.log",
+        "sha256": "fd85aba258b51ed7aef88480fe86499e5a7577f4eb2e6275bef44f857311875d",
+        "bytes": 39,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/native-quadrature-remove_end/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/native-quadrature-remove_perform/stdout.log",
+        "sha256": "25ee86f1057e650f45daa81754cdabc0880d9432e164d74fdbfc262078d1ada4",
+        "bytes": 43,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/native-quadrature-remove_perform/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/native-quadrature-reopen/stdout.log",
+        "sha256": "56668298433bc00ef1bfeca10e28d0b5f38c5885a701e1daf5c40f73198070da",
+        "bytes": 35,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/native-quadrature-reopen/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/native-quadrature-reopen_cycles/stdout.log",
+        "sha256": "d7e66f742f8523d034cd610601eff5fe2e47d4aaba67551d95171e0e83fac257",
+        "bytes": 42,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/native-quadrature-reopen_cycles/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/native-quadrature-repeated_remove/stdout.log",
+        "sha256": "52df61b00ade5afa693fc4ab0d06403f0cf72bc6499fd76ad7c4426c9d1acbd6",
+        "bytes": 44,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/native-quadrature-repeated_remove/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/native-quadrature-sibling_survives/stdout.log",
+        "sha256": "3bd654ea6647a3a4fb24a24214f461e8d7c016ff05c150469b414d5e09a933ca",
+        "bytes": 45,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/native-quadrature-sibling_survives/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/native-quadrature-timer_refused/stdout.log",
+        "sha256": "5536fa47544c73e5aa1e7c29180a565f834e2665f2befd3d787451d5b49ab456",
+        "bytes": 42,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/native-quadrature-timer_refused/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/photo-editor-contract/stdout.log",
+        "sha256": "b6302fbcd5178c0153ac12e6eecc44e546ab50ece65501f0ff3ec9a0839fc1e9",
+        "bytes": 193,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/photo-editor-contract/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/sdk-validator-direct/stdout.log",
+        "sha256": "e64d1524736926ff369cee152a7b36383be3d27a2d966106c5599e632071f5a9",
+        "bytes": 12371,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/sdk-validator-direct/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/sdk-validator-filtered/stdout.log",
+        "sha256": "8a61122907b469196a4d87d98ae50a9af7f65824dbf8e510c365af1bc0e3d8c1",
+        "bytes": 12377,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/sdk-validator-filtered/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/sdk-validator-quadrature/stdout.log",
+        "sha256": "072d70fbb5bec6cdba0bc667ed588dc61059b9a1d565cc2d2da921cf3830b4d6",
+        "bytes": 12385,
+        "matches_recorded": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/sdk-validator-quadrature/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0,
+        "matches_recorded": true
+      }
+    ],
+    "strengthened_outputs": [
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-loaded-audio/strengthened/ctest.xml",
+        "recorded": {
+          "sha256": "dc49446f21ab5f3bb36a23e33d3471680f0c8b9a381bb03a4160ccd12ca0f7b6",
+          "bytes": 1485
+        },
+        "current": {
+          "sha256": "dc49446f21ab5f3bb36a23e33d3471680f0c8b9a381bb03a4160ccd12ca0f7b6",
+          "bytes": 1485
+        },
+        "equal": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-loaded-audio/strengthened/ctest.stderr.log",
+        "recorded": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "current": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "equal": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-loaded-audio/strengthened/ctest.stdout.log",
+        "recorded": {
+          "sha256": "ea33809fe038c3faec37cb25e9f86cff55e123f80b960dc7485952074cf0a23d",
+          "bytes": 20450
+        },
+        "current": {
+          "sha256": "ea33809fe038c3faec37cb25e9f86cff55e123f80b960dc7485952074cf0a23d",
+          "bytes": 20450
+        },
+        "equal": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-loaded-audio/strengthened/build.stderr.log",
+        "recorded": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "current": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "equal": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-loaded-audio/strengthened/build.stdout.log",
+        "recorded": {
+          "sha256": "c81193e58fe564a2d895ee0a2d11fb7c609da5927a153f919189fe0ba156b4ea",
+          "bytes": 1313
+        },
+        "current": {
+          "sha256": "c81193e58fe564a2d895ee0a2d11fb7c609da5927a153f919189fe0ba156b4ea",
+          "bytes": 1313
+        },
+        "equal": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-loaded-audio/strengthened/configure.stderr.log",
+        "recorded": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "current": {
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "bytes": 0
+        },
+        "equal": true
+      },
+      {
+        "path": "docs/validation/photo-continuation-20261124/final-loaded-audio/strengthened/configure.stdout.log",
+        "recorded": {
+          "sha256": "932d31f7082d0cb9439222397a2ea45dc4629647558cfc1f74194c120a5ff4bf",
+          "bytes": 930
+        },
+        "current": {
+          "sha256": "932d31f7082d0cb9439222397a2ea45dc4629647558cfc1f74194c120a5ff4bf",
+          "bytes": 930
+        },
+        "equal": true
+      }
+    ],
+    "strengthened_executable": {
+      "path": "/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_loaded_panel_audio_tests",
+      "recorded_sha256": "9af0033931f67833443cbbfb5790bb406b70b5278bc75ecde872461f6c86b263",
+      "current": {
+        "sha256": "9af0033931f67833443cbbfb5790bb406b70b5278bc75ecde872461f6c86b263",
+        "bytes": 235504
+      },
+      "matches": true
+    }
+  },
+  "retained_results": {
+    "interpretation": "Counts below belong to preserved historical observations. The worker only checked their hashes, source applicability, binaries and internal result records; no test was rerun.",
+    "final_native": {
+      "variant": "RhodesResearch",
+      "record": "docs/validation/photo-continuation-20261124/final-native/evidence-summary.json",
+      "replays": 1,
+      "checks": 136,
+      "check_status_counts": {
+        "pass": 136
+      },
+      "host_returncode": 0,
+      "verifier_wrapper_exit_code": 0,
+      "screenshots": 66,
+      "png_files_with_mask": 67,
+      "host_callbacks": 98,
+      "held_white_keys": 43,
+      "black_interior_region_comparisons": 1290,
+      "black_interior_pixel_instances": 818978,
+      "changed_black_pixel_instances": 0,
+      "frozen_and_runtime_input_count": 231,
+      "checks_detail": [
+        {
+          "name": "native_xembed_attachment",
+          "status": "pass"
+        },
+        {
+          "name": "default_idle_capture_dimensions",
+          "status": "pass"
+        },
+        {
+          "name": "default_visible_feedback_capture",
+          "status": "pass"
+        },
+        {
+          "name": "resize_768x576",
+          "status": "pass"
+        },
+        {
+          "name": "minimum_idle_capture_dimensions",
+          "status": "pass"
+        },
+        {
+          "name": "minimum_visible_feedback_capture",
+          "status": "pass"
+        },
+        {
+          "name": "resize_1536x1152",
+          "status": "pass"
+        },
+        {
+          "name": "maximum_idle_capture_dimensions",
+          "status": "pass"
+        },
+        {
+          "name": "idle_1536x1152_exact_reference_pixels",
+          "status": "pass"
+        },
+        {
+          "name": "maximum_visible_feedback_capture",
+          "status": "pass"
+        },
+        {
+          "name": "pedal_initial_on",
+          "status": "pass"
+        },
+        {
+          "name": "pedal_initial_off",
+          "status": "pass"
+        },
+        {
+          "name": "pedal_rapid_2_from_off",
+          "status": "pass"
+        },
+        {
+          "name": "pedal_rapid_2_from_off_rapid_stimulus",
+          "status": "pass"
+        },
+        {
+          "name": "pedal_rapid_3_from_off",
+          "status": "pass"
+        },
+        {
+          "name": "pedal_rapid_3_from_off_rapid_stimulus",
+          "status": "pass"
+        },
+        {
+          "name": "pedal_rapid_2_from_on",
+          "status": "pass"
+        },
+        {
+          "name": "pedal_rapid_2_from_on_rapid_stimulus",
+          "status": "pass"
+        },
+        {
+          "name": "pedal_rapid_3_from_on",
+          "status": "pass"
+        },
+        {
+          "name": "pedal_rapid_3_from_on_rapid_stimulus",
+          "status": "pass"
+        },
+        {
+          "name": "vibrato_initial_on",
+          "status": "pass"
+        },
+        {
+          "name": "vibrato_initial_off",
+          "status": "pass"
+        },
+        {
+          "name": "vibrato_rapid_2_from_off",
+          "status": "pass"
+        },
+        {
+          "name": "vibrato_rapid_2_from_off_rapid_stimulus",
+          "status": "pass"
+        },
+        {
+          "name": "vibrato_rapid_3_from_off",
+          "status": "pass"
+        },
+        {
+          "name": "vibrato_rapid_3_from_off_rapid_stimulus",
+          "status": "pass"
+        },
+        {
+          "name": "vibrato_rapid_2_from_on",
+          "status": "pass"
+        },
+        {
+          "name": "vibrato_rapid_2_from_on_rapid_stimulus",
+          "status": "pass"
+        },
+        {
+          "name": "vibrato_rapid_3_from_on",
+          "status": "pass"
+        },
+        {
+          "name": "vibrato_rapid_3_from_on_rapid_stimulus",
+          "status": "pass"
+        },
+        {
+          "name": "volume_reset_before_keyboard",
+          "status": "pass"
+        },
+        {
+          "name": "plain_arrow_before_shortcuts",
+          "status": "pass"
+        },
+        {
+          "name": "plain_reverse_before_shortcuts",
+          "status": "pass"
+        },
+        {
+          "name": "native_modifiers_Control_L_Left",
+          "status": "pass"
+        },
+        {
+          "name": "shortcut_Control_L_Left_has_no_edits",
+          "status": "pass"
+        },
+        {
+          "name": "native_modifiers_Control_L_Right",
+          "status": "pass"
+        },
+        {
+          "name": "shortcut_Control_L_Right_has_no_edits",
+          "status": "pass"
+        },
+        {
+          "name": "native_modifiers_Control_L_Up",
+          "status": "pass"
+        },
+        {
+          "name": "shortcut_Control_L_Up_has_no_edits",
+          "status": "pass"
+        },
+        {
+          "name": "native_modifiers_Control_L_Down",
+          "status": "pass"
+        },
+        {
+          "name": "shortcut_Control_L_Down_has_no_edits",
+          "status": "pass"
+        },
+        {
+          "name": "native_modifiers_Control_L_Shift_L_Left",
+          "status": "pass"
+        },
+        {
+          "name": "shortcut_Control_L_Shift_L_Left_has_no_edits",
+          "status": "pass"
+        },
+        {
+          "name": "native_modifiers_Control_L_Shift_L_Right",
+          "status": "pass"
+        },
+        {
+          "name": "shortcut_Control_L_Shift_L_Right_has_no_edits",
+          "status": "pass"
+        },
+        {
+          "name": "native_modifiers_Control_L_Shift_L_Up",
+          "status": "pass"
+        },
+        {
+          "name": "shortcut_Control_L_Shift_L_Up_has_no_edits",
+          "status": "pass"
+        },
+        {
+          "name": "native_modifiers_Control_L_Shift_L_Down",
+          "status": "pass"
+        },
+        {
+          "name": "shortcut_Control_L_Shift_L_Down_has_no_edits",
+          "status": "pass"
+        },
+        {
+          "name": "native_modifiers_Alt_L_Left",
+          "status": "pass"
+        },
+        {
+          "name": "shortcut_Alt_L_Left_has_no_edits",
+          "status": "pass"
+        },
+        {
+          "name": "native_modifiers_Alt_L_Right",
+          "status": "pass"
+        },
+        {
+          "name": "shortcut_Alt_L_Right_has_no_edits",
+          "status": "pass"
+        },
+        {
+          "name": "native_modifiers_Alt_L_Up",
+          "status": "pass"
+        },
+        {
+          "name": "shortcut_Alt_L_Up_has_no_edits",
+          "status": "pass"
+        },
+        {
+          "name": "native_modifiers_Alt_L_Down",
+          "status": "pass"
+        },
+        {
+          "name": "shortcut_Alt_L_Down_has_no_edits",
+          "status": "pass"
+        },
+        {
+          "name": "native_modifiers_Alt_L_Shift_L_Left",
+          "status": "pass"
+        },
+        {
+          "name": "shortcut_Alt_L_Shift_L_Left_has_no_edits",
+          "status": "pass"
+        },
+        {
+          "name": "native_modifiers_Alt_L_Shift_L_Right",
+          "status": "pass"
+        },
+        {
+          "name": "shortcut_Alt_L_Shift_L_Right_has_no_edits",
+          "status": "pass"
+        },
+        {
+          "name": "native_modifiers_Alt_L_Shift_L_Up",
+          "status": "pass"
+        },
+        {
+          "name": "shortcut_Alt_L_Shift_L_Up_has_no_edits",
+          "status": "pass"
+        },
+        {
+          "name": "native_modifiers_Alt_L_Shift_L_Down",
+          "status": "pass"
+        },
+        {
+          "name": "shortcut_Alt_L_Shift_L_Down_has_no_edits",
+          "status": "pass"
+        },
+        {
+          "name": "native_modifiers_Super_L_Left",
+          "status": "pass"
+        },
+        {
+          "name": "shortcut_Super_L_Left_has_no_edits",
+          "status": "pass"
+        },
+        {
+          "name": "native_modifiers_Super_L_Right",
+          "status": "pass"
+        },
+        {
+          "name": "shortcut_Super_L_Right_has_no_edits",
+          "status": "pass"
+        },
+        {
+          "name": "native_modifiers_Super_L_Up",
+          "status": "pass"
+        },
+        {
+          "name": "shortcut_Super_L_Up_has_no_edits",
+          "status": "pass"
+        },
+        {
+          "name": "native_modifiers_Super_L_Down",
+          "status": "pass"
+        },
+        {
+          "name": "shortcut_Super_L_Down_has_no_edits",
+          "status": "pass"
+        },
+        {
+          "name": "native_modifiers_Super_L_Shift_L_Left",
+          "status": "pass"
+        },
+        {
+          "name": "shortcut_Super_L_Shift_L_Left_has_no_edits",
+          "status": "pass"
+        },
+        {
+          "name": "native_modifiers_Super_L_Shift_L_Right",
+          "status": "pass"
+        },
+        {
+          "name": "shortcut_Super_L_Shift_L_Right_has_no_edits",
+          "status": "pass"
+        },
+        {
+          "name": "native_modifiers_Super_L_Shift_L_Up",
+          "status": "pass"
+        },
+        {
+          "name": "shortcut_Super_L_Shift_L_Up_has_no_edits",
+          "status": "pass"
+        },
+        {
+          "name": "native_modifiers_Super_L_Shift_L_Down",
+          "status": "pass"
+        },
+        {
+          "name": "shortcut_Super_L_Shift_L_Down_has_no_edits",
+          "status": "pass"
+        },
+        {
+          "name": "plain_arrow_after_shortcuts",
+          "status": "pass"
+        },
+        {
+          "name": "native_modifiers_Shift_L_Up",
+          "status": "pass"
+        },
+        {
+          "name": "shift_fine_arrow_up",
+          "status": "pass"
+        },
+        {
+          "name": "native_modifiers_Shift_L_Down",
+          "status": "pass"
+        },
+        {
+          "name": "shift_fine_arrow_down",
+          "status": "pass"
+        },
+        {
+          "name": "plain_reverse_after_shortcuts",
+          "status": "pass"
+        },
+        {
+          "name": "white_midi_28_held_preserves_all_black_interiors",
+          "status": "pass"
+        },
+        {
+          "name": "white_midi_29_held_preserves_all_black_interiors",
+          "status": "pass"
+        },
+        {
+          "name": "white_midi_31_held_preserves_all_black_interiors",
+          "status": "pass"
+        },
+        {
+          "name": "white_midi_33_held_preserves_all_black_interiors",
+          "status": "pass"
+        },
+        {
+          "name": "white_midi_35_held_preserves_all_black_interiors",
+          "status": "pass"
+        },
+        {
+          "name": "white_midi_36_held_preserves_all_black_interiors",
+          "status": "pass"
+        },
+        {
+          "name": "white_midi_38_held_preserves_all_black_interiors",
+          "status": "pass"
+        },
+        {
+          "name": "white_midi_40_held_preserves_all_black_interiors",
+          "status": "pass"
+        },
+        {
+          "name": "white_midi_41_held_preserves_all_black_interiors",
+          "status": "pass"
+        },
+        {
+          "name": "white_midi_43_held_preserves_all_black_interiors",
+          "status": "pass"
+        },
+        {
+          "name": "white_midi_45_held_preserves_all_black_interiors",
+          "status": "pass"
+        },
+        {
+          "name": "white_midi_47_held_preserves_all_black_interiors",
+          "status": "pass"
+        },
+        {
+          "name": "white_midi_48_held_preserves_all_black_interiors",
+          "status": "pass"
+        },
+        {
+          "name": "white_midi_50_held_preserves_all_black_interiors",
+          "status": "pass"
+        },
+        {
+          "name": "white_midi_52_held_preserves_all_black_interiors",
+          "status": "pass"
+        },
+        {
+          "name": "white_midi_53_held_preserves_all_black_interiors",
+          "status": "pass"
+        },
+        {
+          "name": "white_midi_55_held_preserves_all_black_interiors",
+          "status": "pass"
+        },
+        {
+          "name": "white_midi_57_held_preserves_all_black_interiors",
+          "status": "pass"
+        },
+        {
+          "name": "white_midi_59_held_preserves_all_black_interiors",
+          "status": "pass"
+        },
+        {
+          "name": "white_midi_60_held_preserves_all_black_interiors",
+          "status": "pass"
+        },
+        {
+          "name": "white_midi_62_held_preserves_all_black_interiors",
+          "status": "pass"
+        },
+        {
+          "name": "white_midi_64_held_preserves_all_black_interiors",
+          "status": "pass"
+        },
+        {
+          "name": "white_midi_65_held_preserves_all_black_interiors",
+          "status": "pass"
+        },
+        {
+          "name": "white_midi_67_held_preserves_all_black_interiors",
+          "status": "pass"
+        },
+        {
+          "name": "white_midi_69_held_preserves_all_black_interiors",
+          "status": "pass"
+        },
+        {
+          "name": "white_midi_71_held_preserves_all_black_interiors",
+          "status": "pass"
+        },
+        {
+          "name": "white_midi_72_held_preserves_all_black_interiors",
+          "status": "pass"
+        },
+        {
+          "name": "white_midi_74_held_preserves_all_black_interiors",
+          "status": "pass"
+        },
+        {
+          "name": "white_midi_76_held_preserves_all_black_interiors",
+          "status": "pass"
+        },
+        {
+          "name": "white_midi_77_held_preserves_all_black_interiors",
+          "status": "pass"
+        },
+        {
+          "name": "white_midi_79_held_preserves_all_black_interiors",
+          "status": "pass"
+        },
+        {
+          "name": "white_midi_81_held_preserves_all_black_interiors",
+          "status": "pass"
+        },
+        {
+          "name": "white_midi_83_held_preserves_all_black_interiors",
+          "status": "pass"
+        },
+        {
+          "name": "white_midi_84_held_preserves_all_black_interiors",
+          "status": "pass"
+        },
+        {
+          "name": "white_midi_86_held_preserves_all_black_interiors",
+          "status": "pass"
+        },
+        {
+          "name": "white_midi_88_held_preserves_all_black_interiors",
+          "status": "pass"
+        },
+        {
+          "name": "white_midi_89_held_preserves_all_black_interiors",
+          "status": "pass"
+        },
+        {
+          "name": "white_midi_91_held_preserves_all_black_interiors",
+          "status": "pass"
+        },
+        {
+          "name": "white_midi_93_held_preserves_all_black_interiors",
+          "status": "pass"
+        },
+        {
+          "name": "white_midi_95_held_preserves_all_black_interiors",
+          "status": "pass"
+        },
+        {
+          "name": "white_midi_96_held_preserves_all_black_interiors",
+          "status": "pass"
+        },
+        {
+          "name": "white_midi_98_held_preserves_all_black_interiors",
+          "status": "pass"
+        },
+        {
+          "name": "white_midi_100_held_preserves_all_black_interiors",
+          "status": "pass"
+        },
+        {
+          "name": "volume_hover_renews_after_timeout_on_same_target_motion",
+          "status": "pass"
+        },
+        {
+          "name": "white_key_hover_renews_after_timeout_on_same_target_motion",
+          "status": "pass"
+        },
+        {
+          "name": "final_idle_exact_reference_pixels",
+          "status": "pass"
+        },
+        {
+          "name": "native_close",
+          "status": "pass"
+        },
+        {
+          "name": "close_ends_held_gesture",
+          "status": "pass"
+        },
+        {
+          "name": "source_inputs_unchanged_during_run",
+          "status": "pass"
+        }
+      ]
+    },
+    "final_module_gates": {
+      "record": "docs/validation/photo-continuation-20261124/final-module-gates/summary.json",
+      "gates": 34,
+      "passed": 34,
+      "failed": 0,
+      "native_cases": 26,
+      "native_variants": [
+        "RhodesResearchFiltered",
+        "RhodesResearchQuadrature"
+      ],
+      "selectors": [
+        "normal_close",
+        "remove_begin",
+        "remove_perform",
+        "remove_end",
+        "nested_pump",
+        "timer_refused",
+        "repeated_remove",
+        "reopen",
+        "parent_destroy_after_remove",
+        "release_host_reference_after_remove",
+        "focus_remove",
+        "reopen_cycles",
+        "sibling_survives"
+      ],
+      "validator_contract_commands": 8,
+      "sdk_validator_tests_each": 47,
+      "sdk_validator_variants": 3,
+      "moduleinfo_validator_commands": 3,
+      "loaded_expression_checks": 65644,
+      "loaded_expression_callbacks": 621,
+      "loaded_expression_scalar_samples": 0,
+      "unattached_photo_contract_checks": 5283,
+      "unattached_photo_contract_real_controllers": 9,
+      "unattached_photo_contract_views": 24,
+      "input_manifest_file_count": 90,
+      "frozen_input_mutations": [],
+      "results": [
+        {
+          "name": "loaded-expression-controls-state",
+          "kind": "loaded_contract",
+          "exit_code": 0
+        },
+        {
+          "name": "moduleinfo-validator-direct",
+          "kind": "moduleinfo_validator",
+          "exit_code": 0
+        },
+        {
+          "name": "moduleinfo-validator-filtered",
+          "kind": "moduleinfo_validator",
+          "exit_code": 0
+        },
+        {
+          "name": "moduleinfo-validator-quadrature",
+          "kind": "moduleinfo_validator",
+          "exit_code": 0
+        },
+        {
+          "name": "native-filtered-focus_remove",
+          "kind": "native_lifecycle",
+          "exit_code": 0
+        },
+        {
+          "name": "native-filtered-nested_pump",
+          "kind": "native_lifecycle",
+          "exit_code": 0
+        },
+        {
+          "name": "native-filtered-normal_close",
+          "kind": "native_lifecycle",
+          "exit_code": 0
+        },
+        {
+          "name": "native-filtered-parent_destroy_after_remove",
+          "kind": "native_lifecycle",
+          "exit_code": 0
+        },
+        {
+          "name": "native-filtered-release_host_reference_after_remove",
+          "kind": "native_lifecycle",
+          "exit_code": 0
+        },
+        {
+          "name": "native-filtered-remove_begin",
+          "kind": "native_lifecycle",
+          "exit_code": 0
+        },
+        {
+          "name": "native-filtered-remove_end",
+          "kind": "native_lifecycle",
+          "exit_code": 0
+        },
+        {
+          "name": "native-filtered-remove_perform",
+          "kind": "native_lifecycle",
+          "exit_code": 0
+        },
+        {
+          "name": "native-filtered-reopen",
+          "kind": "native_lifecycle",
+          "exit_code": 0
+        },
+        {
+          "name": "native-filtered-reopen_cycles",
+          "kind": "native_lifecycle",
+          "exit_code": 0
+        },
+        {
+          "name": "native-filtered-repeated_remove",
+          "kind": "native_lifecycle",
+          "exit_code": 0
+        },
+        {
+          "name": "native-filtered-sibling_survives",
+          "kind": "native_lifecycle",
+          "exit_code": 0
+        },
+        {
+          "name": "native-filtered-timer_refused",
+          "kind": "native_lifecycle",
+          "exit_code": 0
+        },
+        {
+          "name": "native-quadrature-focus_remove",
+          "kind": "native_lifecycle",
+          "exit_code": 0
+        },
+        {
+          "name": "native-quadrature-nested_pump",
+          "kind": "native_lifecycle",
+          "exit_code": 0
+        },
+        {
+          "name": "native-quadrature-normal_close",
+          "kind": "native_lifecycle",
+          "exit_code": 0
+        },
+        {
+          "name": "native-quadrature-parent_destroy_after_remove",
+          "kind": "native_lifecycle",
+          "exit_code": 0
+        },
+        {
+          "name": "native-quadrature-release_host_reference_after_remove",
+          "kind": "native_lifecycle",
+          "exit_code": 0
+        },
+        {
+          "name": "native-quadrature-remove_begin",
+          "kind": "native_lifecycle",
+          "exit_code": 0
+        },
+        {
+          "name": "native-quadrature-remove_end",
+          "kind": "native_lifecycle",
+          "exit_code": 0
+        },
+        {
+          "name": "native-quadrature-remove_perform",
+          "kind": "native_lifecycle",
+          "exit_code": 0
+        },
+        {
+          "name": "native-quadrature-reopen",
+          "kind": "native_lifecycle",
+          "exit_code": 0
+        },
+        {
+          "name": "native-quadrature-reopen_cycles",
+          "kind": "native_lifecycle",
+          "exit_code": 0
+        },
+        {
+          "name": "native-quadrature-repeated_remove",
+          "kind": "native_lifecycle",
+          "exit_code": 0
+        },
+        {
+          "name": "native-quadrature-sibling_survives",
+          "kind": "native_lifecycle",
+          "exit_code": 0
+        },
+        {
+          "name": "native-quadrature-timer_refused",
+          "kind": "native_lifecycle",
+          "exit_code": 0
+        },
+        {
+          "name": "photo-editor-contract",
+          "kind": "photo_contract",
+          "exit_code": 0
+        },
+        {
+          "name": "sdk-validator-direct",
+          "kind": "sdk_validator",
+          "exit_code": 0
+        },
+        {
+          "name": "sdk-validator-filtered",
+          "kind": "sdk_validator",
+          "exit_code": 0
+        },
+        {
+          "name": "sdk-validator-quadrature",
+          "kind": "sdk_validator",
+          "exit_code": 0
+        }
+      ]
+    },
+    "final_legacy": {
+      "record": "docs/validation/photo-continuation-20261124/final-legacy/fresh-comparison.json",
+      "status": "passed",
+      "summary": {
+        "all_frozen_inputs_unchanged": true,
+        "complete": true,
+        "fixtures": 72,
+        "fresh_callbacks_total": 5328,
+        "fresh_capture_ids_unique_and_disjoint_from_all_retained": true,
+        "fresh_dense_groups_passed": 24,
+        "fresh_loaded_processes": 144,
+        "fresh_valid_captures": 144,
+        "paired_stereo_frames": 608256,
+        "passed": true,
+        "passed_pairs": 144,
+        "retained_dense_groups_passed": 12,
+        "retained_valid_baseline_captures": 72
+      },
+      "pairs": 144,
+      "captures": 144,
+      "baseline_revision": "6c91dab00855b67a559e92edb79ae49e567be469",
+      "current_native_execution_performed": true,
+      "baseline_native_execution_performed": false,
+      "official_216_process_entry_point_rerun": false,
+      "retained_source_bridge_summary_preserved": {
+        "changed": [
+          "CMakeLists.txt",
+          "cmake/Vst3.cmake",
+          "plugins/vst3/THIRD_PARTY_NOTICES.md",
+          "plugins/vst3/controller.cpp",
+          "plugins/vst3/controller.hpp",
+          "plugins/vst3/photo_editor.cpp"
+        ],
+        "identical": 36,
+        "retained_source_snapshots": 42
+      },
+      "current_only_sources_in_historical_bridge": {
+        "cmake/VstguiWin32Timer.cmake": "211484666fff1fe57c8e442dbc98b3a0c76fd1119fbd21a5ce1d280368fd5c85",
+        "cmake/VstguiX11ChildWindow.cmake": "74ad962f03a3581fcc424d85a2a6f7bf836655843e858285609f087033754e3e",
+        "cmake/VstguiX11Keyboard.cmake": "3f1b1de7d27a74c1d6d2dae21152b125e4b5c1bf349a78f3aa4bfa3848a76a9c",
+        "cmake/VstguiX11Lifetime.cmake": "2b1291c584fc285d219a09b84a752b548b3085a0f7b725464a2806a21afffb60",
+        "plugins/vst3/photo_key_highlight.hpp": "9302c59a677564253ea80fb92deeef811864def11a4fdd7e03b3a20c2477c58a"
+      },
+      "raw_manifest_file_count": 433,
+      "raw_manifest_sha256": "39f5daf2aac5e22b34e4c6d79303eb7d379d40b2c0622461a4842bc19686ca12",
+      "limitations": [
+        "The 72 baseline captures are retained records, not fresh baseline processes.",
+        "Only valid synthetic stereo timelines at neutral panel and unity Expression are covered.",
+        "No acoustic/physical fidelity, named DAW, audio-device, deadline, mono or other-platform claim.",
+        "Source hashes describe observed inputs; module hashes identify what actually executed."
+      ]
+    },
+    "final_loaded_audio_strengthened": {
+      "record": "docs/validation/photo-continuation-20261124/final-loaded-audio/strengthened/run-summary.json",
+      "fixture_sha256": "a76cba87f5682a53a4aca46911fe2be2d8824171fee6bc3de45c25566a56fac1",
+      "modules": 3,
+      "sample_formats": [
+        "float32",
+        "float64"
+      ],
+      "sample_rate_hz": 48000,
+      "frames_per_render": 96000,
+      "renders": 96,
+      "callbacks": 36000,
+      "scalar_comparisons": 24173604,
+      "checks": 12698530,
+      "source_files_unchanged": 44,
+      "module_bytes_unchanged": true,
+      "ctest_invocations": 1,
+      "ctest_tests": 1,
+      "ctest_failures": 0,
+      "ctest_skips": 0,
+      "recorded_command_exit_codes": {
+        "configure": 0,
+        "build": 0,
+        "ctest": 0
+      },
+      "recorded_source_changes": [],
+      "recorded_case_metric_lines": 36,
+      "initial_fixture_status": "The before-review manifest and weaker passing observation remain unchanged and are not substituted for this strengthened result."
+    }
+  },
+  "exclusions": [
+    "No full rebuild of published commit 8c5d819 is performed or claimed. Source/blob equality and binary identity do not attest compilation provenance.",
+    "No new CTest, validator, native GUI, loaded-audio or legacy capture execution was performed by worker w5-092.",
+    "Final-native covers the Direct variant only. Filtered and Quadrature module/lifecycle records retain their separate scope; this bridge does not extrapolate the Direct 136-check visual replay.",
+    "The final-module-gates artifact contains 26 Filtered/Quadrature native lifecycle commands. Direct lifecycle evidence is separate and is not added to this artifact's count.",
+    "The legacy matrix retains 72 historical baseline captures and 144 fresh current captures; it is not a fresh 216-process baseline/current run.",
+    "The strengthened loaded-panel observation covers the retained synthetic float32/float64 stereo cases at 48 kHz; it does not establish all parameter transactions, mono audio or malformed-input behavior.",
+    "No native Windows/macOS runtime, non-unit display scaling, named-DAW operation, audio-device deadlines, release qualification, physical circuit authenticity or acoustic fidelity is established.",
+    "External SDK, generated build, host and runtime dependencies retain their original manifest bindings; this source bridge does not rehash or re-execute every external dependency.",
+    "Historical input hashes, manifest HEAD values, original failures and original scope are preserved. This artifact adds applicability evidence and does not rewrite past records.",
+    "Canonical HOST-004 completion and unrelated PHY-002, RT-001, specimen and measurement gates remain the integration owner's separate decisions."
+  ]
+}

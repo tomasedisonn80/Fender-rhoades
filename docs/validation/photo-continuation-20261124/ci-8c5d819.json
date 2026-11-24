@@ -1,0 +1,1524 @@
+{
+  "schema_version": 1,
+  "repository": "baabi-boo/Fender-rhoades",
+  "head_sha": "8c5d819e9d99767372cf1a74a971433edce6da35",
+  "runs_request": {
+    "url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/runs?head_sha=8c5d819e9d99767372cf1a74a971433edce6da35&per_page=10",
+    "started_at": "2026-11-24T20:01:29.801Z",
+    "observed_at": "2026-11-24T20:01:30.361Z",
+    "total_count": 2
+  },
+  "runs": [
+    {
+      "id": 45475369250,
+      "name": "Foundation CI",
+      "head_sha": "8c5d819e9d99767372cf1a74a971433edce6da35",
+      "head_branch": "main",
+      "path": ".github/workflows/ci.yml",
+      "event": "push",
+      "run_number": 118,
+      "run_attempt": 1,
+      "status": "queued",
+      "conclusion": null,
+      "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45475369250",
+      "created_at": "2026-11-24T19:55:44Z",
+      "updated_at": "2026-11-24T19:55:46Z",
+      "run_started_at": "2026-11-24T19:55:44Z",
+      "jobs_request": {
+        "url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/runs/45475369250/jobs?per_page=100",
+        "started_at": "2026-11-24T20:02:03.549Z",
+        "observed_at": "2026-11-24T20:02:04.126Z",
+        "total_count": 7
+      },
+      "jobs": [
+        {
+          "id": 138734054890,
+          "run_id": 45475369250,
+          "run_attempt": 1,
+          "head_sha": "8c5d819e9d99767372cf1a74a971433edce6da35",
+          "name": "Project state / ubuntu-latest",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45475369250/job/138734054890",
+          "created_at": "2026-11-24T19:55:45Z",
+          "started_at": "2026-11-24T19:58:05Z",
+          "completed_at": "2026-11-24T19:59:33Z",
+          "runner_id": 1000007975,
+          "runner_name": "GitHub Actions 1000007975",
+          "runner_group_id": 0,
+          "runner_group_name": "GitHub Actions",
+          "labels": [
+            "ubuntu-latest"
+          ],
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-11-24T19:58:06Z",
+              "completed_at": "2026-11-24T19:58:07Z"
+            },
+            {
+              "name": "Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-11-24T19:58:07Z",
+              "completed_at": "2026-11-24T19:58:14Z"
+            },
+            {
+              "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-11-24T19:58:14Z",
+              "completed_at": "2026-11-24T19:58:14Z"
+            },
+            {
+              "name": "Bind diagnostics to the checked-out source",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-11-24T19:58:14Z",
+              "completed_at": "2026-11-24T19:58:16Z"
+            },
+            {
+              "name": "Validate canonical project state",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-11-24T19:58:16Z",
+              "completed_at": "2026-11-24T19:58:17Z"
+            },
+            {
+              "name": "Reject stale generated state",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-11-24T19:58:17Z",
+              "completed_at": "2026-11-24T19:58:17Z"
+            },
+            {
+              "name": "Validate data provenance contracts",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7,
+              "started_at": "2026-11-24T19:58:17Z",
+              "completed_at": "2026-11-24T19:58:17Z"
+            },
+            {
+              "name": "Check documentation integrity",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-11-24T19:58:17Z",
+              "completed_at": "2026-11-24T19:58:18Z"
+            },
+            {
+              "name": "Validate actual-agent ledger",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9,
+              "started_at": "2026-11-24T19:58:18Z",
+              "completed_at": "2026-11-24T19:58:18Z"
+            },
+            {
+              "name": "Reject stale campaign index",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10,
+              "started_at": "2026-11-24T19:58:18Z",
+              "completed_at": "2026-11-24T19:58:18Z"
+            },
+            {
+              "name": "Validate development assignments and report hashes",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11,
+              "started_at": "2026-11-24T19:58:18Z",
+              "completed_at": "2026-11-24T19:58:19Z"
+            },
+            {
+              "name": "Reject stale development campaign index",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12,
+              "started_at": "2026-11-24T19:58:19Z",
+              "completed_at": "2026-11-24T19:58:19Z"
+            },
+            {
+              "name": "Validate continuation assignments and immutable report hashes",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13,
+              "started_at": "2026-11-24T19:58:19Z",
+              "completed_at": "2026-11-24T19:58:19Z"
+            },
+            {
+              "name": "Validate host interoperability assignments and report hashes",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 14,
+              "started_at": "2026-11-24T19:58:19Z",
+              "completed_at": "2026-11-24T19:58:19Z"
+            },
+            {
+              "name": "Validate expression campaign assignments and report hashes",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 15,
+              "started_at": "2026-11-24T19:58:19Z",
+              "completed_at": "2026-11-24T19:58:19Z"
+            },
+            {
+              "name": "Validate photo continuation assignments and report hashes",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 16,
+              "started_at": "2026-11-24T19:58:19Z",
+              "completed_at": "2026-11-24T19:58:19Z"
+            },
+            {
+              "name": "Verify retained host MIDI raw evidence",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 17,
+              "started_at": "2026-11-24T19:58:19Z",
+              "completed_at": "2026-11-24T19:58:19Z"
+            },
+            {
+              "name": "Validate quadrature assignments and immutable report hashes",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 18,
+              "started_at": "2026-11-24T19:58:19Z",
+              "completed_at": "2026-11-24T19:58:19Z"
+            },
+            {
+              "name": "Reject stale quadrature campaign index",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 19,
+              "started_at": "2026-11-24T19:58:19Z",
+              "completed_at": "2026-11-24T19:58:20Z"
+            },
+            {
+              "name": "Validate current development waves and report hashes",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 20,
+              "started_at": "2026-11-24T19:58:20Z",
+              "completed_at": "2026-11-24T19:58:20Z"
+            },
+            {
+              "name": "Verify retained VST3 timing archives",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 21,
+              "started_at": "2026-11-24T19:58:20Z",
+              "completed_at": "2026-11-24T19:58:20Z"
+            },
+            {
+              "name": "Reject stale audio filter coefficients",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 22,
+              "started_at": "2026-11-24T19:58:20Z",
+              "completed_at": "2026-11-24T19:58:20Z"
+            },
+            {
+              "name": "Reject stale quadrature filter coefficients",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 23,
+              "started_at": "2026-11-24T19:58:20Z",
+              "completed_at": "2026-11-24T19:58:21Z"
+            },
+            {
+              "name": "Verify independent control-text vectors",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 24,
+              "started_at": "2026-11-24T19:58:21Z",
+              "completed_at": "2026-11-24T19:58:21Z"
+            },
+            {
+              "name": "Check agent tooling",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 25,
+              "started_at": "2026-11-24T19:58:21Z",
+              "completed_at": "2026-11-24T19:59:28Z"
+            },
+            {
+              "name": "Retain final source and execution metadata",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 26,
+              "started_at": "2026-11-24T19:59:28Z",
+              "completed_at": "2026-11-24T19:59:28Z"
+            },
+            {
+              "name": "Upload raw contract and Python diagnostics",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 27,
+              "started_at": "2026-11-24T19:59:28Z",
+              "completed_at": "2026-11-24T19:59:30Z"
+            },
+            {
+              "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 53,
+              "started_at": "2026-11-24T19:59:30Z",
+              "completed_at": "2026-11-24T19:59:30Z"
+            },
+            {
+              "name": "Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 54,
+              "started_at": "2026-11-24T19:59:30Z",
+              "completed_at": "2026-11-24T19:59:30Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 55,
+              "started_at": "2026-11-24T19:59:30Z",
+              "completed_at": "2026-11-24T19:59:30Z"
+            }
+          ],
+          "step_count": 30
+        },
+        {
+          "id": 138734055509,
+          "run_id": 45475369250,
+          "run_attempt": 1,
+          "head_sha": "8c5d819e9d99767372cf1a74a971433edce6da35",
+          "name": "C++20 / windows-latest",
+          "status": "completed",
+          "conclusion": "failure",
+          "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45475369250/job/138734055509",
+          "created_at": "2026-11-24T19:55:45Z",
+          "started_at": "2026-11-24T19:58:23Z",
+          "completed_at": "2026-11-24T19:59:53Z",
+          "runner_id": 1000007977,
+          "runner_name": "GitHub Actions 1000007977",
+          "runner_group_id": 0,
+          "runner_group_name": "GitHub Actions",
+          "labels": [
+            "windows-latest"
+          ],
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-11-24T19:58:24Z",
+              "completed_at": "2026-11-24T19:58:24Z"
+            },
+            {
+              "name": "Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-11-24T19:58:24Z",
+              "completed_at": "2026-11-24T19:58:34Z"
+            },
+            {
+              "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-11-24T19:58:34Z",
+              "completed_at": "2026-11-24T19:58:35Z"
+            },
+            {
+              "name": "Bind diagnostics to the checked-out source",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-11-24T19:58:35Z",
+              "completed_at": "2026-11-24T19:58:42Z"
+            },
+            {
+              "name": "Configure",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-11-24T19:58:42Z",
+              "completed_at": "2026-11-24T19:58:56Z"
+            },
+            {
+              "name": "Build",
+              "status": "completed",
+              "conclusion": "failure",
+              "number": 6,
+              "started_at": "2026-11-24T19:58:56Z",
+              "completed_at": "2026-11-24T19:59:47Z"
+            },
+            {
+              "name": "Verify analytical and integration behavior",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 7,
+              "started_at": "2026-11-24T19:59:47Z",
+              "completed_at": "2026-11-24T19:59:47Z"
+            },
+            {
+              "name": "Retain final source and compiler metadata",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-11-24T19:59:47Z",
+              "completed_at": "2026-11-24T19:59:48Z"
+            },
+            {
+              "name": "Upload raw C++ diagnostics",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9,
+              "started_at": "2026-11-24T19:59:48Z",
+              "completed_at": "2026-11-24T19:59:50Z"
+            },
+            {
+              "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 17,
+              "started_at": "2026-11-24T19:59:50Z",
+              "completed_at": "2026-11-24T19:59:50Z"
+            },
+            {
+              "name": "Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 18,
+              "started_at": "2026-11-24T19:59:50Z",
+              "completed_at": "2026-11-24T19:59:51Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 19,
+              "started_at": "2026-11-24T19:59:51Z",
+              "completed_at": "2026-11-24T19:59:51Z"
+            }
+          ],
+          "step_count": 12
+        },
+        {
+          "id": 138734055525,
+          "run_id": 45475369250,
+          "run_attempt": 1,
+          "head_sha": "8c5d819e9d99767372cf1a74a971433edce6da35",
+          "name": "Project state / windows-latest",
+          "status": "in_progress",
+          "conclusion": null,
+          "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45475369250/job/138734055525",
+          "created_at": "2026-11-24T19:55:45Z",
+          "started_at": "2026-11-24T19:58:06Z",
+          "completed_at": null,
+          "runner_id": 1000007976,
+          "runner_name": "GitHub Actions 1000007976",
+          "runner_group_id": 0,
+          "runner_group_name": "GitHub Actions",
+          "labels": [
+            "windows-latest"
+          ],
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-11-24T19:58:07Z",
+              "completed_at": "2026-11-24T19:58:09Z"
+            },
+            {
+              "name": "Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-11-24T19:58:09Z",
+              "completed_at": "2026-11-24T19:58:27Z"
+            },
+            {
+              "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-11-24T19:58:27Z",
+              "completed_at": "2026-11-24T19:58:27Z"
+            },
+            {
+              "name": "Bind diagnostics to the checked-out source",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-11-24T19:58:27Z",
+              "completed_at": "2026-11-24T19:58:41Z"
+            },
+            {
+              "name": "Validate canonical project state",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-11-24T19:58:41Z",
+              "completed_at": "2026-11-24T19:58:44Z"
+            },
+            {
+              "name": "Reject stale generated state",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-11-24T19:58:44Z",
+              "completed_at": "2026-11-24T19:58:45Z"
+            },
+            {
+              "name": "Validate data provenance contracts",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7,
+              "started_at": "2026-11-24T19:58:45Z",
+              "completed_at": "2026-11-24T19:58:46Z"
+            },
+            {
+              "name": "Check documentation integrity",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-11-24T19:58:46Z",
+              "completed_at": "2026-11-24T19:58:52Z"
+            },
+            {
+              "name": "Validate actual-agent ledger",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9,
+              "started_at": "2026-11-24T19:58:52Z",
+              "completed_at": "2026-11-24T19:58:53Z"
+            },
+            {
+              "name": "Reject stale campaign index",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10,
+              "started_at": "2026-11-24T19:58:53Z",
+              "completed_at": "2026-11-24T19:58:53Z"
+            },
+            {
+              "name": "Validate development assignments and report hashes",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11,
+              "started_at": "2026-11-24T19:58:53Z",
+              "completed_at": "2026-11-24T19:58:54Z"
+            },
+            {
+              "name": "Reject stale development campaign index",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12,
+              "started_at": "2026-11-24T19:58:54Z",
+              "completed_at": "2026-11-24T19:58:55Z"
+            },
+            {
+              "name": "Validate continuation assignments and immutable report hashes",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13,
+              "started_at": "2026-11-24T19:58:55Z",
+              "completed_at": "2026-11-24T19:58:56Z"
+            },
+            {
+              "name": "Validate host interoperability assignments and report hashes",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 14,
+              "started_at": "2026-11-24T19:58:56Z",
+              "completed_at": "2026-11-24T19:58:56Z"
+            },
+            {
+              "name": "Validate expression campaign assignments and report hashes",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 15,
+              "started_at": "2026-11-24T19:58:56Z",
+              "completed_at": "2026-11-24T19:58:57Z"
+            },
+            {
+              "name": "Validate photo continuation assignments and report hashes",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 16,
+              "started_at": "2026-11-24T19:58:57Z",
+              "completed_at": "2026-11-24T19:58:58Z"
+            },
+            {
+              "name": "Verify retained host MIDI raw evidence",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 17,
+              "started_at": "2026-11-24T19:58:58Z",
+              "completed_at": "2026-11-24T19:58:58Z"
+            },
+            {
+              "name": "Validate quadrature assignments and immutable report hashes",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 18,
+              "started_at": "2026-11-24T19:58:58Z",
+              "completed_at": "2026-11-24T19:58:59Z"
+            },
+            {
+              "name": "Reject stale quadrature campaign index",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 19,
+              "started_at": "2026-11-24T19:58:59Z",
+              "completed_at": "2026-11-24T19:58:59Z"
+            },
+            {
+              "name": "Validate current development waves and report hashes",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 20,
+              "started_at": "2026-11-24T19:58:59Z",
+              "completed_at": "2026-11-24T19:59:00Z"
+            },
+            {
+              "name": "Verify retained VST3 timing archives",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 21,
+              "started_at": "2026-11-24T19:59:00Z",
+              "completed_at": "2026-11-24T19:59:04Z"
+            },
+            {
+              "name": "Reject stale audio filter coefficients",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 22,
+              "started_at": "2026-11-24T19:59:04Z",
+              "completed_at": "2026-11-24T19:59:08Z"
+            },
+            {
+              "name": "Reject stale quadrature filter coefficients",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 23,
+              "started_at": "2026-11-24T19:59:08Z",
+              "completed_at": "2026-11-24T19:59:09Z"
+            },
+            {
+              "name": "Verify independent control-text vectors",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 24,
+              "started_at": "2026-11-24T19:59:09Z",
+              "completed_at": "2026-11-24T19:59:09Z"
+            },
+            {
+              "name": "Check agent tooling",
+              "status": "in_progress",
+              "conclusion": null,
+              "number": 25,
+              "started_at": "2026-11-24T19:59:09Z",
+              "completed_at": null
+            },
+            {
+              "name": "Retain final source and execution metadata",
+              "status": "pending",
+              "conclusion": null,
+              "number": 26,
+              "started_at": null,
+              "completed_at": null
+            },
+            {
+              "name": "Upload raw contract and Python diagnostics",
+              "status": "pending",
+              "conclusion": null,
+              "number": 27,
+              "started_at": null,
+              "completed_at": null
+            },
+            {
+              "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "status": "pending",
+              "conclusion": null,
+              "number": 53,
+              "started_at": null,
+              "completed_at": null
+            },
+            {
+              "name": "Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+              "status": "pending",
+              "conclusion": null,
+              "number": 54,
+              "started_at": null,
+              "completed_at": null
+            }
+          ],
+          "step_count": 29
+        },
+        {
+          "id": 138734055712,
+          "run_id": 45475369250,
+          "run_attempt": 1,
+          "head_sha": "8c5d819e9d99767372cf1a74a971433edce6da35",
+          "name": "C++20 / ubuntu-latest",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45475369250/job/138734055712",
+          "created_at": "2026-11-24T19:55:46Z",
+          "started_at": "2026-11-24T19:59:26Z",
+          "completed_at": "2026-11-24T20:00:23Z",
+          "runner_id": 1000007980,
+          "runner_name": "GitHub Actions 1000007980",
+          "runner_group_id": 0,
+          "runner_group_name": "GitHub Actions",
+          "labels": [
+            "ubuntu-latest"
+          ],
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-11-24T19:59:26Z",
+              "completed_at": "2026-11-24T19:59:27Z"
+            },
+            {
+              "name": "Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-11-24T19:59:27Z",
+              "completed_at": "2026-11-24T19:59:32Z"
+            },
+            {
+              "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-11-24T19:59:32Z",
+              "completed_at": "2026-11-24T19:59:32Z"
+            },
+            {
+              "name": "Bind diagnostics to the checked-out source",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-11-24T19:59:32Z",
+              "completed_at": "2026-11-24T19:59:34Z"
+            },
+            {
+              "name": "Configure",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-11-24T19:59:34Z",
+              "completed_at": "2026-11-24T19:59:35Z"
+            },
+            {
+              "name": "Build",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-11-24T19:59:35Z",
+              "completed_at": "2026-11-24T20:00:10Z"
+            },
+            {
+              "name": "Verify analytical and integration behavior",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7,
+              "started_at": "2026-11-24T20:00:10Z",
+              "completed_at": "2026-11-24T20:00:20Z"
+            },
+            {
+              "name": "Retain final source and compiler metadata",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-11-24T20:00:20Z",
+              "completed_at": "2026-11-24T20:00:20Z"
+            },
+            {
+              "name": "Upload raw C++ diagnostics",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9,
+              "started_at": "2026-11-24T20:00:20Z",
+              "completed_at": "2026-11-24T20:00:21Z"
+            },
+            {
+              "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 17,
+              "started_at": "2026-11-24T20:00:21Z",
+              "completed_at": "2026-11-24T20:00:21Z"
+            },
+            {
+              "name": "Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 18,
+              "started_at": "2026-11-24T20:00:21Z",
+              "completed_at": "2026-11-24T20:00:21Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 19,
+              "started_at": "2026-11-24T20:00:21Z",
+              "completed_at": "2026-11-24T20:00:21Z"
+            }
+          ],
+          "step_count": 12
+        },
+        {
+          "id": 138734055765,
+          "run_id": 45475369250,
+          "run_attempt": 1,
+          "head_sha": "8c5d819e9d99767372cf1a74a971433edce6da35",
+          "name": "Address and undefined behavior sanitizers",
+          "status": "completed",
+          "conclusion": "success",
+          "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45475369250/job/138734055765",
+          "created_at": "2026-11-24T19:55:46Z",
+          "started_at": "2026-11-24T19:58:50Z",
+          "completed_at": "2026-11-24T20:01:13Z",
+          "runner_id": 1000007979,
+          "runner_name": "GitHub Actions 1000007979",
+          "runner_group_id": 0,
+          "runner_group_name": "GitHub Actions",
+          "labels": [
+            "ubuntu-latest"
+          ],
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-11-24T19:58:51Z",
+              "completed_at": "2026-11-24T19:58:51Z"
+            },
+            {
+              "name": "Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-11-24T19:58:51Z",
+              "completed_at": "2026-11-24T19:58:57Z"
+            },
+            {
+              "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-11-24T19:58:57Z",
+              "completed_at": "2026-11-24T19:58:57Z"
+            },
+            {
+              "name": "Bind diagnostics to the checked-out source",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-11-24T19:58:57Z",
+              "completed_at": "2026-11-24T19:59:01Z"
+            },
+            {
+              "name": "Configure",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-11-24T19:59:01Z",
+              "completed_at": "2026-11-24T19:59:05Z"
+            },
+            {
+              "name": "Build",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-11-24T19:59:05Z",
+              "completed_at": "2026-11-24T19:59:37Z"
+            },
+            {
+              "name": "Test",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7,
+              "started_at": "2026-11-24T19:59:37Z",
+              "completed_at": "2026-11-24T20:01:09Z"
+            },
+            {
+              "name": "Retain final source and compiler metadata",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-11-24T20:01:09Z",
+              "completed_at": "2026-11-24T20:01:10Z"
+            },
+            {
+              "name": "Upload raw sanitizer diagnostics",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9,
+              "started_at": "2026-11-24T20:01:10Z",
+              "completed_at": "2026-11-24T20:01:11Z"
+            },
+            {
+              "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 17,
+              "started_at": "2026-11-24T20:01:11Z",
+              "completed_at": "2026-11-24T20:01:11Z"
+            },
+            {
+              "name": "Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 18,
+              "started_at": "2026-11-24T20:01:11Z",
+              "completed_at": "2026-11-24T20:01:11Z"
+            },
+            {
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 19,
+              "started_at": "2026-11-24T20:01:11Z",
+              "completed_at": "2026-11-24T20:01:11Z"
+            }
+          ],
+          "step_count": 12
+        },
+        {
+          "id": 138734055940,
+          "run_id": 45475369250,
+          "run_attempt": 1,
+          "head_sha": "8c5d819e9d99767372cf1a74a971433edce6da35",
+          "name": "Project state / macos-latest",
+          "status": "queued",
+          "conclusion": null,
+          "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45475369250/job/138734055940",
+          "created_at": "2026-11-24T19:55:46Z",
+          "started_at": "2026-11-24T19:55:46Z",
+          "completed_at": null,
+          "runner_id": 0,
+          "runner_name": "",
+          "runner_group_id": 0,
+          "runner_group_name": "",
+          "labels": [
+            "macos-latest"
+          ],
+          "steps": [],
+          "step_count": 0
+        },
+        {
+          "id": 138734057598,
+          "run_id": 45475369250,
+          "run_attempt": 1,
+          "head_sha": "8c5d819e9d99767372cf1a74a971433edce6da35",
+          "name": "C++20 / macos-latest",
+          "status": "queued",
+          "conclusion": null,
+          "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45475369250/job/138734057598",
+          "created_at": "2026-11-24T19:55:46Z",
+          "started_at": "2026-11-24T19:55:46Z",
+          "completed_at": null,
+          "runner_id": 0,
+          "runner_name": "",
+          "runner_group_id": 0,
+          "runner_group_name": "",
+          "labels": [
+            "macos-latest"
+          ],
+          "steps": [],
+          "step_count": 0
+        }
+      ]
+    },
+    {
+      "id": 45475369224,
+      "name": "Experimental VST3 CI",
+      "head_sha": "8c5d819e9d99767372cf1a74a971433edce6da35",
+      "head_branch": "main",
+      "path": ".github/workflows/vst3.yml",
+      "event": "push",
+      "run_number": 55,
+      "run_attempt": 1,
+      "status": "queued",
+      "conclusion": null,
+      "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45475369224",
+      "created_at": "2026-11-24T19:55:44Z",
+      "updated_at": "2026-11-24T19:55:44Z",
+      "run_started_at": "2026-11-24T19:55:44Z",
+      "jobs_request": {
+        "url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/runs/45475369224/jobs?per_page=100",
+        "started_at": "2026-11-24T20:02:03.550Z",
+        "observed_at": "2026-11-24T20:02:04.104Z",
+        "total_count": 3
+      },
+      "jobs": [
+        {
+          "id": 138734043050,
+          "run_id": 45475369224,
+          "run_attempt": 1,
+          "head_sha": "8c5d819e9d99767372cf1a74a971433edce6da35",
+          "name": "VST3 prototype / macos-latest",
+          "status": "queued",
+          "conclusion": null,
+          "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45475369224/job/138734043050",
+          "created_at": "2026-11-24T19:55:44Z",
+          "started_at": "2026-11-24T19:55:44Z",
+          "completed_at": null,
+          "runner_id": 0,
+          "runner_name": "",
+          "runner_group_id": 0,
+          "runner_group_name": "",
+          "labels": [
+            "macos-latest"
+          ],
+          "steps": [],
+          "step_count": 0
+        },
+        {
+          "id": 138734043567,
+          "run_id": 45475369224,
+          "run_attempt": 1,
+          "head_sha": "8c5d819e9d99767372cf1a74a971433edce6da35",
+          "name": "VST3 prototype / ubuntu-latest",
+          "status": "in_progress",
+          "conclusion": null,
+          "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45475369224/job/138734043567",
+          "created_at": "2026-11-24T19:55:44Z",
+          "started_at": "2026-11-24T19:58:37Z",
+          "completed_at": null,
+          "runner_id": 1000007978,
+          "runner_name": "GitHub Actions 1000007978",
+          "runner_group_id": 0,
+          "runner_group_name": "GitHub Actions",
+          "labels": [
+            "ubuntu-latest"
+          ],
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-11-24T19:58:38Z",
+              "completed_at": "2026-11-24T19:58:38Z"
+            },
+            {
+              "name": "Check out project",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-11-24T19:58:38Z",
+              "completed_at": "2026-11-24T19:58:44Z"
+            },
+            {
+              "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-11-24T19:58:44Z",
+              "completed_at": "2026-11-24T19:58:44Z"
+            },
+            {
+              "name": "Check out the fixed same-repository legacy source",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-11-24T19:58:44Z",
+              "completed_at": "2026-11-24T19:58:46Z"
+            },
+            {
+              "name": "Check out the pinned official SDK",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-11-24T19:58:46Z",
+              "completed_at": "2026-11-24T19:58:46Z"
+            },
+            {
+              "name": "Initialize the pinned SDK and native editor dependency",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-11-24T19:58:46Z",
+              "completed_at": "2026-11-24T19:58:50Z"
+            },
+            {
+              "name": "Install Linux native editor development libraries",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 7,
+              "started_at": "2026-11-24T19:58:50Z",
+              "completed_at": "2026-11-24T19:59:14Z"
+            },
+            {
+              "name": "Verify original and lossless editor assets",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-11-24T19:59:14Z",
+              "completed_at": "2026-11-24T19:59:14Z"
+            },
+            {
+              "name": "Verify and retain source, SDK and all required submodule revisions",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9,
+              "started_at": "2026-11-24T19:59:14Z",
+              "completed_at": "2026-11-24T19:59:15Z"
+            },
+            {
+              "name": "Configure the fixed legacy modules with the same native toolchain",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10,
+              "started_at": "2026-11-24T19:59:15Z",
+              "completed_at": "2026-11-24T19:59:16Z"
+            },
+            {
+              "name": "Build only the three fixed legacy module targets",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11,
+              "started_at": "2026-11-24T19:59:16Z",
+              "completed_at": "2026-11-24T19:59:37Z"
+            },
+            {
+              "name": "Bind each baseline native module to its source and SHA-256",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12,
+              "started_at": "2026-11-24T19:59:37Z",
+              "completed_at": "2026-11-24T19:59:38Z"
+            },
+            {
+              "name": "Configure all three instruments with the native photo editor",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13,
+              "started_at": "2026-11-24T19:59:38Z",
+              "completed_at": "2026-11-24T19:59:40Z"
+            },
+            {
+              "name": "Require identical baseline and candidate compilers and generators",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 14,
+              "started_at": "2026-11-24T19:59:40Z",
+              "completed_at": "2026-11-24T19:59:40Z"
+            },
+            {
+              "name": "Build all three actual modules and retained host tests",
+              "status": "in_progress",
+              "conclusion": null,
+              "number": 15,
+              "started_at": "2026-11-24T19:59:40Z",
+              "completed_at": null
+            },
+            {
+              "name": "Run host tests, legacy unity comparisons and all three SDK validators",
+              "status": "pending",
+              "conclusion": null,
+              "number": 16,
+              "started_at": null,
+              "completed_at": null
+            },
+            {
+              "name": "Retain final source, SDK, compiler and actual module metadata",
+              "status": "pending",
+              "conclusion": null,
+              "number": 17,
+              "started_at": null,
+              "completed_at": null
+            },
+            {
+              "name": "Archive all three validated experimental bundles",
+              "status": "pending",
+              "conclusion": null,
+              "number": 18,
+              "started_at": null,
+              "completed_at": null
+            },
+            {
+              "name": "Upload validated experimental bundles",
+              "status": "pending",
+              "conclusion": null,
+              "number": 19,
+              "started_at": null,
+              "completed_at": null
+            },
+            {
+              "name": "Upload raw native diagnostics and legacy comparison captures",
+              "status": "pending",
+              "conclusion": null,
+              "number": 20,
+              "started_at": null,
+              "completed_at": null
+            },
+            {
+              "name": "Post Check out the pinned official SDK",
+              "status": "pending",
+              "conclusion": null,
+              "number": 37,
+              "started_at": null,
+              "completed_at": null
+            },
+            {
+              "name": "Post Check out the fixed same-repository legacy source",
+              "status": "pending",
+              "conclusion": null,
+              "number": 38,
+              "started_at": null,
+              "completed_at": null
+            },
+            {
+              "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "status": "pending",
+              "conclusion": null,
+              "number": 39,
+              "started_at": null,
+              "completed_at": null
+            },
+            {
+              "name": "Post Check out project",
+              "status": "pending",
+              "conclusion": null,
+              "number": 40,
+              "started_at": null,
+              "completed_at": null
+            }
+          ],
+          "step_count": 24
+        },
+        {
+          "id": 138734043975,
+          "run_id": 45475369224,
+          "run_attempt": 1,
+          "head_sha": "8c5d819e9d99767372cf1a74a971433edce6da35",
+          "name": "VST3 prototype / windows-latest",
+          "status": "in_progress",
+          "conclusion": null,
+          "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45475369224/job/138734043975",
+          "created_at": "2026-11-24T19:55:44Z",
+          "started_at": "2026-11-24T19:56:02Z",
+          "completed_at": null,
+          "runner_id": 1000007972,
+          "runner_name": "GitHub Actions 1000007972",
+          "runner_group_id": 0,
+          "runner_group_name": "GitHub Actions",
+          "labels": [
+            "windows-latest"
+          ],
+          "steps": [
+            {
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 1,
+              "started_at": "2026-11-24T19:56:03Z",
+              "completed_at": "2026-11-24T19:56:04Z"
+            },
+            {
+              "name": "Check out project",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 2,
+              "started_at": "2026-11-24T19:56:04Z",
+              "completed_at": "2026-11-24T19:56:15Z"
+            },
+            {
+              "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 3,
+              "started_at": "2026-11-24T19:56:15Z",
+              "completed_at": "2026-11-24T19:56:15Z"
+            },
+            {
+              "name": "Check out the fixed same-repository legacy source",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 4,
+              "started_at": "2026-11-24T19:56:15Z",
+              "completed_at": "2026-11-24T19:56:20Z"
+            },
+            {
+              "name": "Check out the pinned official SDK",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 5,
+              "started_at": "2026-11-24T19:56:20Z",
+              "completed_at": "2026-11-24T19:56:24Z"
+            },
+            {
+              "name": "Initialize the pinned SDK and native editor dependency",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 6,
+              "started_at": "2026-11-24T19:56:24Z",
+              "completed_at": "2026-11-24T19:56:31Z"
+            },
+            {
+              "name": "Install Linux native editor development libraries",
+              "status": "completed",
+              "conclusion": "skipped",
+              "number": 7,
+              "started_at": "2026-11-24T19:56:31Z",
+              "completed_at": "2026-11-24T19:56:31Z"
+            },
+            {
+              "name": "Verify original and lossless editor assets",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 8,
+              "started_at": "2026-11-24T19:56:31Z",
+              "completed_at": "2026-11-24T19:56:31Z"
+            },
+            {
+              "name": "Verify and retain source, SDK and all required submodule revisions",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 9,
+              "started_at": "2026-11-24T19:56:31Z",
+              "completed_at": "2026-11-24T19:56:36Z"
+            },
+            {
+              "name": "Configure the fixed legacy modules with the same native toolchain",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 10,
+              "started_at": "2026-11-24T19:56:36Z",
+              "completed_at": "2026-11-24T19:56:52Z"
+            },
+            {
+              "name": "Build only the three fixed legacy module targets",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 11,
+              "started_at": "2026-11-24T19:56:52Z",
+              "completed_at": "2026-11-24T19:57:36Z"
+            },
+            {
+              "name": "Bind each baseline native module to its source and SHA-256",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 12,
+              "started_at": "2026-11-24T19:57:36Z",
+              "completed_at": "2026-11-24T19:57:38Z"
+            },
+            {
+              "name": "Configure all three instruments with the native photo editor",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 13,
+              "started_at": "2026-11-24T19:57:38Z",
+              "completed_at": "2026-11-24T19:57:46Z"
+            },
+            {
+              "name": "Require identical baseline and candidate compilers and generators",
+              "status": "completed",
+              "conclusion": "success",
+              "number": 14,
+              "started_at": "2026-11-24T19:57:46Z",
+              "completed_at": "2026-11-24T19:57:46Z"
+            },
+            {
+              "name": "Build all three actual modules and retained host tests",
+              "status": "in_progress",
+              "conclusion": null,
+              "number": 15,
+              "started_at": "2026-11-24T19:57:46Z",
+              "completed_at": null
+            },
+            {
+              "name": "Run host tests, legacy unity comparisons and all three SDK validators",
+              "status": "pending",
+              "conclusion": null,
+              "number": 16,
+              "started_at": null,
+              "completed_at": null
+            },
+            {
+              "name": "Retain final source, SDK, compiler and actual module metadata",
+              "status": "pending",
+              "conclusion": null,
+              "number": 17,
+              "started_at": null,
+              "completed_at": null
+            },
+            {
+              "name": "Archive all three validated experimental bundles",
+              "status": "pending",
+              "conclusion": null,
+              "number": 18,
+              "started_at": null,
+              "completed_at": null
+            },
+            {
+              "name": "Upload validated experimental bundles",
+              "status": "pending",
+              "conclusion": null,
+              "number": 19,
+              "started_at": null,
+              "completed_at": null
+            },
+            {
+              "name": "Upload raw native diagnostics and legacy comparison captures",
+              "status": "pending",
+              "conclusion": null,
+              "number": 20,
+              "started_at": null,
+              "completed_at": null
+            },
+            {
+              "name": "Post Check out the pinned official SDK",
+              "status": "pending",
+              "conclusion": null,
+              "number": 37,
+              "started_at": null,
+              "completed_at": null
+            },
+            {
+              "name": "Post Check out the fixed same-repository legacy source",
+              "status": "pending",
+              "conclusion": null,
+              "number": 38,
+              "started_at": null,
+              "completed_at": null
+            },
+            {
+              "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "status": "pending",
+              "conclusion": null,
+              "number": 39,
+              "started_at": null,
+              "completed_at": null
+            },
+            {
+              "name": "Post Check out project",
+              "status": "pending",
+              "conclusion": null,
+              "number": 40,
+              "started_at": null,
+              "completed_at": null
+            }
+          ],
+          "step_count": 24
+        }
+      ]
+    }
+  ],
+  "observation_started_at": "2026-11-24T20:01:29.801Z",
+  "observation_completed_at": "2026-11-24T20:02:22.685Z",
+  "collection_policy": {
+    "tool": "mcp__codex_apps__github_fetch",
+    "account_link_id": "link_6af40604f01c8191949ebac02c39dc15",
+    "runs_list_reads": 1,
+    "jobs_list_reads": 2,
+    "failed_job_log_reads": 1,
+    "pagination": "Requested per_page=10 for runs and per_page=100 for jobs; all returned total counts fit within those pages.",
+    "mutations": [],
+    "note": "One bounded read-only observation; no polls, reruns, cancellations, dispatches, builds, or project-state writes. Run collection and job collections have separate observation times; their original API statuses are retained without normalization."
+  },
+  "material_failure": {
+    "run_id": 45475369250,
+    "job_id": 138734055509,
+    "platform": "windows-latest",
+    "job_name": "C++20 / windows-latest",
+    "failed_step": {
+      "number": 6,
+      "name": "Build",
+      "status": "completed",
+      "conclusion": "failure",
+      "started_at": "2026-11-24T19:58:56Z",
+      "completed_at": "2026-11-24T19:59:47Z"
+    },
+    "observed_cause": "MSVC 14.52.37025 reported fatal error C1001: Internal compiler error while compiling photo_key_highlight_test.cpp for rhodes_photo_key_highlight_tests.vcxproj. The diagnostic identifies predefined C++ types (compiler internal)(426,1), compiler file msc1.cpp line 1678. Build exited 1.",
+    "downstream_test_step": {
+      "number": 7,
+      "name": "Verify analytical and integration behavior",
+      "status": "completed",
+      "conclusion": "skipped"
+    },
+    "interpretation": "Executed compiler failure; the skipped test step supplies no analytical/integration test result. No billing or queue cause is inferred.",
+    "log_request": {
+      "tool": "mcp__codex_apps__github_fetch_workflow_job_logs",
+      "repo_full_name": "baabi-boo/Fender-rhoades",
+      "job_id": 138734055509,
+      "started_at": "2026-11-24T20:02:22.006Z",
+      "observed_at": "2026-11-24T20:02:22.685Z"
+    },
+    "relevant_log_lines": [
+      {
+        "line": "2026-11-24T19:59:29.3784790Z predefined C++ types (compiler internal)(426,1): fatal  error C1001: Internal compiler error. [D:\\a\\Fender-rhoades\\Fender-rhoades\\build\\rhodes_photo_key_highlight_tests.vcxproj]",
+        "n": 252
+      },
+      {
+        "line": "2026-11-24T19:59:29.3796218Z   INTERNAL COMPILER ERROR in 'C:\\Program Files\\Microsoft Visual Studio\\18\\Enterprise\\VC\\Tools\\MSVC\\14.52.37025\\bin\\HostX64\\x64\\CL.exe'",
+        "n": 258
+      },
+      {
+        "line": "2026-11-24T19:59:47.8802035Z ##[error]Process completed with exit code 1.",
+        "n": 314
+      }
+    ],
+    "raw_job_log": "﻿2026-11-24T19:58:24.1944331Z Current runner version: '2.338.2'\r\n2026-11-24T19:58:24.1976026Z ##[group]Runner Image Provisioner\r\n2026-11-24T19:58:24.1976793Z Hosted Compute Agent\r\n2026-11-24T19:58:24.1977807Z Version: 20261111.635\r\n2026-11-24T19:58:24.1978410Z Commit: b8a594ea514ff44cadb5342986c68b1eac6e22ed\r\n2026-11-24T19:58:24.1979102Z Build Date: 2026-11-11T01:49:01Z\r\n2026-11-24T19:58:24.1979825Z Worker ID: {088c747a-8cf8-40cc-8686-634b15ea7ddf}\r\n2026-11-24T19:58:24.1980442Z Region: eastus3\r\n2026-11-24T19:58:24.1980966Z Cloud: Azure\r\n2026-11-24T19:58:24.1981516Z ##[endgroup]\r\n2026-11-24T19:58:24.1983024Z ##[group]Operating System\r\n2026-11-24T19:58:24.1983677Z Microsoft Windows Server 2025\r\n2026-11-24T19:58:24.1984234Z 10.0.26100\r\n2026-11-24T19:58:24.1984707Z Datacenter\r\n2026-11-24T19:58:24.1985196Z ##[endgroup]\r\n2026-11-24T19:58:24.1985655Z ##[group]Runner Image\r\n2026-11-24T19:58:24.1986242Z Image: windows-2025-vs2026\r\n2026-11-24T19:58:24.1986799Z Version: 20261116.315.1\r\n2026-11-24T19:58:24.1988367Z Included Software: https://github.com/actions/runner-images/blob/win25-vs2026/20261116.315/images/windows/Windows2025-VS2026-Readme.md\r\n2026-11-24T19:58:24.1990007Z Image Release: https://github.com/actions/runner-images/releases/tag/win25-vs2026%2F20261116.315\r\n2026-11-24T19:58:24.1990988Z ##[endgroup]\r\n2026-11-24T19:58:24.1991958Z ##[group]GITHUB_TOKEN Permissions\r\n2026-11-24T19:58:24.1994076Z Contents: read\r\n2026-11-24T19:58:24.1994620Z Metadata: read\r\n2026-11-24T19:58:24.1995190Z ##[endgroup]\r\n2026-11-24T19:58:24.1997168Z Secret source: Actions\r\n2026-11-24T19:58:24.1998496Z Cache mode: write\r\n2026-11-24T19:58:24.1999254Z Prepare workflow directory\r\n2026-11-24T19:58:24.2352866Z Prepare all required actions\r\n2026-11-24T19:58:24.2404259Z Getting action download info\r\n2026-11-24T19:58:24.4773406Z Download action repository 'actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683' (SHA:11bd71901bbe5b1630ceea73d27597364c9af683)\r\n2026-11-24T19:58:24.5794175Z Download action repository 'actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)\r\n2026-11-24T19:58:24.7031528Z Download action repository 'actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9' (SHA:cf430e030ddbb5b0abf93d22962f4752f3646cd9)\r\n2026-11-24T19:58:24.8983909Z Complete job name: C++20 / windows-latest\r\n2026-11-24T19:58:25.0381231Z ##[group]Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683\r\n2026-11-24T19:58:25.0383012Z with:\r\n2026-11-24T19:58:25.0383532Z   persist-credentials: false\r\n2026-11-24T19:58:25.0384076Z   repository: baabi-boo/Fender-rhoades\r\n2026-11-24T19:58:25.0387866Z   token: ***\r\n2026-11-24T19:58:25.0388307Z   ssh-strict: true\r\n2026-11-24T19:58:25.0388736Z   ssh-user: git\r\n2026-11-24T19:58:25.0389192Z   clean: true\r\n2026-11-24T19:58:25.0389651Z   sparse-checkout-cone-mode: true\r\n2026-11-24T19:58:25.0390170Z   fetch-depth: 1\r\n2026-11-24T19:58:25.0390631Z   fetch-tags: false\r\n2026-11-24T19:58:25.0391082Z   show-progress: true\r\n2026-11-24T19:58:25.0391575Z   lfs: false\r\n2026-11-24T19:58:25.0392032Z   submodules: false\r\n2026-11-24T19:58:25.0392474Z   set-safe-directory: true\r\n2026-11-24T19:58:25.0393197Z ##[endgroup]\r\n2026-11-24T19:58:25.1869133Z Syncing repository: baabi-boo/Fender-rhoades\r\n2026-11-24T19:58:25.1870923Z ##[group]Getting Git version info\r\n2026-11-24T19:58:25.1871724Z Working directory is 'D:\\a\\Fender-rhoades\\Fender-rhoades'\r\n2026-11-24T19:58:25.2647724Z [command]\"C:\\Program Files\\Git\\bin\\git.exe\" version\r\n2026-11-24T19:58:25.5410132Z git version 2.56.1.windows.1\r\n2026-11-24T19:58:25.5461065Z ##[endgroup]\r\n2026-11-24T19:58:25.5482445Z Temporarily overriding HOME='D:\\a\\_temp\\9682a8f6-9a5f-42bd-8f77-53276f77b457' before making global git config changes\r\n2026-11-24T19:58:25.5483804Z Adding repository directory to the temporary git global config as a safe directory\r\n2026-11-24T19:58:25.5492207Z [command]\"C:\\Program Files\\Git\\bin\\git.exe\" config --global --add safe.directory D:\\a\\Fender-rhoades\\Fender-rhoades\r\n2026-11-24T19:58:25.6138015Z Deleting the contents of 'D:\\a\\Fender-rhoades\\Fender-rhoades'\r\n2026-11-24T19:58:25.6144678Z ##[group]Initializing the repository\r\n2026-11-24T19:58:25.6154257Z [command]\"C:\\Program Files\\Git\\bin\\git.exe\" init D:\\a\\Fender-rhoades\\Fender-rhoades\r\n2026-11-24T19:58:25.7122601Z Initialized empty Git repository in D:/a/Fender-rhoades/Fender-rhoades/.git/\r\n2026-11-24T19:58:25.7183939Z [command]\"C:\\Program Files\\Git\\bin\\git.exe\" remote add origin https://github.com/baabi-boo/Fender-rhoades\r\n2026-11-24T19:58:25.7841369Z ##[endgroup]\r\n2026-11-24T19:58:25.7843099Z ##[group]Disabling automatic garbage collection\r\n2026-11-24T19:58:25.7850985Z [command]\"C:\\Program Files\\Git\\bin\\git.exe\" config --local gc.auto 0\r\n2026-11-24T19:58:25.8256292Z ##[endgroup]\r\n2026-11-24T19:58:25.8258109Z ##[group]Setting up auth\r\n2026-11-24T19:58:25.8268564Z [command]\"C:\\Program Files\\Git\\bin\\git.exe\" config --local --name-only --get-regexp core\\.sshCommand\r\n2026-11-24T19:58:25.8651249Z [command]\"C:\\Program Files\\Git\\bin\\git.exe\" submodule foreach --recursive \"sh -c \\\"git config --local --name-only --get-regexp 'core\\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\\\"\"\r\n2026-11-24T19:58:27.1019026Z [command]\"C:\\Program Files\\Git\\bin\\git.exe\" config --local --name-only --get-regexp http\\.https\\:\\/\\/github\\.com\\/\\.extraheader\r\n2026-11-24T19:58:27.1400512Z [command]\"C:\\Program Files\\Git\\bin\\git.exe\" submodule foreach --recursive \"sh -c \\\"git config --local --name-only --get-regexp 'http\\.https\\:\\/\\/github\\.com\\/\\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\\\"\"\r\n2026-11-24T19:58:27.6952294Z [command]\"C:\\Program Files\\Git\\bin\\git.exe\" config --local http.https://github.com/.extraheader \"AUTHORIZATION: basic ***\"\r\n2026-11-24T19:58:27.7352808Z ##[endgroup]\r\n2026-11-24T19:58:27.7354347Z ##[group]Fetching the repository\r\n2026-11-24T19:58:27.7366168Z [command]\"C:\\Program Files\\Git\\bin\\git.exe\" -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +8c5d819e9d99767372cf1a74a971433edce6da35:refs/remotes/origin/main\r\n2026-11-24T19:58:32.7098076Z From https://github.com/baabi-boo/Fender-rhoades\r\n2026-11-24T19:58:32.7098912Z  * [new ref]         8c5d819e9d99767372cf1a74a971433edce6da35 -> origin/main\r\n2026-11-24T19:58:32.7150101Z ##[endgroup]\r\n2026-11-24T19:58:32.7153681Z ##[group]Determining the checkout info\r\n2026-11-24T19:58:32.7154843Z ##[endgroup]\r\n2026-11-24T19:58:32.7175558Z [command]\"C:\\Program Files\\Git\\bin\\git.exe\" sparse-checkout disable\r\n2026-11-24T19:58:32.7821571Z [command]\"C:\\Program Files\\Git\\bin\\git.exe\" config --local --unset-all extensions.worktreeConfig\r\n2026-11-24T19:58:32.8207142Z ##[group]Checking out the ref\r\n2026-11-24T19:58:32.8221287Z [command]\"C:\\Program Files\\Git\\bin\\git.exe\" checkout --progress --force -B main refs/remotes/origin/main\r\n2026-11-24T19:58:33.4504697Z Switched to a new branch 'main'\r\n2026-11-24T19:58:33.4525650Z branch 'main' set up to track 'origin/main'.\r\n2026-11-24T19:58:33.4663710Z ##[endgroup]\r\n2026-11-24T19:58:33.5132913Z [command]\"C:\\Program Files\\Git\\bin\\git.exe\" log -1 --format=%H\r\n2026-11-24T19:58:33.5482791Z 8c5d819e9d99767372cf1a74a971433edce6da35\r\n2026-11-24T19:58:33.5530558Z ##[group]Removing auth\r\n2026-11-24T19:58:33.5538890Z [command]\"C:\\Program Files\\Git\\bin\\git.exe\" config --local --name-only --get-regexp core\\.sshCommand\r\n2026-11-24T19:58:33.5916946Z [command]\"C:\\Program Files\\Git\\bin\\git.exe\" submodule foreach --recursive \"sh -c \\\"git config --local --name-only --get-regexp 'core\\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\\\"\"\r\n2026-11-24T19:58:34.1853567Z [command]\"C:\\Program Files\\Git\\bin\\git.exe\" config --local --name-only --get-regexp http\\.https\\:\\/\\/github\\.com\\/\\.extraheader\r\n2026-11-24T19:58:34.2206958Z http.https://github.com/.extraheader\r\n2026-11-24T19:58:34.2258453Z [command]\"C:\\Program Files\\Git\\bin\\git.exe\" config --local --unset-all http.https://github.com/.extraheader\r\n2026-11-24T19:58:34.2667645Z [command]\"C:\\Program Files\\Git\\bin\\git.exe\" submodule foreach --recursive \"sh -c \\\"git config --local --name-only --get-regexp 'http\\.https\\:\\/\\/github\\.com\\/\\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\\\"\"\r\n2026-11-24T19:58:34.8325179Z ##[endgroup]\r\n2026-11-24T19:58:34.8741777Z ##[group]Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065\r\n2026-11-24T19:58:34.8742369Z with:\r\n2026-11-24T19:58:34.8742659Z   python-version: 3.11\r\n2026-11-24T19:58:34.8743024Z   check-latest: false\r\n2026-11-24T19:58:34.8745410Z   token: ***\r\n2026-11-24T19:58:34.8745718Z   update-environment: true\r\n2026-11-24T19:58:34.8746054Z   allow-prereleases: false\r\n2026-11-24T19:58:34.8746364Z   freethreaded: false\r\n2026-11-24T19:58:34.8746683Z ##[endgroup]\r\n2026-11-24T19:58:35.0312388Z ##[group]Installed versions\r\n2026-11-24T19:58:35.0508281Z (node:9524) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.\r\n2026-11-24T19:58:35.0509703Z (Use `node --trace-deprecation ...` to show where the warning was created)\r\n2026-11-24T19:58:35.0510489Z Successfully set up CPython (3.11.9)\r\n2026-11-24T19:58:35.0511617Z ##[endgroup]\r\n2026-11-24T19:58:35.0824351Z ##[group]Run python tools/capture_ci_diagnostics.py metadata --phase before --source-root . --expected-sha 8c5d819e9d99767372cf1a74a971433edce6da35 --output-dir ci-evidence\r\n2026-11-24T19:58:35.0825730Z \u001b[36;1mpython tools/capture_ci_diagnostics.py metadata --phase before --source-root . --expected-sha 8c5d819e9d99767372cf1a74a971433edce6da35 --output-dir ci-evidence\u001b[0m\r\n2026-11-24T19:58:35.1487399Z shell: C:\\Program Files\\PowerShell\\7\\pwsh.EXE -command \". '{0}'\"\r\n2026-11-24T19:58:35.1487955Z env:\r\n2026-11-24T19:58:35.1488414Z   pythonLocation: C:\\hostedtoolcache\\windows\\Python\\3.11.9\\x64\r\n2026-11-24T19:58:35.1489034Z   PKG_CONFIG_PATH: C:\\hostedtoolcache\\windows\\Python\\3.11.9\\x64/lib/pkgconfig\r\n2026-11-24T19:58:35.1489688Z   Python_ROOT_DIR: C:\\hostedtoolcache\\windows\\Python\\3.11.9\\x64\r\n2026-11-24T19:58:35.1490230Z   Python2_ROOT_DIR: C:\\hostedtoolcache\\windows\\Python\\3.11.9\\x64\r\n2026-11-24T19:58:35.1490755Z   Python3_ROOT_DIR: C:\\hostedtoolcache\\windows\\Python\\3.11.9\\x64\r\n2026-11-24T19:58:35.1491385Z ##[endgroup]\r\n2026-11-24T19:58:42.3796908Z Retained metadata: ci-evidence\\metadata-before.json; valid=True\r\n2026-11-24T19:58:42.5271242Z ##[group]Run python tools/capture_ci_diagnostics.py run --output-dir ci-evidence --label configure -- cmake -S . -B build -DCMAKE_BUILD_TYPE=Release\r\n2026-11-24T19:58:42.5272855Z \u001b[36;1mpython tools/capture_ci_diagnostics.py run --output-dir ci-evidence --label configure -- cmake -S . -B build -DCMAKE_BUILD_TYPE=Release\u001b[0m\r\n2026-11-24T19:58:42.5372147Z shell: C:\\Program Files\\PowerShell\\7\\pwsh.EXE -command \". '{0}'\"\r\n2026-11-24T19:58:42.5372627Z env:\r\n2026-11-24T19:58:42.5373035Z   pythonLocation: C:\\hostedtoolcache\\windows\\Python\\3.11.9\\x64\r\n2026-11-24T19:58:42.5373543Z   PKG_CONFIG_PATH: C:\\hostedtoolcache\\windows\\Python\\3.11.9\\x64/lib/pkgconfig\r\n2026-11-24T19:58:42.5374045Z   Python_ROOT_DIR: C:\\hostedtoolcache\\windows\\Python\\3.11.9\\x64\r\n2026-11-24T19:58:42.5374502Z   Python2_ROOT_DIR: C:\\hostedtoolcache\\windows\\Python\\3.11.9\\x64\r\n2026-11-24T19:58:42.5374994Z   Python3_ROOT_DIR: C:\\hostedtoolcache\\windows\\Python\\3.11.9\\x64\r\n2026-11-24T19:58:42.5375376Z ##[endgroup]\r\n2026-11-24T19:58:52.3233972Z -- Building for: Visual Studio 18 2026\r\n2026-11-24T19:58:52.3234854Z -- The CXX compiler identification is MSVC 19.52.37029.0\r\n2026-11-24T19:58:52.4362587Z -- Detecting CXX compiler ABI info\r\n2026-11-24T19:58:53.4767844Z -- Detecting CXX compiler ABI info - done\r\n2026-11-24T19:58:53.4992788Z -- Check for working CXX compiler: C:/Program Files/Microsoft Visual Studio/18/Enterprise/VC/Tools/MSVC/14.52.37025/bin/Hostx64/x64/cl.exe - skipped\r\n2026-11-24T19:58:53.5039899Z -- Detecting CXX compile features\r\n2026-11-24T19:58:53.5086877Z -- Detecting CXX compile features - done\r\n2026-11-24T19:58:53.6614451Z -- Performing Test CMAKE_HAVE_LIBC_PTHREAD\r\n2026-11-24T19:58:54.6270678Z -- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Failed\r\n2026-11-24T19:58:54.6272349Z -- Looking for pthread_create in pthreads\r\n2026-11-24T19:58:55.2057644Z -- Looking for pthread_create in pthreads - not found\r\n2026-11-24T19:58:55.2058975Z -- Looking for pthread_create in pthread\r\n2026-11-24T19:58:55.7713753Z -- Looking for pthread_create in pthread - not found\r\n2026-11-24T19:58:55.7813580Z -- Found Threads: TRUE\r\n2026-11-24T19:58:55.7899148Z -- Configuring done (12.9s)\r\n2026-11-24T19:58:56.1116185Z -- Generating done (0.3s)\r\n2026-11-24T19:58:56.3176293Z CMake Warning (unused-cli):\r\n2026-11-24T19:58:56.3177231Z   Manually-specified variables were not used by the project:\r\n2026-11-24T19:58:56.3177601Z \r\n2026-11-24T19:58:56.3177766Z     CMAKE_BUILD_TYPE\r\n2026-11-24T19:58:56.3177991Z \r\n2026-11-24T19:58:56.3177997Z \r\n2026-11-24T19:58:56.3307219Z -- Build files have been written to: D:/a/Fender-rhoades/Fender-rhoades/build\r\n2026-11-24T19:58:56.4609476Z ##[group]Run python tools/capture_ci_diagnostics.py run --output-dir ci-evidence --label build -- cmake --build build --config Release --parallel 2\r\n2026-11-24T19:58:56.4610552Z \u001b[36;1mpython tools/capture_ci_diagnostics.py run --output-dir ci-evidence --label build -- cmake --build build --config Release --parallel 2\u001b[0m\r\n2026-11-24T19:58:56.4679059Z shell: C:\\Program Files\\PowerShell\\7\\pwsh.EXE -command \". '{0}'\"\r\n2026-11-24T19:58:56.4679566Z env:\r\n2026-11-24T19:58:56.4680026Z   pythonLocation: C:\\hostedtoolcache\\windows\\Python\\3.11.9\\x64\r\n2026-11-24T19:58:56.4680778Z   PKG_CONFIG_PATH: C:\\hostedtoolcache\\windows\\Python\\3.11.9\\x64/lib/pkgconfig\r\n2026-11-24T19:58:56.4681623Z   Python_ROOT_DIR: C:\\hostedtoolcache\\windows\\Python\\3.11.9\\x64\r\n2026-11-24T19:58:56.4682429Z   Python2_ROOT_DIR: C:\\hostedtoolcache\\windows\\Python\\3.11.9\\x64\r\n2026-11-24T19:58:56.4683191Z   Python3_ROOT_DIR: C:\\hostedtoolcache\\windows\\Python\\3.11.9\\x64\r\n2026-11-24T19:58:56.4683835Z ##[endgroup]\r\n2026-11-24T19:58:56.9313678Z MSBuild version 18.12.2-1.26514.2+04f6ca984 for .NET Framework\r\n2026-11-24T19:58:57.4448818Z \r\n2026-11-24T19:58:59.0371984Z   1>Checking Build System\r\n2026-11-24T19:58:59.8735180Z   Building Custom Rule D:/a/Fender-rhoades/Fender-rhoades/CMakeLists.txt\r\n2026-11-24T19:59:00.1966331Z   research_engine.cpp\r\n2026-11-24T19:59:00.3863433Z   Building Custom Rule D:/a/Fender-rhoades/Fender-rhoades/CMakeLists.txt\r\n2026-11-24T19:59:00.7211390Z   contact_reference.cpp\r\n2026-11-24T19:59:06.2973790Z   rhodes_core.vcxproj -> D:\\a\\Fender-rhoades\\Fender-rhoades\\build\\Release\\rhodes_core.lib\r\n2026-11-24T19:59:06.4119390Z   Building Custom Rule D:/a/Fender-rhoades/Fender-rhoades/CMakeLists.txt\r\n2026-11-24T19:59:06.4437291Z   Building Custom Rule D:/a/Fender-rhoades/Fender-rhoades/CMakeLists.txt\r\n2026-11-24T19:59:06.4978076Z   Building Custom Rule D:/a/Fender-rhoades/Fender-rhoades/CMakeLists.txt\r\n2026-11-24T19:59:06.5258469Z   Building Custom Rule D:/a/Fender-rhoades/Fender-rhoades/CMakeLists.txt\r\n2026-11-24T19:59:06.6012421Z   Building Custom Rule D:/a/Fender-rhoades/Fender-rhoades/CMakeLists.txt\r\n2026-11-24T19:59:06.6383927Z   Building Custom Rule D:/a/Fender-rhoades/Fender-rhoades/CMakeLists.txt\r\n2026-11-24T19:59:06.7360527Z   Building Custom Rule D:/a/Fender-rhoades/Fender-rhoades/CMakeLists.txt\r\n2026-11-24T19:59:06.7513540Z   Building Custom Rule D:/a/Fender-rhoades/Fender-rhoades/CMakeLists.txt\r\n2026-11-24T19:59:07.0373429Z   Building Custom Rule D:/a/Fender-rhoades/Fender-rhoades/CMakeLists.txt\r\n2026-11-24T19:59:07.3034317Z   Building Custom Rule D:/a/Fender-rhoades/Fender-rhoades/CMakeLists.txt\r\n2026-11-24T19:59:07.3238548Z   Building Custom Rule D:/a/Fender-rhoades/Fender-rhoades/CMakeLists.txt\r\n2026-11-24T19:59:07.4347788Z   Building Custom Rule D:/a/Fender-rhoades/Fender-rhoades/CMakeLists.txt\r\n2026-11-24T19:59:07.4361828Z   Building Custom Rule D:/a/Fender-rhoades/Fender-rhoades/CMakeLists.txt\r\n2026-11-24T19:59:07.5210111Z   Building Custom Rule D:/a/Fender-rhoades/Fender-rhoades/CMakeLists.txt\r\n2026-11-24T19:59:07.5241574Z   Building Custom Rule D:/a/Fender-rhoades/Fender-rhoades/CMakeLists.txt\r\n2026-11-24T19:59:07.6018307Z   Building Custom Rule D:/a/Fender-rhoades/Fender-rhoades/CMakeLists.txt\r\n2026-11-24T19:59:07.6630913Z   rhodes_contact.vcxproj -> D:\\a\\Fender-rhoades\\Fender-rhoades\\build\\Release\\rhodes_contact.lib\r\n2026-11-24T19:59:07.6977271Z   Building Custom Rule D:/a/Fender-rhoades/Fender-rhoades/CMakeLists.txt\r\n2026-11-24T19:59:07.7787181Z   Building Custom Rule D:/a/Fender-rhoades/Fender-rhoades/CMakeLists.txt\r\n2026-11-24T19:59:07.7958405Z   Building Custom Rule D:/a/Fender-rhoades/Fender-rhoades/CMakeLists.txt\r\n2026-11-24T19:59:07.8538166Z   Building Custom Rule D:/a/Fender-rhoades/Fender-rhoades/CMakeLists.txt\r\n2026-11-24T19:59:07.8758543Z   Building Custom Rule D:/a/Fender-rhoades/Fender-rhoades/CMakeLists.txt\r\n2026-11-24T19:59:07.9377203Z   Building Custom Rule D:/a/Fender-rhoades/Fender-rhoades/CMakeLists.txt\r\n2026-11-24T19:59:07.9566397Z   Building Custom Rule D:/a/Fender-rhoades/Fender-rhoades/CMakeLists.txt\r\n2026-11-24T19:59:08.0528266Z   Building Custom Rule D:/a/Fender-rhoades/Fender-rhoades/CMakeLists.txt\r\n2026-11-24T19:59:08.0658418Z   alias_primitive_probe.cpp\r\n2026-11-24T19:59:08.0697082Z   modal_transition_cache_test.cpp\r\n2026-11-24T19:59:08.7284818Z   photo_geometry_test.cpp\r\n2026-11-24T19:59:10.3066903Z   plugin_state_test.cpp\r\n2026-11-24T19:59:10.3918152Z   rhodes_transition_cache_tests.vcxproj -> D:\\a\\Fender-rhoades\\Fender-rhoades\\build\\Release\\rhodes_transition_cache_tests.exe\r\n2026-11-24T19:59:10.5639821Z   rhodes_alias_primitive_probe.vcxproj -> D:\\a\\Fender-rhoades\\Fender-rhoades\\build\\Release\\rhodes_alias_primitive_probe.exe\r\n2026-11-24T19:59:10.6442659Z   instrument_state_test.cpp\r\n2026-11-24T19:59:10.7561414Z   rhodes_photo_geometry_tests.vcxproj -> D:\\a\\Fender-rhoades\\Fender-rhoades\\build\\Release\\rhodes_photo_geometry_tests.exe\r\n2026-11-24T19:59:10.8373970Z   state_fp_environment_test.cpp\r\n2026-11-24T19:59:12.8255735Z   research_engine_test.cpp\r\n2026-11-24T19:59:12.8936538Z   rhodes_state_tests.vcxproj -> D:\\a\\Fender-rhoades\\Fender-rhoades\\build\\Release\\rhodes_state_tests.exe\r\n2026-11-24T19:59:13.0387715Z   rhodes_state_fp_tests.vcxproj -> D:\\a\\Fender-rhoades\\Fender-rhoades\\build\\Release\\rhodes_state_fp_tests.exe\r\n2026-11-24T19:59:13.0987171Z   silent_observation_test.cpp\r\n2026-11-24T19:59:13.1410837Z   review_regression.cpp\r\n2026-11-24T19:59:14.4134259Z   audio_probe.cpp\r\n2026-11-24T19:59:14.6188237Z   rhodes_review_tests.vcxproj -> D:\\a\\Fender-rhoades\\Fender-rhoades\\build\\Release\\rhodes_review_tests.exe\r\n2026-11-24T19:59:14.7069643Z   event_model_test.cpp\r\n2026-11-24T19:59:15.2813559Z   rhodes_silent_observation_tests.vcxproj -> D:\\a\\Fender-rhoades\\Fender-rhoades\\build\\Release\\rhodes_silent_observation_tests.exe\r\n2026-11-24T19:59:15.3515433Z   editor_audition_test.cpp\r\n2026-11-24T19:59:17.6037236Z   rhodes_event_model_tests.vcxproj -> D:\\a\\Fender-rhoades\\Fender-rhoades\\build\\Release\\rhodes_event_model_tests.exe\r\n2026-11-24T19:59:17.7152640Z   rhodes_tests.vcxproj -> D:\\a\\Fender-rhoades\\Fender-rhoades\\build\\Release\\rhodes_tests.exe\r\n2026-11-24T19:59:17.7635994Z   rhodes_quadrature_probe.vcxproj -> D:\\a\\Fender-rhoades\\Fender-rhoades\\build\\Release\\rhodes_quadrature_probe.exe\r\n2026-11-24T19:59:17.8523737Z   rhodes_plugin_state_tests.vcxproj -> D:\\a\\Fender-rhoades\\Fender-rhoades\\build\\Release\\rhodes_plugin_state_tests.exe\r\n2026-11-24T19:59:17.9111329Z   rhodes_editor_audition_tests.vcxproj -> D:\\a\\Fender-rhoades\\Fender-rhoades\\build\\Release\\rhodes_editor_audition_tests.exe\r\n2026-11-24T19:59:17.9287338Z   state_property_test.cpp\r\n2026-11-24T19:59:17.9461383Z   state_concurrency_test.cpp\r\n2026-11-24T19:59:17.9721922Z   control_value_test.cpp\r\n2026-11-24T19:59:19.6815426Z   rhodes_control_value_tests.vcxproj -> D:\\a\\Fender-rhoades\\Fender-rhoades\\build\\Release\\rhodes_control_value_tests.exe\r\n2026-11-24T19:59:19.7377753Z   rhodes_state_concurrency_tests.vcxproj -> D:\\a\\Fender-rhoades\\Fender-rhoades\\build\\Release\\rhodes_state_concurrency_tests.exe\r\n2026-11-24T19:59:19.7578042Z   control_text_test.cpp\r\n2026-11-24T19:59:19.7675931Z   control_fp_environment_test.cpp\r\n2026-11-24T19:59:19.8062595Z   benchmark.cpp\r\n2026-11-24T19:59:21.6440867Z   rhodes_control_fp_tests.vcxproj -> D:\\a\\Fender-rhoades\\Fender-rhoades\\build\\Release\\rhodes_control_fp_tests.exe\r\n2026-11-24T19:59:21.8240807Z   rhodes_state_property_tests.vcxproj -> D:\\a\\Fender-rhoades\\Fender-rhoades\\build\\Release\\rhodes_state_property_tests.exe\r\n2026-11-24T19:59:21.8885137Z   runtime_benchmark.cpp\r\n2026-11-24T19:59:21.9022103Z   rhodes_control_text_tests.vcxproj -> D:\\a\\Fender-rhoades\\Fender-rhoades\\build\\Release\\rhodes_control_text_tests.exe\r\n2026-11-24T19:59:21.9789196Z   render.cpp\r\n2026-11-24T19:59:22.9045387Z   rhodes_benchmark.vcxproj -> D:\\a\\Fender-rhoades\\Fender-rhoades\\build\\Release\\rhodes_benchmark.exe\r\n2026-11-24T19:59:22.9671094Z   quadrature_fir_test.cpp\r\n2026-11-24T19:59:24.7981291Z   rhodes_quadrature_fir_tests.vcxproj -> D:\\a\\Fender-rhoades\\Fender-rhoades\\build\\Release\\rhodes_quadrature_fir_tests.exe\r\n2026-11-24T19:59:24.8637315Z   quadrature_fir_order_test.cpp\r\n2026-11-24T19:59:25.2569658Z   rhodes_runtime_benchmark.vcxproj -> D:\\a\\Fender-rhoades\\Fender-rhoades\\build\\Release\\rhodes_runtime_benchmark.exe\r\n2026-11-24T19:59:25.3286196Z   quadrature_engine_test.cpp\r\n2026-11-24T19:59:26.5960442Z   rhodes_quadrature_fir_order_tests.vcxproj -> D:\\a\\Fender-rhoades\\Fender-rhoades\\build\\Release\\rhodes_quadrature_fir_order_tests.exe\r\n2026-11-24T19:59:26.6756315Z   photo_key_highlight_test.cpp\r\n2026-11-24T19:59:28.3509576Z   rhodes_quadrature_engine_tests.vcxproj -> D:\\a\\Fender-rhoades\\Fender-rhoades\\build\\Release\\rhodes_quadrature_engine_tests.exe\r\n2026-11-24T19:59:28.4500255Z   Building Custom Rule D:/a/Fender-rhoades/Fender-rhoades/CMakeLists.txt\r\n2026-11-24T19:59:28.5415724Z   note_tracker_test.cpp\r\n2026-11-24T19:59:28.7718973Z   rhodes_render.vcxproj -> D:\\a\\Fender-rhoades\\Fender-rhoades\\build\\Release\\rhodes_render.exe\r\n2026-11-24T19:59:28.8335613Z   Building Custom Rule D:/a/Fender-rhoades/Fender-rhoades/CMakeLists.txt\r\n2026-11-24T19:59:28.9309988Z   note_model_test.cpp\r\n2026-11-24T19:59:29.3784790Z predefined C++ types (compiler internal)(426,1): fatal  error C1001: Internal compiler error. [D:\\a\\Fender-rhoades\\Fender-rhoades\\build\\rhodes_photo_key_highlight_tests.vcxproj]\r\n2026-11-24T19:59:29.3786298Z   (compiler file 'msc1.cpp', line 1678)\r\n2026-11-24T19:59:29.3787431Z    To work around this problem, try simplifying or changing the program near the locations listed above.\r\n2026-11-24T19:59:29.3790303Z   If possible please provide a repro here: https://developercommunity.visualstudio.com\r\n2026-11-24T19:59:29.3791919Z   Please choose the Technical Support command on the Visual C++\r\n2026-11-24T19:59:29.3794590Z    Help menu, or open the Technical Support help file for more information\r\n2026-11-24T19:59:29.3796218Z   INTERNAL COMPILER ERROR in 'C:\\Program Files\\Microsoft Visual Studio\\18\\Enterprise\\VC\\Tools\\MSVC\\14.52.37025\\bin\\HostX64\\x64\\CL.exe'\r\n2026-11-24T19:59:29.3799003Z       Please choose the Technical Support command on the Visual C++\r\n2026-11-24T19:59:29.3801033Z       Help menu, or open the Technical Support help file for more information\r\n2026-11-24T19:59:30.3405236Z   rhodes_note_tests.vcxproj -> D:\\a\\Fender-rhoades\\Fender-rhoades\\build\\Release\\rhodes_note_tests.exe\r\n2026-11-24T19:59:30.3975283Z   Building Custom Rule D:/a/Fender-rhoades/Fender-rhoades/CMakeLists.txt\r\n2026-11-24T19:59:30.5841509Z   instrument_model_state_test.cpp\r\n2026-11-24T19:59:30.9445427Z   Building Custom Rule D:/a/Fender-rhoades/Fender-rhoades/CMakeLists.txt\r\n2026-11-24T19:59:31.0039258Z   front_panel_effects_test.cpp\r\n2026-11-24T19:59:31.6943578Z   rhodes_note_model_tests.vcxproj -> D:\\a\\Fender-rhoades\\Fender-rhoades\\build\\Release\\rhodes_note_model_tests.exe\r\n2026-11-24T19:59:31.7548167Z   Building Custom Rule D:/a/Fender-rhoades/Fender-rhoades/CMakeLists.txt\r\n2026-11-24T19:59:31.8667543Z   fractional_observation_test.cpp\r\n2026-11-24T19:59:32.5918519Z   rhodes_model_state_tests.vcxproj -> D:\\a\\Fender-rhoades\\Fender-rhoades\\build\\Release\\rhodes_model_state_tests.exe\r\n2026-11-24T19:59:33.1075787Z   Building Custom Rule D:/a/Fender-rhoades/Fender-rhoades/CMakeLists.txt\r\n2026-11-24T19:59:33.4431014Z   expression_state_test.cpp\r\n2026-11-24T19:59:34.1000816Z   rhodes_front_panel_effects_tests.vcxproj -> D:\\a\\Fender-rhoades\\Fender-rhoades\\build\\Release\\rhodes_front_panel_effects_tests.exe\r\n2026-11-24T19:59:34.1564373Z   Building Custom Rule D:/a/Fender-rhoades/Fender-rhoades/CMakeLists.txt\r\n2026-11-24T19:59:34.2511932Z   event_processor_test.cpp\r\n2026-11-24T19:59:34.4625268Z   rhodes_fractional_observation_tests.vcxproj -> D:\\a\\Fender-rhoades\\Fender-rhoades\\build\\Release\\rhodes_fractional_observation_tests.exe\r\n2026-11-24T19:59:34.5267555Z   Building Custom Rule D:/a/Fender-rhoades/Fender-rhoades/CMakeLists.txt\r\n2026-11-24T19:59:34.6172173Z   event_release_port_test.cpp\r\n2026-11-24T19:59:36.0677481Z   rhodes_expression_state_tests.vcxproj -> D:\\a\\Fender-rhoades\\Fender-rhoades\\build\\Release\\rhodes_expression_state_tests.exe\r\n2026-11-24T19:59:36.2879440Z   Building Custom Rule D:/a/Fender-rhoades/Fender-rhoades/CMakeLists.txt\r\n2026-11-24T19:59:36.4172829Z   audio_probe.cpp\r\n2026-11-24T19:59:36.6502910Z   rhodes_event_tests.vcxproj -> D:\\a\\Fender-rhoades\\Fender-rhoades\\build\\Release\\rhodes_event_tests.exe\r\n2026-11-24T19:59:37.2430126Z   Building Custom Rule D:/a/Fender-rhoades/Fender-rhoades/CMakeLists.txt\r\n2026-11-24T19:59:37.3402290Z   audio_fir_test.cpp\r\n2026-11-24T19:59:37.4325962Z   rhodes_event_release_port_tests.vcxproj -> D:\\a\\Fender-rhoades\\Fender-rhoades\\build\\Release\\rhodes_event_release_port_tests.exe\r\n2026-11-24T19:59:37.4879998Z   Building Custom Rule D:/a/Fender-rhoades/Fender-rhoades/CMakeLists.txt\r\n2026-11-24T19:59:37.5838788Z   audio_engine_test.cpp\r\n2026-11-24T19:59:39.3201487Z   rhodes_audio_probe.vcxproj -> D:\\a\\Fender-rhoades\\Fender-rhoades\\build\\Release\\rhodes_audio_probe.exe\r\n2026-11-24T19:59:39.4638242Z   rhodes_audio_fir_tests.vcxproj -> D:\\a\\Fender-rhoades\\Fender-rhoades\\build\\Release\\rhodes_audio_fir_tests.exe\r\n2026-11-24T19:59:39.6705885Z   Building Custom Rule D:/a/Fender-rhoades/Fender-rhoades/CMakeLists.txt\r\n2026-11-24T19:59:40.0042973Z   Building Custom Rule D:/a/Fender-rhoades/Fender-rhoades/CMakeLists.txt\r\n2026-11-24T19:59:40.1087582Z   contact_split_peak_test.cpp\r\n2026-11-24T19:59:40.1192676Z   contact_reference_test.cpp\r\n2026-11-24T19:59:40.1848702Z   Building Custom Rule D:/a/Fender-rhoades/Fender-rhoades/CMakeLists.txt\r\n2026-11-24T19:59:40.2697684Z   contact_reference.cpp\r\n2026-11-24T19:59:42.6834178Z   rhodes_contact_tests.vcxproj -> D:\\a\\Fender-rhoades\\Fender-rhoades\\build\\Release\\rhodes_contact_tests.exe\r\n2026-11-24T19:59:42.7422622Z   rhodes_audio_engine_tests.vcxproj -> D:\\a\\Fender-rhoades\\Fender-rhoades\\build\\Release\\rhodes_audio_engine_tests.exe\r\n2026-11-24T19:59:42.8281109Z   rhodes_contact_split_peak_tests.vcxproj -> D:\\a\\Fender-rhoades\\Fender-rhoades\\build\\Release\\rhodes_contact_split_peak_tests.exe\r\n2026-11-24T19:59:42.8806993Z   Building Custom Rule D:/a/Fender-rhoades/Fender-rhoades/CMakeLists.txt\r\n2026-11-24T19:59:42.9787587Z   Building Custom Rule D:/a/Fender-rhoades/Fender-rhoades/CMakeLists.txt\r\n2026-11-24T19:59:42.9804040Z   contact_peak_test.cpp\r\n2026-11-24T19:59:43.0597014Z   contact_grazing_test.cpp\r\n2026-11-24T19:59:44.4749644Z   rhodes_contact_reference.vcxproj -> D:\\a\\Fender-rhoades\\Fender-rhoades\\build\\Release\\rhodes_contact_reference.exe\r\n2026-11-24T19:59:44.6626029Z   rhodes_contact_grazing_tests.vcxproj -> D:\\a\\Fender-rhoades\\Fender-rhoades\\build\\Release\\rhodes_contact_grazing_tests.exe\r\n2026-11-24T19:59:44.7884098Z   rhodes_contact_peak_tests.vcxproj -> D:\\a\\Fender-rhoades\\Fender-rhoades\\build\\Release\\rhodes_contact_peak_tests.exe\r\n2026-11-24T19:59:44.8303072Z   Building Custom Rule D:/a/Fender-rhoades/Fender-rhoades/CMakeLists.txt\r\n2026-11-24T19:59:44.9061670Z   contact_grazing_anchor_test.cpp\r\n2026-11-24T19:59:44.9073351Z   Building Custom Rule D:/a/Fender-rhoades/Fender-rhoades/CMakeLists.txt\r\n2026-11-24T19:59:44.9856542Z   contact_event_split_test.cpp\r\n2026-11-24T19:59:45.5703596Z   Building Custom Rule D:/a/Fender-rhoades/Fender-rhoades/CMakeLists.txt\r\n2026-11-24T19:59:45.6644316Z   contact_domain_test.cpp\r\n2026-11-24T19:59:46.6743894Z   rhodes_contact_event_split_tests.vcxproj -> D:\\a\\Fender-rhoades\\Fender-rhoades\\build\\Release\\rhodes_contact_event_split_tests.exe\r\n2026-11-24T19:59:46.8181388Z   rhodes_contact_grazing_anchor_tests.vcxproj -> D:\\a\\Fender-rhoades\\Fender-rhoades\\build\\Release\\rhodes_contact_grazing_anchor_tests.exe\r\n2026-11-24T19:59:47.7224035Z   rhodes_contact_domain_tests.vcxproj -> D:\\a\\Fender-rhoades\\Fender-rhoades\\build\\Release\\rhodes_contact_domain_tests.exe\r\n2026-11-24T19:59:47.8802035Z ##[error]Process completed with exit code 1.\r\n2026-11-24T19:59:47.8989207Z ##[group]Run python tools/capture_ci_diagnostics.py metadata --phase after --source-root . --expected-sha 8c5d819e9d99767372cf1a74a971433edce6da35 --output-dir ci-evidence --build-dir build\r\n2026-11-24T19:59:47.8990620Z \u001b[36;1mpython tools/capture_ci_diagnostics.py metadata --phase after --source-root . --expected-sha 8c5d819e9d99767372cf1a74a971433edce6da35 --output-dir ci-evidence --build-dir build\u001b[0m\r\n2026-11-24T19:59:47.9056451Z shell: C:\\Program Files\\PowerShell\\7\\pwsh.EXE -command \". '{0}'\"\r\n2026-11-24T19:59:47.9056914Z env:\r\n2026-11-24T19:59:47.9057298Z   pythonLocation: C:\\hostedtoolcache\\windows\\Python\\3.11.9\\x64\r\n2026-11-24T19:59:47.9057855Z   PKG_CONFIG_PATH: C:\\hostedtoolcache\\windows\\Python\\3.11.9\\x64/lib/pkgconfig\r\n2026-11-24T19:59:47.9058359Z   Python_ROOT_DIR: C:\\hostedtoolcache\\windows\\Python\\3.11.9\\x64\r\n2026-11-24T19:59:47.9058814Z   Python2_ROOT_DIR: C:\\hostedtoolcache\\windows\\Python\\3.11.9\\x64\r\n2026-11-24T19:59:47.9059403Z   Python3_ROOT_DIR: C:\\hostedtoolcache\\windows\\Python\\3.11.9\\x64\r\n2026-11-24T19:59:47.9059789Z   CI_JOB_STATUS: failure\r\n2026-11-24T19:59:47.9060110Z ##[endgroup]\r\n2026-11-24T19:59:48.8326665Z Retained metadata: ci-evidence\\metadata-after.json; valid=True\r\n2026-11-24T19:59:48.9798449Z ##[group]Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9\r\n2026-11-24T19:59:48.9799036Z with:\r\n2026-11-24T19:59:48.9799611Z   name: foundation-cpp-Windows-X64-8c5d819e9d99767372cf1a74a971433edce6da35-45475369250-1\r\n2026-11-24T19:59:48.9800636Z   path: ci-evidence/\nbuild/Testing/Temporary/\nbuild/CMakeCache.txt\nbuild/CMakeFiles/CMakeConfigureLog.yaml\nbuild/CMakeFiles/CMakeOutput.log\nbuild/CMakeFiles/CMakeError.log\n\r\n2026-11-24T19:59:48.9801444Z   if-no-files-found: error\r\n2026-11-24T19:59:48.9801812Z   retention-days: 90\r\n2026-11-24T19:59:48.9802128Z   compression-level: 6\r\n2026-11-24T19:59:48.9802472Z   overwrite: false\r\n2026-11-24T19:59:48.9802780Z   include-hidden-files: false\r\n2026-11-24T19:59:48.9803098Z   archive: true\r\n2026-11-24T19:59:48.9803401Z env:\r\n2026-11-24T19:59:48.9803797Z   pythonLocation: C:\\hostedtoolcache\\windows\\Python\\3.11.9\\x64\r\n2026-11-24T19:59:48.9804328Z   PKG_CONFIG_PATH: C:\\hostedtoolcache\\windows\\Python\\3.11.9\\x64/lib/pkgconfig\r\n2026-11-24T19:59:48.9804976Z   Python_ROOT_DIR: C:\\hostedtoolcache\\windows\\Python\\3.11.9\\x64\r\n2026-11-24T19:59:48.9805451Z   Python2_ROOT_DIR: C:\\hostedtoolcache\\windows\\Python\\3.11.9\\x64\r\n2026-11-24T19:59:48.9805927Z   Python3_ROOT_DIR: C:\\hostedtoolcache\\windows\\Python\\3.11.9\\x64\r\n2026-11-24T19:59:48.9806314Z ##[endgroup]\r\n2026-11-24T19:59:49.1750296Z Multiple search paths detected. Calculating the least common ancestor of all paths\r\n2026-11-24T19:59:49.1754320Z The least common ancestor is D:\\a\\Fender-rhoades\\Fender-rhoades. This will be the root directory of the artifact\r\n2026-11-24T19:59:49.1755565Z With the provided path, there will be 8 files uploaded\r\n2026-11-24T19:59:49.1760340Z Artifact name is valid!\r\n2026-11-24T19:59:49.1761478Z Root directory input is valid!\r\n2026-11-24T19:59:49.4143852Z Uploading artifact: foundation-cpp-Windows-X64-8c5d819e9d99767372cf1a74a971433edce6da35-45475369250-1.zip\r\n2026-11-24T19:59:49.4182968Z Beginning upload of artifact content to blob storage\r\n2026-11-24T19:59:49.7570424Z Uploaded bytes 273375\r\n2026-11-24T19:59:49.7855552Z Finished uploading artifact content to blob storage!\r\n2026-11-24T19:59:49.7857789Z SHA256 digest of uploaded artifact is 6ed1ce904a449bb527fd55f1fc27b23329572d9bb81f369aa61f18918c780953\r\n2026-11-24T19:59:49.7858713Z Finalizing artifact upload\r\n2026-11-24T19:59:50.1750479Z Artifact foundation-cpp-Windows-X64-8c5d819e9d99767372cf1a74a971433edce6da35-45475369250-1 successfully finalized. Artifact ID 14958434451\r\n2026-11-24T19:59:50.1752496Z Artifact foundation-cpp-Windows-X64-8c5d819e9d99767372cf1a74a971433edce6da35-45475369250-1 has been successfully uploaded! Final size is 273375 bytes. Artifact ID is 14958434451\r\n2026-11-24T19:59:50.1765238Z Artifact download URL: https://github.com/baabi-boo/Fender-rhoades/actions/runs/45475369250/artifacts/14958434451\r\n2026-11-24T19:59:50.2161785Z Post job cleanup.\r\n2026-11-24T19:59:50.3914847Z [command]\"C:\\Program Files\\Git\\bin\\git.exe\" version\r\n2026-11-24T19:59:50.4295495Z git version 2.56.1.windows.1\r\n2026-11-24T19:59:50.4377407Z Temporarily overriding HOME='D:\\a\\_temp\\6a2fc596-16ca-4964-80bf-1da89912e189' before making global git config changes\r\n2026-11-24T19:59:50.4379758Z Adding repository directory to the temporary git global config as a safe directory\r\n2026-11-24T19:59:50.4390358Z [command]\"C:\\Program Files\\Git\\bin\\git.exe\" config --global --add safe.directory D:\\a\\Fender-rhoades\\Fender-rhoades\r\n2026-11-24T19:59:50.4824533Z [command]\"C:\\Program Files\\Git\\bin\\git.exe\" config --local --name-only --get-regexp core\\.sshCommand\r\n2026-11-24T19:59:50.5218604Z [command]\"C:\\Program Files\\Git\\bin\\git.exe\" submodule foreach --recursive \"sh -c \\\"git config --local --name-only --get-regexp 'core\\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\\\"\"\r\n2026-11-24T19:59:51.0701674Z [command]\"C:\\Program Files\\Git\\bin\\git.exe\" config --local --name-only --get-regexp http\\.https\\:\\/\\/github\\.com\\/\\.extraheader\r\n2026-11-24T19:59:51.1141798Z [command]\"C:\\Program Files\\Git\\bin\\git.exe\" submodule foreach --recursive \"sh -c \\\"git config --local --name-only --get-regexp 'http\\.https\\:\\/\\/github\\.com\\/\\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\\\"\"\r\n2026-11-24T19:59:51.6978209Z Cleaning up orphan processes\r\n2026-11-24T19:59:51.7576738Z Terminate orphan process: pid (2212) (vctip)\r\n2026-11-24T19:59:51.7846612Z Terminate orphan process: pid (6976) (MSBuild)\r\n2026-11-24T19:59:51.7899766Z Terminate orphan process: pid (6724) (conhost)\r\n2026-11-24T19:59:51.8004567Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683, actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/\r\n"
+  },
+  "platform_observations": [
+    {
+      "platform": "ubuntu-latest",
+      "foundation": "Project state, C++20, and address/undefined-behavior sanitizer jobs completed successfully.",
+      "vst3": "Module/test build step 15 in progress; host tests, legacy unity comparisons, and SDK validator step 16 pending."
+    },
+    {
+      "platform": "windows-latest",
+      "foundation": "C++20 Build step 6 failed with an MSVC internal compiler error; test step 7 skipped. Project state job in progress at Check agent tooling step 25.",
+      "vst3": "Module/test build step 15 in progress; host tests, legacy unity comparisons, and SDK validator step 16 pending."
+    },
+    {
+      "platform": "macos-latest",
+      "foundation": "Project state and C++20 jobs queued, each with runner_id 0 and zero returned steps.",
+      "vst3": "VST3 job queued, runner_id 0, zero returned steps."
+    }
+  ],
+  "sdk_and_loaded_panel_test": {
+    "configured_sdk_repository": "steinbergmedia/vst3sdk",
+    "configured_sdk_ref": "3cdf9ca5d1f5b1b21e0a86832aa4abe55607bd96",
+    "configured_sdk_source": ".github/workflows/vst3.yml",
+    "sdk_result": "No completed SDK-validator step observed at this head. Step 16 is pending on Ubuntu and Windows; macOS has zero steps.",
+    "new_test_name": "vst3.loaded_panel_audio",
+    "registration_source": "cmake/Vst3.cmake",
+    "source_file": "tests/cpp/vst3_loaded_panel_audio_test.cpp",
+    "suite_command": "ctest --test-dir build/vst3 -C Release -R '^vst3\\.' --output-on-failure --no-tests=error",
+    "new_test_result": "No remote execution result observed; enclosing CTest step 16 is pending on the active VST3 jobs.",
+    "boundary": "SDK pin and test registration come from the inspected local workflow/CMake configuration; no successful or in-progress job logs were fetched. Job/step statuses are the current-head remote observation."
+  },
+  "historical_context": {
+    "record": "docs/validation/photo-continuation-20261124/ci-4369547.json",
+    "head_sha": "4369547403735c957689b547f478540e3277a79c",
+    "observation": "The earlier record retains Ubuntu and Windows successful VST3 jobs and queued macOS work.",
+    "boundary": "Historical record left unchanged; its successful jobs are not promoted to current-head passes."
+  },
+  "conclusion": "Current-head snapshot is incomplete and includes an executed Windows Foundation build failure. No aggregate-green result or current-head native VST3 platform pass is claimed."
+}

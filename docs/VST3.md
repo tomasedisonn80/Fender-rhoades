@@ -773,6 +773,15 @@ sanitizer job. The macOS jobs were queued without an assigned runner or executed
 steps; there is no macOS execution result for this checkpoint. These build/test
 results do not establish Windows or macOS native editor-window interaction.
 
+A later [snapshot for 8c5d819](validation/photo-continuation-20261124/ci-8c5d819.json),
+collected at 20:02 UTC, records a Windows Foundation build failure: MSVC reported
+C1001 while compiling the photo-key-highlight test, and its test step was skipped.
+Linux Foundation checks passed; the Linux/Windows VST3 jobs were still building,
+and macOS jobs had no executed steps. A
+[test-target-only compiler-budget experiment](validation/photo-continuation-20261124/msvc-budget-experiment.json)
+retains all assertions and production compilation flags; its initial record
+does not establish a repaired Windows build.
+
 Linux native mouse/keyboard behavior, geometry, pixels, attached resizing and
 lifecycle behavior have therefore been demonstrated within the recorded fixture
 scope. Windows/macOS native editor-window runs, non-unit device DPI and named-DAW

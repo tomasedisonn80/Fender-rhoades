@@ -801,27 +801,90 @@
       "wave": 5,
       "task_name": "/root/w5_89_capture_delivery_fix",
       "scope": "repair retained capture delivery index and missing audit records",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/reports/photo-continuation-20261124/w5-089.md",
-      "report_sha256": null
+      "report_sha256": "6dfd9ffab72149be4c3a7c0c40ea01c5524e39522695896173bcfb77b4f01d52"
     },
     {
       "id": "A090",
       "wave": 5,
       "task_name": "/root/w5_90_final_audio_evidence_review",
       "scope": "independent strengthened loaded-audio result review",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/reports/photo-continuation-20261124/w5-090.md",
-      "report_sha256": null
+      "report_sha256": "c619a53d52804639976543c2103dc18f02f536734bcbd98853b9e13536710277"
     },
     {
       "id": "A091",
       "wave": 5,
       "task_name": "/root/w5_91_ci_fixture_registration",
       "scope": "independent CI registration and optional-build review",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/reports/photo-continuation-20261124/w5-091.md",
-      "report_sha256": null
+      "report_sha256": "5f07f5a96eec81113a748cacd61e768f694beeb918cdc141219a445f9043eae8"
+    },
+    {
+      "id": "A092",
+      "wave": 5,
+      "task_name": "/root/w5_92_final_source_bridge",
+      "scope": "bind final observations to committed code and unchanged module bytes",
+      "status": "completed",
+      "report": "docs/agents/reports/photo-continuation-20261124/w5-092.md",
+      "report_sha256": "a7212e032a85a7df9f7c01edd15b7adde783a14a5db5e6678ac7f1f2d351e5e4"
+    },
+    {
+      "id": "A093",
+      "wave": 5,
+      "task_name": "/root/w5_93_state_identity_acceptance",
+      "scope": "independent parameter identity and adaptive state acceptance audit",
+      "status": "completed",
+      "report": "docs/agents/reports/photo-continuation-20261124/w5-093.md",
+      "report_sha256": "d2ceb4e2e9e2aedc5705b044d4f9a5841afde2204d3861b02c0d6b1e05d27082"
+    },
+    {
+      "id": "A094",
+      "wave": 5,
+      "task_name": "/root/w5_94_final_numeric_record",
+      "scope": "aggregate actual numerical observations without merging execution claims",
+      "status": "completed",
+      "report": "docs/agents/reports/photo-continuation-20261124/w5-094.md",
+      "report_sha256": "fc107afea1b5cd1c80fca4b476219b4bc7e03fa9bd5d7d288a5bfc1719b8e0c4"
+    },
+    {
+      "id": "A095",
+      "wave": 5,
+      "task_name": "/root/w5_95_current_code_ci",
+      "scope": "observe GitHub Actions for the final code commit",
+      "status": "completed",
+      "report": "docs/agents/reports/photo-continuation-20261124/w5-095.md",
+      "report_sha256": "945ef9a0f9fbb9921eeccb7e5d472c092fb14b0e217538288d90e53aa531aed0"
+    },
+    {
+      "id": "A096",
+      "wave": 5,
+      "task_name": "/root/w5_96_msvc_geometry_ice",
+      "scope": "investigate current MSVC geometry compiler crash without weakening checks",
+      "status": "completed",
+      "report": "docs/agents/reports/photo-continuation-20261124/w5-096.md",
+      "report_sha256": "be534cebac8d418b135ed89d9101a3aff6abd47995366d670d91d038e5ea30dd"
+    },
+    {
+      "id": "A097",
+      "wave": 5,
+      "task_name": "/root/w5_97_final_documentation_gate",
+      "scope": "run final documentation integrity and claim-scope review",
+      "status": "completed",
+      "report": "docs/agents/reports/photo-continuation-20261124/w5-097.md",
+      "report_sha256": "8f2a4cfa5562f763479db64f2c5908cbe443591c21160294b1cc3372264b8483"
+    },
+    {
+      "id": "A098",
+      "wave": 5,
+      "task_name": "/root/w5_98_final_acceptance_review",
+      "scope": "independent final HOST-004 criterion/source review",
+      "status": "completed",
+      "report": "docs/agents/reports/photo-continuation-20261124/w5-098.md",
+      "report_sha256": "c20b2449880175d47cda10d5809298add4c627b21ef52b489b6934de2bba2446"
     }
   ]
 }

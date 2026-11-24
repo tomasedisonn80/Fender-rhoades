@@ -1,0 +1,626 @@
+{
+  "schema_version": 1,
+  "artifact_id": "HOST-004-20261124-linux-retained-numerical",
+  "task_id": "HOST-004",
+  "worker": "w5-094",
+  "assembled_at_utc": "2026-11-24T20:04:48.035936+00:00",
+  "record_kind": "Aggregate of actual retained numerical executions",
+  "result": "The selected retained executions report passing results within their separate scopes.",
+  "aggregation_is_new_execution": false,
+  "new_test_or_host_executions_performed": 0,
+  "full_suite_rerun_claimed": false,
+  "method": "Read retained JSON, XML, logs and archive source records; reconcile reported counts; hash existing pivotal artifacts. No configure, build, test, host, capture, comparator or pixel-roundtrip rerun.",
+  "artifact_path_base": "repository root",
+  "task_definition": {
+    "projection": {
+      "task_id": "HOST-004",
+      "acceptance": [
+        "Preserve the supplied original image and implement a native editor using its full composition and aligned controls.",
+        "Connect panel controls to bounded synthetic audio processing and coherent state recall while preserving default legacy output.",
+        "Verify native editor lifecycle, interaction, resizing and packaged resources; retain actual screenshots and platform-specific results."
+      ],
+      "dependencies": [
+        "HOST-001"
+      ],
+      "required_evidence": [
+        "documentary",
+        "numerical"
+      ],
+      "target": "One documented 73-key Mark I Stage specimen at its specified loaded electrical output; identity and measurements pending."
+    },
+    "sha256": "79a999d6b9d4a22e987f305cea4bb7b52f7ce21d5f778be9e362fb48043d2c1b",
+    "serialization": "UTF-8 JSON, sorted keys, separators comma/colon without whitespace, ensure_ascii=False",
+    "observed_state_revision": 50,
+    "criterion_ids_in_acceptance_order": [
+      "HOST-004/C01",
+      "HOST-004/C02",
+      "HOST-004/C03"
+    ],
+    "completion_decision": "Reserved to the integrator and its criterion review."
+  },
+  "scope": {
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+    "observed_domains": [
+      "Linux/X11 native SDK editor host",
+      "Linux core/component fixtures",
+      "Linux loaded VST3 SDK test hosts"
+    ],
+    "native_interaction_and_capture_variant": "RhodesResearch (Direct)",
+    "native_lifecycle_variants": [
+      "RhodesResearch",
+      "RhodesResearchFiltered",
+      "RhodesResearchQuadrature"
+    ],
+    "model_status": "Synthetic development model; physical fidelity remains unvalidated."
+  },
+  "source_identity": {
+    "target_source_commit": "8c5d819e9d99767372cf1a74a971433edce6da35",
+    "commit_role": "Source applicability target supplied by the integrator; original execution identities and times remain in the retained manifests.",
+    "binding_method": "Per-file SHA-256 applicability plus retained executable identities; no compilation attestation or new execution at the target commit.",
+    "original_native_commit": "4369547403735c957689b547f478540e3277a79c",
+    "original_native_matching_source_files": 48,
+    "original_native_bridge_ref": "native_original_source_bridge",
+    "final_bridge_ref": "final_source_bridge",
+    "final_bridge_status": "Retained separately authored bridge included by hash; applicability and CMake exceptions are defined there."
+  },
+  "recorded_module_identities": [
+    {
+      "variant": "RhodesResearch",
+      "sha256": "5facf72c9367a5849c124833673d68e2d74b8b64c88b22e95d66663fa65d1959",
+      "bytes": 3204856,
+      "identity_record_ref": "loaded_audio_manifest"
+    },
+    {
+      "variant": "RhodesResearchFiltered",
+      "sha256": "aa698bc10af7df69bb7c8d1f5f16cbb3ff1472fa6794abc17316fc22e367f2cd",
+      "bytes": 3217144,
+      "identity_record_ref": "loaded_audio_manifest"
+    },
+    {
+      "variant": "RhodesResearchQuadrature",
+      "sha256": "d2213f5a635a2f819f8932c8cd18575ddd3c07bc3fdc386f99115ed72cd4078e",
+      "bytes": 3208952,
+      "identity_record_ref": "loaded_audio_manifest"
+    }
+  ],
+  "retained_executions": [
+    {
+      "id": "final-native",
+      "procedure": "One retained XTEST pointer/keyboard, native resize and WM_DELETE_WINDOW replay in the accepting SDK editor host.",
+      "started_utc": "2026-11-24T19:18:39.893068+00:00",
+      "finished_utc": "2026-11-24T19:20:04.036377+00:00",
+      "result": "pass",
+      "native_replays": 1,
+      "checks": 136,
+      "passed": 136,
+      "verifier_wrapper_exit_code": 0,
+      "host_exit_code": 0,
+      "maximum_size_idle": {
+        "width": 1536,
+        "height": 1152,
+        "pixels_per_checkpoint": 1769472,
+        "checkpoints": 2,
+        "different_pixels_at_each_checkpoint": 0,
+        "maximum_absolute_channel_error": 0
+      },
+      "black_key_interiors_during_white_holds": {
+        "held_white_keys": 43,
+        "regions_per_hold": 30,
+        "region_comparisons": 1290,
+        "pixel_instances": 818978,
+        "changed_pixel_instances": 0
+      },
+      "viewport_sizes_pixels": [
+        [
+          768,
+          576
+        ],
+        [
+          1024,
+          768
+        ],
+        [
+          1536,
+          1152
+        ]
+      ],
+      "screenshots": 66,
+      "mask_images": 1,
+      "host_callbacks": 98,
+      "audio_processing_exercised": false,
+      "artifact_refs": [
+        "native_summary",
+        "native_outcome",
+        "native_host_log",
+        "native_input_manifest",
+        "native_output_manifest",
+        "native_capture_archive"
+      ]
+    },
+    {
+      "id": "lifecycle-after-final-13",
+      "procedure": "Retained final Direct-module native lifecycle CTest selection.",
+      "variant": "RhodesResearch",
+      "tests": 13,
+      "passed": 13,
+      "failed": 0,
+      "skipped": 0,
+      "selectors": [
+        "normal_close",
+        "remove_begin",
+        "remove_perform",
+        "remove_end",
+        "nested_pump",
+        "timer_refused",
+        "repeated_remove",
+        "reopen",
+        "parent_destroy_after_remove",
+        "release_host_reference_after_remove",
+        "focus_remove",
+        "reopen_cycles",
+        "sibling_survives"
+      ],
+      "artifact_refs": [
+        "direct_lifecycle_manifest",
+        "direct_lifecycle_log",
+        "direct_lifecycle_xml"
+      ],
+      "excluded_history": "The manifest also preserves an earlier intermediate 41-test selection; it is not counted or applied as final-module validation here."
+    },
+    {
+      "id": "final-module-gates",
+      "procedure": "Retained separate commands against frozen final Linux bundles.",
+      "gates": 34,
+      "passed": 34,
+      "failed": 0,
+      "native_lifecycle_cases_within_gates": 26,
+      "native_lifecycle_by_variant": {
+        "RhodesResearchFiltered": 13,
+        "RhodesResearchQuadrature": 13
+      },
+      "validator_and_contract_commands_within_gates": 8,
+      "validators": [
+        {
+          "variant": "direct",
+          "sdk_tests_passed": 47,
+          "sdk_tests_failed": 0,
+          "sdk_exit_code": 0,
+          "moduleinfo_exit_code": 0,
+          "artifact_refs": [
+            "sdk_validator_direct_stdout",
+            "sdk_validator_direct_result",
+            "moduleinfo_direct_result"
+          ]
+        },
+        {
+          "variant": "filtered",
+          "sdk_tests_passed": 47,
+          "sdk_tests_failed": 0,
+          "sdk_exit_code": 0,
+          "moduleinfo_exit_code": 0,
+          "artifact_refs": [
+            "sdk_validator_filtered_stdout",
+            "sdk_validator_filtered_result",
+            "moduleinfo_filtered_result"
+          ]
+        },
+        {
+          "variant": "quadrature",
+          "sdk_tests_passed": 47,
+          "sdk_tests_failed": 0,
+          "sdk_exit_code": 0,
+          "moduleinfo_exit_code": 0,
+          "artifact_refs": [
+            "sdk_validator_quadrature_stdout",
+            "sdk_validator_quadrature_result",
+            "moduleinfo_quadrature_result"
+          ]
+        }
+      ],
+      "other_contract_commands": [
+        {
+          "name": "loaded-expression-controls-state",
+          "exit_code": 0,
+          "checks": 65644,
+          "loaded_callbacks": 621,
+          "scalar_samples": 0,
+          "panel_reopens": 72,
+          "atomic_panel_rejections": 108,
+          "artifact_ref": "loaded_state_stdout"
+        },
+        {
+          "name": "photo-editor-unattached-contract",
+          "exit_code": 0,
+          "checks": 5283,
+          "controllers": 9,
+          "views_created": 24,
+          "malformed_scales_rejected": 66,
+          "host_resize_requests": 66,
+          "native_window_attached": false,
+          "artifact_ref": "unattached_contract_stdout"
+        }
+      ],
+      "artifact_refs": [
+        "module_gates_summary",
+        "module_gates_input_manifest"
+      ],
+      "counting_boundary": "The 26 lifecycle cases, six validator commands and two contract commands are subsets of 34 gates; SDK internal test counts are nested within their three validator commands."
+    },
+    {
+      "id": "final-panel",
+      "procedure": "Retained component DSP and controller/stream commands with independent response, state and fault/allocation assertions.",
+      "completed_utc": "2026-11-24T19:30:26.914372+00:00",
+      "commands": 26,
+      "passing_exit_codes": 26,
+      "reported_checks": 16042445,
+      "reported_checks_by_group": {
+        "front_panel": 16010528,
+        "model1": 10639,
+        "model2": 10639,
+        "model3": 10639
+      },
+      "loaded_native_nonneutral_audio_claimed": false,
+      "artifact_refs": [
+        "component_panel_summary",
+        "component_panel_results",
+        "component_panel_input_manifest",
+        "component_panel_source_bridge"
+      ]
+    },
+    {
+      "id": "final-legacy",
+      "procedure": "Fresh current-bundle captures compared with retained raw legacy captures; the baseline was not executed again.",
+      "started_utc": "2026-11-24T19:22:53.479491+00:00",
+      "finished_utc": "2026-11-24T19:22:55.485333+00:00",
+      "result": "passed",
+      "fresh_current_captures": 144,
+      "retained_baseline_captures": 72,
+      "exact_pairs": 144,
+      "paired_stereo_frames": 608256,
+      "fresh_callbacks": 5328,
+      "baseline_native_execution_performed": false,
+      "current_native_execution_performed": true,
+      "official_216_process_entry_point_rerun": false,
+      "baseline_revision": "6c91dab00855b67a559e92edb79ae49e567be469",
+      "matrix": {
+        "variants": 3,
+        "sample_format_bits": [
+          32,
+          64
+        ],
+        "sample_rates_hz": [
+          48000,
+          192000
+        ],
+        "partitions": [
+          "whole",
+          "fixed64",
+          "ragged"
+        ],
+        "gain_workloads": [
+          "dense",
+          "sparse"
+        ],
+        "current_modes": [
+          "default",
+          "explicit1"
+        ]
+      },
+      "state_control_boundary": {
+        "state_versions_observed": [
+          1
+        ],
+        "state_packet_bytes": 16,
+        "explicit1_writes": "Expression parameter ID 2 at unity only; it does not write panel IDs 3 through 7.",
+        "explicit_neutral_panel_automation_claimed": false,
+        "v2_or_v3_capture_state_coverage_claimed": false
+      },
+      "partition_boundary": "Dense audio is compared across partitions; sparse per-callback gain is compared only within corresponding partitions.",
+      "raw_manifest_file_count": 433,
+      "raw_manifest_sha256": "39f5daf2aac5e22b34e4c6d79303eb7d379d40b2c0622461a4842bc19686ca12",
+      "artifact_refs": [
+        "legacy_comparison",
+        "legacy_source_bridge",
+        "legacy_archive",
+        "legacy_scope_review"
+      ]
+    },
+    {
+      "id": "strengthened-loaded-panel-audio",
+      "procedure": "One retained loaded-panel CTest execution using the strengthened fixture, after its recorded configure/build.",
+      "started_utc": "2026-11-24T19:51:29.336796+00:00",
+      "finished_utc": "2026-11-24T19:51:56.006593+00:00",
+      "ctest_tests": 1,
+      "ctest_passed": 1,
+      "ctest_failed": 0,
+      "modules": 3,
+      "sample_formats": [
+        "float32",
+        "float64"
+      ],
+      "sample_rate_hz": 48000,
+      "frames_per_render": 96000,
+      "renders": 96,
+      "callbacks": 36000,
+      "scalar_comparisons": 24173604,
+      "checks": 12698530,
+      "source_files_unchanged_during_recorded_execution": 44,
+      "module_bytes_unchanged_during_recorded_execution": true,
+      "strengthened_assertions": [
+        "Separate Bass and Treble spectral mapping intervals",
+        "Opposed-channel amplitude-modulation invariants",
+        "Every-sample disable-envelope assertions with exact neutral frame 48479"
+      ],
+      "fixture_sha256": "a76cba87f5682a53a4aca46911fe2be2d8824171fee6bc3de45c25566a56fac1",
+      "artifact_refs": [
+        "loaded_audio_summary",
+        "loaded_audio_manifest",
+        "loaded_audio_stdout",
+        "loaded_audio_xml",
+        "loaded_audio_fixture"
+      ],
+      "excluded_history": "The before-review loaded-panel result is retained separately and is not added to these counts."
+    }
+  ],
+  "derived_counts": {
+    "native_lifecycle_cases": 39,
+    "derivation": "13 Direct cases in lifecycle-after/final-13 plus 26 Filtered/Quadrature cases within final-module-gates.",
+    "separate_execution_records": true,
+    "new_39_test_suite_execution_claimed": false,
+    "other_counts_are_not_summed": "Commands, CTests, assertions, comparisons, callbacks, renders, pixels and frames retain their original units and nesting."
+  },
+  "retained_assets_and_archives": {
+    "original_photo_ref": "original_reference",
+    "packaged_photo_ref": "packaged_photo_png",
+    "packaged_uidesc_ref": "packaged_uidesc",
+    "native_capture_refs": [
+      "native_capture_archive",
+      "native_capture_archive_manifest",
+      "native_capture_roundtrip",
+      "native_capture_delivery_index"
+    ],
+    "native_capture_preservation": {
+      "images": 67,
+      "recorded_screenshots": 66,
+      "raw_files": 134,
+      "decoded_rgb_and_dimensions_preserved": true,
+      "original_png_byte_streams_reproduced": 0,
+      "scope": "The retained roundtrip preserves decoded RGB/dimensions and byte-exact non-PNG records; original PNG encoding, metadata and modes are not preserved."
+    },
+    "legacy_capture_archive_ref": "legacy_archive",
+    "archive_reconstruction_or_pixel_replay_performed_for_this_aggregate": false
+  },
+  "limitations": [
+    "This aggregate introduces no new experiment, full-suite run or acceptance decision.",
+    "No native Windows or macOS editor result is claimed for this source.",
+    "No named-DAW operation, audio-device timing, deadline or performance result is claimed.",
+    "No non-unit-DPI, native Wayland or arbitrary window-topology coverage is claimed.",
+    "The lifecycle fixture explicitly drains FD callbacks; readiness-only host behavior remains outside this evidence.",
+    "Native interaction screenshots concern Direct; all three variants have the separately recorded lifecycle, loaded-state, validator and loaded-audio coverage.",
+    "Synthetic digital controls and numerical fixtures do not establish measured physical or acoustic fidelity.",
+    "Historical attempts and earlier before-review/intermediate suites remain separate; their counts are not added here.",
+    "Hashes identify retained bytes and applicability; they do not independently attest compilation or the authenticity of execution."
+  ],
+  "artifacts": {
+    "photo_contract": {
+      "path": "docs/specs/PHOTO_EDITOR_20261124.md",
+      "sha256": "9b68c304da33113797543314fedc722db6da00ce981db28d7ab2742f5f955ed1",
+      "bytes": 3329
+    },
+    "original_reference": {
+      "path": "assets/reference/rhodes-suitcase-reference.webp",
+      "sha256": "782b4c83a2bf827ed0d363bc567cdc2211485da6e650db4ae99448e78b7da24b",
+      "bytes": 257616
+    },
+    "packaged_photo_png": {
+      "path": "plugins/vst3/resources/rhodes-suitcase.png",
+      "sha256": "84e2d48fc0311eb923083cc3e1f96dc5fa1b3f8a6e085daee7c973e54d754d26",
+      "bytes": 1434362
+    },
+    "packaged_uidesc": {
+      "path": "plugins/vst3/resources/rhodes-suitcase.uidesc",
+      "sha256": "7554fecedf67cf744b3aa7f6cf12dc4f874d8b5e0b97ec66959ba2b42ea5825e",
+      "bytes": 651
+    },
+    "legacy_scope_review": {
+      "path": "docs/agents/reports/photo-continuation-20261124/w5-087.md",
+      "sha256": "a874a768940f32b6c3cd770a552c8a3206905994967146bc8b5d3b6af7ac0a4f",
+      "bytes": 1736
+    },
+    "loaded_audio_fixture": {
+      "path": "tests/cpp/vst3_loaded_panel_audio_test.cpp",
+      "sha256": "a76cba87f5682a53a4aca46911fe2be2d8824171fee6bc3de45c25566a56fac1",
+      "bytes": 25393
+    },
+    "native_summary": {
+      "path": "docs/validation/photo-continuation-20261124/final-native/evidence-summary.json",
+      "sha256": "4df3088f3243f3df323a3894c632d02b2f40ae1181481f19b7c909596a97db26",
+      "bytes": 2724
+    },
+    "native_outcome": {
+      "path": "docs/validation/photo-continuation-20261124/final-native/outcome.json",
+      "sha256": "4cea37b19b127a7ef70aabaa4ab7f2aaf450248002dc1bbd5b8294400f6f6add",
+      "bytes": 385440
+    },
+    "native_host_log": {
+      "path": "docs/validation/photo-continuation-20261124/final-native/editorhost.log",
+      "sha256": "f69e526825cce8fe8ea83d91b3ac0037b47c4ba38dfd101e7b9aee4a12517112",
+      "bytes": 2173
+    },
+    "native_input_manifest": {
+      "path": "docs/validation/photo-continuation-20261124/final-native/input-manifest.json",
+      "sha256": "8695d9046ce26f8caf7e38ca176213bdc3d58f8990e45be0784f7f767a42b86e",
+      "bytes": 76673
+    },
+    "native_output_manifest": {
+      "path": "docs/validation/photo-continuation-20261124/final-native/output-manifest.json",
+      "sha256": "9824155e66bacd9d8b909cb8a3bd0a9a315f6fcfcfdfaa76ab9992ed545a1a31",
+      "bytes": 44648
+    },
+    "native_original_source_bridge": {
+      "path": "docs/validation/photo-continuation-20261124/final-native/committed-source-bridge.json",
+      "sha256": "f0fe5e0d60e7edae02b26bd0d44751d738755bea3e7a349776eaf4f80239f64e",
+      "bytes": 13125
+    },
+    "direct_lifecycle_manifest": {
+      "path": "docs/validation/photo-continuation-20261124/lifecycle-after/manifest.json",
+      "sha256": "4e723001f66ea80ed04fabbc1e7bb9700ced7004ad67f038a65d4a279625ea9d",
+      "bytes": 5066
+    },
+    "direct_lifecycle_log": {
+      "path": "docs/validation/photo-continuation-20261124/lifecycle-after/final-13.log",
+      "sha256": "b8bbba2bf987f118dbd2a52c17eab2af3bce3a2e26b021442a7998be1fc95ed0",
+      "bytes": 2350
+    },
+    "direct_lifecycle_xml": {
+      "path": "docs/validation/photo-continuation-20261124/lifecycle-after/final-13.xml",
+      "sha256": "c0cfea19da255a39294e8acd6bbe3cfba83921b07f2226b88f249f57fee7c3e6",
+      "bytes": 4367
+    },
+    "module_gates_summary": {
+      "path": "docs/validation/photo-continuation-20261124/final-module-gates/summary.json",
+      "sha256": "bd6c52163e7d0fb92f703b33ea66b6cd66233663d45656ad87e6142a01f6872d",
+      "bytes": 50082
+    },
+    "module_gates_input_manifest": {
+      "path": "docs/validation/photo-continuation-20261124/final-module-gates/input-manifest.json",
+      "sha256": "7c87777c7e5acb301a5e31067e86ac078f36060b5c87d5d74dceacf7dcd79c73",
+      "bytes": 33571
+    },
+    "loaded_state_stdout": {
+      "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/loaded-expression-controls-state/stdout.log",
+      "sha256": "67f5f237148907513ca1205ffbcf3b6627f2ea35134630fad0125ca8dff0902f",
+      "bytes": 285
+    },
+    "unattached_contract_stdout": {
+      "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/photo-editor-contract/stdout.log",
+      "sha256": "b6302fbcd5178c0153ac12e6eecc44e546ab50ece65501f0ff3ec9a0839fc1e9",
+      "bytes": 193
+    },
+    "component_panel_summary": {
+      "path": "docs/validation/photo-continuation-20261124/final-panel/summary.json",
+      "sha256": "7a141082e91326589512a31d0f879b31ca71ca10cd5d9f9848c92746b5bd270b",
+      "bytes": 22634
+    },
+    "component_panel_results": {
+      "path": "docs/validation/photo-continuation-20261124/final-panel/results.json",
+      "sha256": "fb62ef8bb450dd08fa7200f1939b11ad2c4aa1a1788db6d8070be5dfbfe62e84",
+      "bytes": 21029
+    },
+    "component_panel_input_manifest": {
+      "path": "docs/validation/photo-continuation-20261124/final-panel/input-manifest.json",
+      "sha256": "a6f413b1fec8b2540992318cd1c59d0a2e4ed22c476e2947a448c9ff4d1c2ad6",
+      "bytes": 16649
+    },
+    "component_panel_source_bridge": {
+      "path": "docs/validation/photo-continuation-20261124/final-panel/source-bridge.json",
+      "sha256": "5b706e69ea9c5e10a87a7973b1e5ae4cea8ba0a95af683dd2be048957d44c99a",
+      "bytes": 12940
+    },
+    "legacy_comparison": {
+      "path": "docs/validation/photo-continuation-20261124/final-legacy/fresh-comparison.json",
+      "sha256": "8e697b170fa6e98a684c3130086d93d5f480c61c05afae48404c511f196fc4bc",
+      "bytes": 555339
+    },
+    "legacy_source_bridge": {
+      "path": "docs/validation/photo-continuation-20261124/final-legacy/source-applicability-bridge.json",
+      "sha256": "48f4519ee47227b8a60a9f357d5ef2191e327a54b68312245b09bf23f700ccb0",
+      "bytes": 12720
+    },
+    "legacy_archive": {
+      "path": "docs/validation/photo-continuation-20261124/final-legacy/w4-064-evidence.tar.xz",
+      "sha256": "cee78319cefd60ba70027bf1851370e1040a88cc4d242486eb259ccf0d972276",
+      "bytes": 595664
+    },
+    "loaded_audio_summary": {
+      "path": "docs/validation/photo-continuation-20261124/final-loaded-audio/strengthened/run-summary.json",
+      "sha256": "afb96fc70b73ce8dba3fead5f184c92b3f8a567c338be6a646de285860fabed6",
+      "bytes": 6945
+    },
+    "loaded_audio_manifest": {
+      "path": "docs/validation/photo-continuation-20261124/final-loaded-audio/strengthened/manifest.json",
+      "sha256": "7e9b761b42064beaf7bfa10049a9f167580a9a61e3e0f214616109035fa56343",
+      "bytes": 10416
+    },
+    "loaded_audio_stdout": {
+      "path": "docs/validation/photo-continuation-20261124/final-loaded-audio/strengthened/ctest.stdout.log",
+      "sha256": "ea33809fe038c3faec37cb25e9f86cff55e123f80b960dc7485952074cf0a23d",
+      "bytes": 20450
+    },
+    "loaded_audio_xml": {
+      "path": "docs/validation/photo-continuation-20261124/final-loaded-audio/strengthened/ctest.xml",
+      "sha256": "dc49446f21ab5f3bb36a23e33d3471680f0c8b9a381bb03a4160ccd12ca0f7b6",
+      "bytes": 1485
+    },
+    "native_capture_archive": {
+      "path": "docs/validation/photo-continuation-20261124/captures/final-native-pixels.zip",
+      "sha256": "ab307b838a3890ac737bbde15a72574b266dea46dd446cdeee3b7da388ee8d1c",
+      "bytes": 6121474
+    },
+    "native_capture_archive_manifest": {
+      "path": "docs/validation/photo-continuation-20261124/captures/final-native-pixels.manifest.json",
+      "sha256": "c489f699c2bc137980325d8250721192b5435f97998d35d781240f70734d6cd3",
+      "bytes": 117060
+    },
+    "native_capture_roundtrip": {
+      "path": "docs/validation/photo-continuation-20261124/captures/final-roundtrip-summary.json",
+      "sha256": "dd0ca6975f8e61cf4a76f38a0c52ec1252524cbe5a25acdd35926a48ee5f1b71",
+      "bytes": 2025
+    },
+    "native_capture_delivery_index": {
+      "path": "docs/validation/photo-continuation-20261124/captures/delivery-manifest.json",
+      "sha256": "9b9a5afd2bd25c92717f3ae01f6a275975ea37b66c5165bc6f8e50ffa4dcfab9",
+      "bytes": 5673
+    },
+    "sdk_validator_direct_stdout": {
+      "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/sdk-validator-direct/stdout.log",
+      "sha256": "e64d1524736926ff369cee152a7b36383be3d27a2d966106c5599e632071f5a9",
+      "bytes": 12371
+    },
+    "sdk_validator_direct_result": {
+      "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/sdk-validator-direct/result.json",
+      "sha256": "99551408bad0e9641b074d2852c6e03a59311dc7e091b337bf1ab26fa2fb4615",
+      "bytes": 856
+    },
+    "moduleinfo_direct_result": {
+      "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/moduleinfo-validator-direct/result.json",
+      "sha256": "aa9d255dcba540e038f40af6017c705f65ec30687a86129d07faed2774e22641",
+      "bytes": 916
+    },
+    "sdk_validator_filtered_stdout": {
+      "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/sdk-validator-filtered/stdout.log",
+      "sha256": "8a61122907b469196a4d87d98ae50a9af7f65824dbf8e510c365af1bc0e3d8c1",
+      "bytes": 12377
+    },
+    "sdk_validator_filtered_result": {
+      "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/sdk-validator-filtered/result.json",
+      "sha256": "efa53cf0ce4ccde9f457fed00238f259b913a7452702f90c5ed1cfb65abb64c2",
+      "bytes": 869
+    },
+    "moduleinfo_filtered_result": {
+      "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/moduleinfo-validator-filtered/result.json",
+      "sha256": "a9558c4ff16298d03cbd80f89594b305aa11bf6782b96c20841a021dda44231f",
+      "bytes": 929
+    },
+    "sdk_validator_quadrature_stdout": {
+      "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/sdk-validator-quadrature/stdout.log",
+      "sha256": "072d70fbb5bec6cdba0bc667ed588dc61059b9a1d565cc2d2da921cf3830b4d6",
+      "bytes": 12385
+    },
+    "sdk_validator_quadrature_result": {
+      "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/sdk-validator-quadrature/result.json",
+      "sha256": "dd6bc12c7b7dafc8db25682ef35c5f78c3fad8de65db57fb395abf5414820361",
+      "bytes": 878
+    },
+    "moduleinfo_quadrature_result": {
+      "path": "docs/validation/photo-continuation-20261124/final-module-gates/results/moduleinfo-validator-quadrature/result.json",
+      "sha256": "525ba515a678c8f1f9679aeaded866d9c8b6a42026e4889637d14d6762f5e4ea",
+      "bytes": 938
+    },
+    "final_source_bridge": {
+      "path": "docs/validation/photo-continuation-20261124/final-source-bridge.json",
+      "sha256": "8c9cead58415162810c21919d24ffe61f316a0901a6e55ad0d1320fd88827efb",
+      "bytes": 181820
+    }
+  }
+}

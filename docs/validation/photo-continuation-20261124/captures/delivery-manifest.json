@@ -1,95 +1,116 @@
 {
-  "worker": "w4-066",
-  "source_worker": "w4-061",
-  "archive": "final-native-pixels.zip",
-  "sidecar": "final-native-pixels.manifest.json",
-  "archive_contains_fresh_actual_metadata": true,
-  "native_replay_executed_by_retention_worker": false,
-  "explicit_roundtrip_invocations": 1,
-  "companions": {
-    "VSTGUI-LICENSE.txt": {
-      "source": "/home/agent/rhoades-9a04c9726e31/w4-061/snapshot/RhodesResearch.vst3/Contents/Resources/VSTGUI-LICENSE.txt",
-      "purpose": "Existing unmodified notice for retained VSTGUI source and adaptations; keep with archive."
-    }
+  "schema_version": 1,
+  "kind": "photo-capture-repository-delivery-index",
+  "worker": "w5-089",
+  "source_worker": "w4-066",
+  "capture_worker": "w4-061",
+  "path_basis": "repository-root",
+  "purpose": "Map all 16 original producer entries to the files delivered in this repository, without replacing earlier roundtrip observations.",
+  "producer_manifest": {
+    "path": "docs/validation/photo-continuation-20261124/captures/final-package-audit/producer-delivery-manifest.json",
+    "bytes": 3065,
+    "sha256": "0902bf4aedd722acf74fd96cf0f9fa8bbc2cb27f7c65784efe4a638633952d0c",
+    "role": "Byte-exact historical producer record; its paths are not the current delivery index."
+  },
+  "historical_provenance": {
+    "producer_path": "Each files[].producer_path is the original producer-relative filename, retained only to identify its entry in the historical producer manifest.",
+    "absolute_scratch_paths": "Absolute scratch paths in the producer manifest, archive manifests and retained command/audit records describe historical work locations. They are not dependencies for locating the delivered records or unpacking the archive.",
+    "replay_boundary": "Historical command records describe the original environment. This delivery is not a complete dependency checkout and does not rerun the native observation or pixel roundtrip."
   },
   "files": [
     {
-      "path": "final-native-pixels.zip",
+      "producer_path": "final-native-pixels.zip",
+      "path": "docs/validation/photo-continuation-20261124/captures/final-native-pixels.zip",
       "bytes": 6121474,
       "sha256": "ab307b838a3890ac737bbde15a72574b266dea46dd446cdeee3b7da388ee8d1c"
     },
     {
-      "path": "final-native-pixels.manifest.json",
+      "producer_path": "final-native-pixels.manifest.json",
+      "path": "docs/validation/photo-continuation-20261124/captures/final-native-pixels.manifest.json",
       "bytes": 117060,
       "sha256": "c489f699c2bc137980325d8250721192b5435f97998d35d781240f70734d6cd3"
     },
     {
-      "path": "roundtrip-summary.json",
+      "producer_path": "roundtrip-summary.json",
+      "path": "docs/validation/photo-continuation-20261124/captures/final-roundtrip-summary.json",
       "bytes": 2025,
       "sha256": "dd0ca6975f8e61cf4a76f38a0c52ec1252524cbe5a25acdd35926a48ee5f1b71"
     },
     {
-      "path": "roundtrip-audit.json",
+      "producer_path": "roundtrip-audit.json",
+      "path": "docs/validation/photo-continuation-20261124/captures/final-package-audit/roundtrip-audit.json",
       "bytes": 204159,
       "sha256": "1febad1379c2c94df7b37b941472eb868f4708f98c39edd77741d248c75a514d"
     },
     {
-      "path": "source-input-before.json",
+      "producer_path": "source-input-before.json",
+      "path": "docs/validation/photo-continuation-20261124/captures/final-package-audit/source-input-before.json",
       "bytes": 52503,
       "sha256": "d793d282b9d6572b6a3109c2c4107dcc26abfa4f18ed3a03f9cc1a42c1b74c04"
     },
     {
-      "path": "pack-command.json",
+      "producer_path": "pack-command.json",
+      "path": "docs/validation/photo-continuation-20261124/captures/final-package-audit/pack-command.json",
       "bytes": 8371,
       "sha256": "bb3d366ad5db05742d0601cc8ffbe1494a574afffada5749538aff087b603752"
     },
     {
-      "path": "pack-process.json",
+      "producer_path": "pack-process.json",
+      "path": "docs/validation/photo-continuation-20261124/captures/final-package-audit/pack-process.json",
       "bytes": 158,
       "sha256": "edc58dac351b2b56fa876ecbe5d627281279e4259711ae240a0ce834132bea8a"
     },
     {
-      "path": "pack.stdout.json",
+      "producer_path": "pack.stdout.json",
+      "path": "docs/validation/photo-continuation-20261124/captures/final-package-audit/pack.stdout.json",
       "bytes": 601,
       "sha256": "e53c09496c1f88424c1c17dc162d57164632b47aa91ddc209b7446a00cdc6f26"
     },
     {
-      "path": "pack.stderr.log",
+      "producer_path": "pack.stderr.log",
+      "path": "docs/validation/photo-continuation-20261124/captures/final-package-audit/pack.stderr.log",
       "bytes": 0,
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
-      "path": "unpack-command.json",
+      "producer_path": "unpack-command.json",
+      "path": "docs/validation/photo-continuation-20261124/captures/final-package-audit/unpack-command.json",
       "bytes": 420,
       "sha256": "e1972a3eb2a79b0711423dec6f1594df30ef78709df6d7d243bb9db8609085dd"
     },
     {
-      "path": "unpack-process.json",
+      "producer_path": "unpack-process.json",
+      "path": "docs/validation/photo-continuation-20261124/captures/final-package-audit/unpack-process.json",
       "bytes": 197,
       "sha256": "2ef63b3e7fd9774bd6b53d12b3f9e09ccad1bbfd3e49e77b524bfaf74a4cda2a"
     },
     {
-      "path": "unpack.stdout.json",
+      "producer_path": "unpack.stdout.json",
+      "path": "docs/validation/photo-continuation-20261124/captures/final-package-audit/unpack.stdout.json",
       "bytes": 388,
       "sha256": "20a13553ec5eeb38017ed0b7ee66c6db9487c04f30b672ac1f911e9a487ba655"
     },
     {
-      "path": "unpack.stderr.log",
+      "producer_path": "unpack.stderr.log",
+      "path": "docs/validation/photo-continuation-20261124/captures/final-package-audit/unpack.stderr.log",
       "bytes": 0,
       "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
     },
     {
-      "path": "selection.json",
+      "producer_path": "selection.json",
+      "path": "docs/validation/photo-continuation-20261124/captures/final-package-audit/selection.json",
       "bytes": 16348,
       "sha256": "f490b3d97adc5237870d0a2b551d628e2ca6767cf035898f44d04ef308f4e6c3"
     },
     {
-      "path": "audit-roundtrip.py",
+      "producer_path": "audit-roundtrip.py",
+      "path": "docs/validation/photo-continuation-20261124/captures/final-package-audit/audit-roundtrip.py",
       "bytes": 7798,
       "sha256": "bfed00b64b42d4271251e9326715031f1a2cc0d4eaf5248d3c6fdd4edbcca778"
     },
     {
-      "path": "VSTGUI-LICENSE.txt",
+      "producer_path": "VSTGUI-LICENSE.txt",
+      "path": "docs/validation/photo-continuation-20261124/captures/VSTGUI-LICENSE.txt",
       "bytes": 1858,
       "sha256": "605bcd2152176b365cf0ba6cca331a988fa885b4f43f20ceff4e264e6576ca66"
     }

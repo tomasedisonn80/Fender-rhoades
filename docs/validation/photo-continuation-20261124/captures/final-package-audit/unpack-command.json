@@ -1,0 +1,12 @@
+[
+  "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+  "-B",
+  "tools/pack_photo_evidence.py",
+  "unpack",
+  "/home/agent/rhoades-9a04c9726e31/w4-066/final-native-pixels.zip",
+  "/home/agent/rhoades-9a04c9726e31/w4-066/reconstructed",
+  "--originals",
+  "/home/agent/rhoades-9a04c9726e31/w4-061",
+  "--manifest",
+  "/home/agent/rhoades-9a04c9726e31/w4-066/final-native-pixels.manifest.json"
+]

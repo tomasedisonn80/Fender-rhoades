@@ -33,8 +33,9 @@
   path. The [frozen contract](docs/specs/HOST_EXPRESSION_MONO_20261124.md) retains
   existing control/class/model identities and latencies while adding parameter
   ID 2, bringing that pre-panel stage to nineteen host parameters.
-- Adaptive RHST configuration: unity Expression preserves exact 16-byte v1
-  bytes; non-unity uses 20-byte v2. Own-model legacy loads restore unity and
+- Adaptive RHST configuration with default panel settings: unity Expression
+  preserves exact 16-byte v1 bytes; non-unity uses 20-byte v2. Nondefault panel
+  settings use the 40-byte v3 format. Own-model legacy loads restore unity and
   valid v2 unity loads save canonically as v1; strict lengths and transactional
   rejection remain. Output layout, transient commands and ringing state are
   excluded. See the [wire-format table](docs/specs/RUNTIME_AND_ASSETS.md#persistence-and-determinism).

@@ -1,0 +1,10 @@
+{
+  "baselines": 4,
+  "destination": "/home/agent/rhoades-9a04c9726e31/w4-066/reconstructed",
+  "images": 67,
+  "original_file_bytes": 98124198,
+  "originals_compared_bytewise": true,
+  "raw_files": 134,
+  "result": "pass",
+  "scope": "Exact decoded 8-bit RGB pixels and dimensions; reconstructed PNG bytes, metadata and original modes are not preserved. Non-PNG files are byte-exact."
+}

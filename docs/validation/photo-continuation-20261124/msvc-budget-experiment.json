@@ -1,0 +1,41 @@
+{
+  "created_utc": "2026-11-24T20:08:35.985978+00:00",
+  "parent_commit": "8c5d819e9d99767372cf1a74a971433edce6da35",
+  "failure_record": "docs/validation/photo-continuation-20261124/ci-8c5d819.json",
+  "failed_run": 45475369250,
+  "failed_job": 138734055509,
+  "compiler_identification": "MSVC 19.52.37029.0",
+  "toolset_directory_version": "14.52.37025",
+  "failure": "C1001 at predefined C++ types (compiler internal)(426,1), msc1.cpp:1678",
+  "diagnosis": "Frontend constexpr evaluation pressure is a hypothesis, not established causality. No explicit step-limit diagnostic was present. Earlier unchanged-source Windows run passed.",
+  "change": {
+    "path": "CMakeLists.txt",
+    "sha256": "aa7d1e9f2db5686323e60de4e95ebfd3f9e5fcdddd5364569e160164175771e8",
+    "target": "rhodes_photo_key_highlight_tests",
+    "compiler": "CMAKE_CXX_COMPILER_ID STREQUAL MSVC",
+    "private_option": "/constexpr:steps1000000",
+    "unchanged": [
+      "all seven test static_asserts",
+      "header static_assert",
+      "all five runtime highlight fixtures",
+      "production source and flags",
+      "optimization and fp:precise flags"
+    ]
+  },
+  "local_configuration": {
+    "command": "cmake -S . -B /home/agent/rhoades-9a04c9726e31/build-core",
+    "exit_code": 0,
+    "msvc_option_absent_from_linux_ninja": true,
+    "log": "docs/validation/photo-continuation-20261124/msvc-budget-linux-configure.log"
+  },
+  "same_source_retry_request": {
+    "requested_job": 138734055509,
+    "result": "GitHub HTTP403: The workflow run containing this job is already running",
+    "new_execution_started": false
+  },
+  "windows_experiment": "pending actual build and all five photo-key-highlight fixtures at subsequent pushed revision",
+  "sources": [
+    "https://learn.microsoft.com/en-us/cpp/error-messages/compiler-errors-1/fatal-error-c1001",
+    "https://learn.microsoft.com/en-us/cpp/build/reference/constexpr-control-constexpr-evaluation"
+  ]
+}

@@ -100,6 +100,12 @@ if(BUILD_TESTING)
     target_link_libraries(rhodes_photo_key_highlight_tests PRIVATE rhodes_core)
     target_include_directories(rhodes_photo_key_highlight_tests PRIVATE "${PROJECT_SOURCE_DIR}")
     rhodes_target_options(rhodes_photo_key_highlight_tests)
+    if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
+        # The 73-key contour table is evaluated at compile time. A default-budget
+        # MSVC 19.52 build reported C1001; give this test a bounded larger budget
+        # while retaining every static assertion and the production flags.
+        target_compile_options(rhodes_photo_key_highlight_tests PRIVATE /constexpr:steps1000000)
+    endif()
     foreach(test_name IN ITEMS structure black_interiors dense_grid boundaries invalid_indices)
         add_test(NAME photo_key_highlight.${test_name}
             COMMAND rhodes_photo_key_highlight_tests ${test_name})

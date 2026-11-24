@@ -1,0 +1,7 @@
+{
+  "command_file": "unpack-command.json",
+  "cwd": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades",
+  "exit_code": 0,
+  "elapsed_seconds": 91.50654911994934,
+  "explicit_roundtrip_invocation": 1
+}

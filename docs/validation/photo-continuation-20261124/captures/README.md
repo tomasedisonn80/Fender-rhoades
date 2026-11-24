@@ -16,15 +16,28 @@ The adjacent manifests are copies of each archive's internal manifest. Worker
 audit's `roundtrip-summary.json` and `roundtrip-audit.json` are retained here.
 Worker 066 independently archived the fresh final run with 134 raw records and
 source/configuration files; `final-roundtrip-summary.json` records its exact RGB
-and raw-byte comparison. `delivery-manifest.json` binds its delivered files.
-The companion `VSTGUI-LICENSE.txt` covers the retained upstream VSTGUI source
-and generated adaptations in that archive.
+and raw-byte comparison. `delivery-manifest.json` maps all 16 original producer
+entries to their current repository-relative paths, byte counts and SHA-256 hashes.
+`final-package-audit/producer-delivery-manifest.json` preserves worker 066's
+producer manifest byte for byte; its hash is also retained in the current index.
+`final-package-audit/roundtrip-audit.json` is worker 066's detailed audit, alongside
+the eleven command, process, selection and input records formerly missing from
+the delivery. The root-level `roundtrip-summary.json` and `roundtrip-audit.json`
+remain the earlier worker 046 observations; the final summary remains
+`final-roundtrip-summary.json`.
+
+Absolute scratch paths in the producer records identify historical work locations;
+they are not dependencies for locating the delivered files or unpacking the
+archive. The historical commands describe their original environment, and the
+archive is not a complete dependency checkout. The companion `VSTGUI-LICENSE.txt`
+covers the retained upstream VSTGUI source and generated adaptations in that archive.
 
 From the repository root, with Python and Pillow installed:
 
 ```sh
 python3 tools/pack_photo_evidence.py verify \
   docs/validation/photo-continuation-20261124/captures/passing-native-pixels.zip
+mkdir -p build
 python3 tools/pack_photo_evidence.py unpack \
   docs/validation/photo-continuation-20261124/captures/passing-native-pixels.zip \
   build/passing-native-pixels

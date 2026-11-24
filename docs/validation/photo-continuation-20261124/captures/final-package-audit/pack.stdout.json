@@ -1,0 +1,13 @@
+{
+  "archive": "/home/agent/rhoades-9a04c9726e31/w4-066/final-native-pixels.zip",
+  "archive_bytes": 6121474,
+  "archive_sha256": "ab307b838a3890ac737bbde15a72574b266dea46dd446cdeee3b7da388ee8d1c",
+  "baselines": 4,
+  "images": 67,
+  "manifest": "/home/agent/rhoades-9a04c9726e31/w4-066/final-native-pixels.manifest.json",
+  "original_file_bytes": 98124198,
+  "originals_compared_bytewise": true,
+  "raw_files": 134,
+  "result": "pass",
+  "scope": "Exact decoded 8-bit RGB pixels and dimensions; reconstructed PNG bytes, metadata and original modes are not preserved. Non-PNG files are byte-exact."
+}
