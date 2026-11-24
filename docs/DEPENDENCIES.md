@@ -186,7 +186,7 @@ headless adapter avoids this GUI dependency set.
 
 | Platform | Dependency boundary |
 |---|---|
-| Linux | Threads, X11, FreeType, PkgConfig; XCB, xcb-util, xcb-cursor, xcb-keysyms, xcb-xkb; xkbcommon and xkbcommon-x11; GLib, Cairo, Pango (`pangocairo`, `pangoft2`) and Fontconfig. The pinned configure step also requires Wayland client/server development files and protocols, plus `atkmm-1.6` and SQLite3 for the configured standalone target. |
+| Linux | Threads, X11, FreeType, PkgConfig; XCB, xcb-util, xcb-cursor, xcb-keysyms, xcb-xkb; xkbcommon and xkbcommon-x11; GLib, Cairo, Pango (`pangocairo`, `pangoft2`) and Fontconfig. The pinned configure step also requires Wayland client/server development files and protocols, plus GTKmm 3.0, `atkmm-1.6` and SQLite3 for the configured standalone target. |
 | Windows | The Visual Studio C++ toolchain and Windows SDK provide the native Win32 GUI APIs, including Direct2D, DirectWrite and Windows Imaging Component imports. CI selects x64 and does not install a separate GUI package. |
 | macOS | Apple's C++/Objective-C++ toolchain and system frameworks. The pinned VSTGUI target links Cocoa, QuartzCore and Accelerate, UniformTypeIdentifiers for deployment targets at least 11.0, and OpenGL while its upstream default option is enabled. The project also propagates CoreFoundation for SDK base users. CI configures deployment target 11.0 with a non-Xcode generator; this does not establish a tested deployment baseline. |
 
@@ -200,7 +200,7 @@ The workflow's Debian/Ubuntu package list is `libx11-dev`, `libfreetype6-dev`,
 `libxcb1-dev`, `libxcb-util-dev`, `libxcb-cursor-dev`, `libxcb-keysyms1-dev`,
 `libxcb-xkb-dev`, `libxkbcommon-dev`, `libxkbcommon-x11-dev`, `libglib2.0-dev`,
 `libcairo2-dev`, `libpango1.0-dev`, `libfontconfig1-dev`, `libwayland-dev`, and
-`wayland-protocols`, `libatkmm-1.6-dev`, and `libsqlite3-dev`; it also installs
+`wayland-protocols`, `libgtkmm-3.0-dev`, `libatkmm-1.6-dev`, and `libsqlite3-dev`; it also installs
 `xvfb` for an X11 display environment.
 
 Wayland development packages remain necessary because this upstream pin runs

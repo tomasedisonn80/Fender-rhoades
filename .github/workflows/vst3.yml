@@ -84,7 +84,8 @@ jobs:
           sudo apt-get install -y libx11-dev libfreetype6-dev libxcb1-dev libxcb-util-dev \
             libxcb-cursor-dev libxcb-keysyms1-dev libxcb-xkb-dev libxkbcommon-dev \
             libxkbcommon-x11-dev libglib2.0-dev libcairo2-dev libpango1.0-dev \
-            libfontconfig1-dev libwayland-dev wayland-protocols libatkmm-1.6-dev libsqlite3-dev xvfb
+            libfontconfig1-dev libwayland-dev wayland-protocols libgtkmm-3.0-dev \
+            libatkmm-1.6-dev libsqlite3-dev xvfb
       - name: Verify original and lossless editor assets
         run: python source/tools/verify_editor_assets.py
       - name: Verify and retain source, SDK and all required submodule revisions

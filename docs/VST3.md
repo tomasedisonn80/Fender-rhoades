@@ -113,7 +113,8 @@ For the editor on Debian/Ubuntu, install the development packages used by the
 sudo apt-get install -y libx11-dev libfreetype6-dev libxcb1-dev libxcb-util-dev \
   libxcb-cursor-dev libxcb-keysyms1-dev libxcb-xkb-dev libxkbcommon-dev \
   libxkbcommon-x11-dev libglib2.0-dev libcairo2-dev libpango1.0-dev \
-  libfontconfig1-dev libwayland-dev wayland-protocols libatkmm-1.6-dev libsqlite3-dev
+  libfontconfig1-dev libwayland-dev wayland-protocols libgtkmm-3.0-dev \
+  libatkmm-1.6-dev libsqlite3-dev
 ```
 
 The pinned VSTGUI configuration still needs Wayland development headers/protocols

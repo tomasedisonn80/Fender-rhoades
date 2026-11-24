@@ -13,6 +13,8 @@ import sys
 import tempfile
 import unittest
 import xml.etree.ElementTree as ET
+from types import SimpleNamespace
+from unittest.mock import patch
 
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -228,6 +230,51 @@ class CIDiagnosticsTests(unittest.TestCase):
         self.assertIn(diagnostics.LEGACY_COMMIT, " ".join(record["errors"]))
         self.assertFalse(record["valid"])
         self.assertFalse((self.root / "missing-bundles/manifest.json").exists())
+
+    def test_large_sdk_inventory_keeps_full_evidence_and_bounded_comparator_input(self):
+        # Exercise the producer/consumer boundary that failed in native Windows
+        # CI after VSTGUI added its complete tracked-file inventory.
+        bundles = self.root / "bundles"
+        suffix = {"Linux": ".so", "Darwin": "", "Windows": ".vst3"}[platform.system()]
+        platform_dir = {"Linux": "x86_64-linux", "Darwin": "MacOS",
+                        "Windows": "x86_64-win"}[platform.system()]
+        for name in diagnostics.BUNDLE_NAMES:
+            module = bundles / f"{name}.vst3/Contents/{platform_dir}/{name}{suffix}"
+            module.parent.mkdir(parents=True)
+            module.write_bytes(name.encode("ascii"))
+        files = [{"path": f"vstgui/{index:05d}/" + "x" * 100,
+                  "sha256": "a" * 64} for index in range(6000)]
+        source = {"commit": diagnostics.LEGACY_COMMIT, "tree": "b" * 40,
+                  "tracked_clean": True, "files": [], "files_sha256": "c" * 64}
+        sdk = {"vstgui4": {"commit": "d" * 40, "tree": "e" * 40,
+                          "tracked_clean": True, "files": files,
+                          "files_sha256": "f" * 64}}
+        args = SimpleNamespace(source_root=self.root / "source", bundle_root=bundles,
+                               build_dir=self.make_build("baseline"),
+                               sdk_root=self.root / "sdk", output_dir=self.output)
+        with patch.object(diagnostics, "repository_snapshot", return_value=source), \
+                patch.object(diagnostics, "sdk_snapshot", return_value=sdk), \
+                patch.object(diagnostics, "environment", return_value={}):
+            self.assertEqual(diagnostics.baseline_manifest(args), 0)
+        raw = self.output / "baseline-manifest.json"
+        self.assertGreater(raw.stat().st_size, 1024 * 1024)
+        self.assertEqual(json.loads(raw.read_bytes())["sdk"]["vstgui4"]["files"], files)
+        manifest = json.loads((bundles / "manifest.json").read_bytes())
+        self.assertLess((bundles / "manifest.json").stat().st_size, 64 * 1024)
+        self.assertEqual(manifest["sdk"]["vstgui4"]["file_count"], 6000)
+        self.assertEqual(manifest["sdk"]["vstgui4"]["files_sha256"], "f" * 64)
+        self.assertEqual(manifest["source"]["commit"], diagnostics.LEGACY_COMMIT)
+        self.assertEqual(manifest["full_diagnostics"]["sha256"], diagnostics.sha256(raw))
+        spec = importlib.util.spec_from_file_location("legacy_comparison", ROOT / "tools/compare_vst3_legacy.py")
+        comparison = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(comparison)
+        inventory = comparison.bundle_inventory(bundles)
+        self.assertEqual(comparison.validate_baseline_manifest(bundles, inventory), manifest)
+        damaged = json.loads((bundles / "manifest.json").read_bytes())
+        damaged["modules"][0]["sha256"] = "0" * 64
+        (bundles / "manifest.json").write_text(json.dumps(damaged), encoding="utf-8")
+        with self.assertRaises(ValueError):
+            comparison.validate_baseline_manifest(bundles, inventory)
 
 
 if __name__ == "__main__":

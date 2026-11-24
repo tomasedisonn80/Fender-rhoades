@@ -370,12 +370,29 @@ def baseline_manifest(args: argparse.Namespace) -> int:
     result["valid"] = not errors
     # Even a rejected baseline retains the diagnostic attempt. It is never
     # published as a valid comparator manifest or silently relabeled.
-    write_json(args.output_dir / "baseline-manifest.json", result)
+    diagnostic_path = args.output_dir / "baseline-manifest.json"
+    write_json(diagnostic_path, result)
     if errors:
         for error in errors:
             print(error, file=sys.stderr)
         return 1
-    write_json(args.bundle_root / "manifest.json", result)
+    # The comparator deliberately bounds its small input manifest to 1 MiB.
+    # The complete SDK inventory (including VSTGUI) can exceed that by itself.
+    # Keep every file record in the uploaded diagnostics and carry its digest,
+    # plus the existing source/tree/content identities, into the bundle manifest.
+    def repository_identity(snapshot: dict) -> dict:
+        return {**{key: value for key, value in snapshot.items() if key != "files"},
+                "file_count": len(snapshot.get("files", []))}
+
+    manifest = {**result, "source": repository_identity(source),
+                "sdk": {name: repository_identity(snapshot)
+                        for name, snapshot in (result["sdk"] or {}).items()},
+                "full_diagnostics": {
+                    "artifact_relative_path": diagnostic_path.name,
+                    "scope": "CI evidence directory",
+                    "bytes": diagnostic_path.stat().st_size,
+                    "sha256": sha256(diagnostic_path)}}
+    write_json(args.bundle_root / "manifest.json", manifest)
     return 0
 
 
