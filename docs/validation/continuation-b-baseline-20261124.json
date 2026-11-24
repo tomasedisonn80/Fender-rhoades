@@ -1,0 +1,42 @@
+{
+  "source_commit": "8813b2680a49c07c277f0d0e932843fdb356c3ee",
+  "source_matches_initial_revision_for_cpp": true,
+  "files": {
+    "rhodes_benchmark": "8dc3d7e0b39483e2ebebaa488796d5873c22bca87c509eb877062e96693a32f4",
+    "rhodes_runtime_benchmark": "97c37e5ffb4e571d99e1e76833b1671cd0ff166902e801f98a66b85e76d15ee7",
+    "rhodes_render": "74222242fb288d456846e335d7f59ada5ad5bf77963164610243c41ba9cfa2d9",
+    "rhodes_audio_probe": "710eb1d3dd0422b8e1a77e4bc13526ed30b3b001632c9c2f35fe9e155a4d0658",
+    "rhodes_contact_reference": "4ed2552430f5de5846adcb1a7b99521b118a12b714ad61b146ede7bab24f8f2d",
+    "rhodes_quadrature_probe": "8771c48e2a2d47aebdfc3ece6a124ceb2864188bbd7d580b5919122be7dadb48"
+  },
+  "build": "cmake -S . -B build/vst3 -DCMAKE_BUILD_TYPE=Release -DRHODES_BUILD_VST3=ON -DRHODES_VST3_SDK_ROOT=/workspace/scratch/d6370337c6a4/vst3sdk; cmake --build build/vst3 --parallel 3",
+  "test_command": "ctest --test-dir build/vst3 -C Release --output-on-failure --no-tests=error --parallel 3",
+  "ctest_passed": 288,
+  "ctest_failed": 0,
+  "scope": "Fresh Linux Release build and all available CTest/VST3 checks before implementation changes; no DAW, device, performance or physical validation.",
+  "ctest_log_sha256": "7c202f51faef7237727821f1f14710d8ab4a715e50385bf7e63bf6d899520774",
+  "source_paths_sha256": {
+    "src/contact_reference.cpp": "0f9808442b5ddf6ddc6091c9b6294117b7aea85cd54707b9c3743121ac706100",
+    "src/research_engine.cpp": "f0facfcb2c28f989c79407d2e0571a868b07ec7a37511bc05f7a33efcdeb0703",
+    "include/rhodes/audio_filter_coefficients.hpp": "c1ab39356d7e44348f9dc56f9120ff2598889d1fa144e5294b084585655eb76d",
+    "include/rhodes/research_engine.hpp": "7dca093866c19f18f4403f86daea96ac485d86b3e6aebc4441477bd5a8a16621",
+    "include/rhodes/event_processor.hpp": "36e4b64f3278b0079b20e94a333a657c900e4118dc24433ec9d8c58442651351",
+    "include/rhodes/quadrature_filter_coefficients.hpp": "3cca4ea6553ceb01810a6230f2144491364fa48af7d6cfbc43a8e3dcf5d08b51",
+    "include/rhodes/quadrature_fir.hpp": "0ddcf691a5d251979a7adf1ea32d471c8fcf1fd6e5a7a2e203c8fb63974b7b6d",
+    "include/rhodes/quadrature_engine.hpp": "c625a82b61eb3e721061177654c12ffa6aac0049e026b9633ae53ea2abaa773d",
+    "include/rhodes/instrument_state.hpp": "c11c9d982887f4228c76c3ee9e10fe5627c2dc0f1053ad531cfd316285a65616",
+    "include/rhodes/audio_engine.hpp": "10efac8150c07e69ef41eed415a6e7403b4339179af902f91cd17ef498da7b97",
+    "include/rhodes/fir_decimator.hpp": "e54faeb397bcbccb9ed9834cfc264d84550c4ef375d8e5273a720eb1f190071b",
+    "include/rhodes/contact_reference.hpp": "00b99e61dc73686c22675bedf647c3ad1b27ba13332180431f5a42e485057fda",
+    "include/rhodes/note_tracker.hpp": "76931b326daae3a112b56420f9be9ea5b03b1c30307f1dc68b6c13c710cd830f",
+    "include/rhodes/control_value.hpp": "d7c282afdcffaef90f7872f97b37bfb34671448da64376d3439649c052d4d48d",
+    "plugins/vst3/processor.hpp": "0250eaaca92b2aa904b5a05e8aca8cc46cd8a63111d145ddf7d0956f682d1807",
+    "plugins/vst3/controller.hpp": "4a279d583722b14ac48b1d2064c0d34dcc5bd523e51620d00ac859bc38359bd4",
+    "plugins/vst3/plugin_ids.hpp": "1b5744731384e100c2f32cfed42fccf9fe2168d39df5cc29f1ac1108b9d94a81",
+    "plugins/vst3/processor.cpp": "97b449dac4e1eb434af8ad4e279bdf7ba07f4668cb174199980eea0266493cf6",
+    "plugins/vst3/state_stream.hpp": "db5ec0572c9a3d56f55c71a43997b4fcc208c76ddf186c61368dfbd184f49e12",
+    "plugins/vst3/state_stream.cpp": "b5f0dd71c5523f80359027168f0df3307c85d70b3d5654f3f936144f3307d172",
+    "plugins/vst3/controller.cpp": "79800f5df2781fc48dcf0c32afcc5d3b08efa067ba89e1a659bcfed240749349",
+    "plugins/vst3/factory.cpp": "c233a281539fca494fe0e24f1511634731078aeaddb931dcac562be6c1d411a2"
+  }
+}

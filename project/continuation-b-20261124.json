@@ -7,8 +7,72 @@
   "concurrency_limit_including_integrator": 4,
   "status": "in_progress",
   "agents": [
-    {"assignment": 1, "wave": 1, "agent_task_name": "/root/w1_001_contact_extrema", "status": "running"},
-    {"assignment": 2, "wave": 1, "agent_task_name": "/root/w1_002_filtered_error", "status": "running"},
-    {"assignment": 3, "wave": 1, "agent_task_name": "/root/w1_003_public_research", "status": "running"}
-  ]
+    {
+      "assignment": 1,
+      "wave": 1,
+      "agent_task_name": "/root/w1_001_contact_extrema",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124b-w1-001-contact-extrema.md",
+      "sha256": "c7c8319a944ce9b3437779ad1f8aab739874248e32b1a9b7ed3543809fd6d942"
+    },
+    {
+      "assignment": 2,
+      "wave": 1,
+      "agent_task_name": "/root/w1_002_filtered_error",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124b-w1-002-filtered-error.md",
+      "sha256": "f01c291cb70f6fe7233c4803af6af41488aa6965faa038de3790c9104b4cb139"
+    },
+    {
+      "assignment": 3,
+      "wave": 1,
+      "agent_task_name": "/root/w1_003_public_research",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124b-w1-003-public-research.md",
+      "sha256": "14cb57fedfe223489a9dc5348ce3af779e945b8579520153b2d78246a900494b"
+    },
+    {
+      "assignment": 4,
+      "wave": 1,
+      "agent_task_name": "/root/w1_004_contact_refinement",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124b-w1-004-contact-refinement.md",
+      "sha256": "33adc637cdaac2b5ee06bf9f08867a0352a686027fb2ddaca5658a36f15fcd2b"
+    },
+    {
+      "assignment": 5,
+      "wave": 1,
+      "agent_task_name": "/root/w1_005_silent_key_runtime",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124b-w1-005-silent-key-runtime.md",
+      "sha256": "f4f708d69c0b5e17e901dc11d4d4052a739766167230d53b51340ec77b810e70"
+    },
+    {
+      "assignment": 6,
+      "wave": 1,
+      "agent_task_name": "/root/w1_006_qfir_runtime",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124b-w1-006-qfir-runtime.md",
+      "sha256": "73001c0e0be91f02ecdaa9999ed264c34a44a2bfb168885c6f5f802278e4898b"
+    },
+    {
+      "assignment": 7,
+      "wave": 1,
+      "agent_task_name": "/root/w1_007_filtered_bridge",
+      "status": "running"
+    },
+    {
+      "assignment": 8,
+      "wave": 1,
+      "agent_task_name": "/root/w1_008_contact_oracle",
+      "status": "running"
+    },
+    {
+      "assignment": 9,
+      "wave": 1,
+      "agent_task_name": "/root/w1_009_contact_schema",
+      "status": "running"
+    }
+  ],
+  "completed_agents": 6
 }
