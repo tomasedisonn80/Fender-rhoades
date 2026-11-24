@@ -10,21 +10,58 @@
       "wave": 3,
       "id": "W3-41",
       "agent_task_name": "/root/w3_41_archive_verifier",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w3-41-archive-verifier.md",
+      "sha256": "1dac52e18adf7252b41e14eb179082e666cde7f7a56cafc697361e4f2dde85a4"
     },
     {
       "assignment": 42,
       "wave": 3,
       "id": "W3-42",
       "agent_task_name": "/root/w3_42_compatibility_review",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w3-42-compatibility-review.md",
+      "sha256": "79f4b71abf698ed4e51c2cbaaaf1f39717a079d7dcad5ce7b26aa9e555c10400"
     },
     {
       "assignment": 43,
       "wave": 3,
       "id": "W3-43",
       "agent_task_name": "/root/w3_43_campaign_validator",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w3-43-campaign-validator.md",
+      "sha256": "dfd6de8e2a1203990f3a82ebea50dfd296ccd6659674c879bd50b00b4ce54930"
+    },
+    {
+      "assignment": 44,
+      "wave": 3,
+      "id": "W3-44",
+      "agent_task_name": "/root/w3_44_transport_audit",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w3-44-transport-audit.md",
+      "sha256": "8220fae02772f055585605719da18197f81747628bb19425c1aaad0ade274393"
+    },
+    {
+      "assignment": 45,
+      "wave": 3,
+      "id": "W3-45",
+      "agent_task_name": "/root/w3_45_batch_arithmetic",
+      "status": "running"
+    },
+    {
+      "assignment": 46,
+      "wave": 3,
+      "id": "W3-46",
+      "agent_task_name": "/root/w3_46_batch_storage",
+      "status": "running"
+    },
+    {
+      "assignment": 47,
+      "wave": 3,
+      "id": "W3-47",
+      "agent_task_name": "/root/w3_47_clang_scope",
       "status": "running"
     }
-  ]
+  ],
+  "completed_actual_agents": 4
 }
