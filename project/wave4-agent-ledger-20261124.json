@@ -91,22 +91,76 @@
       "wave": 4,
       "id": "W4-70",
       "agent_task_name": "/root/w4_70_native_fault_coverage",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w4-70-native-fault-coverage.md",
+      "sha256": "0ccf01045bad0da4c53e2ac6b10d5e4ff8eb6808292740a7d08c47a6b380c0da"
     },
     {
       "assignment": 71,
       "wave": 4,
       "id": "W4-71",
       "agent_task_name": "/root/w4_71_fp_build_boundary",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w4-71-fp-build-boundary.md",
+      "sha256": "79f0e667624b4f6a9bcaeeabd6866d166988bd353093fd0ece987f0b54a2bf42"
     },
     {
       "assignment": 72,
       "wave": 4,
       "id": "W4-72",
       "agent_task_name": "/root/w4_72_dependency_provenance",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w4-72-dependency-provenance.md",
+      "sha256": "38aadffe3772fce0ce1accbac08cc1d13d1ba1882fb27dd19d72f4a4131eff0e"
+    },
+    {
+      "assignment": 73,
+      "wave": 4,
+      "id": "W4-73",
+      "agent_task_name": "/root/w4_73_contact_usage_audit",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w4-73-contact-usage-audit.md",
+      "sha256": "967bb2dce3de8f1a18b3c49f0449b56a7a639efa59150c8f6e03d17cd6ade016"
+    },
+    {
+      "assignment": 74,
+      "wave": 4,
+      "id": "W4-74",
+      "agent_task_name": "/root/w4_74_current_claims",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w4-74-current-claims.md",
+      "sha256": "a5a791de8686848434962d2d756c8a055d4f9f3a44cd2356b663697c9c9e8497"
+    },
+    {
+      "assignment": 75,
+      "wave": 4,
+      "id": "W4-75",
+      "agent_task_name": "/root/w4_75_linux_binary_surface",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w4-75-linux-binary-surface.md",
+      "sha256": "e2d7d18f20be0ba57eba6a46d4c0844ddd061059b0eac0636016ca530faf8bcf"
+    },
+    {
+      "assignment": 76,
+      "wave": 4,
+      "id": "W4-76",
+      "agent_task_name": "/root/w4_76_sdk_isolation",
+      "status": "running"
+    },
+    {
+      "assignment": 77,
+      "wave": 4,
+      "id": "W4-77",
+      "agent_task_name": "/root/w4_77_state_user_contract",
+      "status": "running"
+    },
+    {
+      "assignment": 78,
+      "wave": 4,
+      "id": "W4-78",
+      "agent_task_name": "/root/w4_78_daw_observability",
       "status": "running"
     }
   ],
-  "completed_actual_agents": 9
+  "completed_actual_agents": 15
 }

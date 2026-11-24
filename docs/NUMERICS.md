@@ -12,6 +12,15 @@ from this audio engine. The separate [offline contact reference](CONTACT_REFEREN
 implements finite-mass hammer/compliant-damper experiments with different
 integration, storage and failure contracts; it does not run in the VST3 callback.
 
+The [filtered path](specs/FILTERED_AUDIO_20261123.md) and
+[quadrature path](specs/QUADRATURE_AUDIO_20261123.md) wrap this synthetic source
+with separate observation, convolution and latency contracts. Quadrature uses
+six prepared fractional observations per host interval; the
+[batched-observation contract](specs/BATCHED_QUADRATURE_20261124.md) preserves
+their arithmetic order and retained output identities. Their numerical evidence
+and remaining convergence limits are separate from the direct-source equations
+below; see the [current results](validation/batched-quadrature-20261124.md).
+
 ## Modal coordinates, frequency, and decay
 
 Each independent mode has displacement $q$ in metres, velocity $v=\dot q$ in
