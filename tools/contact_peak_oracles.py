@@ -263,6 +263,57 @@ def _time_worker(parameters):
                 "worker_elapsed_s": time.monotonic() - start}
 
 
+def _validate_time_refinements(result):
+    """Validate every success record before accepting the private transport."""
+    def nonnegative_number(value, label):
+        if (type(value) not in (int, float) or not math.isfinite(value) or value < 0):
+            raise ValueError("reference worker returned invalid " + label)
+        return value
+
+    def count(value, label, limit):
+        if type(value) is not int or not 0 <= value <= limit:
+            raise ValueError("reference worker returned invalid " + label)
+        return value
+
+    refinements = result.get("refinements")
+    keys = ("hammer_compression", "hammer_force")
+    if not isinstance(refinements, dict) or set(refinements) != set(keys):
+        raise ValueError("reference worker returned invalid refinements")
+    total_evaluations = 0
+    for key in keys:
+        levels = refinements[key]
+        if not isinstance(levels, list) or len(levels) != len(QUAD_LEVELS):
+            raise ValueError("reference worker returned incomplete refinements")
+        previous = None
+        for level, (epsabs, epsrel) in zip(levels, QUAD_LEVELS):
+            if not isinstance(level, dict):
+                raise ValueError("reference worker returned invalid refinement record")
+            value = nonnegative_number(level.get("value_s"), "timing")
+            nonnegative_number(level.get("estimated_absolute_error_s"), "error estimate")
+            if (nonnegative_number(level.get("epsabs"), "absolute tolerance") != epsabs
+                    or nonnegative_number(level.get("epsrel"), "relative tolerance") != epsrel
+                    or type(level.get("limit")) is not int
+                    or level["limit"] != QUAD_SUBINTERVAL_LIMIT):
+                raise ValueError("reference worker returned altered quadrature settings")
+            evaluations = count(level.get("evaluations"), "evaluation count", MAX_EVALUATIONS)
+            reported = count(level.get("reported_evaluations"), "reported evaluation count", MAX_EVALUATIONS)
+            subintervals = count(level.get("subintervals"), "subinterval count", QUAD_SUBINTERVAL_LIMIT)
+            if evaluations != reported or subintervals == 0 or level.get("convergence_message") != "":
+                raise ValueError("reference worker returned unresolved quadrature evidence")
+            total_evaluations += evaluations
+            if previous is not None:
+                difference = abs(value - previous)
+                budget = 0.1 * (1e-7 + 1e-4 * abs(value))
+                if (nonnegative_number(level.get("successive_difference_s"), "refinement difference") != difference
+                        or nonnegative_number(level.get("required_maximum_difference_s"), "refinement budget") != budget
+                        or difference > budget):
+                    raise ValueError("reference worker returned unresolved time refinements")
+            previous = value
+    if count(result.get("evaluations"), "aggregate evaluation count", MAX_EVALUATIONS) != total_evaluations:
+        raise ValueError("reference worker returned inconsistent aggregate evaluations")
+    nonnegative_number(result.get("worker_elapsed_s"), "worker elapsed time")
+
+
 def _run_damped_time(parameters):
     started = time.monotonic()
     argv = [sys.executable, str(Path(__file__).resolve()), "--_damped-time-worker",
@@ -276,23 +327,27 @@ def _run_damped_time(parameters):
         def reject_nonfinite(token):
             raise ValueError("reference worker returned nonfinite JSON: " + token)
 
-        result = json.loads(process.stdout, parse_constant=reject_nonfinite)
+        def finite_float(token):
+            value = float(token)
+            if not math.isfinite(value):
+                raise ValueError("reference worker returned an unrepresentable JSON number")
+            return value
+
+        def finite_integer(token):
+            value = int(token)
+            # An oversized integer is valid JSON, but cannot be used by this
+            # binary64 timing interface. Overflow is handled locally below.
+            if not math.isfinite(value):
+                raise ValueError("reference worker returned an unrepresentable JSON integer")
+            return value
+
+        result = json.loads(process.stdout, parse_constant=reject_nonfinite,
+                            parse_float=finite_float, parse_int=finite_integer)
         if not isinstance(result, dict) or result.get("status") not in {
                 "resolved_under_declared_refinement", "not_available", "inconclusive_reference"}:
             raise ValueError("reference worker returned an invalid status")
         if result["status"] == "resolved_under_declared_refinement":
-            refinements = result.get("refinements")
-            if not isinstance(refinements, dict):
-                raise ValueError("reference worker returned invalid refinements")
-            for key in ("hammer_compression", "hammer_force"):
-                levels = refinements.get(key, [])
-                if (not isinstance(levels, list) or len(levels) != len(QUAD_LEVELS)
-                        or not isinstance(levels[-1], dict)):
-                    raise ValueError("reference worker returned incomplete refinements")
-                value = levels[-1].get("value_s")
-                if (isinstance(value, bool) or not isinstance(value, (int, float))
-                        or not math.isfinite(value) or value < 0):
-                    raise ValueError("reference worker returned invalid timing")
+            _validate_time_refinements(result)
         result["parent_elapsed_s"] = time.monotonic() - started
         result["enforced_wall_cap_s"] = WALL_SECONDS
         return result
@@ -302,7 +357,7 @@ def _run_damped_time(parameters):
         return {"status": "inconclusive_reference", "reason": "reference worker exceeded wall cap",
                 "enforced_wall_cap_s": WALL_SECONDS, "parent_elapsed_s": time.monotonic() - started,
                 "evaluations": None, "refinements": {}, "worker_terminated": True}
-    except (OSError, ValueError) as error:
+    except (OSError, ValueError, TypeError, ArithmeticError, RecursionError) as error:
         return {"status": "inconclusive_reference", "reason": str(error),
                 "parent_elapsed_s": time.monotonic() - started}
 

@@ -1,0 +1,1434 @@
+{
+  "schema_version": 1,
+  "kind": "native-platform-validation",
+  "created_at_utc": "2026-11-24T05:46:59.512118+00:00",
+  "source_commit": "015767fee5635ff85a717739188ff4af60fe84f2",
+  "scope": "Actual hosted Foundation and experimental VST3 validation of the synthetic instrument; local Linux integration and unchanged executable identity after Clang-only FIR repair.",
+  "source_sha256": {
+    "CMakeLists.txt": "2a70fba5924a3eeb01bf0dfd7c2a0f6a00726d27ac7535660a4bf267cf81ff3e",
+    "cmake/Vst3.cmake": "e779743e238c5b7ac2632d73764eb19974fcef3f4ae5c8699ac6f188fde783a6",
+    "include/rhodes/audio_engine.hpp": "10efac8150c07e69ef41eed415a6e7403b4339179af902f91cd17ef498da7b97",
+    "include/rhodes/audio_filter_coefficients.hpp": "c1ab39356d7e44348f9dc56f9120ff2598889d1fa144e5294b084585655eb76d",
+    "include/rhodes/contact_reference.hpp": "00b99e61dc73686c22675bedf647c3ad1b27ba13332180431f5a42e485057fda",
+    "include/rhodes/control_value.hpp": "d7c282afdcffaef90f7872f97b37bfb34671448da64376d3439649c052d4d48d",
+    "include/rhodes/event_processor.hpp": "36e4b64f3278b0079b20e94a333a657c900e4118dc24433ec9d8c58442651351",
+    "include/rhodes/fir_decimator.hpp": "e54faeb397bcbccb9ed9834cfc264d84550c4ef375d8e5273a720eb1f190071b",
+    "include/rhodes/instrument_state.hpp": "c11c9d982887f4228c76c3ee9e10fe5627c2dc0f1053ad531cfd316285a65616",
+    "include/rhodes/note_tracker.hpp": "76931b326daae3a112b56420f9be9ea5b03b1c30307f1dc68b6c13c710cd830f",
+    "include/rhodes/quadrature_engine.hpp": "c625a82b61eb3e721061177654c12ffa6aac0049e026b9633ae53ea2abaa773d",
+    "include/rhodes/quadrature_filter_coefficients.hpp": "3cca4ea6553ceb01810a6230f2144491364fa48af7d6cfbc43a8e3dcf5d08b51",
+    "include/rhodes/quadrature_fir.hpp": "0ddcf691a5d251979a7adf1ea32d471c8fcf1fd6e5a7a2e203c8fb63974b7b6d",
+    "include/rhodes/research_engine.hpp": "7dca093866c19f18f4403f86daea96ac485d86b3e6aebc4441477bd5a8a16621",
+    "plugins/vst3/THIRD_PARTY_NOTICES.md": "171196ff6346500d42093d0aa0729d960944fc607cb83de415a92f1ee1a51570",
+    "plugins/vst3/controller.cpp": "79800f5df2781fc48dcf0c32afcc5d3b08efa067ba89e1a659bcfed240749349",
+    "plugins/vst3/controller.hpp": "4a279d583722b14ac48b1d2064c0d34dcc5bd523e51620d00ac859bc38359bd4",
+    "plugins/vst3/factory.cpp": "c233a281539fca494fe0e24f1511634731078aeaddb931dcac562be6c1d411a2",
+    "plugins/vst3/plugin_ids.hpp": "1b5744731384e100c2f32cfed42fccf9fe2168d39df5cc29f1ac1108b9d94a81",
+    "plugins/vst3/processor.cpp": "97b449dac4e1eb434af8ad4e279bdf7ba07f4668cb174199980eea0266493cf6",
+    "plugins/vst3/processor.hpp": "0250eaaca92b2aa904b5a05e8aca8cc46cd8a63111d145ddf7d0956f682d1807",
+    "plugins/vst3/state_stream.cpp": "b5f0dd71c5523f80359027168f0df3307c85d70b3d5654f3f936144f3307d172",
+    "plugins/vst3/state_stream.hpp": "db5ec0572c9a3d56f55c71a43997b4fcc208c76ddf186c61368dfbd184f49e12",
+    "src/contact_reference.cpp": "0f9808442b5ddf6ddc6091c9b6294117b7aea85cd54707b9c3743121ac706100",
+    "src/research_engine.cpp": "f0facfcb2c28f989c79407d2e0571a868b07ec7a37511bc05f7a33efcdeb0703",
+    "tests/cpp/audio_engine_test.cpp": "57f8f827e77dfe3a1c143d5e6990d0f7f10f001dbd2599f616a96ed4990f59ad",
+    "tests/cpp/audio_fir_test.cpp": "9868a0439c57211bf384839e0d37ce528ddec611509266485b6f5ac8eec836be",
+    "tests/cpp/audio_probe_cli.cmake": "792aec1ea75cfe3462f60ae015f916ae2d795b689ef6f39d8f796703146e48e6",
+    "tests/cpp/benchmark_json.cmake": "6bfadcd834b377cc887d08a6b3fb9bfbe85d51821d29aeaf6904215bcafb7cea",
+    "tests/cpp/contact_cli.cmake": "6017cc26ce81943c72d85c2203bc9d7f969238c508298a6f8b5ab0cc3201d5a6",
+    "tests/cpp/contact_domain_test.cpp": "e0154c3d7a1e66431d5cb1db4b9430b4a2760f06bbf26fbae55a120558bf241a",
+    "tests/cpp/contact_event_split_test.cpp": "4ee53462c8cf0041e48778ea2e6283d3216e0f9043dcdf2dacc1784cdcd53e4e",
+    "tests/cpp/contact_grazing_test.cpp": "520b8a77673959d26420df31c952492307d5ec670dca65785e7b2138ea7bbd24",
+    "tests/cpp/contact_peak_cli.cmake": "84577b1c3166017cd65c247a6058eddb0911341c94cc4ef18f190bb4b1e58757",
+    "tests/cpp/contact_peak_test.cpp": "e73e7f1634da92f607d74ad66443646d07c2fd5fd216ddce372ccbe95bbd9762",
+    "tests/cpp/contact_reference_test.cpp": "e1d77debc7fc563b6c8b2425b25cd5fdc802ef065f4438d24612f1e43bf174b5",
+    "tests/cpp/contact_split_peak_test.cpp": "bee22064db003fdcfc2445b47d33d7b2e5f30a9a622776caee32e1683db9ff96",
+    "tests/cpp/control_fp_environment_test.cpp": "ce9dd0cdd386d9e5f84622c131202de4bf4ec8c9bd5d78ce85acb6a1683e8b3a",
+    "tests/cpp/control_value_test.cpp": "955f7218b087ccc4ad231443ee4f23970ccc596c2ea55f87d54ad9ce953adb72",
+    "tests/cpp/diagnostic_stdout.cmake": "7f91f038da0d8f19e7623a94bdc47b473bc0fb8e0a87b43b0f9bab3611d07076",
+    "tests/cpp/event_model_test.cpp": "f6ba26ff7f79a370d730abe4b98a819dcab7a46de7995352468027c8e5186ee2",
+    "tests/cpp/event_processor_test.cpp": "f1d9383ad34843dabcca0c58edaecf7cba56b2e19e57b2e065e37c2b5f60793e",
+    "tests/cpp/expect_cli_failure.cmake": "9cf60b2d1888b8aa9bd11d28d375a721b228ab0e82debbab46e53fbb35500ce4",
+    "tests/cpp/filtered_render.cmake": "0e4d7cb3b4827cc659fbe51936b7a71e911fa6d9429d68b52dd9e09678588d7c",
+    "tests/cpp/fractional_observation_test.cpp": "5ea8c5deab6dc8612d680413abd1f6765a463b420d34fa17f48540cd4e8dfa55",
+    "tests/cpp/instrument_model_state_test.cpp": "ab881e0590f3872505231215c95a21ba91de52b719276d93667e6e75122902e7",
+    "tests/cpp/instrument_state_test.cpp": "be54581bb3efab5096bfada65e20eec230716f7c2ff110231157d569c080cecc",
+    "tests/cpp/modal_transition_cache_test.cpp": "50cbca48f767189f17419424d13dcfedc810e998fa6ac436a7bbf7eb95a3fa21",
+    "tests/cpp/note_model_test.cpp": "ce14509e1933ca22aed32b3dab23be11ec3466bf7b2e901f5d58b7d8595135fd",
+    "tests/cpp/note_tracker_test.cpp": "96f00bf3fa5a1b54352fae347e8f6cbdfb7f543bed53c15a8885be4400f365e1",
+    "tests/cpp/quadrature_cli.cmake": "21e4f9eb4025d672996b73715a6735b25c37917f48a13bad59a276325f499147",
+    "tests/cpp/quadrature_engine_test.cpp": "dd69ecb8a5880a72d0f46862086f9ea8b52194289bfbb8a71531354d699760ca",
+    "tests/cpp/quadrature_fir_test.cpp": "68ef7b4cee30bd8ba6f8e7aba1ab9ee5d5f67318f4e96b38be84e66517576a04",
+    "tests/cpp/render_output.cmake": "ce1addaee80f5b9361fadd8074593e359a1bc4758dc762f8454e3cd808f3c386",
+    "tests/cpp/research_engine_test.cpp": "cb8c580baea9bd516b8686bffb7fe5b9285f56ce001035c2979374d8a10a1b16",
+    "tests/cpp/review_regression.cpp": "48f9ff033a8f2bff7f0bfd69d86a23493c685e86afa0eca95a770f879cc23b51",
+    "tests/cpp/runtime_benchmark_json.cmake": "37773c8805f235c045e1aab8896765bb7ccf593c09be600e42bcd3e735eb21de",
+    "tests/cpp/state_concurrency_test.cpp": "53d36fc67e34c42296fbbfd70d134521225958ae57ce7cb6c3b2ca2362d571ca",
+    "tests/cpp/state_fp_environment_test.cpp": "90e29f5903c3b67afd5f28f0b8958cf2c6bca04a3f2420655296b6fd7ab81a4d",
+    "tests/cpp/state_property_test.cpp": "338ba2e214a99de3f9ad4533e8f191298f5facb06150b2eb8f00de9e514465b9",
+    "tests/cpp/vst3_automation_contract_test.cpp": "dc6607f0d50e9b47e3b861baf9483e10c814e284a85296fcef5ab5284380f8d2",
+    "tests/cpp/vst3_benchmark_json.cmake": "ac87b93d9079242bc69b66f5305c640e5c3fae697d963ef0fc4dd1071b7509f7",
+    "tests/cpp/vst3_buffer_contract_test.cpp": "2325e255629446bc1866dae665f4c5f515808b106f7015da78e4a57707c47238",
+    "tests/cpp/vst3_bundle_resources.cmake": "8f3c6e19d69cd61f0fdd3de0c879c5adcbdc8f3bdb9271dbf515ecc516c9ac40",
+    "tests/cpp/vst3_dual_module_test.cpp": "534ff28d46f253b0191a9bc693d0b3acd8d6ba67b6cf3a4b10db217294bd879c",
+    "tests/cpp/vst3_filtered_test.cpp": "6445c2df88ff1ec21e546c414e9000d2650ee1c66df4ace44e4838519a9a0582",
+    "tests/cpp/vst3_fp_environment_test.cpp": "05303cc961e4eef33adb2d846e5289922cd77ee5ab09d4f6f2e1f0ec74995136",
+    "tests/cpp/vst3_host_test.cpp": "ca4a6302eebefee1f59a17118bb29492cc2c534d6d166631475c028bc6127da4",
+    "tests/cpp/vst3_note_model_test.cpp": "a408293c3f9f337e04b2f29f95cccfc0e0ff0514c02b3524c2cbcb84aa3d47ed",
+    "tests/cpp/vst3_quadrature_contract_test.cpp": "e6579e640768077e2de380d5daa9b415e99e17b8c9ca781cd5dce6a3b8ce3dd1",
+    "tests/cpp/vst3_state_concurrency_test.cpp": "175141258725b48497a05e48e9386009143d81ca8460a9a4fa1801bd2a422f99",
+    "tests/cpp/vst3_stream_contract_test.cpp": "e97270c36e707ce47b97bd81e82573c179e69129ee37dfdf18bffd6994946a78",
+    "tests/cpp/vst3_test_support.hpp": "7ab3ae32616886bad13f88ffe0d6e2a8409d7b7335529f3e1ca87b8046419a01",
+    "tests/cpp/vst3_triple_module_test.cpp": "28349466d83b136df765355a925ef73511ea40fbcb68ad5259481e1f252d35e6"
+  },
+  "all_listed_sources_match_commit": true,
+  "ci_runs": [
+    {
+      "id": 45334821145,
+      "name": "Experimental VST3 CI",
+      "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45334821145",
+      "event": "push",
+      "head_branch": "main",
+      "head_sha": "015767fee5635ff85a717739188ff4af60fe84f2",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-24T05:39:13Z",
+      "updated_at": "2026-11-24T05:43:14Z",
+      "run_attempt": 1,
+      "jobs": [
+        {
+          "id": 138244316292,
+          "name": "VST3 prototype / windows-latest",
+          "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45334821145/job/138244316292",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-11-24T05:39:16Z",
+          "completed_at": "2026-11-24T05:43:13Z",
+          "steps": [
+            {
+              "number": 1,
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:17Z",
+              "completed_at": "2026-11-24T05:39:17Z"
+            },
+            {
+              "number": 2,
+              "name": "Check out project",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:17Z",
+              "completed_at": "2026-11-24T05:39:24Z"
+            },
+            {
+              "number": 3,
+              "name": "Check out the pinned official SDK",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:24Z",
+              "completed_at": "2026-11-24T05:39:27Z"
+            },
+            {
+              "number": 4,
+              "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:27Z",
+              "completed_at": "2026-11-24T05:39:28Z"
+            },
+            {
+              "number": 5,
+              "name": "Initialize only the four headless SDK dependencies",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:28Z",
+              "completed_at": "2026-11-24T05:39:31Z"
+            },
+            {
+              "number": 6,
+              "name": "Verify the SDK and every required submodule revision",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:31Z",
+              "completed_at": "2026-11-24T05:39:32Z"
+            },
+            {
+              "number": 7,
+              "name": "Configure the optional headless instrument",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:32Z",
+              "completed_at": "2026-11-24T05:39:59Z"
+            },
+            {
+              "number": 8,
+              "name": "Build all three actual modules and retained host tests",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:59Z",
+              "completed_at": "2026-11-24T05:42:08Z"
+            },
+            {
+              "number": 9,
+              "name": "Run retained host tests and all three official SDK validators",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:42:08Z",
+              "completed_at": "2026-11-24T05:43:06Z"
+            },
+            {
+              "number": 10,
+              "name": "Archive all three validated experimental bundles",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:43:06Z",
+              "completed_at": "2026-11-24T05:43:07Z"
+            },
+            {
+              "number": 11,
+              "name": "Upload validated experimental bundles",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:43:07Z",
+              "completed_at": "2026-11-24T05:43:08Z"
+            },
+            {
+              "number": 20,
+              "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:43:08Z",
+              "completed_at": "2026-11-24T05:43:08Z"
+            },
+            {
+              "number": 21,
+              "name": "Post Check out the pinned official SDK",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:43:08Z",
+              "completed_at": "2026-11-24T05:43:11Z"
+            },
+            {
+              "number": 22,
+              "name": "Post Check out project",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:43:11Z",
+              "completed_at": "2026-11-24T05:43:12Z"
+            },
+            {
+              "number": 23,
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:43:12Z",
+              "completed_at": "2026-11-24T05:43:12Z"
+            }
+          ]
+        },
+        {
+          "id": 138244316537,
+          "name": "VST3 prototype / ubuntu-latest",
+          "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45334821145/job/138244316537",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-11-24T05:39:17Z",
+          "completed_at": "2026-11-24T05:41:28Z",
+          "steps": [
+            {
+              "number": 1,
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:18Z",
+              "completed_at": "2026-11-24T05:39:18Z"
+            },
+            {
+              "number": 2,
+              "name": "Check out project",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:18Z",
+              "completed_at": "2026-11-24T05:39:20Z"
+            },
+            {
+              "number": 3,
+              "name": "Check out the pinned official SDK",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:20Z",
+              "completed_at": "2026-11-24T05:39:20Z"
+            },
+            {
+              "number": 4,
+              "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:20Z",
+              "completed_at": "2026-11-24T05:39:20Z"
+            },
+            {
+              "number": 5,
+              "name": "Initialize only the four headless SDK dependencies",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:20Z",
+              "completed_at": "2026-11-24T05:39:22Z"
+            },
+            {
+              "number": 6,
+              "name": "Verify the SDK and every required submodule revision",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:22Z",
+              "completed_at": "2026-11-24T05:39:22Z"
+            },
+            {
+              "number": 7,
+              "name": "Configure the optional headless instrument",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:22Z",
+              "completed_at": "2026-11-24T05:39:25Z"
+            },
+            {
+              "number": 8,
+              "name": "Build all three actual modules and retained host tests",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:25Z",
+              "completed_at": "2026-11-24T05:40:35Z"
+            },
+            {
+              "number": 9,
+              "name": "Run retained host tests and all three official SDK validators",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:40:35Z",
+              "completed_at": "2026-11-24T05:41:24Z"
+            },
+            {
+              "number": 10,
+              "name": "Archive all three validated experimental bundles",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:41:24Z",
+              "completed_at": "2026-11-24T05:41:24Z"
+            },
+            {
+              "number": 11,
+              "name": "Upload validated experimental bundles",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:41:24Z",
+              "completed_at": "2026-11-24T05:41:25Z"
+            },
+            {
+              "number": 20,
+              "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:41:25Z",
+              "completed_at": "2026-11-24T05:41:26Z"
+            },
+            {
+              "number": 21,
+              "name": "Post Check out the pinned official SDK",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:41:26Z",
+              "completed_at": "2026-11-24T05:41:26Z"
+            },
+            {
+              "number": 22,
+              "name": "Post Check out project",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:41:26Z",
+              "completed_at": "2026-11-24T05:41:26Z"
+            },
+            {
+              "number": 23,
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:41:26Z",
+              "completed_at": "2026-11-24T05:41:26Z"
+            }
+          ]
+        },
+        {
+          "id": 138244316602,
+          "name": "VST3 prototype / macos-latest",
+          "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45334821145/job/138244316602",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-11-24T05:39:16Z",
+          "completed_at": "2026-11-24T05:41:20Z",
+          "steps": [
+            {
+              "number": 1,
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:17Z",
+              "completed_at": "2026-11-24T05:39:18Z"
+            },
+            {
+              "number": 2,
+              "name": "Check out project",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:18Z",
+              "completed_at": "2026-11-24T05:39:21Z"
+            },
+            {
+              "number": 3,
+              "name": "Check out the pinned official SDK",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:21Z",
+              "completed_at": "2026-11-24T05:39:22Z"
+            },
+            {
+              "number": 4,
+              "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:22Z",
+              "completed_at": "2026-11-24T05:39:22Z"
+            },
+            {
+              "number": 5,
+              "name": "Initialize only the four headless SDK dependencies",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:22Z",
+              "completed_at": "2026-11-24T05:39:27Z"
+            },
+            {
+              "number": 6,
+              "name": "Verify the SDK and every required submodule revision",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:27Z",
+              "completed_at": "2026-11-24T05:39:27Z"
+            },
+            {
+              "number": 7,
+              "name": "Configure the optional headless instrument",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:27Z",
+              "completed_at": "2026-11-24T05:39:35Z"
+            },
+            {
+              "number": 8,
+              "name": "Build all three actual modules and retained host tests",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:35Z",
+              "completed_at": "2026-11-24T05:40:44Z"
+            },
+            {
+              "number": 9,
+              "name": "Run retained host tests and all three official SDK validators",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:40:44Z",
+              "completed_at": "2026-11-24T05:41:15Z"
+            },
+            {
+              "number": 10,
+              "name": "Archive all three validated experimental bundles",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:41:15Z",
+              "completed_at": "2026-11-24T05:41:15Z"
+            },
+            {
+              "number": 11,
+              "name": "Upload validated experimental bundles",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:41:15Z",
+              "completed_at": "2026-11-24T05:41:17Z"
+            },
+            {
+              "number": 20,
+              "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:41:17Z",
+              "completed_at": "2026-11-24T05:41:17Z"
+            },
+            {
+              "number": 21,
+              "name": "Post Check out the pinned official SDK",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:41:17Z",
+              "completed_at": "2026-11-24T05:41:17Z"
+            },
+            {
+              "number": 22,
+              "name": "Post Check out project",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:41:17Z",
+              "completed_at": "2026-11-24T05:41:17Z"
+            },
+            {
+              "number": 23,
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:41:17Z",
+              "completed_at": "2026-11-24T05:41:18Z"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 45334821142,
+      "name": "Foundation CI",
+      "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45334821142",
+      "event": "push",
+      "head_branch": "main",
+      "head_sha": "015767fee5635ff85a717739188ff4af60fe84f2",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-24T05:39:13Z",
+      "updated_at": "2026-11-24T05:41:22Z",
+      "run_attempt": 1,
+      "jobs": [
+        {
+          "id": 138244315980,
+          "name": "Project state / ubuntu-latest",
+          "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45334821142/job/138244315980",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-11-24T05:39:16Z",
+          "completed_at": "2026-11-24T05:40:01Z",
+          "steps": [
+            {
+              "number": 1,
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:17Z",
+              "completed_at": "2026-11-24T05:39:18Z"
+            },
+            {
+              "number": 2,
+              "name": "Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:18Z",
+              "completed_at": "2026-11-24T05:39:20Z"
+            },
+            {
+              "number": 3,
+              "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:20Z",
+              "completed_at": "2026-11-24T05:39:20Z"
+            },
+            {
+              "number": 4,
+              "name": "Validate canonical project state",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:20Z",
+              "completed_at": "2026-11-24T05:39:21Z"
+            },
+            {
+              "number": 5,
+              "name": "Reject stale generated state",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:21Z",
+              "completed_at": "2026-11-24T05:39:21Z"
+            },
+            {
+              "number": 6,
+              "name": "Validate data provenance contracts",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:21Z",
+              "completed_at": "2026-11-24T05:39:21Z"
+            },
+            {
+              "number": 7,
+              "name": "Check documentation integrity",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:21Z",
+              "completed_at": "2026-11-24T05:39:22Z"
+            },
+            {
+              "number": 8,
+              "name": "Validate actual-agent ledger",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:22Z",
+              "completed_at": "2026-11-24T05:39:22Z"
+            },
+            {
+              "number": 9,
+              "name": "Reject stale campaign index",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:22Z",
+              "completed_at": "2026-11-24T05:39:22Z"
+            },
+            {
+              "number": 10,
+              "name": "Validate development assignments and report hashes",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:22Z",
+              "completed_at": "2026-11-24T05:39:22Z"
+            },
+            {
+              "number": 11,
+              "name": "Reject stale development campaign index",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:22Z",
+              "completed_at": "2026-11-24T05:39:22Z"
+            },
+            {
+              "number": 12,
+              "name": "Validate continuation assignments and immutable report hashes",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:22Z",
+              "completed_at": "2026-11-24T05:39:22Z"
+            },
+            {
+              "number": 13,
+              "name": "Validate quadrature assignments and immutable report hashes",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:22Z",
+              "completed_at": "2026-11-24T05:39:22Z"
+            },
+            {
+              "number": 14,
+              "name": "Reject stale quadrature campaign index",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:22Z",
+              "completed_at": "2026-11-24T05:39:22Z"
+            },
+            {
+              "number": 15,
+              "name": "Reject stale audio filter coefficients",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:22Z",
+              "completed_at": "2026-11-24T05:39:22Z"
+            },
+            {
+              "number": 16,
+              "name": "Reject stale quadrature filter coefficients",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:22Z",
+              "completed_at": "2026-11-24T05:39:22Z"
+            },
+            {
+              "number": 17,
+              "name": "Check agent tooling",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:22Z",
+              "completed_at": "2026-11-24T05:39:59Z"
+            },
+            {
+              "number": 33,
+              "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:59Z",
+              "completed_at": "2026-11-24T05:39:59Z"
+            },
+            {
+              "number": 34,
+              "name": "Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:59Z",
+              "completed_at": "2026-11-24T05:39:59Z"
+            },
+            {
+              "number": 35,
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:59Z",
+              "completed_at": "2026-11-24T05:39:59Z"
+            }
+          ]
+        },
+        {
+          "id": 138244316210,
+          "name": "C++20 / ubuntu-latest",
+          "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45334821142/job/138244316210",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-11-24T05:39:16Z",
+          "completed_at": "2026-11-24T05:39:59Z",
+          "steps": [
+            {
+              "number": 1,
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:16Z",
+              "completed_at": "2026-11-24T05:39:17Z"
+            },
+            {
+              "number": 2,
+              "name": "Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:17Z",
+              "completed_at": "2026-11-24T05:39:19Z"
+            },
+            {
+              "number": 3,
+              "name": "Configure",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:19Z",
+              "completed_at": "2026-11-24T05:39:21Z"
+            },
+            {
+              "number": 4,
+              "name": "Build",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:21Z",
+              "completed_at": "2026-11-24T05:39:51Z"
+            },
+            {
+              "number": 5,
+              "name": "Verify analytical and integration behavior",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:51Z",
+              "completed_at": "2026-11-24T05:39:58Z"
+            },
+            {
+              "number": 10,
+              "name": "Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:58Z",
+              "completed_at": "2026-11-24T05:39:58Z"
+            },
+            {
+              "number": 11,
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:58Z",
+              "completed_at": "2026-11-24T05:39:58Z"
+            }
+          ]
+        },
+        {
+          "id": 138244316270,
+          "name": "Project state / windows-latest",
+          "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45334821142/job/138244316270",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-11-24T05:39:16Z",
+          "completed_at": "2026-11-24T05:40:33Z",
+          "steps": [
+            {
+              "number": 1,
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:17Z",
+              "completed_at": "2026-11-24T05:39:18Z"
+            },
+            {
+              "number": 2,
+              "name": "Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:18Z",
+              "completed_at": "2026-11-24T05:39:24Z"
+            },
+            {
+              "number": 3,
+              "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:24Z",
+              "completed_at": "2026-11-24T05:39:25Z"
+            },
+            {
+              "number": 4,
+              "name": "Validate canonical project state",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:25Z",
+              "completed_at": "2026-11-24T05:39:27Z"
+            },
+            {
+              "number": 5,
+              "name": "Reject stale generated state",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:27Z",
+              "completed_at": "2026-11-24T05:39:27Z"
+            },
+            {
+              "number": 6,
+              "name": "Validate data provenance contracts",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:27Z",
+              "completed_at": "2026-11-24T05:39:28Z"
+            },
+            {
+              "number": 7,
+              "name": "Check documentation integrity",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:28Z",
+              "completed_at": "2026-11-24T05:39:29Z"
+            },
+            {
+              "number": 8,
+              "name": "Validate actual-agent ledger",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:29Z",
+              "completed_at": "2026-11-24T05:39:29Z"
+            },
+            {
+              "number": 9,
+              "name": "Reject stale campaign index",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:29Z",
+              "completed_at": "2026-11-24T05:39:30Z"
+            },
+            {
+              "number": 10,
+              "name": "Validate development assignments and report hashes",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:30Z",
+              "completed_at": "2026-11-24T05:39:30Z"
+            },
+            {
+              "number": 11,
+              "name": "Reject stale development campaign index",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:30Z",
+              "completed_at": "2026-11-24T05:39:31Z"
+            },
+            {
+              "number": 12,
+              "name": "Validate continuation assignments and immutable report hashes",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:31Z",
+              "completed_at": "2026-11-24T05:39:31Z"
+            },
+            {
+              "number": 13,
+              "name": "Validate quadrature assignments and immutable report hashes",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:31Z",
+              "completed_at": "2026-11-24T05:39:32Z"
+            },
+            {
+              "number": 14,
+              "name": "Reject stale quadrature campaign index",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:32Z",
+              "completed_at": "2026-11-24T05:39:32Z"
+            },
+            {
+              "number": 15,
+              "name": "Reject stale audio filter coefficients",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:32Z",
+              "completed_at": "2026-11-24T05:39:33Z"
+            },
+            {
+              "number": 16,
+              "name": "Reject stale quadrature filter coefficients",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:33Z",
+              "completed_at": "2026-11-24T05:39:33Z"
+            },
+            {
+              "number": 17,
+              "name": "Check agent tooling",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:33Z",
+              "completed_at": "2026-11-24T05:40:29Z"
+            },
+            {
+              "number": 33,
+              "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:40:29Z",
+              "completed_at": "2026-11-24T05:40:29Z"
+            },
+            {
+              "number": 34,
+              "name": "Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:40:29Z",
+              "completed_at": "2026-11-24T05:40:31Z"
+            },
+            {
+              "number": 35,
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:40:31Z",
+              "completed_at": "2026-11-24T05:40:31Z"
+            }
+          ]
+        },
+        {
+          "id": 138244316288,
+          "name": "C++20 / macos-latest",
+          "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45334821142/job/138244316288",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-11-24T05:39:17Z",
+          "completed_at": "2026-11-24T05:40:08Z",
+          "steps": [
+            {
+              "number": 1,
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:17Z",
+              "completed_at": "2026-11-24T05:39:18Z"
+            },
+            {
+              "number": 2,
+              "name": "Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:18Z",
+              "completed_at": "2026-11-24T05:39:21Z"
+            },
+            {
+              "number": 3,
+              "name": "Configure",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:21Z",
+              "completed_at": "2026-11-24T05:39:25Z"
+            },
+            {
+              "number": 4,
+              "name": "Build",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:25Z",
+              "completed_at": "2026-11-24T05:39:58Z"
+            },
+            {
+              "number": 5,
+              "name": "Verify analytical and integration behavior",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:58Z",
+              "completed_at": "2026-11-24T05:40:04Z"
+            },
+            {
+              "number": 10,
+              "name": "Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:40:04Z",
+              "completed_at": "2026-11-24T05:40:05Z"
+            },
+            {
+              "number": 11,
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:40:05Z",
+              "completed_at": "2026-11-24T05:40:05Z"
+            }
+          ]
+        },
+        {
+          "id": 138244316298,
+          "name": "Address and undefined behavior sanitizers",
+          "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45334821142/job/138244316298",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-11-24T05:39:16Z",
+          "completed_at": "2026-11-24T05:41:21Z",
+          "steps": [
+            {
+              "number": 1,
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:17Z",
+              "completed_at": "2026-11-24T05:39:17Z"
+            },
+            {
+              "number": 2,
+              "name": "Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:17Z",
+              "completed_at": "2026-11-24T05:39:19Z"
+            },
+            {
+              "number": 3,
+              "name": "Configure",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:19Z",
+              "completed_at": "2026-11-24T05:39:22Z"
+            },
+            {
+              "number": 4,
+              "name": "Build",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:22Z",
+              "completed_at": "2026-11-24T05:39:47Z"
+            },
+            {
+              "number": 5,
+              "name": "Test",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:47Z",
+              "completed_at": "2026-11-24T05:41:19Z"
+            },
+            {
+              "number": 10,
+              "name": "Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:41:19Z",
+              "completed_at": "2026-11-24T05:41:20Z"
+            },
+            {
+              "number": 11,
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:41:20Z",
+              "completed_at": "2026-11-24T05:41:20Z"
+            }
+          ]
+        },
+        {
+          "id": 138244316299,
+          "name": "C++20 / windows-latest",
+          "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45334821142/job/138244316299",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-11-24T05:39:16Z",
+          "completed_at": "2026-11-24T05:40:18Z",
+          "steps": [
+            {
+              "number": 1,
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:17Z",
+              "completed_at": "2026-11-24T05:39:17Z"
+            },
+            {
+              "number": 2,
+              "name": "Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:17Z",
+              "completed_at": "2026-11-24T05:39:23Z"
+            },
+            {
+              "number": 3,
+              "name": "Configure",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:23Z",
+              "completed_at": "2026-11-24T05:39:40Z"
+            },
+            {
+              "number": 4,
+              "name": "Build",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:40Z",
+              "completed_at": "2026-11-24T05:40:10Z"
+            },
+            {
+              "number": 5,
+              "name": "Verify analytical and integration behavior",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:40:10Z",
+              "completed_at": "2026-11-24T05:40:15Z"
+            },
+            {
+              "number": 10,
+              "name": "Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:40:15Z",
+              "completed_at": "2026-11-24T05:40:16Z"
+            },
+            {
+              "number": 11,
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:40:16Z",
+              "completed_at": "2026-11-24T05:40:16Z"
+            }
+          ]
+        },
+        {
+          "id": 138244316373,
+          "name": "Project state / macos-latest",
+          "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45334821142/job/138244316373",
+          "status": "completed",
+          "conclusion": "success",
+          "started_at": "2026-11-24T05:39:16Z",
+          "completed_at": "2026-11-24T05:39:49Z",
+          "steps": [
+            {
+              "number": 1,
+              "name": "Set up job",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:16Z",
+              "completed_at": "2026-11-24T05:39:16Z"
+            },
+            {
+              "number": 2,
+              "name": "Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:16Z",
+              "completed_at": "2026-11-24T05:39:19Z"
+            },
+            {
+              "number": 3,
+              "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:19Z",
+              "completed_at": "2026-11-24T05:39:19Z"
+            },
+            {
+              "number": 4,
+              "name": "Validate canonical project state",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:19Z",
+              "completed_at": "2026-11-24T05:39:20Z"
+            },
+            {
+              "number": 5,
+              "name": "Reject stale generated state",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:20Z",
+              "completed_at": "2026-11-24T05:39:20Z"
+            },
+            {
+              "number": 6,
+              "name": "Validate data provenance contracts",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:20Z",
+              "completed_at": "2026-11-24T05:39:20Z"
+            },
+            {
+              "number": 7,
+              "name": "Check documentation integrity",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:20Z",
+              "completed_at": "2026-11-24T05:39:20Z"
+            },
+            {
+              "number": 8,
+              "name": "Validate actual-agent ledger",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:20Z",
+              "completed_at": "2026-11-24T05:39:20Z"
+            },
+            {
+              "number": 9,
+              "name": "Reject stale campaign index",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:20Z",
+              "completed_at": "2026-11-24T05:39:20Z"
+            },
+            {
+              "number": 10,
+              "name": "Validate development assignments and report hashes",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:20Z",
+              "completed_at": "2026-11-24T05:39:20Z"
+            },
+            {
+              "number": 11,
+              "name": "Reject stale development campaign index",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:20Z",
+              "completed_at": "2026-11-24T05:39:20Z"
+            },
+            {
+              "number": 12,
+              "name": "Validate continuation assignments and immutable report hashes",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:20Z",
+              "completed_at": "2026-11-24T05:39:21Z"
+            },
+            {
+              "number": 13,
+              "name": "Validate quadrature assignments and immutable report hashes",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:21Z",
+              "completed_at": "2026-11-24T05:39:21Z"
+            },
+            {
+              "number": 14,
+              "name": "Reject stale quadrature campaign index",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:21Z",
+              "completed_at": "2026-11-24T05:39:21Z"
+            },
+            {
+              "number": 15,
+              "name": "Reject stale audio filter coefficients",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:21Z",
+              "completed_at": "2026-11-24T05:39:21Z"
+            },
+            {
+              "number": 16,
+              "name": "Reject stale quadrature filter coefficients",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:21Z",
+              "completed_at": "2026-11-24T05:39:21Z"
+            },
+            {
+              "number": 17,
+              "name": "Check agent tooling",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:21Z",
+              "completed_at": "2026-11-24T05:39:46Z"
+            },
+            {
+              "number": 33,
+              "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:46Z",
+              "completed_at": "2026-11-24T05:39:46Z"
+            },
+            {
+              "number": 34,
+              "name": "Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:46Z",
+              "completed_at": "2026-11-24T05:39:47Z"
+            },
+            {
+              "number": 35,
+              "name": "Complete job",
+              "status": "completed",
+              "conclusion": "success",
+              "started_at": "2026-11-24T05:39:47Z",
+              "completed_at": "2026-11-24T05:39:47Z"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "native_test_results": [
+    {
+      "job_id": 138244316210,
+      "label": "core-linux",
+      "registered_tests": 150,
+      "passed_tests": 150,
+      "skipped_tests": [],
+      "failed_tests": 0,
+      "log_member": "138244316210-core-linux.log",
+      "log_sha256": "885915d2c1a662ff5286fe0fd47d2246e6c4484da1e4c3527e6998f18eabb022"
+    },
+    {
+      "job_id": 138244316288,
+      "label": "core-macos",
+      "registered_tests": 147,
+      "passed_tests": 141,
+      "skipped_tests": [
+        "state_fp.ftz",
+        "state_fp.daz",
+        "state_fp.ftz_daz",
+        "control_fp.ftz",
+        "control_fp.daz",
+        "control_fp.ftz_daz"
+      ],
+      "failed_tests": 0,
+      "log_member": "138244316288-core-macos.log",
+      "log_sha256": "e412846b9b9e5803eb2ba4bc38ed6b6ffb03c2bdc0c28b06ad6bfde918702589"
+    },
+    {
+      "job_id": 138244316292,
+      "label": "vst3-windows",
+      "registered_tests": 134,
+      "passed_tests": 134,
+      "skipped_tests": [],
+      "failed_tests": 0,
+      "log_member": "138244316292-vst3-windows.log",
+      "log_sha256": "e701dcfeab507ed603488d34145c27f7c7b9226368d449c07a1374d75fa6e396"
+    },
+    {
+      "job_id": 138244316298,
+      "label": "sanitizers",
+      "registered_tests": 150,
+      "passed_tests": 150,
+      "skipped_tests": [],
+      "failed_tests": 0,
+      "log_member": "138244316298-sanitizers.log",
+      "log_sha256": "72f41ad834e38986e83ef93addcbb4f3963e142a1a0d287bd3d9a0b6c53c4c9f"
+    },
+    {
+      "job_id": 138244316299,
+      "label": "core-windows",
+      "registered_tests": 147,
+      "passed_tests": 147,
+      "skipped_tests": [],
+      "failed_tests": 0,
+      "log_member": "138244316299-core-windows.log",
+      "log_sha256": "8a94994f4df1048f711c2159b3f5d10cc7cb27fd47de0cffebe7005957f5eaea"
+    },
+    {
+      "job_id": 138244316537,
+      "label": "vst3-linux",
+      "registered_tests": 138,
+      "passed_tests": 138,
+      "skipped_tests": [],
+      "failed_tests": 0,
+      "log_member": "138244316537-vst3-linux.log",
+      "log_sha256": "c547361b3ca07dcb4e06524a7d7b1618e3f8927b3f855036bbff19f03f202add"
+    },
+    {
+      "job_id": 138244316602,
+      "label": "vst3-macos",
+      "registered_tests": 134,
+      "passed_tests": 125,
+      "skipped_tests": [
+        "vst3.fp_ftz",
+        "vst3.filtered_fp_ftz",
+        "vst3.quadrature_fp_ftz",
+        "vst3.fp_daz",
+        "vst3.filtered_fp_daz",
+        "vst3.quadrature_fp_daz",
+        "vst3.fp_ftz_daz",
+        "vst3.filtered_fp_ftz_daz",
+        "vst3.quadrature_fp_ftz_daz"
+      ],
+      "failed_tests": 0,
+      "log_member": "138244316602-vst3-macos.log",
+      "log_sha256": "8aa19ee070998d7e16c55c5cce328bfb88a218c0ea812539a1177cf69b20b5ff"
+    }
+  ],
+  "local_integrated_tests": {
+    "registered": 288,
+    "passed": 288,
+    "skipped": 0,
+    "failed": 0,
+    "command": "ctest --test-dir build/vst3 -C Release --output-on-failure --no-tests=error -j3",
+    "log_member": "local-integrated-tests.log",
+    "gcc_executable_identity": {
+      "rhodes_quadrature_probe": {
+        "sha256": "8771c48e2a2d47aebdfc3ece6a124ceb2864188bbd7d580b5919122be7dadb48",
+        "matches_pre_guard_retained_evidence": true
+      },
+      "rhodes_render": {
+        "sha256": "74222242fb288d456846e335d7f59ada5ad5bf77963164610243c41ba9cfa2d9",
+        "matches_pre_guard_retained_evidence": true
+      },
+      "rhodes_vst3_benchmark": {
+        "sha256": "0ba93d04add7c19a52d1c727a3ed973114efee254a1caab557edcac604fe86c7",
+        "matches_pre_guard_retained_evidence": true
+      },
+      "rhodes_vst3_filtered_benchmark": {
+        "sha256": "c9135f574e0cde55e8a09e7ed7cb9299373415f4b7845edafeb780ec42eb844a",
+        "matches_pre_guard_retained_evidence": true
+      },
+      "rhodes_vst3_quadrature_benchmark": {
+        "sha256": "f6ffbc20500a173528d911c58997fb0be1569f0fb072dfd66c57fc8716518b31",
+        "matches_pre_guard_retained_evidence": true
+      }
+    }
+  },
+  "archive": {
+    "path": "native-platforms-20261124.tar.gz",
+    "sha256": "99655044dd9815379b892f3fddd0e9f5e37496cff794bbbd2bf9bd205b091694",
+    "bytes": 114456,
+    "member_sha256": {
+      "138244316210-core-linux.log": "885915d2c1a662ff5286fe0fd47d2246e6c4484da1e4c3527e6998f18eabb022",
+      "138244316288-core-macos.log": "e412846b9b9e5803eb2ba4bc38ed6b6ffb03c2bdc0c28b06ad6bfde918702589",
+      "138244316292-vst3-windows.log": "e701dcfeab507ed603488d34145c27f7c7b9226368d449c07a1374d75fa6e396",
+      "138244316298-sanitizers.log": "72f41ad834e38986e83ef93addcbb4f3963e142a1a0d287bd3d9a0b6c53c4c9f",
+      "138244316299-core-windows.log": "8a94994f4df1048f711c2159b3f5d10cc7cb27fd47de0cffebe7005957f5eaea",
+      "138244316537-vst3-linux.log": "c547361b3ca07dcb4e06524a7d7b1618e3f8927b3f855036bbff19f03f202add",
+      "138244316602-vst3-macos.log": "8aa19ee070998d7e16c55c5cce328bfb88a218c0ea812539a1177cf69b20b5ff",
+      "api-records.json": "5a26c7faf9f5de77340231c711fe1cb7a51b7a27ef3559df80e69553f87a736b",
+      "local-build.log": "e082d9e64936d148173f69927769ec4ee7db44e437940fffd0a517cc5a239fd2",
+      "local-integrated-tests.log": "3d6fed8089cb5e3ff80289b08354284152de5cf903fc6b43f3b63ed88e9879bb"
+    },
+    "normalization": "GitHub API log text has line endings normalized to LF and one final newline; this is retained text, not an original server ZIP byte claim. Local logs are retained as produced. All archive members were byte-checked against retained originals."
+  },
+  "limitations": [
+    "macOS ARM intentionally skips six core and nine VST3 x86 FTZ/DAZ modes; exact skipped test names are retained.",
+    "Linux-only module coexistence checks are not represented as macOS/Windows runs.",
+    "Hosted sanitizer success is an observed instrumented run, not a universal race/allocation proof.",
+    "No real DAW/audio-device validation, measured specimen fidelity, signing/notarization or release is claimed.",
+    "Python diagnostic sources may be developed after this checkpoint; their later tests/evidence are separate."
+  ]
+}

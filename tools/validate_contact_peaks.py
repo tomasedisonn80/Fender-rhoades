@@ -182,7 +182,9 @@ def _utc() -> str:
 
 
 def _error(error: BaseException) -> str:
-    return (type(error).__name__ + ": " + str(error))[:1000]
+    message = type(error).__name__ + ": " + str(error)
+    notes = getattr(error, "__notes__", ())
+    return (message + ("; " + "; ".join(notes) if notes else ""))[:1000]
 
 
 def _canonical(value) -> bytes:
@@ -209,7 +211,15 @@ def _replace_manifest(path: Path, value) -> None:
             handle.flush()
             os.fsync(handle.fileno())
         os.replace(temporary, path)
-    finally:
+    except BaseException as error:
+        try:
+            temporary.unlink(missing_ok=True)
+        except OSError as cleanup_error:
+            # Cleanup must not replace the write/replace failure that caused it.
+            if hasattr(error, "add_note"):
+                error.add_note("temporary cleanup also failed: " + _error(cleanup_error))
+        raise
+    else:
         temporary.unlink(missing_ok=True)
 
 
@@ -240,6 +250,32 @@ def _bounded_read(path: Path, limit: int) -> tuple[bytes, bool]:
         exceeded = len(data) > limit
         # A growing file cannot bypass the bound; a prior stat is not trusted.
         return data[:limit], exceeded
+
+
+def _retain_raw(path: Path, raw: bytes, record: dict, *, complete: bool) -> None:
+    """Index a partial write if storage fails; never refund consumed input budget."""
+    record["bounded_input_bytes"] = len(raw)
+    handle = path.open("xb")
+    record.update(raw_file=path.name, retained_bytes=None, retained_sha256=None,
+                  raw_complete=False)
+    try:
+        with handle:
+            if handle.write(raw) != len(raw):
+                raise OSError("short write while retaining candidate bytes")
+    except (OSError, ValueError):
+        try:
+            retained, grew = _bounded_read(path, len(raw))
+            if grew:
+                raise OSError("raw artifact grew beyond the bounded input during retention")
+            record.update(retained_bytes=len(retained),
+                          retained_sha256=hashlib.sha256(retained).hexdigest())
+        except (OSError, ValueError) as inspection_error:
+            # Null size/hash say explicitly that the partial artifact could not
+            # be inspected; a whole-file size or identity must not be invented.
+            record["retention_inspection_error"] = _error(inspection_error)
+        raise
+    record.update(retained_bytes=len(raw), retained_sha256=hashlib.sha256(raw).hexdigest(),
+                  raw_complete=complete)
 
 
 def _binary_identity(path: Path) -> dict:
@@ -329,11 +365,7 @@ def main(argv=None) -> int:
                 limit = min(MAX_FILE_BYTES, MAX_COLLECTION_BYTES - total)
                 raw, exceeded = _bounded_read(path, limit)
                 total += len(raw)
-                with (output / (name + ".raw")).open("xb") as handle:
-                    handle.write(raw)
-                record.update(raw_file=name + ".raw", retained_bytes=len(raw),
-                              retained_sha256=hashlib.sha256(raw).hexdigest(),
-                              raw_complete=not exceeded)
+                _retain_raw(output / (name + ".raw"), raw, record, complete=not exceeded)
                 if exceeded:
                     record.update(status="input_limit_exceeded", exit_code=1,
                                   error="retained prefix only; file or collection byte limit exceeded")
@@ -368,9 +400,16 @@ def main(argv=None) -> int:
         codes.append(3)
         manifest["operational_errors"].append(_error(error))
     code = aggregate_exit(codes)
+    retained_sizes = [case.get("retained_bytes", 0) for case in manifest["cases"]]
+    retained_total = sum(size for size in retained_sizes if size is not None)
+    retained_known = all(size is not None for size in retained_sizes)
     manifest.update(status={0: "pass", 1: "fail", 2: "incomplete", 3: "operational_failure"}[code],
-                    exit_code=code, ended_utc=_utc(), retained_candidate_bytes=total,
+                    exit_code=code, ended_utc=_utc(),
+                    input_bytes_charged_to_collection_limit=total,
+                    retained_candidate_bytes=retained_total if retained_known else None,
                     unattempted_inputs=[str(path) for path in args.candidate[len(manifest["cases"]):]])
+    if not retained_known:
+        manifest["known_retained_candidate_bytes"] = retained_total
     try:
         _replace_manifest(output / "manifest.json", manifest)
     except (OSError, TypeError, ValueError) as error:
