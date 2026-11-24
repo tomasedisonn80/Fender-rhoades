@@ -35,6 +35,12 @@ public:
     }
 
     [[nodiscard]] std::optional<double> output() const noexcept {
+#if defined(__clang__)
+        // Keep the fixed reduction identical at different inlined call sites.
+        // Optional multiply/add fusion must not change the continuation bits
+        // of a cloned engine. Node and tap order remain unchanged.
+#pragma clang fp contract(off)
+#endif
         constexpr auto count = quadrature_filter::history_frames;
         const std::size_t newest = next_ == 0 ? count - 1 : next_ - 1;
         double sum = 0.0;
