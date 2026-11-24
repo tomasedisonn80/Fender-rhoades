@@ -63,6 +63,11 @@ add_executable(rhodes_render apps/render.cpp)
 target_link_libraries(rhodes_render PRIVATE rhodes_core)
 rhodes_target_options(rhodes_render)
 
+# Offline stationary pickup diagnostic; no new realtime engine/model variant.
+add_executable(rhodes_alias_primitive_probe apps/alias_primitive_probe.cpp)
+target_link_libraries(rhodes_alias_primitive_probe PRIVATE rhodes_core)
+rhodes_target_options(rhodes_alias_primitive_probe)
+
 add_executable(rhodes_benchmark apps/benchmark.cpp)
 target_link_libraries(rhodes_benchmark PRIVATE rhodes_core)
 target_compile_definitions(rhodes_benchmark PRIVATE RHODES_BUILD_CONFIGURATION="$<CONFIG>")
@@ -300,6 +305,7 @@ if(BUILD_TESTING)
         add_test(NAME state.${test_name} COMMAND rhodes_state_concurrency_tests ${test_name})
     endforeach()
     add_test(NAME cli.help COMMAND rhodes_render --help)
+    add_test(NAME alias.primitive_help COMMAND rhodes_alias_primitive_probe --help)
     add_test(NAME benchmark.help COMMAND rhodes_benchmark --help)
     add_test(NAME runtime_benchmark.help COMMAND rhodes_runtime_benchmark --help)
     add_test(NAME runtime_benchmark.smoke COMMAND rhodes_runtime_benchmark

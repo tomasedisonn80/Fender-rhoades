@@ -171,7 +171,9 @@
       "assignment": 21,
       "wave": 2,
       "agent_task_name": "/root/w2_021_callback_capture",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/20261124b-w2-021-callback-capture.md",
+      "sha256": "af6a56312192a5ef12143a21071be7b01496dbf8a1406f7d4c786ac42bbf9869"
     },
     {
       "assignment": 22,
@@ -193,14 +195,68 @@
       "assignment": 24,
       "wave": 2,
       "agent_task_name": "/root/w2_024_callback_harness_tests",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/20261124b-w2-024-callback-harness-tests.md",
+      "sha256": "3910d61755a6e5c1472521d716f14cedd07ccffa53b7d3569b5c53ed0fac3d5d"
     },
     {
       "assignment": 25,
       "wave": 2,
       "agent_task_name": "/root/w2_025_alias_diagnostic_design",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124b-w2-025-alias-diagnostic-design.md",
+      "sha256": "fdab006f37b3aa0bda66f9277eb37fddc2c9216ef86aa0db8d2fe9b3050127de"
+    },
+    {
+      "assignment": 26,
+      "wave": 2,
+      "agent_task_name": "/root/w2_026_supported_native_replay",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124b-w2-026-supported-native-replay.md",
+      "sha256": "e934ea728ebb85b965ddccbf60f283dbdae4f3e40cbf6c8d1cb3686121b92a5f"
+    },
+    {
+      "assignment": 27,
+      "wave": 2,
+      "agent_task_name": "/root/w2_027_extrema_raw_audit",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124b-w2-027-extrema-raw-audit.md",
+      "sha256": "f9868017864bd7b078984ee1d34eede6e920421ad2f99de246eee893c1d48b18"
+    },
+    {
+      "assignment": 28,
+      "wave": 2,
+      "agent_task_name": "/root/w2_028_alias_oracle",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124b-w2-028-alias-oracle.md",
+      "sha256": "26e63c3904c2a1d5b7c04087ee63bcc76a9c5a221a5cd4dfa4ad177a6eade75f"
+    },
+    {
+      "assignment": 29,
+      "wave": 2,
+      "agent_task_name": "/root/w2_029_alias_primitive_probe",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124b-w2-029-alias-primitive-probe.md",
+      "sha256": "e03fb22421324caa6cc6238280c84c6f19edd9ca70c0c25dde991d8fad65066a"
+    },
+    {
+      "assignment": 30,
+      "wave": 2,
+      "agent_task_name": "/root/w2_030_extrema_raw_hardening",
+      "status": "running"
+    },
+    {
+      "assignment": 31,
+      "wave": 2,
+      "agent_task_name": "/root/w2_031_extrema_raw_tests",
+      "status": "running"
+    },
+    {
+      "assignment": 32,
+      "wave": 2,
+      "agent_task_name": "/root/w2_032_direct_alias_driver",
       "status": "running"
     }
   ],
-  "completed_agents": 22
+  "completed_agents": 29
 }
