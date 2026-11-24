@@ -11,6 +11,10 @@
 #include <string>
 #include <string_view>
 
+#if defined(__clang__)
+#pragma STDC FENV_ACCESS ON
+#endif
+
 #if defined(__SSE__) || defined(_M_X64) || (defined(_M_IX86_FP) && _M_IX86_FP >= 1)
 #define RHODES_TEST_MXCSR 1
 #include <xmmintrin.h>

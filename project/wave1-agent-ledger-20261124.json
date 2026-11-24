@@ -1,0 +1,193 @@
+{
+  "schema_version": 1,
+  "wave": 1,
+  "requested_actual_agents": 20,
+  "status": "complete",
+  "scope": "Twenty actually spawned Wave 1 workers: three initial root assignments and seventeen additional coordinator children. Each completed its bounded work and retained a report. Counts are execution provenance, not scientific acceptance.",
+  "agents": [
+    {
+      "assignment": 1,
+      "wave": 1,
+      "agent_task_name": "/root/w1_01_macos",
+      "report": "docs/agents/reports/20261124-w1-01-macos.md",
+      "status": "completed",
+      "sha256": "667410e3637633309811c3f628b53685cb65a1e629f401166dc47bfbdb448bd5",
+      "id": "W1-01"
+    },
+    {
+      "assignment": 2,
+      "wave": 1,
+      "agent_task_name": "/root/w1_02_contact",
+      "report": "docs/agents/reports/20261124-w1-02-contact.md",
+      "status": "completed",
+      "sha256": "9f37036ccb170faca71af0cfa0dd7d8c9fba039de5a934d9b5714d7e7bb44d47",
+      "id": "W1-02"
+    },
+    {
+      "assignment": 3,
+      "wave": 1,
+      "agent_task_name": "/root/w1_03_realtime",
+      "report": "docs/agents/reports/20261124-w1-03-realtime.md",
+      "status": "completed",
+      "sha256": "b51fe077c24e243139a96e5ad4b2f502c3870b85780cf6fdf662f8ae1c4e6ae7",
+      "id": "W1-03"
+    },
+    {
+      "assignment": 4,
+      "wave": 1,
+      "agent_task_name": "/root/w1_02_contact/w1_04_schema",
+      "report": "docs/agents/reports/20261124-w1-04-schema.md",
+      "status": "completed",
+      "sha256": "c63a51eebb8eef8453e8d0ae5153b7b857788333e3f0a6c1b579ab6ca9bbcbe2",
+      "id": "W1-04"
+    },
+    {
+      "assignment": 5,
+      "wave": 1,
+      "agent_task_name": "/root/w1_02_contact/w1_05_conservative",
+      "report": "docs/agents/reports/20261124-w1-05-conservative.md",
+      "status": "completed",
+      "sha256": "a0271d8e2bab8cfd6c20cdda3e513f64bce80e857f2761883cf8d89db4332500",
+      "id": "W1-05"
+    },
+    {
+      "assignment": 6,
+      "wave": 1,
+      "agent_task_name": "/root/w1_02_contact/w1_06_damped",
+      "report": "docs/agents/reports/20261124-w1-06-damped.md",
+      "status": "completed",
+      "sha256": "cbb92d50c7f3ba217a9b7150df2ae3caac470c73714ba7b973b94886de4fb40f",
+      "id": "W1-06"
+    },
+    {
+      "assignment": 7,
+      "wave": 1,
+      "agent_task_name": "/root/w1_02_contact/w1_07_preload",
+      "report": "docs/agents/reports/20261124-w1-07-preload.md",
+      "status": "completed",
+      "sha256": "eaaecf347264f42e0f6b0de5a19b80052ce7fce8a1780ff4cd36f1e77618cb2f",
+      "id": "W1-07"
+    },
+    {
+      "assignment": 8,
+      "wave": 1,
+      "agent_task_name": "/root/w1_02_contact/w1_08_cli",
+      "report": "docs/agents/reports/20261124-w1-08-cli.md",
+      "status": "completed",
+      "sha256": "0d38119ffc1bd5be952f9bbb1f6f6685759c3d4c789bd693b9cd057819d34292",
+      "id": "W1-08"
+    },
+    {
+      "assignment": 9,
+      "wave": 1,
+      "agent_task_name": "/root/w1_02_contact/w1_09_retention",
+      "report": "docs/agents/reports/20261124-w1-09-retention.md",
+      "status": "completed",
+      "sha256": "3eabda73cbb2586f7cccc3736cd6584a28d767be0a248f49aeeb1445a5cedb51",
+      "id": "W1-09"
+    },
+    {
+      "assignment": 10,
+      "wave": 1,
+      "agent_task_name": "/root/w1_02_contact/w1_10_benchmark",
+      "report": "docs/agents/reports/20261124-w1-10-benchmark.md",
+      "status": "completed",
+      "sha256": "b0962fd121b5046d8d18473c2e0c6437a7d34d710a67f84836c826c1b887f7cb",
+      "id": "W1-10"
+    },
+    {
+      "assignment": 11,
+      "wave": 1,
+      "agent_task_name": "/root/w1_02_contact/w1_11_metadata",
+      "report": "docs/agents/reports/20261124-w1-11-metadata.md",
+      "status": "completed",
+      "sha256": "f8c23f629096d4e0fa6bdde0ca35c7c7eac87edd00699fd50529a23f09cffdc7",
+      "id": "W1-11"
+    },
+    {
+      "assignment": 12,
+      "wave": 1,
+      "agent_task_name": "/root/w1_02_contact/w1_12_allocations",
+      "report": "docs/agents/reports/20261124-w1-12-allocations.md",
+      "status": "completed",
+      "sha256": "c201298f905841d77b792c145f0838a7a234fba38e52302aec78a4f65de0d1bf",
+      "id": "W1-12"
+    },
+    {
+      "assignment": 13,
+      "wave": 1,
+      "agent_task_name": "/root/w1_02_contact/w1_13_linux",
+      "report": "docs/agents/reports/20261124-w1-13-linux.md",
+      "status": "completed",
+      "sha256": "3135d91002de8ac00306f594b0a601b72f5a6ce0fae435f7d9a431acf0951a68",
+      "id": "W1-13"
+    },
+    {
+      "assignment": 14,
+      "wave": 1,
+      "agent_task_name": "/root/w1_02_contact/w1_14_windows",
+      "report": "docs/agents/reports/20261124-w1-14-windows.md",
+      "status": "completed",
+      "sha256": "33815b51fbe97f8e16c8564406407a41d9d73e11952c1c8eb444a8184f70b08b",
+      "id": "W1-14"
+    },
+    {
+      "assignment": 15,
+      "wave": 1,
+      "agent_task_name": "/root/w1_02_contact/w1_15_macos_review",
+      "report": "docs/agents/reports/20261124-w1-15-macos-review.md",
+      "status": "completed",
+      "sha256": "e96a3a9a61807270ff7ce804a04dd98d8fd9db42b0af12937222f42d375ea1e4",
+      "id": "W1-15"
+    },
+    {
+      "assignment": 16,
+      "wave": 1,
+      "agent_task_name": "/root/w1_02_contact/w1_16_rhodes_sources",
+      "report": "docs/agents/reports/20261124-w1-16-rhodes-sources.md",
+      "status": "completed",
+      "sha256": "d2e932870b589de577a80e2da8309d41c33fa0721376d869a944943c6a70675b",
+      "id": "W1-16"
+    },
+    {
+      "assignment": 17,
+      "wave": 1,
+      "agent_task_name": "/root/w1_02_contact/w1_17_vst3_sources",
+      "report": "docs/agents/reports/20261124-w1-17-vst3-sources.md",
+      "status": "completed",
+      "sha256": "286c8b967559a334279a189f27294284c304d04f41cd6caa56d703ff2d5000f9",
+      "id": "W1-17"
+    },
+    {
+      "assignment": 18,
+      "wave": 1,
+      "agent_task_name": "/root/w1_02_contact/w1_18_state",
+      "report": "docs/agents/reports/20261124-w1-18-state.md",
+      "status": "completed",
+      "sha256": "d8d3240ee4568a576755217b1cd9cfb5b149aff3567785f02b9c3d24e2eafa5c",
+      "id": "W1-18"
+    },
+    {
+      "assignment": 19,
+      "wave": 1,
+      "agent_task_name": "/root/w1_02_contact/w1_19_tests",
+      "report": "docs/agents/reports/20261124-w1-19-tests.md",
+      "status": "completed",
+      "sha256": "7cb2902a0e9b1f3b82a0ab0a1afcc03b3ec2b24d95101a1309d6f2d7835fdbc8",
+      "id": "W1-19"
+    },
+    {
+      "assignment": 20,
+      "wave": 1,
+      "agent_task_name": "/root/w1_02_contact/w1_20_synthesis",
+      "report": "docs/agents/reports/20261124-w1-20-synthesis.md",
+      "status": "completed",
+      "sha256": "ce007770146bd0d7669ea2676ee55982da2da939605f80250c4856c8da423d34",
+      "id": "W1-20"
+    }
+  ],
+  "coordinator_additional_actual_spawns": 17,
+  "completed_actual_agents": 20,
+  "concurrency_limit_total": 4,
+  "coordinator": "/root/w1_02_contact"
+}

@@ -6,6 +6,15 @@
 #include <limits>
 #include <optional>
 
+// Clang's default exception behavior permits replacing bit-level zero tests
+// with floating comparisons. That can raise FE_INVALID on a signaling NaN,
+// despite the source using only integers. Preserve the public no-FP-effects
+// contract in every inline caller, and restore the includer's policy below.
+#if defined(__clang__)
+#pragma float_control(precise, on, push)
+#pragma float_control(except, on)
+#endif
+
 namespace rhodes::control {
 
 static_assert(CHAR_BIT == 8 && sizeof(float) == 4 && sizeof(double) == 8);
@@ -107,3 +116,7 @@ namespace detail {
 }
 
 } // namespace rhodes::control
+
+#if defined(__clang__)
+#pragma float_control(pop)
+#endif
