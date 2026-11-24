@@ -1,0 +1,22 @@
+{
+  "base_commit": "c6d695dec8287a9b63aa814ae27d919421116165",
+  "scope": "PhotoView baseline before cancellation fixes, with controller revisions already added; X11 native backend fixture with generated source overlay",
+  "photo_view": {
+    "passed": 8,
+    "failed": 8,
+    "cases": 16
+  },
+  "x11": {
+    "passed": 1,
+    "cases": 1
+  },
+  "sha256": {
+    "plugins/vst3/photo_editor.cpp": "53df5460598e70ac120bc4c3c20eb1abed5b3140c0d8d36d01648dd35cb8803d",
+    "plugins/vst3/controller.cpp": "91fbb8251e1244de4b2c4df3256a1b70db184dee4314823a31893f91efc5e22a",
+    "plugins/vst3/controller.hpp": "1171e798be72abd5d8a1c06fdd35490ca7ac8a18c50af4fdcd5b65539d03f054",
+    "tests/cpp/photo_view_interaction_test.cpp": "8b81dfec191f763679c81497ab5ec25ad716eabb94439757140860ffca2aec19",
+    "tests/cpp/vstgui_x11_keyboard_test.cpp": "2cc4a6d861b9b8e7115f492345ab95587fec937be145475eca71626201102a2b",
+    "cmake/Vst3.cmake": "dbf6da6de90d283450e0e5bcbc8a8eadf17a37ead9e22944b0621e5cd0d6a6ed",
+    "cmake/VstguiX11Keyboard.cmake": "3f1b1de7d27a74c1d6d2dae21152b125e4b5c1bf349a78f3aa4bfa3848a76a9c"
+  }
+}

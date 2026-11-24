@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Linux-c++"
+	tests="17"
+	failures="0"
+	disabled="0"
+	skipped="0"
+	hostname="4f398b69b6a5"
+	time="0"
+	timestamp="2026-11-24T10:59:02"
+	>
+	<testcase name="vst3.photo_view.rapid_switches" classname="vst3.photo_view.rapid_switches" time="0.00820075" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;interaction"/>
+		</properties>
+		<system-out>PASS rapid_switches
+PhotoView interaction: 1 cases, 380 checks, 0 failures
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_view.continuous_reset" classname="vst3.photo_view.continuous_reset" time="0.00586932" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;interaction"/>
+		</properties>
+		<system-out>PASS continuous_reset
+PhotoView interaction: 1 cases, 280 checks, 0 failures
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_view.host_shortcuts" classname="vst3.photo_view.host_shortcuts" time="0.00544347" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;interaction"/>
+		</properties>
+		<system-out>PASS host_shortcuts
+PhotoView interaction: 1 cases, 203 checks, 0 failures
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_view.fine_steps" classname="vst3.photo_view.fine_steps" time="0.00498619" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;interaction"/>
+		</properties>
+		<system-out>PASS fine_steps
+PhotoView interaction: 1 cases, 88 checks, 0 failures
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_view.rejected_edits" classname="vst3.photo_view.rejected_edits" time="0.00603541" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;interaction"/>
+		</properties>
+		<system-out>PASS rejected_edits
+PhotoView interaction: 1 cases, 50 checks, 0 failures
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_view.end_cancel_idempotent" classname="vst3.photo_view.end_cancel_idempotent" time="0.00520289" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;interaction"/>
+		</properties>
+		<system-out>PASS end_cancel_idempotent
+PhotoView interaction: 1 cases, 22 checks, 0 failures
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_view.begin_cancel_drag" classname="vst3.photo_view.begin_cancel_drag" time="0.00477146" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;interaction"/>
+		</properties>
+		<system-out>PASS begin_cancel_drag
+PhotoView interaction: 1 cases, 27 checks, 0 failures
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_view.begin_cancel_wheel" classname="vst3.photo_view.begin_cancel_wheel" time="0.00550155" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;interaction"/>
+		</properties>
+		<system-out>PASS begin_cancel_wheel
+PhotoView interaction: 1 cases, 22 checks, 0 failures
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_view.begin_cancel_switch" classname="vst3.photo_view.begin_cancel_switch" time="0.0063513" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;interaction"/>
+		</properties>
+		<system-out>PASS begin_cancel_switch
+PhotoView interaction: 1 cases, 20 checks, 0 failures
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_view.end_cancel_new_press" classname="vst3.photo_view.end_cancel_new_press" time="0.00576938" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;interaction"/>
+		</properties>
+		<system-out>PASS end_cancel_new_press
+PhotoView interaction: 1 cases, 21 checks, 0 failures
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_view.perform_cancel_drag" classname="vst3.photo_view.perform_cancel_drag" time="0.00539603" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;interaction"/>
+		</properties>
+		<system-out>PASS perform_cancel_drag
+PhotoView interaction: 1 cases, 32 checks, 0 failures
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_view.perform_cancel_host_update" classname="vst3.photo_view.perform_cancel_host_update" time="0.00617812" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;interaction"/>
+		</properties>
+		<system-out>PASS perform_cancel_host_update
+PhotoView interaction: 1 cases, 25 checks, 0 failures
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_view.audition_drag" classname="vst3.photo_view.audition_drag" time="0.00504371" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;interaction"/>
+		</properties>
+		<system-out>PASS audition_drag
+PhotoView interaction: 1 cases, 93 checks, 0 failures
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_view.audition_cancel_dispatch" classname="vst3.photo_view.audition_cancel_dispatch" time="0.00691297" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;interaction"/>
+		</properties>
+		<system-out>PASS audition_cancel_dispatch
+PhotoView interaction: 1 cases, 87 checks, 0 failures
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_view.audition_cancel_allocation" classname="vst3.photo_view.audition_cancel_allocation" time="0.0053098" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;interaction"/>
+		</properties>
+		<system-out>PASS audition_cancel_allocation
+PhotoView interaction: 1 cases, 88 checks, 0 failures
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_view.audition_cancel_sibling" classname="vst3.photo_view.audition_cancel_sibling" time="0.00495462" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;interaction"/>
+		</properties>
+		<system-out>PASS audition_cancel_sibling
+PhotoView interaction: 1 cases, 92 checks, 0 failures
+</system-out>
+	</testcase>
+	<testcase name="vst3.controller_revision" classname="vst3.controller_revision" time="0.00361661" status="run">
+		<properties/>
+		<system-out>Controller mutation revision checks passed
+</system-out>
+	</testcase>
+</testsuite>

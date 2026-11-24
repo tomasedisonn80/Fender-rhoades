@@ -35,6 +35,10 @@ public:
     [[nodiscard]] bool retryAuditionRelease();
     Steinberg::tresult PLUGIN_API setParamNormalized(Steinberg::Vst::ParamID tag,
                                                     Steinberg::Vst::ParamValue value) override;
+    // GUI-thread mutation stamps for persistent IDs 0..7. Every accepted setter
+    // call advances its stamp before SDK observers run, including equal values.
+    // Other IDs return zero. Stamps are per instance and are never serialized.
+    [[nodiscard]] std::uint64_t parameterRevision(Steinberg::Vst::ParamID tag) const noexcept;
     Steinberg::tresult PLUGIN_API getParamStringByValue(
         Steinberg::Vst::ParamID tag, Steinberg::Vst::ParamValue value,
         Steinberg::Vst::String128 string) override;
@@ -61,6 +65,7 @@ private:
     // exhaustion boundary without adding a host-facing or editor-facing API.
     friend struct AuditionOwnershipTestAccess;
     std::array<AuditionState, kMaximumAuditionOwners> audition_owners_{};
+    std::array<std::uint64_t, 8> parameter_revisions_{};
     AuditionOwner next_audition_owner_ = 1;
     bool audition_release_pending_ = false;
     bool initialized_ = false;

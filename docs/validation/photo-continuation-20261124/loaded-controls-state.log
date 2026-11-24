@@ -1,0 +1,8 @@
+Internal ctest changing into directory: /home/agent/rhoades-9a04c9726e31/build
+Test project /home/agent/rhoades-9a04c9726e31/build
+    Start 539: vst3.loaded_expression_controls_state
+1/1 Test #539: vst3.loaded_expression_controls_state ...   Passed    0.07 sec
+
+100% tests passed, 0 tests failed out of 1
+
+Total Test time (real) =   0.08 sec

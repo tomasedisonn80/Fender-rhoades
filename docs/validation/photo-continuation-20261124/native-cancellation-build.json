@@ -1,0 +1,16 @@
+{
+  "base_commit": "c6d695dec8287a9b63aa814ae27d919421116165",
+  "configuration": "GCC 14.2 Release, pinned SDK, source changes pending integration",
+  "files": {
+    "plugins/vst3/photo_editor.cpp": "dec665ab451a4c42c82c0ac07d1b9efa59c98c26355ff6c58b120de64c796b30",
+    "plugins/vst3/controller.cpp": "91fbb8251e1244de4b2c4df3256a1b70db184dee4314823a31893f91efc5e22a",
+    "plugins/vst3/controller.hpp": "1171e798be72abd5d8a1c06fdd35490ca7ac8a18c50af4fdcd5b65539d03f054",
+    "plugins/vst3/photo_key_highlight.hpp": "62a76acb7a8cf4b11f84b2e982f51b235becec6fffa07c3e3233fa6745c7642b",
+    "cmake/Vst3.cmake": "ff603d379061c6657029c8fab5f8812026c6e437649753f4be1397962c8a33f3"
+  },
+  "modules": {
+    "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/Contents/x86_64-linux/RhodesResearch.so": "1b0e90f1172f7f0eb421c513061a8beaf84da80c3c4016547f18fa8039281df6",
+    "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3/Contents/x86_64-linux/RhodesResearchFiltered.so": "f2fcb554a2c47be4129b5a5cbd1138a6a7950d1442168800e190eb8fe5dc94ba",
+    "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3/Contents/x86_64-linux/RhodesResearchQuadrature.so": "04c55b2ff965f94189cb513eaad2882265cd2325653c560a9edc9eb6b9a35f87"
+  }
+}

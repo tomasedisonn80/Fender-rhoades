@@ -1,0 +1,12 @@
+Internal ctest changing into directory: /home/agent/rhoades-9a04c9726e31/build
+Test project /home/agent/rhoades-9a04c9726e31/build
+    Start 225: vst3.photo_x11_keyboard
+1/1 Test #225: vst3.photo_x11_keyboard ..........   Passed    0.12 sec
+
+100% tests passed, 0 tests failed out of 1
+
+Label Time Summary:
+editor       =   0.12 sec*proc (1 test)
+linux-xcb    =   0.12 sec*proc (1 test)
+
+Total Test time (real) =   0.13 sec

@@ -1,0 +1,450 @@
+Start testing: Nov 24 11:07 MST
+----------------------------------------------------------
+209/557 Testing: vst3.photo_view.rapid_switches
+209/557 Test: vst3.photo_view.rapid_switches
+Command: "/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_photo_view_tests" "rapid_switches"
+Directory: /home/agent/rhoades-9a04c9726e31/build
+"vst3.photo_view.rapid_switches" start time: Nov 24 11:07 MST
+Output:
+----------------------------------------------------------
+PASS rapid_switches
+PhotoView interaction: 1 cases, 380 checks, 0 failures
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"vst3.photo_view.rapid_switches" end time: Nov 24 11:07 MST
+"vst3.photo_view.rapid_switches" time elapsed: 00:00:00
+----------------------------------------------------------
+
+210/557 Testing: vst3.photo_view.continuous_reset
+210/557 Test: vst3.photo_view.continuous_reset
+Command: "/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_photo_view_tests" "continuous_reset"
+Directory: /home/agent/rhoades-9a04c9726e31/build
+"vst3.photo_view.continuous_reset" start time: Nov 24 11:07 MST
+Output:
+----------------------------------------------------------
+PASS continuous_reset
+PhotoView interaction: 1 cases, 280 checks, 0 failures
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"vst3.photo_view.continuous_reset" end time: Nov 24 11:07 MST
+"vst3.photo_view.continuous_reset" time elapsed: 00:00:00
+----------------------------------------------------------
+
+211/557 Testing: vst3.photo_view.host_shortcuts
+211/557 Test: vst3.photo_view.host_shortcuts
+Command: "/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_photo_view_tests" "host_shortcuts"
+Directory: /home/agent/rhoades-9a04c9726e31/build
+"vst3.photo_view.host_shortcuts" start time: Nov 24 11:07 MST
+Output:
+----------------------------------------------------------
+PASS host_shortcuts
+PhotoView interaction: 1 cases, 203 checks, 0 failures
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"vst3.photo_view.host_shortcuts" end time: Nov 24 11:07 MST
+"vst3.photo_view.host_shortcuts" time elapsed: 00:00:00
+----------------------------------------------------------
+
+212/557 Testing: vst3.photo_view.fine_steps
+212/557 Test: vst3.photo_view.fine_steps
+Command: "/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_photo_view_tests" "fine_steps"
+Directory: /home/agent/rhoades-9a04c9726e31/build
+"vst3.photo_view.fine_steps" start time: Nov 24 11:07 MST
+Output:
+----------------------------------------------------------
+PASS fine_steps
+PhotoView interaction: 1 cases, 88 checks, 0 failures
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"vst3.photo_view.fine_steps" end time: Nov 24 11:07 MST
+"vst3.photo_view.fine_steps" time elapsed: 00:00:00
+----------------------------------------------------------
+
+213/557 Testing: vst3.photo_view.rejected_edits
+213/557 Test: vst3.photo_view.rejected_edits
+Command: "/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_photo_view_tests" "rejected_edits"
+Directory: /home/agent/rhoades-9a04c9726e31/build
+"vst3.photo_view.rejected_edits" start time: Nov 24 11:07 MST
+Output:
+----------------------------------------------------------
+PASS rejected_edits
+PhotoView interaction: 1 cases, 50 checks, 0 failures
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"vst3.photo_view.rejected_edits" end time: Nov 24 11:07 MST
+"vst3.photo_view.rejected_edits" time elapsed: 00:00:00
+----------------------------------------------------------
+
+214/557 Testing: vst3.photo_view.end_cancel_idempotent
+214/557 Test: vst3.photo_view.end_cancel_idempotent
+Command: "/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_photo_view_tests" "end_cancel_idempotent"
+Directory: /home/agent/rhoades-9a04c9726e31/build
+"vst3.photo_view.end_cancel_idempotent" start time: Nov 24 11:07 MST
+Output:
+----------------------------------------------------------
+PASS end_cancel_idempotent
+PhotoView interaction: 1 cases, 22 checks, 0 failures
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"vst3.photo_view.end_cancel_idempotent" end time: Nov 24 11:07 MST
+"vst3.photo_view.end_cancel_idempotent" time elapsed: 00:00:00
+----------------------------------------------------------
+
+215/557 Testing: vst3.photo_view.begin_cancel_drag
+215/557 Test: vst3.photo_view.begin_cancel_drag
+Command: "/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_photo_view_tests" "begin_cancel_drag"
+Directory: /home/agent/rhoades-9a04c9726e31/build
+"vst3.photo_view.begin_cancel_drag" start time: Nov 24 11:07 MST
+Output:
+----------------------------------------------------------
+PASS begin_cancel_drag
+PhotoView interaction: 1 cases, 27 checks, 0 failures
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"vst3.photo_view.begin_cancel_drag" end time: Nov 24 11:07 MST
+"vst3.photo_view.begin_cancel_drag" time elapsed: 00:00:00
+----------------------------------------------------------
+
+216/557 Testing: vst3.photo_view.begin_cancel_wheel
+216/557 Test: vst3.photo_view.begin_cancel_wheel
+Command: "/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_photo_view_tests" "begin_cancel_wheel"
+Directory: /home/agent/rhoades-9a04c9726e31/build
+"vst3.photo_view.begin_cancel_wheel" start time: Nov 24 11:07 MST
+Output:
+----------------------------------------------------------
+PASS begin_cancel_wheel
+PhotoView interaction: 1 cases, 22 checks, 0 failures
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"vst3.photo_view.begin_cancel_wheel" end time: Nov 24 11:07 MST
+"vst3.photo_view.begin_cancel_wheel" time elapsed: 00:00:00
+----------------------------------------------------------
+
+217/557 Testing: vst3.photo_view.begin_cancel_switch
+217/557 Test: vst3.photo_view.begin_cancel_switch
+Command: "/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_photo_view_tests" "begin_cancel_switch"
+Directory: /home/agent/rhoades-9a04c9726e31/build
+"vst3.photo_view.begin_cancel_switch" start time: Nov 24 11:07 MST
+Output:
+----------------------------------------------------------
+PASS begin_cancel_switch
+PhotoView interaction: 1 cases, 20 checks, 0 failures
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"vst3.photo_view.begin_cancel_switch" end time: Nov 24 11:07 MST
+"vst3.photo_view.begin_cancel_switch" time elapsed: 00:00:00
+----------------------------------------------------------
+
+218/557 Testing: vst3.photo_view.end_cancel_new_press
+218/557 Test: vst3.photo_view.end_cancel_new_press
+Command: "/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_photo_view_tests" "end_cancel_new_press"
+Directory: /home/agent/rhoades-9a04c9726e31/build
+"vst3.photo_view.end_cancel_new_press" start time: Nov 24 11:07 MST
+Output:
+----------------------------------------------------------
+PASS end_cancel_new_press
+PhotoView interaction: 1 cases, 21 checks, 0 failures
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"vst3.photo_view.end_cancel_new_press" end time: Nov 24 11:07 MST
+"vst3.photo_view.end_cancel_new_press" time elapsed: 00:00:00
+----------------------------------------------------------
+
+219/557 Testing: vst3.photo_view.perform_cancel_drag
+219/557 Test: vst3.photo_view.perform_cancel_drag
+Command: "/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_photo_view_tests" "perform_cancel_drag"
+Directory: /home/agent/rhoades-9a04c9726e31/build
+"vst3.photo_view.perform_cancel_drag" start time: Nov 24 11:07 MST
+Output:
+----------------------------------------------------------
+PASS perform_cancel_drag
+PhotoView interaction: 1 cases, 32 checks, 0 failures
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"vst3.photo_view.perform_cancel_drag" end time: Nov 24 11:07 MST
+"vst3.photo_view.perform_cancel_drag" time elapsed: 00:00:00
+----------------------------------------------------------
+
+220/557 Testing: vst3.photo_view.perform_cancel_host_update
+220/557 Test: vst3.photo_view.perform_cancel_host_update
+Command: "/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_photo_view_tests" "perform_cancel_host_update"
+Directory: /home/agent/rhoades-9a04c9726e31/build
+"vst3.photo_view.perform_cancel_host_update" start time: Nov 24 11:07 MST
+Output:
+----------------------------------------------------------
+PASS perform_cancel_host_update
+PhotoView interaction: 1 cases, 25 checks, 0 failures
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"vst3.photo_view.perform_cancel_host_update" end time: Nov 24 11:07 MST
+"vst3.photo_view.perform_cancel_host_update" time elapsed: 00:00:00
+----------------------------------------------------------
+
+221/557 Testing: vst3.photo_view.audition_drag
+221/557 Test: vst3.photo_view.audition_drag
+Command: "/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_photo_view_tests" "audition_drag"
+Directory: /home/agent/rhoades-9a04c9726e31/build
+"vst3.photo_view.audition_drag" start time: Nov 24 11:07 MST
+Output:
+----------------------------------------------------------
+PASS audition_drag
+PhotoView interaction: 1 cases, 93 checks, 0 failures
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"vst3.photo_view.audition_drag" end time: Nov 24 11:07 MST
+"vst3.photo_view.audition_drag" time elapsed: 00:00:00
+----------------------------------------------------------
+
+222/557 Testing: vst3.photo_view.audition_cancel_dispatch
+222/557 Test: vst3.photo_view.audition_cancel_dispatch
+Command: "/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_photo_view_tests" "audition_cancel_dispatch"
+Directory: /home/agent/rhoades-9a04c9726e31/build
+"vst3.photo_view.audition_cancel_dispatch" start time: Nov 24 11:07 MST
+Output:
+----------------------------------------------------------
+PASS audition_cancel_dispatch
+PhotoView interaction: 1 cases, 87 checks, 0 failures
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"vst3.photo_view.audition_cancel_dispatch" end time: Nov 24 11:07 MST
+"vst3.photo_view.audition_cancel_dispatch" time elapsed: 00:00:00
+----------------------------------------------------------
+
+223/557 Testing: vst3.photo_view.audition_cancel_allocation
+223/557 Test: vst3.photo_view.audition_cancel_allocation
+Command: "/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_photo_view_tests" "audition_cancel_allocation"
+Directory: /home/agent/rhoades-9a04c9726e31/build
+"vst3.photo_view.audition_cancel_allocation" start time: Nov 24 11:07 MST
+Output:
+----------------------------------------------------------
+PASS audition_cancel_allocation
+PhotoView interaction: 1 cases, 88 checks, 0 failures
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"vst3.photo_view.audition_cancel_allocation" end time: Nov 24 11:07 MST
+"vst3.photo_view.audition_cancel_allocation" time elapsed: 00:00:00
+----------------------------------------------------------
+
+224/557 Testing: vst3.photo_view.audition_cancel_sibling
+224/557 Test: vst3.photo_view.audition_cancel_sibling
+Command: "/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_photo_view_tests" "audition_cancel_sibling"
+Directory: /home/agent/rhoades-9a04c9726e31/build
+"vst3.photo_view.audition_cancel_sibling" start time: Nov 24 11:07 MST
+Output:
+----------------------------------------------------------
+PASS audition_cancel_sibling
+PhotoView interaction: 1 cases, 92 checks, 0 failures
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"vst3.photo_view.audition_cancel_sibling" end time: Nov 24 11:07 MST
+"vst3.photo_view.audition_cancel_sibling" time elapsed: 00:00:00
+----------------------------------------------------------
+
+225/557 Testing: vst3.photo_view.observer_cancel_rollback
+225/557 Test: vst3.photo_view.observer_cancel_rollback
+Command: "/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_photo_view_tests" "observer_cancel_rollback"
+Directory: /home/agent/rhoades-9a04c9726e31/build
+"vst3.photo_view.observer_cancel_rollback" start time: Nov 24 11:07 MST
+Output:
+----------------------------------------------------------
+PASS observer_cancel_rollback
+PhotoView interaction: 1 cases, 73 checks, 0 failures
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"vst3.photo_view.observer_cancel_rollback" end time: Nov 24 11:07 MST
+"vst3.photo_view.observer_cancel_rollback" time elapsed: 00:00:00
+----------------------------------------------------------
+
+226/557 Testing: vst3.photo_view.observer_cancel_host_changed
+226/557 Test: vst3.photo_view.observer_cancel_host_changed
+Command: "/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_photo_view_tests" "observer_cancel_host_changed"
+Directory: /home/agent/rhoades-9a04c9726e31/build
+"vst3.photo_view.observer_cancel_host_changed" start time: Nov 24 11:07 MST
+Output:
+----------------------------------------------------------
+PASS observer_cancel_host_changed
+PhotoView interaction: 1 cases, 31 checks, 0 failures
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"vst3.photo_view.observer_cancel_host_changed" end time: Nov 24 11:07 MST
+"vst3.photo_view.observer_cancel_host_changed" time elapsed: 00:00:00
+----------------------------------------------------------
+
+227/557 Testing: vst3.photo_view.observer_cancel_host_equal
+227/557 Test: vst3.photo_view.observer_cancel_host_equal
+Command: "/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_photo_view_tests" "observer_cancel_host_equal"
+Directory: /home/agent/rhoades-9a04c9726e31/build
+"vst3.photo_view.observer_cancel_host_equal" start time: Nov 24 11:07 MST
+Output:
+----------------------------------------------------------
+PASS observer_cancel_host_equal
+PhotoView interaction: 1 cases, 31 checks, 0 failures
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"vst3.photo_view.observer_cancel_host_equal" end time: Nov 24 11:07 MST
+"vst3.photo_view.observer_cancel_host_equal" time elapsed: 00:00:00
+----------------------------------------------------------
+
+228/557 Testing: vst3.photo_view.perform_reject_host_equal
+228/557 Test: vst3.photo_view.perform_reject_host_equal
+Command: "/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_photo_view_tests" "perform_reject_host_equal"
+Directory: /home/agent/rhoades-9a04c9726e31/build
+"vst3.photo_view.perform_reject_host_equal" start time: Nov 24 11:07 MST
+Output:
+----------------------------------------------------------
+PASS perform_reject_host_equal
+PhotoView interaction: 1 cases, 61 checks, 0 failures
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"vst3.photo_view.perform_reject_host_equal" end time: Nov 24 11:07 MST
+"vst3.photo_view.perform_reject_host_equal" time elapsed: 00:00:00
+----------------------------------------------------------
+
+229/557 Testing: vst3.photo_view.perform_reject_other_parameter
+229/557 Test: vst3.photo_view.perform_reject_other_parameter
+Command: "/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_photo_view_tests" "perform_reject_other_parameter"
+Directory: /home/agent/rhoades-9a04c9726e31/build
+"vst3.photo_view.perform_reject_other_parameter" start time: Nov 24 11:07 MST
+Output:
+----------------------------------------------------------
+PASS perform_reject_other_parameter
+PhotoView interaction: 1 cases, 55 checks, 0 failures
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"vst3.photo_view.perform_reject_other_parameter" end time: Nov 24 11:07 MST
+"vst3.photo_view.perform_reject_other_parameter" time elapsed: 00:00:00
+----------------------------------------------------------
+
+230/557 Testing: vst3.photo_view.keyboard_cancel_edit
+230/557 Test: vst3.photo_view.keyboard_cancel_edit
+Command: "/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_photo_view_tests" "keyboard_cancel_edit"
+Directory: /home/agent/rhoades-9a04c9726e31/build
+"vst3.photo_view.keyboard_cancel_edit" start time: Nov 24 11:07 MST
+Output:
+----------------------------------------------------------
+PASS keyboard_cancel_edit
+PhotoView interaction: 1 cases, 90 checks, 0 failures
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"vst3.photo_view.keyboard_cancel_edit" end time: Nov 24 11:07 MST
+"vst3.photo_view.keyboard_cancel_edit" time elapsed: 00:00:00
+----------------------------------------------------------
+
+231/557 Testing: vst3.photo_view.keyboard_cancel_tab
+231/557 Test: vst3.photo_view.keyboard_cancel_tab
+Command: "/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_photo_view_tests" "keyboard_cancel_tab"
+Directory: /home/agent/rhoades-9a04c9726e31/build
+"vst3.photo_view.keyboard_cancel_tab" start time: Nov 24 11:07 MST
+Output:
+----------------------------------------------------------
+PASS keyboard_cancel_tab
+PhotoView interaction: 1 cases, 106 checks, 0 failures
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"vst3.photo_view.keyboard_cancel_tab" end time: Nov 24 11:07 MST
+"vst3.photo_view.keyboard_cancel_tab" time elapsed: 00:00:00
+----------------------------------------------------------
+
+232/557 Testing: vst3.photo_view.keyboard_audition_cancel_edit
+232/557 Test: vst3.photo_view.keyboard_audition_cancel_edit
+Command: "/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_photo_view_tests" "keyboard_audition_cancel_edit"
+Directory: /home/agent/rhoades-9a04c9726e31/build
+"vst3.photo_view.keyboard_audition_cancel_edit" start time: Nov 24 11:07 MST
+Output:
+----------------------------------------------------------
+PASS keyboard_audition_cancel_edit
+PhotoView interaction: 1 cases, 196 checks, 0 failures
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"vst3.photo_view.keyboard_audition_cancel_edit" end time: Nov 24 11:07 MST
+"vst3.photo_view.keyboard_audition_cancel_edit" time elapsed: 00:00:00
+----------------------------------------------------------
+
+233/557 Testing: vst3.photo_view.audition_glissando_cancel_dispatch
+233/557 Test: vst3.photo_view.audition_glissando_cancel_dispatch
+Command: "/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_photo_view_tests" "audition_glissando_cancel_dispatch"
+Directory: /home/agent/rhoades-9a04c9726e31/build
+"vst3.photo_view.audition_glissando_cancel_dispatch" start time: Nov 24 11:07 MST
+Output:
+----------------------------------------------------------
+PASS audition_glissando_cancel_dispatch
+PhotoView interaction: 1 cases, 99 checks, 0 failures
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"vst3.photo_view.audition_glissando_cancel_dispatch" end time: Nov 24 11:07 MST
+"vst3.photo_view.audition_glissando_cancel_dispatch" time elapsed: 00:00:00
+----------------------------------------------------------
+
+234/557 Testing: vst3.photo_view.audition_glissando_cancel_allocation
+234/557 Test: vst3.photo_view.audition_glissando_cancel_allocation
+Command: "/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_photo_view_tests" "audition_glissando_cancel_allocation"
+Directory: /home/agent/rhoades-9a04c9726e31/build
+"vst3.photo_view.audition_glissando_cancel_allocation" start time: Nov 24 11:07 MST
+Output:
+----------------------------------------------------------
+PASS audition_glissando_cancel_allocation
+PhotoView interaction: 1 cases, 97 checks, 0 failures
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"vst3.photo_view.audition_glissando_cancel_allocation" end time: Nov 24 11:07 MST
+"vst3.photo_view.audition_glissando_cancel_allocation" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Nov 24 11:07 MST
+
+editor =   0.17 sec*proc
+
+interaction =   0.17 sec*proc
+

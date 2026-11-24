@@ -17,6 +17,7 @@
 #include <array>
 #include <chrono>
 #include <cmath>
+#include <cstdint>
 #include <cstdio>
 #include <cstring>
 #include <limits>
@@ -121,7 +122,8 @@ public:
         // Discard any loss from the previous interaction before starting this
         // click. The platform assigns native focus after this callback returns.
         (void)native_focus_lost(true);
-        if (!cancel_interaction()) {
+        const auto cancellation = cancellation_generation_;
+        if (!cancel_interaction() || cancellation_generation_ != cancellation + 1) {
             event.consumed = true;
             event.ignoreFollowUpMoveAndUpEvents(true);
             return;
@@ -193,10 +195,10 @@ public:
 
     void onMouseUpEvent(MouseUpEvent& event) override {
         if (!dragging_control_ && !dragging_keyboard_) { return; }
-        finish_gesture();
-        release_key();
         dragging_control_ = false;
         dragging_keyboard_ = false;
+        finish_gesture();
+        release_key();
         event.consumed = true;
     }
 
@@ -241,7 +243,10 @@ public:
             return;
         }
         if (event.virt == VirtualKey::Tab) {
-            cancel_interaction();
+            const auto cancellation = cancellation_generation_;
+            const bool released = cancel_interaction();
+            event.consumed = true;
+            if (!released || cancellation_generation_ != cancellation + 1) { return; }
             const auto found = std::find(kTabOrder.begin(), kTabOrder.end(), focused_parameter_);
             int index = found == kTabOrder.end() ? -1 :
                 static_cast<int>(std::distance(kTabOrder.begin(), found));
@@ -272,7 +277,10 @@ public:
             break;
         default: return;
         }
-        cancel_interaction();
+        const auto cancellation = cancellation_generation_;
+        const bool released = cancel_interaction();
+        event.consumed = true;
+        if (!released || cancellation_generation_ != cancellation + 1) { return; }
         focus_parameter(id);
         edit_once(id, next);
         event.consumed = true;
@@ -320,10 +328,11 @@ public:
     }
 
     bool cancel_interaction() {
-        finish_gesture();
-        const bool released = release_key();
+        ++cancellation_generation_;
         dragging_control_ = false;
         dragging_keyboard_ = false;
+        finish_gesture();
+        const bool released = release_key();
         hover_parameter_ = -1;
         hover_key_ = -1;
         clear_feedback();
@@ -362,9 +371,20 @@ private:
     }
 
     bool begin_gesture(int id) {
+        const auto cancellation = cancellation_generation_;
         finish_gesture();
-        if (controller_.getParameterObject(static_cast<ParamID>(id)) == nullptr ||
-            !succeeded(controller_.beginEdit(static_cast<ParamID>(id)))) {
+        if (cancellation_generation_ != cancellation) { return false; }
+        const auto tag = static_cast<ParamID>(id);
+        const bool accepted = controller_.getParameterObject(tag) != nullptr &&
+            succeeded(controller_.beginEdit(tag));
+        if (cancellation_generation_ != cancellation) {
+            // A synchronous callback can cancel before beginEdit returns. The
+            // accepted begin still needs exactly one matching end, but must
+            // never publish a gesture or restart the canceled drag.
+            if (accepted) { (void)controller_.endEdit(tag); }
+            return false;
+        }
+        if (!accepted) {
             show_parameter(id, "Host unavailable for editing");
             return false;
         }
@@ -379,26 +399,46 @@ private:
         const auto tag = static_cast<ParamID>(id);
         next = std::clamp(next, 0.0, 1.0);
         const double previous = value(id);
+        const auto cancellation = cancellation_generation_;
+        const auto submitted_revision = controller_.parameterRevision(tag) + 1;
         if (!succeeded(controller_.setParamNormalized(tag, next))) {
-            show_parameter(id, "Parameter edit rejected");
+            if (cancellation_generation_ == cancellation) {
+                show_parameter(id, "Parameter edit rejected");
+            }
             return;
         }
+        // SDK parameter observers run synchronously inside the setter. A
+        // cancellation may already have ended this gesture, or a newer host
+        // write may have replaced even an equal-valued provisional edit.
+        if (cancellation_generation_ != cancellation) {
+            if (controller_.parameterRevision(tag) == submitted_revision) {
+                (void)controller_.setParamNormalized(tag, previous);
+            }
+            return;
+        }
+        if (controller_.parameterRevision(tag) != submitted_revision) { return; }
         // The controller may quantize a normalized value. Send that canonical
         // value to the host, rather than a different GUI-side approximation.
         if (!succeeded(controller_.performEdit(tag, value(id)))) {
-            (void)controller_.setParamNormalized(tag, previous);
-            show_parameter(id, "Host rejected parameter edit");
+            if (controller_.parameterRevision(tag) == submitted_revision) {
+                (void)controller_.setParamNormalized(tag, previous);
+            }
+            if (cancellation_generation_ == cancellation) {
+                show_parameter(id, "Host rejected parameter edit");
+            }
             return;
         }
-        show_parameter(id);
+        if (cancellation_generation_ == cancellation) { show_parameter(id); }
     }
 
     void finish_gesture() {
         if (gesture_parameter_ < 0) { return; }
         const int id = gesture_parameter_;
+        const auto cancellation = cancellation_generation_;
         // Clear before calling the host, whose callback can re-enter teardown.
         gesture_parameter_ = -1;
-        if (!succeeded(controller_.endEdit(static_cast<ParamID>(id)))) {
+        if (!succeeded(controller_.endEdit(static_cast<ParamID>(id))) &&
+            cancellation_generation_ == cancellation) {
             show_parameter(id, "Host did not acknowledge end edit");
         }
     }
@@ -426,12 +466,25 @@ private:
 
     void move_audition(int key) {
         if (key == held_key_ && controller_.heldAuditionKey(audition_owner_) == key) { return; }
+        const auto cancellation = cancellation_generation_;
         const bool released = release_key();
+        if (cancellation_generation_ != cancellation) { return; }
         if (key < 0) { clear_feedback(); return; }
+        const bool accepted = released &&
+            controller_.auditionNote(audition_owner_, key, true, 0.75F);
+        if (cancellation_generation_ != cancellation) {
+            // Allocation/dispatch callbacks can cancel after controller
+            // ownership is assigned but before its note-down is delivered.
+            // Release only this view, after that pending down has returned.
+            if (accepted && controller_.heldAuditionKey(audition_owner_) == key) {
+                (void)controller_.auditionNote(audition_owner_, key, false, 0.0F);
+            }
+            return;
+        }
         feedback_parameter_ = -1;
         feedback_key_ = key;
         status_ = nullptr;
-        if (released && controller_.auditionNote(audition_owner_, key, true, 0.75F)) {
+        if (accepted) {
             held_key_ = key;
         } else {
             status_ = "Audition unavailable";
@@ -504,6 +557,11 @@ private:
             }
             path->closeSubpath();
         }
+        // Independently snapping the long outline and its shorter clipped
+        // edges breaks their collinearity and paints seams inside black keys.
+        // Preserve fractional vertices for this shared even-odd path.
+        context.saveGlobalState();
+        context.setDrawMode(kAntiAliasing | kNonIntegralMode);
         context.setFillColor(CColor{245, 213, 150, static_cast<uint8_t>(pressed ? 80 : 28)});
         context.setFrameColor(CColor{255, 234, 190, 185});
         context.setLineWidth(1.5);
@@ -511,6 +569,7 @@ private:
         if (shape.stroke_outline) {
             context.drawGraphicsPath(path, CDrawContext::kPathStroked);
         }
+        context.restoreGlobalState();
     }
 
     static void draw_control(CDrawContext& context, int id) {
@@ -595,6 +654,7 @@ private:
     const RhodesController::AuditionOwner audition_owner_;
     SharedPointer<CBitmap> photograph_;
     PhotoNativeFocus native_focus_;
+    std::uint64_t cancellation_generation_ = 0;
     int gesture_parameter_ = -1;
     int focused_parameter_ = -1;
     int hover_parameter_ = -1;

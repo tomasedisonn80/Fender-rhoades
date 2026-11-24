@@ -1,0 +1,44 @@
+Internal ctest changing into directory: /home/agent/rhoades-9a04c9726e31/build
+Test project /home/agent/rhoades-9a04c9726e31/build
+      Start 209: vst3.photo_view.rapid_switches
+ 1/17 Test #209: vst3.photo_view.rapid_switches ...............   Passed    0.01 sec
+      Start 210: vst3.photo_view.continuous_reset
+ 2/17 Test #210: vst3.photo_view.continuous_reset .............   Passed    0.01 sec
+      Start 211: vst3.photo_view.host_shortcuts
+ 3/17 Test #211: vst3.photo_view.host_shortcuts ...............   Passed    0.01 sec
+      Start 212: vst3.photo_view.fine_steps
+ 4/17 Test #212: vst3.photo_view.fine_steps ...................   Passed    0.00 sec
+      Start 213: vst3.photo_view.rejected_edits
+ 5/17 Test #213: vst3.photo_view.rejected_edits ...............   Passed    0.01 sec
+      Start 214: vst3.photo_view.end_cancel_idempotent
+ 6/17 Test #214: vst3.photo_view.end_cancel_idempotent ........   Passed    0.01 sec
+      Start 215: vst3.photo_view.begin_cancel_drag
+ 7/17 Test #215: vst3.photo_view.begin_cancel_drag ............   Passed    0.00 sec
+      Start 216: vst3.photo_view.begin_cancel_wheel
+ 8/17 Test #216: vst3.photo_view.begin_cancel_wheel ...........   Passed    0.01 sec
+      Start 217: vst3.photo_view.begin_cancel_switch
+ 9/17 Test #217: vst3.photo_view.begin_cancel_switch ..........   Passed    0.01 sec
+      Start 218: vst3.photo_view.end_cancel_new_press
+10/17 Test #218: vst3.photo_view.end_cancel_new_press .........   Passed    0.01 sec
+      Start 219: vst3.photo_view.perform_cancel_drag
+11/17 Test #219: vst3.photo_view.perform_cancel_drag ..........   Passed    0.01 sec
+      Start 220: vst3.photo_view.perform_cancel_host_update
+12/17 Test #220: vst3.photo_view.perform_cancel_host_update ...   Passed    0.01 sec
+      Start 221: vst3.photo_view.audition_drag
+13/17 Test #221: vst3.photo_view.audition_drag ................   Passed    0.01 sec
+      Start 222: vst3.photo_view.audition_cancel_dispatch
+14/17 Test #222: vst3.photo_view.audition_cancel_dispatch .....   Passed    0.01 sec
+      Start 223: vst3.photo_view.audition_cancel_allocation
+15/17 Test #223: vst3.photo_view.audition_cancel_allocation ...   Passed    0.01 sec
+      Start 224: vst3.photo_view.audition_cancel_sibling
+16/17 Test #224: vst3.photo_view.audition_cancel_sibling ......   Passed    0.00 sec
+      Start 226: vst3.controller_revision
+17/17 Test #226: vst3.controller_revision .....................   Passed    0.00 sec
+
+100% tests passed, 0 tests failed out of 17
+
+Label Time Summary:
+editor         =   0.09 sec*proc (16 tests)
+interaction    =   0.09 sec*proc (16 tests)
+
+Total Test time (real) =   0.11 sec

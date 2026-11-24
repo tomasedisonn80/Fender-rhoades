@@ -1,0 +1,10 @@
+{
+  "source_commit": "c6d695dec8287a9b63aa814ae27d919421116165",
+  "command": "ctest --test-dir /home/agent/rhoades-9a04c9726e31/build-core -R ^photo_ --output-on-failure",
+  "configuration": "Release, GNU14.2.0, Linuxx86_64, CMAKE_DISABLE_PRECOMPILE_HEADERS=ON",
+  "tests": 9,
+  "passed": 9,
+  "failed": 0,
+  "scope": "Original geometry plus new visible-key highlight mask; no native raster claim",
+  "raw_log": "docs/validation/photo-continuation-20261124/geometry-c6d695d.log"
+}

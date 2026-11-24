@@ -1,0 +1,77 @@
+Internal ctest changing into directory: /home/agent/rhoades-9a04c9726e31/build
+Test project /home/agent/rhoades-9a04c9726e31/build
+      Start 209: vst3.photo_view.rapid_switches
+ 1/16 Test #209: vst3.photo_view.rapid_switches ...............   Passed    0.01 sec
+      Start 210: vst3.photo_view.continuous_reset
+ 2/16 Test #210: vst3.photo_view.continuous_reset .............   Passed    0.01 sec
+      Start 211: vst3.photo_view.host_shortcuts
+ 3/16 Test #211: vst3.photo_view.host_shortcuts ...............   Passed    0.01 sec
+      Start 212: vst3.photo_view.fine_steps
+ 4/16 Test #212: vst3.photo_view.fine_steps ...................   Passed    0.01 sec
+      Start 213: vst3.photo_view.rejected_edits
+ 5/16 Test #213: vst3.photo_view.rejected_edits ...............   Passed    0.01 sec
+      Start 214: vst3.photo_view.end_cancel_idempotent
+ 6/16 Test #214: vst3.photo_view.end_cancel_idempotent ........   Passed    0.01 sec
+      Start 215: vst3.photo_view.begin_cancel_drag
+ 7/16 Test #215: vst3.photo_view.begin_cancel_drag ............***Failed    0.01 sec
+FAIL begin_cancel_drag: unexpected number of host edit callbacks
+PhotoView interaction: 1 cases, 8 checks, 1 failures
+
+      Start 216: vst3.photo_view.begin_cancel_wheel
+ 8/16 Test #216: vst3.photo_view.begin_cancel_wheel ...........***Failed    0.01 sec
+FAIL begin_cancel_wheel: controller value differs
+PhotoView interaction: 1 cases, 7 checks, 1 failures
+
+      Start 217: vst3.photo_view.begin_cancel_switch
+ 9/16 Test #217: vst3.photo_view.begin_cancel_switch ..........***Failed    0.01 sec
+FAIL begin_cancel_switch: controller value differs
+PhotoView interaction: 1 cases, 7 checks, 1 failures
+
+      Start 218: vst3.photo_view.end_cancel_new_press
+10/16 Test #218: vst3.photo_view.end_cancel_new_press .........***Failed    0.00 sec
+FAIL end_cancel_new_press: unexpected number of host edit callbacks
+PhotoView interaction: 1 cases, 8 checks, 1 failures
+
+      Start 219: vst3.photo_view.perform_cancel_drag
+11/16 Test #219: vst3.photo_view.perform_cancel_drag ..........   Passed    0.01 sec
+      Start 220: vst3.photo_view.perform_cancel_host_update
+12/16 Test #220: vst3.photo_view.perform_cancel_host_update ...***Failed    0.01 sec
+FAIL perform_cancel_host_update: controller value differs
+PhotoView interaction: 1 cases, 8 checks, 1 failures
+
+      Start 221: vst3.photo_view.audition_drag
+13/16 Test #221: vst3.photo_view.audition_drag ................   Passed    0.01 sec
+      Start 222: vst3.photo_view.audition_cancel_dispatch
+14/16 Test #222: vst3.photo_view.audition_cancel_dispatch .....***Failed    0.01 sec
+FAIL audition_cancel_dispatch: accepted audition note remains held
+PhotoView interaction: 1 cases, 7 checks, 1 failures
+
+      Start 223: vst3.photo_view.audition_cancel_allocation
+15/16 Test #223: vst3.photo_view.audition_cancel_allocation ...***Failed    0.01 sec
+FAIL audition_cancel_allocation: accepted audition note remains held
+PhotoView interaction: 1 cases, 8 checks, 1 failures
+
+      Start 224: vst3.photo_view.audition_cancel_sibling
+16/16 Test #224: vst3.photo_view.audition_cancel_sibling ......***Failed    0.01 sec
+FAIL audition_cancel_sibling: focus cancellation retained its note or released a sibling's note
+PhotoView interaction: 1 cases, 7 checks, 1 failures
+
+
+50% tests passed, 8 tests failed out of 16
+
+Label Time Summary:
+editor         =   0.10 sec*proc (16 tests)
+interaction    =   0.10 sec*proc (16 tests)
+
+Total Test time (real) =   0.11 sec
+
+The following tests FAILED:
+	215 - vst3.photo_view.begin_cancel_drag (Failed)        editor interaction
+	216 - vst3.photo_view.begin_cancel_wheel (Failed)       editor interaction
+	217 - vst3.photo_view.begin_cancel_switch (Failed)      editor interaction
+	218 - vst3.photo_view.end_cancel_new_press (Failed)     editor interaction
+	220 - vst3.photo_view.perform_cancel_host_update (Failed) editor interaction
+	222 - vst3.photo_view.audition_cancel_dispatch (Failed) editor interaction
+	223 - vst3.photo_view.audition_cancel_allocation (Failed) editor interaction
+	224 - vst3.photo_view.audition_cancel_sibling (Failed)  editor interaction
+Errors while running CTest

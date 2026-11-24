@@ -1,0 +1,21 @@
+{
+  "base_commit": "c6d695dec8287a9b63aa814ae27d919421116165",
+  "configuration": "GCC 14.2 Release C++20, pinned official SDK, project warnings as errors, PCH disabled",
+  "scope": "26 production PhotoView callbacks; controller mutation revisions; native X11 key conversion; loaded all-model state flow at prior native-cancellation-build manifest",
+  "files": {
+    "plugins/vst3/photo_editor.cpp": "688de52a2e5add8b8f3289f518446ca4d4c6f56d73ca866eb9ad2d1fec606e4a",
+    "plugins/vst3/controller.cpp": "91fbb8251e1244de4b2c4df3256a1b70db184dee4314823a31893f91efc5e22a",
+    "plugins/vst3/controller.hpp": "1171e798be72abd5d8a1c06fdd35490ca7ac8a18c50af4fdcd5b65539d03f054",
+    "tests/cpp/photo_view_interaction_test.cpp": "3dc50ab4f2d77b0eb0d2e9fb65e455a3a90a6c59081782853f1ae394116481cb",
+    "tests/cpp/vst3_controller_revision_test.cpp": "4f723355c49e9632596c862bf0d7ad733c6ddccbb29079cdb771b3cc5c5b3009",
+    "tests/cpp/vst3_loaded_expression_test.cpp": "c31de34334de4ec33fb3a2680520e6950956344ebe17cc5bc82cb363ccd813c5",
+    "tests/cpp/vstgui_x11_keyboard_test.cpp": "2cc4a6d861b9b8e7115f492345ab95587fec937be145475eca71626201102a2b",
+    "cmake/Vst3.cmake": "ca9c899bad56607402da17d1d5ccba922367954b965320e4c27b46ebd1c6ea5c"
+  },
+  "executables": {
+    "rhodes_vst3_photo_view_tests": "05d2ac924497aab120ad2059007c2b0cfe349ee73a8dfecb8a2fae187edfcd75",
+    "rhodes_vst3_controller_revision_tests": "9003d26e366ce945acbc87981b479c96c6f995c5d1ac4cd36e99f36a1ff79581",
+    "rhodes_vst3_loaded_expression_tests": "57b76266ca45d964432d944bb64229d104ab90b47763f0d4f226a459745f1fea",
+    "rhodes_vstgui_x11_keyboard_tests": "34294cb588de927ab28eb11c18a6dbf7e4aab1b746c44a20301cc44d12aaac24"
+  }
+}

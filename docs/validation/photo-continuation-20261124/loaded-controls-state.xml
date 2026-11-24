@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Linux-c++"
+	tests="1"
+	failures="0"
+	disabled="0"
+	skipped="0"
+	hostname="4f398b69b6a5"
+	time="0"
+	timestamp="2026-11-24T11:02:33"
+	>
+	<testcase name="vst3.loaded_expression_controls_state" classname="vst3.loaded_expression_controls_state" time="0.0707094" status="run">
+		<properties/>
+		<system-out>PASS loaded expression controls_state: 65644 checks, 621 loaded callbacks, 0 scalar samples, 162 rejected blocks, 12 foreign states, 105 guarded mono callbacks, 0 module load orders, 9/9 no-setup/stopped panel cases, 72 panel reopens, 108 atomic panel rejections, 36 foreign v3 states
+</system-out>
+	</testcase>
+</testsuite>

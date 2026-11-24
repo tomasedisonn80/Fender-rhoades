@@ -408,12 +408,21 @@ Steinberg::tresult PLUGIN_API RhodesController::setParamNormalized(
     if (!initialized_ || !known_parameter(tag) || !control::valid_normalized(value)) {
         return Steinberg::kInvalidArgument;
     }
+    // Match the SDK's rejection without recording an unaccepted mutation.
+    if (getParameterObject(tag) == nullptr) { return Steinberg::kResultFalse; }
     const double canonical = (tag == kGainId || tag == kExpressionId ||
                               panel_continuous_parameter(tag)) ?
         *control::widen(*control::quantize(value)) :
         (tag == kSustainId || tag == kVibratoId) ? (value >= 0.5 ? 1.0 : 0.0) :
         control::is_zero(value) ? 0.0 : value;
+    // Advance before setNormalized can synchronously notify SDK observers. A
+    // nested host write must remain distinguishable even if it has equal value.
+    if (tag < parameter_revisions_.size()) { ++parameter_revisions_[tag]; }
     return EditController::setParamNormalized(tag, canonical);
+}
+
+std::uint64_t RhodesController::parameterRevision(Steinberg::Vst::ParamID tag) const noexcept {
+    return tag < parameter_revisions_.size() ? parameter_revisions_[tag] : 0;
 }
 
 Steinberg::tresult PLUGIN_API RhodesController::getParamStringByValue(

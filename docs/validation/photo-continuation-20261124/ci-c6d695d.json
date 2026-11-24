@@ -1,0 +1,674 @@
+{
+  "head_sha": "c6d695dec8287a9b63aa814ae27d919421116165",
+  "runs": [
+    {
+      "id": 45449985855,
+      "name": "Experimental VST3 CI",
+      "status": "completed",
+      "conclusion": "failure",
+      "jobs": [
+        {
+          "id": 138644072781,
+          "name": "VST3 prototype / macos-latest",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "steps": []
+        },
+        {
+          "id": 138644073541,
+          "name": "VST3 prototype / windows-latest",
+          "status": "completed",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success"
+            },
+            {
+              "name": "Check out project",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "conclusion": "success"
+            },
+            {
+              "name": "Check out the fixed same-repository legacy source",
+              "conclusion": "success"
+            },
+            {
+              "name": "Check out the pinned official SDK",
+              "conclusion": "success"
+            },
+            {
+              "name": "Initialize the pinned SDK and native editor dependency",
+              "conclusion": "success"
+            },
+            {
+              "name": "Install Linux native editor development libraries",
+              "conclusion": "skipped"
+            },
+            {
+              "name": "Verify original and lossless editor assets",
+              "conclusion": "success"
+            },
+            {
+              "name": "Verify and retain source, SDK and all required submodule revisions",
+              "conclusion": "success"
+            },
+            {
+              "name": "Configure the fixed legacy modules with the same native toolchain",
+              "conclusion": "success"
+            },
+            {
+              "name": "Build only the three fixed legacy module targets",
+              "conclusion": "success"
+            },
+            {
+              "name": "Bind each baseline native module to its source and SHA-256",
+              "conclusion": "success"
+            },
+            {
+              "name": "Configure all three instruments with the native photo editor",
+              "conclusion": "success"
+            },
+            {
+              "name": "Require identical baseline and candidate compilers and generators",
+              "conclusion": "success"
+            },
+            {
+              "name": "Build all three actual modules and retained host tests",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run host tests, legacy unity comparisons and all three SDK validators",
+              "conclusion": "success"
+            },
+            {
+              "name": "Retain final source, SDK, compiler and actual module metadata",
+              "conclusion": "success"
+            },
+            {
+              "name": "Archive all three validated experimental bundles",
+              "conclusion": "success"
+            },
+            {
+              "name": "Upload validated experimental bundles",
+              "conclusion": "success"
+            },
+            {
+              "name": "Upload raw native diagnostics and legacy comparison captures",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Check out the pinned official SDK",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Check out the fixed same-repository legacy source",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Check out project",
+              "conclusion": "success"
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success"
+            }
+          ]
+        },
+        {
+          "id": 138644075249,
+          "name": "VST3 prototype / ubuntu-latest",
+          "status": "completed",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success"
+            },
+            {
+              "name": "Check out project",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "conclusion": "success"
+            },
+            {
+              "name": "Check out the fixed same-repository legacy source",
+              "conclusion": "success"
+            },
+            {
+              "name": "Check out the pinned official SDK",
+              "conclusion": "success"
+            },
+            {
+              "name": "Initialize the pinned SDK and native editor dependency",
+              "conclusion": "success"
+            },
+            {
+              "name": "Install Linux native editor development libraries",
+              "conclusion": "success"
+            },
+            {
+              "name": "Verify original and lossless editor assets",
+              "conclusion": "success"
+            },
+            {
+              "name": "Verify and retain source, SDK and all required submodule revisions",
+              "conclusion": "success"
+            },
+            {
+              "name": "Configure the fixed legacy modules with the same native toolchain",
+              "conclusion": "success"
+            },
+            {
+              "name": "Build only the three fixed legacy module targets",
+              "conclusion": "success"
+            },
+            {
+              "name": "Bind each baseline native module to its source and SHA-256",
+              "conclusion": "success"
+            },
+            {
+              "name": "Configure all three instruments with the native photo editor",
+              "conclusion": "success"
+            },
+            {
+              "name": "Require identical baseline and candidate compilers and generators",
+              "conclusion": "success"
+            },
+            {
+              "name": "Build all three actual modules and retained host tests",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run host tests, legacy unity comparisons and all three SDK validators",
+              "conclusion": "success"
+            },
+            {
+              "name": "Retain final source, SDK, compiler and actual module metadata",
+              "conclusion": "success"
+            },
+            {
+              "name": "Archive all three validated experimental bundles",
+              "conclusion": "success"
+            },
+            {
+              "name": "Upload validated experimental bundles",
+              "conclusion": "success"
+            },
+            {
+              "name": "Upload raw native diagnostics and legacy comparison captures",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Check out the pinned official SDK",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Check out the fixed same-repository legacy source",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Check out project",
+              "conclusion": "success"
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": 45449985874,
+      "name": "Foundation CI",
+      "status": "completed",
+      "conclusion": "failure",
+      "jobs": [
+        {
+          "id": 138644072516,
+          "name": "Address and undefined behavior sanitizers",
+          "status": "completed",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "conclusion": "success"
+            },
+            {
+              "name": "Bind diagnostics to the checked-out source",
+              "conclusion": "success"
+            },
+            {
+              "name": "Configure",
+              "conclusion": "success"
+            },
+            {
+              "name": "Build",
+              "conclusion": "success"
+            },
+            {
+              "name": "Test",
+              "conclusion": "success"
+            },
+            {
+              "name": "Retain final source and compiler metadata",
+              "conclusion": "success"
+            },
+            {
+              "name": "Upload raw sanitizer diagnostics",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+              "conclusion": "success"
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success"
+            }
+          ]
+        },
+        {
+          "id": 138644072839,
+          "name": "Project state / windows-latest",
+          "status": "completed",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "conclusion": "success"
+            },
+            {
+              "name": "Bind diagnostics to the checked-out source",
+              "conclusion": "success"
+            },
+            {
+              "name": "Validate canonical project state",
+              "conclusion": "success"
+            },
+            {
+              "name": "Reject stale generated state",
+              "conclusion": "success"
+            },
+            {
+              "name": "Validate data provenance contracts",
+              "conclusion": "success"
+            },
+            {
+              "name": "Check documentation integrity",
+              "conclusion": "success"
+            },
+            {
+              "name": "Validate actual-agent ledger",
+              "conclusion": "success"
+            },
+            {
+              "name": "Reject stale campaign index",
+              "conclusion": "success"
+            },
+            {
+              "name": "Validate development assignments and report hashes",
+              "conclusion": "success"
+            },
+            {
+              "name": "Reject stale development campaign index",
+              "conclusion": "success"
+            },
+            {
+              "name": "Validate continuation assignments and immutable report hashes",
+              "conclusion": "success"
+            },
+            {
+              "name": "Validate host interoperability assignments and report hashes",
+              "conclusion": "success"
+            },
+            {
+              "name": "Validate expression campaign assignments and report hashes",
+              "conclusion": "success"
+            },
+            {
+              "name": "Verify retained host MIDI raw evidence",
+              "conclusion": "success"
+            },
+            {
+              "name": "Validate quadrature assignments and immutable report hashes",
+              "conclusion": "success"
+            },
+            {
+              "name": "Reject stale quadrature campaign index",
+              "conclusion": "success"
+            },
+            {
+              "name": "Validate current development waves and report hashes",
+              "conclusion": "success"
+            },
+            {
+              "name": "Verify retained VST3 timing archives",
+              "conclusion": "success"
+            },
+            {
+              "name": "Reject stale audio filter coefficients",
+              "conclusion": "success"
+            },
+            {
+              "name": "Reject stale quadrature filter coefficients",
+              "conclusion": "success"
+            },
+            {
+              "name": "Verify independent control-text vectors",
+              "conclusion": "success"
+            },
+            {
+              "name": "Check agent tooling",
+              "conclusion": "success"
+            },
+            {
+              "name": "Retain final source and execution metadata",
+              "conclusion": "success"
+            },
+            {
+              "name": "Upload raw contract and Python diagnostics",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+              "conclusion": "success"
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success"
+            }
+          ]
+        },
+        {
+          "id": 138644072910,
+          "name": "Project state / macos-latest",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "steps": []
+        },
+        {
+          "id": 138644073016,
+          "name": "C++20 / windows-latest",
+          "status": "completed",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "conclusion": "success"
+            },
+            {
+              "name": "Bind diagnostics to the checked-out source",
+              "conclusion": "success"
+            },
+            {
+              "name": "Configure",
+              "conclusion": "success"
+            },
+            {
+              "name": "Build",
+              "conclusion": "success"
+            },
+            {
+              "name": "Verify analytical and integration behavior",
+              "conclusion": "success"
+            },
+            {
+              "name": "Retain final source and compiler metadata",
+              "conclusion": "success"
+            },
+            {
+              "name": "Upload raw C++ diagnostics",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+              "conclusion": "success"
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success"
+            }
+          ]
+        },
+        {
+          "id": 138644073087,
+          "name": "C++20 / ubuntu-latest",
+          "status": "completed",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "conclusion": "success"
+            },
+            {
+              "name": "Bind diagnostics to the checked-out source",
+              "conclusion": "success"
+            },
+            {
+              "name": "Configure",
+              "conclusion": "success"
+            },
+            {
+              "name": "Build",
+              "conclusion": "success"
+            },
+            {
+              "name": "Verify analytical and integration behavior",
+              "conclusion": "success"
+            },
+            {
+              "name": "Retain final source and compiler metadata",
+              "conclusion": "success"
+            },
+            {
+              "name": "Upload raw C++ diagnostics",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+              "conclusion": "success"
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success"
+            }
+          ]
+        },
+        {
+          "id": 138644073137,
+          "name": "Project state / ubuntu-latest",
+          "status": "completed",
+          "conclusion": "success",
+          "steps": [
+            {
+              "name": "Set up job",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+              "conclusion": "success"
+            },
+            {
+              "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "conclusion": "success"
+            },
+            {
+              "name": "Bind diagnostics to the checked-out source",
+              "conclusion": "success"
+            },
+            {
+              "name": "Validate canonical project state",
+              "conclusion": "success"
+            },
+            {
+              "name": "Reject stale generated state",
+              "conclusion": "success"
+            },
+            {
+              "name": "Validate data provenance contracts",
+              "conclusion": "success"
+            },
+            {
+              "name": "Check documentation integrity",
+              "conclusion": "success"
+            },
+            {
+              "name": "Validate actual-agent ledger",
+              "conclusion": "success"
+            },
+            {
+              "name": "Reject stale campaign index",
+              "conclusion": "success"
+            },
+            {
+              "name": "Validate development assignments and report hashes",
+              "conclusion": "success"
+            },
+            {
+              "name": "Reject stale development campaign index",
+              "conclusion": "success"
+            },
+            {
+              "name": "Validate continuation assignments and immutable report hashes",
+              "conclusion": "success"
+            },
+            {
+              "name": "Validate host interoperability assignments and report hashes",
+              "conclusion": "success"
+            },
+            {
+              "name": "Validate expression campaign assignments and report hashes",
+              "conclusion": "success"
+            },
+            {
+              "name": "Verify retained host MIDI raw evidence",
+              "conclusion": "success"
+            },
+            {
+              "name": "Validate quadrature assignments and immutable report hashes",
+              "conclusion": "success"
+            },
+            {
+              "name": "Reject stale quadrature campaign index",
+              "conclusion": "success"
+            },
+            {
+              "name": "Validate current development waves and report hashes",
+              "conclusion": "success"
+            },
+            {
+              "name": "Verify retained VST3 timing archives",
+              "conclusion": "success"
+            },
+            {
+              "name": "Reject stale audio filter coefficients",
+              "conclusion": "success"
+            },
+            {
+              "name": "Reject stale quadrature filter coefficients",
+              "conclusion": "success"
+            },
+            {
+              "name": "Verify independent control-text vectors",
+              "conclusion": "success"
+            },
+            {
+              "name": "Check agent tooling",
+              "conclusion": "success"
+            },
+            {
+              "name": "Retain final source and execution metadata",
+              "conclusion": "success"
+            },
+            {
+              "name": "Upload raw contract and Python diagnostics",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+              "conclusion": "success"
+            },
+            {
+              "name": "Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+              "conclusion": "success"
+            },
+            {
+              "name": "Complete job",
+              "conclusion": "success"
+            }
+          ]
+        },
+        {
+          "id": 138644073507,
+          "name": "C++20 / macos-latest",
+          "status": "completed",
+          "conclusion": "cancelled",
+          "steps": []
+        }
+      ]
+    }
+  ]
+}

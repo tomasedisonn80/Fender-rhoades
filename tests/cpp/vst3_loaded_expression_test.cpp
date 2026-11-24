@@ -5,6 +5,7 @@
 #include "pluginterfaces/vst/ivstaudioprocessor.h"
 #include "pluginterfaces/vst/ivstcomponent.h"
 #include "pluginterfaces/vst/ivsteditcontroller.h"
+#include "pluginterfaces/vst/ivstmessage.h"
 #include "pluginterfaces/vst/ivstparameterchanges.h"
 
 #include <algorithm>
@@ -46,6 +47,7 @@ using Module = VST3::Hosting::Module;
 using Bytes = std::vector<std::uint8_t>;
 using Paths = std::array<const char*, 3>;
 using Text = std::array<vst::TChar, 128>;
+using ControlValues = std::array<double, 8>;
 constexpr sdk::int32 frames = 128;
 constexpr vst::ParamID gain_id = 0, sustain_id = 1, expression_id = 2;
 constexpr vst::ParamID command_base = 0x1000;
@@ -66,6 +68,14 @@ constexpr std::array<Identity, 3> identities{{
 std::string context;
 std::size_t checks = 0, callbacks = 0, sample_comparisons = 0, rejected_blocks = 0;
 std::size_t foreign_states = 0, load_orders = 0, guarded_mono_callbacks = 0;
+std::array<std::size_t, 2> panel_saves{};
+std::size_t panel_reopens = 0, panel_rejections = 0, panel_foreign_states = 0;
+
+// Frozen normalized values in public persistent-ID order (0..7). The boolean
+// inputs deliberately exercise canonicalization independently of the byte oracle.
+constexpr ControlValues default_controls{.5, 0, 1, .5, .5, 0, .5, 0};
+constexpr ControlValues panel_inputs{.75, .75, .3125, .125, .875, .375, .625, .5};
+constexpr ControlValues panel_controls{.75, 1, .3125, .125, .875, .375, .625, 1};
 
 void require(bool value, std::string_view message) {
     ++checks;
@@ -100,11 +110,27 @@ Bytes packet(unsigned model, std::uint32_t expression = 0x3f800000U,
     return result;
 }
 
+Bytes panel_packet(unsigned model) {
+    // Hand-written little-endian binary32 bytes, not values serialized by the
+    // module, a production codec, or the controller-to-host queue fixture.
+    return {'R', 'H', 'S', 'T', 3, 0,
+        static_cast<std::uint8_t>(model), static_cast<std::uint8_t>(model >> 8U),
+        0x00, 0x00, 0x40, 0x3f, // Monitoring Gain .75
+        0x00, 0x00, 0x80, 0x3f, // Sustain 1
+        0x00, 0x00, 0xa0, 0x3e, // Expression .3125
+        0x00, 0x00, 0x00, 0x3e, // Bass .125
+        0x00, 0x00, 0x60, 0x3f, // Treble .875
+        0x00, 0x00, 0xc0, 0x3e, // Intensity .375
+        0x00, 0x00, 0x20, 0x3f, // Speed .625
+        0x00, 0x00, 0x80, 0x3f}; // Vibrato 1
+}
+
 template<class Interface>
 Bytes snapshot(Interface& object) {
     sdk::MemoryStream stream;
     require(object.getState(&stream) == sdk::kResultOk, "read actual module state");
-    require(stream.getSize() == 16 || stream.getSize() == 20, "adaptive exact state extent");
+    require(stream.getSize() == 16 || stream.getSize() == 20 || stream.getSize() == 40,
+            "adaptive exact v1/v2/v3 state extent");
     const auto* begin = reinterpret_cast<const std::uint8_t*>(stream.getData());
     return {begin, begin + stream.getSize()};
 }
@@ -161,6 +187,7 @@ struct RawQueue final : HostObject<vst::IParamValueQueue> {
     std::vector<Point> points;
     sdk::int32 reported_count = unspecified_count;
     sdk::int32 fail_at = -1;
+    sdk::int32 point_reads = 0;
     RawQueue() = default;
     RawQueue(vst::ParamID tag, std::initializer_list<Point> values) : id(tag), points(values) {}
     vst::ParamID PLUGIN_API getParameterId() override { return id; }
@@ -168,6 +195,7 @@ struct RawQueue final : HostObject<vst::IParamValueQueue> {
         return reported_count == unspecified_count ? static_cast<sdk::int32>(points.size()) : reported_count;
     }
     sdk::tresult PLUGIN_API getPoint(sdk::int32 index, sdk::int32& offset, double& value) override {
+        ++point_reads;
         if (index < 0 || index == fail_at || static_cast<std::size_t>(index) >= points.size()) {
             return sdk::kResultFalse;
         }
@@ -258,6 +286,8 @@ bool ascii_equals(const vst::TChar* value, std::string_view expected) {
 class Instance {
     Module::Ptr module_;
     bool initialized_ = false, controller_initialized_ = false, active_ = false, processing_ = false;
+    sdk::IPtr<vst::IConnectionPoint> component_connection_, controller_connection_;
+    bool component_connected_ = false, controller_connected_ = false;
 public:
     sdk::IPtr<vst::IComponent> component;
     sdk::IPtr<vst::IEditController> controller;
@@ -271,11 +301,15 @@ public:
     ~Instance() {
         if (processing_) { (void)audio->setProcessing(false); }
         if (active_) { (void)component->setActive(false); }
+        if (controller_connected_) { (void)controller_connection_->disconnect(component_connection_); }
+        if (component_connected_) { (void)component_connection_->disconnect(controller_connection_); }
+        controller_connection_ = nullptr; component_connection_ = nullptr;
         if (controller_initialized_) { (void)controller->terminate(); }
         if (initialized_) { (void)component->terminate(); }
         controller = nullptr; audio = nullptr; component = nullptr;
     }
-    void open(const Module::Ptr& module, const Identity& identity, vst::HostApplication& host) {
+    void open(const Module::Ptr& module, const Identity& identity, vst::HostApplication& host,
+              bool connect_pair = false) {
         module_ = module;
         model = identity.model;
         latency = identity.latency;
@@ -313,6 +347,24 @@ public:
         require(snapshot(*component) == packet(model) && snapshot(*controller) == packet(model),
                 "literal legacy sixteen-byte default states and model ID");
         check_layout(2);
+        if (connect_pair) {
+            vst::IConnectionPoint* connection = nullptr;
+            require(component->queryInterface(vst::IConnectionPoint::iid,
+                        reinterpret_cast<void**>(&connection)) == sdk::kResultOk && connection != nullptr,
+                    "query loaded component connection point");
+            component_connection_ = sdk::owned(connection);
+            connection = nullptr;
+            require(controller->queryInterface(vst::IConnectionPoint::iid,
+                        reinterpret_cast<void**>(&connection)) == sdk::kResultOk && connection != nullptr,
+                    "query loaded controller connection point");
+            controller_connection_ = sdk::owned(connection);
+            require(component_connection_->connect(controller_connection_) == sdk::kResultOk,
+                    "connect loaded component to controller");
+            component_connected_ = true;
+            require(controller_connection_->connect(component_connection_) == sdk::kResultOk,
+                    "connect loaded controller to component");
+            controller_connected_ = true;
+        }
     }
     void check_layout(sdk::int32 expected) {
         vst::SpeakerArrangement arrangement = 0;
@@ -885,6 +937,190 @@ void transactions(const Module::Ptr& module, const Identity& identity, vst::Host
     }
 }
 
+RawChanges panel_changes(const ControlValues& values, bool panel_only = false) {
+    // Deliberately neither ID nor controller-enumeration order. Speed is last,
+    // so its malformed second point follows seven fully staged controls.
+    constexpr std::array<vst::ParamID, 8> order{4, 0, 7, 2, 5, 1, 3, 6};
+    RawChanges changes;
+    for (const auto id : order) {
+        if (panel_only && id < 3) { continue; }
+        const auto value = values[static_cast<std::size_t>(id)];
+        const double prior = id == 1 || id == 7 ? (value >= .5 ? 0.0 : 1.0) : .25;
+        changes.queues.emplace_back(id, std::initializer_list<Point>{{0, prior}, {0, value}});
+    }
+    return changes;
+}
+
+void controller_edits(Instance& instance, const RawChanges& changes) {
+    // Model the host's public controller update independently of delivery to
+    // IAudioProcessor. This is not an attached editor/gesture simulation.
+    for (const auto& queue : changes.queues) {
+        for (const auto& point : queue.points) {
+            require(instance.controller->setParamNormalized(queue.id, point.value) == sdk::kResultOk,
+                    "reflect persistent control edit through loaded controller");
+        }
+    }
+}
+
+void expect_controls(Instance& instance, const ControlValues& values) {
+    for (std::size_t index = 0; index < values.size(); ++index) {
+        require(same_bits(instance.controller->getParamNormalized(static_cast<vst::ParamID>(index)), values[index]),
+                "exact reopened normalized persistent control ID " + std::to_string(index));
+    }
+}
+
+void expect_pair(Instance& instance, const Bytes& expected, const ControlValues& values) {
+    require(snapshot(*instance.component) == expected && snapshot(*instance.controller) == expected,
+            "loaded processor/controller match independent complete packet");
+    expect_controls(instance, values);
+}
+
+struct SavedPair { Bytes component, controller; };
+
+SavedPair save_pair(Instance& instance) {
+    return {snapshot(*instance.component), snapshot(*instance.controller)};
+}
+
+void restore_pair(Instance& instance, const SavedPair& saved,
+                  const Bytes& component_expected, const Bytes& controller_expected,
+                  const ControlValues& values) {
+    instance.recall(saved.component);
+    require(snapshot(*instance.component) == component_expected,
+            "fresh loaded processor restores saved component bytes before setup");
+    require(set_component_state(*instance.controller, saved.component) == sdk::kResultOk &&
+                snapshot(*instance.controller) == component_expected,
+            "fresh loaded controller accepts independently saved component state");
+    require(set_state(*instance.controller, saved.controller) == sdk::kResultOk &&
+                snapshot(*instance.controller) == controller_expected,
+            "fresh loaded controller restores its separately saved state");
+    expect_controls(instance, values);
+    ++panel_reopens;
+}
+
+void reject_panel_flushes(Instance& instance, const Bytes& expected, int bus_form, bool pending) {
+    for (int fault = 0; fault < 3; ++fault) {
+        if (pending) { instance.recall(expected); }
+        auto changes = panel_changes(default_controls);
+        auto& last = changes.queues.back();
+        if (fault == 0) { last.points.back().offset = 1; }
+        else if (fault == 1) { last.points.back().value = std::numeric_limits<double>::quiet_NaN(); }
+        else { last.fail_at = 1; }
+        flush(instance, &changes, bus_form, false);
+        require(std::all_of(changes.queues.begin(), changes.queues.end(),
+                    [](const auto& queue) { return queue.point_reads == 2; }),
+                "rejection reaches final raw point after all eight persistent queues");
+        expect_pair(instance, expected, panel_controls);
+        // The next accepted empty callback must not commit partially staged
+        // reset values left over from rejection; pending recall must survive.
+        flush(instance, nullptr, bus_form);
+        expect_pair(instance, expected, panel_controls);
+        ++panel_rejections;
+    }
+}
+
+void panel_persistence_case(const Module::Ptr& module, const Identity& identity,
+                            vst::HostApplication& host, bool stopped, int bus_form) {
+    const auto prefix = std::string{identity.name} + "/panel_persistence/" +
+        (stopped ? "after-stop/" : "without-setup/") + "bus-form=" + std::to_string(bus_form);
+    context = prefix + "/save";
+    const auto legacy = packet(identity.model);
+    const auto extended = panel_packet(identity.model);
+    const auto v2 = packet(identity.model, 0x3ea00000U, 0x3f400000U, true);
+    const auto v1 = packet(identity.model, 0x3f800000U, 0x3f400000U, true);
+    SavedPair withheld, accepted, reset_panel, reset_expression;
+    {
+        Instance instance;
+        instance.open(module, identity, host, true);
+        if (stopped) {
+            instance.start(vst::kSample64, 48000, 2);
+            require(process<double>(instance, nullptr, {on()}).audible,
+                    "stopped case first runs a nonvacuous loaded audio callback");
+            instance.suspend();
+        }
+        auto changes = panel_changes(panel_inputs);
+        controller_edits(instance, changes);
+        require(snapshot(*instance.controller) == extended,
+                "all eight controller edits produce literal v3 bytes");
+        expect_controls(instance, panel_controls);
+        // An empty host callback cannot substitute for the withheld parameter
+        // queues. No direct controller-to-processor configuration channel exists.
+        flush(instance, nullptr, bus_form);
+        withheld = save_pair(instance);
+        require(withheld.component == legacy && withheld.controller == extended,
+                "withheld host delivery leaves processor save stale despite edited controller");
+        flush(instance, &changes, bus_form);
+        require(std::all_of(changes.queues.begin(), changes.queues.end(),
+                    [](const auto& queue) { return queue.point_reads == 2; }),
+                "accepted flush reads both duplicate-offset endpoints of all eight queues");
+        expect_pair(instance, extended, panel_controls);
+        reject_panel_flushes(instance, extended, bus_form, false);
+        accepted = save_pair(instance);
+    } // Destroy both loaded objects before restoring either saved pair.
+    context = prefix + "/reopen-withheld";
+    {
+        Instance reopened;
+        reopened.open(module, identity, host, true);
+        restore_pair(reopened, withheld, legacy, extended, panel_controls);
+        flush(reopened, nullptr, bus_form);
+        require(snapshot(*reopened.component) == legacy && snapshot(*reopened.controller) == extended,
+                "reopening separate saved controller state cannot repair withheld processor delivery");
+    }
+    auto neutral = panel_controls;
+    std::copy(default_controls.begin() + 3, default_controls.end(), neutral.begin() + 3);
+    context = prefix + "/reopen-v3";
+    {
+        Instance reopened;
+        reopened.open(module, identity, host, true);
+        restore_pair(reopened, accepted, extended, extended, panel_controls);
+        // Each of the other model IDs is rejected while the full v3 recall is
+        // pending, through the component and both controller state entry points.
+        for (const auto& other : identities) {
+            if (other.model == identity.model) { continue; }
+            const auto foreign = panel_packet(other.model);
+            require(set_state(*reopened.component, foreign) == sdk::kResultFalse &&
+                        set_state(*reopened.controller, foreign) == sdk::kResultFalse &&
+                        set_component_state(*reopened.controller, foreign) == sdk::kResultFalse,
+                    "foreign-model literal v3 rejected by all three state entry points");
+            expect_pair(reopened, extended, panel_controls);
+            ++panel_foreign_states;
+        }
+        reject_panel_flushes(reopened, extended, bus_form, true);
+        auto changes = panel_changes(neutral, true);
+        controller_edits(reopened, changes);
+        require(snapshot(*reopened.component) == extended && snapshot(*reopened.controller) == v2,
+                "panel reset reaches processor only through delivered queues");
+        flush(reopened, &changes, bus_form);
+        expect_pair(reopened, v2, neutral);
+        reset_panel = save_pair(reopened);
+    }
+    context = prefix + "/reopen-v2";
+    auto unity = neutral;
+    unity[2] = 1;
+    {
+        Instance reopened;
+        reopened.open(module, identity, host, true);
+        restore_pair(reopened, reset_panel, v2, v2, neutral);
+        flush(reopened, nullptr, bus_form);
+        expect_pair(reopened, v2, neutral);
+        RawChanges changes{{expression_id, {{0, .125}, {0, 1}}}};
+        controller_edits(reopened, changes);
+        require(snapshot(*reopened.component) == v2 && snapshot(*reopened.controller) == v1,
+                "unity expression reset still needs processor delivery");
+        flush(reopened, &changes, bus_form);
+        expect_pair(reopened, v1, unity);
+        reset_expression = save_pair(reopened);
+    }
+    context = prefix + "/reopen-v1";
+    {
+        Instance reopened;
+        reopened.open(module, identity, host, true);
+        restore_pair(reopened, reset_expression, v1, v1, unity);
+        flush(reopened, nullptr, bus_form);
+        expect_pair(reopened, v1, unity);
+    }
+    ++panel_saves[stopped ? 1U : 0U];
+}
+
 std::array<Module::Ptr, 3> load(const Paths& paths, const std::array<std::size_t, 3>& order) {
     std::array<Module::Ptr, 3> modules;
     std::set<std::string> ids;
@@ -915,8 +1151,16 @@ void controls_state(const Paths& paths) {
         instance.open(modules[index], identities[index], host);
         controls(instance); state_contract(instance); negotiation(instance);
         transactions(modules[index], identities[index], host);
+        for (const bool stopped : {false, true}) {
+            for (const int bus_form : {0, 1, 2}) {
+                panel_persistence_case(modules[index], identities[index], host, stopped, bus_form);
+            }
+        }
     }
     require(foreign_states == 12, "all six ordered foreign-model pairs rejected in v1 and v2");
+    require(panel_saves == std::array<std::size_t, 2>{9, 9} && panel_reopens == 72 &&
+                panel_rejections == 108 && panel_foreign_states == 36,
+            "complete three-model panel persistence, reopen and rejection matrix");
 }
 
 void audio_layout(const Paths& paths) {
@@ -1040,7 +1284,10 @@ int main(int argc, char** argv) {
         std::cout << "PASS loaded expression " << selector << ": " << checks << " checks, " << callbacks
                   << " loaded callbacks, " << sample_comparisons << " scalar samples, " << rejected_blocks
                   << " rejected blocks, " << foreign_states << " foreign states, " << guarded_mono_callbacks
-                  << " guarded mono callbacks, " << load_orders << " module load orders\n";
+                  << " guarded mono callbacks, " << load_orders << " module load orders, "
+                  << panel_saves[0] << "/" << panel_saves[1] << " no-setup/stopped panel cases, "
+                  << panel_reopens << " panel reopens, " << panel_rejections << " atomic panel rejections, "
+                  << panel_foreign_states << " foreign v3 states\n";
         return 0;
     } catch (const std::exception& error) {
         std::cerr << "FAIL loaded expression: " << error.what() << '\n';

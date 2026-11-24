@@ -1,0 +1,157 @@
+Start testing: Nov 24 10:34 MST
+----------------------------------------------------------
+6/207 Testing: photo_geometry.keyboard
+6/207 Test: photo_geometry.keyboard
+Command: "/home/agent/rhoades-9a04c9726e31/build-core/rhodes_photo_geometry_tests" "keyboard"
+Directory: /home/agent/rhoades-9a04c9726e31/build-core
+"photo_geometry.keyboard" start time: Nov 24 10:34 MST
+Output:
+----------------------------------------------------------
+PASS keyboard
+PASS total checks=527
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"photo_geometry.keyboard" end time: Nov 24 10:34 MST
+"photo_geometry.keyboard" time elapsed: 00:00:00
+----------------------------------------------------------
+
+7/207 Testing: photo_geometry.controls
+7/207 Test: photo_geometry.controls
+Command: "/home/agent/rhoades-9a04c9726e31/build-core/rhodes_photo_geometry_tests" "controls"
+Directory: /home/agent/rhoades-9a04c9726e31/build-core
+"photo_geometry.controls" start time: Nov 24 10:34 MST
+Output:
+----------------------------------------------------------
+PASS controls
+PASS total checks=28
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"photo_geometry.controls" end time: Nov 24 10:34 MST
+"photo_geometry.controls" time elapsed: 00:00:00
+----------------------------------------------------------
+
+8/207 Testing: photo_geometry.transforms
+8/207 Test: photo_geometry.transforms
+Command: "/home/agent/rhoades-9a04c9726e31/build-core/rhodes_photo_geometry_tests" "transforms"
+Directory: /home/agent/rhoades-9a04c9726e31/build-core
+"photo_geometry.transforms" start time: Nov 24 10:34 MST
+Output:
+----------------------------------------------------------
+PASS transforms
+PASS total checks=1563
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"photo_geometry.transforms" end time: Nov 24 10:34 MST
+"photo_geometry.transforms" time elapsed: 00:00:00
+----------------------------------------------------------
+
+9/207 Testing: photo_geometry.invalid_inputs
+9/207 Test: photo_geometry.invalid_inputs
+Command: "/home/agent/rhoades-9a04c9726e31/build-core/rhodes_photo_geometry_tests" "invalid_inputs"
+Directory: /home/agent/rhoades-9a04c9726e31/build-core
+"photo_geometry.invalid_inputs" start time: Nov 24 10:34 MST
+Output:
+----------------------------------------------------------
+PASS invalid_inputs
+PASS total checks=22
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"photo_geometry.invalid_inputs" end time: Nov 24 10:34 MST
+"photo_geometry.invalid_inputs" time elapsed: 00:00:00
+----------------------------------------------------------
+
+10/207 Testing: photo_key_highlight.structure
+10/207 Test: photo_key_highlight.structure
+Command: "/home/agent/rhoades-9a04c9726e31/build-core/rhodes_photo_key_highlight_tests" "structure"
+Directory: /home/agent/rhoades-9a04c9726e31/build-core
+"photo_key_highlight.structure" start time: Nov 24 10:34 MST
+Output:
+----------------------------------------------------------
+PASS structure
+PASS total checks=1841
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"photo_key_highlight.structure" end time: Nov 24 10:34 MST
+"photo_key_highlight.structure" time elapsed: 00:00:00
+----------------------------------------------------------
+
+11/207 Testing: photo_key_highlight.black_interiors
+11/207 Test: photo_key_highlight.black_interiors
+Command: "/home/agent/rhoades-9a04c9726e31/build-core/rhodes_photo_key_highlight_tests" "black_interiors"
+Directory: /home/agent/rhoades-9a04c9726e31/build-core
+"photo_key_highlight.black_interiors" start time: Nov 24 10:34 MST
+Output:
+----------------------------------------------------------
+PASS black_interiors
+PASS total checks=345601
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"photo_key_highlight.black_interiors" end time: Nov 24 10:34 MST
+"photo_key_highlight.black_interiors" time elapsed: 00:00:00
+----------------------------------------------------------
+
+12/207 Testing: photo_key_highlight.dense_grid
+12/207 Test: photo_key_highlight.dense_grid
+Command: "/home/agent/rhoades-9a04c9726e31/build-core/rhodes_photo_key_highlight_tests" "dense_grid"
+Directory: /home/agent/rhoades-9a04c9726e31/build-core
+"photo_key_highlight.dense_grid" start time: Nov 24 10:34 MST
+Output:
+----------------------------------------------------------
+dense samples=201298 boundary samples=1
+PASS dense_grid
+PASS total checks=402670
+<end of output>
+Test time =   0.19 sec
+----------------------------------------------------------
+Test Passed.
+"photo_key_highlight.dense_grid" end time: Nov 24 10:34 MST
+"photo_key_highlight.dense_grid" time elapsed: 00:00:00
+----------------------------------------------------------
+
+13/207 Testing: photo_key_highlight.boundaries
+13/207 Test: photo_key_highlight.boundaries
+Command: "/home/agent/rhoades-9a04c9726e31/build-core/rhodes_photo_key_highlight_tests" "boundaries"
+Directory: /home/agent/rhoades-9a04c9726e31/build-core
+"photo_key_highlight.boundaries" start time: Nov 24 10:34 MST
+Output:
+----------------------------------------------------------
+PASS boundaries
+PASS total checks=94149
+<end of output>
+Test time =   0.01 sec
+----------------------------------------------------------
+Test Passed.
+"photo_key_highlight.boundaries" end time: Nov 24 10:34 MST
+"photo_key_highlight.boundaries" time elapsed: 00:00:00
+----------------------------------------------------------
+
+14/207 Testing: photo_key_highlight.invalid_indices
+14/207 Test: photo_key_highlight.invalid_indices
+Command: "/home/agent/rhoades-9a04c9726e31/build-core/rhodes_photo_key_highlight_tests" "invalid_indices"
+Directory: /home/agent/rhoades-9a04c9726e31/build-core
+"photo_key_highlight.invalid_indices" start time: Nov 24 10:34 MST
+Output:
+----------------------------------------------------------
+PASS invalid_indices
+PASS total checks=18
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"photo_key_highlight.invalid_indices" end time: Nov 24 10:34 MST
+"photo_key_highlight.invalid_indices" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Nov 24 10:34 MST

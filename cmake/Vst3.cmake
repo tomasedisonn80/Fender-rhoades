@@ -232,6 +232,59 @@ if(BUILD_TESTING)
                 --startup-timeout 10 --test-timeout 30 --
                 $<TARGET_FILE:rhodes_vst3_photo_native_focus_tests>)
         set_tests_properties(vst3.photo_native_focus PROPERTIES TIMEOUT 60 LABELS "editor;linux-xcb")
+        # This test includes the production editor TU to reach its private view;
+        # compiling photo_editor.cpp separately would duplicate its definitions.
+        # Keep upstream module support outside project-only warning policies.
+        add_library(rhodes_photo_test_module_support OBJECT
+            "${RHODES_VST3_SDK_ROOT}/public.sdk/source/main/moduleinit.cpp"
+            "${RHODES_VST3_SDK_ROOT}/public.sdk/source/main/pluginfactory.cpp"
+            "${RHODES_VST3_SDK_ROOT}/public.sdk/source/main/linuxmain.cpp")
+        target_compile_features(rhodes_photo_test_module_support PRIVATE cxx_std_20)
+        target_link_libraries(rhodes_photo_test_module_support PRIVATE sdk)
+        add_executable(rhodes_vst3_photo_view_tests
+            "${PROJECT_SOURCE_DIR}/tests/cpp/photo_view_interaction_test.cpp"
+            "${PROJECT_SOURCE_DIR}/plugins/vst3/controller.cpp"
+            "${PROJECT_SOURCE_DIR}/plugins/vst3/state_stream.cpp"
+            "${PROJECT_SOURCE_DIR}/plugins/vst3/photo_native_focus.cpp"
+            "${PROJECT_SOURCE_DIR}/plugins/vst3/processor.cpp"
+            "${PROJECT_SOURCE_DIR}/plugins/vst3/factory.cpp")
+        target_compile_features(rhodes_vst3_photo_view_tests PRIVATE cxx_std_20)
+        target_compile_definitions(rhodes_vst3_photo_view_tests PRIVATE RHODES_HAS_PHOTO_EDITOR=1)
+        target_include_directories(rhodes_vst3_photo_view_tests PRIVATE "${PROJECT_SOURCE_DIR}")
+        target_include_directories(rhodes_vst3_photo_view_tests SYSTEM PRIVATE
+            "${RHODES_VST3_SDK_ROOT}" "${RHODES_VST3_SDK_ROOT}/vstgui4")
+        target_link_libraries(rhodes_vst3_photo_view_tests PRIVATE
+            rhodes_core sdk vstgui_support rhodes_photo_test_module_support PkgConfig::RHODES_EDITOR_XCB)
+        rhodes_target_options(rhodes_vst3_photo_view_tests)
+        add_dependencies(rhodes_vst3_checks rhodes_vst3_photo_view_tests)
+        foreach(test_name IN ITEMS rapid_switches continuous_reset host_shortcuts fine_steps
+                rejected_edits end_cancel_idempotent begin_cancel_drag begin_cancel_wheel
+                begin_cancel_switch end_cancel_new_press perform_cancel_drag
+                perform_cancel_host_update audition_drag audition_cancel_dispatch
+                audition_cancel_allocation audition_cancel_sibling
+                observer_cancel_rollback observer_cancel_host_changed observer_cancel_host_equal
+                perform_reject_host_equal perform_reject_other_parameter keyboard_cancel_edit
+                keyboard_cancel_tab keyboard_audition_cancel_edit
+                audition_glissando_cancel_dispatch audition_glissando_cancel_allocation)
+            add_test(NAME vst3.photo_view.${test_name}
+                COMMAND rhodes_vst3_photo_view_tests ${test_name})
+            set_tests_properties(vst3.photo_view.${test_name} PROPERTIES TIMEOUT 30 LABELS "editor;interaction")
+        endforeach()
+        add_executable(rhodes_vstgui_x11_keyboard_tests
+            "${PROJECT_SOURCE_DIR}/tests/cpp/vstgui_x11_keyboard_test.cpp")
+        target_compile_features(rhodes_vstgui_x11_keyboard_tests PRIVATE cxx_std_20)
+        target_include_directories(rhodes_vstgui_x11_keyboard_tests SYSTEM PRIVATE
+            "${RHODES_VST3_SDK_ROOT}/vstgui4")
+        target_link_libraries(rhodes_vstgui_x11_keyboard_tests PRIVATE vstgui PkgConfig::RHODES_EDITOR_XCB)
+        rhodes_target_options(rhodes_vstgui_x11_keyboard_tests)
+        add_dependencies(rhodes_vst3_checks rhodes_vstgui_x11_keyboard_tests)
+        add_test(NAME vst3.photo_x11_keyboard
+            COMMAND "${Python3_EXECUTABLE}" "${PROJECT_SOURCE_DIR}/tools/run_xvfb_test.py"
+                --xvfb "${RHODES_XVFB_EXECUTABLE}" --xauth "${RHODES_XAUTH_EXECUTABLE}"
+                --xdpyinfo "${RHODES_XDPYINFO_EXECUTABLE}"
+                --startup-timeout 10 --test-timeout 30 --
+                $<TARGET_FILE:rhodes_vstgui_x11_keyboard_tests>)
+        set_tests_properties(vst3.photo_x11_keyboard PROPERTIES TIMEOUT 60 LABELS "editor;linux-xcb")
     endif()
     # Optional third/fourth arguments select filtered/quadrature respectively;
     # the fifth omits the processor for controller-only public-interface tests.
@@ -256,6 +309,10 @@ if(BUILD_TESTING)
         rhodes_target_options(${target})
         add_dependencies(rhodes_vst3_checks ${target})
     endfunction()
+    rhodes_add_vst3_test(rhodes_vst3_controller_revision_tests
+        tests/cpp/vst3_controller_revision_test.cpp FALSE FALSE TRUE)
+    add_test(NAME vst3.controller_revision COMMAND rhodes_vst3_controller_revision_tests)
+    set_tests_properties(vst3.controller_revision PROPERTIES TIMEOUT 60)
     rhodes_add_vst3_test(rhodes_vst3_editor_audition_tests tests/cpp/vst3_editor_audition_test.cpp)
     rhodes_add_vst3_test(rhodes_vst3_audition_ownership_tests tests/cpp/vst3_audition_ownership_test.cpp FALSE FALSE TRUE)
     rhodes_add_vst3_test(rhodes_vst3_filtered_audition_ownership_tests tests/cpp/vst3_audition_ownership_test.cpp TRUE FALSE TRUE)

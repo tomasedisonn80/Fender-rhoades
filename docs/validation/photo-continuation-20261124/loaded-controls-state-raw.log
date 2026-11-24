@@ -1,0 +1,19 @@
+Start testing: Nov 24 11:02 MST
+----------------------------------------------------------
+539/547 Testing: vst3.loaded_expression_controls_state
+539/547 Test: vst3.loaded_expression_controls_state
+Command: "/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_loaded_expression_tests" "controls_state" "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3" "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3" "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3"
+Directory: /home/agent/rhoades-9a04c9726e31/build
+"vst3.loaded_expression_controls_state" start time: Nov 24 11:02 MST
+Output:
+----------------------------------------------------------
+PASS loaded expression controls_state: 65644 checks, 621 loaded callbacks, 0 scalar samples, 162 rejected blocks, 12 foreign states, 105 guarded mono callbacks, 0 module load orders, 9/9 no-setup/stopped panel cases, 72 panel reopens, 108 atomic panel rejections, 36 foreign v3 states
+<end of output>
+Test time =   0.07 sec
+----------------------------------------------------------
+Test Passed.
+"vst3.loaded_expression_controls_state" end time: Nov 24 11:02 MST
+"vst3.loaded_expression_controls_state" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Nov 24 11:02 MST

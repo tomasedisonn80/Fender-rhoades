@@ -1,0 +1,62 @@
+Internal ctest changing into directory: /home/agent/rhoades-9a04c9726e31/build
+Test project /home/agent/rhoades-9a04c9726e31/build
+      Start 209: vst3.photo_view.rapid_switches
+ 1/26 Test #209: vst3.photo_view.rapid_switches .........................   Passed    0.01 sec
+      Start 210: vst3.photo_view.continuous_reset
+ 2/26 Test #210: vst3.photo_view.continuous_reset .......................   Passed    0.01 sec
+      Start 211: vst3.photo_view.host_shortcuts
+ 3/26 Test #211: vst3.photo_view.host_shortcuts .........................   Passed    0.01 sec
+      Start 212: vst3.photo_view.fine_steps
+ 4/26 Test #212: vst3.photo_view.fine_steps .............................   Passed    0.01 sec
+      Start 213: vst3.photo_view.rejected_edits
+ 5/26 Test #213: vst3.photo_view.rejected_edits .........................   Passed    0.01 sec
+      Start 214: vst3.photo_view.end_cancel_idempotent
+ 6/26 Test #214: vst3.photo_view.end_cancel_idempotent ..................   Passed    0.01 sec
+      Start 215: vst3.photo_view.begin_cancel_drag
+ 7/26 Test #215: vst3.photo_view.begin_cancel_drag ......................   Passed    0.01 sec
+      Start 216: vst3.photo_view.begin_cancel_wheel
+ 8/26 Test #216: vst3.photo_view.begin_cancel_wheel .....................   Passed    0.01 sec
+      Start 217: vst3.photo_view.begin_cancel_switch
+ 9/26 Test #217: vst3.photo_view.begin_cancel_switch ....................   Passed    0.01 sec
+      Start 218: vst3.photo_view.end_cancel_new_press
+10/26 Test #218: vst3.photo_view.end_cancel_new_press ...................   Passed    0.01 sec
+      Start 219: vst3.photo_view.perform_cancel_drag
+11/26 Test #219: vst3.photo_view.perform_cancel_drag ....................   Passed    0.01 sec
+      Start 220: vst3.photo_view.perform_cancel_host_update
+12/26 Test #220: vst3.photo_view.perform_cancel_host_update .............   Passed    0.01 sec
+      Start 221: vst3.photo_view.audition_drag
+13/26 Test #221: vst3.photo_view.audition_drag ..........................   Passed    0.01 sec
+      Start 222: vst3.photo_view.audition_cancel_dispatch
+14/26 Test #222: vst3.photo_view.audition_cancel_dispatch ...............   Passed    0.01 sec
+      Start 223: vst3.photo_view.audition_cancel_allocation
+15/26 Test #223: vst3.photo_view.audition_cancel_allocation .............   Passed    0.01 sec
+      Start 224: vst3.photo_view.audition_cancel_sibling
+16/26 Test #224: vst3.photo_view.audition_cancel_sibling ................   Passed    0.01 sec
+      Start 225: vst3.photo_view.observer_cancel_rollback
+17/26 Test #225: vst3.photo_view.observer_cancel_rollback ...............   Passed    0.01 sec
+      Start 226: vst3.photo_view.observer_cancel_host_changed
+18/26 Test #226: vst3.photo_view.observer_cancel_host_changed ...........   Passed    0.01 sec
+      Start 227: vst3.photo_view.observer_cancel_host_equal
+19/26 Test #227: vst3.photo_view.observer_cancel_host_equal .............   Passed    0.01 sec
+      Start 228: vst3.photo_view.perform_reject_host_equal
+20/26 Test #228: vst3.photo_view.perform_reject_host_equal ..............   Passed    0.01 sec
+      Start 229: vst3.photo_view.perform_reject_other_parameter
+21/26 Test #229: vst3.photo_view.perform_reject_other_parameter .........   Passed    0.01 sec
+      Start 230: vst3.photo_view.keyboard_cancel_edit
+22/26 Test #230: vst3.photo_view.keyboard_cancel_edit ...................   Passed    0.01 sec
+      Start 231: vst3.photo_view.keyboard_cancel_tab
+23/26 Test #231: vst3.photo_view.keyboard_cancel_tab ....................   Passed    0.01 sec
+      Start 232: vst3.photo_view.keyboard_audition_cancel_edit
+24/26 Test #232: vst3.photo_view.keyboard_audition_cancel_edit ..........   Passed    0.01 sec
+      Start 233: vst3.photo_view.audition_glissando_cancel_dispatch
+25/26 Test #233: vst3.photo_view.audition_glissando_cancel_dispatch .....   Passed    0.01 sec
+      Start 234: vst3.photo_view.audition_glissando_cancel_allocation
+26/26 Test #234: vst3.photo_view.audition_glissando_cancel_allocation ...   Passed    0.01 sec
+
+100% tests passed, 0 tests failed out of 26
+
+Label Time Summary:
+editor         =   0.17 sec*proc (26 tests)
+interaction    =   0.17 sec*proc (26 tests)
+
+Total Test time (real) =   0.18 sec
