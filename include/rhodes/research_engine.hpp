@@ -154,6 +154,11 @@ private:
     struct Key {
         std::array<ModalOscillator, modes_per_key> modes{};
         bool held = false;
+        // A successful nonzero strike marks this until prepare/reset, even if
+        // its impulse underflows. Release and damping never retire a tail.
+        // Zero state before a strike relies on the current uncoupled mechanics;
+        // future coupling or other forcing must revisit this invariant.
+        bool excited = false;
     };
     void update_damping(Key& key) noexcept;
     [[nodiscard]] bool sample(double& volts) noexcept;

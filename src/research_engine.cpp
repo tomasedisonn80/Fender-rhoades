@@ -13,6 +13,16 @@ bool valid_sample_rate(double rate) noexcept {
            rate <= maximum_sample_rate_hz;
 }
 
+bool can_skip_unexcited_observation() noexcept {
+    // An untouched key has only signed-zero state. Except under downward
+    // rounding, its modal sums starting at +0 stay +0 and its pickup is -0.
+    // Test the arithmetic actually used, not fegetround(): a host may set SSE
+    // rounding independently. Volatile operands retain this runtime addition.
+    volatile double positive_zero = 0.0;
+    volatile double negative_zero = -0.0;
+    return !std::signbit(positive_zero + negative_zero);
+}
+
 constexpr std::array<double, modes_per_key> frequency_ratios{1.0, 2.73, 5.41};
 constexpr std::array<double, modes_per_key> free_decay{0.8, 3.0, 7.0};
 constexpr std::array<double, modes_per_key> damped_decay{30.0, 35.0, 45.0};
@@ -297,8 +307,13 @@ std::optional<double> ResearchEngine::observe(
     if (node >= observation_node_count || plan.sample_rate_hz_ != sample_rate_hz_) {
         return std::nullopt;
     }
+    const bool skip_unexcited = can_skip_unexcited_observation();
     std::array<double, key_count> sources{};
     for (std::size_t k = 0; k < key_count; ++k) {
+        if (!keys_[k].excited && skip_unexcited) {
+            sources[k] = -0.0;
+            continue;
+        }
         const std::size_t regime = keys_[k].held || sustain_ ? 1U : 0U;
         double x = 0.0;
         double velocity = 0.0;
@@ -325,8 +340,15 @@ std::optional<double> ResearchEngine::observe(
 std::optional<std::array<double, observation_node_count>> ResearchEngine::observe_cell(
     const FractionalObservationPlan& plan) const noexcept {
     if (plan.sample_rate_hz_ != sample_rate_hz_) { return std::nullopt; }
+    const bool skip_unexcited = can_skip_unexcited_observation();
     std::array<std::array<double, key_count>, observation_node_count> sources{};
     for (std::size_t k = 0; k < key_count; ++k) {
+        if (!keys_[k].excited && skip_unexcited) {
+            for (std::size_t node = 0; node < observation_node_count; ++node) {
+                sources[node][k] = -0.0;
+            }
+            continue;
+        }
         const std::size_t regime = keys_[k].held || sustain_ ? 1U : 0U;
         std::array<double, observation_node_count> x{}, velocity{};
         for (std::size_t m = 0; m < modes_per_key; ++m) {
@@ -391,6 +413,7 @@ bool ResearchEngine::note_on(std::size_t key, double intensity) noexcept {
             return false;
         }
     }
+    candidate.excited = true;
     keys_[key] = candidate;
     return true;
 }
@@ -423,6 +446,7 @@ void ResearchEngine::reset() noexcept {
     sustain_ = false;
     for (auto& key : keys_) {
         key.held = false;
+        key.excited = false;
         for (auto& mode : key.modes) {
             mode.reset();
         }
