@@ -2,7 +2,7 @@
   "requested_workers": 100,
   "requested_waves": 5,
   "workers_per_wave": 20,
-  "completed_report_count": 64,
+  "completed_report_count": 69,
   "workers": [
     {
       "agent": "w1_001",
@@ -456,6 +456,41 @@
       "wave": 4,
       "report": "w4-004.md",
       "sha256": "f03867dfc21cd6dd6f1924716a6d57d26a314273b05fc612f944de2db7c19c57",
+      "status": "reported"
+    },
+    {
+      "agent": "w4_005",
+      "wave": 4,
+      "report": "w4-005.md",
+      "sha256": "9bf1d6309a98d36176e3a7435c672e1d64c1f2d7f35b44b5f7660d91fca5aeb2",
+      "status": "reported"
+    },
+    {
+      "agent": "w4_006",
+      "wave": 4,
+      "report": "w4-006.md",
+      "sha256": "6608e6c372622ddb0d38818fb18138b6e74a0fdc9d143e7db2b69c4a9f9d91a9",
+      "status": "reported"
+    },
+    {
+      "agent": "w4_007",
+      "wave": 4,
+      "report": "w4-007.md",
+      "sha256": "8851c78ab8099f425d9f6f6234ad454c5841db11d5e8c5ebf1c239f7ffc147b7",
+      "status": "reported"
+    },
+    {
+      "agent": "w4_008",
+      "wave": 4,
+      "report": "w4-008.md",
+      "sha256": "479e70c664afd4bb6f832d7665062e11129c006d424a53ed4cb3b66816b3a6af",
+      "status": "reported"
+    },
+    {
+      "agent": "w4_009",
+      "wave": 4,
+      "report": "w4-009.md",
+      "sha256": "ca3d95c65601e56e4a5a99cc062bededb0d4db4a11a482c10ec237a0eb4c5036",
       "status": "reported"
     }
   ]

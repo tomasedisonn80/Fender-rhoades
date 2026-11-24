@@ -1,0 +1,42 @@
+{
+  "all_216_cross_run_audio_files_identical": true,
+  "all_success_capture_ids_fresh": true,
+  "archive_bytes": 2376016,
+  "archive_sha256": "b9dfae3c976d638ba25c8375d7653b83c5f47410958430c997cd9ae61db42b8c",
+  "failed_run_unchanged_files": 652,
+  "files_verified": 1376,
+  "kind": "Lossless preservation and frozen-protocol recomputation only",
+  "later_commit_exact_patch_identity": "5f1aaf27b3c34325886fc352dc3430f5e240ae17",
+  "manifest_sha256": "4a401c9cae94b38fa74c3a37f3e46068b9dd203d45050be1e65a4f6fd7aff903",
+  "native_execution_performed": false,
+  "payload_bytes": 34441104,
+  "runs": {
+    "w4-001": {
+      "capture_ids_unique": 216,
+      "dense_partition_groups_passed": 12,
+      "loaded_callbacks_total": 2664,
+      "official_status": "failed",
+      "paired_stereo_frames": 608256,
+      "passed_pairs": 0,
+      "raw_manifest_files_verified": 649,
+      "valid_captures": 72,
+      "validation_errors": {
+        "invalid capture field: parameter_count": 144
+      }
+    },
+    "w4-003": {
+      "capture_ids_unique": 216,
+      "dense_partition_groups_passed": 36,
+      "loaded_callbacks_total": 7992,
+      "official_status": "passed",
+      "paired_stereo_frames": 608256,
+      "passed_pairs": 144,
+      "raw_manifest_files_verified": 649,
+      "valid_captures": 216,
+      "validation_errors": {}
+    }
+  },
+  "scope": "Numerical digital equivalence only; no physical fidelity, playback-device audibility, DAW, deadline, or other-platform claim.",
+  "status": "pass",
+  "tested_source_fingerprints_verified": 41
+}

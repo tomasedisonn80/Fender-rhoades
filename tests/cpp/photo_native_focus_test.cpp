@@ -1,6 +1,6 @@
-// Standalone Linux/X11 regression; run on an isolated X server.
-// Build with C++20, the repository root include path, this file,
-// plugins/vst3/photo_native_focus.cpp, and libxcb. No CMake registration yet.
+// Linux/X11 regression, registered as vst3.photo_native_focus for editor builds.
+// CTest uses tools/run_xvfb_test.py for its own authenticated Xvfb server.
+// rhodes_vst3_checks includes this executable; it links only the helper and libxcb.
 #include "plugins/vst3/photo_native_focus.hpp"
 
 #include <xcb/xcb.h>

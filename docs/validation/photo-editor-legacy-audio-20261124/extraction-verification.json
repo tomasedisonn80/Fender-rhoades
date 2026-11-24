@@ -1,0 +1,29 @@
+{
+  "command": [
+    "sha256sum",
+    "--check",
+    "payload.sha256"
+  ],
+  "cwd": "/home/agent/rhodes-7a7c13ab7da3/w4-007/extracted",
+  "elapsed_seconds": 0.10484294399793725,
+  "ended_utc": "2026-11-24T16:37:58.357282+00:00",
+  "exit_code": 0,
+  "extraction_command": [
+    "python3",
+    "/home/agent/rhodes-7a7c13ab7da3/w4-007/delivery/verify.py",
+    "--extract-to",
+    "/home/agent/rhodes-7a7c13ab7da3/w4-007/extracted",
+    "--json-output",
+    "/home/agent/rhodes-7a7c13ab7da3/w4-007/delivery/verification.json"
+  ],
+  "extraction_exit_code": 0,
+  "files_checked": 1376,
+  "log": "extraction-sha256-check.log",
+  "log_bytes": 176611,
+  "log_sha256": "234b36d1be14bca15b2058724edfcc2c40968a07a8214dee6c2b6aabe61ae1f9",
+  "native_execution": false,
+  "schema_version": 1,
+  "started_utc": "2026-11-24T16:37:58.252579+00:00",
+  "status": "pass",
+  "verification_report_sha256": "accca3d87f1eed48566a1d20e704a61306c1c4e0a9f7c6f3843f73c28bcc9cce"
+}

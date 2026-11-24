@@ -205,6 +205,32 @@ if(BUILD_TESTING)
     add_dependencies(rhodes_vst3_checks rhodes_vst3 rhodes_vst3_benchmark
         rhodes_vst3_filtered rhodes_vst3_filtered_benchmark
         rhodes_vst3_quadrature rhodes_vst3_quadrature_benchmark)
+    if(RHODES_BUILD_VST3_EDITOR AND CMAKE_SYSTEM_NAME STREQUAL "Linux")
+        find_package(Python3 COMPONENTS Interpreter REQUIRED)
+        find_program(RHODES_XVFB_EXECUTABLE NAMES Xvfb)
+        find_program(RHODES_XAUTH_EXECUTABLE NAMES xauth)
+        find_program(RHODES_XDPYINFO_EXECUTABLE NAMES xdpyinfo)
+        if(NOT RHODES_XVFB_EXECUTABLE OR NOT RHODES_XAUTH_EXECUTABLE
+                OR NOT RHODES_XDPYINFO_EXECUTABLE)
+            message(FATAL_ERROR "Linux photo-editor tests require Xvfb, xauth and xdpyinfo. Install xvfb, xauth and x11-utils, or set RHODES_XVFB_EXECUTABLE, RHODES_XAUTH_EXECUTABLE and RHODES_XDPYINFO_EXECUTABLE. Use BUILD_TESTING=OFF for a build without tests.")
+        endif()
+        # This XCB fixture exercises the native helper without linking the SDK.
+        add_executable(rhodes_vst3_photo_native_focus_tests
+            "${PROJECT_SOURCE_DIR}/tests/cpp/photo_native_focus_test.cpp"
+            "${PROJECT_SOURCE_DIR}/plugins/vst3/photo_native_focus.cpp")
+        target_compile_features(rhodes_vst3_photo_native_focus_tests PRIVATE cxx_std_20)
+        target_include_directories(rhodes_vst3_photo_native_focus_tests PRIVATE "${PROJECT_SOURCE_DIR}")
+        target_link_libraries(rhodes_vst3_photo_native_focus_tests PRIVATE PkgConfig::RHODES_EDITOR_XCB)
+        rhodes_target_options(rhodes_vst3_photo_native_focus_tests)
+        add_dependencies(rhodes_vst3_checks rhodes_vst3_photo_native_focus_tests)
+        add_test(NAME vst3.photo_native_focus
+            COMMAND "${Python3_EXECUTABLE}" "${PROJECT_SOURCE_DIR}/tools/run_xvfb_test.py"
+                --xvfb "${RHODES_XVFB_EXECUTABLE}" --xauth "${RHODES_XAUTH_EXECUTABLE}"
+                --xdpyinfo "${RHODES_XDPYINFO_EXECUTABLE}"
+                --startup-timeout 10 --test-timeout 30 --
+                $<TARGET_FILE:rhodes_vst3_photo_native_focus_tests>)
+        set_tests_properties(vst3.photo_native_focus PROPERTIES TIMEOUT 60 LABELS "editor;linux-xcb")
+    endif()
     # Optional third/fourth arguments select filtered/quadrature respectively;
     # the fifth omits the processor for controller-only public-interface tests.
     function(rhodes_add_vst3_test target source)

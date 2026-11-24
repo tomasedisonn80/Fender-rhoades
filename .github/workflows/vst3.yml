@@ -16,6 +16,7 @@ on:
       - tools/capture_ci_diagnostics.py
       - tools/compare_vst3_legacy.py
       - tools/verify_editor_assets.py
+      - tools/run_xvfb_test.py
       - docs/DEPENDENCIES.md
   workflow_dispatch:
 
@@ -85,7 +86,7 @@ jobs:
             libxcb-cursor-dev libxcb-keysyms1-dev libxcb-xkb-dev libxkbcommon-dev \
             libxkbcommon-x11-dev libglib2.0-dev libcairo2-dev libpango1.0-dev \
             libfontconfig1-dev libwayland-dev wayland-protocols libgtkmm-3.0-dev \
-            libatkmm-1.6-dev libsqlite3-dev xvfb
+            libatkmm-1.6-dev libsqlite3-dev xvfb xauth x11-utils
       - name: Verify original and lossless editor assets
         run: python source/tools/verify_editor_assets.py
       - name: Verify and retain source, SDK and all required submodule revisions
