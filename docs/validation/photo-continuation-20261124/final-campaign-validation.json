@@ -1,0 +1,13 @@
+{
+  "command": [
+    "python3",
+    "tools/validate_photo_continuation.py",
+    "--require-complete"
+  ],
+  "observed_utc": "2026-11-24T20:19:49.436379+00:00",
+  "exit_code": 0,
+  "stdout": "Photo continuation metadata valid: 100/100 recorded; 100/100 completed reports.\nChecks metadata and report bytes only; does not attest agent execution, execution order, scientific acceptance, or physical fidelity.\n",
+  "stderr": "",
+  "ledger_sha256": "c03dde4e00f76bfd69b5c9a2d119ecb880a27b8e91d6dd3a1bb285c3c8896fff",
+  "note": "Metadata/report-byte validation. The actual100 agents were separately spawned through collaboration tools in five completed waves."
+}

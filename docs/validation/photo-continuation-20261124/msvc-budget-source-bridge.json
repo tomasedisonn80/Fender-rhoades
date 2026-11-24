@@ -1,0 +1,1718 @@
+{
+  "schema_version": 1,
+  "kind": "additive_msvc_test_configuration_source_bridge",
+  "task": "HOST-004",
+  "worker": "w5-099",
+  "wave": 5,
+  "started_utc": "2026-11-24T20:16:15.578657+00:00",
+  "finished_utc": "2026-11-24T20:16:16.256098+00:00",
+  "status": "pass_source_and_configuration_applicability_only",
+  "scope": "Additive source/configuration and retained-file identity review between the historical 8c5d819 bridge and integrator-designated published main ec47d49. This pass does not establish a new Linux compilation or Windows/MSVC success.",
+  "target": {
+    "historical_source_commit": "8c5d819e9d99767372cf1a74a971433edce6da35",
+    "published_main_commit": "ec47d49e9555c6337b5359da8f2f7a88ee77effa",
+    "publication_basis": "Integrator supplied the published main SHA; local commit, parent and blobs inspected. No live remote or CI lookup by this worker.",
+    "parent_relationship_verified": true
+  },
+  "method": {
+    "hash_algorithm": "SHA-256 over exact file/blob bytes",
+    "manifest_serialization": "UTF-8 JSON, sorted keys, separators comma/colon without whitespace, ensure_ascii=False; sorted path rows containing path, sha256 and bytes",
+    "read_only_git_operations": [
+      "git cat-file -t",
+      "git cat-file --batch",
+      "git show <commit>:<path>",
+      "git show -s --format=%P",
+      "git ls-tree -r -z",
+      "git rev-parse <commit>:<path>",
+      "git diff --no-ext-diff",
+      "git diff --no-ext-diff --numstat",
+      "git diff --no-ext-diff --name-status"
+    ],
+    "other_operations": "Python pathlib/hashlib/JSON readback, exact byte comparisons and bounded source/configuration inspection. No source, test or archived script was executed.",
+    "configuration_runs_by_worker": 0,
+    "builds_by_worker": 0,
+    "test_invocations_by_worker": 0,
+    "native_executions_by_worker": 0,
+    "git_mutations": 0,
+    "canonical_state_mutations": 0,
+    "live_ci_calls": 0,
+    "subworkers": 0,
+    "written_paths": [
+      "docs/validation/photo-continuation-20261124/msvc-budget-source-bridge.json",
+      "docs/agents/reports/photo-continuation-20261124/w5-099.md"
+    ]
+  },
+  "summary": {
+    "checks": 13,
+    "checks_passed": 13,
+    "checks_failed": 0,
+    "active_code_build_tracked_paths": 257,
+    "current_paths_matching_published": 257,
+    "paths_unchanged_from_historical": 256,
+    "changed_active_code_build_paths": [
+      "CMakeLists.txt"
+    ],
+    "original_source_union_paths": 57,
+    "original_source_union_matching_current_and_published": 57,
+    "original_source_union_unchanged_from_historical": 56,
+    "production_and_asset_paths_unchanged": 40,
+    "tracked_test_paths_unchanged": 151,
+    "actual_linux_shared_objects_matched": 3,
+    "frozen_records_preserved": 2,
+    "source_configuration_blockers": []
+  },
+  "checks": [
+    {
+      "id": "commits_available_and_target_parent_is_historical",
+      "status": "pass",
+      "scope": "Source/configuration applicability and retained-byte observation only."
+    },
+    {
+      "id": "only_allowlisted_active_code_build_delta",
+      "status": "pass",
+      "scope": "Source/configuration applicability and retained-byte observation only."
+    },
+    {
+      "id": "six_line_insert_reversal_restores_historical_cmake",
+      "status": "pass",
+      "scope": "Source/configuration applicability and retained-byte observation only."
+    },
+    {
+      "id": "all_current_tracked_code_build_paths_equal_published_blobs",
+      "status": "pass",
+      "scope": "Source/configuration applicability and retained-byte observation only."
+    },
+    {
+      "id": "original_57_source_bindings_preserved_or_explicit_cmake_delta",
+      "status": "pass",
+      "scope": "Source/configuration applicability and retained-byte observation only."
+    },
+    {
+      "id": "forty_production_and_asset_files_unchanged",
+      "status": "pass",
+      "scope": "Source/configuration applicability and retained-byte observation only."
+    },
+    {
+      "id": "all_tracked_test_files_unchanged",
+      "status": "pass",
+      "scope": "Source/configuration applicability and retained-byte observation only."
+    },
+    {
+      "id": "seven_test_assertions_one_header_assertion_and_five_cases_preserved",
+      "status": "pass",
+      "scope": "Source/configuration applicability and retained-byte observation only."
+    },
+    {
+      "id": "geometry_and_production_flag_configuration_preserved",
+      "status": "pass",
+      "scope": "Source/configuration applicability and retained-byte observation only."
+    },
+    {
+      "id": "root_configure_success_retained_and_linux_ninja_has_no_option",
+      "status": "pass",
+      "scope": "Source/configuration applicability and retained-byte observation only."
+    },
+    {
+      "id": "three_retained_linux_shared_objects_match_historical_records",
+      "status": "pass",
+      "scope": "Source/configuration applicability and retained-byte observation only."
+    },
+    {
+      "id": "frozen_092_bridge_and_094_aggregate_preserved",
+      "status": "pass",
+      "scope": "Source/configuration applicability and retained-byte observation only."
+    },
+    {
+      "id": "canonical_host004_definition_digest_unchanged",
+      "status": "pass",
+      "scope": "Source/configuration applicability and retained-byte observation only."
+    }
+  ],
+  "allowed_cmake_delta": {
+    "path": "CMakeLists.txt",
+    "historical": {
+      "sha256": "4619d0aa41be71b7946664ac07c5e381205afc901dcf15319f21ae4d42c07adc",
+      "bytes": 25550,
+      "mode": "100644",
+      "git_blob_oid": "fe7f80caf84c20dea86b02754346eef66fa16319"
+    },
+    "published": {
+      "sha256": "aa7d1e9f2db5686323e60de4e95ebfd3f9e5fcdddd5364569e160164175771e8",
+      "bytes": 25944,
+      "mode": "100644",
+      "git_blob_oid": "da10dafff23c26f5d3d2acead74e3ada87dfc379"
+    },
+    "current": {
+      "sha256": "aa7d1e9f2db5686323e60de4e95ebfd3f9e5fcdddd5364569e160164175771e8",
+      "bytes": 25944
+    },
+    "added_lines": 6,
+    "deleted_lines": 0,
+    "inserted_block": "    if(CMAKE_CXX_COMPILER_ID STREQUAL \"MSVC\")\n        # The 73-key contour table is evaluated at compile time. A default-budget\n        # MSVC 19.52 build reported C1001; give this test a bounded larger budget\n        # while retaining every static assertion and the production flags.\n        target_compile_options(rhodes_photo_key_highlight_tests PRIVATE /constexpr:steps1000000)\n    endif()\n",
+    "inserted_block_sha256": "130fcbb14d80e4977e9524c73dc4392edf8e1d8dd3cd200e69661d8230d171d0",
+    "unified_diff": "diff --git a/CMakeLists.txt b/CMakeLists.txt\nindex fe7f80c..da10daf 100644\n--- a/CMakeLists.txt\n+++ b/CMakeLists.txt\n@@ -100,6 +100,12 @@ if(BUILD_TESTING)\n     target_link_libraries(rhodes_photo_key_highlight_tests PRIVATE rhodes_core)\n     target_include_directories(rhodes_photo_key_highlight_tests PRIVATE \"${PROJECT_SOURCE_DIR}\")\n     rhodes_target_options(rhodes_photo_key_highlight_tests)\n+    if(CMAKE_CXX_COMPILER_ID STREQUAL \"MSVC\")\n+        # The 73-key contour table is evaluated at compile time. A default-budget\n+        # MSVC 19.52 build reported C1001; give this test a bounded larger budget\n+        # while retaining every static assertion and the production flags.\n+        target_compile_options(rhodes_photo_key_highlight_tests PRIVATE /constexpr:steps1000000)\n+    endif()\n     foreach(test_name IN ITEMS structure black_interiors dense_grid boundaries invalid_indices)\n         add_test(NAME photo_key_highlight.${test_name}\n             COMMAND rhodes_photo_key_highlight_tests ${test_name})\n",
+    "unified_diff_sha256": "6f510dedbb514325e5a640c924e283413979fbbc7e2aa717cb52fd06ba74cc91",
+    "reversing_only_this_block_restores_historical_bytes": true,
+    "placement": "Immediately after rhodes_target_options(rhodes_photo_key_highlight_tests), before the existing five-case CTest registration.",
+    "target": "rhodes_photo_key_highlight_tests",
+    "visibility": "PRIVATE",
+    "condition": "CMAKE_CXX_COMPILER_ID STREQUAL \"MSVC\"",
+    "option": "/constexpr:steps1000000",
+    "new_option_occurrences_in_cmakelists": 1,
+    "gnu_clang_appleclang_receive_option_from_this_block": false,
+    "clang_or_windows_configuration_executed_by_worker": false,
+    "production_options_function": {
+      "source": "function(rhodes_target_options target)\n    if(MSVC)\n        target_compile_options(${target} PRIVATE /W4 /permissive- /fp:precise)\n        if(RHODES_WARNINGS_AS_ERRORS)\n            target_compile_options(${target} PRIVATE /WX)\n        endif()\n    else()\n        target_compile_options(${target} PRIVATE -Wall -Wextra -Wpedantic -Wconversion -Wshadow)\n        if(RHODES_WARNINGS_AS_ERRORS)\n            target_compile_options(${target} PRIVATE -Werror)\n        endif()\n        if(RHODES_ENABLE_SANITIZERS)\n            target_compile_options(${target} PRIVATE -fsanitize=address,undefined -fno-omit-frame-pointer)\n            target_link_options(${target} PRIVATE -fsanitize=address,undefined)\n        endif()\n    endif()\nendfunction()",
+      "sha256": "8cd7f0ee19fcfb5bcfcfdd30f29f586aa2b696477e2902e83ac7d86e0a29568f",
+      "historical_published_current_exactly_equal": true
+    },
+    "optimization_configuration_unchanged": "Removal of the exact six-line block restores all prior CMakeLists bytes, and every other tracked build-configuration path is identical. The new option affects only the private highlight test target; /fp:precise and existing optimization configuration are preserved."
+  },
+  "active_code_build_comparison": {
+    "scope_paths": [
+      "CMakeLists.txt",
+      "CMakePresets.json",
+      "cmake",
+      "include",
+      "src",
+      "plugins",
+      "assets",
+      "tests",
+      "apps",
+      "tools",
+      ".github"
+    ],
+    "scope_definition": "All tracked blobs under the listed active code/build/tool/test roots; documentary, evidence and ledger changes elsewhere in the commit are outside this compiled-source comparison.",
+    "path_sets_equal_between_commits": true,
+    "root_bindings": [
+      {
+        "root_or_path": "CMakeLists.txt",
+        "tracked_file_count": 1,
+        "historical_git_object_oid": "fe7f80caf84c20dea86b02754346eef66fa16319",
+        "published_git_object_oid": "da10dafff23c26f5d3d2acead74e3ada87dfc379",
+        "git_object_identity_unchanged": false,
+        "historical_manifest_sha256": "a78d02b3cd1e2369b0116012089cc42d6bad7eb08cc7974080329c72efb0825e",
+        "published_manifest_sha256": "3c949e3f90f39322783a6947030316c95acbe1855f8b65dca29cbd14150e5ecf",
+        "current_manifest_sha256": "3c949e3f90f39322783a6947030316c95acbe1855f8b65dca29cbd14150e5ecf",
+        "current_matches_published_file_count": 1,
+        "historical_matches_published_file_count": 0,
+        "changed_paths": [
+          "CMakeLists.txt"
+        ]
+      },
+      {
+        "root_or_path": "CMakePresets.json",
+        "tracked_file_count": 1,
+        "historical_git_object_oid": "a5010844fc09d58589bc69bd3a92ee2709a0278d",
+        "published_git_object_oid": "a5010844fc09d58589bc69bd3a92ee2709a0278d",
+        "git_object_identity_unchanged": true,
+        "historical_manifest_sha256": "8f51db0eb3dcd2118991f13251408a4013c9093643c5c19300b72915bc328500",
+        "published_manifest_sha256": "8f51db0eb3dcd2118991f13251408a4013c9093643c5c19300b72915bc328500",
+        "current_manifest_sha256": "8f51db0eb3dcd2118991f13251408a4013c9093643c5c19300b72915bc328500",
+        "current_matches_published_file_count": 1,
+        "historical_matches_published_file_count": 1,
+        "changed_paths": []
+      },
+      {
+        "root_or_path": "cmake",
+        "tracked_file_count": 5,
+        "historical_git_object_oid": "2108464d3ec950eddcf3277c4c8530dd2a9a9451",
+        "published_git_object_oid": "2108464d3ec950eddcf3277c4c8530dd2a9a9451",
+        "git_object_identity_unchanged": true,
+        "historical_manifest_sha256": "0770519320c8f3f60fb44d8b4b30364f0e2ccc1b44042345659a23bb0a77f0d1",
+        "published_manifest_sha256": "0770519320c8f3f60fb44d8b4b30364f0e2ccc1b44042345659a23bb0a77f0d1",
+        "current_manifest_sha256": "0770519320c8f3f60fb44d8b4b30364f0e2ccc1b44042345659a23bb0a77f0d1",
+        "current_matches_published_file_count": 5,
+        "historical_matches_published_file_count": 5,
+        "changed_paths": []
+      },
+      {
+        "root_or_path": "include",
+        "tracked_file_count": 17,
+        "historical_git_object_oid": "03538bb43f867d0fde75fc2c83faafe9076edb4c",
+        "published_git_object_oid": "03538bb43f867d0fde75fc2c83faafe9076edb4c",
+        "git_object_identity_unchanged": true,
+        "historical_manifest_sha256": "234c8b2594af9c122345db4149c30a5114e6fc46909d8699e74bc542f5352929",
+        "published_manifest_sha256": "234c8b2594af9c122345db4149c30a5114e6fc46909d8699e74bc542f5352929",
+        "current_manifest_sha256": "234c8b2594af9c122345db4149c30a5114e6fc46909d8699e74bc542f5352929",
+        "current_matches_published_file_count": 17,
+        "historical_matches_published_file_count": 17,
+        "changed_paths": []
+      },
+      {
+        "root_or_path": "src",
+        "tracked_file_count": 2,
+        "historical_git_object_oid": "9e378548bfbc4850ff8de78a766f9bdeda014c10",
+        "published_git_object_oid": "9e378548bfbc4850ff8de78a766f9bdeda014c10",
+        "git_object_identity_unchanged": true,
+        "historical_manifest_sha256": "a5e9dd19b1c8db7d2dc680314698fe4f8a21f4f2a34995ec04ad8e5a87cae6fb",
+        "published_manifest_sha256": "a5e9dd19b1c8db7d2dc680314698fe4f8a21f4f2a34995ec04ad8e5a87cae6fb",
+        "current_manifest_sha256": "a5e9dd19b1c8db7d2dc680314698fe4f8a21f4f2a34995ec04ad8e5a87cae6fb",
+        "current_matches_published_file_count": 2,
+        "historical_matches_published_file_count": 2,
+        "changed_paths": []
+      },
+      {
+        "root_or_path": "plugins",
+        "tracked_file_count": 18,
+        "historical_git_object_oid": "e19b1023765e3d5f98fb24fafae3cf95eb2b0c90",
+        "published_git_object_oid": "e19b1023765e3d5f98fb24fafae3cf95eb2b0c90",
+        "git_object_identity_unchanged": true,
+        "historical_manifest_sha256": "42cf8752c5ce3ff9d0da0a5e7f9f0289b4ee7965ec51f9f2cde593327c57dd2f",
+        "published_manifest_sha256": "42cf8752c5ce3ff9d0da0a5e7f9f0289b4ee7965ec51f9f2cde593327c57dd2f",
+        "current_manifest_sha256": "42cf8752c5ce3ff9d0da0a5e7f9f0289b4ee7965ec51f9f2cde593327c57dd2f",
+        "current_matches_published_file_count": 18,
+        "historical_matches_published_file_count": 18,
+        "changed_paths": []
+      },
+      {
+        "root_or_path": "assets",
+        "tracked_file_count": 3,
+        "historical_git_object_oid": "606ce516cfd4b4d135241c078d99e3f49e036d80",
+        "published_git_object_oid": "606ce516cfd4b4d135241c078d99e3f49e036d80",
+        "git_object_identity_unchanged": true,
+        "historical_manifest_sha256": "da82293419b86b484801db1ba2423977fdf2251592b5905609c3002d96ab189c",
+        "published_manifest_sha256": "da82293419b86b484801db1ba2423977fdf2251592b5905609c3002d96ab189c",
+        "current_manifest_sha256": "da82293419b86b484801db1ba2423977fdf2251592b5905609c3002d96ab189c",
+        "current_matches_published_file_count": 3,
+        "historical_matches_published_file_count": 3,
+        "changed_paths": []
+      },
+      {
+        "root_or_path": "tests",
+        "tracked_file_count": 151,
+        "historical_git_object_oid": "a6652774b3a0bf85b63d8bed735fb1a0d5cfc64c",
+        "published_git_object_oid": "a6652774b3a0bf85b63d8bed735fb1a0d5cfc64c",
+        "git_object_identity_unchanged": true,
+        "historical_manifest_sha256": "226a2d26db608d9993585350b8f07cfb6517f7bcdb5b8044b6b6786556c30cea",
+        "published_manifest_sha256": "226a2d26db608d9993585350b8f07cfb6517f7bcdb5b8044b6b6786556c30cea",
+        "current_manifest_sha256": "226a2d26db608d9993585350b8f07cfb6517f7bcdb5b8044b6b6786556c30cea",
+        "current_matches_published_file_count": 151,
+        "historical_matches_published_file_count": 151,
+        "changed_paths": []
+      },
+      {
+        "root_or_path": "apps",
+        "tracked_file_count": 7,
+        "historical_git_object_oid": "9a5a6d71b84f298f423a529b96b3c244d1927783",
+        "published_git_object_oid": "9a5a6d71b84f298f423a529b96b3c244d1927783",
+        "git_object_identity_unchanged": true,
+        "historical_manifest_sha256": "b405242583656983b30cb7b926b63616cdc438b7ee131989f03c7afe169d5b72",
+        "published_manifest_sha256": "b405242583656983b30cb7b926b63616cdc438b7ee131989f03c7afe169d5b72",
+        "current_manifest_sha256": "b405242583656983b30cb7b926b63616cdc438b7ee131989f03c7afe169d5b72",
+        "current_matches_published_file_count": 7,
+        "historical_matches_published_file_count": 7,
+        "changed_paths": []
+      },
+      {
+        "root_or_path": "tools",
+        "tracked_file_count": 43,
+        "historical_git_object_oid": "b9fa730daac6d0f7484f3d5a6f0f12000749eed5",
+        "published_git_object_oid": "b9fa730daac6d0f7484f3d5a6f0f12000749eed5",
+        "git_object_identity_unchanged": true,
+        "historical_manifest_sha256": "be8516bda128273950c5a6d64640c9a1283023765abac7b48be8806a6a8d41e3",
+        "published_manifest_sha256": "be8516bda128273950c5a6d64640c9a1283023765abac7b48be8806a6a8d41e3",
+        "current_manifest_sha256": "be8516bda128273950c5a6d64640c9a1283023765abac7b48be8806a6a8d41e3",
+        "current_matches_published_file_count": 43,
+        "historical_matches_published_file_count": 43,
+        "changed_paths": []
+      },
+      {
+        "root_or_path": ".github",
+        "tracked_file_count": 9,
+        "historical_git_object_oid": "15b43a65e3d454749fb3cd18625c14c5867fbdba",
+        "published_git_object_oid": "15b43a65e3d454749fb3cd18625c14c5867fbdba",
+        "git_object_identity_unchanged": true,
+        "historical_manifest_sha256": "5fec3ad188f4bdf5ffd84d58dc32de3a75728117f3fe9de52c04e04dd98fb351",
+        "published_manifest_sha256": "5fec3ad188f4bdf5ffd84d58dc32de3a75728117f3fe9de52c04e04dd98fb351",
+        "current_manifest_sha256": "5fec3ad188f4bdf5ffd84d58dc32de3a75728117f3fe9de52c04e04dd98fb351",
+        "current_matches_published_file_count": 9,
+        "historical_matches_published_file_count": 9,
+        "changed_paths": []
+      }
+    ]
+  },
+  "original_092_source_union_rechecked": [
+    {
+      "path": "CMakeLists.txt",
+      "historical": {
+        "sha256": "4619d0aa41be71b7946664ac07c5e381205afc901dcf15319f21ae4d42c07adc",
+        "bytes": 25550,
+        "git_blob_oid": "fe7f80caf84c20dea86b02754346eef66fa16319"
+      },
+      "published": {
+        "sha256": "aa7d1e9f2db5686323e60de4e95ebfd3f9e5fcdddd5364569e160164175771e8",
+        "bytes": 25944,
+        "git_blob_oid": "da10dafff23c26f5d3d2acead74e3ada87dfc379"
+      },
+      "current": {
+        "sha256": "aa7d1e9f2db5686323e60de4e95ebfd3f9e5fcdddd5364569e160164175771e8",
+        "bytes": 25944
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": false
+    },
+    {
+      "path": "CMakePresets.json",
+      "historical": {
+        "sha256": "a06e2a16dba0b4947352cbbcec2a7668d29b3f777c6f460f9d65f6bd0bb7f0aa",
+        "bytes": 1483,
+        "git_blob_oid": "a5010844fc09d58589bc69bd3a92ee2709a0278d"
+      },
+      "published": {
+        "sha256": "a06e2a16dba0b4947352cbbcec2a7668d29b3f777c6f460f9d65f6bd0bb7f0aa",
+        "bytes": 1483,
+        "git_blob_oid": "a5010844fc09d58589bc69bd3a92ee2709a0278d"
+      },
+      "current": {
+        "sha256": "a06e2a16dba0b4947352cbbcec2a7668d29b3f777c6f460f9d65f6bd0bb7f0aa",
+        "bytes": 1483
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "assets/reference/rhodes-suitcase-reference.webp",
+      "historical": {
+        "sha256": "782b4c83a2bf827ed0d363bc567cdc2211485da6e650db4ae99448e78b7da24b",
+        "bytes": 257616,
+        "git_blob_oid": "9b1676572d7324f1f41e826cec39ad58e81311fb"
+      },
+      "published": {
+        "sha256": "782b4c83a2bf827ed0d363bc567cdc2211485da6e650db4ae99448e78b7da24b",
+        "bytes": 257616,
+        "git_blob_oid": "9b1676572d7324f1f41e826cec39ad58e81311fb"
+      },
+      "current": {
+        "sha256": "782b4c83a2bf827ed0d363bc567cdc2211485da6e650db4ae99448e78b7da24b",
+        "bytes": 257616
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "cmake/Vst3.cmake",
+      "historical": {
+        "sha256": "d223ac5f42521ce3be0f72a0023e35e601ec737a1bd9e6123d530c92e0ad6959",
+        "bytes": 61093,
+        "git_blob_oid": "4bed5d2c9e6a50dae2eecc2199bc5080cd9b64ac"
+      },
+      "published": {
+        "sha256": "d223ac5f42521ce3be0f72a0023e35e601ec737a1bd9e6123d530c92e0ad6959",
+        "bytes": 61093,
+        "git_blob_oid": "4bed5d2c9e6a50dae2eecc2199bc5080cd9b64ac"
+      },
+      "current": {
+        "sha256": "d223ac5f42521ce3be0f72a0023e35e601ec737a1bd9e6123d530c92e0ad6959",
+        "bytes": 61093
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "cmake/VstguiWin32Timer.cmake",
+      "historical": {
+        "sha256": "211484666fff1fe57c8e442dbc98b3a0c76fd1119fbd21a5ce1d280368fd5c85",
+        "bytes": 2532,
+        "git_blob_oid": "85c1a9edcc4c3d6ff6020c9d2282355a2d87e442"
+      },
+      "published": {
+        "sha256": "211484666fff1fe57c8e442dbc98b3a0c76fd1119fbd21a5ce1d280368fd5c85",
+        "bytes": 2532,
+        "git_blob_oid": "85c1a9edcc4c3d6ff6020c9d2282355a2d87e442"
+      },
+      "current": {
+        "sha256": "211484666fff1fe57c8e442dbc98b3a0c76fd1119fbd21a5ce1d280368fd5c85",
+        "bytes": 2532
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "cmake/VstguiX11ChildWindow.cmake",
+      "historical": {
+        "sha256": "74ad962f03a3581fcc424d85a2a6f7bf836655843e858285609f087033754e3e",
+        "bytes": 3567,
+        "git_blob_oid": "acad209040d2bb53a1a1645dfb73c9311464b9ab"
+      },
+      "published": {
+        "sha256": "74ad962f03a3581fcc424d85a2a6f7bf836655843e858285609f087033754e3e",
+        "bytes": 3567,
+        "git_blob_oid": "acad209040d2bb53a1a1645dfb73c9311464b9ab"
+      },
+      "current": {
+        "sha256": "74ad962f03a3581fcc424d85a2a6f7bf836655843e858285609f087033754e3e",
+        "bytes": 3567
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "cmake/VstguiX11Keyboard.cmake",
+      "historical": {
+        "sha256": "3f1b1de7d27a74c1d6d2dae21152b125e4b5c1bf349a78f3aa4bfa3848a76a9c",
+        "bytes": 2424,
+        "git_blob_oid": "6ed7ac3e80a30f615db400d18a357d8938485bd0"
+      },
+      "published": {
+        "sha256": "3f1b1de7d27a74c1d6d2dae21152b125e4b5c1bf349a78f3aa4bfa3848a76a9c",
+        "bytes": 2424,
+        "git_blob_oid": "6ed7ac3e80a30f615db400d18a357d8938485bd0"
+      },
+      "current": {
+        "sha256": "3f1b1de7d27a74c1d6d2dae21152b125e4b5c1bf349a78f3aa4bfa3848a76a9c",
+        "bytes": 2424
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "cmake/VstguiX11Lifetime.cmake",
+      "historical": {
+        "sha256": "2b1291c584fc285d219a09b84a752b548b3085a0f7b725464a2806a21afffb60",
+        "bytes": 7796,
+        "git_blob_oid": "6abbb5ef824079cbff348ec353b91072536022f6"
+      },
+      "published": {
+        "sha256": "2b1291c584fc285d219a09b84a752b548b3085a0f7b725464a2806a21afffb60",
+        "bytes": 7796,
+        "git_blob_oid": "6abbb5ef824079cbff348ec353b91072536022f6"
+      },
+      "current": {
+        "sha256": "2b1291c584fc285d219a09b84a752b548b3085a0f7b725464a2806a21afffb60",
+        "bytes": 7796
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "docs/specs/HOST_EXPRESSION_MONO_20261124.md",
+      "historical": {
+        "sha256": "16a617fb45448f7cad16d7de94ccd0c05b98706aeea99a36c4cea59bd4ea7229",
+        "bytes": 9518,
+        "git_blob_oid": "b02c42521b0bcc6c55d6ea51030a9a7b79a73f2e"
+      },
+      "published": {
+        "sha256": "16a617fb45448f7cad16d7de94ccd0c05b98706aeea99a36c4cea59bd4ea7229",
+        "bytes": 9518,
+        "git_blob_oid": "b02c42521b0bcc6c55d6ea51030a9a7b79a73f2e"
+      },
+      "current": {
+        "sha256": "16a617fb45448f7cad16d7de94ccd0c05b98706aeea99a36c4cea59bd4ea7229",
+        "bytes": 9518
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "docs/specs/PHOTO_EDITOR_20261124.md",
+      "historical": {
+        "sha256": "9b68c304da33113797543314fedc722db6da00ce981db28d7ab2742f5f955ed1",
+        "bytes": 3329,
+        "git_blob_oid": "4deec83588fe97ae6659b622638843f4700dec1b"
+      },
+      "published": {
+        "sha256": "9b68c304da33113797543314fedc722db6da00ce981db28d7ab2742f5f955ed1",
+        "bytes": 3329,
+        "git_blob_oid": "4deec83588fe97ae6659b622638843f4700dec1b"
+      },
+      "current": {
+        "sha256": "9b68c304da33113797543314fedc722db6da00ce981db28d7ab2742f5f955ed1",
+        "bytes": 3329
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "include/rhodes/audio_engine.hpp",
+      "historical": {
+        "sha256": "10efac8150c07e69ef41eed415a6e7403b4339179af902f91cd17ef498da7b97",
+        "bytes": 4216,
+        "git_blob_oid": "24a84b82b56717b06001ba71fa2a1b0c8f8b5058"
+      },
+      "published": {
+        "sha256": "10efac8150c07e69ef41eed415a6e7403b4339179af902f91cd17ef498da7b97",
+        "bytes": 4216,
+        "git_blob_oid": "24a84b82b56717b06001ba71fa2a1b0c8f8b5058"
+      },
+      "current": {
+        "sha256": "10efac8150c07e69ef41eed415a6e7403b4339179af902f91cd17ef498da7b97",
+        "bytes": 4216
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "include/rhodes/audio_filter_coefficients.hpp",
+      "historical": {
+        "sha256": "c1ab39356d7e44348f9dc56f9120ff2598889d1fa144e5294b084585655eb76d",
+        "bytes": 17719,
+        "git_blob_oid": "751c1123d4178f2e4074d78d740087025aabe2a0"
+      },
+      "published": {
+        "sha256": "c1ab39356d7e44348f9dc56f9120ff2598889d1fa144e5294b084585655eb76d",
+        "bytes": 17719,
+        "git_blob_oid": "751c1123d4178f2e4074d78d740087025aabe2a0"
+      },
+      "current": {
+        "sha256": "c1ab39356d7e44348f9dc56f9120ff2598889d1fa144e5294b084585655eb76d",
+        "bytes": 17719
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "include/rhodes/contact_reference.hpp",
+      "historical": {
+        "sha256": "00b99e61dc73686c22675bedf647c3ad1b27ba13332180431f5a42e485057fda",
+        "bytes": 13870,
+        "git_blob_oid": "fa0e7035de8068aa8660e83f4aeee8b7936f79d6"
+      },
+      "published": {
+        "sha256": "00b99e61dc73686c22675bedf647c3ad1b27ba13332180431f5a42e485057fda",
+        "bytes": 13870,
+        "git_blob_oid": "fa0e7035de8068aa8660e83f4aeee8b7936f79d6"
+      },
+      "current": {
+        "sha256": "00b99e61dc73686c22675bedf647c3ad1b27ba13332180431f5a42e485057fda",
+        "bytes": 13870
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "include/rhodes/control_text.hpp",
+      "historical": {
+        "sha256": "de28474739274f4fac20dc1d3d5602cb63c62ddd04a33202cb5375985086e63d",
+        "bytes": 17207,
+        "git_blob_oid": "e27751eb3829ef30217ef6969547d54093eda133"
+      },
+      "published": {
+        "sha256": "de28474739274f4fac20dc1d3d5602cb63c62ddd04a33202cb5375985086e63d",
+        "bytes": 17207,
+        "git_blob_oid": "e27751eb3829ef30217ef6969547d54093eda133"
+      },
+      "current": {
+        "sha256": "de28474739274f4fac20dc1d3d5602cb63c62ddd04a33202cb5375985086e63d",
+        "bytes": 17207
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "include/rhodes/control_value.hpp",
+      "historical": {
+        "sha256": "d7c282afdcffaef90f7872f97b37bfb34671448da64376d3439649c052d4d48d",
+        "bytes": 5479,
+        "git_blob_oid": "12bb1d05a20bbdb1a947a84662707773ff71d542"
+      },
+      "published": {
+        "sha256": "d7c282afdcffaef90f7872f97b37bfb34671448da64376d3439649c052d4d48d",
+        "bytes": 5479,
+        "git_blob_oid": "12bb1d05a20bbdb1a947a84662707773ff71d542"
+      },
+      "current": {
+        "sha256": "d7c282afdcffaef90f7872f97b37bfb34671448da64376d3439649c052d4d48d",
+        "bytes": 5479
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "include/rhodes/editor_audition.hpp",
+      "historical": {
+        "sha256": "6c4ea15ddd2bb3c7498f848c5c123de8c69b28fe14aaa2aa694c5adcaf6442c9",
+        "bytes": 7536,
+        "git_blob_oid": "7ef9e22f6d7b7995f0ab5e0446a07353201029ee"
+      },
+      "published": {
+        "sha256": "6c4ea15ddd2bb3c7498f848c5c123de8c69b28fe14aaa2aa694c5adcaf6442c9",
+        "bytes": 7536,
+        "git_blob_oid": "7ef9e22f6d7b7995f0ab5e0446a07353201029ee"
+      },
+      "current": {
+        "sha256": "6c4ea15ddd2bb3c7498f848c5c123de8c69b28fe14aaa2aa694c5adcaf6442c9",
+        "bytes": 7536
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "include/rhodes/event_processor.hpp",
+      "historical": {
+        "sha256": "cbfebb44d5d7eee06ab6952209a4683c7a7da58c04ea81f6583b98cfb981517d",
+        "bytes": 7620,
+        "git_blob_oid": "671804b8dfdbf8789770539d58fc89680fb0731a"
+      },
+      "published": {
+        "sha256": "cbfebb44d5d7eee06ab6952209a4683c7a7da58c04ea81f6583b98cfb981517d",
+        "bytes": 7620,
+        "git_blob_oid": "671804b8dfdbf8789770539d58fc89680fb0731a"
+      },
+      "current": {
+        "sha256": "cbfebb44d5d7eee06ab6952209a4683c7a7da58c04ea81f6583b98cfb981517d",
+        "bytes": 7620
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "include/rhodes/fir_decimator.hpp",
+      "historical": {
+        "sha256": "e54faeb397bcbccb9ed9834cfc264d84550c4ef375d8e5273a720eb1f190071b",
+        "bytes": 2185,
+        "git_blob_oid": "9869c27f5f7e9b5529f132ab726a2715041faa88"
+      },
+      "published": {
+        "sha256": "e54faeb397bcbccb9ed9834cfc264d84550c4ef375d8e5273a720eb1f190071b",
+        "bytes": 2185,
+        "git_blob_oid": "9869c27f5f7e9b5529f132ab726a2715041faa88"
+      },
+      "current": {
+        "sha256": "e54faeb397bcbccb9ed9834cfc264d84550c4ef375d8e5273a720eb1f190071b",
+        "bytes": 2185
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "include/rhodes/front_panel_effects.hpp",
+      "historical": {
+        "sha256": "e8998a71f848a14b617317f88447a8655dde60fefb7981762fb15ad0de3fa7d0",
+        "bytes": 10035,
+        "git_blob_oid": "244c16e8855e9033094947ae95bdb7cccdbb9865"
+      },
+      "published": {
+        "sha256": "e8998a71f848a14b617317f88447a8655dde60fefb7981762fb15ad0de3fa7d0",
+        "bytes": 10035,
+        "git_blob_oid": "244c16e8855e9033094947ae95bdb7cccdbb9865"
+      },
+      "current": {
+        "sha256": "e8998a71f848a14b617317f88447a8655dde60fefb7981762fb15ad0de3fa7d0",
+        "bytes": 10035
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "include/rhodes/front_panel_state.hpp",
+      "historical": {
+        "sha256": "fe4181f15b328db42cec646a22de186636d0dfa27d4a384b016ad47e6d5a7a71",
+        "bytes": 2299,
+        "git_blob_oid": "6d1f3c69cf2f1e709864e2f8d25777277def80c3"
+      },
+      "published": {
+        "sha256": "fe4181f15b328db42cec646a22de186636d0dfa27d4a384b016ad47e6d5a7a71",
+        "bytes": 2299,
+        "git_blob_oid": "6d1f3c69cf2f1e709864e2f8d25777277def80c3"
+      },
+      "current": {
+        "sha256": "fe4181f15b328db42cec646a22de186636d0dfa27d4a384b016ad47e6d5a7a71",
+        "bytes": 2299
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "include/rhodes/instrument_state.hpp",
+      "historical": {
+        "sha256": "1550dbbd83ea20838a6cac1579c716f7d01a94429450c19b62d18df14d102043",
+        "bytes": 8896,
+        "git_blob_oid": "174db4f2c87cdd8c515ff9cdc1cc7637b76d42a7"
+      },
+      "published": {
+        "sha256": "1550dbbd83ea20838a6cac1579c716f7d01a94429450c19b62d18df14d102043",
+        "bytes": 8896,
+        "git_blob_oid": "174db4f2c87cdd8c515ff9cdc1cc7637b76d42a7"
+      },
+      "current": {
+        "sha256": "1550dbbd83ea20838a6cac1579c716f7d01a94429450c19b62d18df14d102043",
+        "bytes": 8896
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "include/rhodes/note_tracker.hpp",
+      "historical": {
+        "sha256": "76931b326daae3a112b56420f9be9ea5b03b1c30307f1dc68b6c13c710cd830f",
+        "bytes": 5432,
+        "git_blob_oid": "8f82aa55ad670c7a5bdfc46fc11905d120e3ca20"
+      },
+      "published": {
+        "sha256": "76931b326daae3a112b56420f9be9ea5b03b1c30307f1dc68b6c13c710cd830f",
+        "bytes": 5432,
+        "git_blob_oid": "8f82aa55ad670c7a5bdfc46fc11905d120e3ca20"
+      },
+      "current": {
+        "sha256": "76931b326daae3a112b56420f9be9ea5b03b1c30307f1dc68b6c13c710cd830f",
+        "bytes": 5432
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "include/rhodes/plugin_state.hpp",
+      "historical": {
+        "sha256": "973576bb1db6fe6830b60193065a3acd4d0522f45eb0e33ca8a26524726dab15",
+        "bytes": 11445,
+        "git_blob_oid": "7d7aec6f53e0274a757be019d3ef0ae2d709f6f0"
+      },
+      "published": {
+        "sha256": "973576bb1db6fe6830b60193065a3acd4d0522f45eb0e33ca8a26524726dab15",
+        "bytes": 11445,
+        "git_blob_oid": "7d7aec6f53e0274a757be019d3ef0ae2d709f6f0"
+      },
+      "current": {
+        "sha256": "973576bb1db6fe6830b60193065a3acd4d0522f45eb0e33ca8a26524726dab15",
+        "bytes": 11445
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "include/rhodes/quadrature_engine.hpp",
+      "historical": {
+        "sha256": "c625a82b61eb3e721061177654c12ffa6aac0049e026b9633ae53ea2abaa773d",
+        "bytes": 4801,
+        "git_blob_oid": "553b93f9f48f428f01a890bc80ebad102de6c685"
+      },
+      "published": {
+        "sha256": "c625a82b61eb3e721061177654c12ffa6aac0049e026b9633ae53ea2abaa773d",
+        "bytes": 4801,
+        "git_blob_oid": "553b93f9f48f428f01a890bc80ebad102de6c685"
+      },
+      "current": {
+        "sha256": "c625a82b61eb3e721061177654c12ffa6aac0049e026b9633ae53ea2abaa773d",
+        "bytes": 4801
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "include/rhodes/quadrature_filter_coefficients.hpp",
+      "historical": {
+        "sha256": "3cca4ea6553ceb01810a6230f2144491364fa48af7d6cfbc43a8e3dcf5d08b51",
+        "bytes": 16603,
+        "git_blob_oid": "f3b4f5fe30ac74f45e68ef4f415ae3ec6b505da2"
+      },
+      "published": {
+        "sha256": "3cca4ea6553ceb01810a6230f2144491364fa48af7d6cfbc43a8e3dcf5d08b51",
+        "bytes": 16603,
+        "git_blob_oid": "f3b4f5fe30ac74f45e68ef4f415ae3ec6b505da2"
+      },
+      "current": {
+        "sha256": "3cca4ea6553ceb01810a6230f2144491364fa48af7d6cfbc43a8e3dcf5d08b51",
+        "bytes": 16603
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "include/rhodes/quadrature_fir.hpp",
+      "historical": {
+        "sha256": "cf6c85e70036b3f1794ecf131a9db43bcb8da373e47c5335f56b1bb57559b45e",
+        "bytes": 2707,
+        "git_blob_oid": "94645b5b16e1e1d3c183678d649ff2c1978806b9"
+      },
+      "published": {
+        "sha256": "cf6c85e70036b3f1794ecf131a9db43bcb8da373e47c5335f56b1bb57559b45e",
+        "bytes": 2707,
+        "git_blob_oid": "94645b5b16e1e1d3c183678d649ff2c1978806b9"
+      },
+      "current": {
+        "sha256": "cf6c85e70036b3f1794ecf131a9db43bcb8da373e47c5335f56b1bb57559b45e",
+        "bytes": 2707
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "include/rhodes/research_engine.hpp",
+      "historical": {
+        "sha256": "2a6ba0483a010d9b7a44517c5ed7c215f05d57ed6e96bd6609127322092929e4",
+        "bytes": 8348,
+        "git_blob_oid": "8935f4ab6f9f39fadc80e90ac75d6055e38c5371"
+      },
+      "published": {
+        "sha256": "2a6ba0483a010d9b7a44517c5ed7c215f05d57ed6e96bd6609127322092929e4",
+        "bytes": 8348,
+        "git_blob_oid": "8935f4ab6f9f39fadc80e90ac75d6055e38c5371"
+      },
+      "current": {
+        "sha256": "2a6ba0483a010d9b7a44517c5ed7c215f05d57ed6e96bd6609127322092929e4",
+        "bytes": 8348
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "plugins/vst3/THIRD_PARTY_NOTICES.md",
+      "historical": {
+        "sha256": "f3ed30cd41b48ce88753de641057f51f51e78ea19b60a40e4398f29fe191f901",
+        "bytes": 8653,
+        "git_blob_oid": "8068b0f48531be9a692b3d491eb495cacc07bb50"
+      },
+      "published": {
+        "sha256": "f3ed30cd41b48ce88753de641057f51f51e78ea19b60a40e4398f29fe191f901",
+        "bytes": 8653,
+        "git_blob_oid": "8068b0f48531be9a692b3d491eb495cacc07bb50"
+      },
+      "current": {
+        "sha256": "f3ed30cd41b48ce88753de641057f51f51e78ea19b60a40e4398f29fe191f901",
+        "bytes": 8653
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "plugins/vst3/controller.cpp",
+      "historical": {
+        "sha256": "2c77542e1aeb58bceaab8e7d6dd59250d17b5e4bc8f7d489b367ea5e805a0e36",
+        "bytes": 25101,
+        "git_blob_oid": "f4523370050d52552c191adfb26171611d260503"
+      },
+      "published": {
+        "sha256": "2c77542e1aeb58bceaab8e7d6dd59250d17b5e4bc8f7d489b367ea5e805a0e36",
+        "bytes": 25101,
+        "git_blob_oid": "f4523370050d52552c191adfb26171611d260503"
+      },
+      "current": {
+        "sha256": "2c77542e1aeb58bceaab8e7d6dd59250d17b5e4bc8f7d489b367ea5e805a0e36",
+        "bytes": 25101
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "plugins/vst3/controller.hpp",
+      "historical": {
+        "sha256": "a0dcf316c8d6a013a7a8b6a75485b451e21b070e6b57f62ef52fdf605b252183",
+        "bytes": 3901,
+        "git_blob_oid": "c837be9fd8af89c07aa46aad3737dfb1ef050f57"
+      },
+      "published": {
+        "sha256": "a0dcf316c8d6a013a7a8b6a75485b451e21b070e6b57f62ef52fdf605b252183",
+        "bytes": 3901,
+        "git_blob_oid": "c837be9fd8af89c07aa46aad3737dfb1ef050f57"
+      },
+      "current": {
+        "sha256": "a0dcf316c8d6a013a7a8b6a75485b451e21b070e6b57f62ef52fdf605b252183",
+        "bytes": 3901
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "plugins/vst3/factory.cpp",
+      "historical": {
+        "sha256": "16e5da7194a8f548dd91b84e3c66ed81b5bdf5ff618e66dbafa3abdc1a16158c",
+        "bytes": 1037,
+        "git_blob_oid": "6559dd1f42afe40854bc9ea20784e4146a0848a9"
+      },
+      "published": {
+        "sha256": "16e5da7194a8f548dd91b84e3c66ed81b5bdf5ff618e66dbafa3abdc1a16158c",
+        "bytes": 1037,
+        "git_blob_oid": "6559dd1f42afe40854bc9ea20784e4146a0848a9"
+      },
+      "current": {
+        "sha256": "16e5da7194a8f548dd91b84e3c66ed81b5bdf5ff618e66dbafa3abdc1a16158c",
+        "bytes": 1037
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "plugins/vst3/photo_editor.cpp",
+      "historical": {
+        "sha256": "caf54d88c871bab05ec572904ef4e3de7c985c0b713e65c398e0010786679fcf",
+        "bytes": 43422,
+        "git_blob_oid": "132a2228ac495ab749795c8b7a7ca78659e5d23e"
+      },
+      "published": {
+        "sha256": "caf54d88c871bab05ec572904ef4e3de7c985c0b713e65c398e0010786679fcf",
+        "bytes": 43422,
+        "git_blob_oid": "132a2228ac495ab749795c8b7a7ca78659e5d23e"
+      },
+      "current": {
+        "sha256": "caf54d88c871bab05ec572904ef4e3de7c985c0b713e65c398e0010786679fcf",
+        "bytes": 43422
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "plugins/vst3/photo_editor.hpp",
+      "historical": {
+        "sha256": "0c421cae0d330f22b00bab37bb17e73cddd948dbd56a0834c6cb086d6cec97db",
+        "bytes": 383,
+        "git_blob_oid": "cee35a2f193bdaa165fea89b9f4f9e333eda1f85"
+      },
+      "published": {
+        "sha256": "0c421cae0d330f22b00bab37bb17e73cddd948dbd56a0834c6cb086d6cec97db",
+        "bytes": 383,
+        "git_blob_oid": "cee35a2f193bdaa165fea89b9f4f9e333eda1f85"
+      },
+      "current": {
+        "sha256": "0c421cae0d330f22b00bab37bb17e73cddd948dbd56a0834c6cb086d6cec97db",
+        "bytes": 383
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "plugins/vst3/photo_geometry.hpp",
+      "historical": {
+        "sha256": "77fe4f4ac93ee0b212ef3f5399eb5cfa8884076d8eef51d2adf2123e6d85e0bd",
+        "bytes": 11936,
+        "git_blob_oid": "5cfcbc031a1dad70a4f018c5fc6668eed9a0ed51"
+      },
+      "published": {
+        "sha256": "77fe4f4ac93ee0b212ef3f5399eb5cfa8884076d8eef51d2adf2123e6d85e0bd",
+        "bytes": 11936,
+        "git_blob_oid": "5cfcbc031a1dad70a4f018c5fc6668eed9a0ed51"
+      },
+      "current": {
+        "sha256": "77fe4f4ac93ee0b212ef3f5399eb5cfa8884076d8eef51d2adf2123e6d85e0bd",
+        "bytes": 11936
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "plugins/vst3/photo_key_highlight.hpp",
+      "historical": {
+        "sha256": "9302c59a677564253ea80fb92deeef811864def11a4fdd7e03b3a20c2477c58a",
+        "bytes": 16080,
+        "git_blob_oid": "d2c77f17aea35a14c44732923a739e53990c890a"
+      },
+      "published": {
+        "sha256": "9302c59a677564253ea80fb92deeef811864def11a4fdd7e03b3a20c2477c58a",
+        "bytes": 16080,
+        "git_blob_oid": "d2c77f17aea35a14c44732923a739e53990c890a"
+      },
+      "current": {
+        "sha256": "9302c59a677564253ea80fb92deeef811864def11a4fdd7e03b3a20c2477c58a",
+        "bytes": 16080
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "plugins/vst3/photo_native_focus.cpp",
+      "historical": {
+        "sha256": "c24f8d70731a193b0b7bf833984c00df5a60375d2d306986f1440757af938c5f",
+        "bytes": 11355,
+        "git_blob_oid": "0e85c46b3ab1eb3f2d8e63c9ee08ac157b2f7721"
+      },
+      "published": {
+        "sha256": "c24f8d70731a193b0b7bf833984c00df5a60375d2d306986f1440757af938c5f",
+        "bytes": 11355,
+        "git_blob_oid": "0e85c46b3ab1eb3f2d8e63c9ee08ac157b2f7721"
+      },
+      "current": {
+        "sha256": "c24f8d70731a193b0b7bf833984c00df5a60375d2d306986f1440757af938c5f",
+        "bytes": 11355
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "plugins/vst3/photo_native_focus.hpp",
+      "historical": {
+        "sha256": "9bf4553ec6a1418747d5379ba531bf15bbfb7e589f3923ff9c8131485704396a",
+        "bytes": 1697,
+        "git_blob_oid": "82e84aede6bf9ce8e84f5bf9c1e2f5a26f0c181f"
+      },
+      "published": {
+        "sha256": "9bf4553ec6a1418747d5379ba531bf15bbfb7e589f3923ff9c8131485704396a",
+        "bytes": 1697,
+        "git_blob_oid": "82e84aede6bf9ce8e84f5bf9c1e2f5a26f0c181f"
+      },
+      "current": {
+        "sha256": "9bf4553ec6a1418747d5379ba531bf15bbfb7e589f3923ff9c8131485704396a",
+        "bytes": 1697
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "plugins/vst3/plugin_ids.hpp",
+      "historical": {
+        "sha256": "558491751250799eadce1eb95ad1cf59cde728c8bf9490a2962aafeaa8ca128d",
+        "bytes": 3577,
+        "git_blob_oid": "7dbada03e6c961374f70f60ab6aa615c24cc0209"
+      },
+      "published": {
+        "sha256": "558491751250799eadce1eb95ad1cf59cde728c8bf9490a2962aafeaa8ca128d",
+        "bytes": 3577,
+        "git_blob_oid": "7dbada03e6c961374f70f60ab6aa615c24cc0209"
+      },
+      "current": {
+        "sha256": "558491751250799eadce1eb95ad1cf59cde728c8bf9490a2962aafeaa8ca128d",
+        "bytes": 3577
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "plugins/vst3/processor.cpp",
+      "historical": {
+        "sha256": "1ef121c4afb190c45fa1ff41a2127fb7487919dc69d8856c4a05e79844f760a9",
+        "bytes": 37967,
+        "git_blob_oid": "f6d05daab4db7b08a5c07dd40421ed755f092487"
+      },
+      "published": {
+        "sha256": "1ef121c4afb190c45fa1ff41a2127fb7487919dc69d8856c4a05e79844f760a9",
+        "bytes": 37967,
+        "git_blob_oid": "f6d05daab4db7b08a5c07dd40421ed755f092487"
+      },
+      "current": {
+        "sha256": "1ef121c4afb190c45fa1ff41a2127fb7487919dc69d8856c4a05e79844f760a9",
+        "bytes": 37967
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "plugins/vst3/processor.hpp",
+      "historical": {
+        "sha256": "5206559cf6a05e6b53e8f6d043a4860b1c4afb995ca8253ed1f75762a5270574",
+        "bytes": 6905,
+        "git_blob_oid": "a24298dd47e10185399a9c9b18d266e27d66fc0d"
+      },
+      "published": {
+        "sha256": "5206559cf6a05e6b53e8f6d043a4860b1c4afb995ca8253ed1f75762a5270574",
+        "bytes": 6905,
+        "git_blob_oid": "a24298dd47e10185399a9c9b18d266e27d66fc0d"
+      },
+      "current": {
+        "sha256": "5206559cf6a05e6b53e8f6d043a4860b1c4afb995ca8253ed1f75762a5270574",
+        "bytes": 6905
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "plugins/vst3/resources/Expat-LICENSE.txt",
+      "historical": {
+        "sha256": "f6eeb2310d0b00e5cecac39c73a0696a5bdbfb754b26325ed5a502fc1a6c338c",
+        "bytes": 1208,
+        "git_blob_oid": "dcb4506429684b253cc440ca40a109fb6b9253a9"
+      },
+      "published": {
+        "sha256": "f6eeb2310d0b00e5cecac39c73a0696a5bdbfb754b26325ed5a502fc1a6c338c",
+        "bytes": 1208,
+        "git_blob_oid": "dcb4506429684b253cc440ca40a109fb6b9253a9"
+      },
+      "current": {
+        "sha256": "f6eeb2310d0b00e5cecac39c73a0696a5bdbfb754b26325ed5a502fc1a6c338c",
+        "bytes": 1208
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "plugins/vst3/resources/rhodes-suitcase.png",
+      "historical": {
+        "sha256": "84e2d48fc0311eb923083cc3e1f96dc5fa1b3f8a6e085daee7c973e54d754d26",
+        "bytes": 1434362,
+        "git_blob_oid": "937034ec30834d928320f9646059744f3f6fd43d"
+      },
+      "published": {
+        "sha256": "84e2d48fc0311eb923083cc3e1f96dc5fa1b3f8a6e085daee7c973e54d754d26",
+        "bytes": 1434362,
+        "git_blob_oid": "937034ec30834d928320f9646059744f3f6fd43d"
+      },
+      "current": {
+        "sha256": "84e2d48fc0311eb923083cc3e1f96dc5fa1b3f8a6e085daee7c973e54d754d26",
+        "bytes": 1434362
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "plugins/vst3/resources/rhodes-suitcase.uidesc",
+      "historical": {
+        "sha256": "7554fecedf67cf744b3aa7f6cf12dc4f874d8b5e0b97ec66959ba2b42ea5825e",
+        "bytes": 651,
+        "git_blob_oid": "df26b3db8887c3b42939085f5e1b5ed025d27b23"
+      },
+      "published": {
+        "sha256": "7554fecedf67cf744b3aa7f6cf12dc4f874d8b5e0b97ec66959ba2b42ea5825e",
+        "bytes": 651,
+        "git_blob_oid": "df26b3db8887c3b42939085f5e1b5ed025d27b23"
+      },
+      "current": {
+        "sha256": "7554fecedf67cf744b3aa7f6cf12dc4f874d8b5e0b97ec66959ba2b42ea5825e",
+        "bytes": 651
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "plugins/vst3/state_stream.cpp",
+      "historical": {
+        "sha256": "30b057afe520c81bb87e0298b32835ea47957ff46b452cf417244dbb51b55051",
+        "bytes": 5052,
+        "git_blob_oid": "2b85c57e97509f7a5c994804d183137b2f2c1b7b"
+      },
+      "published": {
+        "sha256": "30b057afe520c81bb87e0298b32835ea47957ff46b452cf417244dbb51b55051",
+        "bytes": 5052,
+        "git_blob_oid": "2b85c57e97509f7a5c994804d183137b2f2c1b7b"
+      },
+      "current": {
+        "sha256": "30b057afe520c81bb87e0298b32835ea47957ff46b452cf417244dbb51b55051",
+        "bytes": 5052
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "plugins/vst3/state_stream.hpp",
+      "historical": {
+        "sha256": "a0885ed2c7a381fac06a65e37c02fa115f5c29930a7881ffd5186297fb9d3b28",
+        "bytes": 2227,
+        "git_blob_oid": "3e05fa559099c776ed9e7f0dac238488dfbe3a08"
+      },
+      "published": {
+        "sha256": "a0885ed2c7a381fac06a65e37c02fa115f5c29930a7881ffd5186297fb9d3b28",
+        "bytes": 2227,
+        "git_blob_oid": "3e05fa559099c776ed9e7f0dac238488dfbe3a08"
+      },
+      "current": {
+        "sha256": "a0885ed2c7a381fac06a65e37c02fa115f5c29930a7881ffd5186297fb9d3b28",
+        "bytes": 2227
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "src/contact_reference.cpp",
+      "historical": {
+        "sha256": "70dde1bfab9c2e35457da2ebf66ff4638cb6f56f1f19a84dbe55a1752d5166fd",
+        "bytes": 78110,
+        "git_blob_oid": "767dc8599834e7894dd08667a0bfe7fc189b3ed9"
+      },
+      "published": {
+        "sha256": "70dde1bfab9c2e35457da2ebf66ff4638cb6f56f1f19a84dbe55a1752d5166fd",
+        "bytes": 78110,
+        "git_blob_oid": "767dc8599834e7894dd08667a0bfe7fc189b3ed9"
+      },
+      "current": {
+        "sha256": "70dde1bfab9c2e35457da2ebf66ff4638cb6f56f1f19a84dbe55a1752d5166fd",
+        "bytes": 78110
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "src/research_engine.cpp",
+      "historical": {
+        "sha256": "01c2a9f7f9f7cfa4f759be56770178f32a71a28667d4ac6ab390e03ff7a95814",
+        "bytes": 20795,
+        "git_blob_oid": "bedf9f36b7a15adb0eb8346adef3f34e5d2c1920"
+      },
+      "published": {
+        "sha256": "01c2a9f7f9f7cfa4f759be56770178f32a71a28667d4ac6ab390e03ff7a95814",
+        "bytes": 20795,
+        "git_blob_oid": "bedf9f36b7a15adb0eb8346adef3f34e5d2c1920"
+      },
+      "current": {
+        "sha256": "01c2a9f7f9f7cfa4f759be56770178f32a71a28667d4ac6ab390e03ff7a95814",
+        "bytes": 20795
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "tests/cpp/vst3_legacy_capture.cpp",
+      "historical": {
+        "sha256": "671b246932106e6041166c6aea3d9246d1865f8d8fb0c0ca3e91e084ce31ac4d",
+        "bytes": 25736,
+        "git_blob_oid": "2e6d4504067027e7b5f57d543a91a371c3edd986"
+      },
+      "published": {
+        "sha256": "671b246932106e6041166c6aea3d9246d1865f8d8fb0c0ca3e91e084ce31ac4d",
+        "bytes": 25736,
+        "git_blob_oid": "2e6d4504067027e7b5f57d543a91a371c3edd986"
+      },
+      "current": {
+        "sha256": "671b246932106e6041166c6aea3d9246d1865f8d8fb0c0ca3e91e084ce31ac4d",
+        "bytes": 25736
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "tests/cpp/vst3_loaded_expression_test.cpp",
+      "historical": {
+        "sha256": "c31de34334de4ec33fb3a2680520e6950956344ebe17cc5bc82cb363ccd813c5",
+        "bytes": 71010,
+        "git_blob_oid": "da7459e6192f12e96b1abc4b7899e07d1c12cf0a"
+      },
+      "published": {
+        "sha256": "c31de34334de4ec33fb3a2680520e6950956344ebe17cc5bc82cb363ccd813c5",
+        "bytes": 71010,
+        "git_blob_oid": "da7459e6192f12e96b1abc4b7899e07d1c12cf0a"
+      },
+      "current": {
+        "sha256": "c31de34334de4ec33fb3a2680520e6950956344ebe17cc5bc82cb363ccd813c5",
+        "bytes": 71010
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "tests/cpp/vst3_loaded_panel_audio_test.cpp",
+      "historical": {
+        "sha256": "a76cba87f5682a53a4aca46911fe2be2d8824171fee6bc3de45c25566a56fac1",
+        "bytes": 25393,
+        "git_blob_oid": "433e255a4e42d9b634c27d2aa786c85294f9e95f"
+      },
+      "published": {
+        "sha256": "a76cba87f5682a53a4aca46911fe2be2d8824171fee6bc3de45c25566a56fac1",
+        "bytes": 25393,
+        "git_blob_oid": "433e255a4e42d9b634c27d2aa786c85294f9e95f"
+      },
+      "current": {
+        "sha256": "a76cba87f5682a53a4aca46911fe2be2d8824171fee6bc3de45c25566a56fac1",
+        "bytes": 25393
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "tests/cpp/vst3_photo_editor_test.cpp",
+      "historical": {
+        "sha256": "4c2564d1606793371206889eea9e1c68f5b72a9599e05a6a9d52c6d8952bc9a8",
+        "bytes": 30369,
+        "git_blob_oid": "c6d5427833786aab433b6acfa0f62c8e4fe9089f"
+      },
+      "published": {
+        "sha256": "4c2564d1606793371206889eea9e1c68f5b72a9599e05a6a9d52c6d8952bc9a8",
+        "bytes": 30369,
+        "git_blob_oid": "c6d5427833786aab433b6acfa0f62c8e4fe9089f"
+      },
+      "current": {
+        "sha256": "4c2564d1606793371206889eea9e1c68f5b72a9599e05a6a9d52c6d8952bc9a8",
+        "bytes": 30369
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "tests/cpp/vst3_photo_lifecycle_test.cpp",
+      "historical": {
+        "sha256": "b650178fa148db07faee9dfae14ac5e7fdb4215b9240d71c03a9c9011e883830",
+        "bytes": 37641,
+        "git_blob_oid": "ccca5b2255a9accc8190e3a9a73f62cf9391eec4"
+      },
+      "published": {
+        "sha256": "b650178fa148db07faee9dfae14ac5e7fdb4215b9240d71c03a9c9011e883830",
+        "bytes": 37641,
+        "git_blob_oid": "ccca5b2255a9accc8190e3a9a73f62cf9391eec4"
+      },
+      "current": {
+        "sha256": "b650178fa148db07faee9dfae14ac5e7fdb4215b9240d71c03a9c9011e883830",
+        "bytes": 37641
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "tests/python/test_compare_vst3_legacy.py",
+      "historical": {
+        "sha256": "b064b26cf40620c231039f91f60690693c2ff695d786d8dc740cb7b141dd45ab",
+        "bytes": 20690,
+        "git_blob_oid": "325ccab1b1d75978672140b7ed9a4bc67ef1b8a1"
+      },
+      "published": {
+        "sha256": "b064b26cf40620c231039f91f60690693c2ff695d786d8dc740cb7b141dd45ab",
+        "bytes": 20690,
+        "git_blob_oid": "325ccab1b1d75978672140b7ed9a4bc67ef1b8a1"
+      },
+      "current": {
+        "sha256": "b064b26cf40620c231039f91f60690693c2ff695d786d8dc740cb7b141dd45ab",
+        "bytes": 20690
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "tools/compare_vst3_legacy.py",
+      "historical": {
+        "sha256": "dde69e127376fd6c24d63fc9e260d036151d30eb8ad73a1bd29e5def09e307d5",
+        "bytes": 33798,
+        "git_blob_oid": "1405990ccc8fde7496042cc5f1ba66af0ad7a665"
+      },
+      "published": {
+        "sha256": "dde69e127376fd6c24d63fc9e260d036151d30eb8ad73a1bd29e5def09e307d5",
+        "bytes": 33798,
+        "git_blob_oid": "1405990ccc8fde7496042cc5f1ba66af0ad7a665"
+      },
+      "current": {
+        "sha256": "dde69e127376fd6c24d63fc9e260d036151d30eb8ad73a1bd29e5def09e307d5",
+        "bytes": 33798
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "tools/run_xvfb_test.py",
+      "historical": {
+        "sha256": "653ae79a00c3455511b7c89c3396044e70ca5a6e341781bf2c1d5a82f9850c4e",
+        "bytes": 6139,
+        "git_blob_oid": "4dc7c9bb0fdad84e668a32dc4801ce1c26bdf0b9"
+      },
+      "published": {
+        "sha256": "653ae79a00c3455511b7c89c3396044e70ca5a6e341781bf2c1d5a82f9850c4e",
+        "bytes": 6139,
+        "git_blob_oid": "4dc7c9bb0fdad84e668a32dc4801ce1c26bdf0b9"
+      },
+      "current": {
+        "sha256": "653ae79a00c3455511b7c89c3396044e70ca5a6e341781bf2c1d5a82f9850c4e",
+        "bytes": 6139
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "tools/verify_native_photo_editor.py",
+      "historical": {
+        "sha256": "ce0f2d5c3e74e34c478186bef80ee6879ab0a5328b45d682d9d34d45b6dfda47",
+        "bytes": 31258,
+        "git_blob_oid": "8e0995c9abe61a68b41a47cc6e35d43bdc773dae"
+      },
+      "published": {
+        "sha256": "ce0f2d5c3e74e34c478186bef80ee6879ab0a5328b45d682d9d34d45b6dfda47",
+        "bytes": 31258,
+        "git_blob_oid": "8e0995c9abe61a68b41a47cc6e35d43bdc773dae"
+      },
+      "current": {
+        "sha256": "ce0f2d5c3e74e34c478186bef80ee6879ab0a5328b45d682d9d34d45b6dfda47",
+        "bytes": 31258
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    {
+      "path": "tools/verify_photo_interactions.py",
+      "historical": {
+        "sha256": "ccfad904084c57a0870bd0c2ba10a1603421482547c2dee03f0c2a595cc7c3b5",
+        "bytes": 23758,
+        "git_blob_oid": "47071985f8a68991da61500c1b5302bfd69fd94f"
+      },
+      "published": {
+        "sha256": "ccfad904084c57a0870bd0c2ba10a1603421482547c2dee03f0c2a595cc7c3b5",
+        "bytes": 23758,
+        "git_blob_oid": "47071985f8a68991da61500c1b5302bfd69fd94f"
+      },
+      "current": {
+        "sha256": "ccfad904084c57a0870bd0c2ba10a1603421482547c2dee03f0c2a595cc7c3b5",
+        "bytes": 23758
+      },
+      "historical_matches_worker_092_published_binding": true,
+      "current_equals_published": true,
+      "historical_equals_published": true
+    }
+  ],
+  "highlight_and_geometry_invariants": {
+    "fixture": {
+      "path": "tests/cpp/photo_key_highlight_test.cpp",
+      "historical": {
+        "sha256": "50fc60fdf069b8ce0b7abacc137da1a39ffc1149bfcf7bebccde12d293fb5b96",
+        "bytes": 24253,
+        "mode": "100644",
+        "git_blob_oid": "c17d32c46e0c5c9936a48494f5eee98b2410212a"
+      },
+      "published": {
+        "sha256": "50fc60fdf069b8ce0b7abacc137da1a39ffc1149bfcf7bebccde12d293fb5b96",
+        "bytes": 24253,
+        "mode": "100644",
+        "git_blob_oid": "c17d32c46e0c5c9936a48494f5eee98b2410212a"
+      },
+      "current": {
+        "sha256": "50fc60fdf069b8ce0b7abacc137da1a39ffc1149bfcf7bebccde12d293fb5b96",
+        "bytes": 24253
+      },
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    "header": {
+      "path": "plugins/vst3/photo_key_highlight.hpp",
+      "historical": {
+        "sha256": "9302c59a677564253ea80fb92deeef811864def11a4fdd7e03b3a20c2477c58a",
+        "bytes": 16080,
+        "mode": "100644",
+        "git_blob_oid": "d2c77f17aea35a14c44732923a739e53990c890a"
+      },
+      "published": {
+        "sha256": "9302c59a677564253ea80fb92deeef811864def11a4fdd7e03b3a20c2477c58a",
+        "bytes": 16080,
+        "mode": "100644",
+        "git_blob_oid": "d2c77f17aea35a14c44732923a739e53990c890a"
+      },
+      "current": {
+        "sha256": "9302c59a677564253ea80fb92deeef811864def11a4fdd7e03b3a20c2477c58a",
+        "bytes": 16080
+      },
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    "geometry": {
+      "path": "plugins/vst3/photo_geometry.hpp",
+      "historical": {
+        "sha256": "77fe4f4ac93ee0b212ef3f5399eb5cfa8884076d8eef51d2adf2123e6d85e0bd",
+        "bytes": 11936,
+        "mode": "100644",
+        "git_blob_oid": "5cfcbc031a1dad70a4f018c5fc6668eed9a0ed51"
+      },
+      "published": {
+        "sha256": "77fe4f4ac93ee0b212ef3f5399eb5cfa8884076d8eef51d2adf2123e6d85e0bd",
+        "bytes": 11936,
+        "mode": "100644",
+        "git_blob_oid": "5cfcbc031a1dad70a4f018c5fc6668eed9a0ed51"
+      },
+      "current": {
+        "sha256": "77fe4f4ac93ee0b212ef3f5399eb5cfa8884076d8eef51d2adf2123e6d85e0bd",
+        "bytes": 11936
+      },
+      "current_equals_published": true,
+      "historical_equals_published": true
+    },
+    "test_static_assert_count": 7,
+    "test_static_asserts": [
+      "static_assert(photo::key_highlight(0).outline.size == 6);",
+      "static_assert(photo::key_highlight(2).outline.size == 4);",
+      "static_assert(photo::key_highlight(-1).outline.size == 0);",
+      "static_assert(photo::key_highlight(0).visible_path_count == 1);",
+      "static_assert(photo::key_highlight(43).visible_path_count == 2);",
+      "static_assert(photo::key_highlight(-1).visible_path_count == 0);",
+      "static_assert(noexcept(photo::key_highlight(0)));"
+    ],
+    "header_static_assert_count": 1,
+    "header_static_assert": "static_assert([] {\n    for (const auto& highlight : kKeyHighlights) {\n        if (highlight.visible_path_count == 0 ||\n            highlight.visible_path_count > highlight.visible_paths.size()) { return false; }\n    }\n    return true;\n}(), \"photo geometry must have bounded, closed visible contours\");",
+    "runtime_case_names": [
+      "structure",
+      "black_interiors",
+      "dense_grid",
+      "boundaries",
+      "invalid_indices"
+    ],
+    "runtime_case_definitions_dispatch_and_source_bytes_unchanged": true,
+    "cmake_registration": "    foreach(test_name IN ITEMS structure black_interiors dense_grid boundaries invalid_indices)\n        add_test(NAME photo_key_highlight.${test_name}\n            COMMAND rhodes_photo_key_highlight_tests ${test_name})\n    endforeach()\n",
+    "cmake_registration_sha256": "f8ad47ed0ddbe03a84ec991819103f46f769ab0aa64cdb26858f07aee13f8811",
+    "cmake_registration_bytes_unchanged": true,
+    "assertions_evaluated_or_cases_run_by_worker": false
+  },
+  "retained_root_linux_configuration": {
+    "experiment_record": {
+      "path": "docs/validation/photo-continuation-20261124/msvc-budget-experiment.json",
+      "sha256": "61f3562c11ecbee33a9916dcc8cfc2aa28a021f4aaf94daf06d72a07173b68ff",
+      "bytes": 1940,
+      "matches_published_blob": true
+    },
+    "configuration_log": {
+      "path": "docs/validation/photo-continuation-20261124/msvc-budget-linux-configure.log",
+      "sha256": "da09cf79793606b79ac884bee9b29ed27aa7424c93e37c1da472e83746db22fd",
+      "bytes": 134,
+      "matches_published_blob": true
+    },
+    "recorded_command": "cmake -S . -B /home/agent/rhoades-9a04c9726e31/build-core",
+    "recorded_exit_code": 0,
+    "execution_attribution": "Previously executed by the integrator against the working-tree CMake configuration later published at the target SHA; worker 099 only read its record and generated files.",
+    "experiment_parent_commit": "8c5d819e9d99767372cf1a74a971433edce6da35",
+    "configured_cmakelists_sha256": "aa7d1e9f2db5686323e60de4e95ebfd3f9e5fcdddd5364569e160164175771e8",
+    "configured_cmakelists_matches_published_target": true,
+    "observed_compiler": {
+      "id": "GNU",
+      "version": "14.2.0",
+      "record": {
+        "path": "/home/agent/rhoades-9a04c9726e31/build-core/CMakeFiles/3.31.10/CMakeCXXCompiler.cmake",
+        "sha256": "e6b2e9ffc27484991c45fc2045c778f6cf36ae18b9ee342bb1170d242e14dcca",
+        "bytes": 6550
+      }
+    },
+    "generated_ninja_files": [
+      {
+        "path": "/home/agent/rhoades-9a04c9726e31/build-core/CMakeFiles/rules.ninja",
+        "sha256": "1df1c968a9f78f209440f834179155a88457fd28d43254d52c018fbb6c913b58",
+        "bytes": 93518,
+        "constexpr_option_occurrences": 0
+      },
+      {
+        "path": "/home/agent/rhoades-9a04c9726e31/build-core/build.ninja",
+        "sha256": "8132f2964885cca878fbfec5766e9873f9a7bbe1c4af98fd8c5f694d714e4e01",
+        "bytes": 111035,
+        "constexpr_option_occurrences": 0
+      }
+    ],
+    "highlight_compile_rule": "build CMakeFiles/rhodes_photo_key_highlight_tests.dir/tests/cpp/photo_key_highlight_test.cpp.o: CXX_COMPILER__rhodes_photo_key_highlight_tests_unscanned_Release /dev/shm/rhoades-9a04c9726e31/Fender-rhoades/tests/cpp/photo_key_highlight_test.cpp || cmake_object_order_depends_target_rhodes_photo_key_highlight_tests\n  DEP_FILE = CMakeFiles/rhodes_photo_key_highlight_tests.dir/tests/cpp/photo_key_highlight_test.cpp.o.d\n  FLAGS = -O3 -DNDEBUG -std=gnu++20 -Wall -Wextra -Wpedantic -Wconversion -Wshadow -Werror\n  INCLUDES = -I/dev/shm/rhoades-9a04c9726e31/Fender-rhoades -I/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/include\n  OBJECT_DIR = CMakeFiles/rhodes_photo_key_highlight_tests.dir\n  OBJECT_FILE_DIR = CMakeFiles/rhodes_photo_key_highlight_tests.dir/tests/cpp",
+    "all_observed_ninja_files_lack_constexpr_option": true,
+    "linux_rebuild_at_target_claimed": false
+  },
+  "actual_retained_linux_modules": [
+    {
+      "variant": "RhodesResearch",
+      "path": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/Contents/x86_64-linux/RhodesResearch.so",
+      "actual": {
+        "sha256": "5facf72c9367a5849c124833673d68e2d74b8b64c88b22e95d66663fa65d1959",
+        "bytes": 3204856
+      },
+      "matches_worker_092_actual": true,
+      "matches_worker_094_recorded": true,
+      "claim": "Retained file byte identity only; no rebuild at the published target commit and no runtime execution by this worker."
+    },
+    {
+      "variant": "RhodesResearchFiltered",
+      "path": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3/Contents/x86_64-linux/RhodesResearchFiltered.so",
+      "actual": {
+        "sha256": "aa698bc10af7df69bb7c8d1f5f16cbb3ff1472fa6794abc17316fc22e367f2cd",
+        "bytes": 3217144
+      },
+      "matches_worker_092_actual": true,
+      "matches_worker_094_recorded": true,
+      "claim": "Retained file byte identity only; no rebuild at the published target commit and no runtime execution by this worker."
+    },
+    {
+      "variant": "RhodesResearchQuadrature",
+      "path": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3/Contents/x86_64-linux/RhodesResearchQuadrature.so",
+      "actual": {
+        "sha256": "d2213f5a635a2f819f8932c8cd18575ddd3c07bc3fdc386f99115ed72cd4078e",
+        "bytes": 3208952
+      },
+      "matches_worker_092_actual": true,
+      "matches_worker_094_recorded": true,
+      "claim": "Retained file byte identity only; no rebuild at the published target commit and no runtime execution by this worker."
+    }
+  ],
+  "preserved_frozen_records": [
+    {
+      "path": "docs/validation/photo-continuation-20261124/final-source-bridge.json",
+      "sha256": "8c9cead58415162810c21919d24ffe61f316a0901a6e55ad0d1320fd88827efb",
+      "bytes": 181820,
+      "published_git_blob_oid": "75ad4ad21abcf902a23f190c61481bcdb34e6c2c",
+      "published_commit_sha256": "8c9cead58415162810c21919d24ffe61f316a0901a6e55ad0d1320fd88827efb",
+      "before_after_exact_bytes_equal": true,
+      "expected_hash_from_worker_report_matches": true
+    },
+    {
+      "path": "docs/validation/photo-editor-linux-final-20261124.json",
+      "sha256": "dcd9c10d3998c3d4ac95f36987b427d547f9d81eb5d636c32e491b7dae610597",
+      "bytes": 26092,
+      "published_git_blob_oid": "efb734f8f61aee57d116b1d72600c5c512987276",
+      "published_commit_sha256": "dcd9c10d3998c3d4ac95f36987b427d547f9d81eb5d636c32e491b7dae610597",
+      "before_after_exact_bytes_equal": true,
+      "expected_hash_from_worker_report_matches": true
+    }
+  ],
+  "canonical_definition": {
+    "projection": {
+      "task_id": "HOST-004",
+      "acceptance": [
+        "Preserve the supplied original image and implement a native editor using its full composition and aligned controls.",
+        "Connect panel controls to bounded synthetic audio processing and coherent state recall while preserving default legacy output.",
+        "Verify native editor lifecycle, interaction, resizing and packaged resources; retain actual screenshots and platform-specific results."
+      ],
+      "dependencies": [
+        "HOST-001"
+      ],
+      "required_evidence": [
+        "documentary",
+        "numerical"
+      ],
+      "target": "One documented 73-key Mark I Stage specimen at its specified loaded electrical output; identity and measurements pending."
+    },
+    "sha256": "79a999d6b9d4a22e987f305cea4bb7b52f7ce21d5f778be9e362fb48043d2c1b",
+    "serialization": "UTF-8 JSON, sorted keys, separators comma/colon without whitespace, ensure_ascii=False",
+    "source_state_path": "project/state.json",
+    "observed_current_state_revision": 50,
+    "current_state_file_sha256_at_read": "19caa5a583da39aa9d53b3a1e4607838a6226ec5c2ce31006199f3651ff06e57",
+    "digests": {
+      "historical": "79a999d6b9d4a22e987f305cea4bb7b52f7ce21d5f778be9e362fb48043d2c1b",
+      "published": "79a999d6b9d4a22e987f305cea4bb7b52f7ce21d5f778be9e362fb48043d2c1b",
+      "current": "79a999d6b9d4a22e987f305cea4bb7b52f7ce21d5f778be9e362fb48043d2c1b",
+      "frozen_aggregate": "79a999d6b9d4a22e987f305cea4bb7b52f7ce21d5f778be9e362fb48043d2c1b"
+    },
+    "all_four_definitions_exactly_equal": true,
+    "acceptance_criteria_or_required_evidence_modified": false,
+    "completion_decision": "Reserved to the integrator; no canonical status update by this worker."
+  },
+  "platform_execution_boundary": {
+    "windows_msvc_resolution": "Pending an actual source-bound build/test observation handled by the integrator. No result inferred from this bridge.",
+    "prior_failure_record": "docs/validation/photo-continuation-20261124/ci-8c5d819.json",
+    "prior_failure_run": 45475369250,
+    "prior_failure_job": 138734055509,
+    "retained_diagnosis": "Frontend constexpr evaluation pressure is a hypothesis, not established causality. No explicit step-limit diagnostic was present. Earlier unchanged-source Windows run passed.",
+    "all_five_windows_runtime_cases_observed_after_change": false,
+    "linux_new_sha_rebuild_claimed": false,
+    "linux_new_runtime_or_validator_result_claimed": false,
+    "macos_execution_claimed": false
+  },
+  "exclusions": [
+    "Every pass in this artifact applies only to source/configuration applicability and retained-byte observations. No new compile, test, validator, GUI, legacy capture or loaded-audio execution was performed.",
+    "Actual retained Linux shared-object identity does not establish that the objects were rebuilt at ec47d49 or any newer SHA. Existing execution counts and source/build provenance stay in the preserved 092 and 094 artifacts.",
+    "The recorded GNU configure success and absence of the option in Linux Ninja files do not establish that the MSVC budget hypothesis repairs C1001. Actual Windows/MSVC CI results remain a separate integrator responsibility.",
+    "The MSVC-only compiler-ID guard excludes GNU, Clang and AppleClang from this option at source level; this worker did not execute Clang, clang-cl, MSVC or macOS configuration.",
+    "The historical cmake/Vst3.cmake fixture-registration difference and earlier retained-manifest caveats are preserved in final-source-bridge.json and are not rewritten or enlarged here.",
+    "No native Windows/macOS editor, non-unit display scaling, named DAW, audio-device deadline, release, physical fidelity or unrelated task completion is established."
+  ]
+}

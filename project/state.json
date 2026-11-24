@@ -4,8 +4,8 @@
   "goal": "Physically model a Fender Rhodes Mark I from evolving mechanical, electromagnetic and circuit states without recorded-note playback.",
   "target": "One documented 73-key Mark I Stage specimen at its specified loaded electrical output; identity and measurements pending.",
   "fidelity_status": "unvalidated",
-  "revision": 50,
-  "updated_at": "2026-11-24T19:21:56Z",
+  "revision": 51,
+  "updated_at": "2026-11-24T20:21:30Z",
   "tasks": [
     {
       "id": "FND-001",
@@ -563,7 +563,7 @@
       "id": "HOST-004",
       "title": "Build the owner-reference native photo editor and functional panel controls",
       "milestone": "Photographic VST3 editor",
-      "status": "in_progress",
+      "status": "done",
       "priority": 49,
       "dependencies": [
         "HOST-001"
@@ -577,14 +577,12 @@
         "documentary",
         "numerical"
       ],
-      "evidence": [],
+      "evidence": [
+        "EVD-PHOTO-LINUX-FINAL-20261124",
+        "EVD-PHOTO-FINAL-REVIEW-20261124"
+      ],
       "owner": "photo-editor-root",
-      "claim": {
-        "owner": "photo-editor-root",
-        "token": "8bc48185721742d3e4b6029c1d622915",
-        "claimed_at": "2026-11-24T14:16:38Z",
-        "expires_at": "2026-11-24T22:21:56Z"
-      },
+      "claim": null,
       "blockers": [],
       "paths": [
         "assets",
@@ -1002,6 +1000,14 @@
       "task": "HOST-004",
       "owner": "photo-editor-root",
       "detail": "Lease until 2026-11-24T22:21:56Z"
+    },
+    {
+      "revision": 51,
+      "at": "2026-11-24T20:21:30Z",
+      "action": "complete",
+      "task": "HOST-004",
+      "owner": "photo-editor-root",
+      "detail": "Evidence: EVD-PHOTO-LINUX-FINAL-20261124, EVD-PHOTO-FINAL-REVIEW-20261124"
     }
   ]
 }

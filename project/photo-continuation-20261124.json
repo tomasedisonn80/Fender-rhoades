@@ -885,6 +885,24 @@
       "status": "completed",
       "report": "docs/agents/reports/photo-continuation-20261124/w5-098.md",
       "report_sha256": "c20b2449880175d47cda10d5809298add4c627b21ef52b489b6934de2bba2446"
+    },
+    {
+      "id": "A099",
+      "wave": 5,
+      "task_name": "/root/w5_99_msvc_configuration_bridge",
+      "scope": "bind final test-only MSVC build configuration to unchanged evaluated source",
+      "status": "completed",
+      "report": "docs/agents/reports/photo-continuation-20261124/w5-099.md",
+      "report_sha256": "0ba357d5c4dcb6197b967231185c6eaae2b290a5138588d251ea7618309c7d9e"
+    },
+    {
+      "id": "A100",
+      "wave": 5,
+      "task_name": "/root/w5_100_campaign_handoff_audit",
+      "scope": "audit actual five-wave campaign records and final handoff gates",
+      "status": "completed",
+      "report": "docs/agents/reports/photo-continuation-20261124/w5-100.md",
+      "report_sha256": "7a6007219328f4faa56d9dc50dd8503f9bda91d18954849473429ad307c434b1"
     }
   ]
 }

@@ -90,7 +90,9 @@ exact reference pixels at the maximum-size idle view and resizing through all
 three supported sizes. The three variants pass **39 native lifecycle cases**,
 including removal inside host callbacks, repeated reopening and sibling windows.
 Fresh current-module captures preserve **608,256 paired legacy stereo frames**
-exactly. Native Windows/macOS editor behavior, non-unit display scaling and
+exactly. **HOST-004 is complete for this recorded Linux scope**, with a
+[criterion-by-criterion review](docs/validation/photo-editor-acceptance-20261124.md)
+and registered numerical evidence. Native Windows/macOS editor behavior, non-unit display scaling and
 named-DAW operation remain unverified; see the
 [current editor checkpoint](docs/VST3.md#current-photo-editor-checkpoint--24-november-2026).
 
@@ -123,7 +125,7 @@ validation gates.
 | Audit current main-branch development | [24 November campaign and report ledgers](docs/agents/DEVELOPMENT_WAVES_20261124.md) |
 | Audit MIDI interoperability development | [Separate continuation-C ledger](project/continuation-c-20261124.json) |
 | Audit Expression and mono development | [Five-wave continuation-D campaign](docs/agents/CONTINUATION_D_20261124.md) |
-| Audit the reference-photo editor development | [Current five-wave agent ledger](project/photo-continuation-20261124.json) |
+| Audit the reference-photo editor development | [Completed five-wave campaign and ledger](docs/agents/PHOTO_EDITOR_CAMPAIGN_20261124.md) |
 | Inspect the filtered audio design | [Timing, response and compatibility contract](docs/specs/FILTERED_AUDIO_20261123.md) |
 | Inspect the quadrature audio design | [Frozen Q6 timing and verification contract](docs/specs/QUADRATURE_AUDIO_20261123.md) |
 | Inspect the original VST3 prototype contract | [Original host behavior and later overrides](docs/specs/HOST_PROTOTYPE_20261123.md) |

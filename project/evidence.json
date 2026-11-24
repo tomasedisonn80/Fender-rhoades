@@ -1193,6 +1193,79 @@
         "Historical pre-Expression source applicability only; no HOST-003 native acceptance, named-DAW result, device deadline or measured fidelity.",
         "Prior failures and inconclusive records remain immutable; architecture and optional dependency skips remain skips; source and artifact hashes do not authenticate execution."
       ]
+    },
+    {
+      "id": "EVD-PHOTO-LINUX-FINAL-20261124",
+      "kind": "numerical",
+      "result": "pass",
+      "summary": "Final Linux photo-editor observations:136nativechecks,39lifecyclecases,96loadedpanelrenders,and144freshlegacycaptures with608256exactpairedframes;separate source-bound executions.",
+      "command": null,
+      "created_at": "2026-11-24T20:21:30Z",
+      "source_commit": "ec47d49e9555c6337b5359da8f2f7a88ee77effa",
+      "artifacts": [
+        {
+          "path": "docs/validation/photo-editor-linux-final-20261124.json",
+          "sha256": "dcd9c10d3998c3d4ac95f36987b427d547f9d81eb5d636c32e491b7dae610597"
+        },
+        {
+          "path": "docs/validation/photo-continuation-20261124/final-source-bridge.json",
+          "sha256": "8c9cead58415162810c21919d24ffe61f316a0901a6e55ad0d1320fd88827efb"
+        },
+        {
+          "path": "docs/validation/photo-continuation-20261124/msvc-budget-source-bridge.json",
+          "sha256": "28a6edf6f0a0ae052f5c874790f80da6b9e817554aec3a8cb9c5d67184dcb669"
+        },
+        {
+          "path": "docs/validation/photo-continuation-20261124/final-loaded-audio/strengthened/manifest.json",
+          "sha256": "7e9b761b42064beaf7bfa10049a9f167580a9a61e3e0f214616109035fa56343"
+        },
+        {
+          "path": "docs/validation/photo-continuation-20261124/captures/delivery-manifest.json",
+          "sha256": "9b9a5afd2bd25c92717f3ae01f6a275975ea37b66c5165bc6f8e50ffa4dcfab9"
+        }
+      ],
+      "specimen_id": null,
+      "profile_path": null,
+      "session_paths": [],
+      "independent": false,
+      "reference_evidence": [],
+      "limitations": [
+        "Linux/X11 and synthetic component/SDK fixtures only; no native Windows/macOS UI, non-unit DPI, named-DAW, device deadline or physical-fidelity qualification.",
+        "Aggregate of separate actual runs;144freshcurrent captures reuse72retainedbaseline captures;legacy states are16bytes and explicit unity writes only Expression.",
+        "The MSVC-only test budget is source-bound but Windows resolution remains pending;the earlier C1001 failure is retained."
+      ]
+    },
+    {
+      "id": "EVD-PHOTO-FINAL-REVIEW-20261124",
+      "kind": "documentary",
+      "result": "pass",
+      "summary": "Criterion-by-criterion HOST-004 review passes its frozen Linux native-editor and synthetic-processing scope;physical fidelity and other task gates remain unchanged.",
+      "command": null,
+      "created_at": "2026-11-24T20:21:30Z",
+      "source_commit": "ec47d49e9555c6337b5359da8f2f7a88ee77effa",
+      "artifacts": [
+        {
+          "path": "docs/validation/photo-editor-acceptance-20261124.md",
+          "sha256": "009aafed0c0db31a8bc86591b1df94b310c8356b6c49bacffb7efd62757a36dc"
+        },
+        {
+          "path": "docs/validation/photo-continuation-20261124/msvc-budget-source-bridge.json",
+          "sha256": "28a6edf6f0a0ae052f5c874790f80da6b9e817554aec3a8cb9c5d67184dcb669"
+        },
+        {
+          "path": "docs/validation/photo-continuation-20261124/final-campaign-validation.json",
+          "sha256": "dddcfd22547104c5b48709ff5a7c1ef50ebf4c90b62daf2c360403c92a128c13"
+        }
+      ],
+      "specimen_id": null,
+      "profile_path": null,
+      "session_paths": [],
+      "independent": false,
+      "reference_evidence": [],
+      "limitations": [
+        "Definition79a999d6b9d4a22e987f305cea4bb7b52f7ce21d5f778be9e362fb48043d2c1b;Windows compiler experiment and platform-native qualification are not promoted.",
+        "Metadata validation checks100report hashes and records;actual collaboration invocations and retained experiments remain separate evidence of execution."
+      ]
     }
   ]
 }

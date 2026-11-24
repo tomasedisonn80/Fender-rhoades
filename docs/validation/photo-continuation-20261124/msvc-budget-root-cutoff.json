@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "repository": "baabi-boo/Fender-rhoades",
+  "source_commit": "ec47d49e9555c6337b5359da8f2f7a88ee77effa",
+  "observed_utc": "2026-11-24T20:28:27Z",
+  "run_id": 45478056057,
+  "job_id": 138743454294,
+  "job_name": "C++20 / windows-latest",
+  "method": "GitHub fetch_workflow_job_steps",
+  "response": {
+    "steps": []
+  },
+  "tool_is_error": false,
+  "result": "incomplete",
+  "conclusion": "No executed Windows steps were returned at the cutoff. The test-target-only constexpr budget has not been confirmed to resolve the retained MSVC C1001 failure.",
+  "prior_failure_record": "docs/validation/photo-continuation-20261124/ci-8c5d819.json",
+  "configuration_bridge": "docs/validation/photo-continuation-20261124/msvc-budget-source-bridge.json",
+  "linux_acceptance": "docs/validation/photo-editor-acceptance-20261124.md"
+}

@@ -32,8 +32,11 @@ module bytes. Production code and reference assets remain those of
 register the new loaded-panel fixture, dependencies, CTest and macOS target setup.
 The later MSVC-only geometry-test budget experiment changes `CMakeLists.txt`
 without changing production source, assets, test assertions or runtime logic.
-Its configuration and eventual Windows outcome require their own additive
-record; the historical `8c5d819` bridge is preserved unchanged.
+The [additive configuration bridge](photo-continuation-20261124/msvc-budget-source-bridge.json)
+binds that exact six-line test-only change to published `ec47d49`, retaining
+257 active paths, all 151 test files, all 40 production/asset files and the
+three observed Linux module identities. The historical `8c5d819` bridge is
+preserved unchanged. Windows execution requires its separate observed result.
 
 The strengthened audio execution began with Git HEAD `4f658c2` and later uncommitted
 CMake/fixture edits. Its explicit file hashes match the subsequently committed
@@ -127,3 +130,6 @@ The [bounded compiler-budget experiment](photo-continuation-20261124/msvc-budget
 changes only the MSVC geometry-test target; its initial record makes no Windows
 success claim. This platform result remains distinct from the Linux native and
 audio observations evaluated above.
+The [subsequent queued-run observations](photo-continuation-20261124/ci-ec47d49.json)
+retain the actual scheduling/test states for the compiler-budget revision;
+they do not establish a passing Windows build or resolved compiler cause.

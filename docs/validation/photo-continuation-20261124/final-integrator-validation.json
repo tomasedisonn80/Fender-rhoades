@@ -1,0 +1,39 @@
+{
+  "observed_utc": "2026-11-24T20:23:39.155140+00:00",
+  "source_commit": "ec47d49e9555c6337b5359da8f2f7a88ee77effa",
+  "state_sha256": "a55071af780cdd6cf2a53c7db137c7beecfa69d45726d5afcf1d719c6ad296c6",
+  "checks": [
+    {
+      "command": [
+        "python3",
+        "tools/project.py",
+        "validate"
+      ],
+      "exit_code": 0,
+      "stdout": "Valid: 17 tasks, 35 evidence records; fidelity=unvalidated\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "tools/project.py",
+        "sync",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "Generated state is current.\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "python3",
+        "tools/check_docs.py"
+      ],
+      "exit_code": 0,
+      "stdout": "Documentation integrity checks passed.\n",
+      "stderr": ""
+    }
+  ],
+  "campaign_validation": "docs/validation/photo-continuation-20261124/final-campaign-validation.json",
+  "task_result": "HOST-004 done; other in-progress task states unchanged; fidelity remains unvalidated."
+}

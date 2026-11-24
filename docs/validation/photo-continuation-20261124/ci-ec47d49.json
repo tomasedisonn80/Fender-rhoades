@@ -1,0 +1,1191 @@
+{
+  "schema_version": 1,
+  "repository": "baabi-boo/Fender-rhoades",
+  "head_sha": "ec47d49e9555c6337b5359da8f2f7a88ee77effa",
+  "observations": [
+    {
+      "time": {
+        "current_time": "2026-11-24 20:12:51 UTC"
+      },
+      "runs": [
+        {
+          "run": {
+            "id": 45478056057,
+            "name": "Foundation CI",
+            "head_sha": "ec47d49e9555c6337b5359da8f2f7a88ee77effa",
+            "status": "pending",
+            "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45478056057"
+          },
+          "jobs": {
+            "total_count": 7,
+            "jobs": [
+              {
+                "id": 138743453209,
+                "run_id": 45478056057,
+                "workflow_name": "Foundation CI",
+                "head_branch": "main",
+                "run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/runs/45478056057",
+                "run_attempt": 1,
+                "node_id": "CR_kwDOV4pY-s8AAAAgTcEWGQ",
+                "head_sha": "ec47d49e9555c6337b5359da8f2f7a88ee77effa",
+                "url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/jobs/138743453209",
+                "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45478056057/job/138743453209",
+                "status": "queued",
+                "conclusion": null,
+                "created_at": "2026-11-24T20:10:55Z",
+                "started_at": "2026-11-24T20:10:55Z",
+                "completed_at": null,
+                "name": "C++20 / macos-latest",
+                "steps": [],
+                "check_run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/check-runs/138743453209",
+                "labels": [
+                  "macos-latest"
+                ],
+                "runner_id": 0,
+                "runner_name": "",
+                "runner_group_id": 0,
+                "runner_group_name": ""
+              },
+              {
+                "id": 138743453682,
+                "run_id": 45478056057,
+                "workflow_name": "Foundation CI",
+                "head_branch": "main",
+                "run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/runs/45478056057",
+                "run_attempt": 1,
+                "node_id": "CR_kwDOV4pY-s8AAAAgTcEX8g",
+                "head_sha": "ec47d49e9555c6337b5359da8f2f7a88ee77effa",
+                "url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/jobs/138743453682",
+                "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45478056057/job/138743453682",
+                "status": "queued",
+                "conclusion": null,
+                "created_at": "2026-11-24T20:10:56Z",
+                "started_at": "2026-11-24T20:10:56Z",
+                "completed_at": null,
+                "name": "Address and undefined behavior sanitizers",
+                "steps": [],
+                "check_run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/check-runs/138743453682",
+                "labels": [
+                  "ubuntu-latest"
+                ],
+                "runner_id": 0,
+                "runner_name": "",
+                "runner_group_id": 0,
+                "runner_group_name": ""
+              },
+              {
+                "id": 138743453727,
+                "run_id": 45478056057,
+                "workflow_name": "Foundation CI",
+                "head_branch": "main",
+                "run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/runs/45478056057",
+                "run_attempt": 1,
+                "node_id": "CR_kwDOV4pY-s8AAAAgTcEYHw",
+                "head_sha": "ec47d49e9555c6337b5359da8f2f7a88ee77effa",
+                "url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/jobs/138743453727",
+                "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45478056057/job/138743453727",
+                "status": "queued",
+                "conclusion": null,
+                "created_at": "2026-11-24T20:10:56Z",
+                "started_at": "2026-11-24T20:10:56Z",
+                "completed_at": null,
+                "name": "Project state / windows-latest",
+                "steps": [],
+                "check_run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/check-runs/138743453727",
+                "labels": [
+                  "windows-latest"
+                ],
+                "runner_id": 0,
+                "runner_name": "",
+                "runner_group_id": 0,
+                "runner_group_name": ""
+              },
+              {
+                "id": 138743453899,
+                "run_id": 45478056057,
+                "workflow_name": "Foundation CI",
+                "head_branch": "main",
+                "run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/runs/45478056057",
+                "run_attempt": 1,
+                "node_id": "CR_kwDOV4pY-s8AAAAgTcEYyw",
+                "head_sha": "ec47d49e9555c6337b5359da8f2f7a88ee77effa",
+                "url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/jobs/138743453899",
+                "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45478056057/job/138743453899",
+                "status": "queued",
+                "conclusion": null,
+                "created_at": "2026-11-24T20:10:56Z",
+                "started_at": "2026-11-24T20:10:56Z",
+                "completed_at": null,
+                "name": "C++20 / ubuntu-latest",
+                "steps": [],
+                "check_run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/check-runs/138743453899",
+                "labels": [
+                  "ubuntu-latest"
+                ],
+                "runner_id": 0,
+                "runner_name": "",
+                "runner_group_id": 0,
+                "runner_group_name": ""
+              },
+              {
+                "id": 138743454033,
+                "run_id": 45478056057,
+                "workflow_name": "Foundation CI",
+                "head_branch": "main",
+                "run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/runs/45478056057",
+                "run_attempt": 1,
+                "node_id": "CR_kwDOV4pY-s8AAAAgTcEZUQ",
+                "head_sha": "ec47d49e9555c6337b5359da8f2f7a88ee77effa",
+                "url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/jobs/138743454033",
+                "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45478056057/job/138743454033",
+                "status": "queued",
+                "conclusion": null,
+                "created_at": "2026-11-24T20:10:56Z",
+                "started_at": "2026-11-24T20:10:56Z",
+                "completed_at": null,
+                "name": "Project state / macos-latest",
+                "steps": [],
+                "check_run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/check-runs/138743454033",
+                "labels": [
+                  "macos-latest"
+                ],
+                "runner_id": 0,
+                "runner_name": "",
+                "runner_group_id": 0,
+                "runner_group_name": ""
+              },
+              {
+                "id": 138743454100,
+                "run_id": 45478056057,
+                "workflow_name": "Foundation CI",
+                "head_branch": "main",
+                "run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/runs/45478056057",
+                "run_attempt": 1,
+                "node_id": "CR_kwDOV4pY-s8AAAAgTcEZlA",
+                "head_sha": "ec47d49e9555c6337b5359da8f2f7a88ee77effa",
+                "url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/jobs/138743454100",
+                "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45478056057/job/138743454100",
+                "status": "queued",
+                "conclusion": null,
+                "created_at": "2026-11-24T20:10:56Z",
+                "started_at": "2026-11-24T20:10:56Z",
+                "completed_at": null,
+                "name": "Project state / ubuntu-latest",
+                "steps": [],
+                "check_run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/check-runs/138743454100",
+                "labels": [
+                  "ubuntu-latest"
+                ],
+                "runner_id": 0,
+                "runner_name": "",
+                "runner_group_id": 0,
+                "runner_group_name": ""
+              },
+              {
+                "id": 138743454294,
+                "run_id": 45478056057,
+                "workflow_name": "Foundation CI",
+                "head_branch": "main",
+                "run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/runs/45478056057",
+                "run_attempt": 1,
+                "node_id": "CR_kwDOV4pY-s8AAAAgTcEaVg",
+                "head_sha": "ec47d49e9555c6337b5359da8f2f7a88ee77effa",
+                "url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/jobs/138743454294",
+                "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45478056057/job/138743454294",
+                "status": "queued",
+                "conclusion": null,
+                "created_at": "2026-11-24T20:10:56Z",
+                "started_at": "2026-11-24T20:10:56Z",
+                "completed_at": null,
+                "name": "C++20 / windows-latest",
+                "steps": [],
+                "check_run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/check-runs/138743454294",
+                "labels": [
+                  "windows-latest"
+                ],
+                "runner_id": 0,
+                "runner_name": "",
+                "runner_group_id": 0,
+                "runner_group_name": ""
+              }
+            ]
+          }
+        },
+        {
+          "run": {
+            "id": 45478056069,
+            "name": "Experimental VST3 CI",
+            "head_sha": "ec47d49e9555c6337b5359da8f2f7a88ee77effa",
+            "status": "pending",
+            "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45478056069"
+          },
+          "jobs": {
+            "total_count": 3,
+            "jobs": [
+              {
+                "id": 138743451148,
+                "run_id": 45478056069,
+                "workflow_name": "Experimental VST3 CI",
+                "head_branch": "main",
+                "run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/runs/45478056069",
+                "run_attempt": 1,
+                "node_id": "CR_kwDOV4pY-s8AAAAgTcEODA",
+                "head_sha": "ec47d49e9555c6337b5359da8f2f7a88ee77effa",
+                "url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/jobs/138743451148",
+                "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45478056069/job/138743451148",
+                "status": "queued",
+                "conclusion": null,
+                "created_at": "2026-11-24T20:10:55Z",
+                "started_at": "2026-11-24T20:10:55Z",
+                "completed_at": null,
+                "name": "VST3 prototype / windows-latest",
+                "steps": [],
+                "check_run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/check-runs/138743451148",
+                "labels": [
+                  "windows-latest"
+                ],
+                "runner_id": 0,
+                "runner_name": "",
+                "runner_group_id": 0,
+                "runner_group_name": ""
+              },
+              {
+                "id": 138743451943,
+                "run_id": 45478056069,
+                "workflow_name": "Experimental VST3 CI",
+                "head_branch": "main",
+                "run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/runs/45478056069",
+                "run_attempt": 1,
+                "node_id": "CR_kwDOV4pY-s8AAAAgTcERJw",
+                "head_sha": "ec47d49e9555c6337b5359da8f2f7a88ee77effa",
+                "url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/jobs/138743451943",
+                "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45478056069/job/138743451943",
+                "status": "queued",
+                "conclusion": null,
+                "created_at": "2026-11-24T20:10:55Z",
+                "started_at": "2026-11-24T20:10:55Z",
+                "completed_at": null,
+                "name": "VST3 prototype / macos-latest",
+                "steps": [],
+                "check_run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/check-runs/138743451943",
+                "labels": [
+                  "macos-latest"
+                ],
+                "runner_id": 0,
+                "runner_name": "",
+                "runner_group_id": 0,
+                "runner_group_name": ""
+              },
+              {
+                "id": 138743452035,
+                "run_id": 45478056069,
+                "workflow_name": "Experimental VST3 CI",
+                "head_branch": "main",
+                "run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/runs/45478056069",
+                "run_attempt": 1,
+                "node_id": "CR_kwDOV4pY-s8AAAAgTcERgw",
+                "head_sha": "ec47d49e9555c6337b5359da8f2f7a88ee77effa",
+                "url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/jobs/138743452035",
+                "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45478056069/job/138743452035",
+                "status": "queued",
+                "conclusion": null,
+                "created_at": "2026-11-24T20:10:55Z",
+                "started_at": "2026-11-24T20:10:55Z",
+                "completed_at": null,
+                "name": "VST3 prototype / ubuntu-latest",
+                "steps": [],
+                "check_run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/check-runs/138743452035",
+                "labels": [
+                  "ubuntu-latest"
+                ],
+                "runner_id": 0,
+                "runner_name": "",
+                "runner_group_id": 0,
+                "runner_group_name": ""
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "time": {
+        "current_time": "2026-11-24 20:14:52 UTC"
+      },
+      "runs": [
+        {
+          "run": {
+            "id": 45478056057,
+            "name": "Foundation CI",
+            "head_sha": "ec47d49e9555c6337b5359da8f2f7a88ee77effa",
+            "status": "pending",
+            "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45478056057"
+          },
+          "jobs": {
+            "total_count": 7,
+            "jobs": [
+              {
+                "id": 138743453209,
+                "run_id": 45478056057,
+                "workflow_name": "Foundation CI",
+                "head_branch": "main",
+                "run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/runs/45478056057",
+                "run_attempt": 1,
+                "node_id": "CR_kwDOV4pY-s8AAAAgTcEWGQ",
+                "head_sha": "ec47d49e9555c6337b5359da8f2f7a88ee77effa",
+                "url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/jobs/138743453209",
+                "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45478056057/job/138743453209",
+                "status": "queued",
+                "conclusion": null,
+                "created_at": "2026-11-24T20:10:55Z",
+                "started_at": "2026-11-24T20:10:55Z",
+                "completed_at": null,
+                "name": "C++20 / macos-latest",
+                "steps": [],
+                "check_run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/check-runs/138743453209",
+                "labels": [
+                  "macos-latest"
+                ],
+                "runner_id": 0,
+                "runner_name": "",
+                "runner_group_id": 0,
+                "runner_group_name": ""
+              },
+              {
+                "id": 138743453682,
+                "run_id": 45478056057,
+                "workflow_name": "Foundation CI",
+                "head_branch": "main",
+                "run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/runs/45478056057",
+                "run_attempt": 1,
+                "node_id": "CR_kwDOV4pY-s8AAAAgTcEX8g",
+                "head_sha": "ec47d49e9555c6337b5359da8f2f7a88ee77effa",
+                "url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/jobs/138743453682",
+                "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45478056057/job/138743453682",
+                "status": "queued",
+                "conclusion": null,
+                "created_at": "2026-11-24T20:10:56Z",
+                "started_at": "2026-11-24T20:10:56Z",
+                "completed_at": null,
+                "name": "Address and undefined behavior sanitizers",
+                "steps": [],
+                "check_run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/check-runs/138743453682",
+                "labels": [
+                  "ubuntu-latest"
+                ],
+                "runner_id": 0,
+                "runner_name": "",
+                "runner_group_id": 0,
+                "runner_group_name": ""
+              },
+              {
+                "id": 138743453727,
+                "run_id": 45478056057,
+                "workflow_name": "Foundation CI",
+                "head_branch": "main",
+                "run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/runs/45478056057",
+                "run_attempt": 1,
+                "node_id": "CR_kwDOV4pY-s8AAAAgTcEYHw",
+                "head_sha": "ec47d49e9555c6337b5359da8f2f7a88ee77effa",
+                "url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/jobs/138743453727",
+                "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45478056057/job/138743453727",
+                "status": "queued",
+                "conclusion": null,
+                "created_at": "2026-11-24T20:10:56Z",
+                "started_at": "2026-11-24T20:10:56Z",
+                "completed_at": null,
+                "name": "Project state / windows-latest",
+                "steps": [],
+                "check_run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/check-runs/138743453727",
+                "labels": [
+                  "windows-latest"
+                ],
+                "runner_id": 0,
+                "runner_name": "",
+                "runner_group_id": 0,
+                "runner_group_name": ""
+              },
+              {
+                "id": 138743453899,
+                "run_id": 45478056057,
+                "workflow_name": "Foundation CI",
+                "head_branch": "main",
+                "run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/runs/45478056057",
+                "run_attempt": 1,
+                "node_id": "CR_kwDOV4pY-s8AAAAgTcEYyw",
+                "head_sha": "ec47d49e9555c6337b5359da8f2f7a88ee77effa",
+                "url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/jobs/138743453899",
+                "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45478056057/job/138743453899",
+                "status": "queued",
+                "conclusion": null,
+                "created_at": "2026-11-24T20:10:56Z",
+                "started_at": "2026-11-24T20:10:56Z",
+                "completed_at": null,
+                "name": "C++20 / ubuntu-latest",
+                "steps": [],
+                "check_run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/check-runs/138743453899",
+                "labels": [
+                  "ubuntu-latest"
+                ],
+                "runner_id": 0,
+                "runner_name": "",
+                "runner_group_id": 0,
+                "runner_group_name": ""
+              },
+              {
+                "id": 138743454033,
+                "run_id": 45478056057,
+                "workflow_name": "Foundation CI",
+                "head_branch": "main",
+                "run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/runs/45478056057",
+                "run_attempt": 1,
+                "node_id": "CR_kwDOV4pY-s8AAAAgTcEZUQ",
+                "head_sha": "ec47d49e9555c6337b5359da8f2f7a88ee77effa",
+                "url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/jobs/138743454033",
+                "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45478056057/job/138743454033",
+                "status": "queued",
+                "conclusion": null,
+                "created_at": "2026-11-24T20:10:56Z",
+                "started_at": "2026-11-24T20:10:56Z",
+                "completed_at": null,
+                "name": "Project state / macos-latest",
+                "steps": [],
+                "check_run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/check-runs/138743454033",
+                "labels": [
+                  "macos-latest"
+                ],
+                "runner_id": 0,
+                "runner_name": "",
+                "runner_group_id": 0,
+                "runner_group_name": ""
+              },
+              {
+                "id": 138743454100,
+                "run_id": 45478056057,
+                "workflow_name": "Foundation CI",
+                "head_branch": "main",
+                "run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/runs/45478056057",
+                "run_attempt": 1,
+                "node_id": "CR_kwDOV4pY-s8AAAAgTcEZlA",
+                "head_sha": "ec47d49e9555c6337b5359da8f2f7a88ee77effa",
+                "url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/jobs/138743454100",
+                "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45478056057/job/138743454100",
+                "status": "queued",
+                "conclusion": null,
+                "created_at": "2026-11-24T20:10:56Z",
+                "started_at": "2026-11-24T20:10:56Z",
+                "completed_at": null,
+                "name": "Project state / ubuntu-latest",
+                "steps": [],
+                "check_run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/check-runs/138743454100",
+                "labels": [
+                  "ubuntu-latest"
+                ],
+                "runner_id": 0,
+                "runner_name": "",
+                "runner_group_id": 0,
+                "runner_group_name": ""
+              },
+              {
+                "id": 138743454294,
+                "run_id": 45478056057,
+                "workflow_name": "Foundation CI",
+                "head_branch": "main",
+                "run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/runs/45478056057",
+                "run_attempt": 1,
+                "node_id": "CR_kwDOV4pY-s8AAAAgTcEaVg",
+                "head_sha": "ec47d49e9555c6337b5359da8f2f7a88ee77effa",
+                "url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/jobs/138743454294",
+                "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45478056057/job/138743454294",
+                "status": "queued",
+                "conclusion": null,
+                "created_at": "2026-11-24T20:10:56Z",
+                "started_at": "2026-11-24T20:10:56Z",
+                "completed_at": null,
+                "name": "C++20 / windows-latest",
+                "steps": [],
+                "check_run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/check-runs/138743454294",
+                "labels": [
+                  "windows-latest"
+                ],
+                "runner_id": 0,
+                "runner_name": "",
+                "runner_group_id": 0,
+                "runner_group_name": ""
+              }
+            ]
+          }
+        },
+        {
+          "run": {
+            "id": 45478056069,
+            "name": "Experimental VST3 CI",
+            "head_sha": "ec47d49e9555c6337b5359da8f2f7a88ee77effa",
+            "status": "pending",
+            "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45478056069"
+          },
+          "jobs": {
+            "total_count": 3,
+            "jobs": [
+              {
+                "id": 138743451148,
+                "run_id": 45478056069,
+                "workflow_name": "Experimental VST3 CI",
+                "head_branch": "main",
+                "run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/runs/45478056069",
+                "run_attempt": 1,
+                "node_id": "CR_kwDOV4pY-s8AAAAgTcEODA",
+                "head_sha": "ec47d49e9555c6337b5359da8f2f7a88ee77effa",
+                "url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/jobs/138743451148",
+                "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45478056069/job/138743451148",
+                "status": "queued",
+                "conclusion": null,
+                "created_at": "2026-11-24T20:10:55Z",
+                "started_at": "2026-11-24T20:10:55Z",
+                "completed_at": null,
+                "name": "VST3 prototype / windows-latest",
+                "steps": [],
+                "check_run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/check-runs/138743451148",
+                "labels": [
+                  "windows-latest"
+                ],
+                "runner_id": 0,
+                "runner_name": "",
+                "runner_group_id": 0,
+                "runner_group_name": ""
+              },
+              {
+                "id": 138743451943,
+                "run_id": 45478056069,
+                "workflow_name": "Experimental VST3 CI",
+                "head_branch": "main",
+                "run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/runs/45478056069",
+                "run_attempt": 1,
+                "node_id": "CR_kwDOV4pY-s8AAAAgTcERJw",
+                "head_sha": "ec47d49e9555c6337b5359da8f2f7a88ee77effa",
+                "url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/jobs/138743451943",
+                "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45478056069/job/138743451943",
+                "status": "queued",
+                "conclusion": null,
+                "created_at": "2026-11-24T20:10:55Z",
+                "started_at": "2026-11-24T20:10:55Z",
+                "completed_at": null,
+                "name": "VST3 prototype / macos-latest",
+                "steps": [],
+                "check_run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/check-runs/138743451943",
+                "labels": [
+                  "macos-latest"
+                ],
+                "runner_id": 0,
+                "runner_name": "",
+                "runner_group_id": 0,
+                "runner_group_name": ""
+              },
+              {
+                "id": 138743452035,
+                "run_id": 45478056069,
+                "workflow_name": "Experimental VST3 CI",
+                "head_branch": "main",
+                "run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/runs/45478056069",
+                "run_attempt": 1,
+                "node_id": "CR_kwDOV4pY-s8AAAAgTcERgw",
+                "head_sha": "ec47d49e9555c6337b5359da8f2f7a88ee77effa",
+                "url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/jobs/138743452035",
+                "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45478056069/job/138743452035",
+                "status": "queued",
+                "conclusion": null,
+                "created_at": "2026-11-24T20:10:55Z",
+                "started_at": "2026-11-24T20:10:55Z",
+                "completed_at": null,
+                "name": "VST3 prototype / ubuntu-latest",
+                "steps": [],
+                "check_run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/check-runs/138743452035",
+                "labels": [
+                  "ubuntu-latest"
+                ],
+                "runner_id": 0,
+                "runner_name": "",
+                "runner_group_id": 0,
+                "runner_group_name": ""
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "time": {
+        "current_time": "2026-11-24 20:17:55 UTC"
+      },
+      "runs": [
+        {
+          "run": {
+            "id": 45478056057,
+            "name": "Foundation CI",
+            "head_sha": "ec47d49e9555c6337b5359da8f2f7a88ee77effa",
+            "status": "pending",
+            "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45478056057"
+          },
+          "jobs": {
+            "total_count": 7,
+            "jobs": [
+              {
+                "id": 138743453209,
+                "run_id": 45478056057,
+                "workflow_name": "Foundation CI",
+                "head_branch": "main",
+                "run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/runs/45478056057",
+                "run_attempt": 1,
+                "node_id": "CR_kwDOV4pY-s8AAAAgTcEWGQ",
+                "head_sha": "ec47d49e9555c6337b5359da8f2f7a88ee77effa",
+                "url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/jobs/138743453209",
+                "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45478056057/job/138743453209",
+                "status": "queued",
+                "conclusion": null,
+                "created_at": "2026-11-24T20:10:55Z",
+                "started_at": "2026-11-24T20:10:55Z",
+                "completed_at": null,
+                "name": "C++20 / macos-latest",
+                "steps": [],
+                "check_run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/check-runs/138743453209",
+                "labels": [
+                  "macos-latest"
+                ],
+                "runner_id": 0,
+                "runner_name": "",
+                "runner_group_id": 0,
+                "runner_group_name": ""
+              },
+              {
+                "id": 138743453682,
+                "run_id": 45478056057,
+                "workflow_name": "Foundation CI",
+                "head_branch": "main",
+                "run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/runs/45478056057",
+                "run_attempt": 1,
+                "node_id": "CR_kwDOV4pY-s8AAAAgTcEX8g",
+                "head_sha": "ec47d49e9555c6337b5359da8f2f7a88ee77effa",
+                "url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/jobs/138743453682",
+                "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45478056057/job/138743453682",
+                "status": "completed",
+                "conclusion": "success",
+                "created_at": "2026-11-24T20:10:56Z",
+                "started_at": "2026-11-24T20:15:32Z",
+                "completed_at": "2026-11-24T20:17:46Z",
+                "name": "Address and undefined behavior sanitizers",
+                "steps": [
+                  {
+                    "name": "Set up job",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 1,
+                    "started_at": "2026-11-24T20:15:33Z",
+                    "completed_at": "2026-11-24T20:15:35Z"
+                  },
+                  {
+                    "name": "Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 2,
+                    "started_at": "2026-11-24T20:15:35Z",
+                    "completed_at": "2026-11-24T20:15:42Z"
+                  },
+                  {
+                    "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 3,
+                    "started_at": "2026-11-24T20:15:42Z",
+                    "completed_at": "2026-11-24T20:15:42Z"
+                  },
+                  {
+                    "name": "Bind diagnostics to the checked-out source",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 4,
+                    "started_at": "2026-11-24T20:15:42Z",
+                    "completed_at": "2026-11-24T20:15:46Z"
+                  },
+                  {
+                    "name": "Configure",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 5,
+                    "started_at": "2026-11-24T20:15:46Z",
+                    "completed_at": "2026-11-24T20:15:49Z"
+                  },
+                  {
+                    "name": "Build",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 6,
+                    "started_at": "2026-11-24T20:15:49Z",
+                    "completed_at": "2026-11-24T20:16:19Z"
+                  },
+                  {
+                    "name": "Test",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 7,
+                    "started_at": "2026-11-24T20:16:19Z",
+                    "completed_at": "2026-11-24T20:17:42Z"
+                  },
+                  {
+                    "name": "Retain final source and compiler metadata",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 8,
+                    "started_at": "2026-11-24T20:17:42Z",
+                    "completed_at": "2026-11-24T20:17:43Z"
+                  },
+                  {
+                    "name": "Upload raw sanitizer diagnostics",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 9,
+                    "started_at": "2026-11-24T20:17:43Z",
+                    "completed_at": "2026-11-24T20:17:44Z"
+                  },
+                  {
+                    "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 17,
+                    "started_at": "2026-11-24T20:17:44Z",
+                    "completed_at": "2026-11-24T20:17:44Z"
+                  },
+                  {
+                    "name": "Post Run actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 18,
+                    "started_at": "2026-11-24T20:17:44Z",
+                    "completed_at": "2026-11-24T20:17:44Z"
+                  },
+                  {
+                    "name": "Complete job",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 19,
+                    "started_at": "2026-11-24T20:17:44Z",
+                    "completed_at": "2026-11-24T20:17:44Z"
+                  }
+                ],
+                "check_run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/check-runs/138743453682",
+                "labels": [
+                  "ubuntu-latest"
+                ],
+                "runner_id": 1000008014,
+                "runner_name": "GitHub Actions 1000008014",
+                "runner_group_id": 0,
+                "runner_group_name": "GitHub Actions"
+              },
+              {
+                "id": 138743453727,
+                "run_id": 45478056057,
+                "workflow_name": "Foundation CI",
+                "head_branch": "main",
+                "run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/runs/45478056057",
+                "run_attempt": 1,
+                "node_id": "CR_kwDOV4pY-s8AAAAgTcEYHw",
+                "head_sha": "ec47d49e9555c6337b5359da8f2f7a88ee77effa",
+                "url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/jobs/138743453727",
+                "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45478056057/job/138743453727",
+                "status": "queued",
+                "conclusion": null,
+                "created_at": "2026-11-24T20:10:56Z",
+                "started_at": "2026-11-24T20:10:56Z",
+                "completed_at": null,
+                "name": "Project state / windows-latest",
+                "steps": [],
+                "check_run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/check-runs/138743453727",
+                "labels": [
+                  "windows-latest"
+                ],
+                "runner_id": 0,
+                "runner_name": "",
+                "runner_group_id": 0,
+                "runner_group_name": ""
+              },
+              {
+                "id": 138743453899,
+                "run_id": 45478056057,
+                "workflow_name": "Foundation CI",
+                "head_branch": "main",
+                "run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/runs/45478056057",
+                "run_attempt": 1,
+                "node_id": "CR_kwDOV4pY-s8AAAAgTcEYyw",
+                "head_sha": "ec47d49e9555c6337b5359da8f2f7a88ee77effa",
+                "url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/jobs/138743453899",
+                "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45478056057/job/138743453899",
+                "status": "queued",
+                "conclusion": null,
+                "created_at": "2026-11-24T20:10:56Z",
+                "started_at": "2026-11-24T20:10:56Z",
+                "completed_at": null,
+                "name": "C++20 / ubuntu-latest",
+                "steps": [],
+                "check_run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/check-runs/138743453899",
+                "labels": [
+                  "ubuntu-latest"
+                ],
+                "runner_id": 0,
+                "runner_name": "",
+                "runner_group_id": 0,
+                "runner_group_name": ""
+              },
+              {
+                "id": 138743454033,
+                "run_id": 45478056057,
+                "workflow_name": "Foundation CI",
+                "head_branch": "main",
+                "run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/runs/45478056057",
+                "run_attempt": 1,
+                "node_id": "CR_kwDOV4pY-s8AAAAgTcEZUQ",
+                "head_sha": "ec47d49e9555c6337b5359da8f2f7a88ee77effa",
+                "url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/jobs/138743454033",
+                "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45478056057/job/138743454033",
+                "status": "queued",
+                "conclusion": null,
+                "created_at": "2026-11-24T20:10:56Z",
+                "started_at": "2026-11-24T20:10:56Z",
+                "completed_at": null,
+                "name": "Project state / macos-latest",
+                "steps": [],
+                "check_run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/check-runs/138743454033",
+                "labels": [
+                  "macos-latest"
+                ],
+                "runner_id": 0,
+                "runner_name": "",
+                "runner_group_id": 0,
+                "runner_group_name": ""
+              },
+              {
+                "id": 138743454100,
+                "run_id": 45478056057,
+                "workflow_name": "Foundation CI",
+                "head_branch": "main",
+                "run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/runs/45478056057",
+                "run_attempt": 1,
+                "node_id": "CR_kwDOV4pY-s8AAAAgTcEZlA",
+                "head_sha": "ec47d49e9555c6337b5359da8f2f7a88ee77effa",
+                "url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/jobs/138743454100",
+                "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45478056057/job/138743454100",
+                "status": "queued",
+                "conclusion": null,
+                "created_at": "2026-11-24T20:10:56Z",
+                "started_at": "2026-11-24T20:10:56Z",
+                "completed_at": null,
+                "name": "Project state / ubuntu-latest",
+                "steps": [],
+                "check_run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/check-runs/138743454100",
+                "labels": [
+                  "ubuntu-latest"
+                ],
+                "runner_id": 0,
+                "runner_name": "",
+                "runner_group_id": 0,
+                "runner_group_name": ""
+              },
+              {
+                "id": 138743454294,
+                "run_id": 45478056057,
+                "workflow_name": "Foundation CI",
+                "head_branch": "main",
+                "run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/runs/45478056057",
+                "run_attempt": 1,
+                "node_id": "CR_kwDOV4pY-s8AAAAgTcEaVg",
+                "head_sha": "ec47d49e9555c6337b5359da8f2f7a88ee77effa",
+                "url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/jobs/138743454294",
+                "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45478056057/job/138743454294",
+                "status": "queued",
+                "conclusion": null,
+                "created_at": "2026-11-24T20:10:56Z",
+                "started_at": "2026-11-24T20:10:56Z",
+                "completed_at": null,
+                "name": "C++20 / windows-latest",
+                "steps": [],
+                "check_run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/check-runs/138743454294",
+                "labels": [
+                  "windows-latest"
+                ],
+                "runner_id": 0,
+                "runner_name": "",
+                "runner_group_id": 0,
+                "runner_group_name": ""
+              }
+            ]
+          }
+        },
+        {
+          "run": {
+            "id": 45478056069,
+            "name": "Experimental VST3 CI",
+            "head_sha": "ec47d49e9555c6337b5359da8f2f7a88ee77effa",
+            "status": "pending",
+            "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45478056069"
+          },
+          "jobs": {
+            "total_count": 3,
+            "jobs": [
+              {
+                "id": 138743451148,
+                "run_id": 45478056069,
+                "workflow_name": "Experimental VST3 CI",
+                "head_branch": "main",
+                "run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/runs/45478056069",
+                "run_attempt": 1,
+                "node_id": "CR_kwDOV4pY-s8AAAAgTcEODA",
+                "head_sha": "ec47d49e9555c6337b5359da8f2f7a88ee77effa",
+                "url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/jobs/138743451148",
+                "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45478056069/job/138743451148",
+                "status": "in_progress",
+                "conclusion": null,
+                "created_at": "2026-11-24T20:10:55Z",
+                "started_at": "2026-11-24T20:17:48Z",
+                "completed_at": null,
+                "name": "VST3 prototype / windows-latest",
+                "steps": [
+                  {
+                    "name": "Set up job",
+                    "status": "completed",
+                    "conclusion": "success",
+                    "number": 1,
+                    "started_at": "2026-11-24T20:17:50Z",
+                    "completed_at": "2026-11-24T20:17:50Z"
+                  },
+                  {
+                    "name": "Check out project",
+                    "status": "in_progress",
+                    "conclusion": null,
+                    "number": 2,
+                    "started_at": "2026-11-24T20:17:51Z",
+                    "completed_at": null
+                  },
+                  {
+                    "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+                    "status": "pending",
+                    "conclusion": null,
+                    "number": 3,
+                    "started_at": null,
+                    "completed_at": null
+                  },
+                  {
+                    "name": "Check out the fixed same-repository legacy source",
+                    "status": "pending",
+                    "conclusion": null,
+                    "number": 4,
+                    "started_at": null,
+                    "completed_at": null
+                  },
+                  {
+                    "name": "Check out the pinned official SDK",
+                    "status": "pending",
+                    "conclusion": null,
+                    "number": 5,
+                    "started_at": null,
+                    "completed_at": null
+                  },
+                  {
+                    "name": "Initialize the pinned SDK and native editor dependency",
+                    "status": "pending",
+                    "conclusion": null,
+                    "number": 6,
+                    "started_at": null,
+                    "completed_at": null
+                  },
+                  {
+                    "name": "Install Linux native editor development libraries",
+                    "status": "pending",
+                    "conclusion": null,
+                    "number": 7,
+                    "started_at": null,
+                    "completed_at": null
+                  },
+                  {
+                    "name": "Verify original and lossless editor assets",
+                    "status": "pending",
+                    "conclusion": null,
+                    "number": 8,
+                    "started_at": null,
+                    "completed_at": null
+                  },
+                  {
+                    "name": "Verify and retain source, SDK and all required submodule revisions",
+                    "status": "pending",
+                    "conclusion": null,
+                    "number": 9,
+                    "started_at": null,
+                    "completed_at": null
+                  },
+                  {
+                    "name": "Configure the fixed legacy modules with the same native toolchain",
+                    "status": "pending",
+                    "conclusion": null,
+                    "number": 10,
+                    "started_at": null,
+                    "completed_at": null
+                  },
+                  {
+                    "name": "Build only the three fixed legacy module targets",
+                    "status": "pending",
+                    "conclusion": null,
+                    "number": 11,
+                    "started_at": null,
+                    "completed_at": null
+                  },
+                  {
+                    "name": "Bind each baseline native module to its source and SHA-256",
+                    "status": "pending",
+                    "conclusion": null,
+                    "number": 12,
+                    "started_at": null,
+                    "completed_at": null
+                  },
+                  {
+                    "name": "Configure all three instruments with the native photo editor",
+                    "status": "pending",
+                    "conclusion": null,
+                    "number": 13,
+                    "started_at": null,
+                    "completed_at": null
+                  },
+                  {
+                    "name": "Require identical baseline and candidate compilers and generators",
+                    "status": "pending",
+                    "conclusion": null,
+                    "number": 14,
+                    "started_at": null,
+                    "completed_at": null
+                  },
+                  {
+                    "name": "Build all three actual modules and retained host tests",
+                    "status": "pending",
+                    "conclusion": null,
+                    "number": 15,
+                    "started_at": null,
+                    "completed_at": null
+                  },
+                  {
+                    "name": "Run host tests, legacy unity comparisons and all three SDK validators",
+                    "status": "pending",
+                    "conclusion": null,
+                    "number": 16,
+                    "started_at": null,
+                    "completed_at": null
+                  },
+                  {
+                    "name": "Retain final source, SDK, compiler and actual module metadata",
+                    "status": "pending",
+                    "conclusion": null,
+                    "number": 17,
+                    "started_at": null,
+                    "completed_at": null
+                  },
+                  {
+                    "name": "Archive all three validated experimental bundles",
+                    "status": "pending",
+                    "conclusion": null,
+                    "number": 18,
+                    "started_at": null,
+                    "completed_at": null
+                  },
+                  {
+                    "name": "Upload validated experimental bundles",
+                    "status": "pending",
+                    "conclusion": null,
+                    "number": 19,
+                    "started_at": null,
+                    "completed_at": null
+                  },
+                  {
+                    "name": "Upload raw native diagnostics and legacy comparison captures",
+                    "status": "pending",
+                    "conclusion": null,
+                    "number": 20,
+                    "started_at": null,
+                    "completed_at": null
+                  },
+                  {
+                    "name": "Post Check out project",
+                    "status": "pending",
+                    "conclusion": null,
+                    "number": 40,
+                    "started_at": null,
+                    "completed_at": null
+                  }
+                ],
+                "check_run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/check-runs/138743451148",
+                "labels": [
+                  "windows-latest"
+                ],
+                "runner_id": 1000008016,
+                "runner_name": "GitHub Actions 1000008016",
+                "runner_group_id": 0,
+                "runner_group_name": "GitHub Actions"
+              },
+              {
+                "id": 138743451943,
+                "run_id": 45478056069,
+                "workflow_name": "Experimental VST3 CI",
+                "head_branch": "main",
+                "run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/runs/45478056069",
+                "run_attempt": 1,
+                "node_id": "CR_kwDOV4pY-s8AAAAgTcERJw",
+                "head_sha": "ec47d49e9555c6337b5359da8f2f7a88ee77effa",
+                "url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/jobs/138743451943",
+                "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45478056069/job/138743451943",
+                "status": "queued",
+                "conclusion": null,
+                "created_at": "2026-11-24T20:10:55Z",
+                "started_at": "2026-11-24T20:10:55Z",
+                "completed_at": null,
+                "name": "VST3 prototype / macos-latest",
+                "steps": [],
+                "check_run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/check-runs/138743451943",
+                "labels": [
+                  "macos-latest"
+                ],
+                "runner_id": 0,
+                "runner_name": "",
+                "runner_group_id": 0,
+                "runner_group_name": ""
+              },
+              {
+                "id": 138743452035,
+                "run_id": 45478056069,
+                "workflow_name": "Experimental VST3 CI",
+                "head_branch": "main",
+                "run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/runs/45478056069",
+                "run_attempt": 1,
+                "node_id": "CR_kwDOV4pY-s8AAAAgTcERgw",
+                "head_sha": "ec47d49e9555c6337b5359da8f2f7a88ee77effa",
+                "url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/jobs/138743452035",
+                "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45478056069/job/138743452035",
+                "status": "queued",
+                "conclusion": null,
+                "created_at": "2026-11-24T20:10:55Z",
+                "started_at": "2026-11-24T20:10:55Z",
+                "completed_at": null,
+                "name": "VST3 prototype / ubuntu-latest",
+                "steps": [],
+                "check_run_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/check-runs/138743452035",
+                "labels": [
+                  "ubuntu-latest"
+                ],
+                "runner_id": 0,
+                "runner_name": "",
+                "runner_group_id": 0,
+                "runner_group_name": ""
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ],
+  "prior_failure_record": "docs/validation/photo-continuation-20261124/ci-8c5d819.json",
+  "source_configuration_bridge": "docs/validation/photo-continuation-20261124/msvc-budget-source-bridge.json",
+  "scope": "Read-only GitHub Actions observations. Queued jobs do not establish compilation or test execution. The compiler-budget hypothesis is not confirmed by these observations."
+}

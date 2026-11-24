@@ -691,7 +691,10 @@ configuration recall installed at an accepted audio boundary supplies that reset
 
 ### Current photo-editor checkpoint — 24 November 2026
 
-**HOST-004 remains under development and acceptance review.** The unchanged
+**HOST-004 is complete for the recorded Linux/X11 native editor and synthetic
+processing scope.** The [final criterion review](validation/photo-editor-acceptance-20261124.md)
+and [numerical evidence](validation/photo-editor-linux-final-20261124.json) support
+the [canonical task decision](PROJECT_STATE.md). The unchanged
 source photo and verified lossless PNG are committed; the
 [asset verifier](../tools/verify_editor_assets.py) checks encoded hashes, dimensions
 and the retained profile, with an optional decoded-pixel comparison. All three
@@ -781,14 +784,19 @@ and macOS jobs had no executed steps. A
 [test-target-only compiler-budget experiment](validation/photo-continuation-20261124/msvc-budget-experiment.json)
 retains all assertions and production compilation flags; its initial record
 does not establish a repaired Windows build.
+The [final direct Windows step observation](validation/photo-continuation-20261124/msvc-budget-root-cutoff.json)
+at 20:28:27 UTC still returns no executed steps for the compiler-budget revision.
+The C1001 resolution therefore remains unconfirmed; it is separate from the
+completed Linux acceptance scope.
 
 Linux native mouse/keyboard behavior, geometry, pixels, attached resizing and
 lifecycle behavior have therefore been demonstrated within the recorded fixture
 scope. Windows/macOS native editor-window runs, non-unit device DPI and named-DAW
 operation remain unrun here; audio-device deadlines and physical fidelity remain
 unvalidated. The accepting SDK editor host has no audio-processing loop. These
-results do not complete HOST-004 acceptance or qualify later changed inputs;
-earlier platform records below retain their own revision and feature scope.
+results support the frozen HOST-004 acceptance scope. Later changed inputs need
+their own applicability review; earlier platform records below retain their
+own revision and feature scope.
 
 ### Current Expression and output-layout verification — 24 November 2026
 
