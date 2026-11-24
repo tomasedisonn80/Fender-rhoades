@@ -147,7 +147,9 @@
       "assignment": 18,
       "wave": 1,
       "agent_task_name": "/root/w1_018_contact_driver_tests",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/20261124b-w1-018-contact-driver-tests.md",
+      "sha256": "68ba9b5c562c5443903dd508931de7bb7f36df2aedb5cc0b8689135de955d6db"
     },
     {
       "assignment": 19,
@@ -159,8 +161,10 @@
       "assignment": 20,
       "wave": 1,
       "agent_task_name": "/root/w1_020_callback_compare",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/20261124b-w1-020-callback-compare.md",
+      "sha256": "ac33f3c574fca40c303234487bffd94b77ad7ed8db4b19fc74c535bb1a7386f7"
     }
   ],
-  "completed_agents": 17
+  "completed_agents": 19
 }

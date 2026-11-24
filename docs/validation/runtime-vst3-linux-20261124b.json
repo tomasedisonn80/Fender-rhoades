@@ -1,0 +1,35 @@
+{
+  "commands": [
+    "cmake --build build/vst3 --parallel 3 --target rhodes_vst3 rhodes_vst3_filtered rhodes_vst3_quadrature",
+    "ctest --test-dir build/vst3 -C Release --output-on-failure --no-tests=error --parallel 3 -R '(vst3.*validator|vst3.*validate)'"
+  ],
+  "kind": "actual-linux-vst3-validator-observation",
+  "module_sha256": {
+    "build/vst3/VST3/Release/RhodesResearch.vst3/Contents/x86_64-linux/RhodesResearch.so": "68cbede00d236b15d676f12c49d438ddb188f001bba0e638d440b898c7535615",
+    "build/vst3/VST3/Release/RhodesResearchFiltered.vst3/Contents/x86_64-linux/RhodesResearchFiltered.so": "a96af28402f4fcdc8d1ec2526f25b746d78c284b31fc5eab735effac553715dd",
+    "build/vst3/VST3/Release/RhodesResearchQuadrature.vst3/Contents/x86_64-linux/RhodesResearchQuadrature.so": "d5596af8206e3d49e80ca200d8277322b84a8b0566924deff67f8eea4551a958"
+  },
+  "observed_utc": "2026-11-24T08:16:02.889195+00:00",
+  "parent_commit": "8f21c3a3af219a63bcbaa5d674fb6505fde670c6",
+  "raw_ctest_stdout": "Test project /workspace/scratch/cc294adc3e2f/Fender-rhoades/build/vst3\n    Start 291: vst3.quadrature_sdk_validator\n    Start 290: vst3.filtered_sdk_validator\n    Start 285: vst3.sdk_validator\n1/6 Test #285: vst3.sdk_validator .....................   Passed    1.32 sec\n    Start 292: vst3.moduleinfo_validator\n2/6 Test #292: vst3.moduleinfo_validator ..............   Passed    0.00 sec\n    Start 293: vst3.filtered_moduleinfo_validator\n3/6 Test #293: vst3.filtered_moduleinfo_validator .....   Passed    0.00 sec\n    Start 294: vst3.quadrature_moduleinfo_validator\n4/6 Test #294: vst3.quadrature_moduleinfo_validator ...   Passed    0.00 sec\n5/6 Test #291: vst3.quadrature_sdk_validator ..........   Passed    3.22 sec\n6/6 Test #290: vst3.filtered_sdk_validator ............   Passed    5.50 sec\n\n100% tests passed out of 6\n\nTotal Test time (real) =   5.51 sec\n",
+  "results": {
+    "build_exit_code": 0,
+    "ctest_exit_code": 0,
+    "elapsed_s": 5.51,
+    "tests_failed": 0,
+    "tests_passed": 6
+  },
+  "schema_version": 1,
+  "scope": "Actual direct/filtered/quadrature Linux modules rebuilt with the silent-observation core; six SDK/moduleinfo validators. Not DAW/device or physical fidelity qualification.",
+  "source_sha256": {
+    "CMakeLists.txt": "eb9387e98f6933a52ddcdd38553d0a88ac59a171a727fde96a4ee7cc7e18cd9c",
+    "cmake/Vst3.cmake": "e779743e238c5b7ac2632d73764eb19974fcef3f4ae5c8699ac6f188fde783a6",
+    "include/rhodes/quadrature_fir.hpp": "cf6c85e70036b3f1794ecf131a9db43bcb8da373e47c5335f56b1bb57559b45e",
+    "include/rhodes/research_engine.hpp": "2a6ba0483a010d9b7a44517c5ed7c215f05d57ed6e96bd6609127322092929e4",
+    "plugins/vst3/controller.cpp": "79800f5df2781fc48dcf0c32afcc5d3b08efa067ba89e1a659bcfed240749349",
+    "plugins/vst3/factory.cpp": "c233a281539fca494fe0e24f1511634731078aeaddb931dcac562be6c1d411a2",
+    "plugins/vst3/processor.cpp": "97b449dac4e1eb434af8ad4e279bdf7ba07f4668cb174199980eea0266493cf6",
+    "plugins/vst3/state_stream.cpp": "b5f0dd71c5523f80359027168f0df3307c85d70b3d5654f3f936144f3307d172",
+    "src/research_engine.cpp": "01c2a9f7f9f7cfa4f759be56770178f32a71a28667d4ac6ab390e03ff7a95814"
+  }
+}
