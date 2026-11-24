@@ -307,20 +307,44 @@
       "assignment": 38,
       "wave": 2,
       "agent_task_name": "/root/w2_038_supported_extrema_guide",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/20261124b-w2-038-supported-extrema-guide.md",
+      "sha256": "a0058b877b8cf5f8d6fe7b2864172c2754c3cd2d255bd08a0520c33d0d6fa83f"
     },
     {
       "assignment": 39,
       "wave": 2,
       "agent_task_name": "/root/w2_039_direct_alias_guide",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/20261124b-w2-039-direct-alias-guide.md",
+      "sha256": "fe092f8118fa203a862eaf806cd49c7de2c048cf5dcedb27411720cba37c7ccc"
     },
     {
       "assignment": 40,
       "wave": 2,
       "agent_task_name": "/root/w2_040_integration_verification",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124b-w2-040-integration-verification.md",
+      "sha256": "f5e86ffd8e67beade4dec62b774b220265274ecaa54b100b01a5b966d5d03cbc"
+    },
+    {
+      "assignment": 41,
+      "wave": 3,
+      "agent_task_name": "/root/w3_041_event_anchor_audit",
+      "status": "running"
+    },
+    {
+      "assignment": 42,
+      "wave": 3,
+      "agent_task_name": "/root/w3_042_retained_reference_package",
+      "status": "running"
+    },
+    {
+      "assignment": 43,
+      "wave": 3,
+      "agent_task_name": "/root/w3_043_sweep_capture_audit",
       "status": "running"
     }
   ],
-  "completed_agents": 37
+  "completed_agents": 40
 }

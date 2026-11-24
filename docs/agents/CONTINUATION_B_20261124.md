@@ -44,3 +44,26 @@ certify scientific acceptance. Reports from earlier sessions do not count here.
 One integrator stages and pushes changes. Workers own distinct assigned paths
 and do not mutate task state. Historical evidence remains immutable. New results
 will be retained under new paths, including failures and unresolved conditions.
+
+## Development results and entry points
+
+The first two waves completed 40 actual assignments. Their
+[integration record](../validation/wave2-integration-20261124b.json) binds the
+tested source and retains the complete Linux results: 301 native CTests and
+848 Python tests passed with no skips. Later work retains its own source and
+verification bindings; these counts describe that recorded checkpoint.
+
+| Work | Guide or retained result |
+| --- | --- |
+| Independent supported-impact peak comparisons and bounded retained arrays | [Supported extrema guide](../SUPPORTED_CONTACT_EXTREMA.md) |
+| Stationary pickup numerical error and phase-dependent alias contribution | [Direct alias guide](../DIRECT_ALIAS_DIAGNOSTIC.md) |
+| Filtered-path endpoint, integration and normalization error decomposition | [Retained decomposition](../validation/filtered-decomposition-20261124b.md) |
+| Contiguous quadrature history and never-excited observation optimization | [Output compatibility](../validation/silent-observation-20261124b.md) |
+| Paired callback observations and a known build reproducing the measured binaries | [Initial capture](reports/20261124b-w2-021-callback-capture.md) · [Build reproduction](reports/20261124b-w2-035-callback-build-provenance.md) |
+| Fixed-anchor grazing timestamps across the declared refinement axes | [Grazing slice](reports/20261124b-w2-037-grazing-refinement-slice.md) |
+
+The passing supported-impact and stationary diagnostics retain their limited
+scope. General contact coverage, the other historical refinement failures,
+filtered/direct convergence, and instrument calibration remain separate work.
+The concurrent continuation C owns the separately claimed HOST-002 MIDI work;
+its commits are incorporated without replacing this campaign's records.
