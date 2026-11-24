@@ -33,7 +33,7 @@ def fixture(*, variant="RhodesResearch", format_bits=32, partition="whole", mode
         "sample_rate_hz": 48000, "partition": partition, "gain_workload": "dense", "byte_order": sys.byteorder,
         "processor_id": processor, "controller_id": controller, "model": model,
         "latency": 0 if model == 1 else 48, "tail_samples": 0xFFFFFFFF,
-        "parameter_count": 18 if mode == "baseline" else 19,
+        "parameter_count": 18 if mode == "baseline" else 24,
         "legacy_parameters": [{"id": value, "title": "parameter", "units": "", "flags": 0,
                                "step_count": 0, "default_normalized": 0.5} for value in parameter_ids],
         "initial_state": comparison.state_hex(model), "checkpoints": points,
@@ -61,6 +61,30 @@ class CaptureValidationTests(unittest.TestCase):
                             result = comparison.validate_capture(metadata, audio, **options)
                             self.assertEqual(result["output_frames"], 4224)
                             self.assertEqual(result["nonzero_left_samples"], 4096)
+
+    def test_current_parameter_count_is_exactly_24(self):
+        for mode in ("default", "explicit1"):
+            original, audio, options = fixture(mode=mode)
+            with self.subTest(mode=mode, parameter_count=24):
+                self.assertEqual(original["parameter_count"], 24)
+                comparison.validate_capture(original, audio, **options)
+            for invalid in (18, 19, 23, 25, 24.0, True):
+                metadata = deepcopy(original)
+                metadata["parameter_count"] = invalid
+                with self.subTest(mode=mode, parameter_count=invalid), \
+                        self.assertRaisesRegex(comparison.ComparisonError, "invalid capture field: parameter_count"):
+                    comparison.validate_capture(metadata, audio, **options)
+
+    def test_baseline_parameter_count_remains_exactly_18(self):
+        original, audio, options = fixture(mode="baseline")
+        self.assertEqual(original["parameter_count"], 18)
+        comparison.validate_capture(original, audio, **options)
+        for invalid in (17, 19, 24, 18.0, True):
+            metadata = deepcopy(original)
+            metadata["parameter_count"] = invalid
+            with self.subTest(parameter_count=invalid), \
+                    self.assertRaisesRegex(comparison.ComparisonError, "invalid capture field: parameter_count"):
+                comparison.validate_capture(metadata, audio, **options)
 
     def test_missing_partial_and_oversized_audio_fail(self):
         metadata, audio, options = fixture()

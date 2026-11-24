@@ -181,7 +181,7 @@ def validate_capture(metadata: object, audio: bytes, *, capture_id: str, mode: s
         "format_bits": format_bits, "sample_rate_hz": rate, "partition": partition, "gain_workload": workload,
         "byte_order": sys.byteorder, "processor_id": processor_id, "controller_id": controller_id,
         "model": model, "latency": 0 if model == 1 else 48, "tail_samples": 0xFFFFFFFF,
-        "parameter_count": 18 if mode == "baseline" else 19, "initial_state": state_hex(model),
+        "parameter_count": 18 if mode == "baseline" else 24, "initial_state": state_hex(model),
         "callbacks": 2 * len(blocks(partition)) + 3, "output_frames": TOTAL_FRAMES,
         "note_events": 44, "pressure_events": 16, "command_points": 48,
         "expression_points": (4 + 2 * sum(1 if count == 1 else 2 for _, count in blocks(partition)))
