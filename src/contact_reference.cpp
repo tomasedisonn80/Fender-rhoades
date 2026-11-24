@@ -406,6 +406,8 @@ private:
     [[nodiscard]] bool collect_interval_peaks(const Point& start, double h) noexcept;
     void configure_analytic_free_motion() noexcept;
     [[nodiscard]] bool analytic_free_step(double end, const Vector& y, Vector& output) noexcept;
+    [[nodiscard]] bool analytic_grazing_root(const Point& left, const Point& right,
+                                             Root& output, bool& located) noexcept;
 };
 
 bool ReferenceSolver::stop(Status status, Failure reason) noexcept {
@@ -496,6 +498,99 @@ bool ReferenceSolver::analytic_free_step(double end, const Vector& y, Vector& ou
         return stop(Status::numerical_failure, Failure::unresolved_grazing);
     }
     return true;
+}
+
+bool ReferenceSolver::analytic_grazing_root(const Point& left, const Point& right,
+                                           Root& output, bool& located) noexcept {
+    located = false;
+    const auto j = static_cast<std::size_t>(ref_.analytic_grazing_mode_);
+    const auto& anchor = ref_.analytic_anchor_;
+    // Use the same oscillator and phase as analytic_free_step. The sampling
+    // ceiling permits at most one maximum in this segment; only its period
+    // index depends on the segment, never its time or final enclosure.
+    const long double omega = 2.0 * std::numbers::pi * ref_.config_.modes[j].frequency_hz;
+    const long double sine_coefficient = static_cast<long double>(anchor.v_m_per_s[j]) / omega;
+    const long double phase = std::atan2(-sine_coefficient, static_cast<long double>(anchor.q_m[j]));
+    constexpr long double pi = std::numbers::pi_v<long double>;
+    constexpr long double period_angle = 2.0L * pi;
+    const long double maximum_phase = ref_.config_.hammer_projection[j] > 0.0 ? pi : 0.0L;
+    const long double segment_middle =
+        static_cast<long double>(left.t) +
+        0.5L * (static_cast<long double>(right.t) - left.t);
+    const long double period_index = std::round(
+        (omega * (segment_middle - anchor.time_s) + phase - maximum_phase) / period_angle);
+    const long double elapsed = (maximum_phase - phase + period_index * period_angle) / omega;
+    const double center = static_cast<double>(static_cast<long double>(anchor.time_s) + elapsed);
+    if (!std::isfinite(center)) {
+        return stop(Status::numerical_failure, Failure::unresolved_grazing);
+    }
+    // Assign a root to segments by its canonical timestamp. Endpoint rate
+    // rounding must not emit a future event or hide a root on the next call.
+    // Adjacent segments may share this endpoint; their identical brackets are
+    // deduplicated by the existing event collector.
+    if (center < left.t || center > right.t) { return true; }
+    ++work_.extrema_checks;
+    if (center == anchor.time_s && left.t == anchor.time_s &&
+        sample(left, ContactId::hammer).gap_rate_m_per_s == 0.0) {
+        output = {left, left, left, 0.0};
+        located = true;
+        return true;
+    }
+
+    const double infinity = std::numeric_limits<double>::infinity();
+    double begin = std::max(anchor.time_s, std::nextafter(center, -infinity));
+    double end = std::min(maximum_time, std::nextafter(center, infinity));
+    const Vector anchor_vector = state_vector(anchor);
+    const auto evaluate = [this, &anchor, &anchor_vector](double t, Point& p) {
+        if (t == anchor.time_s) { return point(t, anchor_vector, p); }
+        Vector value{};
+        // This is the already certified analytic replay, including exact zero
+        // force/loss checks and the common RHS budget. It needs no RK progress
+        // interval when the enclosure is only a few representable times wide.
+        return analytic_free_step(t, anchor_vector, value) && point(t, value, p);
+    };
+    for (std::uint64_t iteration = 0;
+         iteration < ref_.settings_.maximum_root_iterations; ++iteration) {
+        ++work_.root_iterations;
+        const double width = end - begin;
+        if (!(width > 0.0) || width > ref_.settings_.event_time_tolerance_s) {
+            return stop(Status::numerical_failure, Failure::unresolved_grazing);
+        }
+        Root candidate;
+        const double middle = begin + 0.5 * width;
+        if (middle < left.t || middle > right.t) {
+            return stop(Status::numerical_failure, Failure::unresolved_grazing);
+        }
+        if (!evaluate(begin, candidate.left) || !evaluate(end, candidate.right) ||
+            !evaluate(middle, candidate.middle)) {
+            return false;
+        }
+        const double before = sample(candidate.left, ContactId::hammer).gap_rate_m_per_s;
+        const double after = sample(candidate.right, ContactId::hammer).gap_rate_m_per_s;
+        candidate.uncertainty = std::max({
+            std::abs(sample(candidate.left, ContactId::hammer).gap_m),
+            std::abs(sample(candidate.right, ContactId::hammer).gap_m),
+            std::abs(sample(candidate.middle, ContactId::hammer).gap_m)});
+        if (candidate.uncertainty > ref_.settings_.event_gap_tolerance_m) {
+            return stop(Status::numerical_failure, Failure::unresolved_grazing);
+        }
+        if (before >= 0.0 && after <= 0.0 && (before != 0.0 || after != 0.0) &&
+            begin <= right.t && end >= left.t) {
+            output = candidate;
+            located = true;
+            return true;
+        }
+        // Transcendental and phase arithmetic are not assumed exact. Expand
+        // outward only until analytic replay certifies the maximum, within the
+        // original time/gap tolerances and per-root iteration limit. The small
+        // phase scale also permits cancellation close to the anchor time.
+        const long double phase_scale = 8.0L * std::numeric_limits<long double>::epsilon() *
+            (std::abs(static_cast<long double>(anchor.time_s)) + std::abs(elapsed) + 1.0L / omega);
+        const double radius = std::max(2.0 * width, static_cast<double>(phase_scale));
+        begin = std::max(anchor.time_s, std::nextafter(center - radius, -infinity));
+        end = std::min(maximum_time, std::nextafter(center + radius, infinity));
+    }
+    return stop(Status::budget_exhausted, Failure::root_limit);
 }
 
 bool ReferenceSolver::rhs(double t, const Vector& y, Vector& dy, Observation* output) noexcept {
@@ -767,16 +862,12 @@ bool ReferenceSolver::scan_segment(const Point& start, const Point& left, const 
     if (function == RootFunction::gap && id == ContactId::hammer &&
         ref_.analytic_free_motion_) {
         if (ref_.analytic_grazing_mode_ < 0) { return true; }
-        const double da = sample(left, id).gap_rate_m_per_s;
-        const double db = sample(right, id).gap_rate_m_per_s;
         // Only the gap maximum is the tangent. The other turning point of the
         // oscillator is separated by twice the amplitude.
-        if (!(da >= 0.0 && db <= 0.0 && (da != 0.0 || db != 0.0))) { return true; }
-        ++work_.extrema_checks;
         Root extremum;
-        if (da == 0.0) { extremum = {left, left, left, 0.0}; }
-        else if (db == 0.0) { extremum = {right, right, right, 0.0}; }
-        else if (!refine(start, left, right, id, RootFunction::rate, extremum)) { return false; }
+        bool located = false;
+        if (!analytic_grazing_root(left, right, extremum, located)) { return false; }
+        if (!located) { return true; }
         const double uncertainty = std::max({std::abs(sample(extremum.left, id).gap_m),
             std::abs(sample(extremum.right, id).gap_m),
             std::abs(sample(extremum.middle, id).gap_m)});

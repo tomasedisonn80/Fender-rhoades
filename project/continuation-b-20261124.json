@@ -155,7 +155,9 @@
       "assignment": 19,
       "wave": 1,
       "agent_task_name": "/root/w1_019_grazing_timestamp",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/20261124b-w1-019-grazing-timestamp.md",
+      "sha256": "5c6ad74a7cc351f6e4399a0ec4f5e0b815c09d4ec9e056f133f082be1a3304f4"
     },
     {
       "assignment": 20,
@@ -164,7 +166,25 @@
       "status": "completed",
       "report": "docs/agents/reports/20261124b-w1-020-callback-compare.md",
       "sha256": "ac33f3c574fca40c303234487bffd94b77ad7ed8db4b19fc74c535bb1a7386f7"
+    },
+    {
+      "assignment": 21,
+      "wave": 2,
+      "agent_task_name": "/root/w2_021_callback_capture",
+      "status": "running"
+    },
+    {
+      "assignment": 22,
+      "wave": 2,
+      "agent_task_name": "/root/w2_022_campaign_validator",
+      "status": "running"
+    },
+    {
+      "assignment": 23,
+      "wave": 2,
+      "agent_task_name": "/root/w2_023_extrema_evidence_audit",
+      "status": "running"
     }
   ],
-  "completed_agents": 19
+  "completed_agents": 20
 }
