@@ -154,6 +154,9 @@ default. Its [design contract](specs/CONTACT_PEAK_DIAGNOSTICS_20261123.md) and
 scope. Finite sign-change sampling can miss roots and does not complete the
 independent continuous-extrema gate.
 
+For the separate four-fixture analytic comparison, see the
+[offline contact peak diagnostic guide](CONTACT_PEAK_DIAGNOSTIC.md).
+
 ## Generate and independently audit a sweep
 
 The optional [independent auditor](../tools/validate_contact_reference.py) uses

@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "wave": 3,
+  "requested_actual_agents": 20,
+  "status": "in_progress",
+  "scope": "Runtime preservation and reproducible evidence verification; metadata records actual assignments, not scientific acceptance.",
+  "agents": [
+    {
+      "assignment": 41,
+      "wave": 3,
+      "id": "W3-41",
+      "agent_task_name": "/root/w3_41_archive_verifier",
+      "status": "running"
+    },
+    {
+      "assignment": 42,
+      "wave": 3,
+      "id": "W3-42",
+      "agent_task_name": "/root/w3_42_compatibility_review",
+      "status": "running"
+    },
+    {
+      "assignment": 43,
+      "wave": 3,
+      "id": "W3-43",
+      "agent_task_name": "/root/w3_43_campaign_validator",
+      "status": "running"
+    }
+  ]
+}

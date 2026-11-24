@@ -1,0 +1,192 @@
+{
+  "schema_version": 1,
+  "wave": 2,
+  "requested_actual_agents": 20,
+  "status": "complete",
+  "scope": "Bounded four-fixture independent contact peak diagnostic. Entries record only actually spawned workers; counts are execution provenance, not scientific acceptance.",
+  "agents": [
+    {
+      "assignment": 21,
+      "wave": 2,
+      "id": "W2-21",
+      "agent_task_name": "/root/w2_contact_implementation",
+      "report": "docs/agents/reports/20261124-w2-21-integration.md",
+      "status": "completed",
+      "sha256": "14f2f651148edc6ddd831df0848d9bbda90f8b4af067efab7dfdfb0e61b987a5"
+    },
+    {
+      "assignment": 22,
+      "wave": 2,
+      "id": "W2-22",
+      "agent_task_name": "/root/w2_contact_implementation/w2_22_schema",
+      "report": "docs/agents/reports/20261124-w2-22-schema.md",
+      "status": "completed",
+      "sha256": "fd7b5dfc02c95212ad47ff9c398a8a558aaaa9eac77a9fb80e0fb8264e60e6bf"
+    },
+    {
+      "assignment": 23,
+      "wave": 2,
+      "id": "W2-23",
+      "agent_task_name": "/root/w2_contact_implementation/w2_23_oracles",
+      "report": "docs/agents/reports/20261124-w2-23-oracles.md",
+      "status": "completed",
+      "sha256": "adb00d2ac4074cf7106142007ffd1c7f4dc6a87a8adb85dc7833bb133bc24a65",
+      "followup": "Repaired optional timing transport; source SHA-256 74030851ce9511cd50c6952a11b43bfdf5e8da5d7fd10428c009be0210060789; original report immutable; red/green evidence in W2-32."
+    },
+    {
+      "assignment": 24,
+      "wave": 2,
+      "id": "W2-24",
+      "agent_task_name": "/root/w2_contact_implementation/w2_24_comparison",
+      "report": "docs/agents/reports/20261124-w2-24-comparison.md",
+      "status": "completed",
+      "sha256": "b07e34d9d31cf83636f9a1060847de7b8fdc8249c4fa358a9ce1baf3167912ea"
+    },
+    {
+      "assignment": 25,
+      "wave": 2,
+      "id": "W2-25",
+      "agent_task_name": "/root/w2_contact_implementation/w2_25_cli",
+      "report": "docs/agents/reports/20261124-w2-25-cli.md",
+      "status": "completed",
+      "sha256": "ab415c7a9a41ec56394d34d82eb6431881570bd75b027dd6f1fc171854889d8e"
+    },
+    {
+      "assignment": 26,
+      "wave": 2,
+      "id": "W2-26",
+      "agent_task_name": "/root/w2_contact_implementation/w2_26_adversarial",
+      "report": "docs/agents/reports/20261124-w2-26-adversarial.md",
+      "status": "completed",
+      "sha256": "aa71a36006beae1da23d51d51cd62fdfbd9cb3146bdd64645e82a2106e249cce"
+    },
+    {
+      "assignment": 27,
+      "wave": 2,
+      "id": "W2-27",
+      "agent_task_name": "/root/w2_contact_implementation/w2_27_native",
+      "report": "docs/agents/reports/20261124-w2-27-native.md",
+      "status": "completed",
+      "sha256": "942d98fa59a1d37b7aa183ac4b5f2ef1b41f470dcd29ef1e4528c5e8ce3a8dc1"
+    },
+    {
+      "assignment": 28,
+      "wave": 2,
+      "id": "W2-28",
+      "agent_task_name": "/root/w2_contact_implementation/w2_28_closedforms",
+      "report": "docs/agents/reports/20261124-w2-28-closedforms.md",
+      "status": "completed",
+      "sha256": "991739418e6517005f4488dbe1767e15aae9d805485de54d3f7ad182fc767004"
+    },
+    {
+      "assignment": 29,
+      "wave": 2,
+      "id": "W2-29",
+      "agent_task_name": "/root/w2_contact_implementation/w2_29_damped_crosscheck",
+      "report": "docs/agents/reports/20261124-w2-29-damped-crosscheck.md",
+      "status": "completed",
+      "sha256": "d3c8e5b48cb3d53b15d7a128ad818f6112c3237ccc9a801b84df42d16e19b543"
+    },
+    {
+      "assignment": 30,
+      "wave": 2,
+      "id": "W2-30",
+      "agent_task_name": "/root/w2_contact_implementation/w2_30_preload_proof",
+      "report": "docs/agents/reports/20261124-w2-30-preload-proof.md",
+      "status": "completed",
+      "sha256": "269c65eac6f3ed83a576ad5f443d71e69fff38dd1f521da101a807a64b03ccbc"
+    },
+    {
+      "assignment": 31,
+      "wave": 2,
+      "id": "W2-31",
+      "agent_task_name": "/root/w2_contact_implementation/w2_31_macos_rejection",
+      "report": "docs/agents/reports/20261124-w2-31-macos-rejection.md",
+      "status": "completed",
+      "sha256": "4566506a1e5e4615e939e0fc0efd40e80fb97f6cc29f3bbfd8cf68c0a018cf7c"
+    },
+    {
+      "assignment": 32,
+      "wave": 2,
+      "id": "W2-32",
+      "agent_task_name": "/root/w2_contact_implementation/w2_32_backend_boundaries",
+      "report": "docs/agents/reports/20261124-w2-32-backend-boundaries.md",
+      "status": "completed",
+      "sha256": "efb5810f6981fe7da5dacff5e16a9ed793fcc1a15e1a73ea0eb6bddd52078e8c"
+    },
+    {
+      "assignment": 33,
+      "wave": 2,
+      "id": "W2-33",
+      "agent_task_name": "/root/w2_contact_implementation/w2_33_portability",
+      "report": "docs/agents/reports/20261124-w2-33-portability.md",
+      "status": "completed",
+      "sha256": "2ef0873da75b4aca6458798fd2b9a257b6b50855156151ed1144c05c9a36a447"
+    },
+    {
+      "assignment": 34,
+      "wave": 2,
+      "id": "W2-34",
+      "agent_task_name": "/root/w2_contact_implementation/w2_34_retention_errors",
+      "report": "docs/agents/reports/20261124-w2-34-retention-errors.md",
+      "status": "completed",
+      "sha256": "604d1385cdea05b4c66c098cf78774e6b4fb7fbc34db46a49c8c45a658018159"
+    },
+    {
+      "assignment": 35,
+      "wave": 2,
+      "id": "W2-35",
+      "agent_task_name": "/root/w2_contact_implementation/w2_35_limits",
+      "report": "docs/agents/reports/20261124-w2-35-limits.md",
+      "status": "completed",
+      "sha256": "aad2f8d4dc04c07aaf3a53d969ab95ffa4cad84a00da90d4f12a5e66dffb24f3"
+    },
+    {
+      "assignment": 36,
+      "wave": 2,
+      "id": "W2-36",
+      "agent_task_name": "/root/w2_contact_implementation/w2_36_evidence_audit",
+      "report": "docs/agents/reports/20261124-w2-36-evidence-audit.md",
+      "status": "completed",
+      "sha256": "5fe2a69bc110ff0f50f04eeff3984bc70f17cebdeff711ff50f252a0aa23bb1b"
+    },
+    {
+      "assignment": 37,
+      "wave": 2,
+      "id": "W2-37",
+      "agent_task_name": "/root/w2_contact_implementation/w2_37_transport_contract",
+      "report": "docs/agents/reports/20261124-w2-37-transport-contract.md",
+      "status": "completed",
+      "sha256": "2fdc13bdc3c145c879818af50eee81a34a7d938aaadbc508a25c05b2ead5e490"
+    },
+    {
+      "assignment": 38,
+      "wave": 2,
+      "id": "W2-38",
+      "agent_task_name": "/root/w2_contact_implementation/w2_38_usage_guide",
+      "report": "docs/agents/reports/20261124-w2-38-usage-guide.md",
+      "status": "completed",
+      "sha256": "2ae04e89646fad26150d7efe4bdabade6be1022127f826409660a54c21efcd2a"
+    },
+    {
+      "assignment": 39,
+      "wave": 2,
+      "id": "W2-39",
+      "agent_task_name": "/root/w2_contact_implementation/w2_39_current_replay",
+      "report": "docs/agents/reports/20261124-w2-39-current-replay.md",
+      "status": "completed",
+      "sha256": "43193d2fee5971a778d4abb4b20333083042db0e9ee4624e32bfcfae81055b72"
+    },
+    {
+      "assignment": 40,
+      "wave": 2,
+      "id": "W2-40",
+      "agent_task_name": "/root/w2_contact_implementation/w2_40_closing_audit",
+      "report": "docs/agents/reports/20261124-w2-40-closing-audit.md",
+      "status": "completed",
+      "sha256": "5640c6f6bdfba7c0de40e4e3ac35475cc47444b269fd1920b553a491d94476a9"
+    }
+  ],
+  "completed_actual_agents": 20,
+  "phy002_acceptance": "incomplete"
+}

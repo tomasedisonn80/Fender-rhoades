@@ -1,0 +1,1198 @@
+{
+  "archive": {
+    "all_member_bytes_verified": true,
+    "artifact_manifest": "contact-peaks-final-replay-20261124/artifact-manifest.json",
+    "artifact_manifest_sha256": "d8118d7092fdd43a1687fd0861fd10cbc548960f96e20dd99037075a3b09ee6c",
+    "bytes": 228021,
+    "files": 78,
+    "member_names_relative_and_safe": true,
+    "path": "/workspace/scratch/d6370337c6a4/Fender-rhoades/docs/validation/contact-peaks-final-replay-20261124.tar.gz",
+    "sha256": "fc48780e653fb4bdbd97dab153461797d2d7607086c8a9821e8f44f4e207e8e1",
+    "uncompressed_file_bytes": 1346562
+  },
+  "assignment": "20261124-w2-39-current-replay",
+  "changes_since_prior_native_replay": {
+    "tools/contact_peak_oracles.py": {
+      "current": "74030851ce9511cd50c6952a11b43bfdf5e8da5d7fd10428c009be0210060789",
+      "prior": "eb9d848a41ff3d101a5b0d86bd49e1d039000103dd5b923295bfaef332bb5c68"
+    },
+    "tools/validate_contact_peaks.py": {
+      "current": "5bfc879d0a4a42d48667cc2370bafc85a2bd6c6b08c18071c1d60ab7b85be717",
+      "prior": "ba25e476be93aecc1ccdbedfa020f457369bdad62c0ce16d5f749f79fc42e3ef"
+    }
+  },
+  "current_declared_binary": {
+    "candidate_production_attested": false,
+    "executed_in_this_replay": false,
+    "identity_after": {
+      "bytes": 127088,
+      "path": "/workspace/scratch/d6370337c6a4/Fender-rhoades/build/vst3/rhodes_contact_reference",
+      "sha256": "4ed2552430f5de5846adcb1a7b99521b118a12b714ad61b146ede7bab24f8f2d"
+    },
+    "identity_before": {
+      "bytes": 127088,
+      "path": "/workspace/scratch/d6370337c6a4/Fender-rhoades/build/vst3/rhodes_contact_reference",
+      "sha256": "4ed2552430f5de5846adcb1a7b99521b118a12b714ad61b146ede7bab24f8f2d"
+    },
+    "identity_matches_original_record": true
+  },
+  "diagnostic_invocations": [
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/scratch/d6370337c6a4/Fender-rhoades/tools/validate_contact_peaks.py",
+        "--candidate",
+        "/workspace/scratch/d6370337c6a4/contact-peaks-final-replay-20261124-0zolf4pv/inputs/conservative_impact.json",
+        "--candidate",
+        "/workspace/scratch/d6370337c6a4/contact-peaks-final-replay-20261124-0zolf4pv/inputs/damped_impact.json",
+        "--candidate",
+        "/workspace/scratch/d6370337c6a4/contact-peaks-final-replay-20261124-0zolf4pv/inputs/forced_clamp.json",
+        "--candidate",
+        "/workspace/scratch/d6370337c6a4/contact-peaks-final-replay-20261124-0zolf4pv/inputs/preload_equilibrium.json",
+        "--output",
+        "/workspace/scratch/d6370337c6a4/contact-peaks-final-replay-20261124-0zolf4pv/cli/all_four_default/evidence",
+        "--producer-binary",
+        "/workspace/scratch/d6370337c6a4/Fender-rhoades/build/vst3/rhodes_contact_reference"
+      ],
+      "case_added_fields": [
+        "bounded_input_bytes"
+      ],
+      "cases": [
+        {
+          "availability": "available",
+          "candidate_sha256": "3306db341920c09ac0604c61d4e0cf19a8c2c6b925bcb9a9c63cf2bbaada3085",
+          "exit_code": 0,
+          "fixture": "conservative_impact",
+          "peaks": {
+            "damper_compression": {
+              "candidate": {
+                "bracket_hi_s": 0.0,
+                "bracket_lo_s": 0.0,
+                "origin": "disabled",
+                "time_s": 0.0,
+                "value_m": 0.0
+              },
+              "coverage": {
+                "candidate": "uncertified_sign_change_search",
+                "general_continuous_extrema": "incomplete",
+                "reference": "independent_analytic_domain_argument"
+              },
+              "exit_code": 0,
+              "observation_consistency_status": "pass",
+              "reference_kind": "disabled",
+              "reference_time_intervals_s": [
+                [
+                  0.0,
+                  0.002
+                ]
+              ],
+              "reference_time_status": "disabled",
+              "reference_value_interval": [
+                0.0,
+                0.0
+              ],
+              "reference_value_status": "analytic",
+              "time_comparison_required": true,
+              "time_status": "pass",
+              "value_status": "pass"
+            },
+            "damper_force": {
+              "candidate": {
+                "bracket_hi_s": 0.0,
+                "bracket_lo_s": 0.0,
+                "origin": "disabled",
+                "time_s": 0.0,
+                "value_n": 0.0
+              },
+              "coverage": {
+                "candidate": "uncertified_sign_change_search",
+                "general_continuous_extrema": "incomplete",
+                "reference": "independent_analytic_domain_argument"
+              },
+              "exit_code": 0,
+              "observation_consistency_status": "pass",
+              "reference_kind": "disabled",
+              "reference_time_intervals_s": [
+                [
+                  0.0,
+                  0.002
+                ]
+              ],
+              "reference_time_status": "disabled",
+              "reference_value_interval": [
+                0.0,
+                0.0
+              ],
+              "reference_value_status": "analytic",
+              "time_comparison_required": true,
+              "time_status": "pass",
+              "value_status": "pass"
+            },
+            "hammer_compression": {
+              "candidate": {
+                "bracket_hi_s": 0.00044428930630016357,
+                "bracket_lo_s": 0.0004442842306236762,
+                "origin": "stationary_candidate",
+                "time_s": 0.00044428930630016357,
+                "value_m": 0.00028284271247195855
+              },
+              "coverage": {
+                "candidate": "uncertified_sign_change_search",
+                "general_continuous_extrema": "incomplete",
+                "reference": "independent_analytic_domain_argument"
+              },
+              "exit_code": 0,
+              "observation_consistency_status": "pass",
+              "reference_kind": "isolated",
+              "reference_time_intervals_s": [
+                [
+                  0.00044428829381583655,
+                  0.00044428829381583655
+                ]
+              ],
+              "reference_time_status": "analytic",
+              "reference_value_interval": [
+                0.00028284271247461896,
+                0.00028284271247461896
+              ],
+              "reference_value_status": "analytic",
+              "time_comparison_required": true,
+              "time_status": "pass",
+              "value_status": "pass"
+            },
+            "hammer_force": {
+              "candidate": {
+                "bracket_hi_s": 0.00044428930630016357,
+                "bracket_lo_s": 0.0004442842306236762,
+                "origin": "stationary_candidate",
+                "time_s": 0.00044428930630016357,
+                "value_n": 5.656854249439171
+              },
+              "coverage": {
+                "candidate": "uncertified_sign_change_search",
+                "general_continuous_extrema": "incomplete",
+                "reference": "independent_analytic_domain_argument"
+              },
+              "exit_code": 0,
+              "observation_consistency_status": "pass",
+              "reference_kind": "isolated",
+              "reference_time_intervals_s": [
+                [
+                  0.00044428829381583655,
+                  0.00044428829381583655
+                ]
+              ],
+              "reference_time_status": "analytic",
+              "reference_value_interval": [
+                5.656854249492379,
+                5.656854249492379
+              ],
+              "reference_value_status": "analytic",
+              "time_comparison_required": true,
+              "time_status": "pass",
+              "value_status": "pass"
+            }
+          },
+          "phy002_acceptance": "incomplete",
+          "raw_bytes": 19831,
+          "raw_sha256": "3306db341920c09ac0604c61d4e0cf19a8c2c6b925bcb9a9c63cf2bbaada3085",
+          "retained_identity_matches": true,
+          "validity": "pass"
+        },
+        {
+          "availability": "available",
+          "candidate_sha256": "8eac863171810777097dc2949a0d035560b5e680889cd9d1a7909353c7ad80de",
+          "exit_code": 0,
+          "fixture": "damped_impact",
+          "peaks": {
+            "damper_compression": {
+              "candidate": {
+                "bracket_hi_s": 0.0,
+                "bracket_lo_s": 0.0,
+                "origin": "disabled",
+                "time_s": 0.0,
+                "value_m": 0.0
+              },
+              "coverage": {
+                "candidate": "uncertified_sign_change_search",
+                "general_continuous_extrema": "incomplete",
+                "reference": "independent_analytic_domain_argument"
+              },
+              "exit_code": 0,
+              "observation_consistency_status": "pass",
+              "reference_kind": "disabled",
+              "reference_time_intervals_s": [
+                [
+                  0.0,
+                  0.002
+                ]
+              ],
+              "reference_time_status": "disabled",
+              "reference_value_interval": [
+                0.0,
+                0.0
+              ],
+              "reference_value_status": "analytic",
+              "time_comparison_required": true,
+              "time_status": "pass",
+              "value_status": "pass"
+            },
+            "damper_force": {
+              "candidate": {
+                "bracket_hi_s": 0.0,
+                "bracket_lo_s": 0.0,
+                "origin": "disabled",
+                "time_s": 0.0,
+                "value_n": 0.0
+              },
+              "coverage": {
+                "candidate": "uncertified_sign_change_search",
+                "general_continuous_extrema": "incomplete",
+                "reference": "independent_analytic_domain_argument"
+              },
+              "exit_code": 0,
+              "observation_consistency_status": "pass",
+              "reference_kind": "disabled",
+              "reference_time_intervals_s": [
+                [
+                  0.0,
+                  0.002
+                ]
+              ],
+              "reference_time_status": "disabled",
+              "reference_value_interval": [
+                0.0,
+                0.0
+              ],
+              "reference_value_status": "analytic",
+              "time_comparison_required": true,
+              "time_status": "pass",
+              "value_status": "pass"
+            },
+            "hammer_compression": {
+              "candidate": {
+                "bracket_hi_s": 0.0003450630876020168,
+                "bracket_lo_s": 0.0003450570221584236,
+                "origin": "stationary_candidate",
+                "time_s": 0.00034506005488022017,
+                "value_m": 0.00018988288089434878
+              },
+              "coverage": {
+                "candidate": "uncertified_sign_change_search",
+                "general_continuous_extrema": "incomplete",
+                "reference": "analytic_domain_and_scalar_refinement"
+              },
+              "exit_code": 0,
+              "observation_consistency_status": "pass",
+              "reference_kind": "isolated",
+              "reference_time_intervals_s": [],
+              "reference_time_status": "not_available",
+              "reference_value_interval": [
+                0.00018988288088523308,
+                0.00018988288088523308
+              ],
+              "reference_value_status": "resolved_under_declared_refinement",
+              "time_comparison_required": false,
+              "time_status": "not_available",
+              "value_status": "pass"
+            },
+            "hammer_force": {
+              "candidate": {
+                "bracket_hi_s": 0.0001776913414242453,
+                "bracket_lo_s": 0.00017768185334390813,
+                "origin": "stationary_candidate",
+                "time_s": 0.0001776913414242453,
+                "value_n": 6.19180727807768
+              },
+              "coverage": {
+                "candidate": "uncertified_sign_change_search",
+                "general_continuous_extrema": "incomplete",
+                "reference": "analytic_domain_and_scalar_refinement"
+              },
+              "exit_code": 0,
+              "observation_consistency_status": "pass",
+              "reference_kind": "isolated",
+              "reference_time_intervals_s": [],
+              "reference_time_status": "not_available",
+              "reference_value_interval": [
+                6.191807278604624,
+                6.191807278604624
+              ],
+              "reference_value_status": "resolved_under_declared_refinement",
+              "time_comparison_required": false,
+              "time_status": "not_available",
+              "value_status": "pass"
+            }
+          },
+          "phy002_acceptance": "incomplete",
+          "raw_bytes": 20275,
+          "raw_sha256": "8eac863171810777097dc2949a0d035560b5e680889cd9d1a7909353c7ad80de",
+          "retained_identity_matches": true,
+          "validity": "pass"
+        },
+        {
+          "availability": "available",
+          "candidate_sha256": "b941313b4b93d3e62a7548829ae5c34d18d98c533349138d74a8a07d79b7de74",
+          "exit_code": 0,
+          "fixture": "forced_clamp",
+          "peaks": {
+            "damper_compression": {
+              "candidate": {
+                "bracket_hi_s": 0.0,
+                "bracket_lo_s": 0.0,
+                "origin": "disabled",
+                "time_s": 0.0,
+                "value_m": 0.0
+              },
+              "coverage": {
+                "candidate": "uncertified_sign_change_search",
+                "general_continuous_extrema": "incomplete",
+                "reference": "independent_analytic_domain_argument"
+              },
+              "exit_code": 0,
+              "observation_consistency_status": "pass",
+              "reference_kind": "disabled",
+              "reference_time_intervals_s": [
+                [
+                  0.0,
+                  0.0002
+                ]
+              ],
+              "reference_time_status": "disabled",
+              "reference_value_interval": [
+                0.0,
+                0.0
+              ],
+              "reference_value_status": "analytic",
+              "time_comparison_required": true,
+              "time_status": "pass",
+              "value_status": "pass"
+            },
+            "damper_force": {
+              "candidate": {
+                "bracket_hi_s": 0.0,
+                "bracket_lo_s": 0.0,
+                "origin": "disabled",
+                "time_s": 0.0,
+                "value_n": 0.0
+              },
+              "coverage": {
+                "candidate": "uncertified_sign_change_search",
+                "general_continuous_extrema": "incomplete",
+                "reference": "independent_analytic_domain_argument"
+              },
+              "exit_code": 0,
+              "observation_consistency_status": "pass",
+              "reference_kind": "disabled",
+              "reference_time_intervals_s": [
+                [
+                  0.0,
+                  0.0002
+                ]
+              ],
+              "reference_time_status": "disabled",
+              "reference_value_interval": [
+                0.0,
+                0.0
+              ],
+              "reference_value_status": "analytic",
+              "time_comparison_required": true,
+              "time_status": "pass",
+              "value_status": "pass"
+            },
+            "hammer_compression": {
+              "candidate": {
+                "bracket_hi_s": 0.0,
+                "bracket_lo_s": 0.0,
+                "origin": "sample",
+                "time_s": 0.0,
+                "value_m": 0.0001
+              },
+              "coverage": {
+                "candidate": "uncertified_sign_change_search",
+                "general_continuous_extrema": "incomplete",
+                "reference": "independent_analytic_domain_argument"
+              },
+              "exit_code": 0,
+              "observation_consistency_status": "pass",
+              "reference_kind": "isolated",
+              "reference_time_intervals_s": [
+                [
+                  0.0,
+                  0.0
+                ]
+              ],
+              "reference_time_status": "analytic",
+              "reference_value_interval": [
+                0.0001,
+                0.0001
+              ],
+              "reference_value_status": "analytic",
+              "time_comparison_required": true,
+              "time_status": "pass",
+              "value_status": "pass"
+            },
+            "hammer_force": {
+              "candidate": {
+                "bracket_hi_s": 0.0,
+                "bracket_lo_s": 0.0,
+                "origin": "sample",
+                "time_s": 0.0,
+                "value_n": 0.0
+              },
+              "coverage": {
+                "candidate": "uncertified_sign_change_search",
+                "general_continuous_extrema": "incomplete",
+                "reference": "independent_analytic_domain_argument"
+              },
+              "exit_code": 0,
+              "observation_consistency_status": "pass",
+              "reference_kind": "plateau",
+              "reference_time_intervals_s": [
+                [
+                  0.0,
+                  0.0002
+                ]
+              ],
+              "reference_time_status": "analytic",
+              "reference_value_interval": [
+                0.0,
+                0.0
+              ],
+              "reference_value_status": "analytic",
+              "time_comparison_required": true,
+              "time_status": "pass",
+              "value_status": "pass"
+            }
+          },
+          "phy002_acceptance": "incomplete",
+          "raw_bytes": 4102,
+          "raw_sha256": "b941313b4b93d3e62a7548829ae5c34d18d98c533349138d74a8a07d79b7de74",
+          "retained_identity_matches": true,
+          "validity": "pass"
+        },
+        {
+          "availability": "available",
+          "candidate_sha256": "4be340044dcdb5cc6cdb9ab723889584cfa9a060121e46b2f1df59f77c5d4e85",
+          "exit_code": 0,
+          "fixture": "preload_equilibrium",
+          "peaks": {
+            "damper_compression": {
+              "candidate": {
+                "bracket_hi_s": 0.011779999999999997,
+                "bracket_lo_s": 0.011779999999999997,
+                "origin": "sample",
+                "time_s": 0.011779999999999997,
+                "value_m": 1.0320962512323222e-05
+              },
+              "coverage": {
+                "candidate": "uncertified_sign_change_search",
+                "general_continuous_extrema": "incomplete",
+                "reference": "exact_rational_energy_enclosure"
+              },
+              "exit_code": 0,
+              "observation_consistency_status": "pass",
+              "reference_kind": "enclosure",
+              "reference_time_intervals_s": [],
+              "reference_time_status": "unresolved_near_equilibrium",
+              "reference_value_interval": [
+                1.0320962512323202e-05,
+                1.0320962512323224e-05
+              ],
+              "reference_value_status": "verified_enclosure",
+              "time_comparison_required": false,
+              "time_status": "unresolved_near_equilibrium",
+              "value_status": "pass"
+            },
+            "damper_force": {
+              "candidate": {
+                "bracket_hi_s": 0.0,
+                "bracket_lo_s": 0.0,
+                "origin": "sample",
+                "time_s": 0.0,
+                "value_n": 0.12385155014787864
+              },
+              "coverage": {
+                "candidate": "uncertified_sign_change_search",
+                "general_continuous_extrema": "incomplete",
+                "reference": "exact_rational_energy_enclosure"
+              },
+              "exit_code": 0,
+              "observation_consistency_status": "pass",
+              "reference_kind": "enclosure",
+              "reference_time_intervals_s": [],
+              "reference_time_status": "unresolved_near_equilibrium",
+              "reference_value_interval": [
+                0.12385155014787841,
+                0.12385155014787869
+              ],
+              "reference_value_status": "verified_enclosure",
+              "time_comparison_required": false,
+              "time_status": "unresolved_near_equilibrium",
+              "value_status": "pass"
+            },
+            "hammer_compression": {
+              "candidate": {
+                "bracket_hi_s": 0.0,
+                "bracket_lo_s": 0.0,
+                "origin": "sample",
+                "time_s": 0.0,
+                "value_m": 0.0
+              },
+              "coverage": {
+                "candidate": "uncertified_sign_change_search",
+                "general_continuous_extrema": "incomplete",
+                "reference": "exact_rational_separated_branch_enclosure"
+              },
+              "exit_code": 0,
+              "observation_consistency_status": "pass",
+              "reference_kind": "plateau",
+              "reference_time_intervals_s": [
+                [
+                  0.0,
+                  0.02
+                ]
+              ],
+              "reference_time_status": "analytic",
+              "reference_value_interval": [
+                0.0,
+                0.0
+              ],
+              "reference_value_status": "analytic",
+              "time_comparison_required": true,
+              "time_status": "pass",
+              "value_status": "pass"
+            },
+            "hammer_force": {
+              "candidate": {
+                "bracket_hi_s": 0.0,
+                "bracket_lo_s": 0.0,
+                "origin": "sample",
+                "time_s": 0.0,
+                "value_n": 0.0
+              },
+              "coverage": {
+                "candidate": "uncertified_sign_change_search",
+                "general_continuous_extrema": "incomplete",
+                "reference": "exact_rational_separated_branch_enclosure"
+              },
+              "exit_code": 0,
+              "observation_consistency_status": "pass",
+              "reference_kind": "plateau",
+              "reference_time_intervals_s": [
+                [
+                  0.0,
+                  0.02
+                ]
+              ],
+              "reference_time_status": "analytic",
+              "reference_value_interval": [
+                0.0,
+                0.0
+              ],
+              "reference_value_status": "analytic",
+              "time_comparison_required": true,
+              "time_status": "pass",
+              "value_status": "pass"
+            }
+          },
+          "phy002_acceptance": "incomplete",
+          "raw_bytes": 195352,
+          "raw_sha256": "4be340044dcdb5cc6cdb9ab723889584cfa9a060121e46b2f1df59f77c5d4e85",
+          "retained_identity_matches": true,
+          "validity": "pass"
+        }
+      ],
+      "cwd": "/workspace/scratch/d6370337c6a4/Fender-rhoades",
+      "declared_producer": {
+        "bytes": 127088,
+        "candidate_production_attested": false,
+        "declared_path": "/workspace/scratch/d6370337c6a4/Fender-rhoades/build/vst3/rhodes_contact_reference",
+        "executed": false,
+        "sha256": "4ed2552430f5de5846adcb1a7b99521b118a12b714ad61b146ede7bab24f8f2d"
+      },
+      "elapsed_s": 0.19416727599991646,
+      "ended_utc": "2026-11-24T05:53:13.154838+00:00",
+      "id": "all_four_default",
+      "internal_source_sha256_after": {
+        "docs/specs/CONTACT_ACCEPTANCE_20261123.md": "c86669723c14c64864b04702780679f7a32f2416920f6fe198375acc4de34073",
+        "docs/specs/CONTACT_ANALYTIC_PEAK_SLICE_20261123.md": "56e5caefaebc03596b2ed566d50578b2be2e4dc54e37bf7fdce31dab31243f03",
+        "tools/contact_peak_oracles.py": "74030851ce9511cd50c6952a11b43bfdf5e8da5d7fd10428c009be0210060789",
+        "tools/contact_peak_schema.py": "af5cbf87d155ecb40c176b78a7527b2a7bd686c7fd515be621af93d910db86c4",
+        "tools/validate_contact_peaks.py": "5bfc879d0a4a42d48667cc2370bafc85a2bd6c6b08c18071c1d60ab7b85be717",
+        "tools/validate_contact_reference.py": "c910da5da6b6ad957b709a414cef39a08ed6e8b75c6e36c9d73ef535a064dcdc"
+      },
+      "internal_source_sha256_before": {
+        "docs/specs/CONTACT_ACCEPTANCE_20261123.md": "c86669723c14c64864b04702780679f7a32f2416920f6fe198375acc4de34073",
+        "docs/specs/CONTACT_ANALYTIC_PEAK_SLICE_20261123.md": "56e5caefaebc03596b2ed566d50578b2be2e4dc54e37bf7fdce31dab31243f03",
+        "tools/contact_peak_oracles.py": "74030851ce9511cd50c6952a11b43bfdf5e8da5d7fd10428c009be0210060789",
+        "tools/contact_peak_schema.py": "af5cbf87d155ecb40c176b78a7527b2a7bd686c7fd515be621af93d910db86c4",
+        "tools/validate_contact_peaks.py": "5bfc879d0a4a42d48667cc2370bafc85a2bd6c6b08c18071c1d60ab7b85be717",
+        "tools/validate_contact_reference.py": "c910da5da6b6ad957b709a414cef39a08ed6e8b75c6e36c9d73ef535a064dcdc"
+      },
+      "internal_sources_unchanged": true,
+      "manifest_added_fields": [
+        "input_bytes_charged_to_collection_limit"
+      ],
+      "manifest_exit_code": 0,
+      "manifest_file": "cli/all_four_default/evidence/manifest.json",
+      "manifest_sha256": "925de6d0c48e0abf83223e4e400575e90e242049aa9577055a88dc1bbec62aee",
+      "manifest_status": "pass",
+      "phy002_acceptance": "incomplete",
+      "prior_comparison": [
+        {
+          "comparison_differences": [],
+          "fixture": "conservative_impact",
+          "reference_differences": [],
+          "same_reference_and_value_outcomes": true
+        },
+        {
+          "comparison_differences": [],
+          "fixture": "damped_impact",
+          "reference_differences": [],
+          "same_reference_and_value_outcomes": true
+        },
+        {
+          "comparison_differences": [],
+          "fixture": "forced_clamp",
+          "reference_differences": [],
+          "same_reference_and_value_outcomes": true
+        },
+        {
+          "comparison_differences": [],
+          "fixture": "preload_equilibrium",
+          "reference_differences": [],
+          "same_reference_and_value_outcomes": true
+        }
+      ],
+      "returncode": 0,
+      "started_utc": "2026-11-24T05:53:12.955242+00:00",
+      "stderr": {
+        "bytes": 0,
+        "file": "cli/all_four_default/stderr.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 202,
+        "file": "cli/all_four_default/stdout.txt",
+        "sha256": "30553ed27e44994d6d779fc6b56c67fbd7f4d6a5c669a695d2ac0d74d52e4394"
+      },
+      "timed_out": false,
+      "timeout_s": 40,
+      "versions": {
+        "numpy": "2.3.5",
+        "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+        "scipy": "1.17.0"
+      }
+    },
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/scratch/d6370337c6a4/Fender-rhoades/tools/validate_contact_peaks.py",
+        "--candidate",
+        "/workspace/scratch/d6370337c6a4/contact-peaks-final-replay-20261124-0zolf4pv/inputs/damped_impact.json",
+        "--output",
+        "/workspace/scratch/d6370337c6a4/contact-peaks-final-replay-20261124-0zolf4pv/cli/damped_with_time/evidence",
+        "--producer-binary",
+        "/workspace/scratch/d6370337c6a4/Fender-rhoades/build/vst3/rhodes_contact_reference",
+        "--with-damped-time"
+      ],
+      "case_added_fields": [
+        "bounded_input_bytes"
+      ],
+      "cases": [
+        {
+          "availability": "available",
+          "candidate_sha256": "8eac863171810777097dc2949a0d035560b5e680889cd9d1a7909353c7ad80de",
+          "exit_code": 0,
+          "fixture": "damped_impact",
+          "peaks": {
+            "damper_compression": {
+              "candidate": {
+                "bracket_hi_s": 0.0,
+                "bracket_lo_s": 0.0,
+                "origin": "disabled",
+                "time_s": 0.0,
+                "value_m": 0.0
+              },
+              "coverage": {
+                "candidate": "uncertified_sign_change_search",
+                "general_continuous_extrema": "incomplete",
+                "reference": "independent_analytic_domain_argument"
+              },
+              "exit_code": 0,
+              "observation_consistency_status": "pass",
+              "reference_kind": "disabled",
+              "reference_time_intervals_s": [
+                [
+                  0.0,
+                  0.002
+                ]
+              ],
+              "reference_time_status": "disabled",
+              "reference_value_interval": [
+                0.0,
+                0.0
+              ],
+              "reference_value_status": "analytic",
+              "time_comparison_required": true,
+              "time_status": "pass",
+              "value_status": "pass"
+            },
+            "damper_force": {
+              "candidate": {
+                "bracket_hi_s": 0.0,
+                "bracket_lo_s": 0.0,
+                "origin": "disabled",
+                "time_s": 0.0,
+                "value_n": 0.0
+              },
+              "coverage": {
+                "candidate": "uncertified_sign_change_search",
+                "general_continuous_extrema": "incomplete",
+                "reference": "independent_analytic_domain_argument"
+              },
+              "exit_code": 0,
+              "observation_consistency_status": "pass",
+              "reference_kind": "disabled",
+              "reference_time_intervals_s": [
+                [
+                  0.0,
+                  0.002
+                ]
+              ],
+              "reference_time_status": "disabled",
+              "reference_value_interval": [
+                0.0,
+                0.0
+              ],
+              "reference_value_status": "analytic",
+              "time_comparison_required": true,
+              "time_status": "pass",
+              "value_status": "pass"
+            },
+            "hammer_compression": {
+              "candidate": {
+                "bracket_hi_s": 0.0003450630876020168,
+                "bracket_lo_s": 0.0003450570221584236,
+                "origin": "stationary_candidate",
+                "time_s": 0.00034506005488022017,
+                "value_m": 0.00018988288089434878
+              },
+              "coverage": {
+                "candidate": "uncertified_sign_change_search",
+                "general_continuous_extrema": "incomplete",
+                "reference": "analytic_domain_and_scalar_refinement"
+              },
+              "exit_code": 0,
+              "observation_consistency_status": "pass",
+              "reference_kind": "isolated",
+              "reference_time_intervals_s": [
+                [
+                  0.00034505973795999833,
+                  0.00034505973795999833
+                ]
+              ],
+              "reference_time_status": "resolved_under_declared_refinement",
+              "reference_value_interval": [
+                0.00018988288088523308,
+                0.00018988288088523308
+              ],
+              "reference_value_status": "resolved_under_declared_refinement",
+              "time_comparison_required": true,
+              "time_status": "pass",
+              "value_status": "pass"
+            },
+            "hammer_force": {
+              "candidate": {
+                "bracket_hi_s": 0.0001776913414242453,
+                "bracket_lo_s": 0.00017768185334390813,
+                "origin": "stationary_candidate",
+                "time_s": 0.0001776913414242453,
+                "value_n": 6.19180727807768
+              },
+              "coverage": {
+                "candidate": "uncertified_sign_change_search",
+                "general_continuous_extrema": "incomplete",
+                "reference": "analytic_domain_and_scalar_refinement"
+              },
+              "exit_code": 0,
+              "observation_consistency_status": "pass",
+              "reference_kind": "isolated",
+              "reference_time_intervals_s": [
+                [
+                  0.00017769056225746204,
+                  0.00017769056225746204
+                ]
+              ],
+              "reference_time_status": "resolved_under_declared_refinement",
+              "reference_value_interval": [
+                6.191807278604624,
+                6.191807278604624
+              ],
+              "reference_value_status": "resolved_under_declared_refinement",
+              "time_comparison_required": true,
+              "time_status": "pass",
+              "value_status": "pass"
+            }
+          },
+          "phy002_acceptance": "incomplete",
+          "raw_bytes": 20275,
+          "raw_sha256": "8eac863171810777097dc2949a0d035560b5e680889cd9d1a7909353c7ad80de",
+          "retained_identity_matches": true,
+          "validity": "pass"
+        }
+      ],
+      "cwd": "/workspace/scratch/d6370337c6a4/Fender-rhoades",
+      "declared_producer": {
+        "bytes": 127088,
+        "candidate_production_attested": false,
+        "declared_path": "/workspace/scratch/d6370337c6a4/Fender-rhoades/build/vst3/rhodes_contact_reference",
+        "executed": false,
+        "sha256": "4ed2552430f5de5846adcb1a7b99521b118a12b714ad61b146ede7bab24f8f2d"
+      },
+      "elapsed_s": 0.7591451399998732,
+      "ended_utc": "2026-11-24T05:53:13.916808+00:00",
+      "id": "damped_with_time",
+      "internal_source_sha256_after": {
+        "docs/specs/CONTACT_ACCEPTANCE_20261123.md": "c86669723c14c64864b04702780679f7a32f2416920f6fe198375acc4de34073",
+        "docs/specs/CONTACT_ANALYTIC_PEAK_SLICE_20261123.md": "56e5caefaebc03596b2ed566d50578b2be2e4dc54e37bf7fdce31dab31243f03",
+        "tools/contact_peak_oracles.py": "74030851ce9511cd50c6952a11b43bfdf5e8da5d7fd10428c009be0210060789",
+        "tools/contact_peak_schema.py": "af5cbf87d155ecb40c176b78a7527b2a7bd686c7fd515be621af93d910db86c4",
+        "tools/validate_contact_peaks.py": "5bfc879d0a4a42d48667cc2370bafc85a2bd6c6b08c18071c1d60ab7b85be717",
+        "tools/validate_contact_reference.py": "c910da5da6b6ad957b709a414cef39a08ed6e8b75c6e36c9d73ef535a064dcdc"
+      },
+      "internal_source_sha256_before": {
+        "docs/specs/CONTACT_ACCEPTANCE_20261123.md": "c86669723c14c64864b04702780679f7a32f2416920f6fe198375acc4de34073",
+        "docs/specs/CONTACT_ANALYTIC_PEAK_SLICE_20261123.md": "56e5caefaebc03596b2ed566d50578b2be2e4dc54e37bf7fdce31dab31243f03",
+        "tools/contact_peak_oracles.py": "74030851ce9511cd50c6952a11b43bfdf5e8da5d7fd10428c009be0210060789",
+        "tools/contact_peak_schema.py": "af5cbf87d155ecb40c176b78a7527b2a7bd686c7fd515be621af93d910db86c4",
+        "tools/validate_contact_peaks.py": "5bfc879d0a4a42d48667cc2370bafc85a2bd6c6b08c18071c1d60ab7b85be717",
+        "tools/validate_contact_reference.py": "c910da5da6b6ad957b709a414cef39a08ed6e8b75c6e36c9d73ef535a064dcdc"
+      },
+      "internal_sources_unchanged": true,
+      "manifest_added_fields": [
+        "input_bytes_charged_to_collection_limit"
+      ],
+      "manifest_exit_code": 0,
+      "manifest_file": "cli/damped_with_time/evidence/manifest.json",
+      "manifest_sha256": "3d32d21657be9e043f336c2d5ad92951e9122ee7bc5d2365e5ef46815e9c72f8",
+      "manifest_status": "pass",
+      "phy002_acceptance": "incomplete",
+      "prior_comparison": [
+        {
+          "comparison_differences": [
+            {
+              "after": 0.6576231550002376,
+              "before": 0.6432917869999528,
+              "path": "/peaks/hammer_compression/reference/details/timing/parent_elapsed_s"
+            },
+            {
+              "after": 0.0015637189999324619,
+              "before": 0.012219855000012103,
+              "path": "/peaks/hammer_compression/reference/details/timing/worker_elapsed_s"
+            },
+            {
+              "after": 0.6576231550002376,
+              "before": 0.6432917869999528,
+              "path": "/peaks/hammer_force/reference/details/timing/parent_elapsed_s"
+            },
+            {
+              "after": 0.0015637189999324619,
+              "before": 0.012219855000012103,
+              "path": "/peaks/hammer_force/reference/details/timing/worker_elapsed_s"
+            }
+          ],
+          "fixture": "damped_impact",
+          "reference_differences": [
+            {
+              "after": 0.6576231550002376,
+              "before": 0.6432917869999528,
+              "path": "/peaks/hammer_compression/details/timing/parent_elapsed_s"
+            },
+            {
+              "after": 0.0015637189999324619,
+              "before": 0.012219855000012103,
+              "path": "/peaks/hammer_compression/details/timing/worker_elapsed_s"
+            },
+            {
+              "after": 0.6576231550002376,
+              "before": 0.6432917869999528,
+              "path": "/peaks/hammer_force/details/timing/parent_elapsed_s"
+            },
+            {
+              "after": 0.0015637189999324619,
+              "before": 0.012219855000012103,
+              "path": "/peaks/hammer_force/details/timing/worker_elapsed_s"
+            }
+          ],
+          "same_reference_and_value_outcomes": true
+        }
+      ],
+      "returncode": 0,
+      "started_utc": "2026-11-24T05:53:13.156030+00:00",
+      "stderr": {
+        "bytes": 0,
+        "file": "cli/damped_with_time/stderr.txt",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 202,
+        "file": "cli/damped_with_time/stdout.txt",
+        "sha256": "5eeeba836d12189e80e2e60e56f691ae8dc8f0404c39b075f2172da8818038e6"
+      },
+      "timed_out": false,
+      "timeout_s": 40,
+      "versions": {
+        "numpy": "2.3.5",
+        "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+        "scipy": "1.17.0"
+      }
+    }
+  ],
+  "ended_utc": "2026-11-24T05:53:13.918313+00:00",
+  "focused_tests": {
+    "cohort_scope": "Actual earlier 74-test cohort. Two later test-only portability revisions were authorized separately: explicit UTF-8 stderr bytes in backend-boundary tests and capability skip for unsupported surrogate filenames. This retained log does not attest those later test edits.",
+    "log": {
+      "bytes": 13660,
+      "file": "focused-tests/contact-wave2-focused-final.log",
+      "sha256": "e038627be7245eeb7857a6d5506579d7548cb8122b1d101c26bbcb468c812bac"
+    },
+    "metadata": {
+      "bytes": 2961,
+      "file": "focused-tests/contact-wave2-focused-final.json",
+      "sha256": "8a155a8c3be74847cb3c1c66495bcd36bfb1117a69b55f16f8cfed08144a3bca"
+    },
+    "recorded_before_after_hashes_equal": true,
+    "recorded_exit_code": 0,
+    "recorded_log_hash_verified": true,
+    "recorded_outer_elapsed_s": 3.194278363000194,
+    "recorded_production_module_hashes_match_current_sources": true,
+    "recorded_test_count": 74,
+    "recorded_test_source_differences": {
+      "tests/python/test_contact_peak_backend_boundaries.py": {
+        "current": "63c684d569bdbef4bbad3ce6663e1a46a79786af18a4ef7a7e740bd5188049d1",
+        "recorded": "5868ec0c2428c2105beeec80b116efb4b3b0c4f4a664801c7ee65e50039d1166"
+      },
+      "tests/python/test_contact_peak_portability.py": {
+        "current": "14004d860445a1a6075228f641d72fca16ff8b24c55bed9702a01bec21922388",
+        "recorded": "df60f3cb649d19a5d16f6a63aedb301b7b3001e680b6023f08af20f2efaa6a32"
+      }
+    },
+    "recorded_unittest_elapsed_s": 2.966,
+    "rerun": false
+  },
+  "inputs": [
+    {
+      "bytes": 19831,
+      "fixture": "conservative_impact",
+      "original_archive_member": "contact-peaks-native-20261124/native/conservative_impact/stdout.json",
+      "original_invocation_stdout_identity_matches": true,
+      "original_manifest_identity_matches": true,
+      "replay_input": "/workspace/scratch/d6370337c6a4/contact-peaks-final-replay-20261124-0zolf4pv/inputs/conservative_impact.json",
+      "sha256": "3306db341920c09ac0604c61d4e0cf19a8c2c6b925bcb9a9c63cf2bbaada3085"
+    },
+    {
+      "bytes": 20275,
+      "fixture": "damped_impact",
+      "original_archive_member": "contact-peaks-native-20261124/native/damped_impact/stdout.json",
+      "original_invocation_stdout_identity_matches": true,
+      "original_manifest_identity_matches": true,
+      "replay_input": "/workspace/scratch/d6370337c6a4/contact-peaks-final-replay-20261124-0zolf4pv/inputs/damped_impact.json",
+      "sha256": "8eac863171810777097dc2949a0d035560b5e680889cd9d1a7909353c7ad80de"
+    },
+    {
+      "bytes": 4102,
+      "fixture": "forced_clamp",
+      "original_archive_member": "contact-peaks-native-20261124/native/forced_clamp/stdout.json",
+      "original_invocation_stdout_identity_matches": true,
+      "original_manifest_identity_matches": true,
+      "replay_input": "/workspace/scratch/d6370337c6a4/contact-peaks-final-replay-20261124-0zolf4pv/inputs/forced_clamp.json",
+      "sha256": "b941313b4b93d3e62a7548829ae5c34d18d98c533349138d74a8a07d79b7de74"
+    },
+    {
+      "bytes": 195352,
+      "fixture": "preload_equilibrium",
+      "original_archive_member": "contact-peaks-native-20261124/native/preload_equilibrium/stdout.json",
+      "original_invocation_stdout_identity_matches": true,
+      "original_manifest_identity_matches": true,
+      "replay_input": "/workspace/scratch/d6370337c6a4/contact-peaks-final-replay-20261124-0zolf4pv/inputs/preload_equilibrium.json",
+      "sha256": "4be340044dcdb5cc6cdb9ab723889584cfa9a060121e46b2f1df59f77c5d4e85"
+    }
+  ],
+  "limitations": [
+    "Four synthetic fixtures only; no physical measurements or instrument-fidelity claim.",
+    "Candidate sign-change coverage remains uncertified; general continuous-extrema acceptance remains incomplete.",
+    "Supplemental damped timing does not amend frozen acceptance; numerical refinement and quadrature errors are not certificates.",
+    "The current declared binary is hashed only; the archive records original production, and this replay does not attest arbitrary candidate physical parameters.",
+    "No native producer, broad test suite, or focused test suite was executed in this replay."
+  ],
+  "original_producer_identity_from_immutable_evidence": {
+    "bytes": 127088,
+    "path": "/workspace/scratch/d6370337c6a4/Fender-rhoades/build/vst3/rhodes_contact_reference",
+    "sha256_after": "4ed2552430f5de5846adcb1a7b99521b118a12b714ad61b146ede7bab24f8f2d",
+    "sha256_before": "4ed2552430f5de5846adcb1a7b99521b118a12b714ad61b146ede7bab24f8f2d"
+  },
+  "outcome": "expected_current_source_replay_outcomes_observed",
+  "packaged_utc": "2026-11-24T05:55:27.852742+00:00",
+  "phy002_acceptance": "incomplete",
+  "preparation_checks": [
+    {
+      "affected_paths": [
+        "tests/python/test_contact_peak_backend_boundaries.py",
+        "tests/python/test_contact_peak_portability.py"
+      ],
+      "cli_attempts_before_stop": 0,
+      "focused_tests_rerun": false,
+      "observed_error": "AssertionError: not all historical focused-test source hashes matched current sources",
+      "resolution": "Parent identified the two authorized subsequent test-only portability edits; retained historical test hashes are distinguished from current hashes, and all production module hashes still match. The preparation guard was narrowed to allow exactly those two test-only differences.",
+      "result": "stopped before any CLI invocation or staging creation",
+      "stage": "pre-CLI historical test-source verification"
+    }
+  ],
+  "provenance_and_schema_evolution": [
+    "The current oracle and CLI source identities differ from the historical native replay; source snapshots and before/after hashes are retained separately.",
+    "Current successful raw-retention records add bounded_input_bytes; manifests add input_bytes_charged_to_collection_limit. The existing unattempted_inputs field remains present. These track corrected partial-retention accounting, while the replayed full raw files remain byte-identical.",
+    "No partial-retention failure was induced here. The supplied focused-test log covers that behavior at the same current production module hashes; two subsequent test-only portability edits are distinguished from that earlier cohort.",
+    "Time quadrature execution durations may differ; exact substantive reference/value/time comparison outcomes are checked separately.",
+    "The original native archive is read-only input. Its prior failed tracing attempts and original producer provenance are preserved in the immutable original archive."
+  ],
+  "root_executed_current_test_cohort": {
+    "argv": [
+      "python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "tests/python",
+      "-p",
+      "test_contact_peak_*.py"
+    ],
+    "argv_provenance": "Exact command and exit 0 supplied by root through parent after the run. Replay agent retained the existing log without rerunning the command.",
+    "captured_process_exit_code": null,
+    "cwd": "/workspace/scratch/d6370337c6a4/Fender-rhoades",
+    "executor": "/root (as reported through parent /root/w2_contact_implementation)",
+    "log": {
+      "bytes": 184,
+      "file": "focused-tests/contact-tests-portability-fixed-20261124.log",
+      "original_path": "/workspace/scratch/d6370337c6a4/Fender-rhoades/build/contact-tests-portability-fixed-20261124.log",
+      "sha256": "b758e7726aa36146cd62bd841c44ae31b3819beedd5a808eb0c5dc59879f94d0"
+    },
+    "log_reported_result": "OK",
+    "log_reported_tests": 85,
+    "log_reported_unittest_elapsed_s": 2.853,
+    "production_and_other_current_sources_match_replay": true,
+    "reported_shell_command": "python3 -m unittest discover -s tests/python -p 'test_contact_peak_*.py' > build/contact-tests-portability-fixed-20261124.log 2>&1",
+    "rerun_by_replay_agent": false,
+    "retention_utc": "2026-11-24T05:54:32.058181+00:00",
+    "root_hash_capture_provenance": "Root reports hash listing immediately after the test run in the same shell. No pre-run snapshot was taken for this 85-test run; no before/after equality is claimed for that run. Retention-time hashes independently match the three test hashes supplied by root.",
+    "root_reported_exit_code": 0,
+    "root_reported_result": "85 passed, no skips; includes 74 new focused tests and 11 pre-existing test_contact_peak_sweep tests",
+    "root_supplied_three_test_hashes_verified": true,
+    "source_hash_scope": "Hashes captured while retaining an existing root-executed log, not claimed as separately captured process-before/after hashes.",
+    "source_sha256_at_retention": {
+      "CMakeLists.txt": "2a70fba5924a3eeb01bf0dfd7c2a0f6a00726d27ac7535660a4bf267cf81ff3e",
+      "apps/contact_reference.cpp": "36f30eebe08856989eeefd940acdff491c8f9cfc217342893f8d113c61865113",
+      "docs/specs/CONTACT_ACCEPTANCE_20261123.md": "c86669723c14c64864b04702780679f7a32f2416920f6fe198375acc4de34073",
+      "docs/specs/CONTACT_ANALYTIC_PEAK_SLICE_20261123.md": "56e5caefaebc03596b2ed566d50578b2be2e4dc54e37bf7fdce31dab31243f03",
+      "include/rhodes/contact_reference.hpp": "00b99e61dc73686c22675bedf647c3ad1b27ba13332180431f5a42e485057fda",
+      "src/contact_reference.cpp": "0f9808442b5ddf6ddc6091c9b6294117b7aea85cd54707b9c3743121ac706100",
+      "tests/python/test_contact_peak_backend_boundaries.py": "63c684d569bdbef4bbad3ce6663e1a46a79786af18a4ef7a7e740bd5188049d1",
+      "tests/python/test_contact_peak_cli.py": "02cdf8a827c67962ea1b52307debe30ddee4e8e8082a487eb8a537c1d6865450",
+      "tests/python/test_contact_peak_comparison.py": "9f24401f7b5dc4f115ec8ce6a62589c0811e33e9716a347c890561c92f38ef2e",
+      "tests/python/test_contact_peak_oracles.py": "9de8d7907b7a68fccf77788d9f04c93d4059d343bb4e6b1bacdc1b26bc2be1e6",
+      "tests/python/test_contact_peak_portability.py": "14004d860445a1a6075228f641d72fca16ff8b24c55bed9702a01bec21922388",
+      "tests/python/test_contact_peak_retention_errors.py": "9e899b5a5d5c4d19dca7f99cb7a0dc99c3067b3620d3c7dd3c127b78954911e9",
+      "tests/python/test_contact_peak_schema.py": "8556d104c5492257c2be33e022040c66429dd447b832ea116d51dd571ac2edec",
+      "tests/python/test_contact_peak_sweep.py": "69bc0ade362497ec42ba9833cc64e772aa87fcd00a752f6fd1ca188fb379169d",
+      "tools/contact_peak_oracles.py": "74030851ce9511cd50c6952a11b43bfdf5e8da5d7fd10428c009be0210060789",
+      "tools/contact_peak_schema.py": "af5cbf87d155ecb40c176b78a7527b2a7bd686c7fd515be621af93d910db86c4",
+      "tools/validate_contact_peaks.py": "5bfc879d0a4a42d48667cc2370bafc85a2bd6c6b08c18071c1d60ab7b85be717",
+      "tools/validate_contact_reference.py": "c910da5da6b6ad957b709a414cef39a08ed6e8b75c6e36c9d73ef535a064dcdc"
+    }
+  },
+  "schema_version": 1,
+  "scope": "Current-source replay of four exact retained native fixtures and requested damped timing; no trajectory regeneration or test execution.",
+  "separate_incomplete_timing": [
+    {
+      "fixture": "damped_impact",
+      "invocation": "all_four_default",
+      "peaks": [
+        "hammer_compression",
+        "hammer_force"
+      ],
+      "reason": "Optional damped timing was unrequested in the default invocation.",
+      "time_status": "not_available"
+    },
+    {
+      "fixture": "preload_equilibrium",
+      "invocation": "all_four_default",
+      "peaks": [
+        "damper_compression",
+        "damper_force"
+      ],
+      "reason": "Positive preload peaks remain verified value enclosures with unresolved maximizing times.",
+      "time_status": "unresolved_near_equilibrium"
+    }
+  ],
+  "source_archive": {
+    "all_indexed_member_sizes_and_hashes_verified": true,
+    "archive_matched_prior_summary": true,
+    "artifact_manifest_sha256": "0bcf4b1ffd9715f29572a0aa779ba1ce3b1493a0dab8779e750bb1579d988270",
+    "files": 104,
+    "identity_after": {
+      "bytes": 277064,
+      "path": "/workspace/scratch/d6370337c6a4/Fender-rhoades/docs/validation/contact-peaks-native-20261124.tar.gz",
+      "sha256": "b3ae5198fd610820cb516426e7f84dcc921035dc89ce42282fde530cd7175cec"
+    },
+    "identity_before": {
+      "bytes": 277064,
+      "path": "/workspace/scratch/d6370337c6a4/Fender-rhoades/docs/validation/contact-peaks-native-20261124.tar.gz",
+      "sha256": "b3ae5198fd610820cb516426e7f84dcc921035dc89ce42282fde530cd7175cec"
+    },
+    "prior_summary_sha256": "649e7c8ad6ad2e0d9e4d0153938bf938ac42a6673486502763d97d78a8533a6e",
+    "regular_safe_unique_members": true,
+    "unchanged": true
+  },
+  "source_sha256_after": {
+    "CMakeLists.txt": "2a70fba5924a3eeb01bf0dfd7c2a0f6a00726d27ac7535660a4bf267cf81ff3e",
+    "apps/contact_reference.cpp": "36f30eebe08856989eeefd940acdff491c8f9cfc217342893f8d113c61865113",
+    "docs/specs/CONTACT_ACCEPTANCE_20261123.md": "c86669723c14c64864b04702780679f7a32f2416920f6fe198375acc4de34073",
+    "docs/specs/CONTACT_ANALYTIC_PEAK_SLICE_20261123.md": "56e5caefaebc03596b2ed566d50578b2be2e4dc54e37bf7fdce31dab31243f03",
+    "include/rhodes/contact_reference.hpp": "00b99e61dc73686c22675bedf647c3ad1b27ba13332180431f5a42e485057fda",
+    "src/contact_reference.cpp": "0f9808442b5ddf6ddc6091c9b6294117b7aea85cd54707b9c3743121ac706100",
+    "tests/python/test_contact_peak_backend_boundaries.py": "63c684d569bdbef4bbad3ce6663e1a46a79786af18a4ef7a7e740bd5188049d1",
+    "tests/python/test_contact_peak_cli.py": "02cdf8a827c67962ea1b52307debe30ddee4e8e8082a487eb8a537c1d6865450",
+    "tests/python/test_contact_peak_comparison.py": "9f24401f7b5dc4f115ec8ce6a62589c0811e33e9716a347c890561c92f38ef2e",
+    "tests/python/test_contact_peak_oracles.py": "9de8d7907b7a68fccf77788d9f04c93d4059d343bb4e6b1bacdc1b26bc2be1e6",
+    "tests/python/test_contact_peak_portability.py": "14004d860445a1a6075228f641d72fca16ff8b24c55bed9702a01bec21922388",
+    "tests/python/test_contact_peak_retention_errors.py": "9e899b5a5d5c4d19dca7f99cb7a0dc99c3067b3620d3c7dd3c127b78954911e9",
+    "tests/python/test_contact_peak_schema.py": "8556d104c5492257c2be33e022040c66429dd447b832ea116d51dd571ac2edec",
+    "tools/contact_peak_oracles.py": "74030851ce9511cd50c6952a11b43bfdf5e8da5d7fd10428c009be0210060789",
+    "tools/contact_peak_schema.py": "af5cbf87d155ecb40c176b78a7527b2a7bd686c7fd515be621af93d910db86c4",
+    "tools/validate_contact_peaks.py": "5bfc879d0a4a42d48667cc2370bafc85a2bd6c6b08c18071c1d60ab7b85be717",
+    "tools/validate_contact_reference.py": "c910da5da6b6ad957b709a414cef39a08ed6e8b75c6e36c9d73ef535a064dcdc"
+  },
+  "source_sha256_before": {
+    "CMakeLists.txt": "2a70fba5924a3eeb01bf0dfd7c2a0f6a00726d27ac7535660a4bf267cf81ff3e",
+    "apps/contact_reference.cpp": "36f30eebe08856989eeefd940acdff491c8f9cfc217342893f8d113c61865113",
+    "docs/specs/CONTACT_ACCEPTANCE_20261123.md": "c86669723c14c64864b04702780679f7a32f2416920f6fe198375acc4de34073",
+    "docs/specs/CONTACT_ANALYTIC_PEAK_SLICE_20261123.md": "56e5caefaebc03596b2ed566d50578b2be2e4dc54e37bf7fdce31dab31243f03",
+    "include/rhodes/contact_reference.hpp": "00b99e61dc73686c22675bedf647c3ad1b27ba13332180431f5a42e485057fda",
+    "src/contact_reference.cpp": "0f9808442b5ddf6ddc6091c9b6294117b7aea85cd54707b9c3743121ac706100",
+    "tests/python/test_contact_peak_backend_boundaries.py": "63c684d569bdbef4bbad3ce6663e1a46a79786af18a4ef7a7e740bd5188049d1",
+    "tests/python/test_contact_peak_cli.py": "02cdf8a827c67962ea1b52307debe30ddee4e8e8082a487eb8a537c1d6865450",
+    "tests/python/test_contact_peak_comparison.py": "9f24401f7b5dc4f115ec8ce6a62589c0811e33e9716a347c890561c92f38ef2e",
+    "tests/python/test_contact_peak_oracles.py": "9de8d7907b7a68fccf77788d9f04c93d4059d343bb4e6b1bacdc1b26bc2be1e6",
+    "tests/python/test_contact_peak_portability.py": "14004d860445a1a6075228f641d72fca16ff8b24c55bed9702a01bec21922388",
+    "tests/python/test_contact_peak_retention_errors.py": "9e899b5a5d5c4d19dca7f99cb7a0dc99c3067b3620d3c7dd3c127b78954911e9",
+    "tests/python/test_contact_peak_schema.py": "8556d104c5492257c2be33e022040c66429dd447b832ea116d51dd571ac2edec",
+    "tools/contact_peak_oracles.py": "74030851ce9511cd50c6952a11b43bfdf5e8da5d7fd10428c009be0210060789",
+    "tools/contact_peak_schema.py": "af5cbf87d155ecb40c176b78a7527b2a7bd686c7fd515be621af93d910db86c4",
+    "tools/validate_contact_peaks.py": "5bfc879d0a4a42d48667cc2370bafc85a2bd6c6b08c18071c1d60ab7b85be717",
+    "tools/validate_contact_reference.py": "c910da5da6b6ad957b709a414cef39a08ed6e8b75c6e36c9d73ef535a064dcdc"
+  },
+  "sources_unchanged": true,
+  "staging_directory": "/workspace/scratch/d6370337c6a4/contact-peaks-final-replay-20261124-0zolf4pv",
+  "started_utc": "2026-11-24T05:53:12.928393+00:00"
+}
