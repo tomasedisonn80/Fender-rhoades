@@ -52,6 +52,7 @@ using Text = std::array<vst::TChar, 128>;
 // These are public-contract literals, not aliases of the production ID table.
 constexpr vst::ParamID gain_id = 0, sustain_id = 1, expression_id = 2;
 constexpr vst::ParamID command_base = 0x1000U;
+// Keep the original nineteen-control state/text oracle and enumeration order.
 constexpr std::size_t parameter_count = 19;
 #if defined(RHODES_QUADRATURE_VST3)
 constexpr std::uint8_t model = 3;
@@ -285,7 +286,7 @@ struct Snapshot {
         }
     }
     void expect_parameters(vst::IEditController& controller, bool include_expression = true) const {
-        check(controller.getParameterCount() == 19, "parameter count changed");
+        check(controller.getParameterCount() == 24, "parameter count changed");
         for (std::size_t index = 0; index < parameter_count; ++index) {
             if (!include_expression && index == 2) { continue; }
             check(bits(controller.getParamNormalized(parameter_ids[index])) == parameters[index],
@@ -331,7 +332,7 @@ void seed(vst::IEditController& controller) {
 }
 
 void expect_defaults(vst::IEditController& controller) {
-    check(controller.getParameterCount() == 19, "default parameter count differs");
+    check(controller.getParameterCount() == 24, "default parameter count differs");
     for (std::size_t index = 0; index < parameter_count; ++index) {
         vst::ParameterInfo info{};
         check(controller.getParameterInfo(static_cast<sdk::int32>(index), info) == sdk::kResultOk,
@@ -624,7 +625,7 @@ void text_cases_for(vst::IEditController& controller) {
     check(controller.getParamStringByValue(expression_id, 0.5, nullptr) != sdk::kResultOk,
           "null output accepted");
     before.expect_unchanged(controller);
-    for (const auto id : {vst::ParamID{3}, vst::ParamID{0x0fff}, vst::ParamID{0x1010},
+    for (const auto id : {vst::ParamID{8}, vst::ParamID{0x0fff}, vst::ParamID{0x1010},
                           vst::ParamID{0xffffffffU}}) {
         auto source = text("0.5");
         reject_parse(controller, id, source.data());

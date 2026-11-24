@@ -67,6 +67,21 @@ public:
         return true;
     }
 
+    // Audio-owner strike port for a fully preflighted block-boundary command.
+    // Preserves mechanics/filter history and the frame cursor. As with event
+    // note_on, zero velocity is a release; adapters must resolve ownership first.
+    // Invalid arguments are inert; unexpected engine failure fences processing.
+    [[nodiscard]] bool press_key(std::size_t key, double velocity) noexcept {
+        if (key >= key_count || !control::valid_normalized(velocity) || faulted_) {
+            return false;
+        }
+        if (!engine_.note_on(key, velocity)) {
+            faulted_ = true;
+            return false;
+        }
+        return true;
+    }
+
     // Audio-owner release port for a fully preflighted parameter-only flush.
     // A release changes damping without rendering, advancing the cursor or
     // clearing mechanical/filter state. Invalid keys do not introduce a fault;

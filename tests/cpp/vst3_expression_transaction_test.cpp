@@ -24,7 +24,7 @@ static_assert(kStateModel == 2 && std::is_same_v<ScalarEngine, AudioEngine>);
 static_assert(kStateModel == 1 && std::is_same_v<ScalarEngine, ResearchEngine>);
 #endif
 static_assert(kGainId == 0 && kSustainId == 1 && kExpressionId == 2);
-static_assert(kControllerParameterCount == 19 && kMaximumHostFrames == 8192);
+static_assert(kControllerParameterCount == 24 && kMaximumHostFrames == 8192);
 constexpr std::size_t frames = 128;
 constexpr InstrumentState seeded_state{0.625F, true, 0.75F};
 constexpr InstrumentState pending_state{0.25F, false, 0.125F};
@@ -463,7 +463,7 @@ void queue_shapes_for(sdk::int32 width) {
                 last.count_calls == 0 && last.point_calls == 0 && batch.events.get_calls == 0,
                 "duplicate queue was merged, traversed or passed to events");
     }
-    for (const vst::ParamID unknown : {vst::ParamID{3}, kAllNotesOffBaseId - 1,
+    for (const vst::ParamID unknown : {vst::ParamID{8}, kAllNotesOffBaseId - 1,
             kAllNotesOffBaseId + 16, std::numeric_limits<vst::ParamID>::max()}) {
         last.set(unknown, {});
         batch.clear_counts();
@@ -477,7 +477,7 @@ void queue_shapes_for(sdk::int32 width) {
     require(batch.changes.queue_calls == 5 && batch.expression.point_calls == 3 &&
             batch.command.point_calls == 1 && batch.events.get_calls == 0,
             "late null queue skipped preceding valid controls");
-    for (const sdk::int32 count : {-1, 20, std::numeric_limits<sdk::int32>::max()}) {
+    for (const sdk::int32 count : {-1, 25, std::numeric_limits<sdk::int32>::max()}) {
         batch.changes.count = count;
         batch.clear_counts();
         fixture.reject("raw queue count bound");

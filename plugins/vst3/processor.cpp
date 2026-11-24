@@ -4,10 +4,13 @@
 #include "rhodes/control_value.hpp"
 
 #include "pluginterfaces/vst/ivstevents.h"
+#include "pluginterfaces/vst/ivstmessage.h"
 #include "pluginterfaces/vst/ivstparameterchanges.h"
 
 #include <algorithm>
+#include <bit>
 #include <cmath>
+#include <cstring>
 #include <limits>
 #include <span>
 
@@ -24,9 +27,20 @@ bool valid_offset(Steinberg::int32 offset, Steinberg::int32 frames) noexcept {
     return offset >= 0 && (frames == 0 ? offset == 0 : offset < frames);
 }
 
+double mono_sample(StereoSample sample) noexcept {
+    // The exact neutral path preserves signed zero and subnormal encodings.
+    // Halving before summing also avoids overflow for finite unequal channels.
+    if (std::bit_cast<std::uint64_t>(sample.left) ==
+        std::bit_cast<std::uint64_t>(sample.right)) {
+        return sample.left;
+    }
+    return 0.5 * sample.left + 0.5 * sample.right;
+}
+
 } // namespace
 
-RhodesProcessor::RhodesProcessor() {
+RhodesProcessor::RhodesProcessor()
+    : panel_parameters_(std::make_unique<PanelParameterScratch>()) {
     setControllerClass(kControllerUID);
 }
 
@@ -85,8 +99,13 @@ Steinberg::tresult PLUGIN_API RhodesProcessor::setupProcessing(vst::ProcessSetup
     }
     // ResearchEngine::prepare is atomic on rejection. The base class's default
     // setupProcessing mutates some fields before validating sample size, so use
-    // the fully checked setup directly only after core preparation succeeds.
-    if (!engine_.prepare(setup.sampleRate)) { return Steinberg::kResultFalse; }
+    // the fully checked setup directly only after both preparations succeed.
+    // Prepare the small effect copy first so rejection cannot alter live DSP.
+    auto prepared_effects = panel_effects_;
+    if (!prepared_effects.prepare(setup.sampleRate) || !engine_.prepare(setup.sampleRate)) {
+        return Steinberg::kResultFalse;
+    }
+    panel_effects_ = prepared_effects;
     processSetup = setup;
     configured_ = true;
     reset_audio_owner();
@@ -115,29 +134,120 @@ Steinberg::uint32 PLUGIN_API RhodesProcessor::getLatencySamples() {
 }
 
 Steinberg::tresult PLUGIN_API RhodesProcessor::setState(Steinberg::IBStream* stream) {
-    const auto decoded = read_state_stream(stream, kStateModel);
+    const auto decoded = read_plugin_state_stream(stream, kStateModel);
     return decoded && mailbox_.request_recall(*decoded) ?
         Steinberg::kResultOk : Steinberg::kResultFalse;
 }
 
 Steinberg::tresult PLUGIN_API RhodesProcessor::getState(Steinberg::IBStream* stream) {
-    return write_state_stream(stream, mailbox_.snapshot(), kStateModel) ?
+    return write_plugin_state_stream(stream, mailbox_.snapshot(), kStateModel) ?
         Steinberg::kResultOk : Steinberg::kResultFalse;
 }
 
-void RhodesProcessor::install_recall(InstrumentState state) noexcept {
+Steinberg::tresult PLUGIN_API RhodesProcessor::notify(vst::IMessage* message) {
+    // IConnectionPoint::notify is a UI-thread SDK call. This is exactly one
+    // serialized producer, not a general concurrent/reentrant message endpoint.
+    // Validate all typed attributes before publishing anything; no engine,
+    // ownership or configuration operation belongs on this thread.
+    if (!initialized_ || message == nullptr) { return Steinberg::kResultFalse; }
+    const auto* id = message->getMessageID();
+    if (id == nullptr) { return Steinberg::kResultFalse; }
+    if (std::strcmp(id, "RhodesPhotoReleaseV1") == 0) {
+        audition_queue_.request_release_all();
+        return Steinberg::kResultOk;
+    }
+    if (std::strcmp(id, "RhodesPhotoNoteV1") != 0) { return Steinberg::kResultFalse; }
+    auto* attributes = message->getAttributes();
+    Steinberg::int64 key = -1;
+    Steinberg::int64 down = -1;
+    double velocity = 0.0;
+    if (attributes == nullptr ||
+        attributes->getInt("key", key) != Steinberg::kResultOk ||
+        attributes->getInt("down", down) != Steinberg::kResultOk ||
+        attributes->getFloat("velocity", velocity) != Steinberg::kResultOk ||
+        key < 0 || key >= static_cast<Steinberg::int64>(key_count) ||
+        (down != 0 && down != 1)) {
+        return Steinberg::kResultFalse;
+    }
+    // Integer-bit validation/rounding rejects negative subnormals and all NaNs
+    // independently of the host's DAZ, FTZ and floating-point rounding modes.
+    const auto canonical_velocity = control::quantize(velocity);
+    if (!canonical_velocity) { return Steinberg::kResultFalse; }
+    return audition_queue_.enqueue(
+        {static_cast<int>(key), down == 1, *canonical_velocity}) ?
+        Steinberg::kResultOk : Steinberg::kResultFalse;
+}
+
+void RhodesProcessor::install_recall(PluginState state) noexcept {
     engine_.reset();
     notes_.reset();
+    ui_held_.fill(false);
+    // A successful host recall/lifecycle reset discards one published prefix.
+    // A concurrent UI publication after that capture stays queued. Keep the
+    // applied epoch: an unacknowledged release conservatively wins over the
+    // next captured batch. Neither producer cursor nor epoch is reset here.
+    audition_queue_.discard();
     conversion_fault_ = false;
-    live_state_ = state;
+    live_state_ = state.instrument;
+    live_panel_ = state.panel;
+    panel_effects_.reset(live_panel_);
     // Reset has just cleared the engine's fault latch; this cannot fail.
     (void)engine_.set_sustain(live_state_.sustain);
 }
 
 void RhodesProcessor::reset_audio_owner() noexcept {
     const auto token = mailbox_.begin_block();
-    install_recall(token.apply_recall ? token.recalled : live_state_);
-    (void)mailbox_.end_block(token, live_state_);
+    install_recall(token.apply_recall ? token.recalled : audio_owner_state());
+    (void)mailbox_.end_block(token, audio_owner_state());
+}
+
+bool RhodesProcessor::apply_editor_audition(
+    const EditorAuditionQueue::Snapshot& snapshot) noexcept {
+    const auto release_ui_key = [&](std::size_t key) noexcept {
+        if (!ui_held_[key]) { return true; }
+        // Consult ownership at the block boundary, before notes_ is replaced
+        // by the fully translated host candidate (which includes future events).
+        if (notes_.held_count(key) == 0 && !engine_.release_key(key)) { return false; }
+        ui_held_[key] = false;
+        return true;
+    };
+    for (std::size_t index = 0; index < snapshot.count; ++index) {
+        const auto& command = snapshot.commands[index];
+        const auto key = static_cast<std::size_t>(command.key);
+        // Match note-on-zero semantics without passing a physical release
+        // through the strike port when an external MIDI owner still holds it.
+        if (command.down && !control::is_zero(command.velocity)) {
+            if (!engine_.press_key(key, *control::widen(command.velocity))) { return false; }
+            ui_held_[key] = true;
+        } else if (!release_ui_key(key)) {
+            return false;
+        }
+    }
+    // Release follows the entire captured prefix, including any racing downs.
+    // Overflow/focus loss/close releases only UI ownership, never shared pedal
+    // state or MIDI holders. Work is bounded by 256 commands plus 73 releases.
+    if (snapshot.release_epoch != applied_ui_release_epoch_) {
+        for (std::size_t key = 0; key < key_count; ++key) {
+            if (!release_ui_key(key)) { return false; }
+        }
+    }
+    return true;
+}
+
+bool RhodesProcessor::commit_editor_audition(
+    const EditorAuditionQueue::Snapshot& snapshot) noexcept {
+    // Called only after this accepted block/flush succeeded. A failed host
+    // preflight never peeks, applies or commits. Arithmetic faults retain the
+    // prefix and epoch until an explicit reset discards it; no replay is possible
+    // while the engine's fault fence is set.
+    if (!audition_queue_.commit(snapshot)) {
+        // Impossible under the single-consumer contract; never replay a prefix
+        // whose physical actions already happened if that contract is violated.
+        conversion_fault_ = true;
+        return false;
+    }
+    applied_ui_release_epoch_ = snapshot.release_epoch;
+    return true;
 }
 
 bool RhodesProcessor::validate_buffers(const vst::ProcessData& data) noexcept {
@@ -191,6 +301,7 @@ bool RhodesProcessor::collect_parameters(const vst::ProcessData& data) noexcept 
     gain_count_ = 0;
     expression_count_ = 0;
     sustain_count_ = 0;
+    panel_parameters_->counts.fill(0);
     channel_command_count_ = 0;
     if (data.inputParameterChanges == nullptr) { return true; }
     const auto queue_count = data.inputParameterChanges->getParameterCount();
@@ -202,9 +313,14 @@ bool RhodesProcessor::collect_parameters(const vst::ProcessData& data) noexcept 
         if (queue == nullptr) { return false; }
         const auto id = queue->getParameterId();
         const auto channel = all_notes_off_channel(id);
-        if (id != kGainId && id != kSustainId && id != kExpressionId && channel < 0) { return false; }
+        const bool panel_parameter = id >= kBassId && id <= kVibratoId;
+        if (id != kGainId && id != kSustainId && id != kExpressionId &&
+            !panel_parameter && channel < 0) { return false; }
+        const auto panel_index = panel_parameter ? static_cast<std::size_t>(id - kBassId) : 0;
+        // Keep the original nineteen queue slots stable, including all sixteen
+        // channel commands; the five panel controls occupy slots 19 through 23.
         const auto parameter_index = channel >= 0 ? 3 + static_cast<std::size_t>(channel) :
-                                                   static_cast<std::size_t>(id);
+            panel_parameter ? 19 + panel_index : static_cast<std::size_t>(id);
         if (seen[parameter_index]) { return false; }
         seen[parameter_index] = true;
         const auto count = queue->getPointCount();
@@ -214,9 +330,11 @@ bool RhodesProcessor::collect_parameters(const vst::ProcessData& data) noexcept 
                 kMaximumChannelCommands - channel_command_count_)) {
             return false;
         }
-        auto& points = id == kGainId ? gain_points_ :
+        auto& points = panel_parameter ? panel_parameters_->points[panel_index] :
+                       id == kGainId ? gain_points_ :
                        id == kExpressionId ? expression_points_ : sustain_points_;
-        auto& distinct_count = id == kGainId ? gain_count_ :
+        auto& distinct_count = panel_parameter ? panel_parameters_->counts[panel_index] :
+                               id == kGainId ? gain_count_ :
                                id == kExpressionId ? expression_count_ : sustain_count_;
         Steinberg::int32 previous_offset = -1;
         for (Steinberg::int32 index = 0; index < count; ++index) {
@@ -235,8 +353,8 @@ bool RhodesProcessor::collect_parameters(const vst::ProcessData& data) noexcept 
                 previous_offset = offset;
                 continue;
             }
-            const float canonical = id == kSustainId ? (value >= 0.5 ? 1.0F : 0.0F) :
-                *control::quantize(value);
+            const float canonical = id == kSustainId || id == kVibratoId ?
+                (value >= 0.5 ? 1.0F : 0.0F) : *control::quantize(value);
             // A duplicate offset replaces the complete prior point, including
             // the endpoint used by interpolation from an earlier sample.
             if (distinct_count > 0 && offset == previous_offset) {
@@ -440,7 +558,14 @@ Steinberg::tresult PLUGIN_API RhodesProcessor::process(vst::ProcessData& data) {
     if (token.apply_recall) { install_recall(token.recalled); }
     // Full input/ownership preflight passed. An arithmetic fault after this
     // accepted transaction requires explicit reset, and never rolls back audio.
+    const auto audition = audition_queue_.peek();
+    const bool audition_applied = apply_editor_audition(audition);
     notes_ = candidate;
+    if (!audition_applied) {
+        silence_outputs(data);
+        (void)mailbox_.end_block(token, audio_owner_state());
+        return Steinberg::kResultFalse;
+    }
     if (data.numSamples == 0) {
         if (gain_count_ > 0) { live_state_.monitoring_gain = gain_points_[gain_count_ - 1].value; }
         if (expression_count_ > 0) {
@@ -450,43 +575,72 @@ Steinberg::tresult PLUGIN_API RhodesProcessor::process(vst::ProcessData& data) {
             live_state_.sustain = sustain_points_[sustain_count_ - 1].value == 1.0F;
             (void)engine_.set_sustain(live_state_.sustain);
         }
+        const std::array<float*, 4> panel_controls{
+            &live_panel_.bass, &live_panel_.treble, &live_panel_.intensity, &live_panel_.speed};
+        for (std::size_t index = 0; index < panel_controls.size(); ++index) {
+            const auto count = panel_parameters_->counts[index];
+            if (count > 0) {
+                *panel_controls[index] = panel_parameters_->points[index][count - 1].value;
+            }
+        }
+        if (panel_parameters_->counts[4] > 0) {
+            live_panel_.vibrato = panel_parameters_->points[4]
+                [panel_parameters_->counts[4] - 1].value == 1.0F;
+        }
         for (std::size_t index = 0; index < physical_note_count_; ++index) {
             // Nonempty input event lists are rejected for zero-frame calls,
             // so these actions can only be preflighted CC123 releases.
-            if (!engine_.release_key(physical_notes_[index].change.key)) {
+            const auto key = physical_notes_[index].change.key;
+            if (!ui_held_[key] && !engine_.release_key(key)) {
                 silence_outputs(data);
-                (void)mailbox_.end_block(token, live_state_);
+                (void)mailbox_.end_block(token, audio_owner_state());
                 return Steinberg::kResultFalse;
             }
         }
         silence_outputs(data);
-        (void)mailbox_.end_block(token, live_state_);
-        return Steinberg::kResultOk;
+        (void)mailbox_.end_block(token, audio_owner_state());
+        // UI strikes/releases also work in a zero-frame flush, preserving the
+        // cursor without clearing mechanical/filter/effect histories.
+        return commit_editor_audition(audition) ? Steinberg::kResultOk : Steinberg::kResultFalse;
     }
-    return render(data, token);
+    const auto result = render(data, token);
+    if (result == Steinberg::kResultOk && !commit_editor_audition(audition)) {
+        silence_outputs(data);
+        return Steinberg::kResultFalse;
+    }
+    return result;
 }
 
 Steinberg::tresult RhodesProcessor::render(vst::ProcessData& data,
-                                          const StateMailbox::BlockToken& token) noexcept {
+                                          const PluginStateMailbox::BlockToken& token) noexcept {
     silence_outputs(data);
     auto* output = data.numOutputs == 1 ? &data.outputs[0] : nullptr;
     const Steinberg::int32 channels = output != nullptr ? output->numChannels : 0;
     const Steinberg::uint64 silent_mask = channels == 1 ? 1 : channels == 2 ? 3 : 0;
+    // The negotiated layout also governs conversion when an inactive output
+    // is omitted. validate_buffers() has already established this bus exists.
+    const bool mono = getAudioOutput(0)->getArrangement() == vst::SpeakerArr::kMono;
     std::size_t gain_index = 0;
     std::size_t expression_index = 0;
     std::size_t pedal_index = 0;
     std::size_t note_index = 0;
+    std::array<std::size_t, 4> panel_indices{};
+    std::size_t vibrato_index = 0;
     Steinberg::int32 gain_left_offset = -1;
     Steinberg::int32 expression_left_offset = -1;
+    std::array<Steinberg::int32, 4> panel_left_offsets{-1, -1, -1, -1};
     // Recall and parameter preflight guarantee normalized binary32 storage.
     // Anchor both curves in the audio owner's state after the selected recall;
     // a mailbox snapshot may already contain a newer, unapplied UI recall.
     double left_gain = *control::widen(live_state_.monitoring_gain);
     double left_expression = *control::widen(live_state_.expression);
+    std::array<double, 4> left_panel{
+        *control::widen(live_panel_.bass), *control::widen(live_panel_.treble),
+        *control::widen(live_panel_.intensity), *control::widen(live_panel_.speed)};
     bool any_nonzero = false;
     const auto fault = [&]() noexcept {
         conversion_fault_ = true;
-        (void)mailbox_.end_block(token, live_state_);
+        (void)mailbox_.end_block(token, audio_owner_state());
         if (output != nullptr) { output->silenceFlags = any_nonzero ? 0 : silent_mask; }
         return Steinberg::kResultFalse;
     };
@@ -523,10 +677,38 @@ Steinberg::tresult RhodesProcessor::render(vst::ProcessData& data,
         const auto stored_gain = control::quantize(gain);
         const auto stored_expression = control::quantize(expression);
         if (!stored_gain || !stored_expression) { return fault(); }
-        // Commit the valid pair together before DSP, retaining the existing
+        std::array<float, 4> stored_panel{};
+        for (std::size_t index = 0; index < stored_panel.size(); ++index) {
+            double value = left_panel[index];
+            auto& next = panel_indices[index];
+            if (next < panel_parameters_->counts[index]) {
+                const auto& point = panel_parameters_->points[index][next];
+                if (point.offset == frame) {
+                    value = *control::widen(point.value);
+                    left_panel[index] = value;
+                    panel_left_offsets[index] = frame;
+                    ++next;
+                } else {
+                    const double fraction = static_cast<double>(frame - panel_left_offsets[index]) /
+                        static_cast<double>(point.offset - panel_left_offsets[index]);
+                    value = left_panel[index] +
+                        (*control::widen(point.value) - left_panel[index]) * fraction;
+                }
+            }
+            const auto canonical = control::quantize(value);
+            if (!canonical) { return fault(); }
+            stored_panel[index] = *canonical;
+        }
+        // Commit all valid continuous controls before DSP, retaining the existing
         // accepted-fault policy for the failing frame's configuration.
         live_state_.monitoring_gain = *stored_gain;
         live_state_.expression = *stored_expression;
+        live_panel_ = {stored_panel[0], stored_panel[1], stored_panel[2], stored_panel[3],
+                       live_panel_.vibrato};
+        if (vibrato_index < panel_parameters_->counts[4] &&
+            panel_parameters_->points[4][vibrato_index].offset == frame) {
+            live_panel_.vibrato = panel_parameters_->points[4][vibrato_index++].value == 1.0F;
+        }
 
         std::size_t dispatch_count = 0;
         if (pedal_index < sustain_count_ && sustain_points_[pedal_index].offset == frame) {
@@ -536,6 +718,9 @@ Steinberg::tresult RhodesProcessor::render(vst::ProcessData& data,
         }
         while (note_index < physical_note_count_ && physical_notes_[note_index].offset == frame) {
             const auto& change = physical_notes_[note_index++].change;
+            // MIDI still owns and retriggers its normal notes. Only its final
+            // physical release waits while the independent photo key is held.
+            if (change.type == EventType::note_off && ui_held_[change.key]) { continue; }
             dispatch_[dispatch_count] = {0, static_cast<std::uint32_t>(dispatch_count),
                                          change.type, change.key, change.value};
             ++dispatch_count;
@@ -546,31 +731,40 @@ Steinberg::tresult RhodesProcessor::render(vst::ProcessData& data,
             std::span<const EngineEvent>(dispatch_.data(), dispatch_count));
         const double monitored = (32.0 * gain) * volts;
         if (!result.succeeded() || !std::isfinite(monitored)) { return fault(); }
+        auto effected = panel_effects_.process(monitored, live_panel_);
+        if (!std::isfinite(effected.left) || !std::isfinite(effected.right)) { return fault(); }
+        if (mono) {
+            const double folded = mono_sample(effected);
+            effected = {folded, folded};
+        }
         // Unity preserves the legacy arithmetic path exactly. Attenuation may
         // bring a finite double into float range, but never hides an engine or
         // monitoring fault. Conversion still runs when no output was supplied.
-        const double converted = expression == 1.0 ? monitored : monitored * expression;
-        if (!std::isfinite(converted)) { return fault(); }
+        const double converted_left = expression == 1.0 ? effected.left : effected.left * expression;
+        const double converted_right = expression == 1.0 ? effected.right : effected.right * expression;
+        if (!std::isfinite(converted_left) || !std::isfinite(converted_right)) { return fault(); }
         if (data.symbolicSampleSize == vst::kSample32) {
-            const float sample = static_cast<float>(converted);
-            if (!std::isfinite(sample)) { return fault(); }
+            const float left = static_cast<float>(converted_left);
+            const float right = static_cast<float>(converted_right);
+            if (!std::isfinite(left) || !std::isfinite(right)) { return fault(); }
             for (Steinberg::int32 channel = 0; channel < channels; ++channel) {
                 if (output->channelBuffers32[channel] != nullptr) {
-                    output->channelBuffers32[channel][frame] = sample;
+                    output->channelBuffers32[channel][frame] = channel == 0 ? left : right;
                 }
             }
-            any_nonzero = any_nonzero || sample != 0.0F;
+            any_nonzero = any_nonzero || left != 0.0F || right != 0.0F;
         } else {
             for (Steinberg::int32 channel = 0; channel < channels; ++channel) {
                 if (output->channelBuffers64[channel] != nullptr) {
-                    output->channelBuffers64[channel][frame] = converted;
+                    output->channelBuffers64[channel][frame] =
+                        channel == 0 ? converted_left : converted_right;
                 }
             }
-            any_nonzero = any_nonzero || converted != 0.0;
+            any_nonzero = any_nonzero || converted_left != 0.0 || converted_right != 0.0;
         }
     }
     if (output != nullptr) { output->silenceFlags = any_nonzero ? 0 : silent_mask; }
-    (void)mailbox_.end_block(token, live_state_);
+    (void)mailbox_.end_block(token, audio_owner_state());
     return Steinberg::kResultOk;
 }
 

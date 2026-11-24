@@ -136,7 +136,7 @@ using ScalarEngine = std::remove_cvref_t<
     decltype(std::declval<const HostEventProcessor&>().engine())>;
 
 static_assert(kGainId == 0 && kSustainId == 1 && kExpressionId == 2);
-static_assert(kAllNotesOffBaseId == 0x1000 && kControllerParameterCount == 19);
+static_assert(kAllNotesOffBaseId == 0x1000 && kControllerParameterCount == 24);
 static_assert(kMaximumHostFrames == 8192 && kMaximumChannelCommands == 256);
 static_assert(maximum_block_events == 256 && key_count == 73);
 constexpr std::size_t frames = 128;
@@ -222,8 +222,9 @@ struct Events final : FixedHostObject<vst::IEventList> {
     sdk::tresult PLUGIN_API addEvent(vst::Event&) override { return sdk::kNotImplemented; }
 };
 
-// Only three queues need 8192 raw points. The sixteen command queues need 256
-// each. Every Traffic object below is heap-owned, never a large callback local.
+// This legacy traffic oracle keeps three persistent queues and sixteen command
+// queues. Appended panel controls do not change this fixture. Only three queues
+// need 8192 raw points; commands need 256 each. Traffic is always heap-owned.
 struct Traffic {
     std::array<std::array<Point, 8192>, 3> persistent{};
     std::array<std::array<Point, 256>, 16> commands{};
@@ -392,7 +393,7 @@ void queue_limits_for() {
     seed(*host, traffic->events);
     host->data.inputParameterChanges = &traffic->changes;
     host->data.inputEvents = &traffic->events;
-    for (const sdk::int32 count : {-1, 20, std::numeric_limits<sdk::int32>::max()}) {
+    for (const sdk::int32 count : {-1, 25, std::numeric_limits<sdk::int32>::max()}) {
         traffic->changes.count = count;
         traffic->reset_calls();
         reject(*host);

@@ -26,19 +26,40 @@ remaining platform and release limits, are recorded in [VST3.md](VST3.md).
 | Release tag observed locally | [`v3.8.1_build_84`](https://github.com/steinbergmedia/vst3sdk/tree/v3.8.1_build_84) |
 | Exact root commit | [`3cdf9ca5d1f5b1b21e0a86832aa4abe55607bd96`](https://github.com/steinbergmedia/vst3sdk/tree/3cdf9ca5d1f5b1b21e0a86832aa4abe55607bd96) |
 | SDK build requirement | CMake 3.25.0 or later, as specified in the pinned [SDK CMakeLists.txt](https://github.com/steinbergmedia/vst3sdk/blob/3cdf9ca5d1f5b1b21e0a86832aa4abe55607bd96/CMakeLists.txt) |
-| Inspection date | 2026-11-23 |
+| SDK/core notice inspection | 2026-11-23, rechecked 2026-11-24 |
+| VSTGUI/editor dependency inspection | 2026-11-24 |
 
-The headless configuration disables `SMTG_ENABLE_VSTGUI_SUPPORT`,
-`SMTG_ENABLE_VST3_PLUGIN_EXAMPLES`, and `SMTG_ENABLE_VST3_HOSTING_EXAMPLES`.
-The SDK validator remains a distinct verification requirement for the adapter.
-This configuration needs the `base`, `cmake`, `pluginterfaces`, and `public.sdk`
-submodules; it does not need the VSTGUI, documentation, or tutorial checkouts.
+The [root build options](../CMakeLists.txt) and
+[SDK integration](../cmake/Vst3.cmake) distinguish three configurations:
+
+| Build selection | Required SDK checkouts |
+|---|---|
+| `RHODES_BUILD_VST3=OFF` (default core build) | None |
+| `RHODES_BUILD_VST3=ON`, `RHODES_BUILD_VST3_EDITOR=ON` (editor option default) | `base`, `cmake`, `pluginterfaces`, `public.sdk`, and `vstgui4` |
+| `RHODES_BUILD_VST3=ON`, `RHODES_BUILD_VST3_EDITOR=OFF` (headless adapter) | `base`, `cmake`, `pluginterfaces`, and `public.sdk`; no VSTGUI or its GUI system dependencies |
+
+The editor option controls `SMTG_ENABLE_VSTGUI_SUPPORT`. Both adapter modes
+disable SDK plug-in and hosting examples. VSTGUI standalone examples, unit
+tests, tools and UI scripting (`VSTGUI_UISCRIPTING=OFF`) are disabled; Tiny-JS
+is not linked. The project requests `VSTGUI_STANDALONE=OFF`, but the pinned
+[SDK helper](https://github.com/steinbergmedia/vst3_cmake/blob/054c9143cbb8d47fc4694e473f2ee3b4d951a8f5/modules/SMTG_VstGuiSupport.cmake)
+sets it to `ON` within SDK configuration. That helper links the modules through
+`vstgui_support` to `base`, `vstgui` and `vstgui_uidescription`; the standalone
+framework is not linked into the modules. The project forces
+`SMTG_ENABLE_WAYLAND_SUPPORT=OFF`, selecting the native X11 backend on Linux.
+Neither mode needs the SDK documentation or tutorial checkouts. The SDK
+validator remains a separate verification requirement for every instrument.
+
+Configuration verifies the root commit and each required submodule's commit,
+and rejects changed tracked contents. The editor pin is checked only when its
+option is enabled. See [VST3 build instructions](VST3.md#build-the-optional-adapter)
+for checkout and configuration commands.
 
 ### Exact submodule revisions
 
-The following gitlinks were read from the pinned root commit. The four entries
+The following gitlinks were read from the pinned root commit. The five entries
 marked **inspected** were initialized locally and their checked-out commits
-matched these gitlinks. The other entries were uninitialized: their revisions
+matched these gitlinks on 2026-11-24. The other entries were uninitialized: their revisions
 are recorded for completeness, without a claim that their contents or notices
 were inspected. Repository names follow the pinned
 [.gitmodules](https://github.com/steinbergmedia/vst3sdk/blob/3cdf9ca5d1f5b1b21e0a86832aa4abe55607bd96/.gitmodules).
@@ -51,7 +72,7 @@ were inspected. Repository names follow the pinned
 | `public.sdk` | [vst3_public_sdk · `586dc5e6c8012c3e4b01c79389375cbe96bdb1da`](https://github.com/steinbergmedia/vst3_public_sdk/tree/586dc5e6c8012c3e4b01c79389375cbe96bdb1da) | Inspected |
 | `doc` | [vst3_doc · `8bfca19d3b76a61d093951ba9297047f544caea1`](https://github.com/steinbergmedia/vst3_doc/tree/8bfca19d3b76a61d093951ba9297047f544caea1) | Gitlink only |
 | `tutorials` | [vst3_tutorials · `33b73dfbb87f3fde3bce8c0a10cae934dc66ad34`](https://github.com/steinbergmedia/vst3_tutorials/tree/33b73dfbb87f3fde3bce8c0a10cae934dc66ad34) | Gitlink only |
-| `vstgui4` | [vstgui · `5db272256172557818b6158cf0bb2c4410bddb25`](https://github.com/steinbergmedia/vstgui/tree/5db272256172557818b6158cf0bb2c4410bddb25) | Gitlink only |
+| `vstgui4` | [vstgui · `5db272256172557818b6158cf0bb2c4410bddb25`](https://github.com/steinbergmedia/vstgui/tree/5db272256172557818b6158cf0bb2c4410bddb25) | Inspected; editor builds only |
 
 ### Observed official license notices
 
@@ -75,9 +96,9 @@ bundled notices against the pinned files. The optional target currently copies
 the common SDK notice into its resources; the five inspected notices are byte
 identical. A distributable package still requires its own packaging review.
 
-The observations above apply to the named files and headless integration scope.
-Optional GUI components and example-specific third-party code are outside that
-scope; adding them requires recording their own sources and notices. The SDK
+The observations above apply to the five named SDK files. VSTGUI has a separate
+license and additional component notices, recorded below. Example-specific code
+and disabled optional components remain outside the integration scope. The SDK
 pin and notice inventory must be updated together if the dependency changes.
 
 The [resource notice index](../plugins/vst3/THIRD_PARTY_NOTICES.md) identifies all
@@ -92,6 +113,103 @@ bundled index exactly matches the project source; the
 [visibility update](agents/development-20261123/W4-A062.md) preserved the bundle
 metadata and required entry points. These are local bundle observations, not
 verification of a distributable package on every platform.
+
+### VSTGUI and packaged editor notices
+
+The pinned `vstgui4/LICENSE` is the **VSTGUI LICENSE**, copyright **2022,
+Steinberg Media Technologies**. Its three-clause BSD-style terms require
+retention of the copyright, conditions and disclaimer, and restrict use of
+Steinberg's or contributors' names for endorsement. It is a separate notice
+from the SDK's MIT license. The following complete files were read and hashed
+from the same pinned VSTGUI checkout on 2026-11-24:
+
+| SDK-relative source and official pinned notice | Bundled resource | Bytes | SHA-256 |
+|---|---|---:|---|
+| [`vstgui4/LICENSE`](https://github.com/steinbergmedia/vstgui/blob/5db272256172557818b6158cf0bb2c4410bddb25/LICENSE) | `VSTGUI-LICENSE.txt` | 1858 | `605bcd2152176b365cf0ba6cca331a988fa885b4f43f20ceff4e264e6576ca66` |
+| [`vstgui4/vstgui/thirdparty/rapidjson/license.txt`](https://github.com/steinbergmedia/vstgui/blob/5db272256172557818b6158cf0bb2c4410bddb25/vstgui/thirdparty/rapidjson/license.txt) | `RapidJSON-LICENSE.txt` | 5152 | `a140e5d46fe734a1c78f1a3c3ef207871dd75648be71fdda8e309b23ab8b1f32` |
+| [`vstgui4/vstgui/thirdparty/miniz/LICENSE`](https://github.com/steinbergmedia/vstgui/blob/5db272256172557818b6158cf0bb2c4410bddb25/vstgui/thirdparty/miniz/LICENSE) | `miniz-LICENSE.txt` | 1162 | `6f20fa7672b00e2e975c291df737cf227addf3ad32e36fef3fe0f416e4664d3d` |
+
+RapidJSON's file identifies its MIT terms and also retains notices for
+msinttypes (BSD) and JSON.org/JSON_checker (JSON license). Preserve that complete
+file; describing it only as an MIT notice would omit its component terms.
+The file identifies `bin/jsonchecker/` as the JSON-licensed component, and that
+directory is absent from the pinned VSTGUI copy. miniz's notice contains
+MIT-style permission terms and the copyrights of RAD Game Tools, Valve
+Software, Rich Geldreich and Tenacious Software LLC.
+
+[Vst3.cmake](../cmake/Vst3.cmake) copies these three files unmodified into
+`Contents/Resources` of each editor-enabled bundle, alongside the SDK
+`LICENSE.txt` and project `THIRD_PARTY_NOTICES.md`. On 2026-11-24, all four
+SDK/VSTGUI/RapidJSON/miniz license resources in each local Linux editor bundle were
+compared byte-for-byte with their pinned sources and matched. That observation
+covers the built Linux bundles; native Windows/macOS editor packaging and
+named-DAW operation require their own results. Current module and initial
+native-window observations are recorded in the
+[editor checkpoint](VST3.md#current-photo-editor-checkpoint--24-november-2026).
+
+VSTGUI's deprecated XML parser uses system Expat when found, otherwise its
+embedded Expat source; see the pinned
+[UIDescription build](https://github.com/steinbergmedia/vstgui/blob/5db272256172557818b6158cf0bb2c4410bddb25/vstgui/uidescription/CMakeLists.txt).
+The inspected Linux editor cache selected system `libexpat` 2.9.0. The embedded
+[expat.h](https://github.com/steinbergmedia/vstgui/blob/5db272256172557818b6158cf0bb2c4410bddb25/vstgui/thirdparty/expat/expat.h)
+identifies version 2.1.1. Its copyright headers refer to `COPYING`, which is
+absent from that SDK directory. The project therefore retains the complete
+official Expat 2.1.1 [COPYING](https://github.com/libexpat/libexpat/blob/ee0adc0d9d245f4f18863c997be9a1bfeeb0a070/expat/COPYING)
+as [Expat-LICENSE.txt](../plugins/vst3/resources/Expat-LICENSE.txt). The upstream
+tag `R_2_1_1` resolves to commit `ee0adc0d9d245f4f18863c997be9a1bfeeb0a070`;
+the copied file is 1208 bytes, with SHA-256
+`f6eeb2310d0b00e5cecac39c73a0696a5bdbfb754b26325ed5a502fc1a6c338c`.
+
+That unmodified MIT-style notice retains the Thai Open Source Software Center,
+Clark Cooper and Expat maintainers' copyrights. All 19 embedded Expat source
+and header files were inspected for copyright and license statements; their
+notices name Thai Open Source Software Center or Clark Cooper and refer to
+`COPYING`, with no conflicting license found. Editor bundles include
+`Expat-LICENSE.txt` regardless of which Expat configuration was selected.
+This records the embedded fallback's notice; a redistributed system Expat
+library still needs the notices for its actual version. The earlier four-file
+Linux byte comparison does not claim a rebuilt Expat resource was verified.
+
+The photograph is a separate project asset. The owner authorized committing
+and using the supplied original for this editor, as recorded in the
+[reference provenance](../assets/reference/README.md). The packaged
+`rhodes-suitcase.png` is its lossless conversion. That instruction does not
+assert image authorship or grant a broader public license; neither the SDK nor
+VSTGUI license covers the photograph or the project's original code.
+
+### Native editor system dependencies
+
+The [CI workflow](../.github/workflows/vst3.yml) configures all three editor
+variants on Linux, Windows and macOS. The entries below describe source/build
+requirements, not successful execution on every configured platform. The
+headless adapter avoids this GUI dependency set.
+
+| Platform | Dependency boundary |
+|---|---|
+| Linux | Threads, X11, FreeType, PkgConfig; XCB, xcb-util, xcb-cursor, xcb-keysyms, xcb-xkb; xkbcommon and xkbcommon-x11; GLib, Cairo, Pango (`pangocairo`, `pangoft2`) and Fontconfig. The pinned configure step also requires Wayland client/server development files and protocols, plus `atkmm-1.6` and SQLite3 for the configured standalone target. |
+| Windows | The Visual Studio C++ toolchain and Windows SDK provide the native Win32 GUI APIs, including Direct2D, DirectWrite and Windows Imaging Component imports. CI selects x64 and does not install a separate GUI package. |
+| macOS | Apple's C++/Objective-C++ toolchain and system frameworks. The pinned VSTGUI target links Cocoa, QuartzCore and Accelerate, UniformTypeIdentifiers for deployment targets at least 11.0, and OpenGL while its upstream default option is enabled. The project also propagates CoreFoundation for SDK base users. CI configures deployment target 11.0 with a non-Xcode generator; this does not establish a tested deployment baseline. |
+
+The primary build sources are the pinned
+[Linux package checks](https://github.com/steinbergmedia/vstgui/blob/5db272256172557818b6158cf0bb2c4410bddb25/vstgui/CMakeLists.txt),
+[native platform target](https://github.com/steinbergmedia/vstgui/blob/5db272256172557818b6158cf0bb2c4410bddb25/vstgui/lib/CMakeLists.txt),
+[Windows imports](https://github.com/steinbergmedia/vstgui/blob/5db272256172557818b6158cf0bb2c4410bddb25/vstgui/lib/platform/win32/win32factory.cpp),
+[standalone package checks](https://github.com/steinbergmedia/vstgui/blob/5db272256172557818b6158cf0bb2c4410bddb25/vstgui/standalone/CMakeLists.txt),
+and [VSTGUI option defaults](https://github.com/steinbergmedia/vstgui/blob/5db272256172557818b6158cf0bb2c4410bddb25/vstgui/cmake/modules/vstgui_init.cmake).
+The workflow's Debian/Ubuntu package list is `libx11-dev`, `libfreetype6-dev`,
+`libxcb1-dev`, `libxcb-util-dev`, `libxcb-cursor-dev`, `libxcb-keysyms1-dev`,
+`libxcb-xkb-dev`, `libxkbcommon-dev`, `libxkbcommon-x11-dev`, `libglib2.0-dev`,
+`libcairo2-dev`, `libpango1.0-dev`, `libfontconfig1-dev`, `libwayland-dev`, and
+`wayland-protocols`, `libatkmm-1.6-dev`, and `libsqlite3-dev`; it also installs
+`xvfb` for an X11 display environment.
+
+Wayland development packages remain necessary because this upstream pin runs
+`find_package(Wayland REQUIRED ...)` inside its Linux configuration even when
+the Wayland backend is disabled. The disabled backend avoids the conditional
+`wayland-server-delegate` fetch in the native platform target. These system
+libraries are not vendored into the repository, and their own redistribution
+terms remain separate from the SDK/VSTGUI notices. Follow the
+[toolchain requirements](DEVELOPMENT.md) for the complete C++20 test build.
 
 ## Optional independent Python audit
 

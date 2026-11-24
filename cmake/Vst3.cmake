@@ -12,7 +12,7 @@ function(rhodes_verify_sdk_checkout component expected_revision)
     set(checkout "${RHODES_VST3_SDK_ROOT}/${component}")
     # A missing submodule must not inherit the enclosing SDK's Git repository.
     if(NOT EXISTS "${checkout}/.git")
-        message(FATAL_ERROR "VST3 SDK ${component}: missing Git checkout. Initialize the four documented submodules; see docs/VST3.md")
+        message(FATAL_ERROR "VST3 SDK ${component}: missing Git checkout. Initialize the documented submodules for the selected editor option; see docs/VST3.md")
     endif()
     execute_process(COMMAND "${GIT_EXECUTABLE}" -C "${checkout}" rev-parse --verify HEAD
         OUTPUT_VARIABLE actual_revision OUTPUT_STRIP_TRAILING_WHITESPACE
@@ -37,7 +37,16 @@ rhodes_verify_sdk_checkout("cmake" "054c9143cbb8d47fc4694e473f2ee3b4d951a8f5")
 rhodes_verify_sdk_checkout("pluginterfaces" "4f547e8e102b47de4a8b8aaf343c73b700786372")
 rhodes_verify_sdk_checkout("public.sdk" "586dc5e6c8012c3e4b01c79389375cbe96bdb1da")
 
-set(SMTG_ENABLE_VSTGUI_SUPPORT OFF CACHE BOOL "Headless instrument" FORCE)
+if(RHODES_BUILD_VST3_EDITOR)
+    rhodes_verify_sdk_checkout("vstgui4" "5db272256172557818b6158cf0bb2c4410bddb25")
+endif()
+set(SMTG_ENABLE_VSTGUI_SUPPORT ${RHODES_BUILD_VST3_EDITOR} CACHE BOOL "Native photo editor" FORCE)
+set(SMTG_ENABLE_WAYLAND_SUPPORT OFF CACHE BOOL "Use the pinned native X11 editor backend" FORCE)
+set(VSTGUI_UISCRIPTING OFF CACHE BOOL "No editor scripting engine" FORCE)
+set(VSTGUI_STANDALONE OFF CACHE BOOL "No unrelated standalone framework" FORCE)
+set(VSTGUI_STANDALONE_EXAMPLES OFF CACHE BOOL "No standalone examples" FORCE)
+set(VSTGUI_BUILD_EXAMPLES OFF CACHE BOOL "No VSTGUI examples" FORCE)
+set(VSTGUI_BUILD_TESTS OFF CACHE BOOL "Project supplies editor verification" FORCE)
 set(SMTG_ENABLE_VST3_PLUGIN_EXAMPLES OFF CACHE BOOL "No SDK plugin examples" FORCE)
 set(SMTG_ENABLE_VST3_HOSTING_EXAMPLES OFF CACHE BOOL "No SDK audio/editor hosts" FORCE)
 set(SMTG_CREATE_PLUGIN_LINK OFF CACHE BOOL "Do not install into a user plugin directory" FORCE)
@@ -92,6 +101,12 @@ function(rhodes_add_plugin target package filtered bundle_id)
     target_include_directories(${target} PRIVATE "${PROJECT_SOURCE_DIR}")
     target_include_directories(${target} SYSTEM PRIVATE "${RHODES_VST3_SDK_ROOT}")
     target_link_libraries(${target} PRIVATE rhodes_core sdk)
+    if(RHODES_BUILD_VST3_EDITOR)
+        target_sources(${target} PRIVATE "${PROJECT_SOURCE_DIR}/plugins/vst3/photo_editor.cpp")
+        target_compile_definitions(${target} PRIVATE RHODES_HAS_PHOTO_EDITOR=1)
+        target_include_directories(${target} SYSTEM PRIVATE "${RHODES_VST3_SDK_ROOT}/vstgui4")
+        target_link_libraries(${target} PRIVATE vstgui_support)
+    endif()
     rhodes_target_options(${target})
     if(SMTG_MAC)
         smtg_target_set_bundle(${target} BUNDLE_IDENTIFIER "${bundle_id}"
@@ -108,6 +123,21 @@ function(rhodes_add_plugin target package filtered bundle_id)
         "${resource_inputs}/THIRD_PARTY_NOTICES.md" COPYONLY)
     smtg_target_add_plugin_resources(${target} RESOURCES
         "${resource_inputs}/LICENSE.txt" "${resource_inputs}/THIRD_PARTY_NOTICES.md")
+    if(RHODES_BUILD_VST3_EDITOR)
+        foreach(editor_resource IN ITEMS rhodes-suitcase.png rhodes-suitcase.uidesc Expat-LICENSE.txt)
+            configure_file("${PROJECT_SOURCE_DIR}/plugins/vst3/resources/${editor_resource}"
+                "${resource_inputs}/${editor_resource}" COPYONLY)
+            smtg_target_add_plugin_resources(${target} RESOURCES "${resource_inputs}/${editor_resource}")
+        endforeach()
+        configure_file("${RHODES_VST3_SDK_ROOT}/vstgui4/LICENSE"
+            "${resource_inputs}/VSTGUI-LICENSE.txt" COPYONLY)
+        configure_file("${RHODES_VST3_SDK_ROOT}/vstgui4/vstgui/thirdparty/rapidjson/license.txt"
+            "${resource_inputs}/RapidJSON-LICENSE.txt" COPYONLY)
+        configure_file("${RHODES_VST3_SDK_ROOT}/vstgui4/vstgui/thirdparty/miniz/LICENSE"
+            "${resource_inputs}/miniz-LICENSE.txt" COPYONLY)
+        smtg_target_add_plugin_resources(${target} RESOURCES "${resource_inputs}/VSTGUI-LICENSE.txt"
+            "${resource_inputs}/RapidJSON-LICENSE.txt" "${resource_inputs}/miniz-LICENSE.txt")
+    endif()
 endfunction()
 rhodes_add_plugin(rhodes_vst3 "RhodesResearch" FALSE "org.rhodesresearch.experimental")
 rhodes_add_plugin(rhodes_vst3_filtered "RhodesResearchFiltered" TRUE "org.rhodesresearch.filtered")
@@ -177,6 +207,23 @@ if(BUILD_TESTING)
         rhodes_target_options(${target})
         add_dependencies(rhodes_vst3_checks ${target})
     endfunction()
+    rhodes_add_vst3_test(rhodes_vst3_editor_audition_tests tests/cpp/vst3_editor_audition_test.cpp)
+    rhodes_add_vst3_test(rhodes_vst3_filtered_editor_audition_tests tests/cpp/vst3_editor_audition_test.cpp TRUE)
+    rhodes_add_vst3_test(rhodes_vst3_quadrature_editor_audition_tests tests/cpp/vst3_editor_audition_test.cpp FALSE TRUE)
+    foreach(variant IN ITEMS "" "filtered_" "quadrature_")
+        add_test(NAME vst3.${variant}editor_audition COMMAND rhodes_vst3_${variant}editor_audition_tests)
+        set_tests_properties(vst3.${variant}editor_audition PROPERTIES TIMEOUT 60)
+    endforeach()
+    rhodes_add_vst3_test(rhodes_vst3_panel_control_tests tests/cpp/vst3_panel_control_test.cpp FALSE FALSE TRUE)
+    rhodes_add_vst3_test(rhodes_vst3_filtered_panel_control_tests tests/cpp/vst3_panel_control_test.cpp TRUE FALSE TRUE)
+    rhodes_add_vst3_test(rhodes_vst3_quadrature_panel_control_tests tests/cpp/vst3_panel_control_test.cpp FALSE TRUE TRUE)
+    foreach(variant IN ITEMS "" "filtered_" "quadrature_")
+        foreach(test_name IN ITEMS metadata values text stream recall instances)
+            add_test(NAME vst3.${variant}panel_${test_name}
+                COMMAND rhodes_vst3_${variant}panel_control_tests ${test_name})
+            set_tests_properties(vst3.${variant}panel_${test_name} PROPERTIES TIMEOUT 60)
+        endforeach()
+    endforeach()
     add_executable(rhodes_model_stream_tests
         "${PROJECT_SOURCE_DIR}/tests/cpp/instrument_model_state_test.cpp"
         "${PROJECT_SOURCE_DIR}/plugins/vst3/state_stream.cpp")
@@ -516,6 +563,23 @@ int main() { return 0; }" RHODES_FAULT_LIBSTDCXX)
         add_test(NAME vst3.loaded_midi COMMAND rhodes_vst3_loaded_midi_tests
             "${rhodes_plugin_bundle}" "${rhodes_filtered_bundle}" "${rhodes_quadrature_bundle}")
         set_tests_properties(vst3.loaded_midi PROPERTIES TIMEOUT 60)
+        if(RHODES_BUILD_VST3_EDITOR)
+            add_executable(rhodes_vst3_photo_editor_tests
+                "${PROJECT_SOURCE_DIR}/tests/cpp/vst3_photo_editor_test.cpp")
+            target_compile_features(rhodes_vst3_photo_editor_tests PRIVATE cxx_std_20)
+            target_include_directories(rhodes_vst3_photo_editor_tests SYSTEM PRIVATE "${RHODES_VST3_SDK_ROOT}")
+            target_link_libraries(rhodes_vst3_photo_editor_tests PRIVATE rhodes_vst3_loader_support)
+            rhodes_target_options(rhodes_vst3_photo_editor_tests)
+            add_dependencies(rhodes_vst3_photo_editor_tests rhodes_vst3 rhodes_vst3_filtered rhodes_vst3_quadrature)
+            add_dependencies(rhodes_vst3_checks rhodes_vst3_photo_editor_tests)
+            add_test(NAME vst3.photo_editor_contract COMMAND rhodes_vst3_photo_editor_tests
+                "${rhodes_plugin_bundle}" "${rhodes_filtered_bundle}" "${rhodes_quadrature_bundle}")
+            set_tests_properties(vst3.photo_editor_contract PROPERTIES TIMEOUT 60)
+            if(SMTG_MAC)
+                smtg_target_setup_universal_binary(rhodes_vst3_photo_editor_tests)
+                smtg_target_codesign(rhodes_vst3_photo_editor_tests)
+            endif()
+        endif()
         add_executable(rhodes_vst3_loaded_expression_tests
             "${PROJECT_SOURCE_DIR}/tests/cpp/vst3_loaded_expression_test.cpp")
         target_compile_features(rhodes_vst3_loaded_expression_tests PRIVATE cxx_std_20)
@@ -587,5 +651,8 @@ int main() { return 0; }" RHODES_FAULT_LIBSTDCXX)
         "-DQUADRATURE_BUNDLE=${rhodes_quadrature_bundle}"
         "-DSDK_LICENSE=${RHODES_VST3_SDK_ROOT}/LICENSE.txt"
         "-DTHIRD_PARTY_NOTICES=${PROJECT_SOURCE_DIR}/plugins/vst3/THIRD_PARTY_NOTICES.md"
+        "-DEDITOR_ENABLED=${RHODES_BUILD_VST3_EDITOR}"
+        "-DEDITOR_RESOURCE_ROOT=${PROJECT_SOURCE_DIR}/plugins/vst3/resources"
+        "-DVSTGUI_ROOT=${RHODES_VST3_SDK_ROOT}/vstgui4"
         -P "${PROJECT_SOURCE_DIR}/tests/cpp/vst3_bundle_resources.cmake")
 endif()

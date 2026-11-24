@@ -35,6 +35,7 @@ constexpr vst::ParamID gain_id = 0;
 constexpr vst::ParamID sustain_id = 1;
 constexpr vst::ParamID expression_id = 2;
 constexpr vst::ParamID command_base = 0x1000;
+// The original nineteen controls retain their metadata/text/state oracle.
 constexpr std::size_t parameter_count = 19;
 
 struct Identity {
@@ -136,8 +137,7 @@ public:
         require(component->getControllerClassId(controller_id) == sdk::kResultOk &&
                     VST3::UID{controller_id}.toString() == identity.controller,
                 "component advertises frozen controller ID");
-        require(controller->getParameterCount() == static_cast<sdk::int32>(parameter_count),
-                "19 public parameters");
+        require(controller->getParameterCount() == 24, "24 public parameters");
         require(audio->getLatencySamples() == identity.latency, "unchanged latency");
         require(component->activateBus(vst::kAudio, vst::kOutput, 0, true) == sdk::kResultOk,
                 "activate stereo output");
@@ -246,7 +246,7 @@ void controller_contract(vst::IEditController& controller) {
         }
         reject(parameter_id(index), nullptr);
     }
-    for (const auto id : {vst::ParamID{3}, vst::ParamID{0x0fff}, vst::ParamID{0x1010},
+    for (const auto id : {vst::ParamID{8}, vst::ParamID{0x0fff}, vst::ParamID{0x1010},
                           vst::ParamID{0xffffffffU}}) {
         auto input = text("0.5");
         reject(id, input.data());

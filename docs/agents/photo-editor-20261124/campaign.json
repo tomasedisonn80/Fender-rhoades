@@ -1,0 +1,162 @@
+{
+  "requested_workers": 100,
+  "requested_waves": 5,
+  "workers_per_wave": 20,
+  "completed_report_count": 22,
+  "workers": [
+    {
+      "agent": "w1_001",
+      "wave": 1,
+      "report": "w1-001.md",
+      "sha256": "023fc63c1074d271b9a9b959c0815f1c730600433efd72abd491c30f9817b3c2",
+      "status": "reported"
+    },
+    {
+      "agent": "w1_002",
+      "wave": 1,
+      "report": "w1-002.md",
+      "sha256": "ca28cff20bb2e98837f8edc1253087d1487caade3951f57acf5638cd7329df9b",
+      "status": "reported"
+    },
+    {
+      "agent": "w1_003",
+      "wave": 1,
+      "report": "w1-003.md",
+      "sha256": "588d62bf8195e243de4c92303f94bee0272256d9201b4724cc087d71529998cb",
+      "status": "reported"
+    },
+    {
+      "agent": "w1_004",
+      "wave": 1,
+      "report": "w1-004.md",
+      "sha256": "06ccdffa0ee339f4a14ead2d47638bab00518d04ffcd6d843e985484c11a6411",
+      "status": "reported"
+    },
+    {
+      "agent": "w1_005",
+      "wave": 1,
+      "report": "w1-005.md",
+      "sha256": "ef7b5e1cb75683baa45a86704bca408cc78034cbdccba7e021632c257bd730b9",
+      "status": "reported"
+    },
+    {
+      "agent": "w1_006",
+      "wave": 1,
+      "report": "w1-006.md",
+      "sha256": "07b4ec1b7e1273d3a07ea28dbe574a5986566aeb72c984c7a072c462b14690a2",
+      "status": "reported"
+    },
+    {
+      "agent": "w1_007",
+      "wave": 1,
+      "report": "w1-007.md",
+      "sha256": "3737003d6913111e1886e847de89366877439c9c8df74e231de7f22d85791743",
+      "status": "reported"
+    },
+    {
+      "agent": "w1_008",
+      "wave": 1,
+      "report": "w1-008.md",
+      "sha256": "6152d94941f505cb7bbfbb65d46a22a93b49b745b9c6e961cdd2be36f0bd4c96",
+      "status": "reported"
+    },
+    {
+      "agent": "w1_009",
+      "wave": 1,
+      "report": "w1-009.md",
+      "sha256": "5a7ccf0dbf4b8eeb97c06537dc2bed3e5a72de2ff423bd4b5da57ba4d7decb22",
+      "status": "reported"
+    },
+    {
+      "agent": "w1_010",
+      "wave": 1,
+      "report": "w1-010.md",
+      "sha256": "3b7c06eadae9366b395daa5f7a44cf6fa6165bcf5c9315f0a4a534639beed610",
+      "status": "reported"
+    },
+    {
+      "agent": "w1_011",
+      "wave": 1,
+      "report": "w1-011.md",
+      "sha256": "82a8d528a3ba80d6f213a49081c48f1c826c2d528f9f7a700aac70914f5d5148",
+      "status": "reported"
+    },
+    {
+      "agent": "w1_012",
+      "wave": 1,
+      "report": "w1-012.md",
+      "sha256": "6c8560376329351017247e5174462d6fcc9882f1dc87784bca6c58f78062982b",
+      "status": "reported"
+    },
+    {
+      "agent": "w1_013",
+      "wave": 1,
+      "report": "w1-013.md",
+      "sha256": "38476e26e88f4a75c1bd2300f17d0e1088c965c4f7555a1ee163c893d5643f9c",
+      "status": "reported"
+    },
+    {
+      "agent": "w1_014",
+      "wave": 1,
+      "report": "w1-014.md",
+      "sha256": "aa55741767f9f65eca49ecfb6ae05e6d7f003a3d8927bd2dac8f21b1fb43ab5c",
+      "status": "reported"
+    },
+    {
+      "agent": "w1_015",
+      "wave": 1,
+      "report": "w1-015.md",
+      "sha256": "744b0835dea53248b28e82877091e18c08b170059568ac80a1c8449fb3b811ad",
+      "status": "reported"
+    },
+    {
+      "agent": "w1_016",
+      "wave": 1,
+      "report": "w1-016.md",
+      "sha256": "e4f81f0fb443a28f5ce210695e8d479d9938b231adc60f0f33cd30d2c214cfdc",
+      "status": "reported"
+    },
+    {
+      "agent": "w1_017",
+      "wave": 1,
+      "report": "w1-017.md",
+      "sha256": "58fc104de6717e51f63366afa174844a6ebd6da728d3c07bc702e27e36495e14",
+      "status": "reported"
+    },
+    {
+      "agent": "w1_018",
+      "wave": 1,
+      "report": "w1-018.md",
+      "sha256": "11f0d69535b7858d3e8e2fa18b20b6e034e54afd37718628ac4c34f4f7a089ad",
+      "status": "reported"
+    },
+    {
+      "agent": "w1_019",
+      "wave": 1,
+      "report": "w1-019.md",
+      "sha256": "7ade7ae7f4e4ea8a02c87818fdc19b25667251a618f0d71739a77da1e65cc07e",
+      "status": "reported"
+    },
+    {
+      "agent": "w1_020",
+      "wave": 1,
+      "report": "w1-020.md",
+      "sha256": "d97b4d6bcf6228df9ad29484940eca39cc54e450c0d0c7e47c052836d8a6448f",
+      "status": "reported"
+    },
+    {
+      "agent": "w2_002",
+      "wave": 2,
+      "report": "w2-002.md",
+      "sha256": "4ffac585674498037aa12b536233b2643b7a5a6ac86b338527d553b85f59857f",
+      "status": "reported"
+    },
+    {
+      "agent": "w2_003",
+      "wave": 2,
+      "report": "w2-003.md",
+      "sha256": "fc969b5a710d65c1317935790b11dd3a0151037e9eebaf9200a34db2f1580bfd",
+      "status": "reported"
+    }
+  ]
+}

@@ -1,0 +1,62 @@
+{
+  "observed_at_utc": "2026-11-24T15:08:00Z",
+  "scope": "Wave 1 working tree, source hashes below; later commits may supersede this observation",
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+  "results": {
+    "all_registered_ctests": {
+      "passed": 502,
+      "failed": 0,
+      "seconds": 28.32
+    },
+    "post_notice_bundle_resource_test": {
+      "passed": 1,
+      "failed": 0
+    },
+    "native_attached_view": {
+      "model": "direct",
+      "width": 1024,
+      "height": 768,
+      "host": "pinned official SDK editorhost",
+      "x11_setup": "Seed _XEMBED_INFO before opening fresh isolated display",
+      "screenshot": "photo-editor-linux-initial-20261124.png"
+    },
+    "original_and_png": "exact decoded RGB pixels and ICC profile verified"
+  },
+  "limits": [
+    "No DAW or audio device session",
+    "Native attachment observed on Linux direct model only in this checkpoint",
+    "No Windows/macOS result for this source",
+    "No completed quantitative full-resolution visual comparison yet",
+    "Physical acoustic fidelity remains unvalidated"
+  ],
+  "sha256": {
+    "CMakeLists.txt": "951a0f584c2ebea1f7428ac344d1012be97190e1f89d98308c5151b81093b55c",
+    "cmake/Vst3.cmake": "2aabb835204fd3490f2f57312be3a1df516f91a18087196e0ee81b8c9013dab0",
+    "include/rhodes/editor_audition.hpp": "6c4ea15ddd2bb3c7498f848c5c123de8c69b28fe14aaa2aa694c5adcaf6442c9",
+    "include/rhodes/event_processor.hpp": "cbfebb44d5d7eee06ab6952209a4683c7a7da58c04ea81f6583b98cfb981517d",
+    "include/rhodes/front_panel_effects.hpp": "e8998a71f848a14b617317f88447a8655dde60fefb7981762fb15ad0de3fa7d0",
+    "include/rhodes/front_panel_state.hpp": "fe4181f15b328db42cec646a22de186636d0dfa27d4a384b016ad47e6d5a7a71",
+    "include/rhodes/plugin_state.hpp": "973576bb1db6fe6830b60193065a3acd4d0522f45eb0e33ca8a26524726dab15",
+    "plugins/vst3/THIRD_PARTY_NOTICES.md": "5eeba1a7dc30e6aae860e1ba8323ee362e2b20c36170075f23a4079f69863894",
+    "plugins/vst3/controller.cpp": "bd15e581e36313f745b71c23f4ff1c85f8e24d2383517c26ccb850fdf813b701",
+    "plugins/vst3/controller.hpp": "35dc50901ef2e7e77c836579b849421897c8c84e4d89aa507d5bdd06eb65793d",
+    "plugins/vst3/factory.cpp": "16e5da7194a8f548dd91b84e3c66ed81b5bdf5ff618e66dbafa3abdc1a16158c",
+    "plugins/vst3/photo_editor.cpp": "23b9a903b7b5cbc1816df625fc9ec1ffdd7ee5106903f01a8a16f5e7741228bf",
+    "plugins/vst3/photo_editor.hpp": "0c421cae0d330f22b00bab37bb17e73cddd948dbd56a0834c6cb086d6cec97db",
+    "plugins/vst3/photo_geometry.hpp": "77fe4f4ac93ee0b212ef3f5399eb5cfa8884076d8eef51d2adf2123e6d85e0bd",
+    "plugins/vst3/plugin_ids.hpp": "558491751250799eadce1eb95ad1cf59cde728c8bf9490a2962aafeaa8ca128d",
+    "plugins/vst3/processor.cpp": "1ef121c4afb190c45fa1ff41a2127fb7487919dc69d8856c4a05e79844f760a9",
+    "plugins/vst3/processor.hpp": "5206559cf6a05e6b53e8f6d043a4860b1c4afb995ca8253ed1f75762a5270574",
+    "plugins/vst3/resources/Expat-LICENSE.txt": "f6eeb2310d0b00e5cecac39c73a0696a5bdbfb754b26325ed5a502fc1a6c338c",
+    "plugins/vst3/resources/rhodes-suitcase.png": "84e2d48fc0311eb923083cc3e1f96dc5fa1b3f8a6e085daee7c973e54d754d26",
+    "plugins/vst3/resources/rhodes-suitcase.uidesc": "7554fecedf67cf744b3aa7f6cf12dc4f874d8b5e0b97ec66959ba2b42ea5825e",
+    "plugins/vst3/state_stream.cpp": "30b057afe520c81bb87e0298b32835ea47957ff46b452cf417244dbb51b55051",
+    "plugins/vst3/state_stream.hpp": "a0885ed2c7a381fac06a65e37c02fa115f5c29930a7881ffd5186297fb9d3b28",
+    "tests/cpp/editor_audition_test.cpp": "ecf49a3c8c8f3ebe3c51ed47a5ac3642cb18949edf4e15d5b1de82a8116f851f",
+    "tests/cpp/front_panel_effects_test.cpp": "1a794ec92336f6d35eb26bf4654dc43346c2c6a33abb1a14f4fe84c4cf65a641",
+    "tests/cpp/photo_geometry_test.cpp": "e1d92b3856111e6ebf0661ad442452162c7b3a1ec8cbf782ec8b32c248d003bd",
+    "tests/cpp/plugin_state_test.cpp": "bf75b09812d4b8d521444af5d614cd7cf1607bc1842eb85f3001015df11b7737",
+    "tests/cpp/vst3_editor_audition_test.cpp": "a3b88a3acb7eac747389c7327cf9570fe01ce055ba429c1ce9cbcbc62f35ad29",
+    "tests/cpp/vst3_photo_editor_test.cpp": "7d80eda675b78cae3b1cbbf3be0e8ca4f90feb58c6be9b8175c0efae576cebd5"
+  }
+}

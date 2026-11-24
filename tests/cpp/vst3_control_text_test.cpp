@@ -58,6 +58,7 @@ std::uint64_t bits(double value) { return std::bit_cast<std::uint64_t>(value); }
 double value(std::uint64_t encoding) { return std::bit_cast<double>(encoding); }
 
 constexpr auto parameter_ids() {
+    // Preserve the legacy text/state oracle; five panel controls are appended.
     std::array<vst::ParamID, 19> ids{plugin::kGainId, plugin::kSustainId, plugin::kExpressionId};
     for (std::size_t channel = 0; channel < 16; ++channel) {
         ids[channel + 3] = plugin::kAllNotesOffBaseId + static_cast<vst::ParamID>(channel);
@@ -143,7 +144,7 @@ struct Snapshot {
 };
 
 void seed(vst::IEditController& controller) {
-    check(controller.getParameterCount() == 19, "controller parameter count differs");
+    check(controller.getParameterCount() == 24, "controller parameter count differs");
     check(controller.setParamNormalized(plugin::kGainId, 0.125) == sdk::kResultOk &&
           controller.setParamNormalized(plugin::kSustainId, 1.0) == sdk::kResultOk &&
           controller.setParamNormalized(plugin::kExpressionId, 1.0) == sdk::kResultOk,
@@ -466,7 +467,7 @@ void invalid_format_and_id_cases(vst::IEditController& controller) {
         controls.expect_unchanged();
         before.expect_unchanged(controller);
     }
-    for (const auto id : {vst::ParamID{3}, vst::ParamID{0x0fff}, vst::ParamID{0x1010},
+    for (const auto id : {vst::ParamID{8}, vst::ParamID{0x0fff}, vst::ParamID{0x1010},
                           vst::ParamID{0xffffffffU}}) {
         reject(controller, id, "0.5");
         reject_format(controller, id, 0x3fe0000000000000ULL);

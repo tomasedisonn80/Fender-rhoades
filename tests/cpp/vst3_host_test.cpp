@@ -921,7 +921,7 @@ void controller_mapping() {
     MemoryStream host_context;
     ControllerHost host;
     auto& controller = host.controller;
-    require(controller.getParameterCount() == 19, "controller parameter count");
+    require(controller.getParameterCount() == 24, "controller parameter count");
     vst::ParameterInfo gain_info{}, pedal_info{}, expression_info{};
     require(controller.getParameterInfo(0, gain_info) == sdk::kResultOk &&
             controller.getParameterInfo(1, pedal_info) == sdk::kResultOk &&
@@ -1032,7 +1032,7 @@ void controller_mapping() {
         const auto expression_value = controller.getParamNormalized(kExpressionId);
         require(controller.initialize(context) != sdk::kResultOk,
                 "duplicate controller initialization succeeded");
-        require(controller.getParameterCount() == 19 &&
+        require(controller.getParameterCount() == 24 &&
                 controller.getParameterObject(kGainId) == gain &&
                 controller.getParameterObject(kSustainId) == pedal &&
                 controller.getParameterObject(kExpressionId) == expression &&
@@ -1049,7 +1049,7 @@ void controller_mapping() {
     require(controller.terminate() == sdk::kResultOk &&
             controller.getParameterCount() == 0, "controller termination retained parameters");
     require(controller.initialize(&host_context) == sdk::kResultOk &&
-            controller.getParameterCount() == 19 &&
+            controller.getParameterCount() == 24 &&
             controller.getParamNormalized(kGainId) == 0.5 &&
             controller.getParamNormalized(kSustainId) == 0.0 &&
             controller.getParamNormalized(kExpressionId) == 1.0,
@@ -1061,7 +1061,7 @@ void controller_mapping() {
     reject_duplicate(nullptr);
     require(controller.terminate() == sdk::kResultOk &&
             controller.initialize(nullptr) == sdk::kResultOk &&
-            controller.getParameterCount() == 19 &&
+            controller.getParameterCount() == 24 &&
             controller.getParamNormalized(kGainId) == 0.5 &&
             controller.getParamNormalized(kSustainId) == 0.0 &&
             controller.getParamNormalized(kExpressionId) == 1.0,

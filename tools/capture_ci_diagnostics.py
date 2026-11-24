@@ -137,8 +137,14 @@ def repository_snapshot(root: Path, expected: str | None, errors: list[str]) -> 
 def sdk_snapshot(root: Path | None, errors: list[str]) -> dict | None:
     if root is None:
         return None
-    return {relative: repository_snapshot(root / relative, expected, errors)
-            for relative, expected in SDK_REVISIONS.items()}
+    result = {relative: repository_snapshot(root / relative, expected, errors)
+              for relative, expected in SDK_REVISIONS.items()}
+    # Headless legacy builds still need only the original four submodules.
+    # When the editor checkout is present, bind its actual tracked contents too.
+    if (root / "vstgui4" / ".git").exists():
+        result["vstgui4"] = repository_snapshot(
+            root / "vstgui4", "5db272256172557818b6158cf0bb2c4410bddb25", errors)
+    return result
 
 
 def environment() -> dict:

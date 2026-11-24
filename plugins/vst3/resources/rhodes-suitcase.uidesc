@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<vstgui-ui-description version="1">
+    <bitmaps>
+        <bitmap name="rhodes-suitcase" path="rhodes-suitcase.png"/>
+    </bitmaps>
+    <template name="RhodesPhotoEditor" class="CViewContainer" origin="0, 0"
+              size="1024, 768" minSize="768, 576" maxSize="1536, 1152"
+              mouse-enabled="true" transparent="true">
+        <view class="CView" custom-view-name="RhodesPhotoView" origin="0, 0"
+              size="1024, 768" mouse-enabled="true" transparent="false"/>
+    </template>
+    <custom>
+        <attributes name="FocusDrawing" enabled="false"/>
+    </custom>
+</vstgui-ui-description>

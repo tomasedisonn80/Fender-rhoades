@@ -2,7 +2,7 @@
 
 ## Official VST3 SDK
 
-The optional headless instrument is built with Steinberg's official VST3 SDK
+The optional instrument is built with Steinberg's official VST3 SDK
 `v3.8.1_build_84`. The accompanying `LICENSE.txt` is the unmodified common MIT
 notice, copyright 2026 Steinberg Media Technologies GmbH. It covers the five
 identical notice files identified below; this index does not replace that text.
@@ -18,8 +18,39 @@ identical notice files identified below; this index does not replace that text.
 All five inspected files are 1094 bytes and have SHA-256
 `e86d79e19e4a33ebc442d2e0d083887dfc75a2a8de9fe17eeddedb84810ad74e`.
 Keep this index and the common notice together in `Contents/Resources` when
-packaging the module. VSTGUI, SDK examples, documentation and tutorials are not
-included in this headless integration.
+packaging the module. SDK examples, documentation and tutorials are not included
+in the module.
+
+## Native photo editor
+
+Editor-enabled builds also use the official VSTGUI checkout at
+`5db272256172557818b6158cf0bb2c4410bddb25`. Its unmodified BSD-style notice is
+included as `VSTGUI-LICENSE.txt`. The bundled parser/compression dependencies have
+their unmodified notices alongside it as `RapidJSON-LICENSE.txt` and
+`miniz-LICENSE.txt`, copied from that same pinned checkout. Scripting is disabled;
+Tiny-JS is not linked. The native platform GUI libraries remain system libraries.
+
+`rhodes-suitcase.png` is a lossless format conversion of the image supplied by
+the repository owner with an explicit request to commit and use it for this
+editor. The original image, hashes, intended use and authorization scope are
+recorded in `assets/reference` in the source repository. No broader image
+license or historical-image authorship is asserted.
+
+### Expat XML parser
+
+The pinned VSTGUI checkout includes an Expat fallback whose `expat.h` identifies
+version 2.1.1. Its source headers refer to an upstream `COPYING` file that is
+absent from the SDK's embedded directory. The accompanying `Expat-LICENSE.txt`
+is the complete, unmodified [official Expat 2.1.1 COPYING](https://github.com/libexpat/libexpat/blob/ee0adc0d9d245f4f18863c997be9a1bfeeb0a070/expat/COPYING),
+from tag `R_2_1_1` at commit `ee0adc0d9d245f4f18863c997be9a1bfeeb0a070`.
+It retains the MIT-style permission terms and the Thai Open Source Software
+Center, Clark Cooper and Expat maintainers' copyrights. The file is 1208 bytes;
+its SHA-256 is
+`f6eeb2310d0b00e5cecac39c73a0696a5bdbfb754b26325ed5a502fc1a6c338c`.
+
+Editor bundles include this fallback notice even when VSTGUI finds and uses a
+system Expat library. The notice does not replace the applicable notices for a
+separately redistributed system Expat version.
 
 ## Scope of this index
 

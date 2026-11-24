@@ -5,7 +5,7 @@
 
 namespace rhodes::vst3 {
 
-// Headless controller: ordinary host controls and CC11/CC64/CC123 MIDI mapping.
+// Host controls, MIDI mapping and an optional native photograph editor.
 class RhodesController final : public Steinberg::Vst::EditController,
                                public Steinberg::Vst::IMidiMapping {
 public:
@@ -16,6 +16,10 @@ public:
     Steinberg::tresult PLUGIN_API setComponentState(Steinberg::IBStream* state) override;
     Steinberg::tresult PLUGIN_API setState(Steinberg::IBStream* state) override;
     Steinberg::tresult PLUGIN_API getState(Steinberg::IBStream* state) override;
+    Steinberg::IPlugView* PLUGIN_API createView(Steinberg::FIDString name) override;
+    // UI-thread messages; the processor stages them for its audio owner.
+    [[nodiscard]] bool auditionNote(int key, bool down, float velocity);
+    void releaseAuditionNotes();
     Steinberg::tresult PLUGIN_API setParamNormalized(Steinberg::Vst::ParamID tag,
                                                     Steinberg::Vst::ParamValue value) override;
     Steinberg::tresult PLUGIN_API getParamStringByValue(

@@ -9,12 +9,13 @@ loaded output. The repository name is retained for existing links.
 
 **Current stage: experimental VST3 instrument and physical-model research.**
 The C++20 synthetic core now has bounded sample-offset events, MIDI note ownership,
-versioned state recall, and three optional headless VST3 variants. All three
-retain their class identities, saved-state model IDs and unity-expression stereo
-rendering path. **Rhodes Research Quadrature** batches six prepared observations of
+versioned state recall, and three optional VST3 variants with a native photo
+editor under qualification. All three retain their class identities, saved-state
+model IDs and default neutral-panel/unity-expression rendering path.
+**Rhodes Research Quadrature** batches six prepared observations of
 the synthetic source inside each host-frame interval and reports 48 frames
-of latency under its separate model-3 identity. All three use ordinary host
-parameter controls. A separate offline finite-mass hammer/damper reference
+of latency under its separate model-3 identity. All three also expose ordinary
+host parameter controls. A separate offline finite-mass hammer/damper reference
 includes energy and event diagnostics; it does not run inside the plug-ins.
 Parameters remain synthetic; no physical specimen has been measured, no fidelity
 claim has been established, and no plug-in release has been published.
@@ -46,11 +47,12 @@ independent of Monitoring Gain. Automate it in the host or send MIDI CC11 on any
 of the sixteen input channels; each channel addresses the same control for the
 whole instrument. The plug-in does not pair CC11 with CC43. Expression at zero
 silences the output while notes, mechanics and release tails continue. All three
-variants now expose **19 host parameters** and one output that defaults to
-stereo and can negotiate mono. Mono emits the same scalar signal as either
-stereo channel. Saving at Expression `1x` retains the exact legacy 16-byte state;
-other values use a 20-byte version-2 state that older version-1-only builds cannot
-load. The [VST3 guide](docs/VST3.md) explains controls, output layouts and rollback
+variants gained Expression and mono/stereo output in that continuation. With the
+new front panel at its defaults, mono remains the same scalar signal as either
+stereo channel, Expression `1x` retains the legacy 16-byte state, and other
+Expression values use the 20-byte version-2 state. The photo-editor extension
+below adds its own controls and version-3 state without changing those defaults.
+The [VST3 guide](docs/VST3.md) explains controls, output layouts and rollback
 limits. This engineering extension remains under
 [source-bound acceptance review](docs/VST3.md#current-expression-and-output-layout-verification--24-november-2026);
 its test fixtures do not establish measured fidelity or named-DAW results.
@@ -64,17 +66,27 @@ and [157/157 native VST3 CTests on each of Linux and Windows](docs/validation/ho
 The [CC123](docs/agents/reports/continuation-c/w5-082.md),
 [pressure](docs/agents/reports/continuation-c/w5-083.md) and
 [control-text](docs/agents/reports/continuation-c/w5-084.md) criterion reviews
-pass within their frozen synthetic scope. **HOST-002 remains incomplete:**
-the [retained criterion review](docs/validation/host-midi-acceptance-20261124.md)
-records C01–C03 as passed and C04 as incomplete at its cutoff. The previously
-missing macOS results have since been
-[recovered](docs/validation/host-midi-macos-recovered-20261124.json); a supplemental
-criterion review and passing acceptance decision remain pending.
-The [current verification section](docs/VST3.md#current-host-002-verification--24-november-2026)
-records the executed source commits, core/sanitizer/Python results and dated macOS
-status observations. The [dated continuation handoff](docs/validation/host-midi-handoff-20261124.md)
-preserves the earlier missing-evidence boundary. These HOST-002 results cover
-sources from before the Expression and mono extension.
+pass within their frozen synthetic scope. **HOST-002 is complete in the canonical
+task graph:** the [supplemental final criterion review](docs/validation/host-midi-final-criterion-review-20261124.json)
+incorporates the recovered macOS evidence. The earlier
+[incomplete review](docs/validation/host-midi-acceptance-20261124.md) and
+[dated handoff](docs/validation/host-midi-handoff-20261124.md) remain historical
+records. These HOST-002 results predate the Expression/mono and photo-editor
+extensions and do not establish named-DAW behavior for the current source.
+
+The [HOST-004 photo-editor continuation](docs/specs/PHOTO_EDITOR_20261124.md)
+uses the owner's [original photograph](assets/reference/rhodes-suitcase-reference.webp)
+as the full 4:3 editor surface, including the cabinet, legs, background and pedal.
+Its lossless PNG conversion preserves decoded image pixels and the color profile.
+The implementation aligns interactive controls and all 73 keys with the picture;
+Volume and the pedal use the existing gain and sustain parameters. Bass, Treble,
+Intensity, Speed and Vibrato add five persistent controls, for **24 host parameters**
+while retaining the first 19 parameter positions. The tone shelves and opposed
+stereo amplitude modulation are explicitly synthetic digital effects. They do
+not identify the photographed instrument's electronics. Nondefault panel settings
+use a **40-byte version-3 state**; default panel settings retain legacy v1/v2
+exports. An actual Linux editor window has rendered the full photograph;
+gestures, visual comparison and platform acceptance remain under qualification; see the [current editor checkpoint](docs/VST3.md#current-photo-editor-checkpoint--24-november-2026).
 
 The separate [four-fixture contact diagnostic](docs/CONTACT_PEAK_DIAGNOSTIC.md)
 compares synthetic compression and force maxima with independent references,
@@ -110,6 +122,7 @@ validation gates.
 | Inspect the original VST3 prototype contract | [Original host behavior and later overrides](docs/specs/HOST_PROTOTYPE_20261123.md) |
 | Inspect current MIDI and control behavior | [CC123, pressure and strict text contract](docs/specs/HOST_MIDI_20261124.md) |
 | Inspect Expression, state compatibility and mono output | [Frozen HOST-003 contract](docs/specs/HOST_EXPRESSION_MONO_20261124.md) |
+| Inspect the exact photo target and panel extension | [Native editor contract](docs/specs/PHOTO_EDITOR_20261124.md) |
 | Build and try the VST3 instrument | [VST3 setup and controls](docs/VST3.md) |
 | Evaluate a build in a named DAW | [Proposed manual evaluation protocol](docs/DAW_VALIDATION.md) |
 | Run the separate hammer/damper experiments | [Offline contact reference](docs/CONTACT_REFERENCE.md) |
@@ -202,7 +215,7 @@ the sanitizer preset excludes Windows. See
 | Stage controls | Architecture and component requirements | Revision-specific connected passive circuit |
 | Instrument identity | Unidentified profile with units and provenance fields | Actual specimen, construction revisions and measurements |
 | Runtime | Bounded events; direct, sampled-filtered and batched Q6 paths; full synthetic quadrature/reference matrix and exact retained replay | Remaining direct/filtered aliasing and convergence gates, future-model error budgets and representative host/device timing |
-| Host product | Three VST3 variants, isolated model states 1/2/3, 19 generic controls including global CC11 Expression, adaptive v1/v2 configuration, mono/stereo output, reported latency, bounded rejection, channel CC123 and validated pressure no-op | HOST-002 supplemental acceptance, HOST-003 source-bound acceptance, native DAW/device validation, deployment baselines, product UI and release packaging |
+| Host product | Three VST3 variants, isolated model states 1/2/3, 24 controls including global CC11 Expression and synthetic panel effects, adaptive v1/v2/v3 configuration, mono/stereo output, a native photo editor implementation, bounded MIDI/automation and reported latency | HOST-003 and HOST-004 source-bound acceptance, attached editor/visual qualification, native DAW/device validation, deployment baselines and release packaging |
 
 Peterson/Janus Suitcase electronics, amplifiers, loudspeakers and room acoustics
 belong to separately identified future profiles. They do not silently become part

@@ -309,7 +309,7 @@ public:
         require(component->getBusCount(vst::kAudio, vst::kInput) == 0 &&
                     component->getBusCount(vst::kAudio, vst::kOutput) == 1 &&
                     component->getBusCount(vst::kEvent, vst::kInput) == 1, "unchanged instrument buses");
-        require(controller->getParameterCount() == 19, "nineteen controls");
+        require(controller->getParameterCount() == 24, "twenty-four controls");
         require(snapshot(*component) == packet(model) && snapshot(*controller) == packet(model),
                 "literal legacy sixteen-byte default states and model ID");
         check_layout(2);
@@ -846,7 +846,7 @@ void transactions(const Module::Ptr& module, const Identity& identity, vst::Host
     invalid.back().queues[0].reported_count = -1;
     invalid.emplace_back(std::initializer_list<RawQueue>{{expression_id, {{0, .25}, {127, .5}}}});
     invalid.back().queues[0].fail_at = 1;
-    invalid.emplace_back(); invalid.back().reported_count = 20;
+    invalid.emplace_back(); invalid.back().reported_count = 25;
     invalid.emplace_back(); invalid.back().reported_count = -1;
     invalid.emplace_back(std::initializer_list<RawQueue>{{expression_id, {{0, .25}}}});
     invalid.back().null_at = 0;

@@ -3,7 +3,10 @@
 **Rhodes Research Prototype 0.1.0**, **Rhodes Research Filtered 0.2.0** and
 **Rhodes Research Quadrature 0.3.0** wrap the sample-free synthetic
 `ResearchEngine` in separate VST3 instruments. All three provide ordinary host
-parameter controls; there is no custom editor. Their sound uses impulse excitation,
+parameter controls and an optional native editor using the owner's exact
+photographic reference. The editor is under qualification; the
+[current checkpoint](#current-photo-editor-checkpoint--24-november-2026) separates
+implemented behavior from executed native-window evidence. Their sound uses impulse excitation,
 switched-loss release, a polynomial pickup and a synthetic resistive network.
 The separate finite-mass contact reference is offline and does not run inside
 any of these plug-ins. No specimen calibration or measured fidelity is established.
@@ -15,10 +18,11 @@ any of these plug-ins. No specimen calibration or measured fidelity is establish
 | Quadrature research model | `RhodesResearchQuadrature.vst3` / `rhodes_vst3_quadrature` | Separate class IDs, model-3 state, six fractional observations per host cell, 48-frame delay |
 
 Each variant has its own processor/controller FUID pair, defined in
-[plugin_ids.hpp](../plugins/vst3/plugin_ids.hpp). The MIDI interoperability and
-Expression/mono updates preserve all six class identities, model IDs `1/2/3`
-and reported latencies `0/48/48` frames. Legacy configuration loads with Expression
-at unity; non-unity Expression uses the extended format described below. A
+[plugin_ids.hpp](../plugins/vst3/plugin_ids.hpp). The MIDI interoperability,
+Expression/mono and photo-editor updates preserve all six class identities, model IDs `1/2/3`
+and reported latencies `0/48/48` frames. Version-1 configuration loads with
+Expression at unity; both legacy formats load neutral panel defaults. Extended
+configuration uses the adaptive format described below. A
 project can load the three instruments together; there is no live sound-path
 or latency switch.
 
@@ -51,8 +55,11 @@ also retains 24 byte-identical direct/filtered WAV reproductions.
 The implementation contracts are [HOST_PROTOTYPE_20261123](specs/HOST_PROTOTYPE_20261123.md),
 its [MIDI interoperability continuation](specs/HOST_MIDI_20261124.md), and the
 reviewed [Expression and mono contract](specs/HOST_EXPRESSION_MONO_20261124.md).
-The last contract defines the current controls, adaptive state format and output
-layouts where it extends the earlier contracts.
+The [photo-editor contract](specs/PHOTO_EDITOR_20261124.md) adds the photographic
+surface, panel controls and their coherent configuration. The current
+[panel codec](../include/rhodes/plugin_state.hpp) and
+[effect implementation](../include/rhodes/front_panel_effects.hpp) define the
+extended state and synthetic signal processing.
 The [dependency inventory](DEPENDENCIES.md) records the official SDK revision,
 submodules and notices. [NUMERICS.md](NUMERICS.md) describes the underlying core.
 
@@ -78,20 +85,43 @@ work in a POSIX shell or PowerShell; the destination must not already exist:
 ```sh
 git clone --no-checkout https://github.com/steinbergmedia/vst3sdk.git ../vst3sdk
 git -C ../vst3sdk checkout --detach 3cdf9ca5d1f5b1b21e0a86832aa4abe55607bd96
-git -C ../vst3sdk submodule update --init -- base cmake pluginterfaces public.sdk
+git -C ../vst3sdk submodule update --init -- base cmake pluginterfaces public.sdk vstgui4
 git -C ../vst3sdk rev-parse HEAD
-git -C ../vst3sdk submodule status base cmake pluginterfaces public.sdk
+git -C ../vst3sdk submodule status base cmake pluginterfaces public.sdk vstgui4
 ```
 
 The root commit is the inspected `v3.8.1_build_84` revision. Configuration verifies
-that root commit and all four submodule revisions against
-[DEPENDENCIES.md](DEPENDENCIES.md), and rejects missing checkouts or changed
+that root commit and four core SDK submodule revisions plus the editor's
+`vstgui4` revision `5db272256172557818b6158cf0bb2c4410bddb25`, and rejects missing checkouts or changed
 tracked SDK contents. This keeps the compiled dependency tied to the inspected
 source. Untracked build directories and unused optional submodules are allowed.
 Use a separate clean SDK checkout when experimenting with SDK patches; the build
 never resets or modifies your files. Updating the pins is a separate compatibility
 decision.
-VSTGUI, SDK plug-in examples and graphical/audio hosting examples are disabled.
+`RHODES_BUILD_VST3_EDITOR=ON` is the default when the optional adapter is enabled.
+It links the pinned VSTGUI editor binding; SDK examples, standalone examples,
+scripting and the Wayland backend remain disabled. Linux uses the X11 backend.
+Add `-DRHODES_BUILD_VST3_EDITOR=OFF` for a headless adapter using host generic
+controls. That configuration needs only the four core SDK submodules and avoids
+VSTGUI and its GUI system-library dependencies; the panel parameters, state
+format and audio processing remain available.
+
+For the editor on Debian/Ubuntu, install the development packages used by the
+[workflow](../.github/workflows/vst3.yml) before configuring:
+
+```sh
+sudo apt-get install -y libx11-dev libfreetype6-dev libxcb1-dev libxcb-util-dev \
+  libxcb-cursor-dev libxcb-keysyms1-dev libxcb-xkb-dev libxkbcommon-dev \
+  libxkbcommon-x11-dev libglib2.0-dev libcairo2-dev libpango1.0-dev \
+  libfontconfig1-dev libwayland-dev wayland-protocols libatkmm-1.6-dev libsqlite3-dev
+```
+
+The pinned VSTGUI configuration still needs Wayland development headers/protocols
+while its Wayland backend is disabled. A nonstandard dependency installation may
+also need `WAYLAND_PROTOCOLS_BASEDIR` pointing to its `share/wayland-protocols`
+directory. Xvfb is useful for automated Linux window tests; it is not part of the
+plug-in's audio engine. Windows/macOS use their platform SDKs and native VSTGUI
+backends; their editor builds need separate executed qualification.
 
 ### Linux or macOS
 
@@ -246,7 +276,10 @@ The observed Linux x86_64 modules are `Contents/x86_64-linux/RhodesResearch.so`,
 `Contents/x86_64-linux/RhodesResearchQuadrature.so` inside their respective bundles. The pinned SDK uses
 the platform's bundle layout on macOS and Windows; retain the whole `.vst3`
 directory, including `Contents/Resources/LICENSE.txt`, `THIRD_PARTY_NOTICES.md`
-and `moduleinfo.json`.
+and `moduleinfo.json`. Editor-enabled bundles also require `rhodes-suitcase.png`,
+`rhodes-suitcase.uidesc`, `VSTGUI-LICENSE.txt`, `RapidJSON-LICENSE.txt`,
+`miniz-LICENSE.txt` and `Expat-LICENSE.txt` in that resource directory. Do not move the module binary
+without its resources.
 The resources include the inspected SDK MIT notice. This does not select a
 project-wide license for this repository's original code; see [RIGHTS.md](../RIGHTS.md).
 
@@ -288,9 +321,11 @@ the complete bundle, then insert **Rhodes Research Prototype**,
 **Rhodes Research Filtered** or **Rhodes Research Quadrature** on an instrument
 track. Their factory category is `Instrument|Synth`. The output defaults to
 stereo and may negotiate standard mono or stereo with the host.
-A host may show its generic parameter editor because the prototype supplies no
-custom view. Confirm that it lists Expression and 19 parameters when checking a
-new build; an older cached bundle may still expose only 18.
+Editor-enabled builds provide the photographic custom view; hosts may also offer
+their generic parameter editor. Headless builds provide only generic controls.
+Confirm that a current build exposes **24 parameters**, including the five panel
+controls. Older cached bundles may expose 18 or 19. The first 19 parameter
+positions retain their previous IDs and order; the new five are appended.
 
 For a reproducible host trial, use the proposed
 [manual DAW evaluation protocol](DAW_VALIDATION.md). It explains what to record
@@ -304,16 +339,20 @@ and which observations remain separate from the automated harness results.
 | MIDI input | One event bus accepting channels 1–16; channels share the same physical keys |
 | Note ownership | Up to 256 simultaneous holders; overlapping holders may address one key, so this is not 256 independent resonators |
 | Retrigger and release | Retrigger preserves mechanical state; only the last holder's release damps its key |
-| Output | One bus, stereo by default, with standard mono or stereo negotiation; mono is the scalar signal and stereo duplicates it; no audio input |
+| Output | One bus, stereo by default, with standard mono or stereo negotiation; neutral panel preserves the legacy scalar/duplicated signal, active modulation can separate stereo channels; no audio input |
 | Processing | Float32 or float64; sample rates 32–192 kHz inclusive; at most **8192 frames** per host call |
 | Monitoring Gain | Host parameter `0`, displayed multiplier `0..32x`, default `16x`; normalized value `0..1`, default `0.5` |
 | Sustain | Host parameter `1`, `Off`/`On`; normalized values at least `0.5` select `On`; MIDI CC64 maps to it on all channels |
 | Expression | Automatable continuous host parameter `2`, displayed multiplier `0..1x`, normalized value `0..1`, default `1` (`1x`); MIDI CC11 on every input channel addresses this same global control |
+| Bass / Treble | IDs `3` / `4`; normalized `0..1` maps to `−12..+12 dB`, default `0 dB` (`0.5`); synthetic first-order shelves with 200 Hz / 2500 Hz split frequencies |
+| Intensity | ID `5`; normalized/displayed `0..1x`, default `0`; sets the modulation depth while Vibrato is on |
+| Speed | ID `6`; normalized `0..1` maps to `0.5..12 Hz`, default `6.25 Hz` (`0.5`) |
+| Vibrato | ID `7`, `Off`/`On`, default `Off`; the photographed label controls opposed stereo amplitude modulation, not pitch modulation |
 | All Notes Off | 16 writable, nonautomatable command parameters, `All Notes Off Ch 1` through `All Notes Off Ch 16`; IDs `0x1000..0x100f` map MIDI CC123 to the corresponding channel |
 | Polyphonic pressure | Well-formed typed pressure events are validated and ignored; there is no pressure-responsive synthesis |
 | Latency and tail | Direct: 0 frames; filtered and quadrature: 48 frames (1 ms at 48 kHz); all advertise an infinite asymptotic tail |
 
-There are **19 host parameters** in total: three persistent controls and sixteen
+There are **24 host parameters** in total: eight persistent controls and sixteen
 channel release commands. Every delivered CC123 parameter point
 releases that channel's note holders, including zero and repeated unchanged
 values. Values must be finite and normalized to `0..1`; they are not interpolated,
@@ -325,6 +364,35 @@ With sustain on, released keys can continue ringing. CC123 is not All Sound Off;
 CC120 remains unmapped. A host may deduplicate unchanged controller values before
 delivery, and the plug-in cannot recover omitted commands. Repeated CC123 delivery
 therefore needs a separate check in each native DAW.
+
+### Native photographic editor and panel effects
+
+The editor uses the [full original reference](../assets/reference/rhodes-suitcase-reference.webp),
+converted losslessly for VSTGUI loading. The default view is `1024 × 768`, with
+`768 × 576` and `1536 × 1152` logical size limits and a fixed 4:3 aspect ratio.
+The intended idle surface contains the photograph alone. Transient highlights,
+focus indicators and value readouts identify an interaction without replacing
+the photographed controls. Image drawing and hit testing share the same transform.
+
+Volume changes Monitoring Gain; click the pictured pedal to toggle Sustain.
+Drag a knob vertically or an EQ slider horizontally; Shift selects fine movement.
+Wheel input and keyboard focus provide alternate control editing, and a double
+click restores a control's default. The pictured keys send audition messages
+through the VST3 controller/processor connection, using the same 73-key range.
+The native host must provide that connection; failed delivery is shown as a
+connection status, not as a successful sounding key. Audition commands use a
+bounded audio-boundary queue and separate UI key ownership from host MIDI.
+Exact native gestures and audible host behavior remain qualification gates.
+
+The [digital effect](../include/rhodes/front_panel_effects.hpp) applies Bass and
+Treble after Monitoring Gain, followed by opposed left/right amplitude modulation.
+Changes in shelf gains, effective depth and speed are smoothed over 10 ms;
+reset applies the saved configuration immediately. Phase runs while modulation
+is bypassed. Settled neutral shelves and zero effective depth return the original
+input bits, and the effects add no lookahead or reported latency. A nonzero
+Intensity needs Vibrato `On` to affect sound. This circuit-independent recipe
+supports the photographed controls without claiming a calibrated Peterson or
+Janus preamplifier, amplifier, speaker or room model.
 
 ### Use Expression for performance dynamics
 
@@ -346,8 +414,9 @@ or 14-bit reconstruction. Use direct host automation at `0.5` when an exact
 half-scale comparison is needed. Host MIDI-to-parameter delivery still needs
 checking in the [named-DAW protocol](DAW_VALIDATION.md).
 
-The adapter computes and checks `(32 * gain) * volts` before applying Expression.
-At exact unity it returns that monitored value directly. Engine failures and
+The adapter computes and checks `(32 * gain) * volts`, then processes the panel
+effects and any mono fold-down before applying Expression. At settled neutral
+panel settings and exact unity Expression, it returns that monitored value directly. Engine failures and
 nonfinite monitored values fault even when Expression is zero. Expression is
 applied before the final float32/float64 output conversion, so attenuation may
 bring a finite double into the float32 output range. Conversion checks continue
@@ -355,7 +424,8 @@ even when an inactive output is omitted.
 
 ### Automation and bounded input
 
-Gain and Expression use independent linear interpolation; sustain is stepped.
+Gain, Expression, Bass, Treble, Intensity and Speed use independent linear
+interpolation; sustain and Vibrato are stepped.
 Gain/Expression points are canonical binary32 values, rounded to nearest with
 ties to even. Each control's offset `-1` anchor is the audio owner's current
 canonical live value after any recall selected for that block. A mailbox snapshot
@@ -367,8 +437,8 @@ corresponding boundary anchors. At an equal sample offset, sustain takes effect
 first, CC123 releases follow in ascending channel order, then notes retain their
 input-list order. A new strike at that offset survives the channel release.
 
-The adapter accepts at most **256 input events**, including pressure, **19 unique
-parameter queues**, **8192 raw points each for gain, Expression and sustain**,
+The adapter accepts at most **256 input events**, including pressure, **24 unique
+parameter queues**, **8192 raw points for each persistent control**,
 and **256 raw CC123 points in total across all channels**, including duplicates. Translation
 uses fixed storage for at most **585 physical note actions per block**; each
 sample has a separate **256-action limit including sustain**. Pressure consumes
@@ -389,9 +459,13 @@ under [Saving and resetting state](#saving-and-resetting-state).
 Select mono or stereo through the host's output configuration while processing
 is suspended. The accepted arrangement updates the bus name and channel count
 together: `Mono Out` has one channel and `Stereo Out` has two. Unsupported layout
-requests preserve the last accepted arrangement. Mono emits exactly the existing
-scalar left-channel signal; stereo duplicates it. There is no stereo sum or added
-pan-law gain. Host routing or panning may affect a later capture, so compare at
+requests preserve the last accepted arrangement. With equal panel output
+channels, mono returns the left value directly,
+preserving the legacy scalar path. When the panel creates different stereo
+channels, mono uses `0.5 * left + 0.5 * right`. The opposed modulation therefore
+folds to a steady attenuation at a fixed depth; it does not create cyclic mono
+tremolo. There is no added pan-law gain. Host routing or panning may affect a
+later capture, so compare at
 the plug-in boundary when evaluating the layouts. Layout selection belongs to
 the host and is not saved in the instrument's state chunk; latency and tail
 reporting remain unchanged.
@@ -418,14 +492,15 @@ Zero-frame flushes may omit the output bus or supply a zero-channel or
 negotiated-width bus. They never inspect sample pointers. An empty bus gets
 silence flags `0`, mono gets `1`, and stereo gets `3`; omission touches no flags.
 Flushes accept only offset-zero parameter points and an empty event list. A
-selected recall is installed first, followed by final gain/Expression/sustain
+selected recall is installed first, followed by final persistent control
 values and staged CC123 releases. Ordinary releases advance no mechanics, frame
 cursors or filter history; an accepted recall intentionally resets them. The
 [Expression and mono contract](specs/HOST_EXPRESSION_MONO_20261124.md) gives the
 full transaction and pointer requirements.
 
-Pitch bend, note expression, physical half-pedal, CC120 mapping, effects
-and additional historical circuits are outside this version. Host naming of
+Pitch bend, note expression, physical half-pedal, CC120 mapping and identified
+historical electronic circuits are outside this version. The panel effects below
+are synthetic digital processing. Host naming of
 octaves differs, so use the MIDI pitch numbers when checking the range.
 
 ### Generic parameter text
@@ -439,6 +514,10 @@ any whitespace and unit suffix in that limit.
 | Monitoring Gain | Decimal multiplier `0..32`, optional leading sign, fraction and `e`/`E` exponent; surrounding ASCII whitespace and an optional lowercase `x` suffix are allowed, for example `16x` or `+1.6e1 x` |
 | Sustain | Exactly `Off` or `On`, case-sensitive, without extra whitespace; the normalized threshold remains `0.5` |
 | Expression | Decimal multiplier `0..1`, using the same signed decimal/exponent grammar, surrounding ASCII whitespace and optional lowercase `x`; examples: `0`, `0.5x`, `+5e-1 x`, `1` |
+| Bass / Treble | Decimal `−12..12`, optional exact `dB` suffix; surrounding ASCII whitespace is allowed |
+| Intensity | Decimal `0..1`, optional exact lowercase `x` suffix |
+| Speed | Decimal `0.5..12`, optional exact `Hz` suffix |
+| Vibrato | Exactly `Off` or `On`, with the same threshold as Sustain |
 | All Notes Off commands | Decimal normalized value `0..1`, using the gain decimal grammar and surrounding ASCII whitespace, with no unit suffix; numeric display retains enough digits for a binary64 round trip |
 
 Numeric input must be consumed completely. NaN, infinity, hexadecimal numbers,
@@ -448,7 +527,7 @@ the rounded finite binary64 value before gain normalization or Expression
 canonicalization; for example, `32.000000000000000001` can round to 32 and be
 accepted for Monitoring Gain. Expression must be within `0..1` at that binary64
 stage, even if a value just outside the range would later round to binary32 unity.
-Negative nonzero values, including subnormals, are rejected; signed zero is
+For nonnegative controls, negative nonzero values, including subnormals, are rejected; signed zero is
 canonicalized. Gain and Expression display canonical binary32 control values
 with enough digits to round-trip; `x` is kept in their unit metadata. Sustain
 retains its `Off`/`On` display.
@@ -465,37 +544,41 @@ Gain/sustain retain parameter IDs `0/1`, and Expression uses `2`.
 
 | Chunk or saved setting | Current behavior |
 | --- | --- |
-| Own-model legacy version 1, exactly 16 bytes | Load Monitoring Gain and sustain; Expression defaults to `1x` |
-| Save with canonical Expression `1x` | Write version 1 with the exact legacy 16-byte encoding |
-| Save with non-unity Expression | Write version 2, exactly 20 bytes, including the canonical binary32 Expression value |
-| Valid own-model version 2 with Expression `1x` | Accept; a later save canonicalizes it to version 1 |
+| Own-model legacy version 1, exactly 16 bytes | Load Monitoring Gain and sustain; Expression defaults to `1x` and all panel controls reset to defaults |
+| Own-model version 2, exactly 20 bytes | Load Gain, sustain and Expression; all panel controls reset to defaults |
+| Save with exact panel defaults and canonical Expression `1x` | Write version 1 with the exact legacy 16-byte encoding |
+| Save with exact panel defaults and non-unity Expression | Write version 2, exactly 20 bytes |
+| Save with any nondefault panel setting | Write version 3, exactly 40 bytes, preserving all eight persistent controls |
+| Valid own-model v2/v3 with default panel and Expression `1x` | Accept; a later save canonicalizes it to version 1 |
 | Wrong model, version, length or invalid control encoding | Reject without changing configuration or consuming an already pending valid recall |
 
-Version 2 retains the first sixteen bytes' field positions with version `2` in
-the header, then adds little-endian Expression at bytes 16–19. The explicit
-version-1 encoder refuses non-unity Expression rather than discarding it. The
-[state codec](../include/rhodes/instrument_state.hpp) and
-[frozen state contract](specs/HOST_EXPRESSION_MONO_20261124.md#saved-configuration-and-publication)
-define the exact wire format. These lengths describe the plug-in chunk, not a
-host preset or project container.
+Version 2 keeps the original field positions and appends little-endian binary32
+Expression at bytes 16–19. Version 3 retains those fields and appends binary32
+Bass, Treble, Intensity, Speed and Vibrato at bytes 20–39. Vibrato is encoded as
+an exact boolean float. A bypassed effect with a nondefault Speed or Intensity
+still needs version 3: saving never silently discards inactive settings. The
+[legacy codec](../include/rhodes/instrument_state.hpp) and
+[extended codec](../include/rhodes/plugin_state.hpp) define the exact formats.
+These lengths describe the plug-in chunk, not a host preset or project container.
 
-**Rollback limit:** older version-1-only builds cannot load version-2 chunks.
-To prepare a legacy-compatible configuration, set Expression to `1x` in the new
-build and save a separate preset before returning to the older build. Its
-non-unity Expression setting cannot be represented in that legacy preset.
-Host projects can also retain automation, parameter inventory and output routing,
-so a compatible chunk alone does not guarantee project rollback. Keep the
-original project/preset and the build that created it when evaluating a newer
-prototype.
+**Rollback limits:** version-1-only builds cannot load version 2 or 3, and
+version-2-only builds cannot load version 3. To export a v1/v2-compatible chunk,
+restore Bass/Treble to `0 dB`, Intensity to `0x`, Speed to `6.25 Hz`, and Vibrato to
+`Off`; set Expression to `1x` as well for version 1. Save a separate preset before
+returning to the older build. Those older formats cannot retain nondefault panel
+settings. Host projects can also retain automation, parameter inventory and
+output routing, so a compatible chunk alone does not guarantee project rollback.
+Keep the original project/preset and the build that created it when evaluating
+a newer prototype.
 
 Every variant rejects both other model IDs: all six ordered cross-model recalls
-are rejected without conversion. State stores neither ringing notes, transient
-CC123 command values nor the negotiated mono/stereo layout. A valid recall is
+are rejected without conversion. State stores neither ringing notes, UI-held keys, queued audition messages,
+transient CC123 command values nor the negotiated mono/stereo layout. A valid recall is
 queued through a lock-free mailbox and installed at a valid audio boundary:
-mechanics, note holders, cursor, FIR history when present, and interpolation
-history reset before the recalled configuration is applied. Malformed fields,
+mechanics, note holders, cursor, FIR history when present, panel effect history
+and interpolation history reset before the recalled configuration is applied. Malformed fields,
 incorrect lengths and incompatible models/versions are rejected. Saving takes
-one coherent gain/sustain/Expression snapshot without resetting the sound.
+one coherent snapshot of all eight persistent controls without resetting the sound.
 
 Control-value conversion and state encoding preserve their bit-level contract
 under supported host rounding and FTZ/DAZ modes while preserving those controls.
@@ -512,6 +595,31 @@ hard reset before processing continues. A lifecycle transition or a valid
 configuration recall installed at an accepted audio boundary supplies that reset.
 
 ## Observed verification and remaining gates
+
+### Current photo-editor checkpoint — 24 November 2026
+
+**HOST-004 remains under development and acceptance review.** The unchanged
+source photo and verified lossless PNG are committed; the
+[asset verifier](../tools/verify_editor_assets.py) checks encoded hashes, dimensions
+and the retained profile, with an optional decoded-pixel comparison. All three
+native GUI modules have built locally on Linux. The
+[SDK-only loaded editor fixture](../tests/cpp/vst3_photo_editor_test.cpp) passed
+3,855 unattached-interface checks across nine controllers and 24 created views,
+including 54 malformed content scales. Those checks do not open a native window.
+
+The direct module has also attached in the official SDK `editorhost` on Linux
+under Xvfb and rendered a real `1024 × 768` native window. The captured idle
+window was visually inspected and shows the complete reference composition.
+An initial attachment attempt failed in the SDK test host because the isolated
+X server lacked its expected `_XEMBED_INFO` atom; preparing that host prerequisite
+allowed the window to open without a plug-in code change.
+
+Gesture behavior, quantitative image comparison, resize/cleanup behavior of an
+attached view, editor-enabled Windows/macOS runs and named-DAW operation remain
+separate qualification gates. Earlier platform records below apply only to the
+revisions and feature scope they identify. Final editor acceptance needs retained
+source-bound screenshots, packaged-resource checks and executed platform results;
+the unattached API result alone cannot establish those properties.
 
 ### Current Expression and output-layout verification — 24 November 2026
 
@@ -553,19 +661,19 @@ retain their own acceptance requirements.
 
 ### Current HOST-002 verification — 24 November 2026
 
-**HOST-002 remains incomplete.** The
+**HOST-002 is complete in the canonical task graph.** The
+[final criterion review](validation/host-midi-final-criterion-review-20261124.json)
+incorporates the recovered macOS results and passes the frozen gate. Earlier
 [CC123](agents/reports/continuation-c/w5-082.md),
 [pressure](agents/reports/continuation-c/w5-083.md) and
-[control-text](agents/reports/continuation-c/w5-084.md) criterion reviews pass
-within their frozen synthetic scope. The
-[retained criterion review](validation/host-midi-acceptance-20261124.md) records
-C01–C03 as passed and C04 as incomplete at its cutoff. The previously missing
-macOS VST3, core and Python logs have since been retained in a
-[supplemental recovered-results record](validation/host-midi-macos-recovered-20261124.json).
-Those results cover sources from before HOST-003; they await a supplemental
-criterion review and passing final acceptance decision under the
-[MIDI continuation](specs/HOST_MIDI_20261124.md) and
-[canonical project state](PROJECT_STATE.md).
+[control-text](agents/reports/continuation-c/w5-084.md) reviews remain scoped to
+their recorded executions. The
+[original criterion review](validation/host-midi-acceptance-20261124.md) records
+C04 as incomplete at its historical cutoff; the later
+[recovered-results record](validation/host-midi-macos-recovered-20261124.json)
+and final review supply the subsequent evidence. These results predate
+HOST-003/HOST-004 and do not qualify the current editor extension. The
+[canonical project state](PROJECT_STATE.md) records the accepted transition.
 
 The [native cutoff record](validation/host-midi-native-final-20261124.json),
 [selected logs](validation/host-midi-native-final-selected-20261124.log) and

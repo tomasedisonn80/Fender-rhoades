@@ -2,8 +2,8 @@
 #include "processor.hpp"
 #include "public.sdk/source/main/pluginfactory.h"
 
-// Separate component/controller classes, with no GUI or example source copied
-// into the project. SDK lifecycle entry points are supplied by its CMake target.
+// Separate component/controller classes. The original photo editor is optional;
+// SDK lifecycle entry points are supplied by its CMake target.
 BEGIN_FACTORY("Rhodes Research", "https://github.com/baabi-boo/Fender-rhoades", "",
               Steinberg::PFactoryInfo::kNoFlags)
 

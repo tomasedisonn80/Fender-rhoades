@@ -23,7 +23,7 @@ static_assert(kStateModel == 2 && std::is_same_v<ScalarEngine, AudioEngine>);
 static_assert(kStateModel == 1 && std::is_same_v<ScalarEngine, ResearchEngine>);
 #endif
 static_assert(maximum_block_events == 256 && kMaximumChannelCommands == 256 &&
-              kControllerParameterCount == 19 && key_count == 73);
+              kControllerParameterCount == 24 && key_count == 73);
 constexpr std::size_t kTraceFrames = 769;
 constexpr std::size_t kHistoryProbeFrames = 129;
 

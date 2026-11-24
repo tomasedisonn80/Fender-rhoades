@@ -19,7 +19,7 @@ static_assert(kStateModel == 2 && std::is_same_v<ScalarEngine, AudioEngine>);
 #else
 static_assert(kStateModel == 1 && std::is_same_v<ScalarEngine, ResearchEngine>);
 #endif
-static_assert(kMaximumChannelCommands == 256 && kControllerParameterCount == 19);
+static_assert(kMaximumChannelCommands == 256 && kControllerParameterCount == 24);
 constexpr std::size_t frames = 128;
 
 struct Owner {
@@ -323,7 +323,7 @@ void malformed_transactions_and_recall() {
         bad("duplicate parameter queue");
         require(changes.reads == 4 && last.reads == 0, "duplicate queue points were read");
     }
-    for (const vst::ParamID unknown : {vst::ParamID{3}, kAllNotesOffBaseId - 1,
+    for (const vst::ParamID unknown : {vst::ParamID{8}, kAllNotesOffBaseId - 1,
                                      kAllNotesOffBaseId + 16, std::numeric_limits<vst::ParamID>::max()}) {
         last.id = unknown;
         bad("unknown parameter ID");
@@ -334,7 +334,7 @@ void malformed_transactions_and_recall() {
     bad("negative command point count");
     require(last.reads == 0, "negative command point count was traversed");
     last.count = 3;
-    for (const sdk::int32 count : {-1, 20}) {
+    for (const sdk::int32 count : {-1, 25}) {
         changes.count = count;
         bad("invalid total queue count");
         require(changes.reads == 0, "invalid queue count was traversed");

@@ -10,10 +10,12 @@ on:
       - include/rhodes/**
       - src/**
       - plugins/vst3/**
+      - assets/reference/**
       - apps/vst3_benchmark.cpp
       - tests/cpp/**
       - tools/capture_ci_diagnostics.py
       - tools/compare_vst3_legacy.py
+      - tools/verify_editor_assets.py
       - docs/DEPENDENCIES.md
   workflow_dispatch:
 
@@ -70,11 +72,21 @@ jobs:
           path: vst3sdk
           persist-credentials: false
           submodules: false
-      - name: Initialize only the four headless SDK dependencies
+      - name: Initialize the pinned SDK and native editor dependency
         run: >-
           python source/tools/capture_ci_diagnostics.py run --output-dir ci-evidence
           --label sdk-initialize --
-          git -C vst3sdk submodule update --init --depth 1 base cmake pluginterfaces public.sdk
+          git -C vst3sdk submodule update --init --depth 1 base cmake pluginterfaces public.sdk vstgui4
+      - name: Install Linux native editor development libraries
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libx11-dev libfreetype6-dev libxcb1-dev libxcb-util-dev \
+            libxcb-cursor-dev libxcb-keysyms1-dev libxcb-xkb-dev libxkbcommon-dev \
+            libxkbcommon-x11-dev libglib2.0-dev libcairo2-dev libpango1.0-dev \
+            libfontconfig1-dev libwayland-dev wayland-protocols libatkmm-1.6-dev libsqlite3-dev xvfb
+      - name: Verify original and lossless editor assets
+        run: python source/tools/verify_editor_assets.py
       - name: Verify and retain source, SDK and all required submodule revisions
         run: >-
           python source/tools/capture_ci_diagnostics.py metadata --phase before
@@ -86,6 +98,7 @@ jobs:
           --label legacy-configure -- cmake -S legacy-source -B legacy-build
           -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=OFF
           -DRHODES_BUILD_VST3=ON
+          -DRHODES_BUILD_VST3_EDITOR=OFF
           -DRHODES_VST3_SDK_ROOT="${{ github.workspace }}/vst3sdk"
           -DSMTG_ENABLE_VSTGUI_SUPPORT=OFF
           -DSMTG_ENABLE_VST3_PLUGIN_EXAMPLES=OFF
@@ -102,15 +115,16 @@ jobs:
           python source/tools/capture_ci_diagnostics.py baseline-manifest
           --source-root legacy-source --bundle-root legacy-build/VST3/Release
           --build-dir legacy-build --sdk-root vst3sdk --output-dir ci-evidence
-      - name: Configure the optional headless instrument
+      - name: Configure all three instruments with the native photo editor
         run: >-
           python source/tools/capture_ci_diagnostics.py run --output-dir ci-evidence
           --label configure -- cmake -S source -B build/vst3
           -DCMAKE_BUILD_TYPE=Release -DBUILD_TESTING=ON
           -DRHODES_BUILD_VST3=ON
+          -DRHODES_BUILD_VST3_EDITOR=ON
           -DRHODES_VST3_SDK_ROOT="${{ github.workspace }}/vst3sdk"
           -DRHODES_VST3_LEGACY_BUNDLE_ROOT="${{ github.workspace }}/legacy-build/VST3/Release"
-          -DSMTG_ENABLE_VSTGUI_SUPPORT=OFF
+          -DSMTG_ENABLE_VSTGUI_SUPPORT=ON
           -DSMTG_ENABLE_VST3_PLUGIN_EXAMPLES=OFF
           -DSMTG_ENABLE_VST3_HOSTING_EXAMPLES=OFF
           -DSMTG_CREATE_PLUGIN_LINK=OFF
@@ -164,7 +178,9 @@ jobs:
               if not bundle.is_dir() or bundle.is_symlink():
                   raise SystemExit(f'Missing complete bundle directory: {bundle}')
               required = [bundle / 'Contents/Resources' / name for name in
-                          ('LICENSE.txt', 'THIRD_PARTY_NOTICES.md', 'moduleinfo.json')]
+                          ('LICENSE.txt', 'THIRD_PARTY_NOTICES.md', 'moduleinfo.json',
+                           'VSTGUI-LICENSE.txt', 'RapidJSON-LICENSE.txt', 'miniz-LICENSE.txt',
+                           'Expat-LICENSE.txt', 'rhodes-suitcase.png', 'rhodes-suitcase.uidesc')]
               modules = list(bundle.glob(f'Contents/*/{bundle.stem}{suffix}'))
               if not modules:
                   raise SystemExit(f'Missing native module in {bundle}')

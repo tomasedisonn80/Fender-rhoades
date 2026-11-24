@@ -207,7 +207,7 @@ template<class Sample> void run(const char* bundle,int rate,const std::string& p
     require(initial == expected_initial,"exact legacy default state bytes");
     const bool explicit_unity = mode == "explicit1";
     const bool baseline = mode == "baseline";
-    require(instance->controller->getParameterCount() == (baseline ? 18 : 19),
+    require(instance->controller->getParameterCount() == (baseline ? 18 : 24),
             "expected baseline/current public parameter count");
     if (!baseline) {
         vst::ParameterInfo expression{};

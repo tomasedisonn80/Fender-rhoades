@@ -1,6 +1,7 @@
 #pragma once
 
 #include "rhodes/instrument_state.hpp"
+#include "rhodes/plugin_state.hpp"
 #include "pluginterfaces/base/ibstream.h"
 
 #include <optional>
@@ -24,5 +25,19 @@ read_state_stream(Steinberg::IBStream* stream, std::uint16_t model = 1) noexcept
 // Invalid state/model arguments fail before the first stream write.
 [[nodiscard]] bool write_state_stream(Steinberg::IBStream* stream,
                                       InstrumentState state, std::uint16_t model = 1) noexcept;
+
+// Complete instrument/panel configuration. Accept exactly 16 (v1), 20 (v2),
+// or 40 (v3) bytes remaining, and reject mismatched versions/models. Legacy
+// packets recall neutral panel defaults. The legacy helpers above retain their
+// original accepted formats and never silently discard an extended panel.
+[[nodiscard]] std::optional<PluginState>
+read_plugin_state_stream(Steinberg::IBStream* stream, std::uint16_t model = 1) noexcept;
+
+// Adaptive encoding preserves exact legacy exports for neutral panel settings.
+// Host-owned destination sizing and bounded short-transfer behavior match the
+// legacy writer; invalid state/model arguments fail before the first write.
+[[nodiscard]] bool write_plugin_state_stream(Steinberg::IBStream* stream,
+                                             PluginState state,
+                                             std::uint16_t model = 1) noexcept;
 
 } // namespace rhodes::vst3
