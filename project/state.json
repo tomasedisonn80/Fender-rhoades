@@ -4,8 +4,8 @@
   "goal": "Physically model a Fender Rhodes Mark I from evolving mechanical, electromagnetic and circuit states without recorded-note playback.",
   "target": "One documented 73-key Mark I Stage specimen at its specified loaded electrical output; identity and measurements pending.",
   "fidelity_status": "unvalidated",
-  "revision": 39,
-  "updated_at": "2026-11-24T10:32:48Z",
+  "revision": 41,
+  "updated_at": "2026-11-24T11:21:24Z",
   "tasks": [
     {
       "id": "FND-001",
@@ -475,7 +475,7 @@
       "id": "HOST-002",
       "title": "Improve VST3 MIDI interoperability and generic control validation",
       "milestone": "Host interoperability",
-      "status": "in_progress",
+      "status": "blocked",
       "priority": 47,
       "dependencies": [
         "HOST-001"
@@ -490,15 +490,18 @@
         "numerical",
         "documentary"
       ],
-      "evidence": [],
-      "owner": "continuation-c-root",
-      "claim": {
-        "owner": "continuation-c-root",
-        "token": "8a81cd8aa9aa1252476ecb0fda65a65e",
-        "claimed_at": "2026-11-24T09:05:30Z",
-        "expires_at": "2026-11-24T13:05:30Z"
-      },
-      "blockers": [],
+      "evidence": [
+        "HOST-002-20261124-linux-integration",
+        "HOST-002-20261124-legacy-compatibility",
+        "HOST-002-20261124-native-linux-windows",
+        "HOST-002-20261124-native-platform-observation",
+        "HOST-002-20261124-criterion-review"
+      ],
+      "owner": null,
+      "claim": null,
+      "blockers": [
+        "C04 incomplete: applicable completed macOS SDK/module/loaded-MIDI, core and full Python results are unavailable. The 11:20:37 UTC closing readback records the VST3 retry cancelled without execution and Foundation macOS jobs queued. Retain the five attached scoped records; see docs/validation/host-midi-acceptance-20261124.md and docs/validation/host-midi-handoff-20261124.md. Preserve PHY-002/RT-001 ownership and unvalidated fidelity; append new native evidence and a reviewed acceptance decision before completion."
+      ],
       "paths": [
         "plugins/vst3",
         "include/rhodes/event_processor.hpp",
@@ -829,6 +832,22 @@
       "task": "HOST-002",
       "owner": "continuation-c-root",
       "detail": "Include the narrowly reviewed portable artifact-name verification fix exposed by Windows native CI. Preserve PHY-002 and RT-001 ownership and acceptance; no numerical or timing experiments are claimed by this fix."
+    },
+    {
+      "revision": 40,
+      "at": "2026-11-24T11:21:23Z",
+      "action": "evidence_attached",
+      "task": "HOST-002",
+      "owner": "continuation-c-root",
+      "detail": "Record scoped passes and incomplete acceptance; no completion or fidelity promotion. Metadata-only attachment reviewed in worker 095; status transition follows through the CLI."
+    },
+    {
+      "revision": 41,
+      "at": "2026-11-24T11:21:24Z",
+      "action": "block",
+      "task": "HOST-002",
+      "owner": "continuation-c-root",
+      "detail": "C04 incomplete: applicable completed macOS SDK/module/loaded-MIDI, core and full Python results are unavailable. The 11:20:37 UTC closing readback records the VST3 retry cancelled without execution and Foundation macOS jobs queued. Retain the five attached scoped records; see docs/validation/host-midi-acceptance-20261124.md and docs/validation/host-midi-handoff-20261124.md. Preserve PHY-002/RT-001 ownership and unvalidated fidelity; append new native evidence and a reviewed acceptance decision before completion."
     }
   ]
 }

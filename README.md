@@ -33,7 +33,7 @@ remains available. This replay checks output identity; it does not repeat the
 independent numerical integration. All timing captures and their outliers are
 retained separately from those numerical results.
 
-The [native platform record](docs/validation/native-platforms-20261124.md)
+The historical [native platform record](docs/validation/native-platforms-20261124.md)
 documents successful Linux, Windows and macOS builds and host tests. All three
 variants passed the SDK and module metadata validators on each platform at the
 recorded revision; exact test counts and platform-specific skips are listed.
@@ -43,9 +43,21 @@ establish native DAW operation or audio-device deadlines.
 The [HOST-002 MIDI continuation](docs/specs/HOST_MIDI_20261124.md) adds
 channel-specific CC123 release commands, validated polyphonic pressure as a
 no-op, and strict generic-control text conversion. Shared sustain and ringing
-tails are preserved; pressure does not alter synthesis. Acceptance, including
-native validation of the changed source, remains pending. The
-[VST3 guide](docs/VST3.md) explains the controls and host-delivery limits.
+tails are preserved; pressure does not alter synthesis. Retained checks include
+[327/327 local Linux CTests](docs/validation/host-midi-linux-final-20261124.json)
+and [157/157 native VST3 CTests on each of Linux and Windows](docs/validation/host-midi-native-final-20261124.json).
+The [CC123](docs/agents/reports/continuation-c/w5-082.md),
+[pressure](docs/agents/reports/continuation-c/w5-083.md) and
+[control-text](docs/agents/reports/continuation-c/w5-084.md) criterion reviews
+pass within their frozen synthetic scope. **HOST-002 remains incomplete:**
+the [final criterion review](docs/validation/host-midi-acceptance-20261124.md)
+records C01–C03 as passed and C04 as incomplete. Current native macOS validation
+and a passing final acceptance decision remain pending.
+The [current verification section](docs/VST3.md#current-host-002-verification--24-november-2026)
+records the executed source commits, core/sanitizer/Python results and dated macOS
+status observations. The [continuation handoff](docs/validation/host-midi-handoff-20261124.md)
+identifies the missing native results. The [VST3 guide](docs/VST3.md) also explains
+the existing 18 controls, unchanged saved configuration and host-delivery limits.
 
 The separate [four-fixture contact diagnostic](docs/CONTACT_PEAK_DIAGNOSTIC.md)
 compares synthetic compression and force maxima with independent references,

@@ -6,9 +6,9 @@
 
 **Fidelity status:** `unvalidated`. Task completion is not a realism percentage.
 
-**State revision:** 39 · **Last state change:** 2026-11-24T10:32:48Z
+**State revision:** 41 · **Last state change:** 2026-11-24T11:21:24Z
 
-blocked: **2** | done: **3** | in_progress: **3** | todo: **7**
+blocked: **3** | done: **3** | in_progress: **2** | todo: **7**
 
 ## Task ledger
 
@@ -21,7 +21,7 @@ blocked: **2** | done: **3** | in_progress: **3** | todo: **7**
 | PHY-002 | Implement finite-mass hammer and damper contact reference | in_progress | PHY-001 | — |
 | RT-001 | Measure runtime cost and numerical approximation errors | in_progress | PHY-001 | — |
 | HOST-001 | Build and validate an experimental VST3 instrument adapter | done | PHY-001 | HOST-20261124-current-native, HOST-20261124-final-review |
-| HOST-002 | Improve VST3 MIDI interoperability and generic control validation | in_progress | HOST-001 | — |
+| HOST-002 | Improve VST3 MIDI interoperability and generic control validation | blocked | HOST-001 | HOST-002-20261124-linux-integration, HOST-002-20261124-legacy-compatibility, HOST-002-20261124-native-linux-windows, HOST-002-20261124-native-platform-observation, HOST-002-20261124-criterion-review |
 | MAG-001 | Identify magnetic linkage and reciprocal force reference | todo | SPEC-001, DATA-001 | — |
 | ELEC-001 | Identify and solve the specimen pickup network | todo | SPEC-001, DATA-001 | — |
 | VAL-001 | Predict held-out behavior of one measured note | todo | PHY-002, MAG-001, ELEC-001 | — |
@@ -36,12 +36,12 @@ Run `python3 tools/project.py next` for lease-aware available work. The list bel
 
 - **PHY-002 — Implement finite-mass hammer and damper contact reference**. Claimed by `continuation-b-root` until `2026-11-24T11:25:28Z`; check current lease before starting.
 - **RT-001 — Measure runtime cost and numerical approximation errors**. Claimed by `continuation-b-root` until `2026-11-24T11:25:28Z`; check current lease before starting.
-- **HOST-002 — Improve VST3 MIDI interoperability and generic control validation**. Claimed by `continuation-c-root` until `2026-11-24T13:05:30Z`; check current lease before starting.
 
 ## Explicit blockers
 
 - **SPEC-001:** No identified physical specimen or authenticated measurement set has been supplied.
 - **DATA-001:** Actual calibrated specimen recordings and motion/impedance measurements are unavailable; templates are not observations.
+- **HOST-002:** C04 incomplete: applicable completed macOS SDK/module/loaded-MIDI, core and full Python results are unavailable. The 11:20:37 UTC closing readback records the VST3 retry cancelled without execution and Foundation macOS jobs queued. Retain the five attached scoped records; see docs/validation/host-midi-acceptance-20261124.md and docs/validation/host-midi-handoff-20261124.md. Preserve PHY-002/RT-001 ownership and unvalidated fidelity; append new native evidence and a reviewed acceptance decision before completion.
 
 ## Completion discipline
 

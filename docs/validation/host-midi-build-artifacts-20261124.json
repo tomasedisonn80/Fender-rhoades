@@ -1,0 +1,634 @@
+{
+  "schema_version": 1,
+  "report_id": "continuation-c-w5-089",
+  "observation_cutoff_utc": "2026-11-24T11:04:46Z",
+  "repository": "baabi-boo/Fender-rhoades",
+  "github_link_id": "link_6af40604f01c8191949ebac02c39dc15",
+  "scope": "Read-only metadata and CI archive/upload log verification for existing experimental VST3 artifacts. No independent download or binary inspection.",
+  "source_commit": "ce59b0c254ab99b399f03e63094b10ce10933e71",
+  "run": {
+    "id": 45373649775,
+    "name": "Experimental VST3 CI",
+    "head_sha": "ce59b0c254ab99b399f03e63094b10ce10933e71",
+    "path": ".github/workflows/vst3.yml",
+    "status": "queued",
+    "conclusion": null,
+    "html_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45373649775",
+    "run_attempt": 2,
+    "created_at": "2026-11-24T10:19:14Z",
+    "updated_at": "2026-11-24T10:54:55Z"
+  },
+  "artifact_inventory": {
+    "source_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/runs/45373649775/artifacts?per_page=100",
+    "primary_tool": "fetch_workflow_run_artifacts",
+    "primary_tool_artifacts": [
+      {
+        "id": 14912360866,
+        "name": "experimental-vst3-Windows-X64-ce59b0c254ab99b399f03e63094b10ce10933e71",
+        "size_in_bytes": 1417727,
+        "url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/artifacts/14912360866",
+        "archive_download_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/artifacts/14912360866/zip",
+        "expired": false,
+        "created_at": "2026-11-24T10:40:32Z",
+        "expires_at": "2026-12-01T10:40:31Z",
+        "updated_at": "2026-11-24T10:40:32Z",
+        "digest": "sha256:34df850405a7e4539e3d1c23b7a38b09054e6f1cc2149ff83c0b6b50d101aed8",
+        "workflow_run": {
+          "id": 45373649775,
+          "repository_id": 1468684538,
+          "head_repository_id": 1468684538,
+          "head_branch": "main",
+          "head_sha": "ce59b0c254ab99b399f03e63094b10ce10933e71"
+        }
+      },
+      {
+        "id": 14911156428,
+        "name": "experimental-vst3-Linux-X64-ce59b0c254ab99b399f03e63094b10ce10933e71",
+        "size_in_bytes": 509215,
+        "url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/artifacts/14911156428",
+        "archive_download_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/artifacts/14911156428/zip",
+        "expired": false,
+        "created_at": "2026-11-24T10:30:36Z",
+        "expires_at": "2026-12-01T10:30:35Z",
+        "updated_at": "2026-11-24T10:30:36Z",
+        "digest": "sha256:cdbf9493c00dfa1f839f213ae0e091e045d4a5f61ad3e6ca6d3c8c9550da6295",
+        "workflow_run": {
+          "id": 45373649775,
+          "repository_id": 1468684538,
+          "head_repository_id": 1468684538,
+          "head_branch": "main",
+          "head_sha": "ce59b0c254ab99b399f03e63094b10ce10933e71"
+        }
+      }
+    ],
+    "independent_inventory_get_total_count": 2,
+    "returned_count": 2,
+    "all_returned_artifacts_unexpired": true,
+    "macos_artifacts_returned": 0
+  },
+  "artifacts": [
+    {
+      "platform": "Linux X64",
+      "metadata": {
+        "id": 14911156428,
+        "node_id": "MDg6QXJ0aWZhY3QxNDkxMTE1NjQyOA==",
+        "name": "experimental-vst3-Linux-X64-ce59b0c254ab99b399f03e63094b10ce10933e71",
+        "size_in_bytes": 509215,
+        "url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/artifacts/14911156428",
+        "archive_download_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/artifacts/14911156428/zip",
+        "expired": false,
+        "digest": "sha256:cdbf9493c00dfa1f839f213ae0e091e045d4a5f61ad3e6ca6d3c8c9550da6295",
+        "created_at": "2026-11-24T10:30:36Z",
+        "updated_at": "2026-11-24T10:30:36Z",
+        "expires_at": "2026-12-01T10:30:35Z",
+        "workflow_run": {
+          "id": 45373649775,
+          "repository_id": 1468684538,
+          "head_repository_id": 1468684538,
+          "head_branch": "main",
+          "head_sha": "ce59b0c254ab99b399f03e63094b10ce10933e71"
+        }
+      },
+      "download_ui_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45373649775/artifacts/14911156428",
+      "original_successful_job_id": 138374005076,
+      "original_job_review_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45373649775/job/138374005076",
+      "original_job_log_api_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/jobs/138374005076/logs",
+      "source_commit": "ce59b0c254ab99b399f03e63094b10ce10933e71",
+      "archive": {
+        "format": "tar.gz inside GitHub artifact ZIP",
+        "inner_archive_basename": "experimental-vst3-Linux-X64-ce59b0c254ab99b399f03e63094b10ce10933e71.tar.gz",
+        "ci_verified_entry_count": 24,
+        "complete_bundles": [
+          "RhodesResearch.vst3",
+          "RhodesResearchFiltered.vst3",
+          "RhodesResearchQuadrature.vst3"
+        ],
+        "required_resources": [
+          "Contents/Resources/LICENSE.txt",
+          "Contents/Resources/THIRD_PARTY_NOTICES.md",
+          "Contents/Resources/moduleinfo.json"
+        ],
+        "ci_checks": [
+          "nonempty native module for each complete bundle directory",
+          "complete archive inventory equals source inventory",
+          "file SHA-256 matches source bytes",
+          "entry mode preserved",
+          "internal symlink target preserved"
+        ]
+      },
+      "retention_days_from_upload_log": 7,
+      "upload_log_sha256": "cdbf9493c00dfa1f839f213ae0e091e045d4a5f61ad3e6ca6d3c8c9550da6295",
+      "exact_verified_log_line": "2026-11-24T10:30:34.9809807Z Verified 24 entries in build/vst3-artifacts/experimental-vst3-Linux-X64-ce59b0c254ab99b399f03e63094b10ce10933e71.tar.gz",
+      "exact_upload_success_log_line": "2026-11-24T10:30:36.6737896Z Artifact experimental-vst3-Linux-X64-ce59b0c254ab99b399f03e63094b10ce10933e71 has been successfully uploaded! Final size is 509215 bytes. Artifact ID is 14911156428",
+      "exact_download_url_log_line": "2026-11-24T10:30:36.6740673Z Artifact download URL: https://github.com/baabi-boo/Fender-rhoades/actions/runs/45373649775/artifacts/14911156428",
+      "original_job_step_summaries": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Check out project",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Check out the pinned official SDK",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Initialize only the four headless SDK dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Verify the SDK and every required submodule revision",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Configure the optional headless instrument",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Build all three actual modules and retained host tests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Run retained host tests and all three official SDK validators",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Archive all three validated experimental bundles",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Upload validated experimental bundles",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20
+        },
+        {
+          "name": "Post Check out the pinned official SDK",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21
+        },
+        {
+          "name": "Post Check out project",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23
+        }
+      ],
+      "ctest_summary_log_line": "2026-11-24T10:30:34.7092105Z 100% tests passed out of 157",
+      "archive_and_upload_log_excerpt": {
+        "first_log_line": 2593,
+        "last_log_line": 2691,
+        "lines": [
+          "2026-11-24T10:30:34.7439195Z ##[group]Run python - <<'PY'",
+          "2026-11-24T10:30:34.7439493Z \u001b[36;1mpython - <<'PY'\u001b[0m",
+          "2026-11-24T10:30:34.7439699Z \u001b[36;1mfrom pathlib import Path\u001b[0m",
+          "2026-11-24T10:30:34.7439913Z \u001b[36;1mimport hashlib\u001b[0m",
+          "2026-11-24T10:30:34.7440092Z \u001b[36;1mimport os\u001b[0m",
+          "2026-11-24T10:30:34.7440264Z \u001b[36;1mimport platform\u001b[0m",
+          "2026-11-24T10:30:34.7440447Z \u001b[36;1mimport stat\u001b[0m",
+          "2026-11-24T10:30:34.7440624Z \u001b[36;1mimport tarfile\u001b[0m",
+          "2026-11-24T10:30:34.7440801Z \u001b[36;1m\u001b[0m",
+          "2026-11-24T10:30:34.7441011Z \u001b[36;1mbundle_root = Path(os.environ['VST3_BUNDLE_ROOT'])\u001b[0m",
+          "2026-11-24T10:30:34.7441333Z \u001b[36;1martifact_name = os.environ['VST3_ARTIFACT_NAME']\u001b[0m",
+          "2026-11-24T10:30:34.7441687Z \u001b[36;1msuffix = {'Linux': '.so', 'Windows': '.vst3', 'Darwin': ''}[platform.system()]\u001b[0m",
+          "2026-11-24T10:30:34.7442048Z \u001b[36;1mbundles = [bundle_root / f'{name}.vst3' for name in\u001b[0m",
+          "2026-11-24T10:30:34.7442346Z \u001b[36;1m           ('RhodesResearch', 'RhodesResearchFiltered',\u001b[0m",
+          "2026-11-24T10:30:34.7442836Z \u001b[36;1m            'RhodesResearchQuadrature')]\u001b[0m",
+          "2026-11-24T10:30:34.7443071Z \u001b[36;1msources = {}\u001b[0m",
+          "2026-11-24T10:30:34.7443259Z \u001b[36;1mfor bundle in bundles:\u001b[0m",
+          "2026-11-24T10:30:34.7443495Z \u001b[36;1m    if not bundle.is_dir() or bundle.is_symlink():\u001b[0m",
+          "2026-11-24T10:30:34.7443825Z \u001b[36;1m        raise SystemExit(f'Missing complete bundle directory: {bundle}')\u001b[0m",
+          "2026-11-24T10:30:34.7444471Z \u001b[36;1m    required = [bundle / 'Contents/Resources' / name for name in\u001b[0m",
+          "2026-11-24T10:30:34.7444835Z \u001b[36;1m                ('LICENSE.txt', 'THIRD_PARTY_NOTICES.md', 'moduleinfo.json')]\u001b[0m",
+          "2026-11-24T10:30:34.7445205Z \u001b[36;1m    modules = list(bundle.glob(f'Contents/*/{bundle.stem}{suffix}'))\u001b[0m",
+          "2026-11-24T10:30:34.7445493Z \u001b[36;1m    if not modules:\u001b[0m",
+          "2026-11-24T10:30:34.7445739Z \u001b[36;1m        raise SystemExit(f'Missing native module in {bundle}')\u001b[0m",
+          "2026-11-24T10:30:34.7446029Z \u001b[36;1m    for path in required + modules:\u001b[0m",
+          "2026-11-24T10:30:34.7446348Z \u001b[36;1m        if not path.is_file() or path.is_symlink() or path.stat().st_size == 0:\u001b[0m",
+          "2026-11-24T10:30:34.7446725Z \u001b[36;1m            raise SystemExit(f'Missing or empty bundle file: {path}')\u001b[0m",
+          "2026-11-24T10:30:34.7447041Z \u001b[36;1m    for path in (bundle, *bundle.rglob('*')):\u001b[0m",
+          "2026-11-24T10:30:34.7447349Z \u001b[36;1m        sources[path.relative_to(bundle_root).as_posix()] = path\u001b[0m",
+          "2026-11-24T10:30:34.7447617Z \u001b[36;1m\u001b[0m",
+          "2026-11-24T10:30:34.7447870Z \u001b[36;1marchive_path = Path('build/vst3-artifacts') / f'{artifact_name}.tar.gz'\u001b[0m",
+          "2026-11-24T10:30:34.7448237Z \u001b[36;1marchive_path.parent.mkdir(parents=True, exist_ok=True)\u001b[0m",
+          "2026-11-24T10:30:34.7448595Z \u001b[36;1m# The inner tar preserves complete bundles, modes and symlinks inside\u001b[0m",
+          "2026-11-24T10:30:34.7448969Z \u001b[36;1m# GitHub's artifact ZIP. Never upload individual module binaries.\u001b[0m",
+          "2026-11-24T10:30:34.7449337Z \u001b[36;1mwith tarfile.open(archive_path, 'w:gz', format=tarfile.PAX_FORMAT,\u001b[0m",
+          "2026-11-24T10:30:34.7449664Z \u001b[36;1m                  dereference=False) as archive:\u001b[0m",
+          "2026-11-24T10:30:34.7449918Z \u001b[36;1m    for bundle in bundles:\u001b[0m",
+          "2026-11-24T10:30:34.7450158Z \u001b[36;1m        archive.add(bundle, arcname=bundle.name)\u001b[0m",
+          "2026-11-24T10:30:34.7450448Z \u001b[36;1mwith tarfile.open(archive_path, 'r:gz') as archive:\u001b[0m",
+          "2026-11-24T10:30:34.7450737Z \u001b[36;1m    if set(archive.getnames()) != set(sources):\u001b[0m",
+          "2026-11-24T10:30:34.7451069Z \u001b[36;1m        raise SystemExit('Archive does not contain all three complete bundles')\u001b[0m",
+          "2026-11-24T10:30:34.7451402Z \u001b[36;1m    for name, source in sources.items():\u001b[0m",
+          "2026-11-24T10:30:34.7451653Z \u001b[36;1m        member = archive.getmember(name)\u001b[0m",
+          "2026-11-24T10:30:34.7451943Z \u001b[36;1m        if member.mode != stat.S_IMODE(source.lstat().st_mode):\u001b[0m",
+          "2026-11-24T10:30:34.7452279Z \u001b[36;1m            raise SystemExit(f'Archive permission mismatch: {name}')\u001b[0m",
+          "2026-11-24T10:30:34.7452571Z \u001b[36;1m        if source.is_symlink():\u001b[0m",
+          "2026-11-24T10:30:34.7452856Z \u001b[36;1m            if not member.issym() or member.linkname != os.readlink(source):\u001b[0m",
+          "2026-11-24T10:30:34.7453378Z \u001b[36;1m                raise SystemExit(f'Archive symlink mismatch: {name}')\u001b[0m",
+          "2026-11-24T10:30:34.7453664Z \u001b[36;1m        elif source.is_file():\u001b[0m",
+          "2026-11-24T10:30:34.7453928Z \u001b[36;1m            with archive.extractfile(member) as archived:\u001b[0m",
+          "2026-11-24T10:30:34.7454440Z \u001b[36;1m                if hashlib.file_digest(archived, 'sha256').digest() != \\\u001b[0m",
+          "2026-11-24T10:30:34.7454775Z \u001b[36;1m                        hashlib.sha256(source.read_bytes()).digest():\u001b[0m",
+          "2026-11-24T10:30:34.7455095Z \u001b[36;1m                    raise SystemExit(f'Archive content mismatch: {name}')\u001b[0m",
+          "2026-11-24T10:30:34.7455452Z \u001b[36;1mwith open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as output:\u001b[0m",
+          "2026-11-24T10:30:34.7455840Z \u001b[36;1m    output.write(f'name={artifact_name}\\npath={archive_path.as_posix()}\\n')\u001b[0m",
+          "2026-11-24T10:30:34.7456214Z \u001b[36;1mprint(f'Verified {len(sources)} entries in {archive_path}')\u001b[0m",
+          "2026-11-24T10:30:34.7456487Z \u001b[36;1mPY\u001b[0m",
+          "2026-11-24T10:30:34.7485025Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}",
+          "2026-11-24T10:30:34.7485407Z env:",
+          "2026-11-24T10:30:34.7485643Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.18/x64",
+          "2026-11-24T10:30:34.7485979Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib/pkgconfig",
+          "2026-11-24T10:30:34.7486312Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64",
+          "2026-11-24T10:30:34.7486622Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64",
+          "2026-11-24T10:30:34.7486914Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64",
+          "2026-11-24T10:30:34.7487209Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib",
+          "2026-11-24T10:30:34.7487482Z   VST3_BUNDLE_ROOT: build/vst3/VST3/Release",
+          "2026-11-24T10:30:34.7487837Z   VST3_ARTIFACT_NAME: experimental-vst3-Linux-X64-ce59b0c254ab99b399f03e63094b10ce10933e71",
+          "2026-11-24T10:30:34.7488188Z ##[endgroup]",
+          "2026-11-24T10:30:34.9809807Z Verified 24 entries in build/vst3-artifacts/experimental-vst3-Linux-X64-ce59b0c254ab99b399f03e63094b10ce10933e71.tar.gz",
+          "2026-11-24T10:30:34.9928328Z ##[group]Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9",
+          "2026-11-24T10:30:34.9928665Z with:",
+          "2026-11-24T10:30:34.9928940Z   name: experimental-vst3-Linux-X64-ce59b0c254ab99b399f03e63094b10ce10933e71",
+          "2026-11-24T10:30:34.9929448Z   path: build/vst3-artifacts/experimental-vst3-Linux-X64-ce59b0c254ab99b399f03e63094b10ce10933e71.tar.gz",
+          "2026-11-24T10:30:34.9929861Z   if-no-files-found: error",
+          "2026-11-24T10:30:34.9930054Z   retention-days: 7",
+          "2026-11-24T10:30:34.9930226Z   compression-level: 0",
+          "2026-11-24T10:30:34.9930403Z   overwrite: false",
+          "2026-11-24T10:30:34.9930574Z   include-hidden-files: false",
+          "2026-11-24T10:30:34.9930767Z   archive: true",
+          "2026-11-24T10:30:34.9930923Z env:",
+          "2026-11-24T10:30:34.9931142Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.18/x64",
+          "2026-11-24T10:30:34.9931477Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib/pkgconfig",
+          "2026-11-24T10:30:34.9931801Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64",
+          "2026-11-24T10:30:34.9932128Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64",
+          "2026-11-24T10:30:34.9932432Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.11.18/x64",
+          "2026-11-24T10:30:34.9932721Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.11.18/x64/lib",
+          "2026-11-24T10:30:34.9932973Z ##[endgroup]",
+          "2026-11-24T10:30:35.1206670Z With the provided path, there will be 1 file uploaded",
+          "2026-11-24T10:30:35.1223784Z Artifact name is valid!",
+          "2026-11-24T10:30:35.1227842Z Root directory input is valid!",
+          "2026-11-24T10:30:35.4865217Z Uploading artifact: experimental-vst3-Linux-X64-ce59b0c254ab99b399f03e63094b10ce10933e71.zip",
+          "2026-11-24T10:30:35.4894723Z Beginning upload of artifact content to blob storage",
+          "2026-11-24T10:30:36.0026333Z Uploaded bytes 509215",
+          "2026-11-24T10:30:36.0643443Z Finished uploading artifact content to blob storage!",
+          "2026-11-24T10:30:36.0644396Z SHA256 digest of uploaded artifact is cdbf9493c00dfa1f839f213ae0e091e045d4a5f61ad3e6ca6d3c8c9550da6295",
+          "2026-11-24T10:30:36.0645032Z Finalizing artifact upload",
+          "2026-11-24T10:30:36.6736936Z Artifact experimental-vst3-Linux-X64-ce59b0c254ab99b399f03e63094b10ce10933e71 successfully finalized. Artifact ID 14911156428",
+          "2026-11-24T10:30:36.6737896Z Artifact experimental-vst3-Linux-X64-ce59b0c254ab99b399f03e63094b10ce10933e71 has been successfully uploaded! Final size is 509215 bytes. Artifact ID is 14911156428",
+          "2026-11-24T10:30:36.6740673Z Artifact download URL: https://github.com/baabi-boo/Fender-rhoades/actions/runs/45373649775/artifacts/14911156428"
+        ]
+      }
+    },
+    {
+      "platform": "Windows X64",
+      "metadata": {
+        "id": 14912360866,
+        "node_id": "MDg6QXJ0aWZhY3QxNDkxMjM2MDg2Ng==",
+        "name": "experimental-vst3-Windows-X64-ce59b0c254ab99b399f03e63094b10ce10933e71",
+        "size_in_bytes": 1417727,
+        "url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/artifacts/14912360866",
+        "archive_download_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/artifacts/14912360866/zip",
+        "expired": false,
+        "digest": "sha256:34df850405a7e4539e3d1c23b7a38b09054e6f1cc2149ff83c0b6b50d101aed8",
+        "created_at": "2026-11-24T10:40:32Z",
+        "updated_at": "2026-11-24T10:40:32Z",
+        "expires_at": "2026-12-01T10:40:31Z",
+        "workflow_run": {
+          "id": 45373649775,
+          "repository_id": 1468684538,
+          "head_repository_id": 1468684538,
+          "head_branch": "main",
+          "head_sha": "ce59b0c254ab99b399f03e63094b10ce10933e71"
+        }
+      },
+      "download_ui_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45373649775/artifacts/14912360866",
+      "original_successful_job_id": 138374004751,
+      "original_job_review_url": "https://github.com/baabi-boo/Fender-rhoades/actions/runs/45373649775/job/138374004751",
+      "original_job_log_api_url": "https://api.github.com/repos/baabi-boo/Fender-rhoades/actions/jobs/138374004751/logs",
+      "source_commit": "ce59b0c254ab99b399f03e63094b10ce10933e71",
+      "archive": {
+        "format": "tar.gz inside GitHub artifact ZIP",
+        "inner_archive_basename": "experimental-vst3-Windows-X64-ce59b0c254ab99b399f03e63094b10ce10933e71.tar.gz",
+        "ci_verified_entry_count": 30,
+        "complete_bundles": [
+          "RhodesResearch.vst3",
+          "RhodesResearchFiltered.vst3",
+          "RhodesResearchQuadrature.vst3"
+        ],
+        "required_resources": [
+          "Contents/Resources/LICENSE.txt",
+          "Contents/Resources/THIRD_PARTY_NOTICES.md",
+          "Contents/Resources/moduleinfo.json"
+        ],
+        "ci_checks": [
+          "nonempty native module for each complete bundle directory",
+          "complete archive inventory equals source inventory",
+          "file SHA-256 matches source bytes",
+          "entry mode preserved",
+          "internal symlink target preserved"
+        ]
+      },
+      "retention_days_from_upload_log": 7,
+      "upload_log_sha256": "34df850405a7e4539e3d1c23b7a38b09054e6f1cc2149ff83c0b6b50d101aed8",
+      "exact_verified_log_line": "2026-11-24T10:40:30.8588516Z Verified 30 entries in build\\vst3-artifacts\\experimental-vst3-Windows-X64-ce59b0c254ab99b399f03e63094b10ce10933e71.tar.gz",
+      "exact_upload_success_log_line": "2026-11-24T10:40:32.9922502Z Artifact experimental-vst3-Windows-X64-ce59b0c254ab99b399f03e63094b10ce10933e71 has been successfully uploaded! Final size is 1417727 bytes. Artifact ID is 14912360866",
+      "exact_download_url_log_line": "2026-11-24T10:40:32.9929600Z Artifact download URL: https://github.com/baabi-boo/Fender-rhoades/actions/runs/45373649775/artifacts/14912360866",
+      "original_job_step_summaries": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1
+        },
+        {
+          "name": "Check out project",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2
+        },
+        {
+          "name": "Check out the pinned official SDK",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3
+        },
+        {
+          "name": "Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4
+        },
+        {
+          "name": "Initialize only the four headless SDK dependencies",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5
+        },
+        {
+          "name": "Verify the SDK and every required submodule revision",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6
+        },
+        {
+          "name": "Configure the optional headless instrument",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7
+        },
+        {
+          "name": "Build all three actual modules and retained host tests",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8
+        },
+        {
+          "name": "Run retained host tests and all three official SDK validators",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9
+        },
+        {
+          "name": "Archive all three validated experimental bundles",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10
+        },
+        {
+          "name": "Upload validated experimental bundles",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11
+        },
+        {
+          "name": "Post Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 20
+        },
+        {
+          "name": "Post Check out the pinned official SDK",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 21
+        },
+        {
+          "name": "Post Check out project",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 22
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 23
+        }
+      ],
+      "ctest_summary_log_line": "2026-11-24T10:40:29.7207527Z 100% tests passed out of 157",
+      "archive_and_upload_log_excerpt": {
+        "first_log_line": 1120,
+        "last_log_line": 1216,
+        "lines": [
+          "2026-11-24T10:40:29.7638214Z ##[group]Run python - <<'PY'",
+          "2026-11-24T10:40:29.7638593Z \u001b[36;1mpython - <<'PY'\u001b[0m",
+          "2026-11-24T10:40:29.7638845Z \u001b[36;1mfrom pathlib import Path\u001b[0m",
+          "2026-11-24T10:40:29.7639103Z \u001b[36;1mimport hashlib\u001b[0m",
+          "2026-11-24T10:40:29.7639324Z \u001b[36;1mimport os\u001b[0m",
+          "2026-11-24T10:40:29.7639526Z \u001b[36;1mimport platform\u001b[0m",
+          "2026-11-24T10:40:29.7639741Z \u001b[36;1mimport stat\u001b[0m",
+          "2026-11-24T10:40:29.7639957Z \u001b[36;1mimport tarfile\u001b[0m",
+          "2026-11-24T10:40:29.7640160Z \u001b[36;1m\u001b[0m",
+          "2026-11-24T10:40:29.7640406Z \u001b[36;1mbundle_root = Path(os.environ['VST3_BUNDLE_ROOT'])\u001b[0m",
+          "2026-11-24T10:40:29.7640795Z \u001b[36;1martifact_name = os.environ['VST3_ARTIFACT_NAME']\u001b[0m",
+          "2026-11-24T10:40:29.7641224Z \u001b[36;1msuffix = {'Linux': '.so', 'Windows': '.vst3', 'Darwin': ''}[platform.system()]\u001b[0m",
+          "2026-11-24T10:40:29.7641670Z \u001b[36;1mbundles = [bundle_root / f'{name}.vst3' for name in\u001b[0m",
+          "2026-11-24T10:40:29.7642048Z \u001b[36;1m           ('RhodesResearch', 'RhodesResearchFiltered',\u001b[0m",
+          "2026-11-24T10:40:29.7642404Z \u001b[36;1m            'RhodesResearchQuadrature')]\u001b[0m",
+          "2026-11-24T10:40:29.7642692Z \u001b[36;1msources = {}\u001b[0m",
+          "2026-11-24T10:40:29.7642898Z \u001b[36;1mfor bundle in bundles:\u001b[0m",
+          "2026-11-24T10:40:29.7643178Z \u001b[36;1m    if not bundle.is_dir() or bundle.is_symlink():\u001b[0m",
+          "2026-11-24T10:40:29.7643587Z \u001b[36;1m        raise SystemExit(f'Missing complete bundle directory: {bundle}')\u001b[0m",
+          "2026-11-24T10:40:29.7644046Z \u001b[36;1m    required = [bundle / 'Contents/Resources' / name for name in\u001b[0m",
+          "2026-11-24T10:40:29.7644692Z \u001b[36;1m                ('LICENSE.txt', 'THIRD_PARTY_NOTICES.md', 'moduleinfo.json')]\u001b[0m",
+          "2026-11-24T10:40:29.7645685Z \u001b[36;1m    modules = list(bundle.glob(f'Contents/*/{bundle.stem}{suffix}'))\u001b[0m",
+          "2026-11-24T10:40:29.7646082Z \u001b[36;1m    if not modules:\u001b[0m",
+          "2026-11-24T10:40:29.7646404Z \u001b[36;1m        raise SystemExit(f'Missing native module in {bundle}')\u001b[0m",
+          "2026-11-24T10:40:29.7646771Z \u001b[36;1m    for path in required + modules:\u001b[0m",
+          "2026-11-24T10:40:29.7647157Z \u001b[36;1m        if not path.is_file() or path.is_symlink() or path.stat().st_size == 0:\u001b[0m",
+          "2026-11-24T10:40:29.7647625Z \u001b[36;1m            raise SystemExit(f'Missing or empty bundle file: {path}')\u001b[0m",
+          "2026-11-24T10:40:29.7648016Z \u001b[36;1m    for path in (bundle, *bundle.rglob('*')):\u001b[0m",
+          "2026-11-24T10:40:29.7648388Z \u001b[36;1m        sources[path.relative_to(bundle_root).as_posix()] = path\u001b[0m",
+          "2026-11-24T10:40:29.7648719Z \u001b[36;1m\u001b[0m",
+          "2026-11-24T10:40:29.7649028Z \u001b[36;1marchive_path = Path('build/vst3-artifacts') / f'{artifact_name}.tar.gz'\u001b[0m",
+          "2026-11-24T10:40:29.7649497Z \u001b[36;1marchive_path.parent.mkdir(parents=True, exist_ok=True)\u001b[0m",
+          "2026-11-24T10:40:29.7649959Z \u001b[36;1m# The inner tar preserves complete bundles, modes and symlinks inside\u001b[0m",
+          "2026-11-24T10:40:29.7650432Z \u001b[36;1m# GitHub's artifact ZIP. Never upload individual module binaries.\u001b[0m",
+          "2026-11-24T10:40:29.7650919Z \u001b[36;1mwith tarfile.open(archive_path, 'w:gz', format=tarfile.PAX_FORMAT,\u001b[0m",
+          "2026-11-24T10:40:29.7651319Z \u001b[36;1m                  dereference=False) as archive:\u001b[0m",
+          "2026-11-24T10:40:29.7651613Z \u001b[36;1m    for bundle in bundles:\u001b[0m",
+          "2026-11-24T10:40:29.7651898Z \u001b[36;1m        archive.add(bundle, arcname=bundle.name)\u001b[0m",
+          "2026-11-24T10:40:29.7652259Z \u001b[36;1mwith tarfile.open(archive_path, 'r:gz') as archive:\u001b[0m",
+          "2026-11-24T10:40:29.7652619Z \u001b[36;1m    if set(archive.getnames()) != set(sources):\u001b[0m",
+          "2026-11-24T10:40:29.7653043Z \u001b[36;1m        raise SystemExit('Archive does not contain all three complete bundles')\u001b[0m",
+          "2026-11-24T10:40:29.7653474Z \u001b[36;1m    for name, source in sources.items():\u001b[0m",
+          "2026-11-24T10:40:29.7653785Z \u001b[36;1m        member = archive.getmember(name)\u001b[0m",
+          "2026-11-24T10:40:29.7654132Z \u001b[36;1m        if member.mode != stat.S_IMODE(source.lstat().st_mode):\u001b[0m",
+          "2026-11-24T10:40:29.7654557Z \u001b[36;1m            raise SystemExit(f'Archive permission mismatch: {name}')\u001b[0m",
+          "2026-11-24T10:40:29.7654921Z \u001b[36;1m        if source.is_symlink():\u001b[0m",
+          "2026-11-24T10:40:29.7655292Z \u001b[36;1m            if not member.issym() or member.linkname != os.readlink(source):\u001b[0m",
+          "2026-11-24T10:40:29.7657245Z \u001b[36;1m                raise SystemExit(f'Archive symlink mismatch: {name}')\u001b[0m",
+          "2026-11-24T10:40:29.7657788Z \u001b[36;1m        elif source.is_file():\u001b[0m",
+          "2026-11-24T10:40:29.7658144Z \u001b[36;1m            with archive.extractfile(member) as archived:\u001b[0m",
+          "2026-11-24T10:40:29.7658561Z \u001b[36;1m                if hashlib.file_digest(archived, 'sha256').digest() != \\\u001b[0m",
+          "2026-11-24T10:40:29.7658987Z \u001b[36;1m                        hashlib.sha256(source.read_bytes()).digest():\u001b[0m",
+          "2026-11-24T10:40:29.7659396Z \u001b[36;1m                    raise SystemExit(f'Archive content mismatch: {name}')\u001b[0m",
+          "2026-11-24T10:40:29.7659869Z \u001b[36;1mwith open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as output:\u001b[0m",
+          "2026-11-24T10:40:29.7660410Z \u001b[36;1m    output.write(f'name={artifact_name}\\npath={archive_path.as_posix()}\\n')\u001b[0m",
+          "2026-11-24T10:40:29.7660883Z \u001b[36;1mprint(f'Verified {len(sources)} entries in {archive_path}')\u001b[0m",
+          "2026-11-24T10:40:29.7661211Z \u001b[36;1mPY\u001b[0m",
+          "2026-11-24T10:40:29.7678149Z shell: C:\\Program Files\\Git\\bin\\bash.EXE --noprofile --norc -e -o pipefail {0}",
+          "2026-11-24T10:40:29.7678547Z env:",
+          "2026-11-24T10:40:29.7678821Z   pythonLocation: C:\\hostedtoolcache\\windows\\Python\\3.11.9\\x64",
+          "2026-11-24T10:40:29.7679280Z   PKG_CONFIG_PATH: C:\\hostedtoolcache\\windows\\Python\\3.11.9\\x64/lib/pkgconfig",
+          "2026-11-24T10:40:29.7679730Z   Python_ROOT_DIR: C:\\hostedtoolcache\\windows\\Python\\3.11.9\\x64",
+          "2026-11-24T10:40:29.7680263Z   Python2_ROOT_DIR: C:\\hostedtoolcache\\windows\\Python\\3.11.9\\x64",
+          "2026-11-24T10:40:29.7680664Z   Python3_ROOT_DIR: C:\\hostedtoolcache\\windows\\Python\\3.11.9\\x64",
+          "2026-11-24T10:40:29.7681003Z   VST3_BUNDLE_ROOT: build/vst3/VST3/Release",
+          "2026-11-24T10:40:29.7681467Z   VST3_ARTIFACT_NAME: experimental-vst3-Windows-X64-ce59b0c254ab99b399f03e63094b10ce10933e71",
+          "2026-11-24T10:40:29.7681921Z ##[endgroup]",
+          "2026-11-24T10:40:30.8588516Z Verified 30 entries in build\\vst3-artifacts\\experimental-vst3-Windows-X64-ce59b0c254ab99b399f03e63094b10ce10933e71.tar.gz",
+          "2026-11-24T10:40:30.8949175Z ##[group]Run actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9",
+          "2026-11-24T10:40:30.8949650Z with:",
+          "2026-11-24T10:40:30.8949997Z   name: experimental-vst3-Windows-X64-ce59b0c254ab99b399f03e63094b10ce10933e71",
+          "2026-11-24T10:40:30.8950671Z   path: build/vst3-artifacts/experimental-vst3-Windows-X64-ce59b0c254ab99b399f03e63094b10ce10933e71.tar.gz",
+          "2026-11-24T10:40:30.8951205Z   if-no-files-found: error",
+          "2026-11-24T10:40:30.8951438Z   retention-days: 7",
+          "2026-11-24T10:40:30.8951638Z   compression-level: 0",
+          "2026-11-24T10:40:30.8951843Z   overwrite: false",
+          "2026-11-24T10:40:30.8952042Z   include-hidden-files: false",
+          "2026-11-24T10:40:30.8952259Z   archive: true",
+          "2026-11-24T10:40:30.8952432Z env:",
+          "2026-11-24T10:40:30.8952690Z   pythonLocation: C:\\hostedtoolcache\\windows\\Python\\3.11.9\\x64",
+          "2026-11-24T10:40:30.8953137Z   PKG_CONFIG_PATH: C:\\hostedtoolcache\\windows\\Python\\3.11.9\\x64/lib/pkgconfig",
+          "2026-11-24T10:40:30.8953602Z   Python_ROOT_DIR: C:\\hostedtoolcache\\windows\\Python\\3.11.9\\x64",
+          "2026-11-24T10:40:30.8954372Z   Python2_ROOT_DIR: C:\\hostedtoolcache\\windows\\Python\\3.11.9\\x64",
+          "2026-11-24T10:40:30.8954809Z   Python3_ROOT_DIR: C:\\hostedtoolcache\\windows\\Python\\3.11.9\\x64",
+          "2026-11-24T10:40:30.8955125Z ##[endgroup]",
+          "2026-11-24T10:40:31.0761012Z With the provided path, there will be 1 file uploaded",
+          "2026-11-24T10:40:31.0768044Z Artifact name is valid!",
+          "2026-11-24T10:40:31.0768603Z Root directory input is valid!",
+          "2026-11-24T10:40:31.5043645Z Uploading artifact: experimental-vst3-Windows-X64-ce59b0c254ab99b399f03e63094b10ce10933e71.zip",
+          "2026-11-24T10:40:31.5084259Z Beginning upload of artifact content to blob storage",
+          "2026-11-24T10:40:32.3954947Z Uploaded bytes 1417727",
+          "2026-11-24T10:40:32.4735086Z Finished uploading artifact content to blob storage!",
+          "2026-11-24T10:40:32.4736080Z SHA256 digest of uploaded artifact is 34df850405a7e4539e3d1c23b7a38b09054e6f1cc2149ff83c0b6b50d101aed8",
+          "2026-11-24T10:40:32.4736994Z Finalizing artifact upload",
+          "2026-11-24T10:40:32.9920950Z Artifact experimental-vst3-Windows-X64-ce59b0c254ab99b399f03e63094b10ce10933e71 successfully finalized. Artifact ID 14912360866",
+          "2026-11-24T10:40:32.9922502Z Artifact experimental-vst3-Windows-X64-ce59b0c254ab99b399f03e63094b10ce10933e71 has been successfully uploaded! Final size is 1417727 bytes. Artifact ID is 14912360866",
+          "2026-11-24T10:40:32.9929600Z Artifact download URL: https://github.com/baabi-boo/Fender-rhoades/actions/runs/45373649775/artifacts/14912360866"
+        ]
+      }
+    }
+  ],
+  "latest_attempt_jobs": {
+    "source": "fetch_workflow_run_jobs (latest attempt; first page)",
+    "run_attempt": 2,
+    "jobs": [
+      {
+        "id": 138393683256,
+        "name": "VST3 prototype / macos-latest",
+        "status": "queued",
+        "conclusion": null,
+        "run_id": 45373649775
+      },
+      {
+        "id": 138393686697,
+        "name": "VST3 prototype / ubuntu-latest",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 45373649775
+      },
+      {
+        "id": 138393742298,
+        "name": "VST3 prototype / windows-latest",
+        "status": "completed",
+        "conclusion": "success",
+        "run_id": 45373649775
+      }
+    ],
+    "mapping_note": "Attempt-2 inherited Linux/Windows listing IDs differ from the original successful job IDs. Artifact upload evidence is bound to original jobs 138374005076 (Linux) and 138374004751 (Windows), not relabeled as new attempt-2 execution."
+  },
+  "macos": {
+    "job_id": 138393683256,
+    "status": "queued",
+    "conclusion": null,
+    "artifact_available_in_returned_inventory": false
+  },
+  "boundary": {
+    "confirmed": [
+      "exact artifact identity, byte size, creation/expiry timestamps, expired flags and published digest from current metadata",
+      "successful archive verification and artifact finalization in original native job logs",
+      "download UI URLs exactly supplied by upload logs"
+    ],
+    "not_performed": [
+      "artifact download or download-route access check",
+      "independent inspection of downloaded ZIP, tar or binary contents",
+      "artifact extraction, repackaging, upload, installation or deletion",
+      "CI rerun, release creation, Git or state/ledger mutation"
+    ],
+    "applicability": "Artifacts retain ce59b0c254ab99b399f03e63094b10ce10933e71 source identity. Later source bridges or commits do not change their executed revision.",
+    "retention": "Upload steps request seven days. Metadata expiry is 2026-12-01T10:30:35Z (Linux) and 2026-12-01T10:40:31Z (Windows); availability is a snapshot, not a promise beyond retention.",
+    "scope": "Experimental research outputs; no published release or independently validated DAW installation is established here.",
+    "license": "Existing bundled LICENSE.txt is the SDK notice. Repository original code remains without a selected project-wide software license; no legal conclusion or new license grant is made.",
+    "license_sources": [
+      "RIGHTS.md",
+      "plugins/vst3/THIRD_PARTY_NOTICES.md",
+      "cmake/Vst3.cmake"
+    ]
+  },
+  "retrieval_diagnostics": {
+    "direct_job_metadata_get": "github_fetch rejected actions/jobs/{id} with INVALID_ARGUMENT; supported fetch_workflow_job_steps and fetch_workflow_run_jobs supplied the needed evidence. No permission changes or retry mutations were attempted."
+  }
+}

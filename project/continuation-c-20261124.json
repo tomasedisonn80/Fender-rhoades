@@ -2,11 +2,11 @@
   "schema_version": 1,
   "campaign": "continuation-c-20261124",
   "baseline_commit": "20a77e8b2033d435839df594c783837befb07938",
-  "status": "in_progress",
+  "status": "complete",
   "requested_agents": 100,
   "requested_waves": 5,
   "concurrency_limit_including_integrator": 4,
-  "completed_agents": 80,
+  "completed_agents": 100,
   "agents": [
     {
       "assignment": 1,
@@ -652,19 +652,161 @@
       "assignment": 81,
       "wave": 5,
       "agent_task_name": "/root/w5_081_native_final_record",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w5-081.md",
+      "sha256": "e2127f255c4b7c4f3c25d9b72e2084690189be354401f26016a16df427788f55"
     },
     {
       "assignment": 82,
       "wave": 5,
       "agent_task_name": "/root/w5_082_criterion_c01",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w5-082.md",
+      "sha256": "d96ff96d58a5f5cae305db21c137a314e6d75f5d9bd10a7943b572b90103076f"
     },
     {
       "assignment": 83,
       "wave": 5,
       "agent_task_name": "/root/w5_083_criterion_c02",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w5-083.md",
+      "sha256": "fc91be878609230571b3c6fe1dc70cc131f4a5f13f88f7b93918192a479c2505"
+    },
+    {
+      "assignment": 84,
+      "wave": 5,
+      "agent_task_name": "/root/w5_084_criterion_c03",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w5-084.md",
+      "sha256": "f355ce2bcd134c3d32eb2fde7ec201168f7e33cc2b97c826f6d158e667a00e20"
+    },
+    {
+      "assignment": 85,
+      "wave": 5,
+      "agent_task_name": "/root/w5_085_criterion_c04",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w5-085.md",
+      "sha256": "524f5e9386e9fc7daefd665e896ae98034b65582c607a04c8f511032b1396d20"
+    },
+    {
+      "assignment": 86,
+      "wave": 5,
+      "agent_task_name": "/root/w5_086_current_user_docs",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w5-086.md",
+      "sha256": "9fecab9a61d64b1cdfd647c2b1bbc7434a7f29f96d9d10bdd9fdffb3e52a2fcc"
+    },
+    {
+      "assignment": 87,
+      "wave": 5,
+      "agent_task_name": "/root/w5_087_native_evidence_audit",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w5-087.md",
+      "sha256": "f91f453f6d9ed03c2cc508d977f35c2cf3b21d2bed0a4f5ad0f870ecca3fc774"
+    },
+    {
+      "assignment": 88,
+      "wave": 5,
+      "agent_task_name": "/root/w5_088_acceptance_synthesis",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w5-088.md",
+      "sha256": "925d3926381542cc197ebc6a74d887d23fc1009061ee27d461d9eafd1f05c484"
+    },
+    {
+      "assignment": 89,
+      "wave": 5,
+      "agent_task_name": "/root/w5_089_ci_artifact_delivery",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w5-089.md",
+      "sha256": "d6cb4822065aae84efd503eb296c6b3804c271d2236f898e9116064b4f3770ce"
+    },
+    {
+      "assignment": 90,
+      "wave": 5,
+      "agent_task_name": "/root/w5_090_continuation_handoff",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w5-090.md",
+      "sha256": "432642b1f36eb5c56034360991cd8f0f8312c27d988061c26140c3cec8d1ebc0"
+    },
+    {
+      "assignment": 91,
+      "wave": 5,
+      "agent_task_name": "/root/w5_091_registered_evidence_semantics",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w5-091.md",
+      "sha256": "1abe606931702c11228e6dbd68bc3aa92116060ee1c1ca32f8ce32adaa42e157"
+    },
+    {
+      "assignment": 92,
+      "wave": 5,
+      "agent_task_name": "/root/w5_092_acceptance_draft_review",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w5-092.md",
+      "sha256": "846e9d7950e05e1567af546c4d44c3da382986b49e53719e3e505b47b41e22b7"
+    },
+    {
+      "assignment": 93,
+      "wave": 5,
+      "agent_task_name": "/root/w5_093_native_status_closure",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w5-093.md",
+      "sha256": "afb10c805fc7d503d168074afc613bc6ec4250269ce9505f4bd989fc97b8c82c"
+    },
+    {
+      "assignment": 94,
+      "wave": 5,
+      "agent_task_name": "/root/w5_094_production_delta_audit",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w5-094.md",
+      "sha256": "d3c5a06a9f522a2e08a3024a49394ac5899263f10146f9a9ddb05554fe1312d4"
+    },
+    {
+      "assignment": 95,
+      "wave": 5,
+      "agent_task_name": "/root/w5_095_state_handoff_review",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w5-095.md",
+      "sha256": "78f401dab22fa7a08d01ab6869f8a540891965d79ed74d38aaaf4046f9284cf0"
+    },
+    {
+      "assignment": 96,
+      "wave": 5,
+      "agent_task_name": "/root/w5_096_final_document_links",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w5-096.md",
+      "sha256": "2c7021900bd1ee74eeeb171859d163a20946931809424ffbb12850c967d663af"
+    },
+    {
+      "assignment": 97,
+      "wave": 5,
+      "agent_task_name": "/root/w5_097_frozen_review_gate",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w5-097.md",
+      "sha256": "9da6420b1979efb2baa3ef74744d3e377ef9467086d97f9c5fbb348bce5c524a"
+    },
+    {
+      "assignment": 98,
+      "wave": 5,
+      "agent_task_name": "/root/w5_098_final_state_audit",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w5-098.md",
+      "sha256": "4981412a7fe8dc19be2f33460db89eca477cc58f6eac3e3b9f2634bf7a66ed65"
+    },
+    {
+      "assignment": 99,
+      "wave": 5,
+      "agent_task_name": "/root/w5_099_delivery_claims_audit",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w5-099.md",
+      "sha256": "3918bfea7c565af5739cc1d8798f2f839d3380b871b1532db1043f143b4392e6"
+    },
+    {
+      "assignment": 100,
+      "wave": 5,
+      "agent_task_name": "/root/w5_100_campaign_gate",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w5-100.md",
+      "sha256": "4d12b92bc1c38dbfa7d2325d2897e90a0f33fef0d4fb60ef87080274b385ff4d"
     }
   ]
 }

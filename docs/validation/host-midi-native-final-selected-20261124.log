@@ -1,0 +1,278 @@
+=== GitHub Actions job 138374005076 / run 45373649775 ===
+Source: https://github.com/baabi-boo/Fender-rhoades/actions/runs/45373649775/job/138374005076
+Verbatim selected decoded log lines; timestamps retained. Passing CTest entries do not expose suppressed test stdout.
+2026-11-24T10:27:28.6397494Z Image: ubuntu-26.04
+2026-11-24T10:27:32.9702529Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-24T10:27:37.7928528Z .: 3cdf9ca5d1f5b1b21e0a86832aa4abe55607bd96
+2026-11-24T10:27:37.7929010Z base: fcf9da0bd27a16f7f03773a3a39822f28f5c8477
+2026-11-24T10:27:37.7929296Z cmake: 054c9143cbb8d47fc4694e473f2ee3b4d951a8f5
+2026-11-24T10:27:37.7929587Z pluginterfaces: 4f547e8e102b47de4a8b8aaf343c73b700786372
+2026-11-24T10:27:37.7929897Z public.sdk: 586dc5e6c8012c3e4b01c79389375cbe96bdb1da
+2026-11-24T10:27:38.6117046Z -- The CXX compiler identification is GNU 15.2.0
+2026-11-24T10:27:38.8477580Z -- Check for working CXX compiler: /usr/bin/c++ - skipped
+2026-11-24T10:27:39.2702587Z -- The C compiler identification is GNU 15.2.0
+2026-11-24T10:27:39.4775003Z -- [SMTG] Linux architecture name is x86_64-linux.
+2026-11-24T10:27:39.4825764Z -- [SMTG] Linux architecture name is x86_64-linux.
+2026-11-24T10:27:39.4871072Z -- [SMTG] Linux architecture name is x86_64-linux.
+2026-11-24T10:30:20.9897892Z 146/157 Test #316: vst3.sdk_validator ................................   Passed    2.24 sec
+2026-11-24T10:30:21.0028633Z 147/157 Test #317: vst3.dual_module_coexist ..........................   Passed    0.01 sec
+2026-11-24T10:30:21.0046344Z 148/157 Test #318: vst3.dual_module_duplicate_guard ..................   Passed    0.00 sec
+2026-11-24T10:30:21.5068741Z 149/157 Test #319: vst3.triple_module_coexist ........................   Passed    0.50 sec
+2026-11-24T10:30:21.5109221Z 150/157 Test #320: vst3.triple_module_duplicate_guard ................   Passed    0.00 sec
+2026-11-24T10:30:21.8305087Z 151/157 Test #321: vst3.loaded_midi ..................................   Passed    0.32 sec
+2026-11-24T10:30:30.8145043Z 152/157 Test #322: vst3.filtered_sdk_validator .......................   Passed    8.98 sec
+2026-11-24T10:30:34.6878716Z 153/157 Test #323: vst3.quadrature_sdk_validator .....................   Passed    3.87 sec
+2026-11-24T10:30:34.6903942Z 154/157 Test #324: vst3.moduleinfo_validator .........................   Passed    0.00 sec
+2026-11-24T10:30:34.6922890Z 155/157 Test #325: vst3.filtered_moduleinfo_validator ................   Passed    0.00 sec
+2026-11-24T10:30:34.6941600Z 156/157 Test #326: vst3.quadrature_moduleinfo_validator ..............   Passed    0.00 sec
+2026-11-24T10:30:34.7085690Z 157/157 Test #327: vst3.bundle_resources .............................   Passed    0.01 sec
+2026-11-24T10:30:34.7092105Z 100% tests passed out of 157
+2026-11-24T10:30:34.7092448Z Total Test time (real) =  46.96 sec
+2026-11-24T10:30:34.7487837Z   VST3_ARTIFACT_NAME: experimental-vst3-Linux-X64-ce59b0c254ab99b399f03e63094b10ce10933e71
+
+=== GitHub Actions job 138374004751 / run 45373649775 ===
+Source: https://github.com/baabi-boo/Fender-rhoades/actions/runs/45373649775/job/138374004751
+Verbatim selected decoded log lines; timestamps retained. Passing CTest entries do not expose suppressed test stdout.
+2026-11-24T10:35:47.8514096Z Image: windows-2025-vs2026
+2026-11-24T10:36:03.8647839Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.11.9\x64
+2026-11-24T10:36:09.0847306Z .: 3cdf9ca5d1f5b1b21e0a86832aa4abe55607bd96
+2026-11-24T10:36:09.0847718Z base: fcf9da0bd27a16f7f03773a3a39822f28f5c8477
+2026-11-24T10:36:09.0848044Z cmake: 054c9143cbb8d47fc4694e473f2ee3b4d951a8f5
+2026-11-24T10:36:09.0848400Z pluginterfaces: 4f547e8e102b47de4a8b8aaf343c73b700786372
+2026-11-24T10:36:09.0848757Z public.sdk: 586dc5e6c8012c3e4b01c79389375cbe96bdb1da
+2026-11-24T10:36:22.1712425Z -- The CXX compiler identification is MSVC 19.52.37029.0
+2026-11-24T10:36:23.5403338Z -- Check for working CXX compiler: C:/Program Files/Microsoft Visual Studio/18/Enterprise/VC/Tools/MSVC/14.52.37025/bin/Hostx64/x64/cl.exe - skipped
+2026-11-24T10:36:27.7757377Z -- The C compiler identification is MSVC 19.52.37029.0
+2026-11-24T10:40:18.2742806Z 146/157 Test #313: vst3.sdk_validator ................................   Passed    1.63 sec
+2026-11-24T10:40:18.3030687Z 147/157 Test #314: vst3.dual_module_coexist ..........................   Passed    0.03 sec
+2026-11-24T10:40:18.3156068Z 148/157 Test #315: vst3.dual_module_duplicate_guard ..................   Passed    0.01 sec
+2026-11-24T10:40:18.8263358Z 149/157 Test #316: vst3.triple_module_coexist ........................   Passed    0.51 sec
+2026-11-24T10:40:18.8603223Z 150/157 Test #317: vst3.triple_module_duplicate_guard ................   Passed    0.03 sec
+2026-11-24T10:40:19.1322620Z 151/157 Test #318: vst3.loaded_midi ..................................   Passed    0.27 sec
+2026-11-24T10:40:25.7506820Z 152/157 Test #319: vst3.filtered_sdk_validator .......................   Passed    6.62 sec
+2026-11-24T10:40:29.5545630Z 153/157 Test #320: vst3.quadrature_sdk_validator .....................   Passed    3.80 sec
+2026-11-24T10:40:29.5670926Z 154/157 Test #321: vst3.moduleinfo_validator .........................   Passed    0.01 sec
+2026-11-24T10:40:29.5782640Z 155/157 Test #322: vst3.filtered_moduleinfo_validator ................   Passed    0.01 sec
+2026-11-24T10:40:29.5894694Z 156/157 Test #323: vst3.quadrature_moduleinfo_validator ..............   Passed    0.01 sec
+2026-11-24T10:40:29.7192972Z 157/157 Test #324: vst3.bundle_resources .............................   Passed    0.13 sec
+2026-11-24T10:40:29.7207527Z 100% tests passed out of 157
+2026-11-24T10:40:29.7210971Z Total Test time (real) =  43.83 sec
+2026-11-24T10:40:29.7681467Z   VST3_ARTIFACT_NAME: experimental-vst3-Windows-X64-ce59b0c254ab99b399f03e63094b10ce10933e71
+
+=== GitHub Actions job 138383891694 / run 45376430320 ===
+Source: https://github.com/baabi-boo/Fender-rhoades/actions/runs/45376430320/job/138383891694
+Verbatim selected decoded log lines; timestamps retained. Passing CTest entries do not expose suppressed test stdout.
+2026-11-24T10:39:04.0325626Z Image: ubuntu-26.04
+2026-11-24T10:39:15.1005602Z -- The CXX compiler identification is GNU 15.2.0
+2026-11-24T10:39:15.3589047Z -- Check for working CXX compiler: /usr/bin/c++ - skipped
+2026-11-24T10:39:54.4811234Z  51/170 Test  #51: audio.probe_stdout .......................   Passed    0.01 sec
+2026-11-24T10:39:54.4883967Z  52/170 Test  #52: quadrature.probe_stdout ..................   Passed    0.01 sec
+2026-11-24T10:39:54.4960550Z  53/170 Test  #53: contact.stdout ...........................   Passed    0.01 sec
+2026-11-24T10:39:56.8366124Z 148/170 Test #148: control.domains ..........................   Passed    0.00 sec
+2026-11-24T10:39:56.8392637Z 149/170 Test #149: control.quantize .........................   Passed    0.00 sec
+2026-11-24T10:39:56.8418715Z 150/170 Test #150: control.widen ............................   Passed    0.00 sec
+2026-11-24T10:39:56.8544276Z 151/170 Test #151: control.rounding_modes ...................   Passed    0.01 sec
+2026-11-24T10:39:56.8574022Z 152/170 Test #152: control_fp.baseline ......................   Passed    0.00 sec
+2026-11-24T10:39:56.8603690Z 153/170 Test #153: control_fp.ftz ...........................   Passed    0.00 sec
+2026-11-24T10:39:56.8633079Z 154/170 Test #154: control_fp.daz ...........................   Passed    0.00 sec
+2026-11-24T10:39:56.8662461Z 155/170 Test #155: control_fp.ftz_daz .......................   Passed    0.00 sec
+2026-11-24T10:39:57.1930959Z 100% tests passed out of 170
+2026-11-24T10:39:57.1931275Z Total Test time (real) =   5.10 sec
+
+=== GitHub Actions job 138383892161 / run 45376430320 ===
+Source: https://github.com/baabi-boo/Fender-rhoades/actions/runs/45376430320/job/138383892161
+Verbatim selected decoded log lines; timestamps retained. Passing CTest entries do not expose suppressed test stdout.
+2026-11-24T10:44:21.2597210Z Image: windows-2025-vs2026
+2026-11-24T10:45:01.4224926Z -- The CXX compiler identification is MSVC 19.52.37029.0
+2026-11-24T10:45:02.7570115Z -- Check for working CXX compiler: C:/Program Files/Microsoft Visual Studio/18/Enterprise/VC/Tools/MSVC/14.52.37025/bin/Hostx64/x64/cl.exe - skipped
+2026-11-24T10:45:49.8600928Z 145/167 Test #145: control.domains ..........................   Passed    0.01 sec
+2026-11-24T10:45:49.8673920Z 146/167 Test #146: control.quantize .........................   Passed    0.01 sec
+2026-11-24T10:45:49.8740444Z 147/167 Test #147: control.widen ............................   Passed    0.01 sec
+2026-11-24T10:45:49.8919350Z 148/167 Test #148: control.rounding_modes ...................   Passed    0.02 sec
+2026-11-24T10:45:49.9036034Z 149/167 Test #149: control_fp.baseline ......................   Passed    0.01 sec
+2026-11-24T10:45:49.9116162Z 150/167 Test #150: control_fp.ftz ...........................   Passed    0.01 sec
+2026-11-24T10:45:49.9193193Z 151/167 Test #151: control_fp.daz ...........................   Passed    0.01 sec
+2026-11-24T10:45:49.9270044Z 152/167 Test #152: control_fp.ftz_daz .......................   Passed    0.01 sec
+2026-11-24T10:45:51.0509178Z 100% tests passed out of 167
+2026-11-24T10:45:51.0510217Z Total Test time (real) =   7.93 sec
+
+=== GitHub Actions job 138383892155 / run 45376430320 ===
+Source: https://github.com/baabi-boo/Fender-rhoades/actions/runs/45376430320/job/138383892155
+Verbatim selected decoded log lines; timestamps retained. Passing CTest entries do not expose suppressed test stdout.
+2026-11-24T10:41:03.8269696Z Image: ubuntu-26.04
+2026-11-24T10:41:09.0263320Z -- The CXX compiler identification is GNU 15.2.0
+2026-11-24T10:41:09.4523008Z -- Check for working CXX compiler: /usr/bin/c++ - skipped
+2026-11-24T10:42:38.5224927Z  51/170 Test  #51: audio.probe_stdout .......................   Passed    0.05 sec
+2026-11-24T10:42:38.5739404Z  52/170 Test  #52: quadrature.probe_stdout ..................   Passed    0.05 sec
+2026-11-24T10:42:38.6480983Z  53/170 Test  #53: contact.stdout ...........................   Passed    0.07 sec
+2026-11-24T10:43:02.5291756Z 148/170 Test #148: control.domains ..........................   Passed    0.03 sec
+2026-11-24T10:43:02.5983971Z 149/170 Test #149: control.quantize .........................   Passed    0.07 sec
+2026-11-24T10:43:02.6521893Z 150/170 Test #150: control.widen ............................   Passed    0.05 sec
+2026-11-24T10:43:03.0398178Z 151/170 Test #151: control.rounding_modes ...................   Passed    0.39 sec
+2026-11-24T10:43:03.0980880Z 152/170 Test #152: control_fp.baseline ......................   Passed    0.06 sec
+2026-11-24T10:43:03.1611888Z 153/170 Test #153: control_fp.ftz ...........................   Passed    0.06 sec
+2026-11-24T10:43:03.2391696Z 154/170 Test #154: control_fp.daz ...........................   Passed    0.08 sec
+2026-11-24T10:43:03.3148160Z 155/170 Test #155: control_fp.ftz_daz .......................   Passed    0.08 sec
+2026-11-24T10:43:05.7936736Z 100% tests passed out of 170
+2026-11-24T10:43:05.7937241Z Total Test time (real) =  83.24 sec
+
+=== GitHub Actions job 138383892070 / run 45376430320 ===
+Source: https://github.com/baabi-boo/Fender-rhoades/actions/runs/45376430320/job/138383892070
+Verbatim selected decoded log lines; timestamps retained. Passing CTest entries do not expose suppressed test stdout.
+2026-11-24T10:44:10.5584144Z Image: ubuntu-26.04
+2026-11-24T10:44:13.5353836Z   pythonLocation: /opt/hostedtoolcache/Python/3.11.18/x64
+2026-11-24T10:44:21.5059188Z test_scipy_coefficients_and_frozen_dense_frequency_gates (test_audio_filter_generation.IndependentAudioFilterTests.test_scipy_coefficients_and_frozen_dense_frequency_gates) ... skipped 'Optional independent audit needs installed NumPy/SciPy'
+2026-11-24T10:44:21.5303749Z test_complete_mock_capture_retains_all_four_runs_and_comparison (test_callback_compare.CaptureTests.test_complete_mock_capture_retains_all_four_runs_and_comparison) ... ok
+2026-11-24T10:44:21.6343820Z test_source_binary_plan_metadata_and_same_bytes_replacement_are_detected (test_callback_compare.CaptureTests.test_source_binary_plan_metadata_and_same_bytes_replacement_are_detected) ... ok
+2026-11-24T10:44:33.2223097Z test_changed_path_identity_during_snapshot_read_is_rejected (test_contact_extrema_raw.ContactExtremaRawFileTests.test_changed_path_identity_during_snapshot_read_is_rejected) ... ok
+2026-11-24T10:44:33.2266674Z test_replacing_path_during_snapshot_read_is_rejected (test_contact_extrema_raw.ContactExtremaRawFileTests.test_replacing_path_during_snapshot_read_is_rejected) ... ok
+2026-11-24T10:44:33.4464671Z test_changed_raw_archive_cannot_reuse_successful_pointwise_cache (test_contact_extrema_raw.ContactExtremaRawReplayTests.test_changed_raw_archive_cannot_reuse_successful_pointwise_cache) ... skipped 'optional NumPy not installed; stdlib raw inspection remains covered'
+2026-11-24T10:44:33.4465598Z test_independent_complete_and_partial_cubics_load_and_evaluate (test_contact_extrema_raw.ContactExtremaRawReplayTests.test_independent_complete_and_partial_cubics_load_and_evaluate) ... skipped 'optional NumPy not installed; stdlib raw inspection remains covered'
+2026-11-24T10:44:33.4466522Z test_loader_parses_exact_hashed_snapshot_when_path_changes_before_numpy_load (test_contact_extrema_raw.ContactExtremaRawReplayTests.test_loader_parses_exact_hashed_snapshot_when_path_changes_before_numpy_load) ... skipped 'optional NumPy not installed; stdlib raw inspection remains covered'
+2026-11-24T10:44:33.4467484Z test_replacing_reference_identity_invalidates_previous_pointwise_cache (test_contact_extrema_raw.ContactExtremaRawReplayTests.test_replacing_reference_identity_invalidates_previous_pointwise_cache) ... skipped 'optional NumPy not installed; stdlib raw inspection remains covered'
+2026-11-24T10:44:33.5995134Z test_one_accepted_step_retains_partial_arrays_checkpoints_and_explicit_failure (test_contact_extrema_reference.ContactExtremaLiveCapTests.test_one_accepted_step_retains_partial_arrays_checkpoints_and_explicit_failure) ... skipped 'optional NumPy/SciPy not installed'
+2026-11-24T10:44:33.5996779Z test_rhs_search_and_candidate_caps_stop_at_one_and_keep_initial_mesh (test_contact_extrema_reference.ContactExtremaLiveCapTests.test_rhs_search_and_candidate_caps_stop_at_one_and_keep_initial_mesh) ... skipped 'optional NumPy/SciPy not installed'
+2026-11-24T10:44:33.5998262Z test_close_roots_hidden_from_quarter_scan_keep_separate_brackets (test_contact_extrema_reference.ContactExtremaPolynomialTests.test_close_roots_hidden_from_quarter_scan_keep_separate_brackets) ... skipped 'optional NumPy not installed'
+2026-11-24T10:44:33.5999973Z test_even_and_triple_roots_keep_conditioning_or_tangency_unresolved (test_contact_extrema_reference.ContactExtremaPolynomialTests.test_even_and_triple_roots_keep_conditioning_or_tangency_unresolved) ... skipped 'optional NumPy not installed'
+2026-11-24T10:44:33.6001477Z test_noncubic_nonvector_and_collapsed_sample_times_are_rejected (test_contact_extrema_reference.ContactExtremaPolynomialTests.test_noncubic_nonvector_and_collapsed_sample_times_are_rejected) ... skipped 'optional NumPy not installed'
+2026-11-24T10:44:33.6003004Z test_normalized_derivative_includes_physical_time_scale (test_contact_extrema_reference.ContactExtremaPolynomialTests.test_normalized_derivative_includes_physical_time_scale) ... skipped 'optional NumPy not installed'
+2026-11-24T10:44:33.6004348Z test_tiny_interval_uses_actual_representable_abscissae (test_contact_extrema_reference.ContactExtremaPolynomialTests.test_tiny_interval_uses_actual_representable_abscissae) ... skipped 'optional NumPy not installed'
+2026-11-24T10:44:33.6005786Z test_vector_cubic_reconstructs_known_coefficients_from_public_calls (test_contact_extrema_reference.ContactExtremaPolynomialTests.test_vector_cubic_reconstructs_known_coefficients_from_public_calls) ... skipped 'optional NumPy not installed'
+2026-11-24T10:44:33.6007325Z test_zero_plateau_near_flat_nonzero_and_endpoint_labels_are_distinct (test_contact_extrema_reference.ContactExtremaPolynomialTests.test_zero_plateau_near_flat_nonzero_and_endpoint_labels_are_distinct) ... skipped 'optional NumPy not installed'
+2026-11-24T10:44:33.6047058Z test_exact_mesh_endpoint_side_selection_and_no_extrapolation (test_contact_extrema_reference.ContactExtremaRetainedEvaluationTests.test_exact_mesh_endpoint_side_selection_and_no_extrapolation) ... skipped 'optional NumPy not installed'
+2026-11-24T10:44:33.6048635Z test_inline_array_mutation_is_rejected_by_independent_manifest (test_contact_extrema_reference.ContactExtremaRetainedEvaluationTests.test_inline_array_mutation_is_rejected_by_independent_manifest) ... skipped 'optional NumPy not installed'
+2026-11-24T10:44:33.6050234Z test_npz_array_hash_shape_and_dtype_survive_recomputed_file_hash (test_contact_extrema_reference.ContactExtremaRetainedEvaluationTests.test_npz_array_hash_shape_and_dtype_survive_recomputed_file_hash) ... skipped 'optional NumPy not installed'
+2026-11-24T10:44:33.6051608Z test_npz_byte_hash_rejects_trailing_bytes (test_contact_extrema_reference.ContactExtremaRetainedEvaluationTests.test_npz_byte_hash_rejects_trailing_bytes) ... skipped 'optional NumPy not installed'
+2026-11-24T10:44:33.6053187Z test_physical_velocity_and_dense_derivative_have_distinct_stationary_times (test_contact_extrema_reference.ContactExtremaRetainedEvaluationTests.test_physical_velocity_and_dense_derivative_have_distinct_stationary_times) ... skipped 'optional NumPy not installed'
+2026-11-24T10:44:33.6054546Z test_signed_coordinate_transform_preserves_physical_observables (test_contact_extrema_reference.ContactExtremaRetainedEvaluationTests.test_signed_coordinate_transform_preserves_physical_observables) ... skipped 'optional NumPy not installed'
+2026-11-24T10:44:38.8213445Z test_optional_time_refinement_separates_force_and_compression (test_contact_peak_oracles.ContactPeakOracleTests.test_optional_time_refinement_separates_force_and_compression) ... skipped 'optional SciPy not installed'
+2026-11-24T10:44:45.1628585Z test_analytic_modes_against_independent_matrix_exponential (test_filtered_audio_reference.FilteredAudioNumericalTests.test_analytic_modes_against_independent_matrix_exponential) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'
+2026-11-24T10:44:45.1630484Z test_both_refinement_gates_are_mandatory_and_failures_remain_inconclusive (test_filtered_audio_reference.FilteredAudioNumericalTests.test_both_refinement_gates_are_mandatory_and_failures_remain_inconclusive) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'
+2026-11-24T10:44:45.1632467Z test_continuous_result_against_separate_adaptive_integrals (test_filtered_audio_reference.FilteredAudioNumericalTests.test_continuous_result_against_separate_adaptive_integrals) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'
+2026-11-24T10:44:45.1634317Z test_fir_recipe_matches_frozen_serialization_without_importing_it (test_filtered_audio_reference.FilteredAudioNumericalTests.test_fir_recipe_matches_frozen_serialization_without_importing_it) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'
+2026-11-24T10:44:45.1635961Z test_full_record_and_inclusive_event_window_metrics (test_filtered_audio_reference.FilteredAudioNumericalTests.test_full_record_and_inclusive_event_window_metrics) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'
+2026-11-24T10:44:45.1637843Z test_incomplete_run_preserves_bad_stdout_and_nonzero_probe_failures (test_filtered_audio_reference.FilteredAudioNumericalTests.test_incomplete_run_preserves_bad_stdout_and_nonzero_probe_failures) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'
+2026-11-24T10:44:45.1639419Z test_local_nonlinearity_then_loaded_sum (test_filtered_audio_reference.FilteredAudioNumericalTests.test_local_nonlinearity_then_loaded_sum) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'
+2026-11-24T10:44:45.1640877Z test_probe_metadata_samples_and_raw_hash_precision (test_filtered_audio_reference.FilteredAudioNumericalTests.test_probe_metadata_samples_and_raw_hash_precision) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'
+2026-11-24T10:44:45.1642588Z test_refinement_rms_and_exploratory_rms_are_separate_limits (test_filtered_audio_reference.FilteredAudioNumericalTests.test_refinement_rms_and_exploratory_rms_are_separate_limits) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'
+2026-11-24T10:44:45.1644256Z test_reset_order_erases_prior_motion_and_history_without_alignment (test_filtered_audio_reference.FilteredAudioNumericalTests.test_reset_order_erases_prior_motion_and_history_without_alignment) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'
+2026-11-24T10:44:45.1645892Z test_retrigger_release_pedal_and_all_off_preserve_mechanics (test_filtered_audio_reference.FilteredAudioNumericalTests.test_retrigger_release_pedal_and_all_off_preserve_mechanics) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'
+2026-11-24T10:44:45.1647530Z test_three_small_production_comparisons_keep_exact_internal_phase (test_filtered_audio_reference.FilteredAudioNumericalTests.test_three_small_production_comparisons_keep_exact_internal_phase) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'
+2026-11-24T10:44:45.1649191Z test_unit_cell_kernel_has_correct_zero_history_delay_and_reset (test_filtered_audio_reference.FilteredAudioNumericalTests.test_unit_cell_kernel_has_correct_zero_history_delay_and_reset) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'
+2026-11-24T10:44:45.1651005Z test_unresolved_reference_raw_arrays_and_hashes_are_retained (test_filtered_audio_reference.FilteredAudioNumericalTests.test_unresolved_reference_raw_arrays_and_hashes_are_retained) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'
+2026-11-24T10:44:46.2763571Z test_failed_comparison_b_survives_perfect_bookkeeping_and_hashes_bind_retention (test_filtered_decomposition_cli.DecompositionProvenanceTests.test_failed_comparison_b_survives_perfect_bookkeeping_and_hashes_bind_retention) ... skipped 'Optional retained-array checks need NumPy/SciPy'
+2026-11-24T10:44:46.2765187Z test_source_or_probe_mutation_prevents_diagnostic_completion (test_filtered_decomposition_cli.DecompositionProvenanceTests.test_source_or_probe_mutation_prevents_diagnostic_completion) ... skipped 'Optional retained-array checks need NumPy/SciPy'
+2026-11-24T10:44:46.2766114Z test_unresolved_reference_and_resolved_pass_keep_distinct_exit_codes (test_filtered_decomposition_cli.DecompositionProvenanceTests.test_unresolved_reference_and_resolved_pass_keep_distinct_exit_codes) ... skipped 'Optional retained-array checks need NumPy/SciPy'
+2026-11-24T10:44:46.7985642Z test_constant_source_retains_both_finite_support_endpoints (test_filtered_error_bridge.FilteredErrorBridgeNumericalTests.test_constant_source_retains_both_finite_support_endpoints) ... skipped 'Optional offline bridge checks need NumPy/SciPy'
+2026-11-24T10:44:46.7987451Z test_decomposition_exposes_missing_attribution_and_cannot_pass_original_b (test_filtered_error_bridge.FilteredErrorBridgeNumericalTests.test_decomposition_exposes_missing_attribution_and_cannot_pass_original_b) ... skipped 'Optional offline bridge checks need NumPy/SciPy'
+2026-11-24T10:44:46.7993452Z test_exact_left_propagation_uses_no_epsilon_or_off_grid_query (test_filtered_error_bridge.FilteredErrorBridgeNumericalTests.test_exact_left_propagation_uses_no_epsilon_or_off_grid_query) ... skipped 'Optional offline bridge checks need NumPy/SciPy'
+2026-11-24T10:44:46.7995164Z test_malformed_values_shapes_epochs_and_event_rows_are_rejected (test_filtered_error_bridge.FilteredErrorBridgeNumericalTests.test_malformed_values_shapes_epochs_and_event_rows_are_rejected) ... skipped 'Optional offline bridge checks need NumPy/SciPy'
+2026-11-24T10:44:46.7996751Z test_reset_erases_old_and_same_time_pre_reset_strikes (test_filtered_error_bridge.FilteredErrorBridgeNumericalTests.test_reset_erases_old_and_same_time_pre_reset_strikes) ... skipped 'Optional offline bridge checks need NumPy/SciPy'
+2026-11-24T10:44:46.7998345Z test_single_and_adjacent_steps_match_manual_cells_and_event_weights (test_filtered_error_bridge.FilteredErrorBridgeNumericalTests.test_single_and_adjacent_steps_match_manual_cells_and_event_weights) ... skipped 'Optional offline bridge checks need NumPy/SciPy'
+2026-11-24T10:44:46.8000465Z test_smooth_source_has_only_support_endpoint_attribution (test_filtered_error_bridge.FilteredErrorBridgeNumericalTests.test_smooth_source_has_only_support_endpoint_attribution) ... skipped 'Optional offline bridge checks need NumPy/SciPy'
+2026-11-24T10:44:46.8002071Z test_zero_intensity_release_has_no_jump_but_keeps_its_event_window (test_filtered_error_bridge.FilteredErrorBridgeNumericalTests.test_zero_intensity_release_has_no_jump_but_keeps_its_event_window) ... skipped 'Optional offline bridge checks need NumPy/SciPy'
+2026-11-24T10:44:48.0332980Z test_a_b_and_refinement_are_independent_and_preserve_inputs (test_quadrature_audio_validation.QuadratureNumericalAssessmentTests.test_a_b_and_refinement_are_independent_and_preserve_inputs) ... skipped 'Optional numerical assessment/NPZ checks need NumPy/SciPy'
+2026-11-24T10:44:48.0335177Z test_execute_case_retains_exact_five_arrays_even_when_unresolved (test_quadrature_audio_validation.QuadratureNumericalAssessmentTests.test_execute_case_retains_exact_five_arrays_even_when_unresolved) ... skipped 'Optional numerical assessment/NPZ checks need NumPy/SciPy'
+2026-11-24T10:44:48.0337191Z test_execute_case_retains_malformed_stdout_and_probe_failure_streams (test_quadrature_audio_validation.QuadratureNumericalAssessmentTests.test_execute_case_retains_malformed_stdout_and_probe_failure_streams) ... skipped 'Optional numerical assessment/NPZ checks need NumPy/SciPy'
+2026-11-24T10:44:49.1831426Z test_scipy_rule_and_independent_continuous_kernel_recipe (test_quadrature_filter_generation.IndependentQuadratureFilterTests.test_scipy_rule_and_independent_continuous_kernel_recipe) ... skipped 'Optional independent Q6 audit needs NumPy/SciPy'
+2026-11-24T10:44:53.4986421Z Ran 888 tests in 37.654s
+2026-11-24T10:44:53.4986638Z OK (skipped=50)
+
+=== GitHub Actions job 138383892223 / run 45376430320 ===
+Source: https://github.com/baabi-boo/Fender-rhoades/actions/runs/45376430320/job/138383892223
+Verbatim selected decoded log lines; timestamps retained. Passing CTest entries do not expose suppressed test stdout.
+2026-11-24T10:40:02.4816972Z Image: windows-2025-vs2026
+2026-11-24T10:40:10.8223019Z   pythonLocation: C:\hostedtoolcache\windows\Python\3.11.9\x64
+2026-11-24T10:40:31.0629023Z test_scipy_coefficients_and_frozen_dense_frequency_gates (test_audio_filter_generation.IndependentAudioFilterTests.test_scipy_coefficients_and_frozen_dense_frequency_gates) ... skipped 'Optional independent audit needs installed NumPy/SciPy'
+2026-11-24T10:40:31.1998697Z test_complete_mock_capture_retains_all_four_runs_and_comparison (test_callback_compare.CaptureTests.test_complete_mock_capture_retains_all_four_runs_and_comparison) ... ok
+2026-11-24T10:40:32.8540617Z test_source_binary_plan_metadata_and_same_bytes_replacement_are_detected (test_callback_compare.CaptureTests.test_source_binary_plan_metadata_and_same_bytes_replacement_are_detected) ... ok
+2026-11-24T10:40:51.5527133Z test_fifo_is_rejected_without_any_open_or_blocking_read (test_contact_extrema_driver.ContactExtremaBoundedReadTests.test_fifo_is_rejected_without_any_open_or_blocking_read) ... skipped 'FIFO creation requires a POSIX-like platform'
+2026-11-24T10:40:55.6783083Z test_changed_path_identity_during_snapshot_read_is_rejected (test_contact_extrema_raw.ContactExtremaRawFileTests.test_changed_path_identity_during_snapshot_read_is_rejected) ... ok
+2026-11-24T10:40:55.6841140Z test_fifo_is_rejected_without_opening_or_reading_it (test_contact_extrema_raw.ContactExtremaRawFileTests.test_fifo_is_rejected_without_opening_or_reading_it) ... skipped 'FIFO creation requires a POSIX-like platform'
+2026-11-24T10:40:55.6862212Z test_replacing_path_during_snapshot_read_is_rejected (test_contact_extrema_raw.ContactExtremaRawFileTests.test_replacing_path_during_snapshot_read_is_rejected) ... skipped "native replacement of a read-only open file is unavailable: [WinError 5] Access is denied: 'C:\\\\Users\\\\runneradmin\\\\AppData\\\\Local\\\\Temp\\\\tmpmfeh3y7z\\\\replacement.npz' -> 'C:\\\\Users\\\\runneradmin\\\\AppData\\\\Local\\\\Temp\\\\tmpmfeh3y7z\\\\retained.npz'"
+2026-11-24T10:40:57.2769019Z test_changed_raw_archive_cannot_reuse_successful_pointwise_cache (test_contact_extrema_raw.ContactExtremaRawReplayTests.test_changed_raw_archive_cannot_reuse_successful_pointwise_cache) ... skipped 'optional NumPy not installed; stdlib raw inspection remains covered'
+2026-11-24T10:40:57.2771057Z test_independent_complete_and_partial_cubics_load_and_evaluate (test_contact_extrema_raw.ContactExtremaRawReplayTests.test_independent_complete_and_partial_cubics_load_and_evaluate) ... skipped 'optional NumPy not installed; stdlib raw inspection remains covered'
+2026-11-24T10:40:57.2772513Z test_loader_parses_exact_hashed_snapshot_when_path_changes_before_numpy_load (test_contact_extrema_raw.ContactExtremaRawReplayTests.test_loader_parses_exact_hashed_snapshot_when_path_changes_before_numpy_load) ... skipped 'optional NumPy not installed; stdlib raw inspection remains covered'
+2026-11-24T10:40:57.2773977Z test_replacing_reference_identity_invalidates_previous_pointwise_cache (test_contact_extrema_raw.ContactExtremaRawReplayTests.test_replacing_reference_identity_invalidates_previous_pointwise_cache) ... skipped 'optional NumPy not installed; stdlib raw inspection remains covered'
+2026-11-24T10:40:57.9085099Z test_one_accepted_step_retains_partial_arrays_checkpoints_and_explicit_failure (test_contact_extrema_reference.ContactExtremaLiveCapTests.test_one_accepted_step_retains_partial_arrays_checkpoints_and_explicit_failure) ... skipped 'optional NumPy/SciPy not installed'
+2026-11-24T10:40:57.9086434Z test_rhs_search_and_candidate_caps_stop_at_one_and_keep_initial_mesh (test_contact_extrema_reference.ContactExtremaLiveCapTests.test_rhs_search_and_candidate_caps_stop_at_one_and_keep_initial_mesh) ... skipped 'optional NumPy/SciPy not installed'
+2026-11-24T10:40:57.9087660Z test_close_roots_hidden_from_quarter_scan_keep_separate_brackets (test_contact_extrema_reference.ContactExtremaPolynomialTests.test_close_roots_hidden_from_quarter_scan_keep_separate_brackets) ... skipped 'optional NumPy not installed'
+2026-11-24T10:40:57.9088876Z test_even_and_triple_roots_keep_conditioning_or_tangency_unresolved (test_contact_extrema_reference.ContactExtremaPolynomialTests.test_even_and_triple_roots_keep_conditioning_or_tangency_unresolved) ... skipped 'optional NumPy not installed'
+2026-11-24T10:40:57.9090099Z test_noncubic_nonvector_and_collapsed_sample_times_are_rejected (test_contact_extrema_reference.ContactExtremaPolynomialTests.test_noncubic_nonvector_and_collapsed_sample_times_are_rejected) ... skipped 'optional NumPy not installed'
+2026-11-24T10:40:57.9091269Z test_normalized_derivative_includes_physical_time_scale (test_contact_extrema_reference.ContactExtremaPolynomialTests.test_normalized_derivative_includes_physical_time_scale) ... skipped 'optional NumPy not installed'
+2026-11-24T10:40:57.9092401Z test_tiny_interval_uses_actual_representable_abscissae (test_contact_extrema_reference.ContactExtremaPolynomialTests.test_tiny_interval_uses_actual_representable_abscissae) ... skipped 'optional NumPy not installed'
+2026-11-24T10:40:57.9093576Z test_vector_cubic_reconstructs_known_coefficients_from_public_calls (test_contact_extrema_reference.ContactExtremaPolynomialTests.test_vector_cubic_reconstructs_known_coefficients_from_public_calls) ... skipped 'optional NumPy not installed'
+2026-11-24T10:40:57.9094823Z test_zero_plateau_near_flat_nonzero_and_endpoint_labels_are_distinct (test_contact_extrema_reference.ContactExtremaPolynomialTests.test_zero_plateau_near_flat_nonzero_and_endpoint_labels_are_distinct) ... skipped 'optional NumPy not installed'
+2026-11-24T10:40:57.9192395Z test_exact_mesh_endpoint_side_selection_and_no_extrapolation (test_contact_extrema_reference.ContactExtremaRetainedEvaluationTests.test_exact_mesh_endpoint_side_selection_and_no_extrapolation) ... skipped 'optional NumPy not installed'
+2026-11-24T10:40:57.9193782Z test_inline_array_mutation_is_rejected_by_independent_manifest (test_contact_extrema_reference.ContactExtremaRetainedEvaluationTests.test_inline_array_mutation_is_rejected_by_independent_manifest) ... skipped 'optional NumPy not installed'
+2026-11-24T10:40:57.9195752Z test_npz_array_hash_shape_and_dtype_survive_recomputed_file_hash (test_contact_extrema_reference.ContactExtremaRetainedEvaluationTests.test_npz_array_hash_shape_and_dtype_survive_recomputed_file_hash) ... skipped 'optional NumPy not installed'
+2026-11-24T10:40:57.9198218Z test_npz_byte_hash_rejects_trailing_bytes (test_contact_extrema_reference.ContactExtremaRetainedEvaluationTests.test_npz_byte_hash_rejects_trailing_bytes) ... skipped 'optional NumPy not installed'
+2026-11-24T10:40:57.9200474Z test_physical_velocity_and_dense_derivative_have_distinct_stationary_times (test_contact_extrema_reference.ContactExtremaRetainedEvaluationTests.test_physical_velocity_and_dense_derivative_have_distinct_stationary_times) ... skipped 'optional NumPy not installed'
+2026-11-24T10:40:57.9202942Z test_signed_coordinate_transform_preserves_physical_observables (test_contact_extrema_reference.ContactExtremaRetainedEvaluationTests.test_signed_coordinate_transform_preserves_physical_observables) ... skipped 'optional NumPy not installed'
+2026-11-24T10:41:05.3965158Z test_optional_time_refinement_separates_force_and_compression (test_contact_peak_oracles.ContactPeakOracleTests.test_optional_time_refinement_separates_force_and_compression) ... skipped 'optional SciPy not installed'
+2026-11-24T10:41:05.5939722Z test_posix_surrogate_escaped_paths_survive_retention (test_contact_peak_portability.ContactPeakPortabilityTests.test_posix_surrogate_escaped_paths_survive_retention) ... skipped 'surrogate-escaped filenames are POSIX-specific'
+2026-11-24T10:41:05.8008793Z test_fifo_and_final_symlink_are_refused_before_opening (test_contact_peak_retention_errors.ContactPeakRetentionErrorTests.test_fifo_and_final_symlink_are_refused_before_opening) ... skipped 'requires POSIX FIFO support'
+2026-11-24T10:41:11.9679325Z test_fifo_report_is_rejected_without_blocking (test_continuation_b.ContinuationBTests.test_fifo_report_is_rejected_without_blocking) ... skipped 'FIFO unavailable'
+2026-11-24T10:41:19.7307102Z test_fifo_hash_input_is_rejected_before_open_without_blocking (test_direct_alias_driver.ArtifactTests.test_fifo_hash_input_is_rejected_before_open_without_blocking) ... skipped 'FIFO creation unavailable'
+2026-11-24T10:41:22.9382945Z test_analytic_modes_against_independent_matrix_exponential (test_filtered_audio_reference.FilteredAudioNumericalTests.test_analytic_modes_against_independent_matrix_exponential) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'
+2026-11-24T10:41:22.9384751Z test_both_refinement_gates_are_mandatory_and_failures_remain_inconclusive (test_filtered_audio_reference.FilteredAudioNumericalTests.test_both_refinement_gates_are_mandatory_and_failures_remain_inconclusive) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'
+2026-11-24T10:41:22.9386087Z test_continuous_result_against_separate_adaptive_integrals (test_filtered_audio_reference.FilteredAudioNumericalTests.test_continuous_result_against_separate_adaptive_integrals) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'
+2026-11-24T10:41:22.9387404Z test_fir_recipe_matches_frozen_serialization_without_importing_it (test_filtered_audio_reference.FilteredAudioNumericalTests.test_fir_recipe_matches_frozen_serialization_without_importing_it) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'
+2026-11-24T10:41:22.9388795Z test_full_record_and_inclusive_event_window_metrics (test_filtered_audio_reference.FilteredAudioNumericalTests.test_full_record_and_inclusive_event_window_metrics) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'
+2026-11-24T10:41:22.9390216Z test_incomplete_run_preserves_bad_stdout_and_nonzero_probe_failures (test_filtered_audio_reference.FilteredAudioNumericalTests.test_incomplete_run_preserves_bad_stdout_and_nonzero_probe_failures) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'
+2026-11-24T10:41:22.9391434Z test_local_nonlinearity_then_loaded_sum (test_filtered_audio_reference.FilteredAudioNumericalTests.test_local_nonlinearity_then_loaded_sum) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'
+2026-11-24T10:41:22.9392813Z test_probe_metadata_samples_and_raw_hash_precision (test_filtered_audio_reference.FilteredAudioNumericalTests.test_probe_metadata_samples_and_raw_hash_precision) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'
+2026-11-24T10:41:22.9394026Z test_refinement_rms_and_exploratory_rms_are_separate_limits (test_filtered_audio_reference.FilteredAudioNumericalTests.test_refinement_rms_and_exploratory_rms_are_separate_limits) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'
+2026-11-24T10:41:22.9395309Z test_reset_order_erases_prior_motion_and_history_without_alignment (test_filtered_audio_reference.FilteredAudioNumericalTests.test_reset_order_erases_prior_motion_and_history_without_alignment) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'
+2026-11-24T10:41:22.9396594Z test_retrigger_release_pedal_and_all_off_preserve_mechanics (test_filtered_audio_reference.FilteredAudioNumericalTests.test_retrigger_release_pedal_and_all_off_preserve_mechanics) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'
+2026-11-24T10:41:22.9397876Z test_three_small_production_comparisons_keep_exact_internal_phase (test_filtered_audio_reference.FilteredAudioNumericalTests.test_three_small_production_comparisons_keep_exact_internal_phase) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'
+2026-11-24T10:41:22.9399305Z test_unit_cell_kernel_has_correct_zero_history_delay_and_reset (test_filtered_audio_reference.FilteredAudioNumericalTests.test_unit_cell_kernel_has_correct_zero_history_delay_and_reset) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'
+2026-11-24T10:41:22.9400552Z test_unresolved_reference_raw_arrays_and_hashes_are_retained (test_filtered_audio_reference.FilteredAudioNumericalTests.test_unresolved_reference_raw_arrays_and_hashes_are_retained) ... skipped 'Optional offline numerical selfchecks need NumPy/SciPy'
+2026-11-24T10:41:24.4019443Z test_failed_comparison_b_survives_perfect_bookkeeping_and_hashes_bind_retention (test_filtered_decomposition_cli.DecompositionProvenanceTests.test_failed_comparison_b_survives_perfect_bookkeeping_and_hashes_bind_retention) ... skipped 'Optional retained-array checks need NumPy/SciPy'
+2026-11-24T10:41:24.4020847Z test_source_or_probe_mutation_prevents_diagnostic_completion (test_filtered_decomposition_cli.DecompositionProvenanceTests.test_source_or_probe_mutation_prevents_diagnostic_completion) ... skipped 'Optional retained-array checks need NumPy/SciPy'
+2026-11-24T10:41:24.4022159Z test_unresolved_reference_and_resolved_pass_keep_distinct_exit_codes (test_filtered_decomposition_cli.DecompositionProvenanceTests.test_unresolved_reference_and_resolved_pass_keep_distinct_exit_codes) ... skipped 'Optional retained-array checks need NumPy/SciPy'
+2026-11-24T10:41:25.2559018Z test_constant_source_retains_both_finite_support_endpoints (test_filtered_error_bridge.FilteredErrorBridgeNumericalTests.test_constant_source_retains_both_finite_support_endpoints) ... skipped 'Optional offline bridge checks need NumPy/SciPy'
+2026-11-24T10:41:25.2560826Z test_decomposition_exposes_missing_attribution_and_cannot_pass_original_b (test_filtered_error_bridge.FilteredErrorBridgeNumericalTests.test_decomposition_exposes_missing_attribution_and_cannot_pass_original_b) ... skipped 'Optional offline bridge checks need NumPy/SciPy'
+2026-11-24T10:41:25.2562175Z test_exact_left_propagation_uses_no_epsilon_or_off_grid_query (test_filtered_error_bridge.FilteredErrorBridgeNumericalTests.test_exact_left_propagation_uses_no_epsilon_or_off_grid_query) ... skipped 'Optional offline bridge checks need NumPy/SciPy'
+2026-11-24T10:41:25.2563452Z test_malformed_values_shapes_epochs_and_event_rows_are_rejected (test_filtered_error_bridge.FilteredErrorBridgeNumericalTests.test_malformed_values_shapes_epochs_and_event_rows_are_rejected) ... skipped 'Optional offline bridge checks need NumPy/SciPy'
+2026-11-24T10:41:25.2564705Z test_reset_erases_old_and_same_time_pre_reset_strikes (test_filtered_error_bridge.FilteredErrorBridgeNumericalTests.test_reset_erases_old_and_same_time_pre_reset_strikes) ... skipped 'Optional offline bridge checks need NumPy/SciPy'
+2026-11-24T10:41:25.2565973Z test_single_and_adjacent_steps_match_manual_cells_and_event_weights (test_filtered_error_bridge.FilteredErrorBridgeNumericalTests.test_single_and_adjacent_steps_match_manual_cells_and_event_weights) ... skipped 'Optional offline bridge checks need NumPy/SciPy'
+2026-11-24T10:41:25.2567251Z test_smooth_source_has_only_support_endpoint_attribution (test_filtered_error_bridge.FilteredErrorBridgeNumericalTests.test_smooth_source_has_only_support_endpoint_attribution) ... skipped 'Optional offline bridge checks need NumPy/SciPy'
+2026-11-24T10:41:25.2568886Z test_zero_intensity_release_has_no_jump_but_keeps_its_event_window (test_filtered_error_bridge.FilteredErrorBridgeNumericalTests.test_zero_intensity_release_has_no_jump_but_keeps_its_event_window) ... skipped 'Optional offline bridge checks need NumPy/SciPy'
+2026-11-24T10:41:27.1611493Z test_path_replacement_after_final_fstat_is_detected (test_payloads.PayloadVerificationTests.test_path_replacement_after_final_fstat_is_detected) ... skipped 'Host cannot replace an open file'
+2026-11-24T10:41:30.9487274Z test_a_b_and_refinement_are_independent_and_preserve_inputs (test_quadrature_audio_validation.QuadratureNumericalAssessmentTests.test_a_b_and_refinement_are_independent_and_preserve_inputs) ... skipped 'Optional numerical assessment/NPZ checks need NumPy/SciPy'
+2026-11-24T10:41:30.9488992Z test_execute_case_retains_exact_five_arrays_even_when_unresolved (test_quadrature_audio_validation.QuadratureNumericalAssessmentTests.test_execute_case_retains_exact_five_arrays_even_when_unresolved) ... skipped 'Optional numerical assessment/NPZ checks need NumPy/SciPy'
+2026-11-24T10:41:30.9490416Z test_execute_case_retains_malformed_stdout_and_probe_failure_streams (test_quadrature_audio_validation.QuadratureNumericalAssessmentTests.test_execute_case_retains_malformed_stdout_and_probe_failure_streams) ... skipped 'Optional numerical assessment/NPZ checks need NumPy/SciPy'
+2026-11-24T10:41:33.9522674Z test_scipy_rule_and_independent_continuous_kernel_recipe (test_quadrature_filter_generation.IndependentQuadratureFilterTests.test_scipy_rule_and_independent_continuous_kernel_recipe) ... skipped 'Optional independent Q6 audit needs NumPy/SciPy'
+2026-11-24T10:41:44.4819581Z Ran 888 tests in 80.339s
+2026-11-24T10:41:44.4819753Z OK (skipped=58)
+
+=== GitHub Actions job 138383892091 / run 45376430320 ===
+Source: https://github.com/baabi-boo/Fender-rhoades/actions/runs/45376430320/job/138383892091
+Verbatim selected decoded log lines; timestamps retained. Passing CTest entries do not expose suppressed test stdout.
+2026-11-24T10:55:46.1448010Z macOS
+2026-11-24T10:55:46.1449930Z Image: macos-26-arm64
+2026-11-24T10:55:49.1540060Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.11.9/arm64
+2026-11-24T10:55:49.4977100Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.11.9/arm64
+2026-11-24T10:55:49.6178840Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.11.9/arm64
+2026-11-24T10:55:49.6826490Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.11.9/arm64
+2026-11-24T10:55:50.1687880Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.11.9/arm64
+2026-11-24T10:55:50.2488030Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.11.9/arm64
+2026-11-24T10:55:50.3235430Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.11.9/arm64
+2026-11-24T10:55:50.4031090Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.11.9/arm64
+2026-11-24T10:55:50.4844730Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.11.9/arm64
+2026-11-24T10:55:50.5523360Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.11.9/arm64
+2026-11-24T10:55:50.6227110Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.11.9/arm64
+2026-11-24T10:55:50.7114770Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.11.9/arm64
+2026-11-24T10:55:50.7893190Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.11.9/arm64
+2026-11-24T10:55:50.8653200Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.11.9/arm64
+2026-11-24T10:55:50.9612980Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.11.9/arm64
+2026-11-24T10:55:51.4875390Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.11.9/arm64
+2026-11-24T10:55:51.5919940Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.11.9/arm64
+2026-11-24T10:55:51.6766470Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.11.9/arm64
+2026-11-24T10:55:51.7562350Z   pythonLocation: /Users/runner/hostedtoolcache/Python/3.11.9/arm64
+2026-11-24T10:55:58.1633970Z test_complete_mock_capture_retains_all_four_runs_and_comparison (test_callback_compare.CaptureTests.test_complete_mock_capture_retains_all_four_runs_and_comparison) ... ok
+2026-11-24T10:55:58.3910680Z test_source_binary_plan_metadata_and_same_bytes_replacement_are_detected (test_callback_compare.CaptureTests.test_source_binary_plan_metadata_and_same_bytes_replacement_are_detected) ... ok
+2026-11-24T10:56:12.6716660Z test_changed_path_identity_during_snapshot_read_is_rejected (test_contact_extrema_raw.ContactExtremaRawFileTests.test_changed_path_identity_during_snapshot_read_is_rejected) ... ok
+2026-11-24T10:56:12.6770850Z test_replacing_path_during_snapshot_read_is_rejected (test_contact_extrema_raw.ContactExtremaRawFileTests.test_replacing_path_during_snapshot_read_is_rejected) ... ok
+2026-11-24T10:56:30.0462630Z ##[error]The operation was canceled.

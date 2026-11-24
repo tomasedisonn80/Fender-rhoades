@@ -211,8 +211,9 @@ and sound remain associated with the intended instances. Repeat a saved-project
 reopen with all three present. Retain any host parameter-linking/group settings
 that could otherwise explain cross-track changes.
 
-This produces a named-host coexistence observation. It does not extend the
-repository's Linux-only loader-fixture result to every other host or platform.
+This produces a named-host coexistence observation. The [retained loader-fixture
+results](VST3.md) cover the recorded source, native platforms and synthetic host
+harnesses.
 
 ## 5. Record host limits and live behavior
 

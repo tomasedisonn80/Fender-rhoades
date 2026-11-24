@@ -112,7 +112,9 @@ all three production bundles through SDK-only host linkage. Permanent command
 partitioning and inactive-output command/recall checks are also included for all
 three variants. See [HOST-MIDI verification](HOST_MIDI_VERIFICATION.md) for test
 selection and retained evidence. Native CI results for the current cross-platform
-loader changes remain pending. The metadata checks compare generated
+loader changes passed on Linux and Windows; current macOS execution remains
+pending in the [HOST-002 verification record](#current-host-002-verification--24-november-2026).
+The metadata checks compare generated
 `moduleinfo.json` with the loadable factory; resource-presence checks remain
 separate. For a plug-in-only build, select `--target rhodes_vst3`,
 `--target rhodes_vst3_filtered` or `--target rhodes_vst3_quadrature`; tests can be
@@ -125,7 +127,7 @@ architecture. Use a new build directory when changing generators. This guide
 uses Unix Makefiles because the pinned SDK's Xcode branch adds fast-math and
 code-signing settings requiring separate review; it does not recommend Xcode
 as an interchangeable configuration. The native macOS ARM job in the
-[24 November checkpoint](#native-platform-checkpoint--24-november-2026) passed
+[historical 24 November checkpoint](#historical-native-platform-checkpoint--24-november-2026) passed
 with that CI configuration. This does not establish a tested minimum macOS
 deployment version or a universal binary. Signing, notarization and distribution
 are separate release work.
@@ -319,13 +321,71 @@ configuration recall installed at an accepted audio boundary supplies that reset
 
 ## Observed verification and remaining gates
 
-The dated checkpoints below predate the CC123, pressure and text-conversion
-continuation. They retain their original source-bound scope and do not establish
-native-platform or DAW acceptance of those changes. Current acceptance follows
-the [MIDI continuation](specs/HOST_MIDI_20261124.md) and
-[project state](PROJECT_STATE.md); the instruments remain synthetic and unvalidated.
+### Current HOST-002 verification — 24 November 2026
 
-### Native platform checkpoint — 24 November 2026
+**HOST-002 remains incomplete.** The
+[CC123](agents/reports/continuation-c/w5-082.md),
+[pressure](agents/reports/continuation-c/w5-083.md) and
+[control-text](agents/reports/continuation-c/w5-084.md) criterion reviews pass
+within their frozen synthetic scope. The
+[final criterion review](validation/host-midi-acceptance-20261124.md) records
+C01–C03 as passed and C04 as incomplete. Current native macOS validation and a
+passing final acceptance decision remain pending under the
+[MIDI continuation](specs/HOST_MIDI_20261124.md) and
+[canonical project state](PROJECT_STATE.md).
+
+The [native cutoff record](validation/host-midi-native-final-20261124.json),
+[selected logs](validation/host-midi-native-final-selected-20261124.log) and
+[review](agents/reports/continuation-c/w5-081.md) retain these actual executions.
+VST3 jobs used [ce59b0c](https://github.com/baabi-boo/Fender-rhoades/commit/ce59b0c254ab99b399f03e63094b10ce10933e71);
+Foundation jobs used [d4c8a6b](https://github.com/baabi-boo/Fender-rhoades/commit/d4c8a6b2668e478f48facd2eeb146aff0f551506).
+
+| Check / retained evidence | Executed source | Result |
+| --- | --- | --- |
+| [Local Linux integration](validation/host-midi-linux-final-20261124.json) | Incremental dirty `ce59b0c` with fixture/generator repairs | 327/327 CTests passed; no skips |
+| [Local Python](validation/host-midi-python-final-20261124.json) | Repaired working tree | 888 reported: 887 passed, 1 skip |
+| Native [Linux](https://github.com/baabi-boo/Fender-rhoades/actions/runs/45373649775/job/138374005076) / [Windows x64](https://github.com/baabi-boo/Fender-rhoades/actions/runs/45373649775/job/138374004751) VST3 | `ce59b0c` | 157/157 CTests passed per platform; no skips |
+| [Native Linux core](https://github.com/baabi-boo/Fender-rhoades/actions/runs/45376430320/job/138383891694) | `d4c8a6b` | 170/170 CTests passed; no skips |
+| [Native Windows core](https://github.com/baabi-boo/Fender-rhoades/actions/runs/45376430320/job/138383892161) | `d4c8a6b` | 167/167 CTests passed; no skips |
+| [Linux address/undefined-behavior sanitizers](https://github.com/baabi-boo/Fender-rhoades/actions/runs/45376430320/job/138383892155) | `d4c8a6b` | 170/170 CTests passed; no skips |
+| [Native Linux Python](https://github.com/baabi-boo/Fender-rhoades/actions/runs/45376430320/job/138383892070) | `d4c8a6b` | 888 reported: 838 passed, 50 skips |
+| [Native Windows Python](https://github.com/baabi-boo/Fender-rhoades/actions/runs/45376430320/job/138383892223) | `d4c8a6b` | 888 reported: 830 passed, 58 skips |
+
+Both native VST3 jobs passed all six SDK/module-info validators and the loaded
+module/MIDI checks. The three additional Linux core tests require `/dev/full`;
+Windows does not register them. Python totals include skips, with their reasons
+retained in the linked records.
+
+The [local source audit](agents/reports/continuation-c/w4-073.md) matches the
+retained 99-file C++ freeze to `d4c8a6b`; the execution remains an incremental
+dirty-tree run, not a clean `d4c8a6b` build. The published
+[4cf0de7](https://github.com/baabi-boo/Fender-rhoades/commit/4cf0de7089e5f622916cc5f6a25bb4034715d781)
+update adds documentation/evidence while preserving runtime/test sources.
+The native record confirms 91/91 applicable VST3 source/build files match
+`ce59b0c` and 195/195 Foundation code files match `d4c8a6b`; this does not
+promote later documentation or project records to remotely tested state.
+
+At the **10:57:30.673 UTC cutoff**, the original macOS VST3 job had been
+cancelled without execution. The requested retry had appeared as attempt 2,
+[job 138393683256](https://github.com/baabi-boo/Fender-rhoades/actions/runs/45373649775/job/138393683256),
+still queued with no runner or steps. The `d4c8a6b` Foundation workflow ended
+cancelled: macOS core never ran and macOS Python stopped without a completed
+suite summary. Its successful Linux/Windows jobs above retain their own results.
+The replacement [Foundation run at 4cf0de7](https://github.com/baabi-boo/Fender-rhoades/actions/runs/45379468043)
+had seven queued jobs. The later
+[closing status readback](validation/host-midi-native-closure-20261124.json) at
+**11:20:37 UTC** records the macOS VST3 retry as cancelled without execution,
+five successful Linux/Windows Foundation jobs, and both macOS Foundation jobs
+still queued without runners or steps. It adds status observations, not new test
+counts. See the [continuation handoff](validation/host-midi-handoff-20261124.md)
+for the missing results. These observations establish neither a current macOS pass
+nor an all-green current revision. Native DAW delivery, device deadlines,
+minimum-OS execution, signing/release and measured fidelity remain separate gates.
+
+The dated historical checkpoints below predate HOST-002 and retain their original
+source-bound scope; they do not validate its CC123, pressure or text changes.
+
+### Historical native platform checkpoint — 24 November 2026
 
 Commit [015767f](https://github.com/baabi-boo/Fender-rhoades/commit/015767fee5635ff85a717739188ff4af60fe84f2)
 passed all ten jobs across

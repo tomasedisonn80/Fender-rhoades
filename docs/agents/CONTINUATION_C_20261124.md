@@ -20,7 +20,7 @@ acceptance. `python3 tools/validate_continuation_c.py` checks ledger integrity.
 | 2 | 021–040 | Complete | Implement CC123, validated pressure and portable text; independent regression and compatibility checks |
 | 3 | 041–060 | Complete | Close integration gaps and establish portable, reproducible verification |
 | 4 | 061–080 | Complete | Review retained evidence and remaining implementation risks |
-| 5 | 081–100 | In progress | Complete acceptance review and source-bound continuation notes |
+| 5 | 081–100 | Complete | Complete acceptance review and source-bound continuation notes |
 
 The [MIDI contract](../specs/HOST_MIDI_20261124.md) defines the behavior and
 acceptance scope. [VST3 controls](../VST3.md) and the
@@ -105,3 +105,43 @@ All 80 workers in the first four waves completed before wave 5 began. The
 results and preserves the outstanding native/macOS and acceptance limits. Three
 scoped numerical evidence records are now registered; registration alone does
 not complete HOST-002 or promote the instrument's fidelity.
+
+## Closing acceptance and continuation
+
+All **100 actual workers completed in five waves of 20**. Each preceding wave
+finished before the next began, with at most three workers running alongside the
+integrator. The [final gate](reports/continuation-c/w5-100.md) reviewed the prior
+99 immutable reports before its own completion; the ledger now retains all 100
+report hashes. `python3 tools/validate_continuation_c.py --require-complete`
+checks the complete record. Campaign completion does not imply task acceptance.
+
+Wave 5 retained the [final criterion review](../validation/host-midi-acceptance-20261124.md),
+independent source/evidence audits and an [executable handoff](../validation/host-midi-handoff-20261124.md).
+The review passes C01–C03 within the frozen synthetic scope and leaves C04
+incomplete. The **11:20:37 UTC** [closing CI readback](../validation/host-midi-native-closure-20261124.json)
+records the targeted macOS VST3 retry cancelled before execution, five successful
+Linux/Windows replacement Foundation jobs, and both macOS Foundation jobs queued
+without runners or steps. It adds no new test-count claim and does not establish
+the cause of cancellation.
+
+The retained native executions include 157/157 VST3 CTests on each of Linux and
+Windows, 170/170 Linux core tests, 167/167 Windows core tests, and 170/170 Linux
+sanitizer tests. Native Python reports 888 tests per platform, including 50 Linux
+and 58 Windows skips. These are the source-bound observations in the
+[native evidence](../validation/host-midi-native-final-20261124.json); local and
+native suites overlap and must not be summed into a unique-test total.
+
+At canonical revision **41**, HOST-002 is **blocked**, without owner or claim,
+and retains five attached evidence records: three scoped numerical passes, one
+inconclusive platform observation, and one documentary/inconclusive acceptance
+review. Every prior task and evidence record is preserved. PHY-002 and RT-001
+remain under their existing ownership; fidelity remains `unvalidated`.
+
+The [artifact metadata](../validation/host-midi-build-artifacts-20261124.json)
+records experimental bundles for all three variants built from `ce59b0c`:
+[Linux x64](https://github.com/baabi-boo/Fender-rhoades/actions/runs/45373649775/artifacts/14911156428)
+and [Windows x64](https://github.com/baabi-boo/Fender-rhoades/actions/runs/45373649775/artifacts/14912360866).
+They expire on 1 December 2026 at approximately 10:30 and 10:40 UTC respectively.
+The metadata and CI archive checks were inspected; the downloaded binaries were
+not independently installed or exercised in a named DAW. No macOS artifact or
+release qualification is claimed.

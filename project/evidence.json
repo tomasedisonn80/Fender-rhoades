@@ -1034,6 +1034,110 @@
         "The --command option is omitted intentionally: the retained evidence is a provider-observed multi-job snapshot, not a newly executed local CI command. Run/job identities, result lines and observation methods are in the artifacts.",
         "Retained selected CI log lines and API metadata are the evidence available here; this is not a newly downloaded full native log/binary archive or an authenticity attestation. No all-platform completion, native DAW/device, minimum-OS, calibrated-fidelity, RT-001 or release claim."
       ]
+    },
+    {
+      "id": "HOST-002-20261124-native-platform-observation",
+      "kind": "numerical",
+      "result": "inconclusive",
+      "summary": "Source-bound native observation retains successful Linux/Windows VST3, repaired core and tooling checks, plus Linux sanitizer validation. Full three-platform acceptance is inconclusive: macOS VST3 retry was queued, core unrun and Python interrupted at the 10:57:30.673Z cutoff.",
+      "command": null,
+      "created_at": "2026-11-24T11:04:22Z",
+      "source_commit": null,
+      "artifacts": [
+        {
+          "path": "docs/validation/host-midi-native-final-20261124.json",
+          "sha256": "00baf5673293c3aba43e1ae059fa0870fa9587f374d77adafaead73896f8443d"
+        },
+        {
+          "path": "docs/validation/host-midi-native-final-selected-20261124.log",
+          "sha256": "708032a6cf10a431f00a8042148e59f5b03b3eb793b08109be89456c623e22ed"
+        },
+        {
+          "path": "docs/agents/reports/continuation-c/w5-087.md",
+          "sha256": "f91f453f6d9ed03c2cc508d977f35c2cf3b21d2bed0a4f5ad0f870ecca3fc774"
+        },
+        {
+          "path": "docs/agents/reports/continuation-c/w5-081.md",
+          "sha256": "e2127f255c4b7c4f3c25d9b72e2084690189be354401f26016a16df427788f55"
+        }
+      ],
+      "specimen_id": null,
+      "profile_path": null,
+      "session_paths": [],
+      "independent": false,
+      "reference_evidence": [],
+      "limitations": [
+        "Provider-observed snapshot, not a newly executed local command or independent execution attestation. Source manifests identify actual ce59 VST3 and d4 Foundation runs and direct byte equality of 91/195 applicable files to 4cf. Later documentation and canonical records are not thereby remotely tested.",
+        "VST3 attempt 1 workflow concluded failure with its macOS job cancelled before execution. Attempt 2 inherited successful Linux/Windows executions and queued a new macOS job; inherited entries are not new tests and retry-request success is not execution.",
+        "The d4 Foundation workflow was cancelled after five successful Linux/Windows/sanitizer jobs. macOS core never ran; macOS Python had partial checks without a terminal suite summary. The replacement 4cf Foundation run was still queued at the cutoff. Later outcomes require a new immutable record.",
+        "CTest selectors and internal SDK checks are not additive. Python reported totals include explicitly retained skips; Windows real open-file replacement skipped with WinError 5 while the mandatory identity guard passed. Native success stdout was suppressed by output-on-failure.",
+        "No native DAW, minimum-OS runtime, audio-device deadline, calibrated physical fidelity, PHY-002/RT-001 completion or product-release claim."
+      ]
+    },
+    {
+      "id": "HOST-002-20261124-criterion-review",
+      "kind": "documentary",
+      "result": "inconclusive",
+      "summary": "Criterion-by-criterion frozen review: C01-C03 pass within the documented synthetic scope; C04 remains incomplete because applicable completed macOS validation is missing. Later closing CI status preserves this decision.",
+      "command": null,
+      "created_at": "2026-11-24T11:21:23Z",
+      "source_commit": null,
+      "artifacts": [
+        {
+          "path": "docs/validation/host-midi-acceptance-20261124.md",
+          "sha256": "ebe19c43496081a5a060ec8cd25498545305974afb59a912af02cd883b0baf2e"
+        },
+        {
+          "path": "docs/validation/host-midi-native-latest-20261124.json",
+          "sha256": "c4c1ded20ae0c092d0f642b83c8a37ba58cf661bf566ca9663889aa33a9779b2"
+        },
+        {
+          "path": "docs/validation/host-midi-native-closure-20261124.json",
+          "sha256": "28e58817c491dddb0c54f0da94819baacf7e4562a462f53ca8e0afea9b11cf7f"
+        },
+        {
+          "path": "docs/agents/reports/continuation-c/w5-082.md",
+          "sha256": "d96ff96d58a5f5cae305db21c137a314e6d75f5d9bd10a7943b572b90103076f"
+        },
+        {
+          "path": "docs/agents/reports/continuation-c/w5-083.md",
+          "sha256": "fc91be878609230571b3c6fe1dc70cc131f4a5f13f88f7b93918192a479c2505"
+        },
+        {
+          "path": "docs/agents/reports/continuation-c/w5-084.md",
+          "sha256": "f355ce2bcd134c3d32eb2fde7ec201168f7e33cc2b97c826f6d158e667a00e20"
+        },
+        {
+          "path": "docs/agents/reports/continuation-c/w5-085.md",
+          "sha256": "524f5e9386e9fc7daefd665e896ae98034b65582c607a04c8f511032b1396d20"
+        },
+        {
+          "path": "docs/agents/reports/continuation-c/w5-091.md",
+          "sha256": "1abe606931702c11228e6dbd68bc3aa92116060ee1c1ca32f8ce32adaa42e157"
+        },
+        {
+          "path": "docs/agents/reports/continuation-c/w5-092.md",
+          "sha256": "846e9d7950e05e1567af546c4d44c3da382986b49e53719e3e505b47b41e22b7"
+        },
+        {
+          "path": "docs/agents/reports/continuation-c/w5-093.md",
+          "sha256": "afb10c805fc7d503d168074afc613bc6ec4250269ce9505f4bd989fc97b8c82c"
+        },
+        {
+          "path": "docs/agents/reports/continuation-c/w5-097.md",
+          "sha256": "9da6420b1979efb2baa3ef74744d3e377ef9467086d97f9c5fbb348bce5c524a"
+        }
+      ],
+      "specimen_id": null,
+      "profile_path": null,
+      "session_paths": [],
+      "independent": false,
+      "reference_evidence": [],
+      "limitations": [
+        "This is a documentary acceptance review, not a new execution, native macOS pass, DAW pass, measured specimen validation, release qualification or task completion.",
+        "The review uses the immutable 11:09:46.569 UTC status cutoff; the separately retained 11:20:37 UTC readback records the macOS VST3 retry cancelled without execution and both replacement Foundation macOS jobs queued.",
+        "Successful Linux/Windows execution claims remain bound to their original source, logs and finite coverage; source bridges do not convert later documentation/state into remotely tested inputs."
+      ]
     }
   ]
 }
