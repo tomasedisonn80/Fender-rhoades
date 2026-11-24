@@ -158,6 +158,15 @@ def run(probe: Path, renderer: Path, output: Path) -> int:
                 or q6.object_hash(case.document()) != expected["input_sha256"]
                 or digest(q6.reference.probe_input(case)) != expected["probe_stdin_sha256"]):
             raise ValueError(f"Historical input changed: {case.id}")
+        for name in ("probe_stdout_sha256", "probe_stderr_sha256"):
+            value = expected.get(name)
+            if not isinstance(value, str) or not re.fullmatch(r"[0-9a-f]{64}", value):
+                raise ValueError(f"Historical comparison digest is invalid: {case.id}/{name}")
+        array_hashes = expected.get("raw_array_sha256")
+        if (not isinstance(array_hashes, list) or len(array_hashes) != 5
+                or any(not isinstance(value, str) or not re.fullmatch(r"[0-9a-f]{64}", value)
+                       for value in array_hashes)):
+            raise ValueError(f"Historical comparison array digests are invalid: {case.id}")
         metadata_index = expected["probe_metadata_index"]
         if (type(metadata_index) is not int or not isinstance(metadata_dictionary, list)
                 or not 0 <= metadata_index < len(metadata_dictionary)):

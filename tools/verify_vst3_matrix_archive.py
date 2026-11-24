@@ -19,6 +19,7 @@ import re
 import stat
 import sys
 import tarfile
+import zlib
 
 import run_vst3_matrix as matrix
 
@@ -176,7 +177,7 @@ def archive_members(raw):
                 members[member.name] = payload
             require(not any(unpacked[archive.offset:]), "nonzero data after tar end")
         return members
-    except (OSError, EOFError, tarfile.TarError) as error:
+    except (OSError, EOFError, tarfile.TarError, zlib.error) as error:
         raise VerificationError("invalid compressed tar: " + str(error)) from error
 
 

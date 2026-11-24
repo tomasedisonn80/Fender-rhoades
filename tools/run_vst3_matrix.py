@@ -367,12 +367,21 @@ def main(argv=None):
                           stdout=stdout.name, stderr=stderr.name,
                           stdout_sha256=digest(stdout.read_bytes()), stderr_sha256=digest(stderr.read_bytes()))
             if affinity_path.exists():
-                record["child_affinity"] = json.loads(affinity_path.read_text())
+                try:
+                    affinity = json.loads(affinity_path.read_text(encoding="utf-8"))
+                    if not isinstance(affinity, dict):
+                        raise ValueError("child affinity record must be an object")
+                    record["child_affinity"] = affinity
+                except (OSError, ValueError) as error:
+                    # Preserve this attempted run and its streams before
+                    # rejecting setup and leaving later runs unattempted.
+                    record["affinity_error"] = str(error)
             try:
                 raw = json.loads(stdout.read_bytes(), parse_constant=lambda value: (_ for _ in ()).throw(ValueError(value)))
                 result = verify_result(raw, profiles[run["profile_id"]], variants[run["variant"]])
                 record["verification"] = result
-                if record["returncode"] == 0 and result["valid"] and record.get("child_affinity", {}).get("affinity") == [cpu]:
+                if (not record.get("timed_out", False) and record["returncode"] == 0
+                        and result["valid"] and record.get("child_affinity", {}).get("affinity") == [cpu]):
                     record["status"] = "complete"
                 if isinstance(raw, dict) and isinstance(raw.get("integrity"), dict):
                     raw_results[run["id"]] = raw
@@ -407,7 +416,14 @@ def main(argv=None):
         manifest["unattempted_run_ids"] = [r["id"] for r in locals().get("plan", {}).get("runs", [])
                                             if r["id"] not in {x["id"] for x in records}]
         if sys.platform == "linux" and hasattr(os, "sched_getaffinity"):
-            write_json(output / "machine-after.json", machine_snapshot())
+            try:
+                write_json(output / "machine-after.json", machine_snapshot())
+            except (OSError, ValueError, RuntimeError, subprocess.SubprocessError) as error:
+                # A secondary snapshot failure must not mask the earlier error
+                # or prevent retention of the already completed run records.
+                manifest["final_machine_error"] = str(error)
+                manifest["status"] = "operational_failure"
+                status = 3
         if "before" in locals() and not (output / "input-hashes-after.json").exists():
             try:
                 after = hashes(retained)

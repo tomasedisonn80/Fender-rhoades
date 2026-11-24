@@ -82,22 +82,76 @@
       "wave": 3,
       "id": "W3-49",
       "agent_task_name": "/root/w3_49_allocation_policy",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w3-49-allocation-policy.md",
+      "sha256": "83ceffd6024cb70e9177417d71dd48a08ec6ab91059b27f0c4114cf9475d901a"
     },
     {
       "assignment": 50,
       "wave": 3,
       "id": "W3-50",
       "agent_task_name": "/root/w3_50_event_state",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w3-50-event-state.md",
+      "sha256": "41cfc28755fac8f7dca33f1e70050e99a6275497d5b26045b26f4960f4cf6570"
     },
     {
       "assignment": 51,
       "wave": 3,
       "id": "W3-51",
       "agent_task_name": "/root/w3_51_timing_statistics",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w3-51-timing-statistics.md",
+      "sha256": "3ea6e3317c75c921d9e54d591cba8e1832e7eac9bd64a23e190bc386ea0980a6"
+    },
+    {
+      "assignment": 52,
+      "wave": 3,
+      "id": "W3-52",
+      "agent_task_name": "/root/w3_52_archive_adversarial",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w3-52-archive-adversarial.md",
+      "sha256": "240770d4994a994ef33ae076f9d3dd4f1e066587b45c1fd1b30bc92ab1b3be86"
+    },
+    {
+      "assignment": 53,
+      "wave": 3,
+      "id": "W3-53",
+      "agent_task_name": "/root/w3_53_launcher_errors",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w3-53-launcher-errors.md",
+      "sha256": "7e0dc72263de971dcde69f1b96f7fcc7203173039e9c158039374f653e361851"
+    },
+    {
+      "assignment": 54,
+      "wave": 3,
+      "id": "W3-54",
+      "agent_task_name": "/root/w3_54_compatibility_adversarial",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w3-54-compatibility-adversarial.md",
+      "sha256": "6c696faf10b9d348d42274bab8991cce42d261c44de27715ef9b7ac6c5ef4efc"
+    },
+    {
+      "assignment": 55,
+      "wave": 3,
+      "id": "W3-55",
+      "agent_task_name": "/root/w3_55_ledger_adversarial",
+      "status": "running"
+    },
+    {
+      "assignment": 56,
+      "wave": 3,
+      "id": "W3-56",
+      "agent_task_name": "/root/w3_56_native_ci_audit",
+      "status": "running"
+    },
+    {
+      "assignment": 57,
+      "wave": 3,
+      "id": "W3-57",
+      "agent_task_name": "/root/w3_57_public_model_boundary",
       "status": "running"
     }
   ],
-  "completed_actual_agents": 8
+  "completed_actual_agents": 14
 }

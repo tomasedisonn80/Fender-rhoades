@@ -51,6 +51,14 @@ jobs:
         run: python tools/quadrature_campaign.py validate
       - name: Reject stale quadrature campaign index
         run: python tools/quadrature_campaign.py sync --check
+      - name: Validate current development waves and report hashes
+        run: python tools/validate_development_waves.py
+      - name: Verify retained VST3 timing archives
+        run: >-
+          python tools/verify_vst3_matrix_archive.py
+          docs/validation/vst3-matrix-20261124.json
+          docs/validation/vst3-matrix-batched-20261124.json
+          docs/validation/vst3-matrix-batch-final-20261124.json
       - name: Reject stale audio filter coefficients
         run: python tools/generate_audio_filter.py --check
       - name: Reject stale quadrature filter coefficients
