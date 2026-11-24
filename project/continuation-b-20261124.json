@@ -59,7 +59,9 @@
       "assignment": 7,
       "wave": 1,
       "agent_task_name": "/root/w1_007_filtered_bridge",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/20261124b-w1-007-filtered-bridge.md",
+      "sha256": "2570830b5a5e8d07ff8f6fdad340e464dca6074ad9ea62479676be306176b081"
     },
     {
       "assignment": 8,
@@ -71,8 +73,30 @@
       "assignment": 9,
       "wave": 1,
       "agent_task_name": "/root/w1_009_contact_schema",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124b-w1-009-contact-schema.md",
+      "sha256": "f9d7739ad86f0aee71911f9cfa59337be5fb7b83e4fa2479dd1a1cf922d47dda"
+    },
+    {
+      "assignment": 10,
+      "wave": 1,
+      "agent_task_name": "/root/w1_010_bridge_tests",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124b-w1-010-bridge-tests.md",
+      "sha256": "3b5a390f38e9eb200840fe794197d6c995e514e2c3deaccd480ccd4b78b27abd"
+    },
+    {
+      "assignment": 11,
+      "wave": 1,
+      "agent_task_name": "/root/w1_011_contact_driver",
+      "status": "running"
+    },
+    {
+      "assignment": 12,
+      "wave": 1,
+      "agent_task_name": "/root/w1_012_qfir_regression",
       "status": "running"
     }
   ],
-  "completed_agents": 6
+  "completed_agents": 9
 }
