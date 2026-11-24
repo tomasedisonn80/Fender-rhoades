@@ -244,8 +244,8 @@ void qengine_partitions() {
     std::cout << "partition_cases=36 including_empty_and_single_frame_blocks\n";
 }
 
-enum class Fault { none, missing_node, nan_node, inf_node, advance_false,
-                   advance_nan, advance_inf, huge_constant };
+enum class Fault { none, missing_node, nan_node, inf_node, nan_cell, inf_cell,
+                   advance_false, advance_nan, advance_inf, huge_constant };
 
 // A deterministic substitute exposes observations/advances through counters.
 // No production fault switch or accessor is added. The private plan is unused:
@@ -258,6 +258,7 @@ struct FaultEngine {
     inline static std::size_t advance_calls = 0;
     inline static std::size_t reset_calls = 0;
     inline static std::size_t plan_calls = 0;
+    inline static std::size_t invalid_cells_returned = 0;
     inline static bool reject_core_prepare = false;
     inline static bool reject_plan_prepare = false;
     std::size_t frame = 0;
@@ -267,6 +268,7 @@ struct FaultEngine {
         fault = Fault::none;
         fail_frame = no_failure;
         fail_node = observation_calls = advance_calls = reset_calls = plan_calls = 0;
+        invalid_cells_returned = 0;
         reject_core_prepare = reject_plan_prepare = false;
     }
     bool prepare(double) noexcept {
@@ -297,6 +299,14 @@ struct FaultEngine {
             const auto value = observe(plan, node);
             if (!value || !std::isfinite(*value)) { return std::nullopt; }
             cell[node] = *value;
+        }
+        // These separate faults deliberately pass an engaged optional to the
+        // wrapper, rather than being caught by the substitute's scalar scan.
+        if (frame == fail_frame && (fault == Fault::nan_cell || fault == Fault::inf_cell)) {
+            cell[fail_node] = fault == Fault::nan_cell ?
+                std::numeric_limits<double>::quiet_NaN() :
+                std::numeric_limits<double>::infinity();
+            ++invalid_cells_returned;
         }
         return cell;
     }
@@ -447,15 +457,39 @@ void qengine_faults() {
         [](double value) { return std::isfinite(value) && value != 0.0; }),
         "provisional fault baseline is silent or nonfinite");
     std::size_t cases = 0;
+    std::size_t engaged_cell_cases = 0;
     for (const auto fault : {Fault::missing_node, Fault::nan_node, Fault::inf_node,
+                            Fault::nan_cell, Fault::inf_cell,
                             Fault::advance_false, Fault::advance_nan, Fault::advance_inf}) {
         const bool node_fault = fault == Fault::missing_node || fault == Fault::nan_node ||
                                 fault == Fault::inf_node;
-        for (std::size_t node = 0; node < (node_fault ? 6U : 1U); ++node) {
+        const bool cell_fault = fault == Fault::nan_cell || fault == Fault::inf_cell;
+        const bool observation_fault = node_fault || cell_fault;
+        for (std::size_t node = 0; node < (observation_fault ? 6U : 1U); ++node) {
+            if (cell_fault) {
+                FaultEngine::clear_controls();
+                FaultEngine injection;
+                rhodes::FractionalObservationPlan unused_plan;
+                FaultEngine::fault = fault;
+                FaultEngine::fail_frame = 0;
+                FaultEngine::fail_node = node;
+                const auto cell = injection.observe_cell(unused_plan);
+                require(cell && FaultEngine::invalid_cells_returned == 1 &&
+                        FaultEngine::observation_calls == 6 &&
+                        (fault == Fault::nan_cell ? std::isnan((*cell)[node]) :
+                                                   std::isinf((*cell)[node])),
+                        "cell fault fixture did not return an engaged invalid cell");
+                for (std::size_t other = 0; other < cell->size(); ++other) {
+                    require(other == node || std::isfinite((*cell)[other]),
+                            "cell fault fixture changed another node");
+                }
+            }
             for (const std::size_t failed : {0U, 1U, 17U, 63U}) {
                 FaultEngine::clear_controls();
                 auto audio = std::make_unique<FaultAudio>();
                 require(audio->process(warm), "direct fault warmup");
+                std::unique_ptr<FaultAudio> history_reference;
+                if (cell_fault) { history_reference = std::make_unique<FaultAudio>(*audio); }
                 FaultEngine::fault = fault;
                 FaultEngine::fail_frame = warm_frames + failed;
                 FaultEngine::fail_node = node;
@@ -469,7 +503,24 @@ void qengine_faults() {
                         failed * 6 + (node_fault ? node + 1 : 6),
                         "wrapper observed later nodes after failure");
                 require(FaultEngine::advance_calls - before_advances == failed +
-                        (node_fault ? 0U : 1U), "wrapper advanced after failure");
+                        (observation_fault ? 0U : 1U), "wrapper advanced after failure");
+                if (cell_fault) {
+                    require(FaultEngine::invalid_cells_returned == 1,
+                            "wrapper did not receive exactly one engaged invalid cell");
+                    // A diagnostic continuation inspects the rejected
+                    // transaction without a production history accessor.
+                    // Host recovery still requires the explicit reset below.
+                    auto history_actual = std::make_unique<FaultAudio>(*audio);
+                    FaultEngine::fault = Fault::none;
+                    std::array<double, block_frames> prefix{};
+                    require(history_reference->process(std::span<double>{prefix}.first(failed)),
+                            "history reference prefix failed");
+                    std::array<double, 129> continued_actual{}, continued_expected{};
+                    require(history_actual->process(continued_actual) &&
+                            history_reference->process(continued_expected) &&
+                            continued_actual == continued_expected,
+                            "invalid cell changed retained history or mechanics");
+                }
 
                 FaultEngine::clear_controls();
                 auto processor = std::make_unique<FaultProcessor>();
@@ -486,6 +537,13 @@ void qengine_faults() {
                         processor->frame_cursor() == warm_frames + failed,
                         "processor lost Q6 fault coordinates or latch");
                 check_suffix(actual, expected, failed);
+                if (cell_fault) {
+                    require(FaultEngine::invalid_cells_returned == 1 &&
+                            FaultEngine::advance_calls == warm_frames + failed &&
+                            FaultEngine::observation_calls == (warm_frames + failed + 1) * 6,
+                            "processor advanced after an engaged invalid cell");
+                    ++engaged_cell_cases;
+                }
                 check_fence(*processor, warm_frames + failed);
                 ++cases;
             }
@@ -520,8 +578,11 @@ void qengine_faults() {
     check_suffix(huge_actual, huge_expected, failure);
     check_fence(*huge, failure);
     FaultEngine::clear_controls();
+    require(engaged_cell_cases == 48, "engaged cell coverage is incomplete");
     std::cout << "node_and_advance_fault_cases=" << cases
               << " each_direct_and_fenced; FIR_overflow_frame=" << failure << '\n';
+    std::cout << "engaged_invalid_cell_cases=" << engaged_cell_cases
+              << " no_advance_and_history_append=verified\n";
 }
 
 void qengine_allocations() {

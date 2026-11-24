@@ -101,9 +101,11 @@ ctest --test-dir build/vst3 -C Release -R '^vst3\.' \
 ```
 
 `rhodes_vst3_checks` exists when `BUILD_TESTING=ON` and builds all three bundles,
-all three callback benchmarks, the SDK validator and every retained host-test
-executable. The test command above runs each bundle through the validator and
-includes the Linux-only triple-module loader checks where available. For a
+all three callback benchmarks, the SDK validator, `moduleinfotool` and every
+retained host-test executable. The test command above runs both validators
+against each actual bundle and includes the Linux-only triple-module loader
+checks where available. The metadata checks compare generated `moduleinfo.json`
+with the loadable factory; resource-presence checks remain separate. For a
 plug-in-only build, select `--target rhodes_vst3`,
 `--target rhodes_vst3_filtered` or `--target rhodes_vst3_quadrature`; tests can be
 disabled with `-DBUILD_TESTING=OFF`. To build the three modules without the
@@ -114,9 +116,11 @@ match the configured CI job. Leave `CMAKE_OSX_ARCHITECTURES` unset for the nativ
 architecture. Use a new build directory when changing generators. This guide
 uses Unix Makefiles because the pinned SDK's Xcode branch adds fast-math and
 code-signing settings requiring separate review; it does not recommend Xcode
-as an interchangeable configuration. Native macOS verification remains open;
-the completed platform jobs below cover Linux and Windows. Signing,
-notarization and distribution are separate release work.
+as an interchangeable configuration. The native macOS ARM job in the
+[24 November checkpoint](#native-platform-checkpoint--24-november-2026) passed
+with that CI configuration. This does not establish a tested minimum macOS
+deployment version or a universal binary. Signing, notarization and distribution
+are separate release work.
 
 ### Windows PowerShell
 
@@ -160,6 +164,17 @@ contains a `.tar.gz` archive inside GitHub's artifact ZIP. The archive check
 verifies every entry, file hash, mode and internal symlink; keep the complete
 bundle directories when extracting or installing. CI artifacts have a seven-day
 retention period and are experimental build outputs, not a published release.
+
+To find a tested build, open an
+[Experimental VST3 CI run](https://github.com/baabi-boo/Fender-rhoades/actions/workflows/vst3.yml),
+then check its source commit and the desired platform job, including successful
+archive/upload steps. In the run's artifacts, choose
+`experimental-vst3-<OS>-<architecture>-<full commit SHA>` for that platform.
+Match the SHA suffix to the run's tested commit; a later Foundation CI result or
+the current `main` revision does not change an older artifact's source identity.
+The [retained successful run](https://github.com/baabi-boo/Fender-rhoades/actions/runs/45334821145)
+is an example. If its artifacts have expired, use the source build instructions
+above and retain the commit and validation results for the new build.
 
 The build disables automatic links into user plug-in directories. To evaluate
 the result in a DAW, use that host's normal installation/scanning procedure for
@@ -234,7 +249,54 @@ reset before processing continues.
 
 ## Observed verification and remaining gates
 
-### Three-variant implementation checkpoint
+### Native platform checkpoint — 24 November 2026
+
+Commit [015767f](https://github.com/baabi-boo/Fender-rhoades/commit/015767fee5635ff85a717739188ff4af60fe84f2)
+passed all ten jobs across
+[Foundation CI](https://github.com/baabi-boo/Fender-rhoades/actions/runs/45334821142)
+and [Experimental VST3 CI](https://github.com/baabi-boo/Fender-rhoades/actions/runs/45334821145).
+Each VST3 platform job built, validated, archived and uploaded all three bundles.
+The [native confirmation](validation/native-platforms-20261124.md) and
+[structured record](validation/native-platforms-20261124.json) bind these results
+to their source hashes, job IDs and retained logs.
+
+| Observed job | Passed | Skipped | Registered |
+| --- | ---: | ---: | ---: |
+| Linux core | 150 | 0 | 150 |
+| Windows core | 147 | 0 | 147 |
+| macOS ARM core | 141 | 6 | 147 |
+| Linux VST3 | 138 | 0 | 138 |
+| Windows x64 VST3 | 134 | 0 | 134 |
+| macOS ARM VST3 | 125 | 9 | 134 |
+| Linux address/undefined-behavior sanitizers | 150 | 0 | 150 |
+
+The macOS skips explicitly exclude x86 FTZ/DAZ environment modes. They are not
+passes. Linux additionally covers independently loaded module coexistence;
+the corresponding Windows/macOS real-host scenario remains unverified. The
+local Linux SDK-integrated run passed 288 of 288 CTests without skips.
+
+All three platforms passed these six CTest entries:
+
+| Variant | Official SDK validator | Metadata validator |
+| --- | --- | --- |
+| Direct | `vst3.sdk_validator` | `vst3.moduleinfo_validator` |
+| Filtered | `vst3.filtered_sdk_validator` | `vst3.filtered_moduleinfo_validator` |
+| Quadrature | `vst3.quadrature_sdk_validator` | `vst3.quadrature_moduleinfo_validator` |
+
+The current macOS build propagates CoreFoundation from the pinned SDK's `base`
+target to the benchmark/test executables. The control helpers apply Clang-only
+precision and floating-point exception settings, and the quadrature FIR has a
+function-scoped contraction guard. The previously failing native prepare test
+passes with its exact equality assertion unchanged; the
+[earlier one-ULP observation](validation/quadrature-clang-contraction-20261124.md)
+remains recorded. These results confirm the tested repair, without establishing
+a particular compiler-defect diagnosis or arbitrary compiler-flag behavior.
+
+These are source-bound synthetic core and adapter results. Actual DAW use,
+audio-device deadlines, measured fidelity and release qualification require
+their own evidence.
+
+### Historical three-variant checkpoint — 23 November 2026
 
 At commit [3f08573](https://github.com/baabi-boo/Fender-rhoades/commit/3f08573cf5d40d8c23ab1c92e38b987aa1b4e14c),
 the following jobs completed successfully on 2026-11-23. Each built all three
@@ -252,7 +314,7 @@ job results above remain successful. These observations apply to the linked
 commit; inspect the CI result for the particular checkout or artifact being
 evaluated. They do not establish native DAW operation or device deadlines.
 
-The newer retained [three-module loader fixture](agents/transient-campaign/w2_a33.md)
+The retained [three-module loader fixture](agents/transient-campaign/w2_a33.md)
 passed locally on Linux with all six load orders, both output formats and
 48/192 kHz rates. It checks six distinct FUIDs, independent output/state,
 all six cross-model recall directions and duplicate-module rejection. Its
@@ -308,7 +370,7 @@ Its [retained matrix](validation/vst3-callback-benchmark-20261123.json) includes
 nominal-period misses and does not establish device deadline compliance.
 
 These results establish the reported engineering checks. Native DAW use,
-macOS execution, device deadline behavior and release distribution remain
+device deadline behavior and release distribution remain
 separate verification. The synthetic pickup still has the documented nonlinear
 aliasing limits; the [retained diagnostic](agents/development-20261123/W4-A068.md)
 does not establish an audibility bound. No antialiasing or physical-fidelity

@@ -10,21 +10,58 @@
       "wave": 4,
       "id": "W4-61",
       "agent_task_name": "/root/w4_61_readme",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w4-61-readme.md",
+      "sha256": "5860d8727f951e3cc4cb5f779ba69678e2d9e52a7a15f556fd10be37fda783b2"
     },
     {
       "assignment": 62,
       "wave": 4,
       "id": "W4-62",
       "agent_task_name": "/root/w4_62_vst3_guide",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w4-62-vst3-guide.md",
+      "sha256": "2f565a82d941eb56cd0c8411d783ce16aac717c75a865d1da1f6b6163851a565"
     },
     {
       "assignment": 63,
       "wave": 4,
       "id": "W4-63",
       "agent_task_name": "/root/w4_63_invalid_cell",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w4-63-invalid-cell.md",
+      "sha256": "e4b6d12815eb2d4022d914964e919a3f56fddd0e66e99ff13fb3c08e46c6d35a"
+    },
+    {
+      "assignment": 64,
+      "wave": 4,
+      "id": "W4-64",
+      "agent_task_name": "/root/w4_64_benchmark_guide",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w4-64-benchmark-guide.md",
+      "sha256": "e5d7d13bf70a9b6143222449e5c0b0f979aa271427cef7606909bbefa7a0d4a1"
+    },
+    {
+      "assignment": 65,
+      "wave": 4,
+      "id": "W4-65",
+      "agent_task_name": "/root/w4_65_development_guide",
+      "status": "running"
+    },
+    {
+      "assignment": 66,
+      "wave": 4,
+      "id": "W4-66",
+      "agent_task_name": "/root/w4_66_changelog",
+      "status": "running"
+    },
+    {
+      "assignment": 67,
+      "wave": 4,
+      "id": "W4-67",
+      "agent_task_name": "/root/w4_67_daw_protocol",
       "status": "running"
     }
-  ]
+  ],
+  "completed_actual_agents": 4
 }

@@ -11,8 +11,8 @@ loaded output. The repository name is retained for existing links.
 The C++20 synthetic core now has bounded sample-offset events, MIDI note ownership,
 versioned state recall, and three optional headless VST3 variants. The direct and
 filtered instruments retain their identities, saved-state models and rendering
-behavior. The new **Rhodes Research Quadrature** evaluates the synthetic source
-at six nonuniform points inside each host-frame interval and reports 48 frames
+behavior. **Rhodes Research Quadrature** batches six prepared observations of
+the synthetic source inside each host-frame interval and reports 48 frames
 of latency under its separate model-3 identity. All three use ordinary host
 parameter controls. A separate offline finite-mass hammer/damper reference
 includes energy and event diagnostics; it does not run inside the plug-ins.
@@ -25,10 +25,26 @@ The [full quadrature study](docs/validation/quadrature-audio-full-20261123.json)
 passed both independent comparisons for **2,097 cases / 2,534,400 output frames**
 at nine exact sample rates. Maximum error against the refined continuous
 reference was **8.32 × 10⁻¹² V**, below the unchanged **10⁻⁴ V** peak limit.
-The [legacy compatibility check](docs/validation/quadrature-legacy-compatibility-20261123.json)
-also reproduced all 24 retained direct/filtered WAV fixtures byte-for-byte.
-These results cover the declared synthetic model; instrument measurements and
-host/device timing remain separate validation work.
+The later [batched implementation replay](docs/validation/batched-quadrature-20261124.md)
+preserved all **2,097 Q6 outputs** and all **24 direct/filtered WAV fixtures**
+exactly in the retained Linux/GCC run. The original
+[legacy compatibility result](docs/validation/quadrature-legacy-compatibility-20261123.json)
+remains available. This replay checks output identity; it does not repeat the
+independent numerical integration. All timing captures and their outliers are
+retained separately from those numerical results.
+
+The [native platform record](docs/validation/native-platforms-20261124.md)
+documents successful Linux, Windows and macOS builds and host tests. All three
+variants passed the SDK and module metadata validators on each platform at the
+recorded revision; exact test counts and platform-specific skips are listed.
+These results do not establish native DAW operation or audio-device deadlines.
+
+The separate [four-fixture contact diagnostic](docs/CONTACT_PEAK_DIAGNOSTIC.md)
+compares synthetic compression and force maxima with independent references,
+including optional damped peak timing. **PHY-002 and RT-001 remain incomplete**:
+general contact extrema and remaining direct/filtered convergence questions
+still need work. Instrument measurements and calibrated fidelity remain separate
+validation gates.
 
 ## Start here
 
@@ -46,14 +62,16 @@ host/device timing remain separate validation work.
 | Measure the synthetic kernel | [Benchmark methodology](docs/BENCHMARKING.md) |
 | Inspect the supplied research | [Research and source provenance](docs/research/README.md) |
 | Audit the setup agents | [Actual-agent campaign](docs/agents/CAMPAIGN.md) |
-| Audit the current development campaign | [Five waves of development](docs/agents/DEVELOPMENT_CAMPAIGN.md) |
+| Audit the original host-adapter development | [Five waves of development](docs/agents/DEVELOPMENT_CAMPAIGN.md) |
 | Audit the filtered-audio continuation | [Five-wave continuation](docs/agents/CONTINUATION_CAMPAIGN.md) |
-| Audit quadrature and portability development | [Current campaign and report hashes](docs/agents/QUADRATURE_CAMPAIGN.md) |
+| Audit quadrature and portability development | [Quadrature campaign and report hashes](docs/agents/QUADRATURE_CAMPAIGN.md) |
+| Audit current main-branch development | [24 November campaign and report ledgers](docs/agents/DEVELOPMENT_WAVES_20261124.md) |
 | Inspect the filtered audio design | [Timing, response and compatibility contract](docs/specs/FILTERED_AUDIO_20261123.md) |
 | Inspect the quadrature audio design | [Frozen Q6 timing and verification contract](docs/specs/QUADRATURE_AUDIO_20261123.md) |
 | Inspect the VST3 prototype contract | [Host behavior and limits](docs/specs/HOST_PROTOTYPE_20261123.md) |
 | Build and try the VST3 instrument | [VST3 setup and controls](docs/VST3.md) |
 | Run the separate hammer/damper experiments | [Offline contact reference](docs/CONTACT_REFERENCE.md) |
+| Compare the four analytic contact fixtures | [Contact peak diagnostic](docs/CONTACT_PEAK_DIAGNOSTIC.md) |
 
 ## Build and run
 
@@ -114,6 +132,11 @@ python3 tools/development_campaign.py sync --check
 python3 tools/validate_continuation_campaign.py
 python3 tools/quadrature_campaign.py validate
 python3 tools/quadrature_campaign.py sync --check
+python3 tools/validate_development_waves.py
+python3 tools/verify_vst3_matrix_archive.py \
+  docs/validation/vst3-matrix-20261124.json \
+  docs/validation/vst3-matrix-batched-20261124.json \
+  docs/validation/vst3-matrix-batch-final-20261124.json
 python3 tools/generate_audio_filter.py --check
 python3 tools/generate_quadrature_filter.py --check
 python3 -m unittest discover -s tests/python -v
@@ -129,13 +152,13 @@ the sanitizer preset excludes Windows. See
 | Subsystem | Implemented foundation | Required next work |
 |---|---|---|
 | Mechanical motion | Exact discrete linear damped modes; persistent per-key state | Identified tine/tonebar/support properties and coupled structure |
-| Excitation and release | Impulse/switched-loss audio core; separate finite-mass p=1 contact reference | Full independent refinement/extrema acceptance and calibrated action mechanics |
+| Excitation and release | Impulse/switched-loss audio core; separate finite-mass p=1 contact reference and four-fixture peak comparison | Full independent refinement/extrema acceptance and calibrated action mechanics |
 | Pickup | Nonlinear polynomial flux-linkage derivative after modal summation | Measured geometry-dependent map, reciprocal forces and validity bounds |
 | Harp circuit | Synthetic resistive series/parallel network retaining all 73 branches | Verified specimen topology, complex coil impedance, parasitics and load |
 | Stage controls | Architecture and component requirements | Revision-specific connected passive circuit |
 | Instrument identity | Unidentified profile with units and provenance fields | Actual specimen, construction revisions and measurements |
-| Runtime | Bounded events; direct, sampled-filtered and Q6 quadrature paths; full synthetic quadrature/reference matrix and retained legacy render compatibility | Error budgets for future model/parameter changes and representative host/device timing |
-| Host product | Three VST3 variants, isolated model states 1/2/3, generic controls, reported latency and bounded rejection cleanup | Native DAW validation, remaining platform coverage, product UI and release packaging |
+| Runtime | Bounded events; direct, sampled-filtered and batched Q6 paths; full synthetic quadrature/reference matrix and exact retained replay | Remaining direct/filtered aliasing and convergence gates, future-model error budgets and representative host/device timing |
+| Host product | Three VST3 variants, isolated model states 1/2/3, generic controls, reported latency and bounded rejection cleanup; native CI on Linux, Windows and macOS | Native DAW/device validation, deployment baselines, product UI and release packaging |
 
 Peterson/Janus Suitcase electronics, amplifiers, loudspeakers and room acoustics
 belong to separately identified future profiles. They do not silently become part

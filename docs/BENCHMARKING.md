@@ -235,26 +235,138 @@ executable does not instrument allocation or locking. Finite output and a short
 run cannot establish long-tail denormal behavior, a worst-case bound or a
 real-time guarantee.
 
-### Planned three-variant comparison
+### Frozen 72-process comparison
 
 The [quadrature benchmark protocol](specs/QUADRATURE_BENCHMARK_20261123.md) and
 [machine-readable run plan](validation/quadrature-benchmark-plan-20261123.json)
-define a matched comparison of all three variants, with two balanced rounds,
-declared stress profiles, environment capture and complete raw-result retention.
-That Linux protocol uses an external launcher to pin every benchmark child to
-the lowest initially permitted logical CPU; the executables themselves leave
-affinity unchanged.
-The plan specifies work to run; it contains no measured callback results.
-Retain unsuccessful runs and nominal-period overruns alongside successful ones,
-and compare output fingerprints between repetitions of the same variant and
-profile. Different signal paths have different output and latency contracts.
+fix 12 profiles, three variants and two balanced rounds: **72 processes,
+40,128 measured callbacks and 3,846,144 measured host frames**. The plan itself
+contains no observations; the three completed captures are linked below.
+Each capture compares 36 same-variant/profile repeat pairs. Different signal
+paths retain different output and latency contracts.
+
+#### Capture a new matrix
+
+[`run_vst3_matrix.py`](../tools/run_vst3_matrix.py) currently supports this
+**Linux-only protocol**, with working single-CPU affinity APIs and a nonempty
+permitted CPU set. It requires an up-to-date, uninstrumented **Release Ninja**
+build at the fixed repository path `build/vst3`, its `compile_commands.json`,
+and the clean pinned SDK root plus four required submodules documented in
+[Dependencies](DEPENDENCIES.md). The `--sdk` path must resolve to the SDK recorded
+by that build. Native VST3 support on other operating systems does not make this
+launcher a Windows/macOS timing protocol.
+
+From the repository root, using the sibling SDK checkout from the
+[VST3 guide](VST3.md), configure a new build directory or an existing Ninja one:
+
+```sh
+cmake -S . -B build/vst3 -G Ninja -DCMAKE_BUILD_TYPE=Release \
+  -DBUILD_TESTING=ON -DRHODES_BUILD_VST3=ON \
+  -DRHODES_VST3_SDK_ROOT="${PWD}/../vst3sdk" \
+  -DRHODES_ENABLE_SANITIZERS=OFF -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+cmake --build build/vst3 --target rhodes_vst3_benchmark \
+  rhodes_vst3_filtered_benchmark rhodes_vst3_quadrature_benchmark --parallel 2
+```
+
+A build directory already configured for another generator cannot be reused by
+this configure command. The launcher does not build or repair a stale tree; it
+checks freshness with Ninja before capture. Finish compilation and other
+intensive work, then supply an honest account of remaining competing activity:
+
+```sh
+python3 tools/run_vst3_matrix.py --help
+python3 tools/run_vst3_matrix.py \
+  --sdk "${PWD}/../vst3sdk" \
+  --output build/vst3-matrix-new \
+  --competing-activity "Describe actual concurrent work and known background load"
+```
+
+Use a new output-directory name whose parent already exists. The resolved
+directory must not already exist; creation is exclusive, with no overwrite or
+retry option. The launcher verifies the frozen plan hash, pins each child to the lowest initially
+permitted logical CPU, records the child's actual binding, and retains inherited
+priority and power settings. It captures machine/load observations, source and
+binary identities, build commands and raw streams, then rechecks inputs and
+recomputes workload/timing integrity. Scheduling interruptions and every outlier
+remain in the data.
+
+Exit `0` means the declared workload and repeat-integrity checks completed;
+`1` means the attempted collection has incomplete or inconsistent results;
+`3` means an operational failure. Argument errors use argparse's exit `2`.
+Inspect `manifest.json`, each execution record, `attempted_runs` and
+`unattempted_run_ids`. A timeout cannot be marked complete even if the final
+wait returns zero. Invalid child-affinity metadata stops later runs after
+retaining the attempted record; final snapshot failures also prevent completion.
+Storage failures can still leave partial evidence, so directory existence alone
+is not success. Nominal-period misses are retained observations and do not
+change a successfully verified collection into a timing failure.
+
+#### Retained captures and their interpretation
+
+The [batching report](validation/batched-quadrature-20261124.md) links the full
+raw archives and source/binary bindings for all three captures:
+
+| Capture | Q6 nominal-period misses | Largest Q6 callback |
+| --- | ---: | ---: |
+| [Original scalar traversal](validation/vst3-matrix-20261124.json) | 2,947 | 91,441.456 µs |
+| [First batch](validation/vst3-matrix-batched-20261124.json) | 3,852 | 96,939.447 µs |
+| [Final independent-node loops](validation/vst3-matrix-batch-final-20261124.json) | 1,716 | 99,882.967 µs |
+
+Each capture contains 13,376 callbacks per variant, but mixes block sizes,
+sample rates and stress workloads. These totals are inventories of observed
+misses, not comparable population miss rates. The worse first-batch count and
+larger final maximum remain visible. Scheduling, frequency and other work on
+the shared host were uncontrolled; the final capture's possible startup overlap
+with a short parser review is explicitly recorded. Compare individual matching
+profiles and both rounds before drawing a limited observation.
+
+The separate [16-process CPU experiment](validation/q6-cpu-paired-20261124.json)
+uses a declared before/after/after/before order repeated four times. Whole-child
+user CPU means were **1.532606 s before** and **1.422067 s after**, approximately
+**7.2% lower in this observation**. These measurements include setup, warmup and
+JSON output and exclude descheduled time; they are not callback wall durations.
+They do not isolate cache/frequency effects, establish a causal or general
+speedup, or guarantee device deadlines. The
+[independent statistics audit](agents/reports/20261124-w3-51-timing-statistics.md)
+recomputed the retained values without rerunning benchmarks.
 
 The separate [Q6 numerical study](validation/quadrature-audio-full-20261123.json)
-records 2,097 cases and 2,534,400 frames against independently constructed Q6 and
-resolved continuous Q64 references. It is the numerical companion to timing
-observations, within its frozen synthetic model, kernel and input matrix. Its
-scope excludes an alias-only error bound, audibility, measured-instrument
-fidelity and callback deadline guarantees.
+records 2,097 cases and 2,534,400 frames against independent Q6 and refined
+continuous Q64 references. The
+[batched replay](validation/batched-quadrature-compatibility-20261124.json)
+retains exact output identity for those cases and all 24 legacy WAV fixtures;
+it does not recompute the reference integration. This evidence remains specific
+to its synthetic model, kernel, inputs and tested toolchain. The direct/filtered
+aliasing and convergence findings, measured fidelity, allocation policy and
+DAW/device timing retain separate gates; these captures do not complete RT-001.
+
+#### Verify the retained archives without rerunning workloads
+
+The standard-library-only
+[`verify_vst3_matrix_archive.py`](../tools/verify_vst3_matrix_archive.py) reads
+summary JSON files and the sibling `.tar.gz` files named by them:
+
+```sh
+python3 tools/verify_vst3_matrix_archive.py \
+  docs/validation/vst3-matrix-20261124.json \
+  docs/validation/vst3-matrix-batched-20261124.json \
+  docs/validation/vst3-matrix-batch-final-20261124.json
+```
+
+It checks bounded, regular-file inputs; compressed and member hashes; safe
+member names/types; the frozen inventory and plan; every raw workload/timing
+summary; and all 36 repeat-pair findings per archive. It extracts no files and
+executes no archived command or binary. JSON output preserves one result per
+supplied report, including rejections, and processing continues to later inputs.
+Exit `0` requires every report to verify; any rejected report returns `1`
+(argument errors return `2`).
+
+Native summaries and the `math.fsum` audit are checked exactly. The auxiliary
+historical Python input-order mean can differ across Python versions; those
+run IDs are reported separately without weakening the native summary check.
+A verification pass establishes internal byte consistency, not acquisition
+authenticity, current-source equivalence, a reconstructed binary, new timing
+measurements or physical fidelity.
 
 ### Historical callback observations
 
