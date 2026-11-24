@@ -1,0 +1,1356 @@
+{
+  "archive": {
+    "all_member_bytes_verified": true,
+    "artifact_manifest": "contact-peaks-native-20261124/artifact-manifest.json",
+    "bytes": 277064,
+    "files": 104,
+    "member_names_relative_and_safe": true,
+    "path": "docs/validation/contact-peaks-native-20261124.tar.gz",
+    "sha256": "b3ae5198fd610820cb516426e7f84dcc921035dc89ce42282fde530cd7175cec",
+    "uncompressed_file_bytes": 1618006
+  },
+  "assignment": "20261124-w2-27-native",
+  "candidate_production_attested": false,
+  "diagnostic_invocations": [
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/scratch/d6370337c6a4/Fender-rhoades/tools/validate_contact_peaks.py",
+        "--output",
+        "/tmp/contact-peaks-native-20261124-a3kcslzv/cli-audited/all_four_default/evidence",
+        "--producer-binary",
+        "/workspace/scratch/d6370337c6a4/Fender-rhoades/build/vst3/rhodes_contact_reference",
+        "--candidate",
+        "/tmp/contact-peaks-native-20261124-a3kcslzv/native/conservative_impact/stdout.json",
+        "--candidate",
+        "/tmp/contact-peaks-native-20261124-a3kcslzv/native/damped_impact/stdout.json",
+        "--candidate",
+        "/tmp/contact-peaks-native-20261124-a3kcslzv/native/forced_clamp/stdout.json",
+        "--candidate",
+        "/tmp/contact-peaks-native-20261124-a3kcslzv/native/preload_equilibrium/stdout.json"
+      ],
+      "audit_hook_loaded_in_interpreters": 1,
+      "audit_hook_source": "python_audit_hook/sitecustomize.py",
+      "audit_scope": "Python-level observation and guard, inherited by the SciPy worker through PYTHONPATH; not OS process-tree tracing",
+      "audit_sha256": "d3142d62061b7cc9fbeb84cc37e7696ba89525d827592686b22ff818c9d121db",
+      "binary_unchanged": true,
+      "case_exit_codes": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "cases": [
+        {
+          "availability": "available",
+          "comparison_file": "candidate-0001.comparison.json",
+          "exit_code": 0,
+          "fixture": "conservative_impact",
+          "native_id": "conservative_impact",
+          "peaks": {
+            "damper_compression": {
+              "candidate": {
+                "bracket_hi_s": 0.0,
+                "bracket_lo_s": 0.0,
+                "origin": "disabled",
+                "time_s": 0.0,
+                "value_m": 0.0
+              },
+              "coverage": {
+                "candidate": "uncertified_sign_change_search",
+                "general_continuous_extrema": "incomplete",
+                "reference": "independent_analytic_domain_argument"
+              },
+              "exit_code": 0,
+              "observation_consistency_status": "pass",
+              "reference_kind": "disabled",
+              "reference_time_intervals_s": [
+                [
+                  0.0,
+                  0.002
+                ]
+              ],
+              "reference_time_status": "disabled",
+              "reference_value_interval": [
+                0.0,
+                0.0
+              ],
+              "reference_value_status": "analytic",
+              "time_comparison_required": true,
+              "time_status": "pass",
+              "value_status": "pass"
+            },
+            "damper_force": {
+              "candidate": {
+                "bracket_hi_s": 0.0,
+                "bracket_lo_s": 0.0,
+                "origin": "disabled",
+                "time_s": 0.0,
+                "value_n": 0.0
+              },
+              "coverage": {
+                "candidate": "uncertified_sign_change_search",
+                "general_continuous_extrema": "incomplete",
+                "reference": "independent_analytic_domain_argument"
+              },
+              "exit_code": 0,
+              "observation_consistency_status": "pass",
+              "reference_kind": "disabled",
+              "reference_time_intervals_s": [
+                [
+                  0.0,
+                  0.002
+                ]
+              ],
+              "reference_time_status": "disabled",
+              "reference_value_interval": [
+                0.0,
+                0.0
+              ],
+              "reference_value_status": "analytic",
+              "time_comparison_required": true,
+              "time_status": "pass",
+              "value_status": "pass"
+            },
+            "hammer_compression": {
+              "candidate": {
+                "bracket_hi_s": 0.00044428930630016357,
+                "bracket_lo_s": 0.0004442842306236762,
+                "origin": "stationary_candidate",
+                "time_s": 0.00044428930630016357,
+                "value_m": 0.00028284271247195855
+              },
+              "coverage": {
+                "candidate": "uncertified_sign_change_search",
+                "general_continuous_extrema": "incomplete",
+                "reference": "independent_analytic_domain_argument"
+              },
+              "exit_code": 0,
+              "observation_consistency_status": "pass",
+              "reference_kind": "isolated",
+              "reference_time_intervals_s": [
+                [
+                  0.00044428829381583655,
+                  0.00044428829381583655
+                ]
+              ],
+              "reference_time_status": "analytic",
+              "reference_value_interval": [
+                0.00028284271247461896,
+                0.00028284271247461896
+              ],
+              "reference_value_status": "analytic",
+              "time_comparison_required": true,
+              "time_status": "pass",
+              "value_status": "pass"
+            },
+            "hammer_force": {
+              "candidate": {
+                "bracket_hi_s": 0.00044428930630016357,
+                "bracket_lo_s": 0.0004442842306236762,
+                "origin": "stationary_candidate",
+                "time_s": 0.00044428930630016357,
+                "value_n": 5.656854249439171
+              },
+              "coverage": {
+                "candidate": "uncertified_sign_change_search",
+                "general_continuous_extrema": "incomplete",
+                "reference": "independent_analytic_domain_argument"
+              },
+              "exit_code": 0,
+              "observation_consistency_status": "pass",
+              "reference_kind": "isolated",
+              "reference_time_intervals_s": [
+                [
+                  0.00044428829381583655,
+                  0.00044428829381583655
+                ]
+              ],
+              "reference_time_status": "analytic",
+              "reference_value_interval": [
+                5.656854249492379,
+                5.656854249492379
+              ],
+              "reference_value_status": "analytic",
+              "time_comparison_required": true,
+              "time_status": "pass",
+              "value_status": "pass"
+            }
+          },
+          "phy002_acceptance": "incomplete",
+          "raw_sha256": "3306db341920c09ac0604c61d4e0cf19a8c2c6b925bcb9a9c63cf2bbaada3085",
+          "retained_sha256": "3306db341920c09ac0604c61d4e0cf19a8c2c6b925bcb9a9c63cf2bbaada3085",
+          "status": "pass",
+          "validity": "pass"
+        },
+        {
+          "availability": "available",
+          "comparison_file": "candidate-0002.comparison.json",
+          "exit_code": 0,
+          "fixture": "damped_impact",
+          "native_id": "damped_impact",
+          "peaks": {
+            "damper_compression": {
+              "candidate": {
+                "bracket_hi_s": 0.0,
+                "bracket_lo_s": 0.0,
+                "origin": "disabled",
+                "time_s": 0.0,
+                "value_m": 0.0
+              },
+              "coverage": {
+                "candidate": "uncertified_sign_change_search",
+                "general_continuous_extrema": "incomplete",
+                "reference": "independent_analytic_domain_argument"
+              },
+              "exit_code": 0,
+              "observation_consistency_status": "pass",
+              "reference_kind": "disabled",
+              "reference_time_intervals_s": [
+                [
+                  0.0,
+                  0.002
+                ]
+              ],
+              "reference_time_status": "disabled",
+              "reference_value_interval": [
+                0.0,
+                0.0
+              ],
+              "reference_value_status": "analytic",
+              "time_comparison_required": true,
+              "time_status": "pass",
+              "value_status": "pass"
+            },
+            "damper_force": {
+              "candidate": {
+                "bracket_hi_s": 0.0,
+                "bracket_lo_s": 0.0,
+                "origin": "disabled",
+                "time_s": 0.0,
+                "value_n": 0.0
+              },
+              "coverage": {
+                "candidate": "uncertified_sign_change_search",
+                "general_continuous_extrema": "incomplete",
+                "reference": "independent_analytic_domain_argument"
+              },
+              "exit_code": 0,
+              "observation_consistency_status": "pass",
+              "reference_kind": "disabled",
+              "reference_time_intervals_s": [
+                [
+                  0.0,
+                  0.002
+                ]
+              ],
+              "reference_time_status": "disabled",
+              "reference_value_interval": [
+                0.0,
+                0.0
+              ],
+              "reference_value_status": "analytic",
+              "time_comparison_required": true,
+              "time_status": "pass",
+              "value_status": "pass"
+            },
+            "hammer_compression": {
+              "candidate": {
+                "bracket_hi_s": 0.0003450630876020168,
+                "bracket_lo_s": 0.0003450570221584236,
+                "origin": "stationary_candidate",
+                "time_s": 0.00034506005488022017,
+                "value_m": 0.00018988288089434878
+              },
+              "coverage": {
+                "candidate": "uncertified_sign_change_search",
+                "general_continuous_extrema": "incomplete",
+                "reference": "analytic_domain_and_scalar_refinement"
+              },
+              "exit_code": 0,
+              "observation_consistency_status": "pass",
+              "reference_kind": "isolated",
+              "reference_time_intervals_s": [],
+              "reference_time_status": "not_available",
+              "reference_value_interval": [
+                0.00018988288088523308,
+                0.00018988288088523308
+              ],
+              "reference_value_status": "resolved_under_declared_refinement",
+              "time_comparison_required": false,
+              "time_status": "not_available",
+              "value_status": "pass"
+            },
+            "hammer_force": {
+              "candidate": {
+                "bracket_hi_s": 0.0001776913414242453,
+                "bracket_lo_s": 0.00017768185334390813,
+                "origin": "stationary_candidate",
+                "time_s": 0.0001776913414242453,
+                "value_n": 6.19180727807768
+              },
+              "coverage": {
+                "candidate": "uncertified_sign_change_search",
+                "general_continuous_extrema": "incomplete",
+                "reference": "analytic_domain_and_scalar_refinement"
+              },
+              "exit_code": 0,
+              "observation_consistency_status": "pass",
+              "reference_kind": "isolated",
+              "reference_time_intervals_s": [],
+              "reference_time_status": "not_available",
+              "reference_value_interval": [
+                6.191807278604624,
+                6.191807278604624
+              ],
+              "reference_value_status": "resolved_under_declared_refinement",
+              "time_comparison_required": false,
+              "time_status": "not_available",
+              "value_status": "pass"
+            }
+          },
+          "phy002_acceptance": "incomplete",
+          "raw_sha256": "8eac863171810777097dc2949a0d035560b5e680889cd9d1a7909353c7ad80de",
+          "retained_sha256": "8eac863171810777097dc2949a0d035560b5e680889cd9d1a7909353c7ad80de",
+          "status": "pass",
+          "validity": "pass"
+        },
+        {
+          "availability": "available",
+          "comparison_file": "candidate-0003.comparison.json",
+          "exit_code": 0,
+          "fixture": "forced_clamp",
+          "native_id": "forced_clamp",
+          "peaks": {
+            "damper_compression": {
+              "candidate": {
+                "bracket_hi_s": 0.0,
+                "bracket_lo_s": 0.0,
+                "origin": "disabled",
+                "time_s": 0.0,
+                "value_m": 0.0
+              },
+              "coverage": {
+                "candidate": "uncertified_sign_change_search",
+                "general_continuous_extrema": "incomplete",
+                "reference": "independent_analytic_domain_argument"
+              },
+              "exit_code": 0,
+              "observation_consistency_status": "pass",
+              "reference_kind": "disabled",
+              "reference_time_intervals_s": [
+                [
+                  0.0,
+                  0.0002
+                ]
+              ],
+              "reference_time_status": "disabled",
+              "reference_value_interval": [
+                0.0,
+                0.0
+              ],
+              "reference_value_status": "analytic",
+              "time_comparison_required": true,
+              "time_status": "pass",
+              "value_status": "pass"
+            },
+            "damper_force": {
+              "candidate": {
+                "bracket_hi_s": 0.0,
+                "bracket_lo_s": 0.0,
+                "origin": "disabled",
+                "time_s": 0.0,
+                "value_n": 0.0
+              },
+              "coverage": {
+                "candidate": "uncertified_sign_change_search",
+                "general_continuous_extrema": "incomplete",
+                "reference": "independent_analytic_domain_argument"
+              },
+              "exit_code": 0,
+              "observation_consistency_status": "pass",
+              "reference_kind": "disabled",
+              "reference_time_intervals_s": [
+                [
+                  0.0,
+                  0.0002
+                ]
+              ],
+              "reference_time_status": "disabled",
+              "reference_value_interval": [
+                0.0,
+                0.0
+              ],
+              "reference_value_status": "analytic",
+              "time_comparison_required": true,
+              "time_status": "pass",
+              "value_status": "pass"
+            },
+            "hammer_compression": {
+              "candidate": {
+                "bracket_hi_s": 0.0,
+                "bracket_lo_s": 0.0,
+                "origin": "sample",
+                "time_s": 0.0,
+                "value_m": 0.0001
+              },
+              "coverage": {
+                "candidate": "uncertified_sign_change_search",
+                "general_continuous_extrema": "incomplete",
+                "reference": "independent_analytic_domain_argument"
+              },
+              "exit_code": 0,
+              "observation_consistency_status": "pass",
+              "reference_kind": "isolated",
+              "reference_time_intervals_s": [
+                [
+                  0.0,
+                  0.0
+                ]
+              ],
+              "reference_time_status": "analytic",
+              "reference_value_interval": [
+                0.0001,
+                0.0001
+              ],
+              "reference_value_status": "analytic",
+              "time_comparison_required": true,
+              "time_status": "pass",
+              "value_status": "pass"
+            },
+            "hammer_force": {
+              "candidate": {
+                "bracket_hi_s": 0.0,
+                "bracket_lo_s": 0.0,
+                "origin": "sample",
+                "time_s": 0.0,
+                "value_n": 0.0
+              },
+              "coverage": {
+                "candidate": "uncertified_sign_change_search",
+                "general_continuous_extrema": "incomplete",
+                "reference": "independent_analytic_domain_argument"
+              },
+              "exit_code": 0,
+              "observation_consistency_status": "pass",
+              "reference_kind": "plateau",
+              "reference_time_intervals_s": [
+                [
+                  0.0,
+                  0.0002
+                ]
+              ],
+              "reference_time_status": "analytic",
+              "reference_value_interval": [
+                0.0,
+                0.0
+              ],
+              "reference_value_status": "analytic",
+              "time_comparison_required": true,
+              "time_status": "pass",
+              "value_status": "pass"
+            }
+          },
+          "phy002_acceptance": "incomplete",
+          "raw_sha256": "b941313b4b93d3e62a7548829ae5c34d18d98c533349138d74a8a07d79b7de74",
+          "retained_sha256": "b941313b4b93d3e62a7548829ae5c34d18d98c533349138d74a8a07d79b7de74",
+          "status": "pass",
+          "validity": "pass"
+        },
+        {
+          "availability": "available",
+          "comparison_file": "candidate-0004.comparison.json",
+          "exit_code": 0,
+          "fixture": "preload_equilibrium",
+          "native_id": "preload_equilibrium",
+          "peaks": {
+            "damper_compression": {
+              "candidate": {
+                "bracket_hi_s": 0.011779999999999997,
+                "bracket_lo_s": 0.011779999999999997,
+                "origin": "sample",
+                "time_s": 0.011779999999999997,
+                "value_m": 1.0320962512323222e-05
+              },
+              "coverage": {
+                "candidate": "uncertified_sign_change_search",
+                "general_continuous_extrema": "incomplete",
+                "reference": "exact_rational_energy_enclosure"
+              },
+              "exit_code": 0,
+              "observation_consistency_status": "pass",
+              "reference_kind": "enclosure",
+              "reference_time_intervals_s": [],
+              "reference_time_status": "unresolved_near_equilibrium",
+              "reference_value_interval": [
+                1.0320962512323202e-05,
+                1.0320962512323224e-05
+              ],
+              "reference_value_status": "verified_enclosure",
+              "time_comparison_required": false,
+              "time_status": "unresolved_near_equilibrium",
+              "value_status": "pass"
+            },
+            "damper_force": {
+              "candidate": {
+                "bracket_hi_s": 0.0,
+                "bracket_lo_s": 0.0,
+                "origin": "sample",
+                "time_s": 0.0,
+                "value_n": 0.12385155014787864
+              },
+              "coverage": {
+                "candidate": "uncertified_sign_change_search",
+                "general_continuous_extrema": "incomplete",
+                "reference": "exact_rational_energy_enclosure"
+              },
+              "exit_code": 0,
+              "observation_consistency_status": "pass",
+              "reference_kind": "enclosure",
+              "reference_time_intervals_s": [],
+              "reference_time_status": "unresolved_near_equilibrium",
+              "reference_value_interval": [
+                0.12385155014787841,
+                0.12385155014787869
+              ],
+              "reference_value_status": "verified_enclosure",
+              "time_comparison_required": false,
+              "time_status": "unresolved_near_equilibrium",
+              "value_status": "pass"
+            },
+            "hammer_compression": {
+              "candidate": {
+                "bracket_hi_s": 0.0,
+                "bracket_lo_s": 0.0,
+                "origin": "sample",
+                "time_s": 0.0,
+                "value_m": 0.0
+              },
+              "coverage": {
+                "candidate": "uncertified_sign_change_search",
+                "general_continuous_extrema": "incomplete",
+                "reference": "exact_rational_separated_branch_enclosure"
+              },
+              "exit_code": 0,
+              "observation_consistency_status": "pass",
+              "reference_kind": "plateau",
+              "reference_time_intervals_s": [
+                [
+                  0.0,
+                  0.02
+                ]
+              ],
+              "reference_time_status": "analytic",
+              "reference_value_interval": [
+                0.0,
+                0.0
+              ],
+              "reference_value_status": "analytic",
+              "time_comparison_required": true,
+              "time_status": "pass",
+              "value_status": "pass"
+            },
+            "hammer_force": {
+              "candidate": {
+                "bracket_hi_s": 0.0,
+                "bracket_lo_s": 0.0,
+                "origin": "sample",
+                "time_s": 0.0,
+                "value_n": 0.0
+              },
+              "coverage": {
+                "candidate": "uncertified_sign_change_search",
+                "general_continuous_extrema": "incomplete",
+                "reference": "exact_rational_separated_branch_enclosure"
+              },
+              "exit_code": 0,
+              "observation_consistency_status": "pass",
+              "reference_kind": "plateau",
+              "reference_time_intervals_s": [
+                [
+                  0.0,
+                  0.02
+                ]
+              ],
+              "reference_time_status": "analytic",
+              "reference_value_interval": [
+                0.0,
+                0.0
+              ],
+              "reference_value_status": "analytic",
+              "time_comparison_required": true,
+              "time_status": "pass",
+              "value_status": "pass"
+            }
+          },
+          "phy002_acceptance": "incomplete",
+          "raw_sha256": "4be340044dcdb5cc6cdb9ab723889584cfa9a060121e46b2f1df59f77c5d4e85",
+          "retained_sha256": "4be340044dcdb5cc6cdb9ab723889584cfa9a060121e46b2f1df59f77c5d4e85",
+          "status": "pass",
+          "validity": "pass"
+        }
+      ],
+      "cwd": "/workspace/scratch/d6370337c6a4/Fender-rhoades",
+      "declared_producer": {
+        "bytes": 127088,
+        "candidate_production_attested": false,
+        "declared_path": "/workspace/scratch/d6370337c6a4/Fender-rhoades/build/vst3/rhodes_contact_reference",
+        "executed": false,
+        "sha256": "4ed2552430f5de5846adcb1a7b99521b118a12b714ad61b146ede7bab24f8f2d"
+      },
+      "diagnostic_executed_declared_binary": false,
+      "diagnostic_internal_source_unchanged": true,
+      "elapsed_s": 0.1324464159999934,
+      "ended_utc": "2026-11-24T05:29:27.745408+00:00",
+      "expected_case_exit_codes": [
+        0,
+        0,
+        0,
+        0
+      ],
+      "expected_outcome_observed": true,
+      "expected_returncode": 0,
+      "id": "all_four_default",
+      "manifest_file": "cli-audited/all_four_default/evidence/manifest.json",
+      "manifest_sha256": "4e48ca34e36ddab77497a4da526a2da4ab13f91f351de2b637dfe78943401c6e",
+      "observed_executables_are_python": true,
+      "rejected_process_requests": [],
+      "returncode": 0,
+      "source_unchanged": true,
+      "started_utc": "2026-11-24T05:29:27.612542+00:00"
+    },
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/scratch/d6370337c6a4/Fender-rhoades/tools/validate_contact_peaks.py",
+        "--output",
+        "/tmp/contact-peaks-native-20261124-a3kcslzv/cli-audited/damped_with_time/evidence",
+        "--producer-binary",
+        "/workspace/scratch/d6370337c6a4/Fender-rhoades/build/vst3/rhodes_contact_reference",
+        "--candidate",
+        "/tmp/contact-peaks-native-20261124-a3kcslzv/native/damped_impact/stdout.json",
+        "--with-damped-time"
+      ],
+      "audit_hook_loaded_in_interpreters": 2,
+      "audit_hook_source": "python_audit_hook/sitecustomize.py",
+      "audit_scope": "Python-level observation and guard, inherited by the SciPy worker through PYTHONPATH; not OS process-tree tracing",
+      "audit_sha256": "f5d31d52cc2059d6f3743ec674704627f68383fdf9503de66308c522f72f0768",
+      "binary_unchanged": true,
+      "case_exit_codes": [
+        0
+      ],
+      "cases": [
+        {
+          "availability": "available",
+          "comparison_file": "candidate-0001.comparison.json",
+          "exit_code": 0,
+          "fixture": "damped_impact",
+          "native_id": "damped_impact",
+          "peaks": {
+            "damper_compression": {
+              "candidate": {
+                "bracket_hi_s": 0.0,
+                "bracket_lo_s": 0.0,
+                "origin": "disabled",
+                "time_s": 0.0,
+                "value_m": 0.0
+              },
+              "coverage": {
+                "candidate": "uncertified_sign_change_search",
+                "general_continuous_extrema": "incomplete",
+                "reference": "independent_analytic_domain_argument"
+              },
+              "exit_code": 0,
+              "observation_consistency_status": "pass",
+              "reference_kind": "disabled",
+              "reference_time_intervals_s": [
+                [
+                  0.0,
+                  0.002
+                ]
+              ],
+              "reference_time_status": "disabled",
+              "reference_value_interval": [
+                0.0,
+                0.0
+              ],
+              "reference_value_status": "analytic",
+              "time_comparison_required": true,
+              "time_status": "pass",
+              "value_status": "pass"
+            },
+            "damper_force": {
+              "candidate": {
+                "bracket_hi_s": 0.0,
+                "bracket_lo_s": 0.0,
+                "origin": "disabled",
+                "time_s": 0.0,
+                "value_n": 0.0
+              },
+              "coverage": {
+                "candidate": "uncertified_sign_change_search",
+                "general_continuous_extrema": "incomplete",
+                "reference": "independent_analytic_domain_argument"
+              },
+              "exit_code": 0,
+              "observation_consistency_status": "pass",
+              "reference_kind": "disabled",
+              "reference_time_intervals_s": [
+                [
+                  0.0,
+                  0.002
+                ]
+              ],
+              "reference_time_status": "disabled",
+              "reference_value_interval": [
+                0.0,
+                0.0
+              ],
+              "reference_value_status": "analytic",
+              "time_comparison_required": true,
+              "time_status": "pass",
+              "value_status": "pass"
+            },
+            "hammer_compression": {
+              "candidate": {
+                "bracket_hi_s": 0.0003450630876020168,
+                "bracket_lo_s": 0.0003450570221584236,
+                "origin": "stationary_candidate",
+                "time_s": 0.00034506005488022017,
+                "value_m": 0.00018988288089434878
+              },
+              "coverage": {
+                "candidate": "uncertified_sign_change_search",
+                "general_continuous_extrema": "incomplete",
+                "reference": "analytic_domain_and_scalar_refinement"
+              },
+              "exit_code": 0,
+              "observation_consistency_status": "pass",
+              "reference_kind": "isolated",
+              "reference_time_intervals_s": [
+                [
+                  0.00034505973795999833,
+                  0.00034505973795999833
+                ]
+              ],
+              "reference_time_status": "resolved_under_declared_refinement",
+              "reference_value_interval": [
+                0.00018988288088523308,
+                0.00018988288088523308
+              ],
+              "reference_value_status": "resolved_under_declared_refinement",
+              "time_comparison_required": true,
+              "time_status": "pass",
+              "value_status": "pass"
+            },
+            "hammer_force": {
+              "candidate": {
+                "bracket_hi_s": 0.0001776913414242453,
+                "bracket_lo_s": 0.00017768185334390813,
+                "origin": "stationary_candidate",
+                "time_s": 0.0001776913414242453,
+                "value_n": 6.19180727807768
+              },
+              "coverage": {
+                "candidate": "uncertified_sign_change_search",
+                "general_continuous_extrema": "incomplete",
+                "reference": "analytic_domain_and_scalar_refinement"
+              },
+              "exit_code": 0,
+              "observation_consistency_status": "pass",
+              "reference_kind": "isolated",
+              "reference_time_intervals_s": [
+                [
+                  0.00017769056225746204,
+                  0.00017769056225746204
+                ]
+              ],
+              "reference_time_status": "resolved_under_declared_refinement",
+              "reference_value_interval": [
+                6.191807278604624,
+                6.191807278604624
+              ],
+              "reference_value_status": "resolved_under_declared_refinement",
+              "time_comparison_required": true,
+              "time_status": "pass",
+              "value_status": "pass"
+            }
+          },
+          "phy002_acceptance": "incomplete",
+          "raw_sha256": "8eac863171810777097dc2949a0d035560b5e680889cd9d1a7909353c7ad80de",
+          "retained_sha256": "8eac863171810777097dc2949a0d035560b5e680889cd9d1a7909353c7ad80de",
+          "status": "pass",
+          "validity": "pass"
+        }
+      ],
+      "cwd": "/workspace/scratch/d6370337c6a4/Fender-rhoades",
+      "declared_producer": {
+        "bytes": 127088,
+        "candidate_production_attested": false,
+        "declared_path": "/workspace/scratch/d6370337c6a4/Fender-rhoades/build/vst3/rhodes_contact_reference",
+        "executed": false,
+        "sha256": "4ed2552430f5de5846adcb1a7b99521b118a12b714ad61b146ede7bab24f8f2d"
+      },
+      "diagnostic_executed_declared_binary": false,
+      "diagnostic_internal_source_unchanged": true,
+      "elapsed_s": 0.7580367240000214,
+      "ended_utc": "2026-11-24T05:29:28.506099+00:00",
+      "expected_case_exit_codes": [
+        0
+      ],
+      "expected_outcome_observed": true,
+      "expected_returncode": 0,
+      "id": "damped_with_time",
+      "manifest_file": "cli-audited/damped_with_time/evidence/manifest.json",
+      "manifest_sha256": "372864c97140879b0741904f330a90f61260b57473d7bd449995b1c841340a64",
+      "observed_executables_are_python": true,
+      "rejected_process_requests": [],
+      "returncode": 0,
+      "source_unchanged": true,
+      "started_utc": "2026-11-24T05:29:27.747652+00:00"
+    },
+    {
+      "argv": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/workspace/scratch/d6370337c6a4/Fender-rhoades/tools/validate_contact_peaks.py",
+        "--output",
+        "/tmp/contact-peaks-native-20261124-a3kcslzv/cli-audited/partial_missing_unsupported/evidence",
+        "--producer-binary",
+        "/workspace/scratch/d6370337c6a4/Fender-rhoades/build/vst3/rhodes_contact_reference",
+        "--candidate",
+        "/tmp/contact-peaks-native-20261124-a3kcslzv/native/conservative_partial_failure/stdout.json",
+        "--candidate",
+        "/tmp/contact-peaks-native-20261124-a3kcslzv/native/conservative_no_peaks/stdout.json",
+        "--candidate",
+        "/tmp/contact-peaks-native-20261124-a3kcslzv/native/evolved_relaunch_unsupported/stdout.json"
+      ],
+      "audit_hook_loaded_in_interpreters": 1,
+      "audit_hook_source": "python_audit_hook/sitecustomize.py",
+      "audit_scope": "Python-level observation and guard, inherited by the SciPy worker through PYTHONPATH; not OS process-tree tracing",
+      "audit_sha256": "dbd6cb229bb8096df9fa9b0cec6e11468a88f02595493bc16102ef568276b715",
+      "binary_unchanged": true,
+      "case_exit_codes": [
+        1,
+        2,
+        2
+      ],
+      "cases": [
+        {
+          "availability": "available",
+          "comparison_file": "candidate-0001.comparison.json",
+          "exit_code": 1,
+          "fixture": "conservative_impact",
+          "native_id": "conservative_partial_failure",
+          "peaks": {},
+          "phy002_acceptance": "incomplete",
+          "raw_sha256": "cfad42fe74e20f44c50441c794b7e55900b2868050e2adae1a851debe519e4b3",
+          "retained_sha256": "cfad42fe74e20f44c50441c794b7e55900b2868050e2adae1a851debe519e4b3",
+          "status": "fail",
+          "validity": "producer_failure"
+        },
+        {
+          "availability": "not_available",
+          "comparison_file": "candidate-0002.comparison.json",
+          "exit_code": 2,
+          "fixture": "conservative_impact",
+          "native_id": "conservative_no_peaks",
+          "peaks": {},
+          "phy002_acceptance": "incomplete",
+          "raw_sha256": "305af57dec0d2e7d919c94a3e9a47e712f3c4eb4f99e5143e802d25caf1d8224",
+          "retained_sha256": "305af57dec0d2e7d919c94a3e9a47e712f3c4eb4f99e5143e802d25caf1d8224",
+          "status": "incomplete",
+          "validity": "pass"
+        },
+        {
+          "availability": "unsupported_fixture",
+          "comparison_file": "candidate-0003.comparison.json",
+          "exit_code": 2,
+          "fixture": "evolved_relaunch",
+          "native_id": "evolved_relaunch_unsupported",
+          "peaks": {},
+          "phy002_acceptance": "incomplete",
+          "raw_sha256": "60ce9e7186645869b74829b01ce158b28f79e83b06f607a68a4908000d24f759",
+          "retained_sha256": "60ce9e7186645869b74829b01ce158b28f79e83b06f607a68a4908000d24f759",
+          "status": "incomplete",
+          "validity": "pass"
+        }
+      ],
+      "cwd": "/workspace/scratch/d6370337c6a4/Fender-rhoades",
+      "declared_producer": {
+        "bytes": 127088,
+        "candidate_production_attested": false,
+        "declared_path": "/workspace/scratch/d6370337c6a4/Fender-rhoades/build/vst3/rhodes_contact_reference",
+        "executed": false,
+        "sha256": "4ed2552430f5de5846adcb1a7b99521b118a12b714ad61b146ede7bab24f8f2d"
+      },
+      "diagnostic_executed_declared_binary": false,
+      "diagnostic_internal_source_unchanged": true,
+      "elapsed_s": 0.0934025379999639,
+      "ended_utc": "2026-11-24T05:29:28.601932+00:00",
+      "expected_case_exit_codes": [
+        1,
+        2,
+        2
+      ],
+      "expected_outcome_observed": true,
+      "expected_returncode": 1,
+      "id": "partial_missing_unsupported",
+      "manifest_file": "cli-audited/partial_missing_unsupported/evidence/manifest.json",
+      "manifest_sha256": "08bcb1aca1152325acb5c6912eb23061ef137318fef89e446613ed1b27c98b33",
+      "observed_executables_are_python": true,
+      "rejected_process_requests": [],
+      "returncode": 1,
+      "source_unchanged": true,
+      "started_utc": "2026-11-24T05:29:28.508126+00:00"
+    }
+  ],
+  "ended_utc": "2026-11-24T05:29:28.603510+00:00",
+  "failed_process_trace_attempts": {
+    "attempts": [
+      {
+        "id": "all_four_default",
+        "instrumented_argv": [
+          "/usr/bin/strace",
+          "-f",
+          "-e",
+          "trace=execve,execveat",
+          "-s",
+          "16384",
+          "-o",
+          "/tmp/contact-peaks-native-20261124-a3kcslzv/cli/all_four_default/process-exec.trace",
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+          "/workspace/scratch/d6370337c6a4/Fender-rhoades/tools/validate_contact_peaks.py",
+          "--output",
+          "/tmp/contact-peaks-native-20261124-a3kcslzv/cli/all_four_default/evidence",
+          "--producer-binary",
+          "/workspace/scratch/d6370337c6a4/Fender-rhoades/build/vst3/rhodes_contact_reference",
+          "--candidate",
+          "/tmp/contact-peaks-native-20261124-a3kcslzv/native/conservative_impact/stdout.json",
+          "--candidate",
+          "/tmp/contact-peaks-native-20261124-a3kcslzv/native/damped_impact/stdout.json",
+          "--candidate",
+          "/tmp/contact-peaks-native-20261124-a3kcslzv/native/forced_clamp/stdout.json",
+          "--candidate",
+          "/tmp/contact-peaks-native-20261124-a3kcslzv/native/preload_equilibrium/stdout.json"
+        ],
+        "invocation_file": "cli/all_four_default/invocation.json",
+        "observed_execve": [],
+        "returncode": 1,
+        "source_unchanged": true,
+        "stderr_file": "cli/all_four_default/stderr.txt"
+      },
+      {
+        "id": "damped_with_time",
+        "instrumented_argv": [
+          "/usr/bin/strace",
+          "-f",
+          "-e",
+          "trace=execve,execveat",
+          "-s",
+          "16384",
+          "-o",
+          "/tmp/contact-peaks-native-20261124-a3kcslzv/cli/damped_with_time/process-exec.trace",
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+          "/workspace/scratch/d6370337c6a4/Fender-rhoades/tools/validate_contact_peaks.py",
+          "--output",
+          "/tmp/contact-peaks-native-20261124-a3kcslzv/cli/damped_with_time/evidence",
+          "--producer-binary",
+          "/workspace/scratch/d6370337c6a4/Fender-rhoades/build/vst3/rhodes_contact_reference",
+          "--candidate",
+          "/tmp/contact-peaks-native-20261124-a3kcslzv/native/damped_impact/stdout.json",
+          "--with-damped-time"
+        ],
+        "invocation_file": "cli/damped_with_time/invocation.json",
+        "observed_execve": [],
+        "returncode": 1,
+        "source_unchanged": true,
+        "stderr_file": "cli/damped_with_time/stderr.txt"
+      },
+      {
+        "id": "partial_missing_unsupported",
+        "instrumented_argv": [
+          "/usr/bin/strace",
+          "-f",
+          "-e",
+          "trace=execve,execveat",
+          "-s",
+          "16384",
+          "-o",
+          "/tmp/contact-peaks-native-20261124-a3kcslzv/cli/partial_missing_unsupported/process-exec.trace",
+          "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+          "/workspace/scratch/d6370337c6a4/Fender-rhoades/tools/validate_contact_peaks.py",
+          "--output",
+          "/tmp/contact-peaks-native-20261124-a3kcslzv/cli/partial_missing_unsupported/evidence",
+          "--producer-binary",
+          "/workspace/scratch/d6370337c6a4/Fender-rhoades/build/vst3/rhodes_contact_reference",
+          "--candidate",
+          "/tmp/contact-peaks-native-20261124-a3kcslzv/native/conservative_partial_failure/stdout.json",
+          "--candidate",
+          "/tmp/contact-peaks-native-20261124-a3kcslzv/native/conservative_no_peaks/stdout.json",
+          "--candidate",
+          "/tmp/contact-peaks-native-20261124-a3kcslzv/native/evolved_relaunch_unsupported/stdout.json"
+        ],
+        "invocation_file": "cli/partial_missing_unsupported/invocation.json",
+        "observed_execve": [],
+        "returncode": 1,
+        "source_unchanged": true,
+        "stderr_file": "cli/partial_missing_unsupported/stderr.txt"
+      }
+    ],
+    "reason": "Kernel denied ptrace: Operation not permitted. These instrumentation attempts did not execute the Python CLI or create its evidence output."
+  },
+  "limitations": [
+    "Only these named synthetic fixtures are covered. No hardware fidelity, calibrated specimen behavior, or general continuous-extrema acceptance is established.",
+    "The default all-four invocation passes values and available analytic timing. Damped hammer timing is unrequested/not_available there; a separate flagged invocation resolves it under the declared SciPy refinement.",
+    "Preload positive damper timing remains unresolved_near_equilibrium even when its verified value enclosures pass; the result is not a positive plateau claim.",
+    "Candidate sign-change peak coverage remains uncertified. Supplemental timing does not amend frozen acceptance.",
+    "Declared producer identity is a stable file hash only. The native envelope does not attest arbitrary candidate physical configuration, and hashing is not execution attestation.",
+    "Kernel ptrace restrictions prevented OS process-tree tracing; every failed attempt and the subsequent Python audit evidence are retained.",
+    "The no-SciPy branch was not exercised in this native evidence run because SciPy 1.17.0 was available.",
+    "No source edits, build, Git operations, canonical state edits, old-auditor command, or whole test suite was performed by this assignment."
+  ],
+  "native_generation": [
+    {
+      "argv": [
+        "/workspace/scratch/d6370337c6a4/Fender-rhoades/build/vst3/rhodes_contact_reference",
+        "--fixture",
+        "conservative_impact",
+        "--output-step",
+        "0.0001",
+        "--locate-peak-candidates"
+      ],
+      "cwd": "/workspace/scratch/d6370337c6a4/Fender-rhoades",
+      "elapsed_s": 0.004080720000047222,
+      "ended_utc": "2026-11-24T05:28:39.125669+00:00",
+      "id": "conservative_impact",
+      "native_result": {
+        "failure_code": 0,
+        "fixture": "conservative_impact",
+        "has_located_peak_candidates": true,
+        "last_sample_time_s": 0.002,
+        "samples": 21,
+        "success": true
+      },
+      "returncode": 0,
+      "started_utc": "2026-11-24T05:28:39.121492+00:00",
+      "stderr_bytes": 0,
+      "stderr_file": "native/conservative_impact/stderr.txt",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 19831,
+      "stdout_file": "native/conservative_impact/stdout.json",
+      "stdout_sha256": "3306db341920c09ac0604c61d4e0cf19a8c2c6b925bcb9a9c63cf2bbaada3085"
+    },
+    {
+      "argv": [
+        "/workspace/scratch/d6370337c6a4/Fender-rhoades/build/vst3/rhodes_contact_reference",
+        "--fixture",
+        "damped_impact",
+        "--output-step",
+        "0.0001",
+        "--locate-peak-candidates"
+      ],
+      "cwd": "/workspace/scratch/d6370337c6a4/Fender-rhoades",
+      "elapsed_s": 0.0037289470001269365,
+      "ended_utc": "2026-11-24T05:28:39.130427+00:00",
+      "id": "damped_impact",
+      "native_result": {
+        "failure_code": 0,
+        "fixture": "damped_impact",
+        "has_located_peak_candidates": true,
+        "last_sample_time_s": 0.002,
+        "samples": 21,
+        "success": true
+      },
+      "returncode": 0,
+      "started_utc": "2026-11-24T05:28:39.126595+00:00",
+      "stderr_bytes": 0,
+      "stderr_file": "native/damped_impact/stderr.txt",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 20275,
+      "stdout_file": "native/damped_impact/stdout.json",
+      "stdout_sha256": "8eac863171810777097dc2949a0d035560b5e680889cd9d1a7909353c7ad80de"
+    },
+    {
+      "argv": [
+        "/workspace/scratch/d6370337c6a4/Fender-rhoades/build/vst3/rhodes_contact_reference",
+        "--fixture",
+        "forced_clamp",
+        "--output-step",
+        "0.0001",
+        "--locate-peak-candidates"
+      ],
+      "cwd": "/workspace/scratch/d6370337c6a4/Fender-rhoades",
+      "elapsed_s": 0.002418044000023656,
+      "ended_utc": "2026-11-24T05:28:39.133608+00:00",
+      "id": "forced_clamp",
+      "native_result": {
+        "failure_code": 0,
+        "fixture": "forced_clamp",
+        "has_located_peak_candidates": true,
+        "last_sample_time_s": 0.0002,
+        "samples": 3,
+        "success": true
+      },
+      "returncode": 0,
+      "started_utc": "2026-11-24T05:28:39.131093+00:00",
+      "stderr_bytes": 0,
+      "stderr_file": "native/forced_clamp/stderr.txt",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 4102,
+      "stdout_file": "native/forced_clamp/stdout.json",
+      "stdout_sha256": "b941313b4b93d3e62a7548829ae5c34d18d98c533349138d74a8a07d79b7de74"
+    },
+    {
+      "argv": [
+        "/workspace/scratch/d6370337c6a4/Fender-rhoades/build/vst3/rhodes_contact_reference",
+        "--fixture",
+        "preload_equilibrium",
+        "--output-step",
+        "0.0001",
+        "--locate-peak-candidates"
+      ],
+      "cwd": "/workspace/scratch/d6370337c6a4/Fender-rhoades",
+      "elapsed_s": 0.025705887999947663,
+      "ended_utc": "2026-11-24T05:28:39.159886+00:00",
+      "id": "preload_equilibrium",
+      "native_result": {
+        "failure_code": 0,
+        "fixture": "preload_equilibrium",
+        "has_located_peak_candidates": true,
+        "last_sample_time_s": 0.02,
+        "samples": 201,
+        "success": true
+      },
+      "returncode": 0,
+      "started_utc": "2026-11-24T05:28:39.134022+00:00",
+      "stderr_bytes": 0,
+      "stderr_file": "native/preload_equilibrium/stderr.txt",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 195352,
+      "stdout_file": "native/preload_equilibrium/stdout.json",
+      "stdout_sha256": "4be340044dcdb5cc6cdb9ab723889584cfa9a060121e46b2f1df59f77c5d4e85"
+    },
+    {
+      "argv": [
+        "/workspace/scratch/d6370337c6a4/Fender-rhoades/build/vst3/rhodes_contact_reference",
+        "--fixture",
+        "conservative_impact",
+        "--output-step",
+        "0.0001",
+        "--max-step",
+        "1e-10",
+        "--locate-peak-candidates"
+      ],
+      "cwd": "/workspace/scratch/d6370337c6a4/Fender-rhoades",
+      "elapsed_s": 0.1363417100001243,
+      "ended_utc": "2026-11-24T05:28:39.298859+00:00",
+      "id": "conservative_partial_failure",
+      "native_result": {
+        "failure_code": 9,
+        "fixture": "conservative_impact",
+        "has_located_peak_candidates": true,
+        "last_sample_time_s": 0,
+        "samples": 1,
+        "success": false
+      },
+      "returncode": 2,
+      "started_utc": "2026-11-24T05:28:39.162352+00:00",
+      "stderr_bytes": 0,
+      "stderr_file": "native/conservative_partial_failure/stderr.txt",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 2377,
+      "stdout_file": "native/conservative_partial_failure/stdout.json",
+      "stdout_sha256": "cfad42fe74e20f44c50441c794b7e55900b2868050e2adae1a851debe519e4b3"
+    },
+    {
+      "argv": [
+        "/workspace/scratch/d6370337c6a4/Fender-rhoades/build/vst3/rhodes_contact_reference",
+        "--fixture",
+        "conservative_impact",
+        "--output-step",
+        "0.0001"
+      ],
+      "cwd": "/workspace/scratch/d6370337c6a4/Fender-rhoades",
+      "elapsed_s": 0.00304284000003463,
+      "ended_utc": "2026-11-24T05:28:39.302838+00:00",
+      "id": "conservative_no_peaks",
+      "native_result": {
+        "failure_code": 0,
+        "fixture": "conservative_impact",
+        "has_located_peak_candidates": false,
+        "last_sample_time_s": 0.002,
+        "samples": 21,
+        "success": true
+      },
+      "returncode": 0,
+      "started_utc": "2026-11-24T05:28:39.299620+00:00",
+      "stderr_bytes": 0,
+      "stderr_file": "native/conservative_no_peaks/stderr.txt",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 19087,
+      "stdout_file": "native/conservative_no_peaks/stdout.json",
+      "stdout_sha256": "305af57dec0d2e7d919c94a3e9a47e712f3c4eb4f99e5143e802d25caf1d8224"
+    },
+    {
+      "argv": [
+        "/workspace/scratch/d6370337c6a4/Fender-rhoades/build/vst3/rhodes_contact_reference",
+        "--fixture",
+        "evolved_relaunch",
+        "--output-step",
+        "0.0001",
+        "--locate-peak-candidates"
+      ],
+      "cwd": "/workspace/scratch/d6370337c6a4/Fender-rhoades",
+      "elapsed_s": 0.035187513999972,
+      "ended_utc": "2026-11-24T05:28:39.338968+00:00",
+      "id": "evolved_relaunch_unsupported",
+      "native_result": {
+        "failure_code": 0,
+        "fixture": "evolved_relaunch",
+        "has_located_peak_candidates": true,
+        "last_sample_time_s": 0.02,
+        "samples": 201,
+        "success": true
+      },
+      "returncode": 0,
+      "started_utc": "2026-11-24T05:28:39.303641+00:00",
+      "stderr_bytes": 0,
+      "stderr_file": "native/evolved_relaunch_unsupported/stderr.txt",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_bytes": 197289,
+      "stdout_file": "native/evolved_relaunch_unsupported/stdout.json",
+      "stdout_sha256": "60ce9e7186645869b74829b01ce158b28f79e83b06f607a68a4908000d24f759"
+    }
+  ],
+  "native_producer": {
+    "bytes": 127088,
+    "path": "/workspace/scratch/d6370337c6a4/Fender-rhoades/build/vst3/rhodes_contact_reference",
+    "sha256_after": "4ed2552430f5de5846adcb1a7b99521b118a12b714ad61b146ede7bab24f8f2d",
+    "sha256_before": "4ed2552430f5de5846adcb1a7b99521b118a12b714ad61b146ede7bab24f8f2d"
+  },
+  "outcome": "expected_focused_outcomes_observed",
+  "phy002_acceptance": "incomplete",
+  "process_observation": {
+    "declared_native_binary_execution_observed_in_diagnostic": false,
+    "mechanism": "Temporary sitecustomize Python audit hook, inherited through PYTHONPATH by the optional timing worker. Logs Python interpreter starts and audited subprocess/exec calls; rejects child executables other than the same Python interpreter.",
+    "native_fixture_generation_was_separate": true,
+    "optional_python_timing_worker_observed": true,
+    "scope": "Python-level observation and guard only; not OS process-tree tracing or cryptographic attestation."
+  },
+  "retained_raw_identity_checks": [
+    {
+      "exact_native_stdout_bytes": true,
+      "invocation": "all_four_default",
+      "native_case": "conservative_impact",
+      "retained_file": "cli-audited/all_four_default/evidence/candidate-0001.raw",
+      "sha256": "3306db341920c09ac0604c61d4e0cf19a8c2c6b925bcb9a9c63cf2bbaada3085"
+    },
+    {
+      "exact_native_stdout_bytes": true,
+      "invocation": "all_four_default",
+      "native_case": "damped_impact",
+      "retained_file": "cli-audited/all_four_default/evidence/candidate-0002.raw",
+      "sha256": "8eac863171810777097dc2949a0d035560b5e680889cd9d1a7909353c7ad80de"
+    },
+    {
+      "exact_native_stdout_bytes": true,
+      "invocation": "all_four_default",
+      "native_case": "forced_clamp",
+      "retained_file": "cli-audited/all_four_default/evidence/candidate-0003.raw",
+      "sha256": "b941313b4b93d3e62a7548829ae5c34d18d98c533349138d74a8a07d79b7de74"
+    },
+    {
+      "exact_native_stdout_bytes": true,
+      "invocation": "all_four_default",
+      "native_case": "preload_equilibrium",
+      "retained_file": "cli-audited/all_four_default/evidence/candidate-0004.raw",
+      "sha256": "4be340044dcdb5cc6cdb9ab723889584cfa9a060121e46b2f1df59f77c5d4e85"
+    },
+    {
+      "exact_native_stdout_bytes": true,
+      "invocation": "damped_with_time",
+      "native_case": "damped_impact",
+      "retained_file": "cli-audited/damped_with_time/evidence/candidate-0001.raw",
+      "sha256": "8eac863171810777097dc2949a0d035560b5e680889cd9d1a7909353c7ad80de"
+    },
+    {
+      "exact_native_stdout_bytes": true,
+      "invocation": "partial_missing_unsupported",
+      "native_case": "conservative_partial_failure",
+      "retained_file": "cli-audited/partial_missing_unsupported/evidence/candidate-0001.raw",
+      "sha256": "cfad42fe74e20f44c50441c794b7e55900b2868050e2adae1a851debe519e4b3"
+    },
+    {
+      "exact_native_stdout_bytes": true,
+      "invocation": "partial_missing_unsupported",
+      "native_case": "conservative_no_peaks",
+      "retained_file": "cli-audited/partial_missing_unsupported/evidence/candidate-0002.raw",
+      "sha256": "305af57dec0d2e7d919c94a3e9a47e712f3c4eb4f99e5143e802d25caf1d8224"
+    },
+    {
+      "exact_native_stdout_bytes": true,
+      "invocation": "partial_missing_unsupported",
+      "native_case": "evolved_relaunch_unsupported",
+      "retained_file": "cli-audited/partial_missing_unsupported/evidence/candidate-0003.raw",
+      "sha256": "60ce9e7186645869b74829b01ce158b28f79e83b06f607a68a4908000d24f759"
+    }
+  ],
+  "schema_version": 1,
+  "scope": "Actual existing native producer generated seven synthetic fixture inputs; separate Python diagnostic completed exactly three requested invocation groups.",
+  "source_sha256_after": {
+    "CMakeLists.txt": "2a70fba5924a3eeb01bf0dfd7c2a0f6a00726d27ac7535660a4bf267cf81ff3e",
+    "apps/contact_reference.cpp": "36f30eebe08856989eeefd940acdff491c8f9cfc217342893f8d113c61865113",
+    "docs/specs/CONTACT_ACCEPTANCE_20261123.md": "c86669723c14c64864b04702780679f7a32f2416920f6fe198375acc4de34073",
+    "docs/specs/CONTACT_ANALYTIC_PEAK_SLICE_20261123.md": "56e5caefaebc03596b2ed566d50578b2be2e4dc54e37bf7fdce31dab31243f03",
+    "include/rhodes/contact_reference.hpp": "00b99e61dc73686c22675bedf647c3ad1b27ba13332180431f5a42e485057fda",
+    "src/contact_reference.cpp": "0f9808442b5ddf6ddc6091c9b6294117b7aea85cd54707b9c3743121ac706100",
+    "tools/contact_peak_oracles.py": "eb9d848a41ff3d101a5b0d86bd49e1d039000103dd5b923295bfaef332bb5c68",
+    "tools/contact_peak_schema.py": "af5cbf87d155ecb40c176b78a7527b2a7bd686c7fd515be621af93d910db86c4",
+    "tools/validate_contact_peaks.py": "ba25e476be93aecc1ccdbedfa020f457369bdad62c0ce16d5f749f79fc42e3ef",
+    "tools/validate_contact_reference.py": "c910da5da6b6ad957b709a414cef39a08ed6e8b75c6e36c9d73ef535a064dcdc"
+  },
+  "source_sha256_before": {
+    "CMakeLists.txt": "2a70fba5924a3eeb01bf0dfd7c2a0f6a00726d27ac7535660a4bf267cf81ff3e",
+    "apps/contact_reference.cpp": "36f30eebe08856989eeefd940acdff491c8f9cfc217342893f8d113c61865113",
+    "docs/specs/CONTACT_ACCEPTANCE_20261123.md": "c86669723c14c64864b04702780679f7a32f2416920f6fe198375acc4de34073",
+    "docs/specs/CONTACT_ANALYTIC_PEAK_SLICE_20261123.md": "56e5caefaebc03596b2ed566d50578b2be2e4dc54e37bf7fdce31dab31243f03",
+    "include/rhodes/contact_reference.hpp": "00b99e61dc73686c22675bedf647c3ad1b27ba13332180431f5a42e485057fda",
+    "src/contact_reference.cpp": "0f9808442b5ddf6ddc6091c9b6294117b7aea85cd54707b9c3743121ac706100",
+    "tools/contact_peak_oracles.py": "eb9d848a41ff3d101a5b0d86bd49e1d039000103dd5b923295bfaef332bb5c68",
+    "tools/contact_peak_schema.py": "af5cbf87d155ecb40c176b78a7527b2a7bd686c7fd515be621af93d910db86c4",
+    "tools/validate_contact_peaks.py": "ba25e476be93aecc1ccdbedfa020f457369bdad62c0ce16d5f749f79fc42e3ef",
+    "tools/validate_contact_reference.py": "c910da5da6b6ad957b709a414cef39a08ed6e8b75c6e36c9d73ef535a064dcdc"
+  },
+  "source_unchanged": true,
+  "started_utc": "2026-11-24T05:28:39.117511+00:00",
+  "verification": {
+    "all_checks_satisfied": true,
+    "all_raw_retention_identity_checks_pass": true,
+    "expected_cli_exit_codes": [
+      0,
+      0,
+      1
+    ],
+    "expected_mixed_case_exit_codes": [
+      1,
+      2,
+      2
+    ],
+    "observed_cli_exit_codes": [
+      0,
+      0,
+      1
+    ],
+    "observed_mixed_case_exit_codes": [
+      1,
+      2,
+      2
+    ],
+    "raw_retention_identity_checks": 8
+  },
+  "versions": {
+    "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "scipy": "1.17.0"
+  }
+}

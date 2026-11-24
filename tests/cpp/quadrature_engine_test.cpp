@@ -350,7 +350,17 @@ void qengine_prepare() {
             require(actual->sample_rate_hz() == rate, "invalid rate changed metadata");
             same_physics(*actual, *baseline);
             std::array<double, 129> output{};
-            require(actual->process(output) && output == expected,
+            const bool processed = actual->process(output);
+            if (processed && output != expected) {
+                const auto mismatch = std::mismatch(output.begin(), output.end(), expected.begin());
+                std::cerr << "prepare continuation mismatch: rate=" << std::hexfloat << rate
+                          << " rejected=" << bad_rate
+                          << " frame=" << (mismatch.first - output.begin())
+                          << " actual=" << *mismatch.first
+                          << " expected=" << *mismatch.second << std::defaultfloat << '\n';
+                same_physics(*actual, *expected_engine);
+            }
+            require(processed && output == expected,
                     "rejected prepare changed plan, history or controls");
             same_physics(*actual, *expected_engine);
         }

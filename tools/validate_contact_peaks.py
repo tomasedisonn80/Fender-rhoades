@@ -186,8 +186,10 @@ def _error(error: BaseException) -> str:
 
 
 def _canonical(value) -> bytes:
+    # Escaping Unicode also retains POSIX surrogate-escaped input paths without
+    # turning an otherwise readable file into a manifest encoding failure.
     return json.dumps(value, sort_keys=True, separators=(",", ":"),
-                      ensure_ascii=False, allow_nan=False).encode("utf-8")
+                      ensure_ascii=True, allow_nan=False).encode("utf-8")
 
 
 def _exclusive_json(path: Path, value) -> None:
@@ -299,7 +301,7 @@ def main(argv=None) -> int:
             "input_policy": "regular files only; final symlinks refused",
             "exit_precedence": [3, 1, 2, 0], "phy002_acceptance": "incomplete"}
     manifest = {"schema_version": 1, "started_utc": _utc(), "status": "running",
-                "plan_sha256": hashlib.sha256(_canonical(plan)).hexdigest(),
+                "plan_sha256": hashlib.sha256(_canonical(plan) + b"\n").hexdigest(),
                 "phy002_acceptance": "incomplete", "cases": [], "operational_errors": [],
                 "limitations": ["Four synthetic fixtures only; no hardware fidelity established.",
                     "Native envelope lacks physical configuration; identity consistency does not attest arbitrary bytes.",
