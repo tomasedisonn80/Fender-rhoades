@@ -283,20 +283,44 @@
       "assignment": 35,
       "wave": 2,
       "agent_task_name": "/root/w2_035_callback_build_provenance",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/20261124b-w2-035-callback-build-provenance.md",
+      "sha256": "33b985a327c93fc131cdbe3a301e5e124c99ed280de1885a09685410799111ec"
     },
     {
       "assignment": 36,
       "wave": 2,
       "agent_task_name": "/root/w2_036_direct_alias_capture",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/20261124b-w2-036-direct-alias-capture.md",
+      "sha256": "3638bcb2bafe60de7d1313a91afe2e16746e2cff9e5b06666c9ca50d9b8f4839"
     },
     {
       "assignment": 37,
       "wave": 2,
       "agent_task_name": "/root/w2_037_grazing_refinement_slice",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124b-w2-037-grazing-refinement-slice.md",
+      "sha256": "d6b59092cd59c18e712f9737fde0bff1d4753caebfe19af224cd516fa5c03d1f"
+    },
+    {
+      "assignment": 38,
+      "wave": 2,
+      "agent_task_name": "/root/w2_038_supported_extrema_guide",
+      "status": "running"
+    },
+    {
+      "assignment": 39,
+      "wave": 2,
+      "agent_task_name": "/root/w2_039_direct_alias_guide",
+      "status": "running"
+    },
+    {
+      "assignment": 40,
+      "wave": 2,
+      "agent_task_name": "/root/w2_040_integration_verification",
       "status": "running"
     }
   ],
-  "completed_agents": 34
+  "completed_agents": 37
 }
