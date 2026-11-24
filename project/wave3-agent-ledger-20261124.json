@@ -2,7 +2,7 @@
   "schema_version": 1,
   "wave": 3,
   "requested_actual_agents": 20,
-  "status": "in_progress",
+  "status": "complete",
   "scope": "Runtime preservation and reproducible evidence verification; metadata records actual assignments, not scientific acceptance.",
   "agents": [
     {
@@ -136,22 +136,55 @@
       "wave": 3,
       "id": "W3-55",
       "agent_task_name": "/root/w3_55_ledger_adversarial",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w3-55-ledger-adversarial.md",
+      "sha256": "e4c88a9e5bbb7047c64e1af83d1370cd5cfaf49260c99c885b37a9b08b14f187"
     },
     {
       "assignment": 56,
       "wave": 3,
       "id": "W3-56",
       "agent_task_name": "/root/w3_56_native_ci_audit",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w3-56-native-ci-audit.md",
+      "sha256": "40f60f4666bdeeafe9ecb52c9d3d5489d3b7e2f69bb0bc7bbe7b60ec47f02901"
     },
     {
       "assignment": 57,
       "wave": 3,
       "id": "W3-57",
       "agent_task_name": "/root/w3_57_public_model_boundary",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w3-57-public-model-boundary.md",
+      "sha256": "f5a56d227fb6a84e676384b4ea376e7d0f264588ae443c8a84cbad6f0fa34297"
+    },
+    {
+      "assignment": 58,
+      "wave": 3,
+      "id": "W3-58",
+      "agent_task_name": "/root/w3_58_rt_criteria",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w3-58-rt-criteria.md",
+      "sha256": "4ffe7b38ec76a955307cafd34fcdc02ba2b554c534f62fc7473d13cc9efb4547"
+    },
+    {
+      "assignment": 59,
+      "wave": 3,
+      "id": "W3-59",
+      "agent_task_name": "/root/w3_59_source_applicability",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w3-59-source-applicability.md",
+      "sha256": "a503959961add6dde4ce6aebe02c56133671927e276bd3ec72e0be42b4d76590"
+    },
+    {
+      "assignment": 60,
+      "wave": 3,
+      "id": "W3-60",
+      "agent_task_name": "/root/w3_60_closing_audit",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w3-60-closing-audit.md",
+      "sha256": "7b986308e5e33670d8ee3c7381926e9e19503b7169e4c129bf9342066816304a"
     }
   ],
-  "completed_actual_agents": 14
+  "completed_actual_agents": 20
 }

@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "wave": 4,
+  "requested_actual_agents": 20,
+  "status": "in_progress",
+  "scope": "Bounded actual-agent development and independent review. Metadata does not attest scientific acceptance.",
+  "agents": [
+    {
+      "assignment": 61,
+      "wave": 4,
+      "id": "W4-61",
+      "agent_task_name": "/root/w4_61_readme",
+      "status": "running"
+    },
+    {
+      "assignment": 62,
+      "wave": 4,
+      "id": "W4-62",
+      "agent_task_name": "/root/w4_62_vst3_guide",
+      "status": "running"
+    },
+    {
+      "assignment": 63,
+      "wave": 4,
+      "id": "W4-63",
+      "agent_task_name": "/root/w4_63_invalid_cell",
+      "status": "running"
+    }
+  ]
+}
