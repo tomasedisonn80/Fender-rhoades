@@ -6,7 +6,7 @@
 
 **Fidelity status:** `unvalidated`. Task completion is not a realism percentage.
 
-**State revision:** 47 · **Last state change:** 2026-11-24T14:16:38Z
+**State revision:** 48 · **Last state change:** 2026-11-24T15:42:05Z
 
 blocked: **2** | done: **4** | in_progress: **4** | todo: **7**
 
@@ -39,7 +39,7 @@ Run `python3 tools/project.py next` for lease-aware available work. The list bel
 - **PHY-002 — Implement finite-mass hammer and damper contact reference**. Claimed by `continuation-b-root` until `2026-11-24T11:25:28Z`; check current lease before starting.
 - **RT-001 — Measure runtime cost and numerical approximation errors**. Claimed by `continuation-b-root` until `2026-11-24T11:25:28Z`; check current lease before starting.
 - **HOST-003 — Add global expression and flexible VST3 output layouts**. Claimed by `continuation-d-root` until `2026-11-24T16:22:10Z`; check current lease before starting.
-- **HOST-004 — Build the owner-reference native photo editor and functional panel controls**. Claimed by `photo-editor-root` until `2026-11-24T16:16:38Z`; check current lease before starting.
+- **HOST-004 — Build the owner-reference native photo editor and functional panel controls**. Claimed by `photo-editor-root` until `2026-11-24T17:42:05Z`; check current lease before starting.
 
 ## Explicit blockers
 

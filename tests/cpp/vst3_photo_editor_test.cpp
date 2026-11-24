@@ -43,6 +43,7 @@ std::size_t checks = 0;
 std::size_t controllers_initialized = 0;
 std::size_t views_created = 0;
 std::size_t rejected_scales = 0;
+std::size_t host_resize_requests = 0;
 
 void require(bool condition, std::string_view message) {
     ++checks;
@@ -77,6 +78,78 @@ sdk::IPtr<sdk::IPlugViewContentScaleSupport> scaling_of(sdk::IPlugView& view) {
     require(result == sdk::kResultOk && scaling != nullptr, "public content-scaling interface");
     return scaling;
 }
+
+class RecordingFrame final : public sdk::IPlugFrame {
+public:
+    enum class Response { accept, refuse, omit_on_size, invalid_on_size, refuse_after_on_size };
+
+    explicit RecordingFrame(sdk::IPlugView& view) : view_(view) {
+        require(view_.setFrame(this) == sdk::kResultOk, "provide host frame before native attachment");
+    }
+
+    ~RecordingFrame() { (void)view_.setFrame(nullptr); }
+
+    sdk::tresult PLUGIN_API queryInterface(const sdk::TUID interface_id, void** object) override {
+        if (object == nullptr) { return sdk::kInvalidArgument; }
+        *object = nullptr;
+        if (sdk::FUnknownPrivate::iidEqual(interface_id, sdk::IPlugFrame::iid) ||
+            sdk::FUnknownPrivate::iidEqual(interface_id, sdk::FUnknown::iid)) {
+            *object = static_cast<sdk::IPlugFrame*>(this);
+            addRef();
+            return sdk::kResultOk;
+        }
+        return sdk::kNoInterface;
+    }
+
+    sdk::uint32 PLUGIN_API addRef() override { return ++references_; }
+    sdk::uint32 PLUGIN_API release() override { return --references_; }
+
+    sdk::tresult PLUGIN_API resizeView(sdk::IPlugView* view, sdk::ViewRect* size) override {
+        ++calls;
+        ++host_resize_requests;
+        if (inside_resize_) {
+            recursive_request = true;
+            return sdk::kResultFalse;
+        }
+        inside_resize_ = true;
+        correct_view = view == &view_;
+        requested = *size;
+        before_result = view->getSize(&before);
+        on_size_result = sdk::kNotImplemented;
+        sdk::tresult result = sdk::kResultFalse;
+        if (response == Response::accept || response == Response::invalid_on_size ||
+            response == Response::refuse_after_on_size) {
+            auto notified_size = *size;
+            if (response == Response::invalid_on_size) { ++notified_size.bottom; }
+            ++on_size_calls;
+            on_size_result = view->onSize(&notified_size);
+            result = response == Response::refuse_after_on_size ? sdk::kResultFalse : on_size_result;
+        } else if (response == Response::omit_on_size) {
+            result = sdk::kResultTrue;
+        }
+        after_result = view->getSize(&after);
+        inside_resize_ = false;
+        return result;
+    }
+
+    Response response = Response::accept;
+    std::size_t calls = 0;
+    std::size_t on_size_calls = 0;
+    sdk::ViewRect requested{};
+    sdk::ViewRect before{};
+    sdk::ViewRect after{};
+    sdk::tresult before_result = sdk::kNotImplemented;
+    sdk::tresult after_result = sdk::kNotImplemented;
+    sdk::tresult on_size_result = sdk::kNotImplemented;
+    bool correct_view = false;
+    bool recursive_request = false;
+
+private:
+    sdk::IPlugView& view_;
+    // Stack lifetime is bound to view_ through setFrame; detach before destruction.
+    sdk::uint32 references_ = 1;
+    bool inside_resize_ = false;
+};
 
 void expect_no_view(vst::IEditController& controller, const char* name) {
     // Own even an unexpected result so a failed assertion does not leak a view.
@@ -325,6 +398,96 @@ void scale_contract(sdk::IPlugView& view) {
     resize_to(view, default_size);
 }
 
+void host_frame_scale_contract(sdk::IPlugView& view) {
+    current_case = "content scaling with host frame before attachment";
+    auto scaling = scaling_of(view);
+    RecordingFrame frame{view};
+    using Response = RecordingFrame::Response;
+    struct Fixture {
+        Response response;
+        Scale factor;
+        sdk::int32 requested_width;
+        sdk::int32 retained_width;
+        sdk::int32 minimum_width;
+        sdk::int32 maximum_width;
+        bool accepted;
+    };
+    constexpr std::array<Fixture, 8> fixtures{{
+        {Response::accept, 2.0F, 2048, 2048, 1536, 3072, true},
+        {Response::refuse, 1.5F, 1536, 2048, 1536, 3072, false},
+        {Response::accept, 1.5F, 1536, 1536, 1152, 2304, true},
+        {Response::invalid_on_size, 1.0F, 1024, 1536, 1152, 2304, false},
+        {Response::omit_on_size, 2.0F, 2048, 1536, 1152, 2304, false},
+        {Response::refuse_after_on_size, 2.0F, 2048, 1536, 1152, 2304, false},
+        {Response::accept, 1.0F, 1024, 1024, 768, 1536, true},
+        {Response::omit_on_size, 1.0F, 1024, 1024, 768, 1536, true},
+    }};
+    for (const auto& fixture : fixtures) {
+        frame.response = fixture.response;
+        const auto before = size_of(view);
+        const auto calls_before = frame.calls;
+        const auto notifications_before = frame.on_size_calls;
+        const sdk::ViewRect wanted{0, 0, fixture.requested_width, fixture.requested_width * 3 / 4};
+        const sdk::ViewRect retained{0, 0, fixture.retained_width, fixture.retained_width * 3 / 4};
+        const auto result = scaling->setContentScaleFactor(fixture.factor);
+        require(result == (fixture.accepted ? sdk::kResultTrue : sdk::kResultFalse),
+                "DPI result agrees with host resize and synchronous notification");
+        require(frame.calls == calls_before + 1 && frame.correct_view && !frame.recursive_request,
+                "DPI sends exactly one resize request to the provided host frame");
+        require(same_rect(frame.requested, wanted), "host receives the requested scaled rectangle");
+        require(frame.before_result == sdk::kResultOk && same_rect(frame.before, before),
+                "getSize inside resizeView remains old until host onSize");
+        const bool notified = fixture.response == Response::accept ||
+                              fixture.response == Response::invalid_on_size ||
+                              fixture.response == Response::refuse_after_on_size;
+        require(frame.on_size_calls == notifications_before + (notified ? 1U : 0U),
+                "host fixture records the expected onSize notification count");
+        const bool valid_notification = notified && fixture.response != Response::invalid_on_size;
+        const auto expected_notification = valid_notification ? sdk::kResultTrue :
+            (notified ? sdk::kResultFalse : sdk::kNotImplemented);
+        require(frame.on_size_result == expected_notification,
+                "view accepts valid onSize and rejects a malformed host notification");
+        require(frame.after_result == sdk::kResultOk &&
+                    same_rect(frame.after, valid_notification ? wanted : before),
+                "getSize after host onSize reflects only a valid committed notification");
+        require(same_rect(size_of(view), retained), "failed host negotiation restores prior geometry");
+        const auto minimum = constrain(view, {0, 0, 1, 1},
+                                       fixture.minimum_width, fixture.maximum_width);
+        const auto maximum = constrain(view, {0, 0, 100000, 100000},
+                                       fixture.minimum_width, fixture.maximum_width);
+        require(width(minimum) == fixture.minimum_width && width(maximum) == fixture.maximum_width,
+                "failed host negotiation restores prior scale-dependent limits");
+    }
+
+    const auto before_invalid = frame.calls;
+    for (const Scale invalid : {0.0F, std::numeric_limits<Scale>::quiet_NaN()}) {
+        ++rejected_scales;
+        require(scaling->setContentScaleFactor(invalid) == sdk::kInvalidArgument,
+                "invalid DPI is rejected before asking the host to resize");
+    }
+    require(frame.calls == before_invalid && same_rect(size_of(view), default_size),
+            "invalid DPI leaves host request count and geometry unchanged");
+
+    resize_to(view, {0, 0, 1280, 960});
+    require(frame.calls == before_invalid, "host-driven onSize does not request another host resize");
+    frame.response = Response::accept;
+    require(scaling->setContentScaleFactor(2.0F) == sdk::kResultTrue &&
+                same_rect(size_of(view), {0, 0, 2560, 1920}),
+            "host-negotiated DPI preserves user-selected logical zoom");
+    frame.response = Response::refuse;
+    require(scaling->setContentScaleFactor(1.0F) == sdk::kResultFalse &&
+                same_rect(size_of(view), {0, 0, 2560, 1920}),
+            "host refusal preserves nondefault user zoom and DPI");
+    frame.response = Response::accept;
+    require(scaling->setContentScaleFactor(1.0F) == sdk::kResultTrue &&
+                same_rect(size_of(view), {0, 0, 1280, 960}),
+            "retry after host refusal retains the original user zoom");
+    const auto requests_before_host_resize = frame.calls;
+    resize_to(view, default_size);
+    require(frame.calls == requests_before_host_resize,
+            "host resize to default size does not echo a resize request");
+}
+
 using Instances = std::array<ControllerInstance, controller_count>;
 
 void independence_contract(Instances& instances) {
@@ -404,6 +567,7 @@ void run(const std::array<const char*, 3>& paths) {
             basic_view_contract(instances[index].view(1));
             resize_contract(instances[index].view(0));
             scale_contract(instances[index].view(0));
+            host_frame_scale_contract(instances[index].view(0));
             require(same_rect(size_of(instances[index].view(1)), default_size),
                     "contract exercise leaves simultaneous sibling view unchanged");
         }
@@ -445,6 +609,7 @@ int main(int argc, char** argv) {
         std::cout << "PASS photo editor unattached contract: " << checks << " checks, "
                   << controllers_initialized << " real controllers, " << views_created
                   << " views created, " << rejected_scales << " malformed scales rejected; "
+                  << host_resize_requests << " host resize requests; "
                   << "no native window attached or rendering assessed\n";
         return 0;
     } catch (const std::exception& error) {

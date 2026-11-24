@@ -2,6 +2,7 @@
 
 #include "controller.hpp"
 #include "photo_geometry.hpp"
+#include "photo_native_focus.hpp"
 
 #include "vstgui/plugin-bindings/vst3editor.h"
 #include "vstgui/lib/cbitmap.h"
@@ -9,6 +10,7 @@
 #include "vstgui/lib/cframe.h"
 #include "vstgui/lib/cgraphicspath.h"
 #include "vstgui/lib/events.h"
+#include "vstgui/lib/platform/iplatformframe.h"
 
 #include <algorithm>
 #include <array>
@@ -63,14 +65,18 @@ class PhotoView final : public CView {
 public:
     PhotoView(RhodesController& controller, CBitmap* photograph)
         : CView(CRect{0.0, 0.0, kDefaultWidth, kDefaultHeight}),
-          controller_(controller), photograph_(photograph) {
+          controller_(controller), audition_owner_(controller.registerAuditionOwner()),
+          photograph_(photograph) {
         setWantsFocus(true);
         setWantsIdle(true);
         setTransparency(false);
         setMouseableArea(getViewSize());
     }
 
-    ~PhotoView() override { cancel_interaction(); }
+    ~PhotoView() override {
+        cancel_interaction();
+        (void)controller_.unregisterAuditionOwner(audition_owner_);
+    }
 
     void draw(CDrawContext* context) override {
         context->saveGlobalState();
@@ -111,7 +117,14 @@ public:
 
     void onMouseDownEvent(MouseDownEvent& event) override {
         if (!event.buttonState.isLeft()) { return; }
-        cancel_interaction();
+        // Discard any loss from the previous interaction before starting this
+        // click. The platform assigns native focus after this callback returns.
+        (void)native_focus_lost(true);
+        if (!cancel_interaction()) {
+            event.consumed = true;
+            event.ignoreFollowUpMoveAndUpEvents(true);
+            return;
+        }
         const auto position = source_position(event.mousePosition);
         const int id = photo::hit_control(position.x, position.y);
         if (id >= 0) {
@@ -141,6 +154,11 @@ public:
     }
 
     void onMouseMoveEvent(MouseMoveEvent& event) override {
+        if ((dragging_control_ || dragging_keyboard_) && native_focus_lost(true)) {
+            cancel_interaction();
+            event.consumed = true;
+            return;
+        }
         const auto position = source_position(event.mousePosition);
         if (dragging_control_ || dragging_keyboard_) {
             event.consumed = true;
@@ -245,7 +263,8 @@ public:
         case VirtualKey::Space:
         case VirtualKey::Return:
         case VirtualKey::Enter:
-            if (!is_switch(id) || event.isRepeat) { return; }
+            if (!is_switch(id)) { return; }
+            if (event.isRepeat) { event.consumed = true; return; }
             next = next >= 0.5 ? 0.0 : 1.0;
             break;
         default: return;
@@ -268,10 +287,21 @@ public:
 
     bool removed(CView* parent) override {
         cancel_interaction();
+        native_focus_.reset();
         return CView::removed(parent);
     }
 
     void onIdle() override {
+        if (native_focus_lost()) { cancel_interaction(); }
+        (void)controller_.retryAuditionRelease();
+        if (held_key_ >= 0 && controller_.heldAuditionKey(audition_owner_) != held_key_) {
+            // Another view's failed transport cancels all V1 UI ownership.
+            // Its emergency must not leave this view showing a held key.
+            held_key_ = -1;
+            dragging_keyboard_ = false;
+            clear_feedback();
+            invalid();
+        }
         if (feedback_parameter_ < 0 && feedback_key_ < 0) { return; }
         if (!feedback_visible()) {
             clear_feedback();
@@ -286,18 +316,30 @@ public:
         }
     }
 
-    void cancel_interaction() {
+    bool cancel_interaction() {
         finish_gesture();
-        release_key();
-        controller_.releaseAuditionNotes();
+        const bool released = release_key();
         dragging_control_ = false;
         dragging_keyboard_ = false;
         hover_parameter_ = -1;
         hover_key_ = -1;
         clear_feedback();
+        return released;
     }
 
 private:
+    [[nodiscard]] bool native_focus_lost(bool synchronize = false) {
+#if defined(__linux__)
+        auto* frame = getFrame();
+        auto* platform = frame == nullptr ? nullptr : frame->getPlatformFrame();
+        const auto window = platform != nullptr &&
+                platform->getPlatformType() == PlatformType::kX11EmbedWindowID ?
+            reinterpret_cast<std::uintptr_t>(platform->getPlatformRepresentation()) : 0;
+        native_focus_.attach(window);
+#endif
+        return native_focus_.poll(synchronize);
+    }
+
     [[nodiscard]] photo::AspectFit image_fit() const noexcept {
         return photo::AspectFit::fit(getWidth(), getHeight());
     }
@@ -370,27 +412,26 @@ private:
         show_parameter(id);
     }
 
-    void release_key() {
-        if (held_key_ < 0) { return; }
+    bool release_key() {
+        if (held_key_ < 0) { return true; }
         const int key = held_key_;
         held_key_ = -1;
-        if (!controller_.auditionNote(key, false, 0.0F)) {
-            controller_.releaseAuditionNotes();
-        }
+        const bool released = controller_.auditionNote(audition_owner_, key, false, 0.0F);
         invalid();
+        return released;
     }
 
     void move_audition(int key) {
-        if (key == held_key_) { return; }
-        release_key();
+        if (key == held_key_ && controller_.heldAuditionKey(audition_owner_) == key) { return; }
+        const bool released = release_key();
         if (key < 0) { clear_feedback(); return; }
         feedback_parameter_ = -1;
         feedback_key_ = key;
         status_ = nullptr;
-        if (controller_.auditionNote(key, true, 0.75F)) {
+        if (released && controller_.auditionNote(audition_owner_, key, true, 0.75F)) {
             held_key_ = key;
         } else {
-            status_ = "Connect host to audition";
+            status_ = "Audition unavailable";
         }
         feedback_until_ = Clock::now() + kFeedbackDuration;
         invalid();
@@ -469,13 +510,32 @@ private:
         std::array<char, 256> text{};
         const char* help = "Click and drag to audition; release to stop";
         if (feedback_parameter_ >= 0) {
-            const auto* control = photo::control_for_parameter(static_cast<ParamID>(feedback_parameter_));
+            const auto tag = static_cast<ParamID>(feedback_parameter_);
+            const auto* control = photo::control_for_parameter(tag);
             if (control == nullptr) { return; }
             anchor = control->bounds;
             Steinberg::Vst::String128 formatted{};
             std::array<char, 128> ascii{};
-            if (succeeded(controller_.getParamStringByValue(
-                    static_cast<ParamID>(feedback_parameter_), value(feedback_parameter_), formatted))) {
+            auto* parameter = controller_.getParameterObject(tag);
+            if (parameter != nullptr && parameter->getInfo().stepCount == 0) {
+                const double plain = parameter->toPlain(value(feedback_parameter_));
+                (void)std::snprintf(ascii.data(), ascii.size(), "%.2f",
+                                    std::abs(plain) < 0.005 ? 0.0 : plain);
+                auto length = std::strlen(ascii.data());
+                while (length > 0 && ascii[length - 1] == '0') { --length; }
+                if (length > 0 && (ascii[length - 1] == '.' || ascii[length - 1] == ',')) {
+                    --length;
+                }
+                const auto* units = parameter->getInfo().units;
+                if (units[0] != 0 && length + 2 < ascii.size()) {
+                    ascii[length++] = ' ';
+                    for (std::size_t i = 0; length + 1 < ascii.size() && units[i] != 0; ++i) {
+                        ascii[length++] = units[i] <= 127 ? static_cast<char>(units[i]) : '?';
+                    }
+                }
+                ascii[length] = '\0';
+            } else if (succeeded(controller_.getParamStringByValue(
+                           tag, value(feedback_parameter_), formatted))) {
                 for (std::size_t i = 0; i + 1 < ascii.size() && formatted[i] != 0; ++i) {
                     ascii[i] = formatted[i] <= 127 ? static_cast<char>(formatted[i]) : '?';
                 }
@@ -507,7 +567,9 @@ private:
     }
 
     RhodesController& controller_;
+    const RhodesController::AuditionOwner audition_owner_;
     SharedPointer<CBitmap> photograph_;
+    PhotoNativeFocus native_focus_;
     int gesture_parameter_ = -1;
     int focused_parameter_ = -1;
     int hover_parameter_ = -1;
@@ -546,7 +608,6 @@ public:
     Steinberg::tresult PLUGIN_API onFocus(Steinberg::TBool active) override {
         if (!active) {
             if (view_) { view_->cancel_interaction(); }
-            else { rhodes_controller_.releaseAuditionNotes(); }
         }
         return Steinberg::kResultTrue;
     }
@@ -574,7 +635,6 @@ public:
 
     void willClose(VST3Editor*) override {
         if (view_) { view_->cancel_interaction(); }
-        rhodes_controller_.releaseAuditionNotes();
         view_ = nullptr;
     }
 
@@ -604,7 +664,6 @@ protected:
 
     void PLUGIN_API close() override {
         if (getFrame() != nullptr) { VST3Editor::close(); }
-        else { rhodes_controller_.releaseAuditionNotes(); }
         view_ = nullptr;
     }
 
@@ -612,13 +671,26 @@ protected:
         return constrain_size(size, getContentScaleFactor());
     }
 
+    bool beforeSizeChange(const CRect& next, const CRect& previous) override {
+        // onSize already represents the host's resize decision. CFrame::setZoom
+        // must not turn its native size update into another host request.
+        return resizing_ || VST3Editor::beforeSizeChange(next, previous);
+    }
+
     Steinberg::tresult PLUGIN_API onSize(Steinberg::ViewRect* size) override {
         if (size == nullptr) { return Steinberg::kInvalidArgument; }
-        if (resizing_) { return VST3Editor::onSize(size); }
+        if (resizing_) { return Steinberg::kResultFalse; }
         auto constrained = *size;
         const auto result = checkSizeConstraint(&constrained);
         if (!succeeded(result)) { return result; }
         if (constrained.right != size->right || constrained.bottom != size->bottom) {
+            return Steinberg::kResultFalse;
+        }
+        // Preserve the SDK's pending-request check before touching the native
+        // frame; its base onSize performs this same check when committing rect.
+        if (sizeRequest &&
+            (std::floor(sizeRequest->x) != size->getWidth() ||
+             std::floor(sizeRequest->y) != size->getHeight())) {
             return Steinberg::kResultFalse;
         }
         const double next_zoom = static_cast<double>(size->getWidth()) /
@@ -639,6 +711,7 @@ protected:
 
 #ifdef VST3_CONTENT_SCALE_SUPPORT
     Steinberg::tresult PLUGIN_API setContentScaleFactor(ScaleFactor factor) override {
+        if (scaling_ || resizing_) { return Steinberg::kResultFalse; }
         Steinberg::ViewRect next{};
         if (!std::isfinite(factor) || factor <= 0.0F ||
             kMaximumWidth * factor > std::numeric_limits<Steinberg::int32>::max()) {
@@ -649,20 +722,31 @@ protected:
         if (!succeeded(constrain_size(&next, factor))) { return Steinberg::kInvalidArgument; }
         const double old_scale = contentScaleFactor;
         const double old_zoom = zoomFactor;
+        auto old_rect = rect;
+        scaling_ = true;
         contentScaleFactor = factor;
         zoomFactor = static_cast<double>(next.getWidth()) / (kDefaultWidth * factor);
-        if (getFrame() != nullptr) {
-            resizing_ = true;
-            const bool accepted = getFrame()->setZoom(getAbsScaleFactor());
-            resizing_ = false;
-            if (!accepted) {
-                contentScaleFactor = old_scale;
-                zoomFactor = old_zoom;
-                return Steinberg::kResultFalse;
+
+        // IPlugFrame can exist before the native CFrame. In either case, keep
+        // getSize() unchanged until the host synchronously calls onSize().
+        // Only the no-IPlugFrame path may commit the requested size directly.
+        const auto result = plugFrame ? plugFrame->resizeView(this, &next) : onSize(&next);
+        const bool accepted = succeeded(result) && rect.left == next.left && rect.top == next.top &&
+                              rect.right == next.right && rect.bottom == next.bottom;
+        if (!accepted) {
+            contentScaleFactor = old_scale;
+            zoomFactor = old_zoom;
+            if (rect.left != old_rect.left || rect.top != old_rect.top ||
+                rect.right != old_rect.right || rect.bottom != old_rect.bottom) {
+                // Also restore a host callback followed by a refused request.
+                // onSize applies the native rollback without another resizeView.
+                (void)onSize(&old_rect);
             }
+            rect = old_rect;
+            zoomFactor = old_zoom;
         }
-        rect = next;
-        return Steinberg::kResultTrue;
+        scaling_ = false;
+        return accepted ? Steinberg::kResultTrue : Steinberg::kResultFalse;
     }
 #endif
 
@@ -700,6 +784,7 @@ private:
     RhodesController& rhodes_controller_;
     PhotoView* view_ = nullptr; // Owned by the editor frame, cleared before teardown.
     bool resizing_ = false;
+    bool scaling_ = false;
 };
 
 } // namespace

@@ -190,10 +190,91 @@ Steinberg::IPlugView* PLUGIN_API RhodesController::createView(Steinberg::FIDStri
     return nullptr;
 }
 
-bool RhodesController::auditionNote(int key, bool down, float velocity) {
-    if (!initialized_ || key < 0 || key >= 73 || !control::valid_normalized(velocity)) {
+RhodesController::AuditionOwner RhodesController::registerAuditionOwner() {
+    if (!initialized_ || next_audition_owner_ == 0) { return 0; }
+    for (auto& state : audition_owners_) {
+        if (state.owner == 0) {
+            // Unsigned wrap reaches the reserved zero sentinel and permanently
+            // refuses further registrations, rather than reusing a stale token.
+            state = {next_audition_owner_++, -1};
+            return state.owner;
+        }
+    }
+    return 0;
+}
+
+RhodesController::AuditionState* RhodesController::findAuditionOwner(
+    AuditionOwner owner) noexcept {
+    if (owner == 0) { return nullptr; }
+    for (auto& state : audition_owners_) {
+        if (state.owner == owner) { return &state; }
+    }
+    return nullptr;
+}
+
+int RhodesController::heldAuditionKey(AuditionOwner owner) const noexcept {
+    if (owner != 0) {
+        for (const auto& state : audition_owners_) {
+            if (state.owner == owner) { return state.key; }
+        }
+    }
+    return -1;
+}
+
+bool RhodesController::auditionKeyHasOwner(int key) const noexcept {
+    return std::any_of(audition_owners_.begin(), audition_owners_.end(),
+                       [key](const auto& state) { return state.owner != 0 && state.key == key; });
+}
+
+bool RhodesController::unregisterAuditionOwner(AuditionOwner owner) {
+    auto* state = findAuditionOwner(owner);
+    if (state == nullptr) { return true; }
+    const int key = state->key;
+    *state = {};
+    if (audition_release_pending_) { return retryAuditionRelease(); }
+    if (key < 0 || auditionKeyHasOwner(key)) { return true; }
+    if (sendAuditionNote(key, false, 0.0F)) { return true; }
+    (void)releaseAuditionNotes();
+    return false;
+}
+
+bool RhodesController::auditionNote(AuditionOwner owner, int key, bool down, float velocity) {
+    auto* state = findAuditionOwner(owner);
+    if (!initialized_ || state == nullptr || key < 0 || key >= 73 ||
+        !control::valid_normalized(velocity)) {
         return false;
     }
+    // The processor treats either signed note-on zero as a release. Apply
+    // that meaning before ownership aggregation so it cannot release a key
+    // still held by a sibling view, or manufacture an owner for a silent down.
+    down = down && !control::is_zero(velocity);
+    if (!down) { velocity = 0.0F; }
+    if (audition_release_pending_) {
+        // Even successful recovery cancels this attempt. Do not append a fresh
+        // down to the same call that sent the out-of-band emergency release.
+        (void)retryAuditionRelease();
+        return false;
+    }
+    if (!down) {
+        if (state->key != key) { return true; }
+        state->key = -1;
+        if (auditionKeyHasOwner(key)) { return true; }
+    } else {
+        if (state->key >= 0 && state->key != key) {
+            if (!auditionNote(owner, state->key, false, 0.0F)) { return false; }
+            state = findAuditionOwner(owner);
+            if (state == nullptr) { return false; }
+        }
+        state->key = key;
+    }
+    if (sendAuditionNote(key, down, velocity)) { return true; }
+    // A rejected send can represent a full processor queue. V1's existing
+    // emergency contract cancels every UI owner, so mirror that state here.
+    (void)releaseAuditionNotes();
+    return false;
+}
+
+bool RhodesController::sendAuditionNote(int key, bool down, float velocity) {
     auto message = Steinberg::owned(allocateMessage());
     if (!message) { return false; }
     message->setMessageID("RhodesPhotoNoteV1");
@@ -201,17 +282,27 @@ bool RhodesController::auditionNote(int key, bool down, float velocity) {
     if (attributes == nullptr ||
         attributes->setInt("key", key) != Steinberg::kResultOk ||
         attributes->setInt("down", down ? 1 : 0) != Steinberg::kResultOk ||
-        attributes->setFloat("velocity", static_cast<double>(velocity)) != Steinberg::kResultOk) {
+        attributes->setFloat("velocity", *control::widen(velocity)) != Steinberg::kResultOk) {
         return false;
     }
     return sendMessage(message) == Steinberg::kResultOk;
 }
 
-void RhodesController::releaseAuditionNotes() {
+bool RhodesController::releaseAuditionNotes() {
+    for (auto& state : audition_owners_) { state.key = -1; }
+    audition_release_pending_ = true;
+    return retryAuditionRelease();
+}
+
+bool RhodesController::retryAuditionRelease() {
+    if (!audition_release_pending_) { return true; }
+    if (!initialized_) { return false; }
     auto message = Steinberg::owned(allocateMessage());
-    if (!message) { return; }
+    if (!message) { return false; }
     message->setMessageID("RhodesPhotoReleaseV1");
-    (void)sendMessage(message);
+    if (sendMessage(message) != Steinberg::kResultOk) { return false; }
+    audition_release_pending_ = false;
+    return true;
 }
 
 Steinberg::tresult PLUGIN_API RhodesController::initialize(Steinberg::FUnknown* context) {
@@ -254,6 +345,12 @@ Steinberg::tresult PLUGIN_API RhodesController::initialize(Steinberg::FUnknown* 
 }
 
 Steinberg::tresult PLUGIN_API RhodesController::terminate() {
+    // Also clean up if a host terminates with an outstanding view token. Idle
+    // owners send nothing; held notes still use ordered last-owner note-ups.
+    for (const auto& state : audition_owners_) {
+        if (state.owner != 0) { (void)unregisterAuditionOwner(state.owner); }
+    }
+    (void)retryAuditionRelease();
     const auto result = EditController::terminate();
     if (result == Steinberg::kResultOk) { initialized_ = false; }
     return result;

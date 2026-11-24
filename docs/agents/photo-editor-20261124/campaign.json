@@ -2,7 +2,7 @@
   "requested_workers": 100,
   "requested_waves": 5,
   "workers_per_wave": 20,
-  "completed_report_count": 22,
+  "completed_report_count": 40,
   "workers": [
     {
       "agent": "w1_001",
@@ -145,6 +145,13 @@
       "status": "reported"
     },
     {
+      "agent": "w2_001",
+      "wave": 2,
+      "report": "w2-001.md",
+      "sha256": "0112a93f2655aab7682840c9ca1803c582e3f140486255963a83ead249e2cd64",
+      "status": "reported"
+    },
+    {
       "agent": "w2_002",
       "wave": 2,
       "report": "w2-002.md",
@@ -157,6 +164,131 @@
       "report": "w2-003.md",
       "sha256": "fc969b5a710d65c1317935790b11dd3a0151037e9eebaf9200a34db2f1580bfd",
       "status": "reported"
+    },
+    {
+      "agent": "w2_004",
+      "wave": 2,
+      "report": "w2-004.md",
+      "sha256": "06ccc7c52df3d62ccfeedceef84800f68723b5a5df888ee2b057b72b04b85086",
+      "status": "reported"
+    },
+    {
+      "agent": "w2_005",
+      "wave": 2,
+      "report": "w2-005.md",
+      "sha256": "868ff6aa64796458911071d6dd2317990cfd896b3096b3756c4a305f2b91a2d2",
+      "status": "reported"
+    },
+    {
+      "agent": "w2_006",
+      "wave": 2,
+      "report": "w2-006.md",
+      "sha256": "db75e391eb30af9d661aa4e27362904c6488dbfcf9bb8b3ffd861bdd3a743bdb",
+      "status": "reported"
+    },
+    {
+      "agent": "w2_007",
+      "wave": 2,
+      "report": "w2-007.md",
+      "sha256": "8c9f8c5ce48ddec24020ab8ef959d239869053a10e931bc24bea5aaf76b01dd6",
+      "status": "reported"
+    },
+    {
+      "agent": "w2_008",
+      "wave": 2,
+      "report": "w2-008.md",
+      "sha256": "d90f7018ba4416c2458a744b5a35c1de169a986464cff428e4c2009119ba8b06",
+      "status": "reported"
+    },
+    {
+      "agent": "w2_009",
+      "wave": 2,
+      "report": "w2-009.md",
+      "sha256": "5b925eae0d95e90c14f4ca353f5686970fdd7b47a2e2d15ab164dab11dfe88bd",
+      "status": "reported"
+    },
+    {
+      "agent": "w2_010",
+      "wave": 2,
+      "report": "w2-010.md",
+      "sha256": "bb8f37c10ef0c141f121f8d120fa4ba8922995b569e6ba6b3f5e03d1470a4eb5",
+      "status": "reported"
+    },
+    {
+      "agent": "w2_011",
+      "wave": 2,
+      "report": "w2-011.md",
+      "sha256": "4b28c10583efa57c43203b8317e2ddf0784f430dc7ca65b555dfb9e503cad97d",
+      "status": "reported"
+    },
+    {
+      "agent": "w2_012",
+      "wave": 2,
+      "report": "w2-012.md",
+      "sha256": "58c4e38364532b08d6f867fefcc9fb9ef8ea58a4d10d1571850e516f2a7d19ff",
+      "status": "reported"
+    },
+    {
+      "agent": "w2_013",
+      "wave": 2,
+      "report": "w2-013.md",
+      "sha256": "bdd5fec82c6092bf5cd3c59b19604bb953891d0a5978600bc10b0626a8cf8eb1",
+      "status": "reported"
+    },
+    {
+      "agent": "w2_014",
+      "wave": 2,
+      "report": "w2-014.md",
+      "sha256": "bf8c0bb728de22da084c027b478ef345c800068f46a9f23c9f8cdb971d893f79",
+      "status": "reported"
+    },
+    {
+      "agent": "w2_015",
+      "wave": 2,
+      "report": "w2-015.md",
+      "sha256": "9811b034c8a01e7b8aba35423137a6ef6ace1ee1c389afecdf0bdf28f065e156",
+      "status": "reported"
+    },
+    {
+      "agent": "w2_016",
+      "wave": 2,
+      "report": "w2-016.md",
+      "sha256": "bfa006c602118f4fb5905122ffafec96fc760ce8a955a154413984c1a692ca86",
+      "status": "reported"
+    },
+    {
+      "agent": "w2_017",
+      "wave": 2,
+      "report": "w2-017.md",
+      "sha256": "3cf5c2fa1c7b3cfeee0a6a97b48c9652f8da1bc6b9847fe636c7b19f07032de2",
+      "status": "reported"
+    },
+    {
+      "agent": "w2_018",
+      "wave": 2,
+      "report": "w2-018.md",
+      "sha256": "94852e768b0a168929afb5b637624d7f7bdd1991260fa2321ae9effaf9c4c95e",
+      "status": "reported"
+    },
+    {
+      "agent": "w2_019",
+      "wave": 2,
+      "report": "w2-019.md",
+      "sha256": "0ebe9095a3c03a76876997e39b6b54710cc0d2bff2956951f6f13fb1752fe308",
+      "status": "reported"
+    },
+    {
+      "agent": "w2_020",
+      "wave": 2,
+      "report": "w2-020.md",
+      "sha256": "f25568430281c7995dd94eed9575f6177f22c1d271501c02be097c1964aae005",
+      "status": "reported",
+      "followups": [
+        {
+          "report": "w2-020-followup.md",
+          "sha256": "3cbd93ef01548dd405a2ff1dfce0b7f028d6cce8d0b8cf19fcb3396c4ce2d0ae"
+        }
+      ]
     }
   ]
 }

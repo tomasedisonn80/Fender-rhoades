@@ -55,6 +55,14 @@ foreach(bundle IN ITEMS "${DIRECT_BUNDLE}" "${FILTERED_BUNDLE}" "${QUADRATURE_BU
         expect_resource("${bundle}" VSTGUI-LICENSE.txt "${VSTGUI_ROOT}/LICENSE")
         expect_resource("${bundle}" RapidJSON-LICENSE.txt "${VSTGUI_ROOT}/vstgui/thirdparty/rapidjson/license.txt")
         expect_resource("${bundle}" miniz-LICENSE.txt "${VSTGUI_ROOT}/vstgui/thirdparty/miniz/LICENSE")
+    else()
+        foreach(editor_resource IN ITEMS rhodes-suitcase.png rhodes-suitcase.uidesc
+                Expat-LICENSE.txt VSTGUI-LICENSE.txt RapidJSON-LICENSE.txt miniz-LICENSE.txt)
+            set(resource "${bundle}/Contents/Resources/${editor_resource}")
+            if(EXISTS "${resource}" OR IS_SYMLINK "${resource}")
+                message(FATAL_ERROR "Unexpected GUI resource in editor-disabled bundle: ${resource}")
+            endif()
+        endforeach()
     endif()
 endforeach()
 

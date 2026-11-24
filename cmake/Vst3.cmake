@@ -58,6 +58,10 @@ set(SDK_ROOT "${RHODES_VST3_SDK_ROOT}")
 set(public_sdk_SOURCE_DIR "${RHODES_VST3_SDK_ROOT}/public.sdk")
 set(pluginterfaces_SOURCE_DIR "${RHODES_VST3_SDK_ROOT}/pluginterfaces")
 add_subdirectory("${RHODES_VST3_SDK_ROOT}" "${CMAKE_BINARY_DIR}/vst3-sdk" EXCLUDE_FROM_ALL)
+if(RHODES_BUILD_VST3_EDITOR AND CMAKE_SYSTEM_NAME STREQUAL "Linux")
+    find_package(PkgConfig REQUIRED)
+    pkg_check_modules(RHODES_EDITOR_XCB REQUIRED IMPORTED_TARGET xcb)
+endif()
 
 # The pinned SDK's base archive uses CoreFoundation in fstring.cpp but does not
 # propagate that dependency. Plug-in helpers add platform frameworks themselves;
@@ -102,10 +106,14 @@ function(rhodes_add_plugin target package filtered bundle_id)
     target_include_directories(${target} SYSTEM PRIVATE "${RHODES_VST3_SDK_ROOT}")
     target_link_libraries(${target} PRIVATE rhodes_core sdk)
     if(RHODES_BUILD_VST3_EDITOR)
-        target_sources(${target} PRIVATE "${PROJECT_SOURCE_DIR}/plugins/vst3/photo_editor.cpp")
+        target_sources(${target} PRIVATE "${PROJECT_SOURCE_DIR}/plugins/vst3/photo_editor.cpp"
+            "${PROJECT_SOURCE_DIR}/plugins/vst3/photo_native_focus.cpp")
         target_compile_definitions(${target} PRIVATE RHODES_HAS_PHOTO_EDITOR=1)
         target_include_directories(${target} SYSTEM PRIVATE "${RHODES_VST3_SDK_ROOT}/vstgui4")
         target_link_libraries(${target} PRIVATE vstgui_support)
+        if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+            target_link_libraries(${target} PRIVATE PkgConfig::RHODES_EDITOR_XCB)
+        endif()
     endif()
     rhodes_target_options(${target})
     if(SMTG_MAC)
@@ -137,6 +145,19 @@ function(rhodes_add_plugin target package filtered bundle_id)
             "${resource_inputs}/miniz-LICENSE.txt" COPYONLY)
         smtg_target_add_plugin_resources(${target} RESOURCES "${resource_inputs}/VSTGUI-LICENSE.txt"
             "${resource_inputs}/RapidJSON-LICENSE.txt" "${resource_inputs}/miniz-LICENSE.txt")
+    else()
+        # Reusing an editor-enabled build directory leaves copied resources
+        # behind. Remove only this project's GUI resource names from the bundle.
+        get_target_property(plugin_bundle ${target} SMTG_PLUGIN_PACKAGE_PATH)
+        add_custom_command(TARGET ${target} POST_BUILD
+            COMMAND "${CMAKE_COMMAND}" -E rm -f
+                "${plugin_bundle}/Contents/Resources/rhodes-suitcase.png"
+                "${plugin_bundle}/Contents/Resources/rhodes-suitcase.uidesc"
+                "${plugin_bundle}/Contents/Resources/Expat-LICENSE.txt"
+                "${plugin_bundle}/Contents/Resources/VSTGUI-LICENSE.txt"
+                "${plugin_bundle}/Contents/Resources/RapidJSON-LICENSE.txt"
+                "${plugin_bundle}/Contents/Resources/miniz-LICENSE.txt"
+            VERBATIM)
     endif()
 endfunction()
 rhodes_add_plugin(rhodes_vst3 "RhodesResearch" FALSE "org.rhodesresearch.experimental")
@@ -208,6 +229,13 @@ if(BUILD_TESTING)
         add_dependencies(rhodes_vst3_checks ${target})
     endfunction()
     rhodes_add_vst3_test(rhodes_vst3_editor_audition_tests tests/cpp/vst3_editor_audition_test.cpp)
+    rhodes_add_vst3_test(rhodes_vst3_audition_ownership_tests tests/cpp/vst3_audition_ownership_test.cpp FALSE FALSE TRUE)
+    rhodes_add_vst3_test(rhodes_vst3_filtered_audition_ownership_tests tests/cpp/vst3_audition_ownership_test.cpp TRUE FALSE TRUE)
+    rhodes_add_vst3_test(rhodes_vst3_quadrature_audition_ownership_tests tests/cpp/vst3_audition_ownership_test.cpp FALSE TRUE TRUE)
+    foreach(variant IN ITEMS "" "filtered_" "quadrature_")
+        add_test(NAME vst3.${variant}audition_ownership COMMAND rhodes_vst3_${variant}audition_ownership_tests)
+        set_tests_properties(vst3.${variant}audition_ownership PROPERTIES TIMEOUT 60)
+    endforeach()
     rhodes_add_vst3_test(rhodes_vst3_filtered_editor_audition_tests tests/cpp/vst3_editor_audition_test.cpp TRUE)
     rhodes_add_vst3_test(rhodes_vst3_quadrature_editor_audition_tests tests/cpp/vst3_editor_audition_test.cpp FALSE TRUE)
     foreach(variant IN ITEMS "" "filtered_" "quadrature_")
