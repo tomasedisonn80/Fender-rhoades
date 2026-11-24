@@ -1,0 +1,4 @@
+$ /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 /dev/shm/rhoades-9a04c9726e31/Fender-rhoades/tools/run_xvfb_test.py --xvfb /home/agent/rhoades-9a04c9726e31/gui-bin/Xvfb --xauth /home/agent/rhoades-9a04c9726e31/gui-bin/xauth --xdpyinfo /home/agent/rhoades-9a04c9726e31/gui-bin/xdpyinfo --startup-timeout 10 --test-timeout 30 -- /home/agent/rhoades-9a04c9726e31/w2-027/rhodes_vstgui_x11_keyboard_queued_negative
+FAIL VSTGUI X11 keyboard: queued_mod4_then_plain press #0 state=0x40: expected Super, got none while live physical modifiers were clear
+
+EXIT_STATUS=1

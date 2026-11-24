@@ -1,0 +1,10 @@
+$ cmake -S /home/agent/rhoades-9a04c9726e31/w2-027/guard_fixtures/zero_replacements/source -B /home/agent/rhoades-9a04c9726e31/w2-027/guard_fixtures/zero_replacements/build -G Ninja
+CMake Error at /dev/shm/rhoades-9a04c9726e31/Fender-rhoades/cmake/VstguiX11Keyboard.cmake:34 (message):
+  Expected exactly one pinned VSTGUI X11 source
+Call Stack (most recent call first):
+  CMakeLists.txt:5 (rhodes_patch_vstgui_x11_keyboard)
+
+
+-- Configuring incomplete, errors occurred!
+
+EXIT_STATUS=1

@@ -1,0 +1,14 @@
+[
+  {
+    "directory": "/home/agent/rhoades-9a04c9726e31/build",
+    "command": "/usr/bin/c++ -DNDEBUG -DRELEASE -DVSTGUI_ENABLE_DEPRECATED_METHODS=1 -DVSTGUI_ENABLE_XML_PARSER=1 -DVSTGUI_OPENGL_SUPPORT=1 -I/home/agent/rhoades-9a04c9726e31/vst3sdk/vstgui4/vstgui/lib/platform/linux -I/home/agent/rhoades-9a04c9726e31/sysroot/usr/include -I/home/agent/rhoades-9a04c9726e31/sysroot/usr/include/freetype2 -I/home/agent/rhoades-9a04c9726e31/sysroot/usr/include/glib-2.0 -I/home/agent/rhoades-9a04c9726e31/sysroot/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/home/agent/rhoades-9a04c9726e31/sysroot/usr/include/sysprof-6 -I/home/agent/rhoades-9a04c9726e31/sysroot/usr/include/cairo -I/home/agent/rhoades-9a04c9726e31/sysroot/usr/include/libpng16 -I/home/agent/rhoades-9a04c9726e31/sysroot/usr/include/pixman-1 -I/home/agent/rhoades-9a04c9726e31/sysroot/usr/include/pango-1.0 -I/home/agent/rhoades-9a04c9726e31/sysroot/usr/include/harfbuzz -I/home/agent/rhoades-9a04c9726e31/sysroot/usr/include/libmount -I/home/agent/rhoades-9a04c9726e31/sysroot/usr/include/blkid -I/home/agent/rhoades-9a04c9726e31/sysroot/usr/include/fribidi -I/home/agent/rhoades-9a04c9726e31/build/vst3-sdk/VSTGUI.build/vstgui/wayland-protocols  -Wno-multichar -Wno-multichar -g -O3 -DNDEBUG -std=gnu++17 -fPIC -fvisibility=hidden -fvisibility-inlines-hidden -DSMTG_RENAME_ASSERT=1 -Wsuggest-override -o vst3-sdk/VSTGUI.build/vstgui/lib/CMakeFiles/vstgui.dir/__/__/__/__/rhodes-vstgui-overlay/x11platform.cpp.o -c /home/agent/rhoades-9a04c9726e31/build/rhodes-vstgui-overlay/x11platform.cpp",
+    "file": "/home/agent/rhoades-9a04c9726e31/build/rhodes-vstgui-overlay/x11platform.cpp",
+    "output": "vst3-sdk/VSTGUI.build/vstgui/lib/CMakeFiles/vstgui.dir/__/__/__/__/rhodes-vstgui-overlay/x11platform.cpp.o"
+  },
+  {
+    "directory": "/home/agent/rhoades-9a04c9726e31/build",
+    "command": "/usr/bin/c++ -isystem /home/agent/rhoades-9a04c9726e31/vst3sdk/vstgui4 -isystem /home/agent/rhoades-9a04c9726e31/sysroot/usr/include -O3 -DNDEBUG -std=gnu++20 -Wall -Wextra -Wpedantic -Wconversion -Wshadow -Werror -o CMakeFiles/rhodes_vstgui_x11_keyboard_tests.dir/tests/cpp/vstgui_x11_keyboard_test.cpp.o -c /dev/shm/rhoades-9a04c9726e31/Fender-rhoades/tests/cpp/vstgui_x11_keyboard_test.cpp",
+    "file": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/tests/cpp/vstgui_x11_keyboard_test.cpp",
+    "output": "CMakeFiles/rhodes_vstgui_x11_keyboard_tests.dir/tests/cpp/vstgui_x11_keyboard_test.cpp.o"
+  }
+]

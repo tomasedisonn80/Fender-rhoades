@@ -1,0 +1,14 @@
+{
+  "plugins/vst3/photo_editor.cpp": "2ecb0d5a6a383ff45ee40f0be6a819f9cfe540664cb1a83262eb05e3fbfec255",
+  "plugins/vst3/photo_editor.hpp": "0c421cae0d330f22b00bab37bb17e73cddd948dbd56a0834c6cb086d6cec97db",
+  "plugins/vst3/photo_geometry.hpp": "77fe4f4ac93ee0b212ef3f5399eb5cfa8884076d8eef51d2adf2123e6d85e0bd",
+  "plugins/vst3/photo_key_highlight.hpp": "9302c59a677564253ea80fb92deeef811864def11a4fdd7e03b3a20c2477c58a",
+  "plugins/vst3/photo_native_focus.cpp": "c24f8d70731a193b0b7bf833984c00df5a60375d2d306986f1440757af938c5f",
+  "plugins/vst3/photo_native_focus.hpp": "9bf4553ec6a1418747d5379ba531bf15bbfb7e589f3923ff9c8131485704396a",
+  "plugins/vst3/controller.cpp": "2c77542e1aeb58bceaab8e7d6dd59250d17b5e4bc8f7d489b367ea5e805a0e36",
+  "plugins/vst3/controller.hpp": "a0dcf316c8d6a013a7a8b6a75485b451e21b070e6b57f62ef52fdf605b252183",
+  "plugins/vst3/processor.cpp": "1ef121c4afb190c45fa1ff41a2127fb7487919dc69d8856c4a05e79844f760a9",
+  "tools/verify_photo_interactions.py": "ccfad904084c57a0870bd0c2ba10a1603421482547c2dee03f0c2a595cc7c3b5",
+  "tools/verify_native_photo_editor.py": "ce0f2d5c3e74e34c478186bef80ee6879ab0a5328b45d682d9d34d45b6dfda47",
+  "plugins/vst3/resources/rhodes-suitcase.png": "84e2d48fc0311eb923083cc3e1f96dc5fa1b3f8a6e085daee7c973e54d754d26"
+}

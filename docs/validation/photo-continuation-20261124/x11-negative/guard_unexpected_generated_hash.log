@@ -1,0 +1,10 @@
+$ cmake -S /home/agent/rhoades-9a04c9726e31/w2-027/guard_fixtures/unexpected_generated_hash/source -B /home/agent/rhoades-9a04c9726e31/w2-027/guard_fixtures/unexpected_generated_hash/build -G Ninja
+CMake Error at /home/agent/rhoades-9a04c9726e31/w2-027/guard_fixtures/WrongSuperInsertion.cmake:18 (message):
+  VSTGUI X11 keyboard adaptation mismatch
+Call Stack (most recent call first):
+  CMakeLists.txt:5 (rhodes_patch_vstgui_x11_keyboard)
+
+
+-- Configuring incomplete, errors occurred!
+
+EXIT_STATUS=1

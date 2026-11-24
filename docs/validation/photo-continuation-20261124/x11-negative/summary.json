@@ -1,0 +1,19 @@
+{
+  "original_archive_member_sha256": "c39cdae7585b6ee45d70aed5898e08e38bfb3a10beba243a1b5b9545a7e808cc",
+  "replacement_archive_member_sha256": "d6c0946e4e2d03894e5a38146794b4968e73084d9908c7417bb0793b6f36ad0c",
+  "archive_members_count": 88,
+  "archive_member_order_unchanged": true,
+  "copied_test_object_identical": true,
+  "shared_inputs_unchanged": true,
+  "artifact_hashes": {
+    "x11platform.cpp": "7158057162bc716aeb52efc5e6744b9432ffb8b86e9e0a68895d9d340cc87bb3",
+    "vstgui_x11_keyboard_test.cpp": "2cc4a6d861b9b8e7115f492345ab95587fec937be145475eca71626201102a2b",
+    "vstgui_x11_keyboard_test.cpp.o": "f30c3e411f216d7a80184dc6bfbe3297ce4d121c5b5a061d78cbcef1debe8360",
+    "x11platform.cpp.o": "d6c0946e4e2d03894e5a38146794b4968e73084d9908c7417bb0793b6f36ad0c",
+    "libvstgui_without_super.a": "720bedc319ba952bec6eed0ee4bad97bbacbc05ca77ea18b3f371ba734c6ce5d",
+    "rhodes_vstgui_x11_keyboard_negative": "de41d8bf1c2964aa696dd5375f672fd92dcd7d2b8b707b0d2d87cd73f0bf87e9",
+    "vstgui_x11_keyboard_queued_only.cpp": "d7f9576521de7d93b4475d12dacafff3c5af84e410de08bd19a0ffecdbbf20fd",
+    "vstgui_x11_keyboard_queued_only.cpp.o": "69cd412d00c696d29c1438497fa2364ad27562f301719f2c91393f904dd00dde",
+    "rhodes_vstgui_x11_keyboard_queued_negative": "6d59a2abb181b93279d384f8a9a4e1f5faa308152f3d7329695b6377df0da2c9"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "base_commit": "3b669b191112128eb99b5f91f0fc7f61609cc7f2",
+  "passed_ctests": 32,
+  "audition_scenarios": 48,
+  "audition_checks": 1533,
+  "sha256": {
+    "plugins/vst3/controller.cpp": "2c77542e1aeb58bceaab8e7d6dd59250d17b5e4bc8f7d489b367ea5e805a0e36",
+    "plugins/vst3/controller.hpp": "a0dcf316c8d6a013a7a8b6a75485b451e21b070e6b57f62ef52fdf605b252183",
+    "tests/cpp/vst3_audition_reentrancy_test.cpp": "f077ff7e992931275bc29c5f382b517ccc2242994f007c8ba2370981fa1626f7"
+  }
+}

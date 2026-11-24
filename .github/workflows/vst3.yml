@@ -15,7 +15,10 @@ on:
       - tests/cpp/**
       - tools/capture_ci_diagnostics.py
       - tools/compare_vst3_legacy.py
+      - tools/pack_photo_evidence.py
       - tools/verify_editor_assets.py
+      - tools/verify_native_photo_editor.py
+      - tools/verify_photo_interactions.py
       - tools/run_xvfb_test.py
       - docs/DEPENDENCIES.md
   workflow_dispatch:

@@ -1,0 +1,10 @@
+{
+  "base_commit": "3b669b191112128eb99b5f91f0fc7f61609cc7f2",
+  "passed_selectors": 1,
+  "failed_selectors": 4,
+  "sha256": {
+    "plugins/vst3/controller.cpp": "91fbb8251e1244de4b2c4df3256a1b70db184dee4314823a31893f91efc5e22a",
+    "plugins/vst3/controller.hpp": "1171e798be72abd5d8a1c06fdd35490ca7ac8a18c50af4fdcd5b65539d03f054",
+    "tests/cpp/vst3_audition_reentrancy_test.cpp": "f077ff7e992931275bc29c5f382b517ccc2242994f007c8ba2370981fa1626f7"
+  }
+}

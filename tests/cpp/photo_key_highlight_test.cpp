@@ -19,6 +19,9 @@ std::size_t checks = 0;
 static_assert(photo::key_highlight(0).outline.size == 6);
 static_assert(photo::key_highlight(2).outline.size == 4);
 static_assert(photo::key_highlight(-1).outline.size == 0);
+static_assert(photo::key_highlight(0).visible_path_count == 1);
+static_assert(photo::key_highlight(43).visible_path_count == 2);
+static_assert(photo::key_highlight(-1).visible_path_count == 0);
 static_assert(noexcept(photo::key_highlight(0)));
 
 void require(bool condition, const char* message) {
@@ -92,8 +95,8 @@ Location locate(const Path& path, const Bounds& extent, photo::Point point) {
 
 struct Mask {
     const photo::KeyHighlight* shape{};
-    Bounds outline{};
-    std::array<Bounds, 2> cutouts{};
+    int key{};
+    std::array<Bounds, 2> paths{};
 };
 
 std::array<Mask, photo::kKeyCount> masks() {
@@ -101,9 +104,9 @@ std::array<Mask, photo::kKeyCount> masks() {
     for (int key = 0; key < photo::kKeyCount; ++key) {
         auto& mask = result[static_cast<std::size_t>(key)];
         mask.shape = &photo::key_highlight(key);
-        mask.outline = bounds(mask.shape->outline);
-        for (std::size_t cutout = 0; cutout < mask.shape->cutout_count; ++cutout) {
-            mask.cutouts[cutout] = bounds(mask.shape->cutouts[cutout]);
+        mask.key = key;
+        for (std::size_t path = 0; path < mask.shape->visible_path_count; ++path) {
+            mask.paths[path] = bounds(mask.shape->visible_paths[path]);
         }
     }
     return result;
@@ -112,14 +115,24 @@ std::array<Mask, photo::kKeyCount> masks() {
 struct PaintSample { bool filled{}; bool boundary{}; };
 
 PaintSample sample(const Mask& mask, photo::Point point) {
-    const auto outside = locate(mask.shape->outline, mask.outline, point);
-    PaintSample result{outside != Location::outside, outside == Location::boundary};
-    // Evaluate every subpath even outside the outline: an untrimmed hole would
-    // incorrectly add paint there under the renderer's requested even-odd fill.
-    for (std::size_t hole = 0; hole < mask.shape->cutout_count; ++hole) {
-        const auto location = locate(mask.shape->cutouts[hole], mask.cutouts[hole], point);
-        if (location != Location::outside) { result.filled = !result.filled; }
+    PaintSample result{};
+    for (std::size_t path = 0; path < mask.shape->visible_path_count; ++path) {
+        const auto location = locate(mask.shape->visible_paths[path], mask.paths[path], point);
+        result.filled = result.filled || location != Location::outside;
         result.boundary = result.boundary || location == Location::boundary;
+    }
+    // Closed contours necessarily share mathematical black/white boundaries.
+    // Resolve only those boundary ties by the unchanged black-first hit rule.
+    // A point in a white contour's interior is never excluded by this oracle;
+    // geometry crossing a black surface must still fail the interior tests.
+    if (result.boundary && !mask.shape->stroke_outline) {
+        for (const int neighbor : {mask.key - 1, mask.key + 1}) {
+            if (!photo::is_black_key(neighbor)) { continue; }
+            const auto& black = photo::key_polygon(neighbor);
+            if (locate(black, bounds(black), point) == Location::boundary) {
+                result.filled = false;
+            }
+        }
     }
     return result;
 }
@@ -132,6 +145,9 @@ void structure() {
     std::size_t hole_count = 0;
     std::size_t white_count = 0;
     std::size_t black_count = 0;
+    std::size_t detached_count = 0;
+    std::size_t visible_path_count = 0;
+    std::size_t max_vertices = 0;
     for (int key = 0; key < photo::kKeyCount; ++key) {
         const auto& highlight = photo::key_highlight(key);
         const auto& original = photo::key_polygon(key);
@@ -142,10 +158,81 @@ void structure() {
                     "highlight preserves exact original hit polygon coordinates");
         }
         require(highlight.cutout_count <= highlight.cutouts.size(), "at most two cutouts");
+        require(highlight.visible_path_count > 0 &&
+                    highlight.visible_path_count <= highlight.visible_paths.size(),
+                "one or two bounded visible contours per key");
+        detached_count += static_cast<std::size_t>(highlight.visible_path_count == 2);
+        long double visible_twice_area = 0.0L;
+        for (std::size_t path_index = 0; path_index < highlight.visible_path_count; ++path_index) {
+            const auto& path = highlight.visible_paths[path_index];
+            ++visible_path_count;
+            max_vertices = std::max(max_vertices, path.size);
+            require(path.size >= 3 && path.size <= path.points.size(),
+                    "visible contour has bounded nonempty vertices");
+            long double twice_area = 0.0L;
+            for (std::size_t edge = 0; edge < path.size; ++edge) {
+                const auto a = path.points[edge];
+                const auto b = path.points[(edge + 1) % path.size];
+                require(a.finite(), "visible contour vertices are finite");
+                require(locate(original, bounds(original), a) != Location::outside,
+                        "visible contour stays in original hit outline");
+                require(a.x != b.x || a.y != b.y, "visible contour has no zero-length edge");
+                twice_area += cross(path.points[0], a, b);
+                for (std::size_t other = edge + 1; other < path.size; ++other) {
+                    const auto c = path.points[other];
+                    const auto d = path.points[(other + 1) % path.size];
+                    const auto opposite = [](long double first, long double second) {
+                        return (first < 0.0L && second > 0.0L) ||
+                               (first > 0.0L && second < 0.0L);
+                    };
+                    require(!(opposite(cross(a, b, c), cross(a, b, d)) &&
+                              opposite(cross(c, d, a), cross(c, d, b))),
+                            "visible contour has no proper self-intersection");
+                }
+                if (photo::is_black_key(key)) { continue; }
+                for (int black = 0; black < photo::kKeyCount; ++black) {
+                    if (!photo::is_black_key(black)) { continue; }
+                    const auto& polygon = photo::key_polygon(black);
+                    bool separating_edge = false;
+                    for (std::size_t black_edge = 0; black_edge < polygon.size; ++black_edge) {
+                        const auto c = polygon.points[black_edge];
+                        const auto d = polygon.points[(black_edge + 1) % polygon.size];
+                        const auto boundary = kBoundaryTolerance * std::hypot(d.x - c.x, d.y - c.y);
+                        separating_edge = separating_edge ||
+                            (cross(c, d, a) <= boundary && cross(c, d, b) <= boundary);
+                    }
+                    // A common outer half-plane separates the entire segment
+                    // from this convex black interior, not just sampled points.
+                    // This uses the existing boundary classification tolerance.
+                    require(separating_edge, "no visible path edge traverses a black interior");
+                    for (int step = 0; step <= 16; ++step) {
+                        require(locate(polygon, bounds(polygon),
+                                       blend(a, b, static_cast<double>(step) / 16.0)) != Location::inside,
+                                "all visible-edge samples avoid every black interior");
+                    }
+                }
+            }
+            require(twice_area > 0.0L, "visible contours use positive winding without holes");
+            visible_twice_area += twice_area;
+            for (std::size_t other = path_index + 1; other < highlight.visible_path_count; ++other) {
+                const auto& other_path = highlight.visible_paths[other];
+                for (std::size_t vertex = 0; vertex < path.size; ++vertex) {
+                    require(locate(other_path, bounds(other_path), path.points[vertex]) == Location::outside,
+                            "detached contours are disjoint");
+                }
+            }
+        }
         if (photo::is_black_key(key)) {
             ++black_count;
             require(highlight.stroke_outline && highlight.cutout_count == 0,
                     "black keys retain their outline and have no cutouts");
+            require(highlight.visible_path_count == 1 && highlight.visible_paths[0].size == original.size,
+                    "black key has its original single visible contour");
+            for (std::size_t vertex = 0; vertex < original.size; ++vertex) {
+                require(highlight.visible_paths[0].points[vertex].x == original.points[vertex].x &&
+                            highlight.visible_paths[0].points[vertex].y == original.points[vertex].y,
+                        "black visible contour is coordinate-exact");
+            }
         } else {
             ++white_count;
             require(!highlight.stroke_outline, "white outline cannot cross black interiors");
@@ -186,9 +273,26 @@ void structure() {
             }
             require(area > 1.0e-8L, "cutout has positive nondegenerate area");
         }
+        long double expected_twice_area = 0.0L;
+        for (std::size_t vertex = 1; vertex + 1 < original.size; ++vertex) {
+            expected_twice_area += cross(original.points[0], original.points[vertex],
+                                         original.points[vertex + 1]);
+        }
+        for (std::size_t hole = 0; hole < highlight.cutout_count; ++hole) {
+            const auto& cutout = highlight.cutouts[hole];
+            for (std::size_t vertex = 1; vertex + 1 < cutout.size; ++vertex) {
+                expected_twice_area -= cross(cutout.points[0], cutout.points[vertex],
+                                             cutout.points[vertex + 1]);
+            }
+        }
+        require(std::abs(visible_twice_area - expected_twice_area) <= 1.0e-8L,
+                "visible contours preserve the entire outline-minus-overlaps area including tiny slivers");
     }
     require(white_count == 43 && black_count == 30 && hole_count == 60,
             "all 73 keys and all 60 neighboring overlaps covered");
+    require(detached_count > 0, "upper-register detached rear slivers are preserved");
+    std::cout << "visible contours=" << visible_path_count << " detached keys=" << detached_count
+              << " maximum vertices=" << max_vertices << '\n';
 }
 
 void black_interiors() {
@@ -225,6 +329,25 @@ void black_interiors() {
         }
     }
     require(original_center_overlaps == 30, "reproduce original overlap for all 30 black centers");
+    struct Residual { int white_midi{}; int black_midi{}; photo::Point point{}; };
+    // Original native run02 observations: at these locations cancelling
+    // outline/cutout edges left RGB differences of 1--3. A contour must have
+    // neither interior nor boundary here; raster verification is still separate.
+    constexpr std::array<Residual, 12> residuals{{
+        {29, 30, {188, 555}}, {31, 30, {188, 555}}, {40, 39, {358, 515}},
+        {45, 44, {441, 515}}, {48, 49, {524, 515}}, {79, 78, {1034, 515}},
+        {84, 85, {1158, 560}}, {86, 85, {1158, 560}}, {86, 87, {1190, 561}},
+        {86, 87, {1190, 562}}, {88, 87, {1190, 561}}, {88, 87, {1190, 562}}
+    }};
+    for (const auto& residual : residuals) {
+        require(photo::hit_key(residual.point.x, residual.point.y) ==
+                    residual.black_midi - photo::kFirstMidiNote,
+                "recorded native residual remains inside its original black key");
+        const auto paint = sample(all_masks[static_cast<std::size_t>(
+                                      residual.white_midi - photo::kFirstMidiNote)], residual.point);
+        require(!paint.filled && !paint.boundary,
+                "recorded residual location has no white path interior or cancelling boundary");
+    }
 }
 
 void dense_grid() {
@@ -275,6 +398,12 @@ void boundaries() {
                         if (!photo::is_black_key(white)) {
                             require(!sample(all_masks[static_cast<std::size_t>(white)], point).filled,
                                     "black vertices and edge samples excluded from all white masks");
+                            const auto& highlight = photo::key_highlight(white);
+                            for (std::size_t path = 0; path < highlight.visible_path_count; ++path) {
+                                require(locate(highlight.visible_paths[path],
+                                               bounds(highlight.visible_paths[path]), point) != Location::inside,
+                                        "black boundary never lies inside any white visible contour");
+                            }
                         }
                     }
                 } else {
@@ -297,9 +426,13 @@ void invalid_indices() {
              std::numeric_limits<int>::min(), std::numeric_limits<int>::max()}}) {
         const auto& highlight = photo::key_highlight(key);
         require(highlight.outline.size == 0 && highlight.cutout_count == 0 &&
-                    !highlight.stroke_outline, "invalid index returns empty highlight");
+                    highlight.visible_path_count == 0 && !highlight.stroke_outline,
+                "invalid index returns empty highlight");
         for (const auto& hole : highlight.cutouts) {
             require(hole.size == 0, "invalid highlight has no cutout subpaths");
+        }
+        for (const auto& path : highlight.visible_paths) {
+            require(path.size == 0, "invalid highlight has no visible subpaths");
         }
     }
 }

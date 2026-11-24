@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Linux-c++"
+	tests="5"
+	failures="4"
+	disabled="0"
+	skipped="0"
+	hostname="4f398b69b6a5"
+	time="0"
+	timestamp="2026-11-24T11:13:46"
+	>
+	<testcase name="vst3.audition_reentrancy.construction" classname="vst3.audition_reentrancy.construction" time="0.00197467" status="fail">
+		<failure message="Failed"/>
+		<properties/>
+		<system-out>vst3 audition reentrancy failed [construction/allocate]: receiver-held keys differ from literal expectation; wire=[Down(12)+, ReleaseAll+, Down(40)+]
+</system-out>
+	</testcase>
+	<testcase name="vst3.audition_reentrancy.notify" classname="vst3.audition_reentrancy.notify" time="0.00143774" status="fail">
+		<failure message="Failed"/>
+		<properties/>
+		<system-out>vst3 audition reentrancy failed [notify/note_before_accept]: receiver-held keys differ from literal expectation; wire=[Down(12)+, ReleaseAll+, Down(40)+]
+</system-out>
+	</testcase>
+	<testcase name="vst3.audition_reentrancy.pending" classname="vst3.audition_reentrancy.pending" time="0.00271181" status="fail">
+		<failure message="Failed"/>
+		<properties/>
+		<system-out>vst3 audition reentrancy failed [pending/allocate/notify_failure]: down succeeded across a failed nested emergency; wire=[Down(12)+, ReleaseAll-, Down(40)+]
+</system-out>
+	</testcase>
+	<testcase name="vst3.audition_reentrancy.siblings" classname="vst3.audition_reentrancy.siblings" time="0.00135351" status="run">
+		<properties/>
+		<system-out>{"suite":"vst3_audition_reentrancy","selector":"siblings","scenarios":16,"checks":448,"result":"pass"}
+</system-out>
+	</testcase>
+	<testcase name="vst3.audition_reentrancy.coalescing" classname="vst3.audition_reentrancy.coalescing" time="0.00121925" status="fail">
+		<failure message="Failed"/>
+		<properties/>
+		<system-out>vst3 audition reentrancy failed [coalescing/allocate/accepted]: down entered an in-flight emergency; wire=[Down(40)+, ReleaseAll+, Down(41)+]
+</system-out>
+	</testcase>
+</testsuite>

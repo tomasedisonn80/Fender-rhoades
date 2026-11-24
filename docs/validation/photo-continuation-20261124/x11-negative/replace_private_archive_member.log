@@ -1,0 +1,3 @@
+$ ar rcs /home/agent/rhoades-9a04c9726e31/w2-027/libvstgui_without_super.a /home/agent/rhoades-9a04c9726e31/w2-027/x11platform.cpp.o
+
+EXIT_STATUS=0

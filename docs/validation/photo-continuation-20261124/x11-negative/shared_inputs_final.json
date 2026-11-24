@@ -1,0 +1,34 @@
+{
+  "/home/agent/rhoades-9a04c9726e31/vst3sdk/vstgui4/vstgui/lib/platform/linux/x11platform.cpp": {
+    "bytes": 17089,
+    "sha256": "7158057162bc716aeb52efc5e6744b9432ffb8b86e9e0a68895d9d340cc87bb3"
+  },
+  "/home/agent/rhoades-9a04c9726e31/build/lib/Release/libvstgui.a": {
+    "bytes": 51318468,
+    "sha256": "f4e6cb8bc01bb41f3e2b46efcd8a9c0f7f6c8b746a9547527556ebfa59d702fc"
+  },
+  "/home/agent/rhoades-9a04c9726e31/build/CMakeFiles/rhodes_vstgui_x11_keyboard_tests.dir/tests/cpp/vstgui_x11_keyboard_test.cpp.o": {
+    "bytes": 98176,
+    "sha256": "f30c3e411f216d7a80184dc6bfbe3297ce4d121c5b5a061d78cbcef1debe8360"
+  },
+  "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/tests/cpp/vstgui_x11_keyboard_test.cpp": {
+    "bytes": 17743,
+    "sha256": "2cc4a6d861b9b8e7115f492345ab95587fec937be145475eca71626201102a2b"
+  },
+  "/home/agent/rhoades-9a04c9726e31/build/rhodes_vstgui_x11_keyboard_tests": {
+    "bytes": 14791128,
+    "sha256": "34294cb588de927ab28eb11c18a6dbf7e4aab1b746c44a20301cc44d12aaac24"
+  },
+  "/home/agent/rhoades-9a04c9726e31/build/rhodes-vstgui-overlay/x11platform.cpp": {
+    "bytes": 17173,
+    "sha256": "c186a90e423b3895347a676e07c6059accb3b9ab0c187a795d318a1f6af361be"
+  },
+  "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/cmake/VstguiX11Keyboard.cmake": {
+    "bytes": 2424,
+    "sha256": "3f1b1de7d27a74c1d6d2dae21152b125e4b5c1bf349a78f3aa4bfa3848a76a9c"
+  },
+  "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/tools/run_xvfb_test.py": {
+    "bytes": 6139,
+    "sha256": "653ae79a00c3455511b7c89c3396044e70ca5a6e341781bf2c1d5a82f9850c4e"
+  }
+}

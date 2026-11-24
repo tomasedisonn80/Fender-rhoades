@@ -313,6 +313,13 @@ if(BUILD_TESTING)
         tests/cpp/vst3_controller_revision_test.cpp FALSE FALSE TRUE)
     add_test(NAME vst3.controller_revision COMMAND rhodes_vst3_controller_revision_tests)
     set_tests_properties(vst3.controller_revision PROPERTIES TIMEOUT 60)
+    rhodes_add_vst3_test(rhodes_vst3_audition_reentrancy_tests
+        tests/cpp/vst3_audition_reentrancy_test.cpp FALSE FALSE TRUE)
+    foreach(test_name IN ITEMS construction notify pending siblings coalescing)
+        add_test(NAME vst3.audition_reentrancy.${test_name}
+            COMMAND rhodes_vst3_audition_reentrancy_tests ${test_name})
+        set_tests_properties(vst3.audition_reentrancy.${test_name} PROPERTIES TIMEOUT 60)
+    endforeach()
     rhodes_add_vst3_test(rhodes_vst3_editor_audition_tests tests/cpp/vst3_editor_audition_test.cpp)
     rhodes_add_vst3_test(rhodes_vst3_audition_ownership_tests tests/cpp/vst3_audition_ownership_test.cpp FALSE FALSE TRUE)
     rhodes_add_vst3_test(rhodes_vst3_filtered_audition_ownership_tests tests/cpp/vst3_audition_ownership_test.cpp TRUE FALSE TRUE)

@@ -111,6 +111,12 @@ public:
         setMouseableArea(size);
     }
 
+    void set_logical_zoom(double zoom) {
+        if (!std::isfinite(zoom) || zoom <= 0.0 || zoom == logical_zoom_) { return; }
+        logical_zoom_ = zoom;
+        invalid();
+    }
+
     [[nodiscard]] int parameter_at(CPoint position, bool from_frame = false) const {
         if (from_frame) { translateToLocal(position); }
         const auto point = source_position(position);
@@ -537,35 +543,28 @@ private:
 
     static void draw_key(CDrawContext& context, int key, bool pressed) {
         const auto& shape = photo::key_highlight(key);
-        const auto& polygon = shape.outline;
-        if (polygon.size < 3) { return; }
+        if (shape.visible_path_count == 0) { return; }
         auto path = owned(context.createGraphicsPath());
         if (!path) { return; }
-        path->beginSubpath(CPoint{polygon.points[0].x, polygon.points[0].y});
-        for (std::size_t index = 1; index < polygon.size; ++index) {
-            path->addLine(CPoint{polygon.points[index].x, polygon.points[index].y});
-        }
-        path->closeSubpath();
-        // The white hit polygon extends under neighboring black keys. Holes
-        // remove only those intersections from the transient painted region.
-        for (std::size_t hole = 0; hole < shape.cutout_count; ++hole) {
-            const auto& cutout = shape.cutouts[hole];
-            if (cutout.size < 3) { continue; }
-            path->beginSubpath(CPoint{cutout.points[0].x, cutout.points[0].y});
-            for (std::size_t index = 1; index < cutout.size; ++index) {
-                path->addLine(CPoint{cutout.points[index].x, cutout.points[index].y});
+        // Submit only exposed contours, including disconnected rear slivers.
+        // No edge crosses a black interior and relies on another subpath to
+        // cancel it after the native rasterizer quantizes its coordinates.
+        for (std::size_t part = 0; part < shape.visible_path_count; ++part) {
+            const auto& contour = shape.visible_paths[part];
+            if (contour.size < 3) { continue; }
+            path->beginSubpath(CPoint{contour.points[0].x, contour.points[0].y});
+            for (std::size_t index = 1; index < contour.size; ++index) {
+                path->addLine(CPoint{contour.points[index].x, contour.points[index].y});
             }
             path->closeSubpath();
         }
-        // Independently snapping the long outline and its shorter clipped
-        // edges breaks their collinearity and paints seams inside black keys.
-        // Preserve fractional vertices for this shared even-odd path.
+        // Preserve the original fractional photo-space boundaries.
         context.saveGlobalState();
         context.setDrawMode(kAntiAliasing | kNonIntegralMode);
         context.setFillColor(CColor{245, 213, 150, static_cast<uint8_t>(pressed ? 80 : 28)});
         context.setFrameColor(CColor{255, 234, 190, 185});
         context.setLineWidth(1.5);
-        context.drawGraphicsPath(path, CDrawContext::kPathFilledEvenOdd);
+        context.drawGraphicsPath(path, CDrawContext::kPathFilled);
         if (shape.stroke_outline) {
             context.drawGraphicsPath(path, CDrawContext::kPathStroked);
         }
@@ -630,7 +629,7 @@ private:
         if (!anchor.valid()) { return; }
         // Keep transient help readable at the smallest logical editor size.
         // The photograph and hit regions keep their original shared transform.
-        const double scale = std::clamp(0.75 / image_fit().scale, 1.0, 2.0);
+        const double scale = std::clamp(0.75 / (image_fit().scale * logical_zoom_), 1.0, 2.0);
         const double width = 464.0 * scale;
         const double left = std::clamp(anchor.center().x - width * 0.5,
                                        12.0, photo::kSourceWidth - width - 12.0);
@@ -667,6 +666,7 @@ private:
     photo::Point previous_position_{};
     Clock::time_point feedback_until_{};
     double last_displayed_value_ = 0.0;
+    double logical_zoom_ = 1.0;
     const char* status_ = nullptr;
 };
 
@@ -716,6 +716,7 @@ public:
 
     void didOpen(VST3Editor*) override {
         if (getFrame()) { getFrame()->setFocusDrawingEnabled(false); }
+        if (view_) { view_->set_logical_zoom(getZoomFactor()); }
     }
 
     void willClose(VST3Editor*) override {
@@ -791,7 +792,9 @@ protected:
                 return Steinberg::kResultFalse;
             }
         }
-        return VST3Editor::onSize(size);
+        const auto resized = VST3Editor::onSize(size);
+        if (succeeded(resized) && view_) { view_->set_logical_zoom(next_zoom); }
+        return resized;
     }
 
 #ifdef VST3_CONTENT_SCALE_SUPPORT

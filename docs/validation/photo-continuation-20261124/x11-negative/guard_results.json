@@ -1,0 +1,146 @@
+[
+  {
+    "name": "valid_relative",
+    "argv": [
+      "cmake",
+      "-S",
+      "/home/agent/rhoades-9a04c9726e31/w2-027/guard_fixtures/valid_relative/source",
+      "-B",
+      "/home/agent/rhoades-9a04c9726e31/w2-027/guard_fixtures/valid_relative/build",
+      "-G",
+      "Ninja"
+    ],
+    "returncode": 0,
+    "seconds": 0.014012336730957031,
+    "diagnostic": "OVERLAY_FIXTURE_OK c186a90e423b3895347a676e07c6059accb3b9ab0c187a795d318a1f6af361be",
+    "output": "-- OVERLAY_FIXTURE_OK c186a90e423b3895347a676e07c6059accb3b9ab0c187a795d318a1f6af361be\n-- Configuring done (0.0s)\n-- Generating done (0.0s)\n-- Build files have been written to: /home/agent/rhoades-9a04c9726e31/w2-027/guard_fixtures/valid_relative/build\n"
+  },
+  {
+    "name": "valid_idempotent",
+    "argv": [
+      "cmake",
+      "-S",
+      "/home/agent/rhoades-9a04c9726e31/w2-027/guard_fixtures/valid_relative/source",
+      "-B",
+      "/home/agent/rhoades-9a04c9726e31/w2-027/guard_fixtures/valid_relative/build",
+      "-G",
+      "Ninja"
+    ],
+    "returncode": 0,
+    "seconds": 0.007718086242675781,
+    "diagnostic": "OVERLAY_FIXTURE_OK c186a90e423b3895347a676e07c6059accb3b9ab0c187a795d318a1f6af361be",
+    "output": "-- OVERLAY_FIXTURE_OK c186a90e423b3895347a676e07c6059accb3b9ab0c187a795d318a1f6af361be\n-- Configuring done (0.0s)\n-- Generating done (0.0s)\n-- Build files have been written to: /home/agent/rhoades-9a04c9726e31/w2-027/guard_fixtures/valid_relative/build\n"
+  },
+  {
+    "name": "tampered_output_restored",
+    "argv": [
+      "cmake",
+      "-S",
+      "/home/agent/rhoades-9a04c9726e31/w2-027/guard_fixtures/valid_relative/source",
+      "-B",
+      "/home/agent/rhoades-9a04c9726e31/w2-027/guard_fixtures/valid_relative/build",
+      "-G",
+      "Ninja"
+    ],
+    "returncode": 0,
+    "seconds": 0.007887125015258789,
+    "diagnostic": "OVERLAY_FIXTURE_OK c186a90e423b3895347a676e07c6059accb3b9ab0c187a795d318a1f6af361be",
+    "output": "-- OVERLAY_FIXTURE_OK c186a90e423b3895347a676e07c6059accb3b9ab0c187a795d318a1f6af361be\n-- Configuring done (0.0s)\n-- Generating done (0.0s)\n-- Build files have been written to: /home/agent/rhoades-9a04c9726e31/w2-027/guard_fixtures/valid_relative/build\n"
+  },
+  {
+    "name": "valid_absolute",
+    "argv": [
+      "cmake",
+      "-S",
+      "/home/agent/rhoades-9a04c9726e31/w2-027/guard_fixtures/valid_absolute/source",
+      "-B",
+      "/home/agent/rhoades-9a04c9726e31/w2-027/guard_fixtures/valid_absolute/build",
+      "-G",
+      "Ninja"
+    ],
+    "returncode": 0,
+    "seconds": 0.011091470718383789,
+    "diagnostic": "OVERLAY_FIXTURE_OK c186a90e423b3895347a676e07c6059accb3b9ab0c187a795d318a1f6af361be",
+    "output": "-- OVERLAY_FIXTURE_OK c186a90e423b3895347a676e07c6059accb3b9ab0c187a795d318a1f6af361be\n-- Configuring done (0.0s)\n-- Generating done (0.0s)\n-- Build files have been written to: /home/agent/rhoades-9a04c9726e31/w2-027/guard_fixtures/valid_absolute/build\n"
+  },
+  {
+    "name": "valid_crlf",
+    "argv": [
+      "cmake",
+      "-S",
+      "/home/agent/rhoades-9a04c9726e31/w2-027/guard_fixtures/valid_crlf/source",
+      "-B",
+      "/home/agent/rhoades-9a04c9726e31/w2-027/guard_fixtures/valid_crlf/build",
+      "-G",
+      "Ninja"
+    ],
+    "returncode": 0,
+    "seconds": 0.010413646697998047,
+    "diagnostic": "OVERLAY_FIXTURE_OK c186a90e423b3895347a676e07c6059accb3b9ab0c187a795d318a1f6af361be",
+    "output": "-- OVERLAY_FIXTURE_OK c186a90e423b3895347a676e07c6059accb3b9ab0c187a795d318a1f6af361be\n-- Configuring done (0.0s)\n-- Generating done (0.0s)\n-- Build files have been written to: /home/agent/rhoades-9a04c9726e31/w2-027/guard_fixtures/valid_crlf/build\n"
+  },
+  {
+    "name": "unexpected_original",
+    "argv": [
+      "cmake",
+      "-S",
+      "/home/agent/rhoades-9a04c9726e31/w2-027/guard_fixtures/unexpected_original/source",
+      "-B",
+      "/home/agent/rhoades-9a04c9726e31/w2-027/guard_fixtures/unexpected_original/build",
+      "-G",
+      "Ninja"
+    ],
+    "returncode": 1,
+    "seconds": 0.0074269771575927734,
+    "diagnostic": "Unexpected pinned VSTGUI X11 source; review local adaptation",
+    "output": "CMake Error at /dev/shm/rhoades-9a04c9726e31/Fender-rhoades/cmake/VstguiX11Keyboard.cmake:11 (message):\n  Unexpected pinned VSTGUI X11 source; review local adaptation\nCall Stack (most recent call first):\n  CMakeLists.txt:5 (rhodes_patch_vstgui_x11_keyboard)\n\n\n-- Configuring incomplete, errors occurred!\n"
+  },
+  {
+    "name": "zero_replacements",
+    "argv": [
+      "cmake",
+      "-S",
+      "/home/agent/rhoades-9a04c9726e31/w2-027/guard_fixtures/zero_replacements/source",
+      "-B",
+      "/home/agent/rhoades-9a04c9726e31/w2-027/guard_fixtures/zero_replacements/build",
+      "-G",
+      "Ninja"
+    ],
+    "returncode": 1,
+    "seconds": 0.008709907531738281,
+    "diagnostic": "Expected exactly one pinned VSTGUI X11 source",
+    "output": "CMake Error at /dev/shm/rhoades-9a04c9726e31/Fender-rhoades/cmake/VstguiX11Keyboard.cmake:34 (message):\n  Expected exactly one pinned VSTGUI X11 source\nCall Stack (most recent call first):\n  CMakeLists.txt:5 (rhodes_patch_vstgui_x11_keyboard)\n\n\n-- Configuring incomplete, errors occurred!\n"
+  },
+  {
+    "name": "duplicate_replacements",
+    "argv": [
+      "cmake",
+      "-S",
+      "/home/agent/rhoades-9a04c9726e31/w2-027/guard_fixtures/duplicate_replacements/source",
+      "-B",
+      "/home/agent/rhoades-9a04c9726e31/w2-027/guard_fixtures/duplicate_replacements/build",
+      "-G",
+      "Ninja"
+    ],
+    "returncode": 1,
+    "seconds": 0.00835871696472168,
+    "diagnostic": "Expected exactly one pinned VSTGUI X11 source",
+    "output": "CMake Error at /dev/shm/rhoades-9a04c9726e31/Fender-rhoades/cmake/VstguiX11Keyboard.cmake:34 (message):\n  Expected exactly one pinned VSTGUI X11 source\nCall Stack (most recent call first):\n  CMakeLists.txt:5 (rhodes_patch_vstgui_x11_keyboard)\n\n\n-- Configuring incomplete, errors occurred!\n"
+  },
+  {
+    "name": "unexpected_generated_hash",
+    "argv": [
+      "cmake",
+      "-S",
+      "/home/agent/rhoades-9a04c9726e31/w2-027/guard_fixtures/unexpected_generated_hash/source",
+      "-B",
+      "/home/agent/rhoades-9a04c9726e31/w2-027/guard_fixtures/unexpected_generated_hash/build",
+      "-G",
+      "Ninja"
+    ],
+    "returncode": 1,
+    "seconds": 0.0077474117279052734,
+    "diagnostic": "VSTGUI X11 keyboard adaptation mismatch",
+    "output": "CMake Error at /home/agent/rhoades-9a04c9726e31/w2-027/guard_fixtures/WrongSuperInsertion.cmake:18 (message):\n  VSTGUI X11 keyboard adaptation mismatch\nCall Stack (most recent call first):\n  CMakeLists.txt:5 (rhodes_patch_vstgui_x11_keyboard)\n\n\n-- Configuring incomplete, errors occurred!\n"
+  }
+]

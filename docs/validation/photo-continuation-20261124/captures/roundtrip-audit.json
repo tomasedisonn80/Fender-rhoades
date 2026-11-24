@@ -1,0 +1,1120 @@
+{
+  "summary": {
+    "result": "pass",
+    "roundtrip_invocations": 1,
+    "images": 67,
+    "recorded_captures": 66,
+    "held_white_key_images": 43,
+    "rgb_bytes_compared": 341803008,
+    "raw_files": 5,
+    "original_png_byte_streams_reproduced": 0,
+    "source_files_unchanged": 98,
+    "outcome_source_bindings_verified": 26,
+    "frozen_manifest_bindings_verified": 12,
+    "outcome_checks_by_status": {
+      "pass": 136
+    },
+    "native_host_returncode": 0,
+    "archive_bytes": 5664527,
+    "archive_sha256": "fbea24a740c866b247016523da51bb64b079b7383aa3137c0b67cd4300e1a04e",
+    "manifest_bytes": 60352,
+    "manifest_sha256": "a333d1f4851065cd18c711da0d8addf6c7d2257e2ba91638761b2091e97369c6",
+    "sidecar_matches_archive_manifest": true,
+    "selected_source_bytes": 93811368,
+    "producer": {
+      "pillow_version": "13.0.0",
+      "python_version": "3.12.14",
+      "sha256": "3dc350c91307378b8baa5fe19e6e6b49bb5b5f96be6483e03ab99c333f5b4f61",
+      "tool": "tools/pack_photo_evidence.py"
+    },
+    "archive_reduction_percent": 93.96179043034529
+  },
+  "image_comparisons": [
+    {
+      "path": "native-run01/black-interior-mask.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/close-with-held-volume.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/feedback-default-1024x768.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 2359296,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/feedback-maximum-1536x1152.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/feedback-minimum-768x576.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 1327104,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/idle-after-all-interactions-1536x1152.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/idle-default-1024x768.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 2359296,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/idle-maximum-1536x1152.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/idle-minimum-768x576.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 1327104,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/pedal_rapid_2_from_off.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/pedal_rapid_2_from_on.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/pedal_rapid_3_from_off.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/pedal_rapid_3_from_on.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/vibrato_rapid_2_from_off.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/vibrato_rapid_2_from_on.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/vibrato_rapid_3_from_off.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/vibrato_rapid_3_from_on.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/volume-double-click-reset.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/volume-hover-before-timeout.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/volume-hover-expired.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/volume-hover-renewed-by-motion.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/white-held-midi-028.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/white-held-midi-029.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/white-held-midi-031.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/white-held-midi-033.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/white-held-midi-035.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/white-held-midi-036.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/white-held-midi-038.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/white-held-midi-040.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/white-held-midi-041.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/white-held-midi-043.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/white-held-midi-045.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/white-held-midi-047.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/white-held-midi-048.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/white-held-midi-050.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/white-held-midi-052.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/white-held-midi-053.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/white-held-midi-055.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/white-held-midi-057.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/white-held-midi-059.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/white-held-midi-060.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/white-held-midi-062.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/white-held-midi-064.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/white-held-midi-065.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/white-held-midi-067.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/white-held-midi-069.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/white-held-midi-071.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/white-held-midi-072.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/white-held-midi-074.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/white-held-midi-076.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/white-held-midi-077.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/white-held-midi-079.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/white-held-midi-081.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/white-held-midi-083.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/white-held-midi-084.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/white-held-midi-086.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/white-held-midi-088.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/white-held-midi-089.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/white-held-midi-091.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/white-held-midi-093.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/white-held-midi-095.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/white-held-midi-096.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/white-held-midi-098.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/white-held-midi-100.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/white_key-hover-before-timeout.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/white_key-hover-expired.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    },
+    {
+      "path": "native-run01/white_key-hover-renewed-by-motion.png",
+      "dimensions_equal": true,
+      "rgb_bytes_equal": true,
+      "rgb_bytes": 5308416,
+      "encoded_png_bytes_equal": false
+    }
+  ],
+  "raw_comparisons": [
+    {
+      "path": "frozenrepo/manifest.json",
+      "bytes_equal": true,
+      "bytes": 1277
+    },
+    {
+      "path": "native-run01/editorhost.log",
+      "bytes_equal": true,
+      "bytes": 2173
+    },
+    {
+      "path": "native-run01/outcome.json",
+      "bytes_equal": true,
+      "bytes": 358295
+    },
+    {
+      "path": "with-xvfb.py",
+      "bytes_equal": true,
+      "bytes": 2835
+    },
+    {
+      "path": "xvfb-2.log",
+      "bytes_equal": true,
+      "bytes": 104
+    }
+  ],
+  "source_files_after": [
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/editorhost-accepting",
+      "sha256": "37f557e9863001b54b158482338ff66dcf9fb3934ba12d8ace0c9ddbbb0eebe9",
+      "bytes": 266152,
+      "mtime_ns": 1795542834690308113
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/provenance.json",
+      "sha256": "f9689ed3761846c1365950a3665cd0563f7775aa53f0fe57b20a872630c98f9c",
+      "bytes": 5250,
+      "mtime_ns": 1795542834701015338
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python-provenance.json",
+      "sha256": "dd294179e6dbf55793554e58872a12300f64f8cbea46aba70190022e3d4e413a",
+      "bytes": 1276,
+      "mtime_ns": 1795543208767871066
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/frozenrepo/manifest.json",
+      "sha256": "e473d6d00b9dad578f6c58204f5a64dd00967e696cb78090db8bdfb0bb938b38",
+      "bytes": 1277,
+      "mtime_ns": 1795545185978909364
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/frozenrepo/plugins/vst3/controller.cpp",
+      "sha256": "2c77542e1aeb58bceaab8e7d6dd59250d17b5e4bc8f7d489b367ea5e805a0e36",
+      "bytes": 25101,
+      "mtime_ns": 1795544103944355667
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/frozenrepo/plugins/vst3/controller.hpp",
+      "sha256": "a0dcf316c8d6a013a7a8b6a75485b451e21b070e6b57f62ef52fdf605b252183",
+      "bytes": 3901,
+      "mtime_ns": 1795544103660357435
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/frozenrepo/plugins/vst3/photo_editor.cpp",
+      "sha256": "2ecb0d5a6a383ff45ee40f0be6a819f9cfe540664cb1a83262eb05e3fbfec255",
+      "bytes": 37685,
+      "mtime_ns": 1795544826580003770
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/frozenrepo/plugins/vst3/photo_editor.hpp",
+      "sha256": "0c421cae0d330f22b00bab37bb17e73cddd948dbd56a0834c6cb086d6cec97db",
+      "bytes": 383,
+      "mtime_ns": 1795541233176219403
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/frozenrepo/plugins/vst3/photo_geometry.hpp",
+      "sha256": "77fe4f4ac93ee0b212ef3f5399eb5cfa8884076d8eef51d2adf2123e6d85e0bd",
+      "bytes": 11936,
+      "mtime_ns": 1795541233176219403
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/frozenrepo/plugins/vst3/photo_key_highlight.hpp",
+      "sha256": "9302c59a677564253ea80fb92deeef811864def11a4fdd7e03b3a20c2477c58a",
+      "bytes": 16080,
+      "mtime_ns": 1795544397390440897
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/frozenrepo/plugins/vst3/photo_native_focus.cpp",
+      "sha256": "c24f8d70731a193b0b7bf833984c00df5a60375d2d306986f1440757af938c5f",
+      "bytes": 11355,
+      "mtime_ns": 1795541233176219403
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/frozenrepo/plugins/vst3/photo_native_focus.hpp",
+      "sha256": "9bf4553ec6a1418747d5379ba531bf15bbfb7e589f3923ff9c8131485704396a",
+      "bytes": 1697,
+      "mtime_ns": 1795541233176219403
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/frozenrepo/plugins/vst3/processor.cpp",
+      "sha256": "1ef121c4afb190c45fa1ff41a2127fb7487919dc69d8856c4a05e79844f760a9",
+      "bytes": 37967,
+      "mtime_ns": 1795541233176219403
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/frozenrepo/plugins/vst3/resources/rhodes-suitcase.png",
+      "sha256": "84e2d48fc0311eb923083cc3e1f96dc5fa1b3f8a6e085daee7c973e54d754d26",
+      "bytes": 1434362,
+      "mtime_ns": 1795541233178666392
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/frozenrepo/tools/verify_native_photo_editor.py",
+      "sha256": "ce0f2d5c3e74e34c478186bef80ee6879ab0a5328b45d682d9d34d45b6dfda47",
+      "bytes": 31258,
+      "mtime_ns": 1795541233206666207
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/frozenrepo/tools/verify_photo_interactions.py",
+      "sha256": "ccfad904084c57a0870bd0c2ba10a1603421482547c2dee03f0c2a595cc7c3b5",
+      "bytes": 23758,
+      "mtime_ns": 1795543672890920883
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/black-interior-mask.png",
+      "sha256": "bbb8753f28198d55896e45e31970aebbad9ab276916f9a0a87bf73cf3af90fcf",
+      "bytes": 3142,
+      "mtime_ns": 1795545277857281248
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/close-with-held-volume.png",
+      "sha256": "75223fc23de0b05b5559e124b8265f8d0d147dad00c1a80a2474a197d3bbecc9",
+      "bytes": 1480359,
+      "mtime_ns": 1795545311085070464
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/editorhost.log",
+      "sha256": "f69e526825cce8fe8ea83d91b3ac0037b47c4ba38dfd101e7b9aee4a12517112",
+      "bytes": 2173,
+      "mtime_ns": 1795545311093070416
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/feedback-default-1024x768.png",
+      "sha256": "5eacca0b825e4f756ad7b2b3fc69dc721496f65bfeaed5976f85ab2091900810",
+      "bytes": 794420,
+      "mtime_ns": 1795545226989605471
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/feedback-maximum-1536x1152.png",
+      "sha256": "6d0262baf29cbebcc3811cd735120c23bf6246b8cdb1713d1439c49700166501",
+      "bytes": 1479941,
+      "mtime_ns": 1795545229229591102
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/feedback-minimum-768x576.png",
+      "sha256": "5b442e04800b610105807e3f1a9a39d4376d6fd57e24e5c7fe7fa9dd887b351e",
+      "bytes": 492169,
+      "mtime_ns": 1795545227893599669
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/idle-after-all-interactions-1536x1152.png",
+      "sha256": "5167f25366c8e5d8e7eda298bf089af18478ad5e28ccf78ae02531a2c7fff140",
+      "bytes": 1476171,
+      "mtime_ns": 1795545309933077595
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/idle-default-1024x768.png",
+      "sha256": "40551e5d1e7dd4d8665332c3683039bf2565f89901cc7474d43205e0373a048f",
+      "bytes": 794200,
+      "mtime_ns": 1795545226673607499
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/idle-maximum-1536x1152.png",
+      "sha256": "5167f25366c8e5d8e7eda298bf089af18478ad5e28ccf78ae02531a2c7fff140",
+      "bytes": 1476171,
+      "mtime_ns": 1795545228829593661
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/idle-minimum-768x576.png",
+      "sha256": "68845d8d59cbb65f7b62e599ae25da1492d24f88048c3582d1acfc2c3c689cfa",
+      "bytes": 493063,
+      "mtime_ns": 1795545227729600721
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/outcome.json",
+      "sha256": "78c251f5abba315b17cc6ba4f1f280d04e1824ccdbee4e2caa440710b0a4dc1a",
+      "bytes": 358295,
+      "mtime_ns": 1795545311155907906
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/pedal_rapid_2_from_off.png",
+      "sha256": "ff583d78219da451817f12c697e00cdfa3eb98d5cf339d84a91fa460449ea493",
+      "bytes": 1449989,
+      "mtime_ns": 1795545232897567283
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/pedal_rapid_2_from_on.png",
+      "sha256": "aca13a06a9e0ccd1528cd9420b5907de83a3fc7994eee9c0647eda60c80e0be6",
+      "bytes": 1449898,
+      "mtime_ns": 1795545235677549272
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/pedal_rapid_3_from_off.png",
+      "sha256": "aca13a06a9e0ccd1528cd9420b5907de83a3fc7994eee9c0647eda60c80e0be6",
+      "bytes": 1449898,
+      "mtime_ns": 1795545234265558284
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/pedal_rapid_3_from_on.png",
+      "sha256": "ff583d78219da451817f12c697e00cdfa3eb98d5cf339d84a91fa460449ea493",
+      "bytes": 1449989,
+      "mtime_ns": 1795545237205539583
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/vibrato_rapid_2_from_off.png",
+      "sha256": "f4698920df78fbe57467fe6ef518991f3b6ca4566b2c2ed9a5b380395c10c8f7",
+      "bytes": 1476499,
+      "mtime_ns": 1795545240737517169
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/vibrato_rapid_2_from_on.png",
+      "sha256": "42000efafb90e77f7f7c6f9cd7bc321695e5990c36dfbf80b9d149421fb7e353",
+      "bytes": 1476320,
+      "mtime_ns": 1795545243581499113
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/vibrato_rapid_3_from_off.png",
+      "sha256": "42000efafb90e77f7f7c6f9cd7bc321695e5990c36dfbf80b9d149421fb7e353",
+      "bytes": 1476320,
+      "mtime_ns": 1795545242141508255
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/vibrato_rapid_3_from_on.png",
+      "sha256": "f4698920df78fbe57467fe6ef518991f3b6ca4566b2c2ed9a5b380395c10c8f7",
+      "bytes": 1476499,
+      "mtime_ns": 1795545244965490326
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/volume-double-click-reset.png",
+      "sha256": "6d0262baf29cbebcc3811cd735120c23bf6246b8cdb1713d1439c49700166501",
+      "bytes": 1479941,
+      "mtime_ns": 1795545246133482911
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/volume-hover-before-timeout.png",
+      "sha256": "6d0262baf29cbebcc3811cd735120c23bf6246b8cdb1713d1439c49700166501",
+      "bytes": 1479941,
+      "mtime_ns": 1795545303013121009
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/volume-hover-expired.png",
+      "sha256": "5167f25366c8e5d8e7eda298bf089af18478ad5e28ccf78ae02531a2c7fff140",
+      "bytes": 1476171,
+      "mtime_ns": 1795545305541105159
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/volume-hover-renewed-by-motion.png",
+      "sha256": "6d0262baf29cbebcc3811cd735120c23bf6246b8cdb1713d1439c49700166501",
+      "bytes": 1479941,
+      "mtime_ns": 1795545305933102701
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/white-held-midi-028.png",
+      "sha256": "4020cb5a172555f6f09648a6fad5ff7326b60140b0a4aa2d50212f9faf288fe4",
+      "bytes": 1463281,
+      "mtime_ns": 1795545278321278306
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/white-held-midi-029.png",
+      "sha256": "147601f99a943d271cef799ace030bfaadfcf90c9c3479c41b54509f3249055c",
+      "bytes": 1463178,
+      "mtime_ns": 1795545278953274300
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/white-held-midi-031.png",
+      "sha256": "509d1fb910e63465cb439358319e80790d06209fc8b55d0aef2be688297b350e",
+      "bytes": 1462974,
+      "mtime_ns": 1795545279525270674
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/white-held-midi-033.png",
+      "sha256": "8cb4c2ce7104e2d87f7bb4c52e5af0fc944f097dcbf56951eaa83c4c4eff9393",
+      "bytes": 1463266,
+      "mtime_ns": 1795545280085267125
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/white-held-midi-035.png",
+      "sha256": "028156a96ec24a5e4f93e8610bebcd7d7bfe89cd5d60d67190c940b1de3d8bf9",
+      "bytes": 1462842,
+      "mtime_ns": 1795545280637263626
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/white-held-midi-036.png",
+      "sha256": "57410a6295b1f964335b9ef3fd490bf1fd0ec1ee6c28c9053470aec0519a6fd8",
+      "bytes": 1461160,
+      "mtime_ns": 1795545281217259950
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/white-held-midi-038.png",
+      "sha256": "3bb0795eda54303dcc8d535715a3ee1ac0be65465a65d09675cb218e284a3553",
+      "bytes": 1460191,
+      "mtime_ns": 1795545281773256426
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/white-held-midi-040.png",
+      "sha256": "ac096e7eb28e2cd1e90469e5fac42f7198c2b85f92a7e5634ab2cffffa666abd",
+      "bytes": 1459429,
+      "mtime_ns": 1795545282337252851
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/white-held-midi-041.png",
+      "sha256": "54ae71be58ac331e28538c8f40d73defb4755b6b1d74314fc47de3581c5b1760",
+      "bytes": 1458788,
+      "mtime_ns": 1795545282913249200
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/white-held-midi-043.png",
+      "sha256": "e4d8cb5c01f2709ccf3a9d526c053cc00dd02f62cb2670992452c880185c7829",
+      "bytes": 1458994,
+      "mtime_ns": 1795545283473245651
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/white-held-midi-045.png",
+      "sha256": "aa119906f354123ace18ba7fd209ea97763dd93b51eee33aed556901597505e4",
+      "bytes": 1459479,
+      "mtime_ns": 1795545284033242101
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/white-held-midi-047.png",
+      "sha256": "0a9fc5d631f266fd5e1e1394a11efa9a5b5648f86973350f06faa91069a93adf",
+      "bytes": 1459610,
+      "mtime_ns": 1795545284669238070
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/white-held-midi-048.png",
+      "sha256": "01d58215f04b1551db1e39572e80607ec6f21fed7926359eca0f22c9b419b089",
+      "bytes": 1460209,
+      "mtime_ns": 1795545285265234292
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/white-held-midi-050.png",
+      "sha256": "f88460e5794bd8b9df452fbc58d0dc82276c6c16df75dde8bbbab6b235a0885c",
+      "bytes": 1460444,
+      "mtime_ns": 1795545285829230718
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/white-held-midi-052.png",
+      "sha256": "5de2611d6cab5bc672cd4d7dfedf52a0144741f20ba9a05d62cfb8c1fc2ad2e3",
+      "bytes": 1461353,
+      "mtime_ns": 1795545286357227371
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/white-held-midi-053.png",
+      "sha256": "68b0be93f4238e39a7680a0111d684de95615ce9b13ba3da8b8b517b021e0b92",
+      "bytes": 1460913,
+      "mtime_ns": 1795545287105222593
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/white-held-midi-055.png",
+      "sha256": "6238f55783df331f00aee48b189c89e24fc1c8ac089a2217d3bfbbd0cc118e1b",
+      "bytes": 1461428,
+      "mtime_ns": 1795545287661219035
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/white-held-midi-057.png",
+      "sha256": "aa92207f7c0d3809e960a5f74c8ef97a9a9ebc9f0aa65c8ea802c6e9c8857824",
+      "bytes": 1461898,
+      "mtime_ns": 1795545288197215605
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/white-held-midi-059.png",
+      "sha256": "d7dc99efc5f3aed9e4cb6a89586233757f4d3e758eeb91c5935fee0c9ad0c62d",
+      "bytes": 1462616,
+      "mtime_ns": 1795545288757212020
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/white-held-midi-060.png",
+      "sha256": "8c1cd7dd1ac8d60ce46ddd7d1c67d656200587071e36c0618dffd90984cdac3f",
+      "bytes": 1462615,
+      "mtime_ns": 1795545289357208180
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/white-held-midi-062.png",
+      "sha256": "821f967731891f6bd081d465ba08f1a041740f2719b0566aa3fcdce3dd47e523",
+      "bytes": 1463085,
+      "mtime_ns": 1795545289909204648
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/white-held-midi-064.png",
+      "sha256": "b3fa94bae2801eb1fef65f53ca06eee810aac6ef507ee5d2dc952c1c1d0066c6",
+      "bytes": 1463583,
+      "mtime_ns": 1795545290441201243
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/white-held-midi-065.png",
+      "sha256": "201ef695c51ab89d1c0277262a11c778983ca59dde6f95987d7336393d4359f2",
+      "bytes": 1463839,
+      "mtime_ns": 1795545291065197250
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/white-held-midi-067.png",
+      "sha256": "c344c85e28254a86fbca1f176895e4eca8cffe79b702422360665ed1795e7cd4",
+      "bytes": 1464580,
+      "mtime_ns": 1795545291677193333
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/white-held-midi-069.png",
+      "sha256": "7687c4d7e215f58b245e5a0d15f9ae4313d7d8adca3f1d25daeebfa2f2a89606",
+      "bytes": 1465151,
+      "mtime_ns": 1795545292205189953
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/white-held-midi-071.png",
+      "sha256": "c2fdee5e50677abf980991ddb4e7ae07f3cfcd792925fa86925e4e0e74449266",
+      "bytes": 1465063,
+      "mtime_ns": 1795545292761186395
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/white-held-midi-072.png",
+      "sha256": "6637a4f83486ef7839f0943c60377a45a74cc9b5e17f6a8916a9c085b8db1159",
+      "bytes": 1465139,
+      "mtime_ns": 1795545293341182683
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/white-held-midi-074.png",
+      "sha256": "ad667b216a80e914faa6589752482c36e53c0b0fee59131ec254dd64fc3b5b67",
+      "bytes": 1465073,
+      "mtime_ns": 1795545293873179278
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/white-held-midi-076.png",
+      "sha256": "fc971cf04529be260cf2a3accab4dcfd2885748e51f59d51b8049a3562d290ac",
+      "bytes": 1465424,
+      "mtime_ns": 1795545294405175874
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/white-held-midi-077.png",
+      "sha256": "618d0888f2300fd58c8dd71f8793bb1d1d2f1318668dded1f2dfd61d69952b54",
+      "bytes": 1465181,
+      "mtime_ns": 1795545294937172477
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/white-held-midi-079.png",
+      "sha256": "ab89c04a0899eb52c7d6d510d8ac50f140167cb43b972539aa06a901d4d68330",
+      "bytes": 1465393,
+      "mtime_ns": 1795545295545168599
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/white-held-midi-081.png",
+      "sha256": "256155ae1c5391dff91e1132612417003598db5c14bf57d02976357106792126",
+      "bytes": 1465535,
+      "mtime_ns": 1795545296077165205
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/white-held-midi-083.png",
+      "sha256": "a090a61de02cb4f3043c0d7df8b1d75819155b9b6173aa3e5fa304dfc99118ad",
+      "bytes": 1465803,
+      "mtime_ns": 1795545296609161811
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/white-held-midi-084.png",
+      "sha256": "72b7d889b1fdb4bd6eee5ab6057baa50a3345978c6b81dd91aaace0f953bc5cc",
+      "bytes": 1465728,
+      "mtime_ns": 1795545297197158060
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/white-held-midi-086.png",
+      "sha256": "d67d1be45f3f0f9090350346b7ea480f59f58fef4bcbb698f22517106f75bab1",
+      "bytes": 1465880,
+      "mtime_ns": 1795545297829154028
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/white-held-midi-088.png",
+      "sha256": "163bb05f6579eb2e82d7225851c8d627e1e6c4b48bc4ff2b2d1fb0a8e87fa982",
+      "bytes": 1465976,
+      "mtime_ns": 1795545298341150762
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/white-held-midi-089.png",
+      "sha256": "73b0bde53dea4188839078331f31d9b1e8e5c877b358013432e243778a83820b",
+      "bytes": 1466313,
+      "mtime_ns": 1795545298873147367
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/white-held-midi-091.png",
+      "sha256": "80eb7e5b1add45dacaaa14cdb6204df5288dd403c77123a12db21a64670f951d",
+      "bytes": 1466191,
+      "mtime_ns": 1795545299409143949
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/white-held-midi-093.png",
+      "sha256": "3a8759bf574fc456ff22a977e5064ac1ba35909e5f1915f400a9ea42fbb96e0f",
+      "bytes": 1467205,
+      "mtime_ns": 1795545299953140478
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/white-held-midi-095.png",
+      "sha256": "aab8c7a81cfda28cc8665afb93c9981b5c3c702c3312dde768254c6ca065ddd4",
+      "bytes": 1467262,
+      "mtime_ns": 1795545300501136982
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/white-held-midi-096.png",
+      "sha256": "648a6c28b152a3f27186faa605ac517948402d989bda1e6dc8c93d2e327ee0a8",
+      "bytes": 1467206,
+      "mtime_ns": 1795545301013133716
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/white-held-midi-098.png",
+      "sha256": "5523af56cd7aa9ec4af45e9f1edf07c0700f37d206092c298f6623b72e784e4b",
+      "bytes": 1467348,
+      "mtime_ns": 1795545301649129658
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/white-held-midi-100.png",
+      "sha256": "3b631f00c4901f39e46c8a1877920ac8874f66aa8e8c4fe19f2e5df5971fad09",
+      "bytes": 1467299,
+      "mtime_ns": 1795545302205126111
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/white_key-hover-before-timeout.png",
+      "sha256": "e19ae8e88eea92f81b2da84826229736c2eda1ed8e325a6d68c72f7d801550a9",
+      "bytes": 1462773,
+      "mtime_ns": 1795545306497099165
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/white_key-hover-expired.png",
+      "sha256": "5167f25366c8e5d8e7eda298bf089af18478ad5e28ccf78ae02531a2c7fff140",
+      "bytes": 1476171,
+      "mtime_ns": 1795545308977083616
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/white_key-hover-renewed-by-motion.png",
+      "sha256": "e19ae8e88eea92f81b2da84826229736c2eda1ed8e325a6d68c72f7d801550a9",
+      "bytes": 1462773,
+      "mtime_ns": 1795545309301081584
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/snapshot/RhodesResearch.vst3/Contents/Resources/Expat-LICENSE.txt",
+      "sha256": "f6eeb2310d0b00e5cecac39c73a0696a5bdbfb754b26325ed5a502fc1a6c338c",
+      "bytes": 1208,
+      "mtime_ns": 1795542234928211791
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/snapshot/RhodesResearch.vst3/Contents/Resources/LICENSE.txt",
+      "sha256": "e86d79e19e4a33ebc442d2e0d083887dfc75a2a8de9fe17eeddedb84810ad74e",
+      "bytes": 1094,
+      "mtime_ns": 1795542234892211997
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/snapshot/RhodesResearch.vst3/Contents/Resources/RapidJSON-LICENSE.txt",
+      "sha256": "a140e5d46fe734a1c78f1a3c3ef207871dd75648be71fdda8e309b23ab8b1f32",
+      "bytes": 5152,
+      "mtime_ns": 1795542234940211722
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/snapshot/RhodesResearch.vst3/Contents/Resources/THIRD_PARTY_NOTICES.md",
+      "sha256": "96a090dd7959f2ac94a5af316814db43f98f8e5fbbd70aca75c63f01b961fb53",
+      "bytes": 4347,
+      "mtime_ns": 1795542234900211951
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/snapshot/RhodesResearch.vst3/Contents/Resources/VSTGUI-LICENSE.txt",
+      "sha256": "605bcd2152176b365cf0ba6cca331a988fa885b4f43f20ceff4e264e6576ca66",
+      "bytes": 1858,
+      "mtime_ns": 1795542234932778215
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/snapshot/RhodesResearch.vst3/Contents/Resources/miniz-LICENSE.txt",
+      "sha256": "6f20fa7672b00e2e975c291df737cf227addf3ad32e36fef3fe0f416e4664d3d",
+      "bytes": 1162,
+      "mtime_ns": 1795542234948211677
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/snapshot/RhodesResearch.vst3/Contents/Resources/moduleinfo.json",
+      "sha256": "28b44aaa74a32dbe415b3553b37b019440ebe17bad7708b217790d47bb6adfb9",
+      "bytes": 1065,
+      "mtime_ns": 1795544835747956997
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/snapshot/RhodesResearch.vst3/Contents/Resources/rhodes-suitcase.png",
+      "sha256": "84e2d48fc0311eb923083cc3e1f96dc5fa1b3f8a6e085daee7c973e54d754d26",
+      "bytes": 1434362,
+      "mtime_ns": 1795542234913207148
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/snapshot/RhodesResearch.vst3/Contents/Resources/rhodes-suitcase.uidesc",
+      "sha256": "7554fecedf67cf744b3aa7f6cf12dc4f874d8b5e0b97ec66959ba2b42ea5825e",
+      "bytes": 651,
+      "mtime_ns": 1795542234920211837
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/snapshot/RhodesResearch.vst3/Contents/x86_64-linux/RhodesResearch.so",
+      "sha256": "51d31020c30165f82da63c9d97cc74ab86fa94fc1d2277e78d13a178dfc052da",
+      "bytes": 3184376,
+      "mtime_ns": 1795544835742147521
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/snapshot/photo_editor.cpp",
+      "sha256": "2ecb0d5a6a383ff45ee40f0be6a819f9cfe540664cb1a83262eb05e3fbfec255",
+      "bytes": 37685,
+      "mtime_ns": 1795544826580003770
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/with-xvfb.py",
+      "sha256": "81230583df4f4a7c0e1a498faa8ee327c3027b35e7035d6d6aeb4eb3eb9898f7",
+      "bytes": 2835,
+      "mtime_ns": 1795542823488411686
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-036/xvfb-2.log",
+      "sha256": "097ccb597eaf2ddecb1c88abec6348ff7c8fccc8c5e68514fa98783af97853bb",
+      "bytes": 104,
+      "mtime_ns": 1795545225325616151
+    }
+  ]
+}

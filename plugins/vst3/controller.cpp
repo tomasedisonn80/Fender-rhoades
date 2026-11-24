@@ -233,8 +233,9 @@ bool RhodesController::unregisterAuditionOwner(AuditionOwner owner) {
     *state = {};
     if (audition_release_pending_) { return retryAuditionRelease(); }
     if (key < 0 || auditionKeyHasOwner(key)) { return true; }
+    const auto generation = audition_release_generation_;
     if (sendAuditionNote(key, false, 0.0F)) { return true; }
-    (void)releaseAuditionNotes();
+    if (audition_release_generation_ == generation) { (void)releaseAuditionNotes(); }
     return false;
 }
 
@@ -267,16 +268,20 @@ bool RhodesController::auditionNote(AuditionOwner owner, int key, bool down, flo
         }
         state->key = key;
     }
+    const auto generation = audition_release_generation_;
     if (sendAuditionNote(key, down, velocity)) { return true; }
     // A rejected send can represent a full processor queue. V1's existing
     // emergency contract cancels every UI owner, so mirror that state here.
-    (void)releaseAuditionNotes();
+    // A nested emergency already owns recovery. Do not recursively retry it
+    // or append a redundant release after a stale message was suppressed.
+    if (audition_release_generation_ == generation) { (void)releaseAuditionNotes(); }
     return false;
 }
 
 bool RhodesController::sendAuditionNote(int key, bool down, float velocity) {
+    const auto generation = audition_release_generation_;
     auto message = Steinberg::owned(allocateMessage());
-    if (!message) { return false; }
+    if (!message || audition_release_generation_ != generation) { return false; }
     message->setMessageID("RhodesPhotoNoteV1");
     auto* attributes = message->getAttributes();
     if (attributes == nullptr ||
@@ -285,10 +290,22 @@ bool RhodesController::sendAuditionNote(int key, bool down, float velocity) {
         attributes->setFloat("velocity", *control::widen(velocity)) != Steinberg::kResultOk) {
         return false;
     }
-    return sendMessage(message) == Steinberg::kResultOk;
+    // Message allocation and every attribute operation are host callbacks.
+    // An emergency during construction invalidates the unsent note.
+    if (audition_release_generation_ != generation) { return false; }
+    const bool accepted = sendMessage(message) == Steinberg::kResultOk;
+    if (audition_release_generation_ != generation) {
+        // The receiver can run an emergency before it accepts this down, so
+        // its earlier release may precede the original down on the wire.
+        // One post-send compensation restores the global emergency invariant.
+        if (accepted && down) { (void)releaseAuditionNotes(); }
+        return false;
+    }
+    return accepted;
 }
 
 bool RhodesController::releaseAuditionNotes() {
+    ++audition_release_generation_;
     for (auto& state : audition_owners_) { state.key = -1; }
     audition_release_pending_ = true;
     return retryAuditionRelease();
@@ -296,7 +313,12 @@ bool RhodesController::releaseAuditionNotes() {
 
 bool RhodesController::retryAuditionRelease() {
     if (!audition_release_pending_) { return true; }
-    if (!initialized_) { return false; }
+    if (!initialized_ || audition_release_in_progress_) { return false; }
+    struct ReleaseGuard {
+        bool& active;
+        explicit ReleaseGuard(bool& value) : active(value) { active = true; }
+        ~ReleaseGuard() { active = false; }
+    } guard{audition_release_in_progress_};
     auto message = Steinberg::owned(allocateMessage());
     if (!message) { return false; }
     message->setMessageID("RhodesPhotoReleaseV1");

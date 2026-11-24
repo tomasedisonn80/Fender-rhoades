@@ -67,7 +67,9 @@ private:
     std::array<AuditionState, kMaximumAuditionOwners> audition_owners_{};
     std::array<std::uint64_t, 8> parameter_revisions_{};
     AuditionOwner next_audition_owner_ = 1;
+    std::uint64_t audition_release_generation_ = 0;
     bool audition_release_pending_ = false;
+    bool audition_release_in_progress_ = false;
     bool initialized_ = false;
 };
 

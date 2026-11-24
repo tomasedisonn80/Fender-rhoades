@@ -1,0 +1,3 @@
+$ /usr/bin/c++ -isystem /home/agent/rhoades-9a04c9726e31/vst3sdk/vstgui4 -isystem /home/agent/rhoades-9a04c9726e31/sysroot/usr/include -O3 -DNDEBUG -std=gnu++20 -Wall -Wextra -Wpedantic -Wconversion -Wshadow -Werror -o /home/agent/rhoades-9a04c9726e31/w2-027/vstgui_x11_keyboard_queued_only.cpp.o -c /home/agent/rhoades-9a04c9726e31/w2-027/vstgui_x11_keyboard_queued_only.cpp
+
+EXIT_STATUS=0

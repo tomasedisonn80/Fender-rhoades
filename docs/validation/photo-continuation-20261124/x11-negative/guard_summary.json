@@ -1,0 +1,8 @@
+{
+  "total_configurations": 9,
+  "all_expected_results_observed": true,
+  "unchanged_generated_file_preserved_mtime": true,
+  "tampered_generated_file_restored_sha256": "c186a90e423b3895347a676e07c6059accb3b9ab0c187a795d318a1f6af361be",
+  "production_adapter_sha256": "3f1b1de7d27a74c1d6d2dae21152b125e4b5c1bf349a78f3aa4bfa3848a76a9c",
+  "scratch_mutated_adapter_sha256": "4a98747e5c3e68eb27c9a047fb964f77bfb7e632170f5b8f782b5d1ca6dad810"
+}

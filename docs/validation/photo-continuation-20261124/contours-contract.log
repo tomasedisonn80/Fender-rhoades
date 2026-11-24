@@ -1,0 +1,18 @@
+Internal ctest changing into directory: /home/agent/rhoades-9a04c9726e31/build
+Test project /home/agent/rhoades-9a04c9726e31/build
+    Start  10: photo_key_highlight.structure
+1/6 Test  #10: photo_key_highlight.structure .........   Passed    0.00 sec
+    Start  11: photo_key_highlight.black_interiors
+2/6 Test  #11: photo_key_highlight.black_interiors ...   Passed    0.01 sec
+    Start  12: photo_key_highlight.dense_grid
+3/6 Test  #12: photo_key_highlight.dense_grid ........   Passed    0.17 sec
+    Start  13: photo_key_highlight.boundaries
+4/6 Test  #13: photo_key_highlight.boundaries ........   Passed    0.01 sec
+    Start  14: photo_key_highlight.invalid_indices
+5/6 Test  #14: photo_key_highlight.invalid_indices ...   Passed    0.00 sec
+    Start 553: vst3.photo_editor_contract
+6/6 Test #553: vst3.photo_editor_contract ............   Passed    0.01 sec
+
+100% tests passed, 0 tests failed out of 6
+
+Total Test time (real) =   0.21 sec

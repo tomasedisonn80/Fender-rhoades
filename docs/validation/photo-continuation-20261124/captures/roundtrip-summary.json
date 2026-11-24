@@ -1,0 +1,30 @@
+{
+  "result": "pass",
+  "roundtrip_invocations": 1,
+  "images": 67,
+  "recorded_captures": 66,
+  "held_white_key_images": 43,
+  "rgb_bytes_compared": 341803008,
+  "raw_files": 5,
+  "original_png_byte_streams_reproduced": 0,
+  "source_files_unchanged": 98,
+  "outcome_source_bindings_verified": 26,
+  "frozen_manifest_bindings_verified": 12,
+  "outcome_checks_by_status": {
+    "pass": 136
+  },
+  "native_host_returncode": 0,
+  "archive_bytes": 5664527,
+  "archive_sha256": "fbea24a740c866b247016523da51bb64b079b7383aa3137c0b67cd4300e1a04e",
+  "manifest_bytes": 60352,
+  "manifest_sha256": "a333d1f4851065cd18c711da0d8addf6c7d2257e2ba91638761b2091e97369c6",
+  "sidecar_matches_archive_manifest": true,
+  "selected_source_bytes": 93811368,
+  "producer": {
+    "pillow_version": "13.0.0",
+    "python_version": "3.12.14",
+    "sha256": "3dc350c91307378b8baa5fe19e6e6b49bb5b5f96be6483e03ab99c333f5b4f61",
+    "tool": "tools/pack_photo_evidence.py"
+  },
+  "archive_reduction_percent": 93.96179043034529
+}

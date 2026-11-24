@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Linux-c++"
+	tests="6"
+	failures="0"
+	disabled="0"
+	skipped="0"
+	hostname="4f398b69b6a5"
+	time="0"
+	timestamp="2026-11-24T11:31:42"
+	>
+	<testcase name="photo_key_highlight.structure" classname="photo_key_highlight.structure" time="0.00337376" status="run">
+		<properties/>
+		<system-out>visible contours=82 detached keys=9 maximum vertices=11
+PASS structure
+PASS total checks=229283
+</system-out>
+	</testcase>
+	<testcase name="photo_key_highlight.black_interiors" classname="photo_key_highlight.black_interiors" time="0.00567245" status="run">
+		<properties/>
+		<system-out>PASS black_interiors
+PASS total checks=345625
+</system-out>
+	</testcase>
+	<testcase name="photo_key_highlight.dense_grid" classname="photo_key_highlight.dense_grid" time="0.173002" status="run">
+		<properties/>
+		<system-out>dense samples=201298 boundary samples=1
+PASS dense_grid
+PASS total checks=402670
+</system-out>
+	</testcase>
+	<testcase name="photo_key_highlight.boundaries" classname="photo_key_highlight.boundaries" time="0.00611271" status="run">
+		<properties/>
+		<system-out>PASS boundaries
+PASS total checks=200229
+</system-out>
+	</testcase>
+	<testcase name="photo_key_highlight.invalid_indices" classname="photo_key_highlight.invalid_indices" time="0.0017712" status="run">
+		<properties/>
+		<system-out>PASS invalid_indices
+PASS total checks=30
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_editor_contract" classname="vst3.photo_editor_contract" time="0.0139505" status="run">
+		<properties/>
+		<system-out>PASS photo editor unattached contract: 5283 checks, 9 real controllers, 24 views created, 66 malformed scales rejected; 66 host resize requests; no native window attached or rendering assessed
+</system-out>
+	</testcase>
+</testsuite>

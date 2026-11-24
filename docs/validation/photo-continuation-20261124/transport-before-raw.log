@@ -1,0 +1,83 @@
+Start testing: Nov 24 11:13 MST
+----------------------------------------------------------
+237/562 Testing: vst3.audition_reentrancy.construction
+237/562 Test: vst3.audition_reentrancy.construction
+Command: "/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_audition_reentrancy_tests" "construction"
+Directory: /home/agent/rhoades-9a04c9726e31/build
+"vst3.audition_reentrancy.construction" start time: Nov 24 11:13 MST
+Output:
+----------------------------------------------------------
+vst3 audition reentrancy failed [construction/allocate]: receiver-held keys differ from literal expectation; wire=[Down(12)+, ReleaseAll+, Down(40)+]
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Failed.
+"vst3.audition_reentrancy.construction" end time: Nov 24 11:13 MST
+"vst3.audition_reentrancy.construction" time elapsed: 00:00:00
+----------------------------------------------------------
+
+238/562 Testing: vst3.audition_reentrancy.notify
+238/562 Test: vst3.audition_reentrancy.notify
+Command: "/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_audition_reentrancy_tests" "notify"
+Directory: /home/agent/rhoades-9a04c9726e31/build
+"vst3.audition_reentrancy.notify" start time: Nov 24 11:13 MST
+Output:
+----------------------------------------------------------
+vst3 audition reentrancy failed [notify/note_before_accept]: receiver-held keys differ from literal expectation; wire=[Down(12)+, ReleaseAll+, Down(40)+]
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Failed.
+"vst3.audition_reentrancy.notify" end time: Nov 24 11:13 MST
+"vst3.audition_reentrancy.notify" time elapsed: 00:00:00
+----------------------------------------------------------
+
+239/562 Testing: vst3.audition_reentrancy.pending
+239/562 Test: vst3.audition_reentrancy.pending
+Command: "/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_audition_reentrancy_tests" "pending"
+Directory: /home/agent/rhoades-9a04c9726e31/build
+"vst3.audition_reentrancy.pending" start time: Nov 24 11:13 MST
+Output:
+----------------------------------------------------------
+vst3 audition reentrancy failed [pending/allocate/notify_failure]: down succeeded across a failed nested emergency; wire=[Down(12)+, ReleaseAll-, Down(40)+]
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Failed.
+"vst3.audition_reentrancy.pending" end time: Nov 24 11:13 MST
+"vst3.audition_reentrancy.pending" time elapsed: 00:00:00
+----------------------------------------------------------
+
+240/562 Testing: vst3.audition_reentrancy.siblings
+240/562 Test: vst3.audition_reentrancy.siblings
+Command: "/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_audition_reentrancy_tests" "siblings"
+Directory: /home/agent/rhoades-9a04c9726e31/build
+"vst3.audition_reentrancy.siblings" start time: Nov 24 11:13 MST
+Output:
+----------------------------------------------------------
+{"suite":"vst3_audition_reentrancy","selector":"siblings","scenarios":16,"checks":448,"result":"pass"}
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Passed.
+"vst3.audition_reentrancy.siblings" end time: Nov 24 11:13 MST
+"vst3.audition_reentrancy.siblings" time elapsed: 00:00:00
+----------------------------------------------------------
+
+241/562 Testing: vst3.audition_reentrancy.coalescing
+241/562 Test: vst3.audition_reentrancy.coalescing
+Command: "/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_audition_reentrancy_tests" "coalescing"
+Directory: /home/agent/rhoades-9a04c9726e31/build
+"vst3.audition_reentrancy.coalescing" start time: Nov 24 11:13 MST
+Output:
+----------------------------------------------------------
+vst3 audition reentrancy failed [coalescing/allocate/accepted]: down entered an in-flight emergency; wire=[Down(40)+, ReleaseAll+, Down(41)+]
+<end of output>
+Test time =   0.00 sec
+----------------------------------------------------------
+Test Failed.
+"vst3.audition_reentrancy.coalescing" end time: Nov 24 11:13 MST
+"vst3.audition_reentrancy.coalescing" time elapsed: 00:00:00
+----------------------------------------------------------
+
+End testing: Nov 24 11:13 MST

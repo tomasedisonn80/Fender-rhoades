@@ -1,0 +1,24 @@
+$ /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 /dev/shm/rhoades-9a04c9726e31/Fender-rhoades/tools/run_xvfb_test.py --xvfb /home/agent/rhoades-9a04c9726e31/gui-bin/Xvfb --xauth /home/agent/rhoades-9a04c9726e31/gui-bin/xauth --xdpyinfo /home/agent/rhoades-9a04c9726e31/gui-bin/xdpyinfo --startup-timeout 10 --test-timeout 30 -- /home/agent/rhoades-9a04c9726e31/build/rhodes_vstgui_x11_keyboard_tests
+PASS bare (2 native packets)
+PASS shift (2 native packets)
+PASS control (2 native packets)
+PASS mod1_alt (2 native packets)
+PASS mod5_alt (2 native packets)
+PASS mod4_super (2 native packets)
+PASS mod1_and_mod5 (2 native packets)
+PASS shift_control (2 native packets)
+PASS shift_mod4 (2 native packets)
+PASS control_mod4 (2 native packets)
+PASS mod1_mod4 (2 native packets)
+PASS mod5_mod4 (2 native packets)
+PASS all_modifiers (2 native packets)
+PASS ignore_lock (2 native packets)
+PASS ignore_mod2 (2 native packets)
+PASS ignore_mod3 (2 native packets)
+PASS ignore_buttons (2 native packets)
+PASS ignore_combined (2 native packets)
+PASS all_with_ignored_bits (2 native packets)
+PASS queued_mod4_then_plain (4 native packets)
+VSTGUI X11 keyboard: 20 cases, 42 native packets passed
+
+EXIT_STATUS=0

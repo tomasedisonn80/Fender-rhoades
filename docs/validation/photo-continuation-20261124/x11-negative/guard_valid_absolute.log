@@ -1,0 +1,7 @@
+$ cmake -S /home/agent/rhoades-9a04c9726e31/w2-027/guard_fixtures/valid_absolute/source -B /home/agent/rhoades-9a04c9726e31/w2-027/guard_fixtures/valid_absolute/build -G Ninja
+-- OVERLAY_FIXTURE_OK c186a90e423b3895347a676e07c6059accb3b9ab0c187a795d318a1f6af361be
+-- Configuring done (0.0s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/agent/rhoades-9a04c9726e31/w2-027/guard_fixtures/valid_absolute/build
+
+EXIT_STATUS=0

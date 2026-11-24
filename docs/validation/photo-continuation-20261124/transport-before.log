@@ -1,0 +1,31 @@
+Internal ctest changing into directory: /home/agent/rhoades-9a04c9726e31/build
+Test project /home/agent/rhoades-9a04c9726e31/build
+    Start 237: vst3.audition_reentrancy.construction
+1/5 Test #237: vst3.audition_reentrancy.construction ...***Failed    0.00 sec
+vst3 audition reentrancy failed [construction/allocate]: receiver-held keys differ from literal expectation; wire=[Down(12)+, ReleaseAll+, Down(40)+]
+
+    Start 238: vst3.audition_reentrancy.notify
+2/5 Test #238: vst3.audition_reentrancy.notify .........***Failed    0.00 sec
+vst3 audition reentrancy failed [notify/note_before_accept]: receiver-held keys differ from literal expectation; wire=[Down(12)+, ReleaseAll+, Down(40)+]
+
+    Start 239: vst3.audition_reentrancy.pending
+3/5 Test #239: vst3.audition_reentrancy.pending ........***Failed    0.00 sec
+vst3 audition reentrancy failed [pending/allocate/notify_failure]: down succeeded across a failed nested emergency; wire=[Down(12)+, ReleaseAll-, Down(40)+]
+
+    Start 240: vst3.audition_reentrancy.siblings
+4/5 Test #240: vst3.audition_reentrancy.siblings .......   Passed    0.00 sec
+    Start 241: vst3.audition_reentrancy.coalescing
+5/5 Test #241: vst3.audition_reentrancy.coalescing .....***Failed    0.00 sec
+vst3 audition reentrancy failed [coalescing/allocate/accepted]: down entered an in-flight emergency; wire=[Down(40)+, ReleaseAll+, Down(41)+]
+
+
+20% tests passed, 4 tests failed out of 5
+
+Total Test time (real) =   0.02 sec
+
+The following tests FAILED:
+	237 - vst3.audition_reentrancy.construction (Failed)
+	238 - vst3.audition_reentrancy.notify (Failed)
+	239 - vst3.audition_reentrancy.pending (Failed)
+	241 - vst3.audition_reentrancy.coalescing (Failed)
+Errors while running CTest
