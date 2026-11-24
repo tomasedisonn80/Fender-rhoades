@@ -18,8 +18,8 @@ acceptance. `python3 tools/validate_continuation_c.py` checks ledger integrity.
 | --- | --- | --- | --- |
 | 1 | 001–020 | Complete | Recover context, reproduce host failures, review contracts and bounds |
 | 2 | 021–040 | Complete | Implement CC123, validated pressure and portable text; independent regression and compatibility checks |
-| 3 | 041–060 | Active | Close integration gaps and establish portable, reproducible verification |
-| 4 | 061–080 | Pending | Review retained evidence and remaining implementation risks |
+| 3 | 041–060 | Complete | Close integration gaps and establish portable, reproducible verification |
+| 4 | 061–080 | In progress | Review retained evidence and remaining implementation risks |
 | 5 | 081–100 | Pending | Complete acceptance review and source-bound continuation notes |
 
 The [MIDI contract](../specs/HOST_MIDI_20261124.md) defines the behavior and
@@ -68,3 +68,12 @@ the archive, mappings and referenced reports without extracting or executing
 content. It checks byte integrity, not execution authenticity or fidelity. The
 [verification guide](../HOST_MIDI_VERIFICATION.md) explains the commands, frozen
 inputs and limits on reproduction.
+
+Wave 4 identified native Windows failures beyond the earlier VST3-only pass.
+The [source-bound CI snapshot](../validation/host-midi-native-snapshot-20261124.json)
+retains those failures and queued jobs. The core oracle header used octal escapes
+that trigger MSVC C4125; the generator now splits adjacent string literals, with
+all 400 JSON inputs and their compiled bytes preserved. The callback evidence check now uses portable artifact names, and the
+Windows fixtures retain strict identity and inventory assertions. Targeted local
+checks pass; these repairs do not establish native success until the corrected
+revision runs.

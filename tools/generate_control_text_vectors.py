@@ -371,13 +371,20 @@ def render_json(vectors: list[dict[str, object]]) -> str:
 
 
 def cpp_string(text: str) -> str:
-    # Three-digit octal escapes preserve ASCII controls and embedded NULs;
-    # unlike hex escapes, they cannot absorb a following digit/hex character.
-    return '"' + "".join(
-        "\\" + character if character in ('"', "\\") else character
-        if 32 <= ord(character) <= 126 else f"\\{ord(character):03o}"
-        for character in text
-    ) + '"'
+    # Three-digit octal escapes preserve ASCII controls and embedded NULs.
+    # Split before a following digit to avoid MSVC C4125 under warnings-as-errors.
+    pieces = ['"']
+    for index, character in enumerate(text):
+        if character in ('"', "\\"):
+            pieces.append("\\" + character)
+        elif 32 <= ord(character) <= 126:
+            pieces.append(character)
+        else:
+            pieces.append(f"\\{ord(character):03o}")
+            if index + 1 < len(text) and text[index + 1] in "0123456789":
+                pieces.append('" "')
+    pieces.append('"')
+    return "".join(pieces)
 
 
 def render_header(vectors: list[dict[str, object]]) -> str:

@@ -14,7 +14,7 @@ import importlib.util
 import io
 import json
 import math
-from pathlib import Path
+from pathlib import Path, PureWindowsPath
 import subprocess
 import tempfile
 from types import SimpleNamespace
@@ -589,7 +589,7 @@ class CaptureTests(unittest.TestCase):
     def test_complete_mock_capture_retains_all_four_runs_and_comparison(self):
         with self.fixture() as state:
             code, manifest = self.execute(state)
-            self.assertEqual(code, 0)
+            self.assertEqual(code, 0, manifest["errors"])
             self.assertTrue(manifest["complete"])
             self.assertEqual(len(state.calls), 4)
             self.assertEqual(manifest["unattempted_run_ids"], [])
@@ -663,8 +663,10 @@ class CaptureTests(unittest.TestCase):
                 if mutation == "source_replacement":
                     before = json.loads((state.output / "input-hashes-before.json").read_bytes())
                     after = json.loads((state.output / "input-hashes-after.json").read_bytes())
-                    first = before["source"]["files"]["include/fixture.hpp"]
-                    last = after["source"]["files"]["include/fixture.hpp"]
+                    # Source snapshots deliberately retain native relative paths.
+                    source_key = str(state.source.relative_to(callback.ROOT))
+                    first = before["source"]["files"][source_key]
+                    last = after["source"]["files"][source_key]
                     self.assertEqual(first["sha256"], last["sha256"])
                     self.assertNotEqual(first, last)
 
@@ -725,6 +727,28 @@ class StorageRefusalTests(unittest.TestCase):
             (store.directory / "retained").write_bytes(b"mutation")
             with self.assertRaisesRegex(ValueError, "artifact mutated"):
                 store.verify()
+
+    def test_windows_artifact_paths_keep_exact_inventory_validation(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            store = callback.EvidenceStore(Path(temporary))
+            store.write("runs/retained.json", b"original")
+
+            def entry(name):
+                path = mock.Mock()
+                path.is_dir.return_value = False
+                path.relative_to.return_value = PureWindowsPath(name)
+                return path
+
+            retained = entry("runs/retained.json")
+            # Only directory enumeration is simulated; hashing reads real bytes.
+            with mock.patch.object(Path, "rglob", return_value=[retained]):
+                store.verify()
+            retained.relative_to.assert_called_once_with(store.directory)
+            for names in ([], [retained, entry("runs/unexpected.json")]):
+                with self.subTest(count=len(names)), \
+                        mock.patch.object(Path, "rglob", return_value=names), \
+                        self.assertRaisesRegex(ValueError, "unexpected or missing retained artifact"):
+                    store.verify()
 
     def test_capture_budget_preserves_final_record_reserve(self):
         with tempfile.TemporaryDirectory() as temporary, \

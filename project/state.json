@@ -4,8 +4,8 @@
   "goal": "Physically model a Fender Rhodes Mark I from evolving mechanical, electromagnetic and circuit states without recorded-note playback.",
   "target": "One documented 73-key Mark I Stage specimen at its specified loaded electrical output; identity and measurements pending.",
   "fidelity_status": "unvalidated",
-  "revision": 38,
-  "updated_at": "2026-11-24T10:08:18Z",
+  "revision": 39,
+  "updated_at": "2026-11-24T10:32:48Z",
   "tasks": [
     {
       "id": "FND-001",
@@ -512,7 +512,8 @@
         "tools/generate_control_text_vectors.py",
         "CMakeLists.txt",
         ".github/workflows/ci.yml",
-        "tools/verify_host_midi_archive.py"
+        "tools/verify_host_midi_archive.py",
+        "tools/compare_vst3_callbacks.py"
       ]
     }
   ],
@@ -820,6 +821,14 @@
       "task": "HOST-002",
       "owner": "continuation-c-root",
       "detail": "Include read-only verification of retained host MIDI raw evidence and its CI gate; acceptance and dependencies unchanged."
+    },
+    {
+      "revision": 39,
+      "at": "2026-11-24T10:32:48Z",
+      "action": "definition_updated",
+      "task": "HOST-002",
+      "owner": "continuation-c-root",
+      "detail": "Include the narrowly reviewed portable artifact-name verification fix exposed by Windows native CI. Preserve PHY-002 and RT-001 ownership and acceptance; no numerical or timing experiments are claimed by this fix."
     }
   ]
 }

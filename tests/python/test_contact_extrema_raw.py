@@ -494,10 +494,63 @@ class ContactExtremaRawFileTests(RawFilesCase):
         self.assertEqual(len(requests), 2)
         self.assertEqual(requests[0], 65536)
 
+    def test_changed_path_identity_during_snapshot_read_is_rejected(self):
+        record = self.record()
+        expected = self.path.read_bytes()
+        original_read, original_lstat = os.read, Path.lstat
+        blocks, changed_stats = [], []
+
+        def read(descriptor, size):
+            block = original_read(descriptor, size)
+            blocks.append(block)
+            return block
+
+        def lstat(path, *args, **kwargs):
+            observed = original_lstat(path, *args, **kwargs)
+            if path == self.path and blocks:
+                # Model a different file at the leaf after a genuine read,
+                # preserving its bytes, size, mode and timestamps. This guard
+                # must be covered even where open-file replacement is denied.
+                changed_stats.append(True)
+                return SimpleNamespace(
+                    st_dev=observed.st_dev, st_ino=observed.st_ino + 1,
+                    st_mode=observed.st_mode, st_size=observed.st_size,
+                    st_mtime_ns=observed.st_mtime_ns, st_ctime_ns=observed.st_ctime_ns)
+            return observed
+
+        with patch.object(reference.os, "read", side_effect=read), \
+                patch.object(Path, "lstat", lstat), \
+                patch.object(reference, "_numpy", side_effect=AssertionError("numerical backend reached")):
+            with self.assertRaisesRegex(OSError, "^Raw reference changed during snapshot read$"):
+                reference.inspect_retained_raw(record)
+        self.assertEqual(b"".join(blocks), expected)
+        self.assertTrue(changed_stats)
+
     def test_replacing_path_during_snapshot_read_is_rejected(self):
         record = self.record()
         replacement = self.directory / "replacement.npz"
         replacement.write_bytes(self.path.read_bytes())
+
+        # Probe native sharing behavior outside the expected snapshot rejection.
+        # Windows read-only descriptors can prevent replacement of an open file.
+        # Only a native access/sharing denial that disappears after close may
+        # skip the real race; the deterministic identity test above always runs.
+        denied = None
+        descriptor = os.open(self.path, os.O_RDONLY | getattr(os, "O_BINARY", 0))
+        try:
+            try:
+                os.replace(replacement, self.path)
+            except PermissionError as exc:
+                if os.name != "nt" or getattr(exc, "winerror", None) not in (5, 32):
+                    raise
+                denied = exc
+        finally:
+            os.close(descriptor)
+        if denied is not None:
+            os.replace(replacement, self.path)
+            self.skipTest("native replacement of a read-only open file is unavailable: " + str(denied))
+        replacement.write_bytes(self.path.read_bytes())
+
         original = os.read
         replaced = []
         def read_then_replace(descriptor, size):
@@ -506,8 +559,10 @@ class ContactExtremaRawFileTests(RawFilesCase):
                 os.replace(replacement, self.path)
                 replaced.append(True)
             return block
-        with patch.object(reference.os, "read", side_effect=read_then_replace):
-            self.assert_inspection_rejected(record)
+        with patch.object(reference.os, "read", side_effect=read_then_replace), \
+                patch.object(reference, "_numpy", side_effect=AssertionError("numerical backend reached")):
+            with self.assertRaisesRegex(OSError, "^Raw reference changed during snapshot read$"):
+                reference.inspect_retained_raw(record)
         self.assertEqual(replaced, [True])
 
     def test_symlink_leaf_and_ancestor_are_rejected_before_open(self):

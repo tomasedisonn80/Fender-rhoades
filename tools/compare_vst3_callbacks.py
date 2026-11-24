@@ -429,7 +429,7 @@ class EvidenceStore:
             actual = file_identity(self.directory / name)
             require({"bytes": actual["bytes"], "sha256": actual["sha256"]} == expected,
                     "retained artifact mutated: " + name)
-        actual_names = {str(p.relative_to(self.directory)) for p in self.directory.rglob("*") if not p.is_dir()}
+        actual_names = {p.relative_to(self.directory).as_posix() for p in self.directory.rglob("*") if not p.is_dir()}
         require(actual_names == set(self.artifacts), "unexpected or missing retained artifact")
 
 

@@ -6,7 +6,7 @@
   "requested_agents": 100,
   "requested_waves": 5,
   "concurrency_limit_including_integrator": 4,
-  "completed_agents": 55,
+  "completed_agents": 66,
   "agents": [
     {
       "assignment": 1,
@@ -452,18 +452,106 @@
       "assignment": 56,
       "wave": 3,
       "agent_task_name": "/root/w3_056_delivery_protocol_update",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w3-056.md",
+      "sha256": "db007229d7721f573da197887b5937c4b14c50baa3f2b0dafd4d2272229eeaee"
     },
     {
       "assignment": 57,
       "wave": 3,
       "agent_task_name": "/root/w3_057_source_binding_audit",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w3-057.md",
+      "sha256": "d9578c89b4716e5438d7a862c5b17c9e83072e587bde5ddcf1d61a210f40c2f0"
     },
     {
       "assignment": 58,
       "wave": 3,
       "agent_task_name": "/root/w3_058_command_cost_audit",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w3-058.md",
+      "sha256": "1a22bae739eef8ed00805531fa0eff5d13ee2e5b40a814a269a47593b008800d"
+    },
+    {
+      "assignment": 59,
+      "wave": 3,
+      "agent_task_name": "/root/w3_059_callback_boundary_review",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w3-059.md",
+      "sha256": "3cd1a48bf912ff15ef9bc76fae15d40d5eabcc6663ae46bd941179c4a8ad37e2"
+    },
+    {
+      "assignment": 60,
+      "wave": 3,
+      "agent_task_name": "/root/w3_060_wave_gate",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w3-060.md",
+      "sha256": "98614db9a738cad2b074bc314fc4a75f22b1898711dd60229bd1be1c0c47d5e1"
+    },
+    {
+      "assignment": 61,
+      "wave": 4,
+      "agent_task_name": "/root/w4_061_native_ci_observation",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w4-061.md",
+      "sha256": "29aaeabe646b672bdb139b81ad5b21a9fe22d8fbc56b159682990b16c1778ba5"
+    },
+    {
+      "assignment": 62,
+      "wave": 4,
+      "agent_task_name": "/root/w4_062_acceptance_draft",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w4-062.md",
+      "sha256": "3b869082832fa54469d78862600baec9a9eb4536d2ef932246dbe8f8e02ab2a1"
+    },
+    {
+      "assignment": 63,
+      "wave": 4,
+      "agent_task_name": "/root/w4_063_control_api_audit",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w4-063.md",
+      "sha256": "1b04efb735f22648e310db0ca35c04b6b6cc3ed24901c8a24fb987aa541c7c8c"
+    },
+    {
+      "assignment": 64,
+      "wave": 4,
+      "agent_task_name": "/root/w4_064_msvc_fixture_literals",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w4-064.md",
+      "sha256": "f1a2dc330232ae36fd6b94badeaf2f99a5fc16e80a3b23b2e2cbbfb5c0870c2d"
+    },
+    {
+      "assignment": 65,
+      "wave": 4,
+      "agent_task_name": "/root/w4_065_windows_callback_fixtures",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w4-065.md",
+      "sha256": "b1929d4f9ed8ba275f116d265e2d3ffc254dc362482bf3f049bde920cce595e2"
+    },
+    {
+      "assignment": 66,
+      "wave": 4,
+      "agent_task_name": "/root/w4_066_windows_raw_snapshot",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w4-066.md",
+      "sha256": "70f24eaa72718f7b19fd045378aa4b14471e0bba275835f1e54f4011bf663de2"
+    },
+    {
+      "assignment": 67,
+      "wave": 4,
+      "agent_task_name": "/root/w4_067_final_linux_integration",
+      "status": "running"
+    },
+    {
+      "assignment": 68,
+      "wave": 4,
+      "agent_task_name": "/root/w4_068_macos_loader_review",
+      "status": "running"
+    },
+    {
+      "assignment": 69,
+      "wave": 4,
+      "agent_task_name": "/root/w4_069_windows_fix_review",
       "status": "running"
     }
   ]

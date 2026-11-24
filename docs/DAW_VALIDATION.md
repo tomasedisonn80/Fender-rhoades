@@ -93,6 +93,7 @@ and [MIDI continuation](specs/HOST_MIDI_20261124.md).
 
 Repeat this small case set for each variant, using modest event counts and the
 same reset, gain, render interval and routing for each paired comparison.
+Check live MIDI input and recorded-clip playback separately where available.
 Channels below use MIDI labels 1–16 (SDK indices 0–15). Leave sustain Off except
 where stated. Keep ordinary note-offs later than the command under observation
 so they cannot explain an apparent CC123 release. Compare with a reference clip
@@ -100,27 +101,37 @@ that replaces that command with ordinary note-offs for the same holders at the
 same times; release increases damping and need not produce instant silence.
 
 Separate **requested input**, **host delivery**, and **plug-in response** in the
-session record. A MIDI monitor upstream of the plug-in establishes only what
-was sent to the host. Where the host offers a diagnostic trace, retain the
-delivered parameter IDs/values and event types, channels, note identities,
-callback boundaries and sample offsets. Record the observation point and its
-limits. An unchanged generic-control display cannot establish that a second
-command point arrived. If delivery or callback grouping is unavailable, retain
-the audio/UI observation but mark the corresponding delivery or exact-ordering
-claim **inconclusive**.
+session record. An upstream MIDI monitor or recorded/exported raw MIDI establishes
+what reached that observation point, not what reached the processor. A controller
+or generic-control UI value is also not a delivery trace. Where instrumentation
+permits, retain the processor's actual `ProcessData::inputParameterChanges`:
+command parameter IDs, normalized values, point counts and sample offsets, with
+callback boundaries/frame counts. Retain the delivered note/event types,
+channels and identities as well. Record the trace's observation point and limits;
+an unchanged display cannot establish even the first zero command's arrival.
+If delivery or callback grouping is unavailable, retain the audio/UI observation
+but mark the corresponding delivery or exact-ordering claim **inconclusive**.
 
 | Case | Procedure | Expected outcome if the stated input is delivered | Result |
 | --- | --- | --- | --- |
 | Parameter discovery | Record the generic parameter inventory, IDs/flags if exposed, and any rescan/restart used. | 18 parameters: gain `0`, sustain `1`, and 16 writable, nonautomatable channel commands `0x1000..0x100f`. Unknown host metadata remains unknown. | Not run |
 | Channel-specific CC123 | Hold pitch 64 on channel 1 and pitch 67 on channel 2; send CC123 only on channel 1, then on channel 2. | Each command removes only its channel's holders. The other channel remains held until its own release; existing mechanical motion and filter tails remain. | Not run |
-| Repeated unchanged / zero CC123 | Strike 64 on channel 1, send CC123 value 0, restrike, then send value 0 again. Repeat from reset with two identical nonzero values, such as MIDI 127. Retain both command deliveries and the intervening strike. | Every delivered point releases the current channel holders, including zero and unchanged repeats. Commands are not rising-edge controls and do not automatically return to zero. | Not run |
+| First CC123 at default zero | Use a fresh instance with the channel command at its default normalized value `0`; do not prime it with a nonzero command or a UI edit. Strike 64 on channel 1, then send the first CC123 with MIDI value `0`. Retain evidence of the default and separately of the incoming zero point. | The first delivered zero point releases the holder despite matching the parameter default. A value remaining at zero in the UI does not prove delivery or omission. | Not run |
+| Repeated unchanged / zero CC123 | Send strike 64 → CC123(0) → restrike 64 → CC123(0) on channel 1, first at four distinct observed sample offsets in one callback, then with the commands in different callbacks and a restrike between them. Retain both zero points and callback boundaries. Repeat from reset with two identical nonzero values, such as MIDI 127. | Every delivered point releases the current channel holders, including zero and unchanged repeats within or across blocks. Commands are not rising-edge controls and do not automatically return to zero. | Not run |
+| Same-offset duplicate CC123 | From identical held-note conditions, compare one CC123(0) with two CC123(0) messages for the same channel at one confirmed sample offset. Record whether the host delivers one point or both; keep this separate from distinct-offset repeats. | Same-channel/same-offset duplicates are idempotent: one release effect. Host coalescing of these duplicates is compatible with that result and does not establish delivery of later commands at different offsets. | Not run |
 | Shared key on two channels | Hold pitch 64 on channels 1 and 2. Send CC123 on channel 1, then channel 2; compare with the same ordinary-release sequence. | Releasing the first channel does not damp the still-held key. The last holder's removal causes ordinary release. | Not run |
 | Sustained release / CC120 | With CC64 down, strike 64, send CC123, then lift CC64. Separately send CC120 while a note remains held, recording any host panic translation. | CC123 preserves shared sustain; ringing may continue until pedal-up and decay afterward. CC120 is unmapped and has no advertised plug-in action; host-generated note-offs or resets are separate observations. | Not run |
-| Equal-offset ordering | If the host permits, place a sustain change, CC123 on channels 1 and 2, and a new strike at one sample offset. Retain actual delivered order/offsets; optionally duplicate one same-channel command at that offset. | Sustain applies first, channel releases in ascending channel order, then notes in input-list order. The new strike survives the prior channel release; duplicate same-channel/same-offset commands have one release effect. | Not run |
+| Equal-offset ordering | If the host permits, place a sustain change, CC123 on channels 1 and 2, and a new strike at one sample offset. Retain actual delivered order/offsets. | Sustain applies first, channel releases in ascending channel order, then notes in input-list order. The new strike survives the prior channel release; duplicate same-channel/same-offset commands have one release effect as checked separately above. | Not run |
 | Pressure with releases | Compare a clip with and without valid polyphonic key-pressure events around note-offs. Where traces permit, verify pressure and releases share a callback; distinguish typed polyphonic pressure from channel pressure or note expression. | Pressure produces no synthesis or ownership response, and co-batched ordinary releases still take effect. The pressure traffic must not discard those releases or leave their holders stuck. | Not run |
 | Generic text and recall | Perform the text checks and own-variant/legacy preset recall in section 3, recording which input reaches the plug-in. | Strict text conversion, unchanged gain/sustain IDs, and the existing 16-byte configuration contract; transient commands are excluded. | Not run |
 
-Some hosts remove repeated unchanged controller values before producing VST3
+The [pinned public-source review](research/HOST_MIDI_DELIVERY_20261124.md)
+provides the rationale for these separate cases, **not native validation**. Its
+inspected JUCE and AudioHost paths retain equal values at distinct offsets and
+across blocks, but differ in same-offset coalescing. This source analysis does
+not establish runtime behavior for either implementation or a named DAW/version.
+
+A host may omit repeated unchanged controller values before producing VST3
 parameter points, including a zero matching the current/default value. The
 plug-in cannot recover an omitted command. A confirmed omission is a named-host
 delivery limitation, not proof that the plug-in ignored a delivered point.

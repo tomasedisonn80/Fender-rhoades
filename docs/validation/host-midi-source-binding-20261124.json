@@ -1,0 +1,463 @@
+{
+  "schema_version": 1,
+  "assignment": "continuation-c/w3-057",
+  "kind": "read-only-retained-evidence-source-binding-review",
+  "observed_utc": "2026-11-24T10:18:23.167321+00:00",
+  "repository_root": "/workspace/scratch/edddd917a86c/Fender-rhoades",
+  "target_commit": "a06d2cd60bc53e3939e89f64254aed7ed5586e7c",
+  "observed_head": "04c0c5f7933a831a01d900827da8f234cc37c97b",
+  "observed_head_tree": "46b2e0bdb67a25cc8b20d87ff96c73b2a18a9bec",
+  "dirty_paths_before_audit_outputs": [
+    "M docs/DAW_VALIDATION.md",
+    " M project/continuation-c-20261124.json",
+    "?? docs/agents/reports/continuation-c/w3-056.md"
+  ],
+  "method": "Read Git blob contents, worktree bytes, retained JSON/raw stdout/stderr/PCM, module bytes and source; SHA-256 comparisons only. No compilation, module loading, rendering, timing experiment, or Git/state mutation.",
+  "source_manifests": {
+    "loaded033": {
+      "path": "docs/validation/host-midi-loaded-compatibility-20261124.json",
+      "artifact_sha256": "8fadfb8558f77d815a3a54ea7990cfeee7de559c04082d0e71b9770808528a14",
+      "manifest_key": "source_fingerprints.current_worktree_sha256",
+      "manifest_paths": [
+        "CMakeLists.txt",
+        "docs/specs/HOST_MIDI_20261124.md",
+        "include/rhodes/audio_engine.hpp",
+        "include/rhodes/audio_filter_coefficients.hpp",
+        "include/rhodes/control_text.hpp",
+        "include/rhodes/control_value.hpp",
+        "include/rhodes/event_processor.hpp",
+        "include/rhodes/fir_decimator.hpp",
+        "include/rhodes/instrument_state.hpp",
+        "include/rhodes/note_tracker.hpp",
+        "include/rhodes/quadrature_engine.hpp",
+        "include/rhodes/quadrature_filter_coefficients.hpp",
+        "include/rhodes/quadrature_fir.hpp",
+        "include/rhodes/research_engine.hpp",
+        "plugins/vst3/controller.cpp",
+        "plugins/vst3/controller.hpp",
+        "plugins/vst3/factory.cpp",
+        "plugins/vst3/plugin_ids.hpp",
+        "plugins/vst3/processor.cpp",
+        "plugins/vst3/processor.hpp",
+        "plugins/vst3/state_stream.cpp",
+        "plugins/vst3/state_stream.hpp",
+        "src/research_engine.cpp"
+      ],
+      "comparisons": {
+        "a06d2cd60bc53e3939e89f64254aed7ed5586e7c": {
+          "checked_paths": 23,
+          "matched_paths": 23,
+          "mismatches": []
+        },
+        "04c0c5f7933a831a01d900827da8f234cc37c97b": {
+          "checked_paths": 23,
+          "matched_paths": 23,
+          "mismatches": []
+        },
+        "worktree": {
+          "checked_paths": 23,
+          "matched_paths": 23,
+          "mismatches": []
+        }
+      },
+      "historical_source_manifest_check": {
+        "checked_paths": 23,
+        "matched_paths": 23,
+        "mismatches": []
+      }
+    },
+    "wav036": {
+      "path": "docs/validation/host-midi-legacy-wav-20261124.json",
+      "artifact_sha256": "f4758fc1ab4bcb8bf00c517b877b9f2eea78d7976f3847190af1659ff77e3b13",
+      "manifest_key": "production_source_sha256",
+      "manifest_paths": [
+        "CMakeLists.txt",
+        "apps/alias_primitive_probe.cpp",
+        "apps/audio_probe.cpp",
+        "apps/benchmark.cpp",
+        "apps/contact_reference.cpp",
+        "apps/render.cpp",
+        "apps/runtime_benchmark.cpp",
+        "apps/vst3_benchmark.cpp",
+        "cmake/Vst3.cmake",
+        "include/rhodes/audio_engine.hpp",
+        "include/rhodes/audio_filter_coefficients.hpp",
+        "include/rhodes/contact_reference.hpp",
+        "include/rhodes/control_text.hpp",
+        "include/rhodes/control_value.hpp",
+        "include/rhodes/event_processor.hpp",
+        "include/rhodes/fir_decimator.hpp",
+        "include/rhodes/instrument_state.hpp",
+        "include/rhodes/note_tracker.hpp",
+        "include/rhodes/quadrature_engine.hpp",
+        "include/rhodes/quadrature_filter_coefficients.hpp",
+        "include/rhodes/quadrature_fir.hpp",
+        "include/rhodes/research_engine.hpp",
+        "plugins/vst3/THIRD_PARTY_NOTICES.md",
+        "plugins/vst3/controller.cpp",
+        "plugins/vst3/controller.hpp",
+        "plugins/vst3/factory.cpp",
+        "plugins/vst3/plugin_ids.hpp",
+        "plugins/vst3/processor.cpp",
+        "plugins/vst3/processor.hpp",
+        "plugins/vst3/state_stream.cpp",
+        "plugins/vst3/state_stream.hpp",
+        "src/contact_reference.cpp",
+        "src/research_engine.cpp"
+      ],
+      "comparisons": {
+        "a06d2cd60bc53e3939e89f64254aed7ed5586e7c": {
+          "checked_paths": 33,
+          "matched_paths": 33,
+          "mismatches": []
+        },
+        "04c0c5f7933a831a01d900827da8f234cc37c97b": {
+          "checked_paths": 33,
+          "matched_paths": 32,
+          "mismatches": [
+            {
+              "path": "cmake/Vst3.cmake",
+              "recorded_sha256": "dfdec23f5b4cff8580082c90d8344f739a900ab5402be5eccfa131acb1f2073d",
+              "actual_sha256": "cfdeb2978cdfb626ae31cf911fa37bb31077d41ed40b0483b9f60c70287e86f2"
+            }
+          ]
+        },
+        "worktree": {
+          "checked_paths": 33,
+          "matched_paths": 32,
+          "mismatches": [
+            {
+              "path": "cmake/Vst3.cmake",
+              "recorded_sha256": "dfdec23f5b4cff8580082c90d8344f739a900ab5402be5eccfa131acb1f2073d",
+              "actual_sha256": "cfdeb2978cdfb626ae31cf911fa37bb31077d41ed40b0483b9f60c70287e86f2"
+            }
+          ]
+        }
+      }
+    },
+    "cost038": {
+      "path": "docs/validation/host-midi-command-cost-20261124.json",
+      "artifact_sha256": "1cc448fe15b4b0c0b43073a3db98570666f456e27cdf6e91452cbd83c0e3c323",
+      "manifest_key": "production_and_support_source_sha256",
+      "manifest_paths": [
+        "include/rhodes/audio_engine.hpp",
+        "include/rhodes/audio_filter_coefficients.hpp",
+        "include/rhodes/contact_reference.hpp",
+        "include/rhodes/control_text.hpp",
+        "include/rhodes/control_value.hpp",
+        "include/rhodes/event_processor.hpp",
+        "include/rhodes/fir_decimator.hpp",
+        "include/rhodes/instrument_state.hpp",
+        "include/rhodes/note_tracker.hpp",
+        "include/rhodes/quadrature_engine.hpp",
+        "include/rhodes/quadrature_filter_coefficients.hpp",
+        "include/rhodes/quadrature_fir.hpp",
+        "include/rhodes/research_engine.hpp",
+        "plugins/vst3/controller.cpp",
+        "plugins/vst3/controller.hpp",
+        "plugins/vst3/factory.cpp",
+        "plugins/vst3/plugin_ids.hpp",
+        "plugins/vst3/processor.cpp",
+        "plugins/vst3/processor.hpp",
+        "plugins/vst3/state_stream.cpp",
+        "plugins/vst3/state_stream.hpp",
+        "src/research_engine.cpp",
+        "tests/cpp/vst3_command_test_support.hpp",
+        "tests/cpp/vst3_test_support.hpp"
+      ],
+      "comparisons": {
+        "a06d2cd60bc53e3939e89f64254aed7ed5586e7c": {
+          "checked_paths": 24,
+          "matched_paths": 23,
+          "mismatches": [
+            {
+              "path": "tests/cpp/vst3_test_support.hpp",
+              "recorded_sha256": "85c7212f1ef0eef129c2c79e456c70c7887dee75e7bc84c95438c6f3850a0f29",
+              "actual_sha256": "7ab3ae32616886bad13f88ffe0d6e2a8409d7b7335529f3e1ca87b8046419a01"
+            }
+          ]
+        },
+        "04c0c5f7933a831a01d900827da8f234cc37c97b": {
+          "checked_paths": 24,
+          "matched_paths": 24,
+          "mismatches": []
+        },
+        "worktree": {
+          "checked_paths": 24,
+          "matched_paths": 24,
+          "mismatches": []
+        }
+      }
+    }
+  },
+  "build_context_comparisons": {
+    "loaded033_loader_archives": {
+      "checked_paths": 5,
+      "matched_paths": 5,
+      "mismatches": []
+    },
+    "wav036_build_context": {
+      "checked_paths": 13,
+      "matched_paths": 12,
+      "mismatches": [
+        {
+          "path": "build-host/compile_commands.json",
+          "recorded_sha256": "640b5fa48dc03f7a6b89216fb12bc1bc8da019828a1db8de4f6efe8e66a98249",
+          "actual_sha256": "432272e058f4acf851bc608228fac9750777135e28c5f721bb5d9d679b238bdd"
+        }
+      ]
+    },
+    "cost038_build_context": {
+      "checked_paths": 11,
+      "matched_paths": 10,
+      "mismatches": [
+        {
+          "path": "build-host/compile_commands.json",
+          "recorded_sha256": "640b5fa48dc03f7a6b89216fb12bc1bc8da019828a1db8de4f6efe8e66a98249",
+          "actual_sha256": "432272e058f4acf851bc608228fac9750777135e28c5f721bb5d9d679b238bdd"
+        }
+      ]
+    }
+  },
+  "binary_identity_checks": [
+    {
+      "role": "loaded_module",
+      "label": "baseline/RhodesResearch",
+      "path": "/workspace/scratch/edddd917a86c/baseline/VST3/RhodesResearch.vst3/Contents/x86_64-linux/RhodesResearch.so",
+      "recorded_sha256": "68cbede00d236b15d676f12c49d438ddb188f001bba0e638d440b898c7535615",
+      "current_sha256": "68cbede00d236b15d676f12c49d438ddb188f001bba0e638d440b898c7535615",
+      "matches": true,
+      "moduleinfo_matches": true
+    },
+    {
+      "role": "loaded_module",
+      "label": "baseline/RhodesResearchFiltered",
+      "path": "/workspace/scratch/edddd917a86c/baseline/VST3/RhodesResearchFiltered.vst3/Contents/x86_64-linux/RhodesResearchFiltered.so",
+      "recorded_sha256": "a96af28402f4fcdc8d1ec2526f25b746d78c284b31fc5eab735effac553715dd",
+      "current_sha256": "a96af28402f4fcdc8d1ec2526f25b746d78c284b31fc5eab735effac553715dd",
+      "matches": true,
+      "moduleinfo_matches": true
+    },
+    {
+      "role": "loaded_module",
+      "label": "baseline/RhodesResearchQuadrature",
+      "path": "/workspace/scratch/edddd917a86c/baseline/VST3/RhodesResearchQuadrature.vst3/Contents/x86_64-linux/RhodesResearchQuadrature.so",
+      "recorded_sha256": "d5596af8206e3d49e80ca200d8277322b84a8b0566924deff67f8eea4551a958",
+      "current_sha256": "d5596af8206e3d49e80ca200d8277322b84a8b0566924deff67f8eea4551a958",
+      "matches": true,
+      "moduleinfo_matches": true
+    },
+    {
+      "role": "loaded_module",
+      "label": "current/RhodesResearch",
+      "path": "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/VST3/Release/RhodesResearch.vst3/Contents/x86_64-linux/RhodesResearch.so",
+      "recorded_sha256": "e4f9812a59ef1bb5168ad9fdca61d0aba94988ca4f413c98a013fae87a3038bf",
+      "current_sha256": "e4f9812a59ef1bb5168ad9fdca61d0aba94988ca4f413c98a013fae87a3038bf",
+      "matches": true,
+      "moduleinfo_matches": true
+    },
+    {
+      "role": "loaded_module",
+      "label": "current/RhodesResearchFiltered",
+      "path": "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/VST3/Release/RhodesResearchFiltered.vst3/Contents/x86_64-linux/RhodesResearchFiltered.so",
+      "recorded_sha256": "a410ba3073e99335187d711a3c5effaff197962afbdc43207175c511b63b9b08",
+      "current_sha256": "a410ba3073e99335187d711a3c5effaff197962afbdc43207175c511b63b9b08",
+      "matches": true,
+      "moduleinfo_matches": true
+    },
+    {
+      "role": "loaded_module",
+      "label": "current/RhodesResearchQuadrature",
+      "path": "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/VST3/Release/RhodesResearchQuadrature.vst3/Contents/x86_64-linux/RhodesResearchQuadrature.so",
+      "recorded_sha256": "1deda8ab23b8b21ec26ab353eb497ad7bd703df024330527c7736be09eca5739",
+      "current_sha256": "1deda8ab23b8b21ec26ab353eb497ad7bd703df024330527c7736be09eca5739",
+      "matches": true,
+      "moduleinfo_matches": true
+    },
+    {
+      "role": "renderer",
+      "label": "wav036",
+      "path": "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_render",
+      "recorded_sha256": "44d32bd09440090aeff07ccb4784bdc3c7dd6db6e71fc3ca69b85f50dbedd9e2",
+      "current_sha256": "44d32bd09440090aeff07ccb4784bdc3c7dd6db6e71fc3ca69b85f50dbedd9e2",
+      "matches": true
+    },
+    {
+      "role": "loader_harness",
+      "label": "loaded033",
+      "path": ".agent-work/worker033/loaded_compatibility",
+      "recorded_sha256": "509317ced49ffa8332ea4ebe8edc9a29a24f50d807e09f2712a489a94ba9e31e",
+      "current_sha256": "509317ced49ffa8332ea4ebe8edc9a29a24f50d807e09f2712a489a94ba9e31e",
+      "matches": true
+    },
+    {
+      "role": "adapter_probe",
+      "label": "direct",
+      "path": ".agent-work/worker038/command-cost-direct",
+      "recorded_sha256": "ae70b86cfd7f3fd9db7fb8050a0d0da9859d897fcedf6e1e616f1082dbfb0f13",
+      "current_sha256": "ae70b86cfd7f3fd9db7fb8050a0d0da9859d897fcedf6e1e616f1082dbfb0f13",
+      "matches": true
+    },
+    {
+      "role": "adapter_probe",
+      "label": "filtered",
+      "path": ".agent-work/worker038/command-cost-filtered",
+      "recorded_sha256": "66ef7523a0ef230541c4143b2ecaffbdf115f951b3a079144fd7ef2cf0e58935",
+      "current_sha256": "66ef7523a0ef230541c4143b2ecaffbdf115f951b3a079144fd7ef2cf0e58935",
+      "matches": true
+    },
+    {
+      "role": "adapter_probe",
+      "label": "quadrature",
+      "path": ".agent-work/worker038/command-cost-quadrature",
+      "recorded_sha256": "058f3a1fedf76e67887e0581331fea9a853b8c54ab53298ea912a9ae059caec4",
+      "current_sha256": "058f3a1fedf76e67887e0581331fea9a853b8c54ab53298ea912a9ae059caec4",
+      "matches": true
+    }
+  ],
+  "source_review": {
+    "target_to_worktree_changes_in_reviewed_production_build_and_support_paths": [
+      "cmake/Vst3.cmake",
+      "tests/cpp/vst3_test_support.hpp"
+    ],
+    "production_dsp_and_host_source_drift": false,
+    "mismatch_interpretation": [
+      {
+        "path": "tests/cpp/vst3_test_support.hpp",
+        "applies_to": "cost038 versus a06d2cd",
+        "finding": "Only expect_silence parameter/local references renamed frames to samples_to_check; no helper behavior change. Recorded hash exactly matches HEAD and current worktree."
+      },
+      {
+        "path": "cmake/Vst3.cmake",
+        "applies_to": "wav036 versus current worktree",
+        "finding": "Diff is inside BUILD_TESTING: three command-partition targets, loaded-MIDI test, platform selection/options/framework/universal/signing setup for test loader/hosts. No production plugin target or DSP source change. Linux module and loader archive bytes remain exact; new Windows/macOS test paths still require their own observed runs."
+      },
+      {
+        "path": "build-host/compile_commands.json",
+        "applies_to": "wav036 and cost038 captured build context versus current worktree",
+        "finding": "Generated compilation database changed; current database contains new partition and loaded-MIDI test entries. No frozen full database was inspected, so a byte-for-byte content attribution is not claimed. All other captured build-context files match, including object/archive/flags/link metadata; all reviewed executable bytes match."
+      }
+    ],
+    "baseline_identity_diff": "20a77e8 to a06d2cd plugin_ids.hpp adds command constants/helper only; FUIDs/model IDs/reported latencies and gain/sustain IDs unchanged. instrument_state.hpp and state_stream.cpp/.hpp are byte-identical."
+  },
+  "loaded_run_binding": {
+    "commands_path": ".agent-work/worker033/commands.json",
+    "canonical_commands_sha256_matches": true,
+    "recorded_commands": 144,
+    "commands_per_bundle": {
+      "/workspace/scratch/edddd917a86c/baseline/VST3/RhodesResearch.vst3": 24,
+      "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/VST3/Release/RhodesResearch.vst3": 24,
+      "/workspace/scratch/edddd917a86c/baseline/VST3/RhodesResearchFiltered.vst3": 24,
+      "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/VST3/Release/RhodesResearchFiltered.vst3": 24,
+      "/workspace/scratch/edddd917a86c/baseline/VST3/RhodesResearchQuadrature.vst3": 24,
+      "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/VST3/Release/RhodesResearchQuadrature.vst3": 24
+    },
+    "raw_stream_or_pcm_hash_errors": [],
+    "paired_metadata_cases": 72,
+    "paired_metadata_or_wire_size_errors": [],
+    "paired_state_checkpoints": 2952,
+    "paired_stereo_frames": 304128,
+    "identities_and_legacy_parameters": {
+      "RhodesResearch": {
+        "processor_id": "BDDA70F46F9244C1A5639EE371A0B804",
+        "controller_id": "EA801E8B97864ED9B3A0E6572D81CE61",
+        "model": 1,
+        "latency": 0,
+        "initial_state": "52485354010001000000003f00000000",
+        "legacy_parameters": [
+          {
+            "id": 0,
+            "title": "Monitoring Gain",
+            "units": "x",
+            "flags": 1,
+            "step_count": 0,
+            "default_normalized": 0.5
+          },
+          {
+            "id": 1,
+            "title": "Sustain",
+            "units": "",
+            "flags": 9,
+            "step_count": 1,
+            "default_normalized": 0
+          }
+        ]
+      },
+      "RhodesResearchFiltered": {
+        "processor_id": "4C0E773A24FC4BE9B804BC71B8B98B33",
+        "controller_id": "0569EDDBD21D4568A9ED52C3D8545B6D",
+        "model": 2,
+        "latency": 48,
+        "initial_state": "52485354010002000000003f00000000",
+        "legacy_parameters": [
+          {
+            "id": 0,
+            "title": "Monitoring Gain",
+            "units": "x",
+            "flags": 1,
+            "step_count": 0,
+            "default_normalized": 0.5
+          },
+          {
+            "id": 1,
+            "title": "Sustain",
+            "units": "",
+            "flags": 9,
+            "step_count": 1,
+            "default_normalized": 0
+          }
+        ]
+      },
+      "RhodesResearchQuadrature": {
+        "processor_id": "D73B886A72E04FC892435F1DC5F0B6A9",
+        "controller_id": "A45F23E1B68A4D79AF31472C8E909D52",
+        "model": 3,
+        "latency": 48,
+        "initial_state": "52485354010003000000003f00000000",
+        "legacy_parameters": [
+          {
+            "id": 0,
+            "title": "Monitoring Gain",
+            "units": "x",
+            "flags": 1,
+            "step_count": 0,
+            "default_normalized": 0.5
+          },
+          {
+            "id": 1,
+            "title": "Sustain",
+            "units": "",
+            "flags": 9,
+            "step_count": 1,
+            "default_normalized": 0
+          }
+        ]
+      }
+    },
+    "implementation_review": "Driver invokes separate subprocesses with each recorded bundle path. Harness passes argv[1] to SDK Module::create and links only SDK loader/hosting archives, not instrument implementation. Module hashes were captured before/after the original experiment; current bytes match. This audits retained evidence consistency, not an independent attestation of process execution."
+  },
+  "scope_and_limits": [
+    "Loaded legacy evidence covers three variants, host binary32/binary64, 48/192 kHz, specified note/sustain/recall timelines and whole/64/ragged partitions. It excludes CC123, polyphonic pressure, malformed inputs, saturation, and text conversion.",
+    "Parameter count intentionally changes 2 to 18; preserved legacy metadata does not imply unchanged gain text formatting/parser behavior. Command state is excluded from the unchanged 16-byte RHST v1 gain/sustain configuration; configuration bytes are not a mechanical/ownership/tail snapshot.",
+    "Models remain separately identified 1/2/3 and report 0/48/48 frames; these values are not a device latency or scheduling guarantee. Dense automation has recorded partition identity; sparse automation compares equal partitions only.",
+    "WAV036 replays 24 direct/filtered fixtures against historical 5aac654 fingerprints, not the 20a77e8 host-bundle baseline; old raw WAVs were unavailable. No Q6 replay or universal waveform identity claim.",
+    "Cost038 records freshly compiled adapter probes linked to static archives, not loaded VST3 modules. Observed timings are finite descriptive samples, not isolated parser cost, worst-case execution time, or deadline evidence.",
+    "Baseline bundle-to-commit provenance and WAV renderer build provenance were supplied by the integrator. Matching observed source hashes and commit labels do not independently prove a reproducible build; identities attach directly to the recorded tested executable bytes.",
+    "No native DAW/device, cross-platform, measured-fidelity or final HOST-002 completion claim is made by this audit."
+  ],
+  "read_only_project_checks": {
+    "python3 -B tools/project.py validate": {
+      "exit_code": 0,
+      "result": "Valid: 15 tasks, 26 evidence records; fidelity=unvalidated"
+    },
+    "python3 -B tools/project.py sync --check": {
+      "exit_code": 0,
+      "result": "Generated state is current."
+    },
+    "python3 -B tools/project.py next --json": {
+      "exit_code": 0,
+      "revision": 38,
+      "available": []
+    }
+  }
+}
