@@ -316,6 +316,128 @@ def _kill_worker(process: subprocess.Popen) -> None:
     process.wait(timeout=5)
 
 
+def _reference_source_identity() -> dict[str, dict[str, Any]]:
+    return {name: _identity(ROOT / "tools" / name) for name in
+            ("contact_extrema_reference.py", "validate_contact_reference.py")}
+
+
+def _finite_number(value: Any, *, lower: float = 0.0, upper: float = math.inf) -> bool:
+    return type(value) in (int, float) and math.isfinite(value) and lower <= value <= upper
+
+
+def _validate_worker_reference(reference: Any, fixture: str, level: str,
+                               expected_sources: Mapping[str, str]) -> dict[str, Any]:
+    """Validate the private generated-worker protocol without importing NumPy.
+
+    This is structural/provenance validation, not numerical acceptance. Search
+    pathologies remain in the unresolved ledger; valid capped records remain
+    inspectable even though they cannot complete an execution.
+    """
+    from contact_extrema_reference import (
+        CANDIDATE_ORIGINS, DEFAULT_LIMITS, SCHEMA_VERSION, STATE_COORDINATES,
+        _limits, _raw_layout, inspect_retained_raw,
+    )
+    if type(reference) is not dict or type(reference.get("schema_version")) is not int or \
+            reference["schema_version"] != SCHEMA_VERSION or \
+            reference.get("reference_kind") != "independent_supported_contact_extrema":
+        raise ValueError("worker reference schema/version/kind is invalid")
+    if reference.get("fixture") != fixture or reference.get("level") != level or \
+            reference.get("coverage") != COVERAGE or \
+            _canonical(reference.get("settings")) != _canonical(_reference_settings(level)):
+        raise ValueError("worker reference identity, settings, or coverage differs from the declared plan")
+    frozen = _fixture_definitions()[fixture]
+    if reference.get("fixture_sha256") != frozen["sha256"] or \
+            _sha(_canonical(reference.get("fixture_definition"))) != frozen["sha256"]:
+        raise ValueError("worker fixture definition differs from the frozen independent fixture")
+    if set(expected_sources) != {"contact_extrema_reference.py", "validate_contact_reference.py"} or \
+            reference.get("source_sha256") != dict(expected_sources):
+        raise ValueError("worker source hash map differs from the source identities recorded before execution")
+    limits_value, counts = reference.get("limits"), reference.get("counts")
+    if type(limits_value) is not dict or set(limits_value) != set(asdict(DEFAULT_LIMITS)):
+        raise ValueError("worker reference omits its complete declared limits")
+    limits = _limits(limits_value)
+    count_names = ("accepted_steps", "rhs_evaluations", "search_evaluations", "candidates")
+    if type(counts) is not dict or any(type(counts.get(name)) is not int or
+            not 0 <= counts[name] <= getattr(limits, name) for name in count_names) or \
+            not _finite_number(counts.get("elapsed_s")):
+        raise ValueError("worker reference counters are invalid or exceed their declared limits")
+    duration = fixtures()[fixture].duration
+    complete = reference.get("complete_duration")
+    if type(complete) is not bool or reference.get("status") != (
+            "completed" if complete else "inconclusive_reference") or \
+            reference.get("value_status") != ("requires_refinement" if complete else "inconclusive_reference") or \
+            not _finite_number(reference.get("duration_s")) or reference["duration_s"] != duration or \
+            "final_time_s" not in reference or \
+            (reference.get("final_time_s") is not None and
+             not _finite_number(reference["final_time_s"], upper=duration)) or \
+            (complete and (reference.get("final_time_s") != duration or reference.get("failure") is not None)):
+        raise ValueError("worker reference completion/duration/failure structure is inconsistent")
+    if "failure" not in reference or (reference["failure"] is not None and type(reference["failure"]) is not dict):
+        raise ValueError("worker reference failure ledger is missing or invalid")
+    raw = reference.get("raw")
+    if type(raw) is not dict or "raw_arrays" in reference or \
+            raw.get("basis") != "ascending normalized u=(t-t0)/(t1-t0)" or \
+            raw.get("state_coordinates") != list(STATE_COORDINATES) or \
+            raw.get("candidate_origin_bits") != dict(CANDIDATE_ORIGINS):
+        raise ValueError("worker retained-array representation is invalid")
+    layout, _ = _raw_layout(reference)
+    if (layout["mesh_t_s"][0][0] == 0) != (reference["final_time_s"] is None):
+        raise ValueError("worker final time is inconsistent with its empty/nonempty mesh")
+    dense_count, candidate_count = layout["dense_t0_s"][0][0], layout["candidate_time_s"][0][0]
+    peaks = reference.get("peaks")
+    if type(peaks) is not dict or set(peaks) != set(PEAK_NAMES):
+        raise ValueError("worker reference must contain all four required peak records")
+    for name in PEAK_NAMES:
+        peak = peaks[name]
+        disabled = name.startswith("damper_")
+        field, unit = ("value_m", "m") if name.endswith("compression") else ("value_n", "N")
+        if type(peak) is not dict or not _finite_number(peak.get(field)) or \
+                peak.get("unit") != unit or peak.get("coverage") != COVERAGE or \
+                peak.get("kind") not in ({"disabled"} if disabled else {"isolated_candidate", "tied_candidates"}) or \
+                peak.get("classification") not in ({"disabled"} if disabled else
+                                                       {"endpoint", "branch_boundary", "stationary"}) or \
+                peak.get("value_status") != ("analytic_disabled_identity" if disabled else
+                                              "requires_refinement" if complete else "inconclusive_reference") or \
+                peak.get("time_status") != ("disabled" if disabled else
+                                             "numerical_candidates" if complete else "inconclusive_reference"):
+            raise ValueError("worker peak value/classification structure is invalid: " + name)
+        intervals = peak.get("maximizer_intervals_s")
+        maxima = peak.get("maximizing_candidates")
+        if type(intervals) is not list or (not intervals and (complete or disabled)) or \
+                (intervals and (not _intervals(intervals) or any(item[1] > duration for item in intervals))) or \
+                type(maxima) is not list or (complete and not disabled and not maxima):
+            raise ValueError("worker peak intervals/candidate registry is invalid: " + name)
+        if disabled and (peak[field] != 0.0 or intervals != [[0.0, duration]] or maxima):
+            raise ValueError("worker disabled-damper identity is inconsistent: " + name)
+        for candidate in maxima:
+            if type(candidate) is not dict or type(candidate.get("candidate_id")) is not int or \
+                    not 0 <= candidate["candidate_id"] < candidate_count or \
+                    not _finite_number(candidate.get("time_s"), upper=duration) or \
+                    type(candidate.get("segment_id")) is not int or \
+                    not -1 <= candidate["segment_id"] < dense_count or \
+                    type(candidate.get("origin_bits")) is not int or \
+                    not 1 <= candidate["origin_bits"] <= sum(CANDIDATE_ORIGINS.values()) or \
+                    not _finite_number(candidate.get("gap_m"), lower=-math.inf) or \
+                    type(candidate.get("details")) is not list or \
+                    any(type(detail) is not dict for detail in candidate["details"]):
+                raise ValueError("worker maximizing candidate structure is invalid: " + name)
+    for name in ("root_candidates", "resolved_peak_clusters", "branches", "unresolved"):
+        if type(reference.get(name)) is not list or any(type(row) is not dict for row in reference[name]):
+            raise ValueError("worker reference diagnostic list is missing or invalid: " + name)
+    for cluster in reference["resolved_peak_clusters"]:
+        if not _finite_number(cluster.get("time_s"), upper=duration) or \
+                cluster.get("crossing") != "positive_to_negative":
+            raise ValueError("worker resolved peak cluster structure is invalid")
+    for branch in reference["branches"]:
+        if branch.get("branch") not in ("separated", "positive_compression"):
+            raise ValueError("worker branch classification is invalid")
+    statistics = reference.get("search_statistics")
+    if type(statistics) is not dict or not _finite_number(
+            statistics.get("maximum_physical_dense_derivative_discrepancy_m_per_s")):
+        raise ValueError("worker derivative diagnostic is missing or nonfinite")
+    return inspect_retained_raw(reference)
+
+
 def run_reference_worker(fixture: str, level: str, directory: Path, *,
                          timeout_seconds: float = REFERENCE_WALL_SECONDS,
                          worker_path: Path | None = None) -> tuple[dict[str, Any], dict | None]:
@@ -343,6 +465,7 @@ def run_reference_worker(fixture: str, level: str, directory: Path, *,
         "timed_out": False, "exit_code": None, "status": "inconclusive_reference", "errors": [],
         "expected_output_path": str(output), "expected_raw_path": str(raw),
         "worker_identity": _identity(worker),
+        "reference_sources_before": _reference_source_identity(),
         "coverage": COVERAGE, "phy002_acceptance": "incomplete"}
     started, process = time.monotonic(), None
     try:
@@ -378,31 +501,32 @@ def run_reference_worker(fixture: str, level: str, directory: Path, *,
             _kill_worker(process)
         raise
     record.update(elapsed_s=time.monotonic() - started, finished_utc=_utc())
+    record["reference_sources_after"] = _reference_source_identity()
     reference = None
     if output.exists() or output.is_symlink():
         payload, reading = bounded_read(output, MAX_REFERENCE_JSON_BYTES)
+        record["result_read"] = reading
         if reading["complete"]:
             try:
                 reference = json.loads(payload)
-                if type(reference) is not dict or reference.get("fixture") != fixture or \
-                        reference.get("level") != level or reference.get("coverage") != COVERAGE or \
-                        reference.get("settings") != _reference_settings(level):
-                    raise ValueError("worker reference identity, settings, or coverage differs from the declared plan")
-                if reference.get("fixture_sha256") != _fixture_definitions()[fixture]["sha256"]:
-                    raise ValueError("worker fixture definition differs from the frozen independent fixture")
-                raw_identity = _identity(raw)
-                raw_metadata = reference.get("raw", {})
-                if raw_identity.get("status") != "recorded" or \
-                        raw_metadata.get("sha256") != raw_identity.get("sha256") or \
-                        raw_metadata.get("path") != str(raw):
-                    raise ValueError("worker raw reference path or byte hash mismatch")
-                if record["exit_code"] == 0 and not record["timed_out"] and \
+                sources = record["reference_sources_before"]
+                if any(row.get("status") != "recorded" or
+                       record["reference_sources_after"][name].get("status") != "recorded" or
+                       row.get("sha256") != record["reference_sources_after"][name].get("sha256")
+                       for name, row in sources.items()):
+                    raise ValueError("worker reference sources changed or are unavailable")
+                if type(reference) is not dict or type(reference.get("raw")) is not dict or \
+                        reference["raw"].get("path") != str(raw):
+                    raise ValueError("worker raw reference path differs from its assigned artifact")
+                record["raw_validation"] = _validate_worker_reference(
+                    reference, fixture, level, {name: row["sha256"] for name, row in sources.items()})
+                if record["exit_code"] == 0 and not record["timed_out"] and not record["errors"] and \
                         reference.get("status") == "completed" and reference.get("complete_duration") is True and \
                         reference.get("final_time_s") == fixtures()[fixture].duration:
                     record["status"] = "completed"
                 else:
                     record["errors"].append("worker did not produce a successful full-duration reference")
-            except (ValueError, TypeError, KeyError, OverflowError) as exc:
+            except (OSError, ValueError, TypeError, KeyError, OverflowError, RuntimeError) as exc:
                 record["errors"].append("worker result: " + _error(exc))
                 reference = None
         else:
@@ -410,6 +534,11 @@ def run_reference_worker(fixture: str, level: str, directory: Path, *,
     else:
         record["errors"].append("worker result JSON is absent")
     record["artifacts"] = [_identity(path) for path in sorted(directory.iterdir()) if not path.is_dir()]
+    record["artifact_identity_changes"] = _retained_digest_changes(
+        _expected_retained_digests([], [record]), record["artifacts"])
+    if record["artifact_identity_changes"]:
+        record["status"] = "inconclusive_reference"
+        record["errors"].append("worker retained artifacts changed after result validation")
     _write_json(directory / "execution.json", record)
     return record, reference
 
@@ -496,6 +625,25 @@ def _sample_lower_bound(name: str, observed: float, parsed: ParsedCandidate) -> 
             "coverage_implication": "lower-bound consistency only; no continuous-domain upper bound"}
 
 
+def _reference_evaluation_token(reference: Mapping[str, Any]) -> tuple[Any, ...]:
+    """Bind cached values to the declared reference and current file identity.
+
+    Cache hits need only a regular-file metadata check. Misses still run the
+    evaluator's complete snapshot/hash/schema validation, and final experiment
+    provenance rehashes every originally retained artifact. This avoids
+    repeatedly decompressing a large NPZ for identical point evaluations.
+    """
+    relevant = ("fixture", "level", "fixture_sha256", "source_sha256", "settings", "raw",
+                "raw_arrays", "limits", "counts", "status", "complete_duration", "final_time_s")
+    fingerprint = _sha(_canonical({key: reference[key] for key in relevant if key in reference}))
+    raw, signature = reference.get("raw"), None
+    if isinstance(raw, Mapping) and "path" in raw:
+        handle, metadata = _regular_reader(Path(raw["path"]))
+        with handle:
+            signature = _signature(metadata)
+    return fingerprint, signature
+
+
 def _at_candidate_time(name: str, value: float, time_s: float, references: Mapping[str, dict],
                        evaluator: Callable[..., dict], cache: dict) -> dict[str, Any]:
     evaluations: dict[str, Any] = {}
@@ -507,8 +655,15 @@ def _at_candidate_time(name: str, value: float, time_s: float, references: Mappi
             errors.append(level + ": independent trajectory is absent")
             continue
         evaluations[level] = {}
+        try:
+            identity = _reference_evaluation_token(reference)
+        except Exception as exc:
+            error = _error(exc)
+            evaluations[level] = {side: {"error": error} for side in ("left", "right")}
+            errors.append(level + ": " + error)
+            continue
         for side in ("left", "right"):
-            key = (reference["fixture"], level, time_s, side)
+            key = (identity, level, time_s, side)
             if key not in cache:
                 try:
                     evaluation = evaluator(reference, time_s, side=side)
@@ -517,6 +672,8 @@ def _at_candidate_time(name: str, value: float, time_s: float, references: Mappi
                             type(evaluation.get(item)) not in (int, float) or
                             not math.isfinite(evaluation[item]) for item in required):
                         raise ValueError("independent evaluation omits a finite physical peak quantity")
+                    if _reference_evaluation_token(reference) != identity:
+                        raise ValueError("independent reference identity changed during point evaluation")
                     cache[key] = {"evaluation": evaluation}
                 except Exception as exc:
                     cache[key] = {"error": _error(exc)}
@@ -696,6 +853,41 @@ def _retained_artifacts(output: Path) -> list[dict[str, Any]]:
     return sorted(rows, key=lambda row: row["relative_path"])
 
 
+def _expected_retained_digests(input_records: Sequence[Mapping[str, Any]],
+                               executions: Sequence[Mapping[str, Any]]) -> dict[str, str]:
+    """Keep the original identities, including invalid/partial worker evidence."""
+    expected = {row["raw_path"]: row["retained_sha256"] for row in input_records
+                if row.get("raw_path") and row.get("retained_sha256")}
+    for execution in executions:
+        for artifact in execution.get("artifacts", []):
+            if artifact.get("status") == "recorded":
+                expected[artifact["path"]] = artifact["sha256"]
+        # These identities precede the worker's artifact inventory. If a file
+        # changed between validation and inventory, preserve the validated
+        # digest so the later observation cannot silently replace it.
+        reading = execution.get("result_read", {})
+        if reading.get("complete") and execution.get("expected_output_path"):
+            expected[execution["expected_output_path"]] = reading["retained_sha256"]
+        raw = execution.get("raw_validation", {})
+        if raw.get("sha256") and execution.get("expected_raw_path"):
+            expected[execution["expected_raw_path"]] = raw["sha256"]
+    return expected
+
+
+def _retained_digest_changes(expected: Mapping[str, str],
+                              artifacts: Sequence[Mapping[str, Any]]) -> list[dict[str, Any]]:
+    observed = {row.get("path"): row for row in artifacts}
+    changes = []
+    for path, digest in sorted(expected.items()):
+        current = observed.get(path, {})
+        if current.get("status") != "recorded" or current.get("sha256") != digest:
+            changes.append({"path": path, "expected_sha256": digest,
+                            "observed_sha256": current.get("sha256"),
+                            "observed_status": current.get("status", "missing"),
+                            "error": current.get("error", "retained bytes changed or disappeared")})
+    return changes
+
+
 def run_experiment(paths: Sequence[Path], output: Path, *, producer_executable: Path | None = None) -> dict[str, Any]:
     """Retain inputs first, then execute references and all possible comparisons."""
     output = _absolute(output)
@@ -831,8 +1023,17 @@ def run_experiment(paths: Sequence[Path], output: Path, *, producer_executable: 
     producer_ok = not producer_executable or (before["producer"].get("status") == "recorded" and
                                              after["producer"].get("status") == "recorded" and
                                              before["producer"].get("sha256") == after["producer"].get("sha256"))
-    provenance_status = "pass" if not changes and producer_ok else "fail"
+    # One final streaming hash inventory serves both the manifest and the
+    # original-identity comparison. Cached point evaluations cannot establish
+    # that the files retained at the end still match the inputs they used.
+    artifacts = _retained_artifacts(output)
+    expected_retained = _expected_retained_digests(input_records, executions)
+    retained_changes = _retained_digest_changes(expected_retained, artifacts)
+    provenance_status = "pass" if not changes and producer_ok and not retained_changes else "fail"
+    after["retained_artifacts"] = {"expected_sha256": expected_retained,
+                                   "changed_or_unavailable": retained_changes}
     _write_json(output / "provenance-after.json", after)
+    artifacts.append({**_identity(output / "provenance-after.json"), "relative_path": "provenance-after.json"})
     input_failed = any(record["errors"] for record in input_records) or bool(matrix["duplicate_slots"] or matrix["failed_runs"])
     input_complete = matrix["matrix_complete"] and not matrix["unavailable_peaks"] and len(paths) == EXPECTED_COUNT
     input_status = "fail" if input_failed else "pass" if input_complete else "incomplete"
@@ -845,7 +1046,6 @@ def run_experiment(paths: Sequence[Path], output: Path, *, producer_executable: 
     executed = len(executions) == 6 and all(row["status"] == "completed" for row in executions)
     diagnostic = _status([input_status, values, times, scaling["status"], reference_scaling["status"],
                           provenance_status, "pass" if refined and executed else "inconclusive"])
-    artifacts = _retained_artifacts(output)
     for artifact in artifacts:
         if artifact["status"] != "recorded":
             operational_errors.append("artifact identity: " + artifact["relative_path"] + ": " + artifact["error"])
@@ -872,6 +1072,9 @@ def run_experiment(paths: Sequence[Path], output: Path, *, producer_executable: 
             name: row.get("sha256") for name, row in before["sources"].items()},
             "source_sha256_after": {name: row.get("sha256") for name, row in after["sources"].items()},
             "changed_or_unavailable_sources": changes, "producer_identity_stable": producer_ok,
+            "expected_retained_sha256": expected_retained,
+            "changed_or_unavailable_artifacts": retained_changes,
+            "retained_artifact_identity_stable": not retained_changes,
             "plan_sha256": _sha(_canonical(declared) + b"\n"), "model_sha256": declared["model_sha256"],
             "settings_sha256": MATRIX_SETTINGS_SHA256, "fixture_sha256": declared["model"]["fixture_sha256"],
             "before_path": str(output / "provenance-before.json"), "after_path": str(output / "provenance-after.json")},

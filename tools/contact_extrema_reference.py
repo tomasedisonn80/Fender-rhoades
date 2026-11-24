@@ -20,6 +20,12 @@ but references mesh endpoints by array index instead of duplicating states.
 ``evaluate_reference(reference, time_s, *, side='right')`` evaluates those
 retained cubics, including branch and physical/dense derivative diagnostics.
 It accepts the returned dictionary (the raw NPZ path must remain accessible).
+``inspect_retained_raw(reference)`` checks a retained NPZ's fixed array schema
+and byte identities without importing NumPy. Both paths use a bounded stable
+regular-file snapshot and inspect every NPY header before array allocation.
+``raw_storage_limits(limits=None)`` reports the storage ceilings derived from
+the existing step/candidate limits. Capped/partial final records remain valid;
+periodic checkpoint archives retain their separate metadata representation.
 ``compare_refinement([r0, r1, r2])`` reports both unchanged value differences,
 peak-classification/cluster checks, and supplemental timing separately.
 
@@ -42,18 +48,24 @@ there are no new runtime dependencies or imported candidate trajectories.
 from __future__ import annotations
 
 import argparse
+import ast
 from dataclasses import asdict, dataclass
 import hashlib
+import io
 import json
 import math
 import os
 from pathlib import Path
 import platform
+import stat
+import struct
 import sys
 import tempfile
 import time
 from types import MappingProxyType
 from typing import Any, Callable, Mapping, Sequence
+import zipfile
+import zlib
 
 from validate_contact_reference import Fixture, fixtures, initial_vector, observe, rhs
 
@@ -112,6 +124,24 @@ class ReferenceLimits:
 
 
 DEFAULT_LIMITS = ReferenceLimits()
+
+# This is the existing retained representation, not an expanded scientific
+# schema. Storage ceilings follow the live solver's step/candidate ceilings.
+RAW_ARRAY_LAYOUT = MappingProxyType({
+    "mesh_t_s": ("<f8", (), "mesh"),
+    "mesh_y": ("<f8", (13,), "mesh"),
+    "dense_t0_s": ("<f8", (), "dense"),
+    "dense_t1_s": ("<f8", (), "dense"),
+    "dense_coefficients": ("<f8", (13, 4), "dense"),
+    "reconstruction_residual": ("<f8", (13,), "dense"),
+    "reconstruction_limit": ("<f8", (13,), "dense"),
+    "candidate_time_s": ("<f8", (), "candidate"),
+    "candidate_y": ("<f8", (13,), "candidate"),
+    "candidate_segment_id": ("<i8", (), "candidate"),
+    "candidate_origin_bits": ("<u8", (), "candidate"),
+})
+MAX_NPY_HEADER_BYTES = 4096  # Includes magic/version/length, before array data.
+MAX_ZIP_METADATA_BYTES = 64 * 1024
 
 
 class ReferenceFailure(RuntimeError):
@@ -950,20 +980,297 @@ def generate_reference(fixture: str | Fixture, level: str = "R2", *,
     return result
 
 
-def _load_arrays(reference: dict[str, Any]) -> dict[str, Any]:
+def raw_storage_limits(limits: Mapping[str, Any] | ReferenceLimits | None = None) -> dict[str, int]:
+    """Byte ceilings for the unchanged eleven-array retained representation.
+
+    A mesh row uses 112 bytes, a cubic/residual row 640, and a candidate row
+    128. Headers, ZIP metadata, and conservative DEFLATE expansion have their
+    own allowances; no compression-ratio assumption is needed. Tightened
+    solver limits also tighten these storage limits.
+    """
+    caps = _limits(limits)
+    arrays = 112 * (caps.accepted_steps + 1) + 640 * caps.accepted_steps + 128 * caps.candidates
+    uncompressed = arrays + len(RAW_ARRAY_LAYOUT) * MAX_NPY_HEADER_BYTES
+    compressed = uncompressed + 16 * (uncompressed // 1000 + 1) + MAX_ZIP_METADATA_BYTES
+    return {"array_bytes": arrays, "uncompressed_bytes": uncompressed, "compressed_bytes": compressed}
+
+
+def _is_sha256(value: Any) -> bool:
+    return type(value) is str and len(value) == 64 and all(c in "0123456789abcdef" for c in value)
+
+
+def _raw_layout(reference: Mapping[str, Any]) -> tuple[dict[str, tuple], dict[str, int]]:
+    """Validate dimensions and checked byte products before NumPy sees them.
+
+    Public constructed-cubic records may omit solver counters/limits. Their
+    arrays are still bounded by the declared defaults. Generated records carry
+    counters, which must agree with the retained rows. An interrupted step may
+    retain one mesh endpoint without its cubic; it is never full coverage.
+    """
+    metadata = reference.get("raw")
+    if not isinstance(metadata, Mapping) or not isinstance(metadata.get("arrays"), Mapping):
+        raise ValueError("Raw reference array manifest is missing")
+    manifest = metadata["arrays"]
+    if set(manifest) != set(RAW_ARRAY_LAYOUT):
+        raise ValueError("Raw reference must contain exactly the eleven declared arrays")
+    limits = _limits(reference.get("limits"))
+    ceilings = raw_storage_limits(limits)
+    row_caps = {"mesh": limits.accepted_steps + 1, "dense": limits.accepted_steps,
+                "candidate": limits.candidates}
+    rows: dict[str, int] = {}
+    layout: dict[str, tuple] = {}
+    total = 0
+    for name, (dtype, tail, group) in RAW_ARRAY_LAYOUT.items():
+        item = manifest[name]
+        if not isinstance(item, Mapping) or set(item) != {"shape", "dtype", "sha256"}:
+            raise ValueError("Invalid raw array manifest entry: " + name)
+        shape = item["shape"]
+        if not isinstance(shape, (list, tuple)) or len(shape) != len(tail) + 1 or any(
+                type(n) is not int or n < 0 for n in shape):
+            raise ValueError("Invalid raw array dimensions: " + name)
+        shape = tuple(shape)
+        if shape[1:] != tail or shape[0] > row_caps[group] or item["dtype"] != dtype:
+            raise ValueError("Raw array shape/dtype exceeds the declared representation: " + name)
+        if not _is_sha256(item["sha256"]):
+            raise ValueError("Invalid raw array SHA-256: " + name)
+        if rows.setdefault(group, shape[0]) != shape[0]:
+            raise ValueError("Raw arrays have inconsistent " + group + " row counts")
+        size = 8
+        for dimension in shape:
+            if dimension and size > ceilings["array_bytes"] // dimension:
+                raise ValueError("Raw array byte product exceeds the storage limit: " + name)
+            size *= dimension
+        total += size
+        if total > ceilings["array_bytes"]:
+            raise ValueError("Raw arrays exceed the total uncompressed array byte limit")
+        layout[name] = (shape, dtype, size)
+    mesh, dense, candidates = (rows[key] for key in ("mesh", "dense", "candidate"))
+    if mesh == 0:
+        if dense or candidates:
+            raise ValueError("Empty mesh cannot retain dense segments or candidates")
+    elif mesh - dense not in (1, 2):
+        raise ValueError("Partial raw reference may have at most one unreconstructed mesh step")
+    if "complete_duration" in reference and type(reference["complete_duration"]) is not bool:
+        raise ValueError("Reference complete_duration must be a boolean")
+    completed = reference.get("complete_duration") is True or reference.get("status") == "completed"
+    if completed and (mesh != dense + 1 or not dense or not candidates):
+        raise ValueError("Completed raw reference requires a full nonempty mesh/dense registry")
+    if "counts" in reference:
+        counts = reference["counts"]
+        if not isinstance(counts, Mapping):
+            raise ValueError("Reference counters must be a mapping")
+        for name in ("accepted_steps", "rhs_evaluations", "search_evaluations", "candidates"):
+            if name in counts and (type(counts[name]) is not int or
+                                   not 0 <= counts[name] <= getattr(limits, name)):
+                raise ValueError("Invalid retained reference counter: " + name)
+        for name, count in (("accepted_steps", max(0, mesh - 1)), ("candidates", candidates)):
+            if name in counts and counts[name] != count:
+                raise ValueError("Retained reference counter disagrees with arrays: " + name)
+    return layout, ceilings
+
+
+def _raw_signature(metadata: os.stat_result) -> tuple[int, ...]:
+    return (metadata.st_dev, metadata.st_ino, metadata.st_mode, metadata.st_size,
+            metadata.st_mtime_ns, metadata.st_ctime_ns)
+
+
+def _raw_parents(path: Path) -> None:
+    for parent in reversed(path.parents):
+        metadata = parent.lstat()
+        if not stat.S_ISDIR(metadata.st_mode) or stat.S_ISLNK(metadata.st_mode):
+            raise OSError("Raw reference ancestors must be real directories")
+
+
+def _raw_snapshot(metadata: Mapping[str, Any], limit: int) -> tuple[bytes, tuple[int, ...]]:
+    """Hash and parse one bounded stable regular-file snapshot, never reopen it."""
+    if type(metadata.get("path")) is not str or not _is_sha256(metadata.get("sha256")):
+        raise ValueError("Raw reference path or SHA-256 is invalid")
+    path = Path(os.path.abspath(metadata["path"]))
+    _raw_parents(path)
+    before = path.lstat()
+    if not stat.S_ISREG(before.st_mode):
+        raise OSError("Raw reference must be a regular file; symlinks and special files are refused")
+    if before.st_size > limit:
+        raise ValueError("Raw reference exceeds the compressed byte limit")
+    flags = (os.O_RDONLY | getattr(os, "O_BINARY", 0) | getattr(os, "O_NOFOLLOW", 0)
+             | getattr(os, "O_NONBLOCK", 0) | getattr(os, "O_CLOEXEC", 0))
+    descriptor = os.open(path, flags)
+    blocks = []
+    try:
+        opened = os.fstat(descriptor)
+        if not stat.S_ISREG(opened.st_mode) or _raw_signature(opened) != _raw_signature(before) or \
+                _raw_signature(path.lstat()) != _raw_signature(opened):
+            raise OSError("Raw reference changed identity while opening")
+        remaining = opened.st_size
+        while remaining:
+            block = os.read(descriptor, min(65536, remaining))
+            if not block:
+                raise OSError("Raw reference snapshot is incomplete")
+            blocks.append(block)
+            remaining -= len(block)
+        after = os.fstat(descriptor)
+        _raw_parents(path)
+        if _raw_signature(after) != _raw_signature(opened) or \
+                _raw_signature(path.lstat()) != _raw_signature(after):
+            raise OSError("Raw reference changed during snapshot read")
+    finally:
+        os.close(descriptor)
+    snapshot = b"".join(blocks)
+    if _sha(snapshot) != metadata["sha256"]:
+        raise ValueError("Raw reference byte hash mismatch")
+    return snapshot, _raw_signature(after)
+
+
+def _inspect_npz(snapshot: bytes, manifest: Mapping[str, Any], layout: Mapping[str, tuple],
+                 ceilings: Mapping[str, int], *, verify_payload: bool) -> int:
+    """Bound ZIP metadata and every NPY header before any ndarray allocation."""
+    # ZipFile otherwise constructs one Python record per central-directory
+    # entry before callers can reject an excessive entry count.
+    offset = snapshot.rfind(b"PK\x05\x06", max(0, len(snapshot) - 65557))
+    if offset < 0 or len(snapshot) - offset < 22:
+        raise ValueError("Raw reference is not a complete NPZ archive")
+    _, disk, directory_disk, disk_entries, entries, directory_size, directory_offset, comment = \
+        struct.unpack_from("<4s4H2IH", snapshot, offset)
+    if disk or directory_disk or disk_entries != len(layout) or entries != len(layout) or \
+            directory_size > MAX_ZIP_METADATA_BYTES or directory_offset + directory_size != offset or \
+            offset + 22 + comment != len(snapshot):
+        raise ValueError("Raw reference per-array hash/shape/dtype mismatch: NPZ directory/count/metadata")
+    total = 0
+    try:
+        with zipfile.ZipFile(io.BytesIO(snapshot)) as archive:
+            members = archive.infolist()
+            expected = {name + ".npy" for name in layout}
+            if len(members) != len(layout) or {item.filename for item in members} != expected:
+                raise ValueError("Raw reference per-array hash/shape/dtype mismatch: expected eleven named NPY members")
+            for item in members:
+                name = item.filename[:-4]
+                shape, dtype, data_bytes = layout[name]
+                if item.flag_bits & 1 or item.compress_type not in (zipfile.ZIP_STORED, zipfile.ZIP_DEFLATED):
+                    raise ValueError("Raw NPZ compression/encryption is unsupported")
+                if not 0 <= item.compress_size <= ceilings["compressed_bytes"] or \
+                        not data_bytes <= item.file_size <= data_bytes + MAX_NPY_HEADER_BYTES:
+                    raise ValueError("Raw NPY member exceeds its declared uncompressed byte limit: " + name)
+                total += item.file_size
+                if total > ceilings["uncompressed_bytes"]:
+                    raise ValueError("Raw NPZ exceeds the total uncompressed byte limit")
+                with archive.open(item) as stream:
+                    magic = stream.read(8)
+                    if len(magic) != 8 or magic[:6] != b"\x93NUMPY" or magic[6:] not in (b"\x01\x00", b"\x02\x00", b"\x03\x00"):
+                        raise ValueError("Unsupported raw NPY magic/version: " + name)
+                    width = 2 if magic[6] == 1 else 4
+                    length = stream.read(width)
+                    if len(length) != width:
+                        raise ValueError("Truncated raw NPY header length: " + name)
+                    header_bytes = int.from_bytes(length, "little")
+                    prefix = 8 + width
+                    if not 0 < header_bytes <= MAX_NPY_HEADER_BYTES - prefix:
+                        raise ValueError("Raw NPY header exceeds the declared byte limit: " + name)
+                    header = stream.read(header_bytes)
+                    if len(header) != header_bytes or prefix + header_bytes + data_bytes != item.file_size:
+                        raise ValueError("Raw NPY header/data byte count mismatch: " + name)
+                    fields = ast.literal_eval(header.decode("utf-8" if magic[6] == 3 else "latin1"))
+                    if type(fields) is not dict or set(fields) != {"descr", "fortran_order", "shape"} or \
+                            fields["descr"] != dtype or fields["fortran_order"] is not False or \
+                            type(fields["shape"]) is not tuple or \
+                            any(type(n) is not int for n in fields["shape"]) or fields["shape"] != shape:
+                        raise ValueError("Raw reference per-array hash/shape/dtype mismatch: NPY header/order " + name)
+                    if verify_payload:
+                        digest = hashlib.sha256()
+                        remaining = data_bytes
+                        while remaining:
+                            block = stream.read(min(65536, remaining))
+                            if not block:
+                                raise ValueError("Truncated raw NPY data: " + name)
+                            digest.update(block)
+                            remaining -= len(block)
+                        if stream.read(1) or digest.hexdigest() != manifest[name]["sha256"]:
+                            raise ValueError("Raw reference per-array hash mismatch: " + name)
+    except (zipfile.BadZipFile, EOFError, SyntaxError, UnicodeError, RecursionError, struct.error, zlib.error) as exc:
+        raise ValueError("Invalid raw NPZ/NPY structure: " + str(exc)) from exc
+    return total
+
+
+def inspect_retained_raw(reference: Mapping[str, Any]) -> dict[str, Any]:
+    """Validate a retained NPZ and payload hashes without NumPy or array allocation.
+
+    Partial/capped final records use the same eleven-array format. Periodic
+    twelve-member checkpoint archives have a separate metadata format and are
+    preserved as evidence; they are not silently promoted to final references.
+    """
+    if "raw_arrays" in reference:
+        raise ValueError("NPZ inspection requires a retained file, not inline arrays")
+    layout, ceilings = _raw_layout(reference)
+    snapshot, signature = _raw_snapshot(reference["raw"], ceilings["compressed_bytes"])
+    total = _inspect_npz(snapshot, reference["raw"]["arrays"], layout, ceilings, verify_payload=True)
+    return {"sha256": reference["raw"]["sha256"], "bytes": len(snapshot),
+            "signature": list(signature), "array_bytes": sum(row[2] for row in layout.values()),
+            "uncompressed_bytes": total}
+
+
+def _check_inline_array(value: Any, shape: tuple[int, ...], dtype: str) -> None:
+    if shape:
+        if type(value) not in (list, tuple) or len(value) != shape[0]:
+            raise ValueError("Inline raw array shape differs from its manifest")
+        for child in value:
+            _check_inline_array(child, shape[1:], dtype)
+    elif dtype == "<f8":
+        try:
+            valid = type(value) in (int, float) and math.isfinite(value)
+        except OverflowError:
+            valid = False
+        if not valid:
+            raise ValueError("Inline raw floating arrays require finite numeric values")
+    elif type(value) is not int or not (-(1 << 63) <= value < (1 << 63) if dtype == "<i8"
+                                       else 0 <= value < (1 << 64)):
+        raise ValueError("Inline raw integer array value is out of range")
+
+
+def _check_array_values(reference: Mapping[str, Any], arrays: Mapping[str, Any]) -> None:
     np = _numpy()
+    for name, (dtype, _, _) in RAW_ARRAY_LAYOUT.items():
+        if dtype == "<f8" and not np.all(np.isfinite(arrays[name])):
+            raise ValueError("Raw array contains nonfinite values: " + name)
+    mesh, starts, ends = arrays["mesh_t_s"], arrays["dense_t0_s"], arrays["dense_t1_s"]
+    if len(mesh) and (mesh[0] != 0.0 or np.any(np.diff(mesh) <= 0)):
+        raise ValueError("Raw mesh times must start at zero and strictly increase")
+    if not np.array_equal(starts, mesh[:len(starts)]) or not np.array_equal(ends, mesh[1:len(ends) + 1]):
+        raise ValueError("Raw dense intervals do not match the retained mesh prefix")
+    times, ids, origins = (arrays[name] for name in
+                           ("candidate_time_s", "candidate_segment_id", "candidate_origin_bits"))
+    if len(times) and (np.any(times < 0) or np.any(times > mesh[-1]) or
+                       np.any(ids < -1) or np.any(ids >= len(starts)) or
+                       np.any(origins < 1) or np.any(origins > sum(CANDIDATE_ORIGINS.values()))):
+        raise ValueError("Raw candidate times, segment IDs, or origin bits are invalid")
+    if "final_time_s" in reference and reference["final_time_s"] != (float(mesh[-1]) if len(mesh) else None):
+        raise ValueError("Reference final time disagrees with its retained mesh")
+    if reference.get("complete_duration") is True:
+        if not len(mesh) or mesh[-1] != _fixture(reference["fixture"]).duration:
+            raise ValueError("Completed raw reference does not cover the declared duration")
+
+
+def _load_arrays(reference: dict[str, Any]) -> dict[str, Any]:
+    layout, ceilings = _raw_layout(reference)
     metadata = reference["raw"]
     if "raw_arrays" in reference:
-        arrays = {name: np.asarray(value, dtype=metadata["arrays"][name]["dtype"]).reshape(
-            metadata["arrays"][name]["shape"]) for name, value in reference["raw_arrays"].items()}
+        inline = reference["raw_arrays"]
+        if not isinstance(inline, Mapping) or set(inline) != set(layout):
+            raise ValueError("Inline raw reference must contain exactly the eleven declared arrays")
+        for name, (shape, dtype, _) in layout.items():
+            _check_inline_array(inline[name], shape, dtype)
+        np = _numpy()
+        arrays = {name: np.asarray(inline[name], dtype=dtype).reshape(shape)
+                  for name, (shape, dtype, _) in layout.items()}
     else:
-        path = Path(metadata["path"])
-        if _sha(path.read_bytes()) != metadata["sha256"]:
-            raise ValueError("Raw reference byte hash mismatch")
-        with np.load(path, allow_pickle=False) as archive:
-            arrays = {key: archive[key] for key in archive.files}
+        snapshot, _ = _raw_snapshot(metadata, ceilings["compressed_bytes"])
+        _inspect_npz(snapshot, metadata["arrays"], layout, ceilings, verify_payload=False)
+        np = _numpy()
+        # Both preflight and NumPy consume the exact bytes whose hash was
+        # verified. A later pathname replacement cannot select another file.
+        with np.load(io.BytesIO(snapshot), allow_pickle=False) as archive:
+            arrays = {name: archive[name] for name in layout}
     if _array_hashes(arrays) != metadata["arrays"]:
         raise ValueError("Raw reference per-array hash/shape/dtype mismatch")
+    _check_array_values(reference, arrays)
     return arrays
 
 
@@ -971,8 +1278,10 @@ def evaluate_reference(reference: dict[str, Any], time_s: float, *, side: str = 
     """Evaluate retained dense state and independent physics at a reported time.
 
     Side chooses the dense segment at a shared endpoint, never t+/-epsilon.
-    Raw bytes and per-array identities are verified before use. This deliberate
-    per-call verification suits compact candidate batches, not audio processing.
+    Raw bytes, headers, array shapes and per-array identities are verified
+    before use. This deliberate per-call verification suits compact candidate
+    batches, not audio processing. Partial references expose only the retained
+    dense prefix; an unreconstructed final mesh endpoint is not extrapolated.
     """
     np = _numpy()
     f = _fixture(reference["fixture"])

@@ -243,20 +243,36 @@
       "assignment": 30,
       "wave": 2,
       "agent_task_name": "/root/w2_030_extrema_raw_hardening",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/20261124b-w2-030-extrema-raw-hardening.md",
+      "sha256": "0b510436d47ef611f45cf15ddb5b3344fb292c359276935e51ca12e5d1dcaec7"
     },
     {
       "assignment": 31,
       "wave": 2,
       "agent_task_name": "/root/w2_031_extrema_raw_tests",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/20261124b-w2-031-extrema-raw-tests.md",
+      "sha256": "c40f75e7332fa847eded3a992e886eab250ec09a48ead00bd95683af6fa44fd2"
     },
     {
       "assignment": 32,
       "wave": 2,
       "agent_task_name": "/root/w2_032_direct_alias_driver",
       "status": "running"
+    },
+    {
+      "assignment": 33,
+      "wave": 2,
+      "agent_task_name": "/root/w2_033_alias_oracle_tests",
+      "status": "running"
+    },
+    {
+      "assignment": 34,
+      "wave": 2,
+      "agent_task_name": "/root/w2_034_alias_driver_tests",
+      "status": "running"
     }
   ],
-  "completed_agents": 29
+  "completed_agents": 31
 }

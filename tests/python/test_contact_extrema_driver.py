@@ -21,6 +21,8 @@ import tempfile
 import unittest
 from unittest.mock import Mock, call, patch
 
+from test_contact_extrema_raw import packed, tiny_arrays, worker_record
+
 
 ROOT = Path(__file__).resolve().parents[2]
 TOOLS = ROOT / "tools"
@@ -116,7 +118,7 @@ def candidate_document(fixture="supported_impact", *, peaks=True):
     return {"schema_version": 1, "model": "synthetic-contact-p1", "runs": [run]}
 
 
-def reference_record(fixture="supported_impact", level="R2", *, raw_path=None):
+def reference_record(fixture="supported_impact", level="R2"):
     """Independent protocol-shaped test record, with no retained numerical arrays."""
     peaks = {}
     for name in PEAKS:
@@ -138,10 +140,6 @@ def reference_record(fixture="supported_impact", level="R2", *, raw_path=None):
         "resolved_peak_clusters": [{"time_s": 0.004, "crossing": "positive_to_negative"}],
         "search_statistics": {"maximum_physical_dense_derivative_discrepancy_m_per_s": 0.0},
     }
-    if raw_path is not None:
-        raw = b"synthetic protocol bytes, deliberately not a numerical NPZ"
-        raw_path.write_bytes(raw)
-        result["raw"] = {"path": str(raw_path), "sha256": digest(raw)}
     return result
 
 
@@ -299,6 +297,9 @@ class DriverFilesCase(unittest.TestCase):
         worker.parent.mkdir()
         worker.write_bytes(b"# synthetic worker source; never executed\n")
         self.worker_path = worker
+        rhs = worker.with_name("validate_contact_reference.py")
+        rhs.write_bytes(b"# synthetic independent RHS source; never executed\n")
+        self.worker_sources = {path.name: digest(path.read_bytes()) for path in (worker, rhs)}
         stack.enter_context(patch.object(driver, "ROOT", self.directory))
         stack.enter_context(patch.object(driver, "SOURCE_PATHS", ("source.py",)))
         # Never inspect Git or shared mutable repository files in these tests.
@@ -318,7 +319,23 @@ class DriverFilesCase(unittest.TestCase):
             kwargs["stdout"].write(b"retained synthetic stdout\n")
             kwargs["stderr"].write(b"retained synthetic stderr\n")
             if final:
-                record = reference_record(arguments["--fixture"], arguments["--level"], raw_path=raw)
+                arrays = tiny_arrays()
+                arrays["candidate_time_s"] = packed("<f8", (2,), [0.004, 0.020])
+                arrays["candidate_segment_id"] = packed("<i8", (2,), [0, 0])
+                arrays["candidate_origin_bits"] = packed("<u8", (2,), [16, 1])
+                record = worker_record(raw, fixture=arguments["--fixture"],
+                                       level=arguments["--level"], arrays=arrays,
+                                       source_sha256=self.worker_sources)
+                for name in ("hammer_compression", "hammer_force"):
+                    record["peaks"][name].update(
+                        classification="stationary", maximizer_intervals_s=[[0.004, 0.004]],
+                        maximizing_candidates=[{"candidate_id": 0, "time_s": 0.004,
+                                                "segment_id": 0, "origin_bits": 16,
+                                                "gap_m": 0.001, "details": []}])
+                record["branches"] = [{"branch": name} for name in
+                                      ("separated", "positive_compression", "separated")]
+                record["resolved_peak_clusters"] = [
+                    {"time_s": 0.004, "crossing": "positive_to_negative"}]
                 if mutate:
                     mutate(record)
                 output.write_bytes(encode(record))
@@ -663,13 +680,13 @@ class ContactExtremaProvenanceTests(DriverFilesCase):
     def test_incoherent_reference_sources_do_not_resolve_refinement(self):
         def mutate(record):
             if record["level"] == "R1":
-                record["source_sha256"]["synthetic-protocol-source"] = "b" * 64
+                record["source_sha256"]["contact_extrema_reference.py"] = "b" * 64
         report, _ = self.experiment([self.candidate()], launcher=self.launcher(mutate=mutate))
-        self.assertEqual(report["reference_execution_status"], "pass")
+        self.assertEqual(report["reference_execution_status"], "incomplete")
         self.assertEqual(report["reference_refinement_status"], "inconclusive_reference")
         self.assertEqual(report["exit_code"], 2)
         for row in report["reference_refinement"].values():
-            self.assertIn("source identities differ", " ".join(row["issues"]))
+            self.assertTrue(row["issues"])
 
     def test_scoped_pass_still_cannot_complete_phy002(self):
         report, _ = self.experiment([self.candidate()], complete=True)
