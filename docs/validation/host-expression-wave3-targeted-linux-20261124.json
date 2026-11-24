@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "created_at_utc": "2026-11-24T13:36:19.026313+00:00",
+  "task_id": "HOST-003",
+  "status": "pass",
+  "scope": "Integrator execution of 18 concrete-host fault selectors and three supported-rate matrices on the wave-3 Linux/GCC Release working tree.",
+  "base_commit": "19b566acf77bf5b2df489353cc0d66fd9cb0c248",
+  "source_files_before": {
+    "CMakeLists.txt": "a277bb3604b4d310a63ceba670d81d59dd1d47ba74a8524bfa9926ca04f6075d",
+    "cmake/Vst3.cmake": "198e14483392df6c3e672196aa13775e2d06909bfc5fc478494beb446c1a8279",
+    "include/rhodes/audio_engine.hpp": "10efac8150c07e69ef41eed415a6e7403b4339179af902f91cd17ef498da7b97",
+    "include/rhodes/audio_filter_coefficients.hpp": "c1ab39356d7e44348f9dc56f9120ff2598889d1fa144e5294b084585655eb76d",
+    "include/rhodes/contact_reference.hpp": "00b99e61dc73686c22675bedf647c3ad1b27ba13332180431f5a42e485057fda",
+    "include/rhodes/control_text.hpp": "de28474739274f4fac20dc1d3d5602cb63c62ddd04a33202cb5375985086e63d",
+    "include/rhodes/control_value.hpp": "d7c282afdcffaef90f7872f97b37bfb34671448da64376d3439649c052d4d48d",
+    "include/rhodes/event_processor.hpp": "07e00266db226c50cd379da8d916d63827f24d382d05642a159924a36137f6d9",
+    "include/rhodes/fir_decimator.hpp": "e54faeb397bcbccb9ed9834cfc264d84550c4ef375d8e5273a720eb1f190071b",
+    "include/rhodes/instrument_state.hpp": "1550dbbd83ea20838a6cac1579c716f7d01a94429450c19b62d18df14d102043",
+    "include/rhodes/note_tracker.hpp": "76931b326daae3a112b56420f9be9ea5b03b1c30307f1dc68b6c13c710cd830f",
+    "include/rhodes/quadrature_engine.hpp": "c625a82b61eb3e721061177654c12ffa6aac0049e026b9633ae53ea2abaa773d",
+    "include/rhodes/quadrature_filter_coefficients.hpp": "3cca4ea6553ceb01810a6230f2144491364fa48af7d6cfbc43a8e3dcf5d08b51",
+    "include/rhodes/quadrature_fir.hpp": "cf6c85e70036b3f1794ecf131a9db43bcb8da373e47c5335f56b1bb57559b45e",
+    "include/rhodes/research_engine.hpp": "2a6ba0483a010d9b7a44517c5ed7c215f05d57ed6e96bd6609127322092929e4",
+    "plugins/vst3/controller.cpp": "585952b0dab4886ab8d0f11e0d90a2f156af76ffbb7961f9dedfb92d50e018f2",
+    "plugins/vst3/controller.hpp": "41f4b2cc1c714735f780d57355c01f822450a99aab4ab4d1321b458cdac3b516",
+    "plugins/vst3/factory.cpp": "0dafb9197ff58af621657c9f0f6bb1924dc491ad75661968634c6611b5b9e87d",
+    "plugins/vst3/plugin_ids.hpp": "6519fada912e6ac49bf7af07c56b943251ab1a2919599094e36defaea2091a42",
+    "plugins/vst3/processor.cpp": "767363289c263ccce91ee7a54ecdce36cc93ae94157539b104bc3e525996a3a7",
+    "plugins/vst3/processor.hpp": "898451f74819e863765052889fd304327d8497906dc2356e192d2177feafc646",
+    "plugins/vst3/state_stream.cpp": "2ed904f1b2852238546674b9e8bb72d733b93a3327c8cf2eefc1d7fcd5fa0e1e",
+    "plugins/vst3/state_stream.hpp": "de4d8b95ac534f4601de820b0a7a7d55ca15ec9eca7953161560e4f901a1b693",
+    "src/contact_reference.cpp": "70dde1bfab9c2e35457da2ebf66ff4638cb6f56f1f19a84dbe55a1752d5166fd",
+    "src/research_engine.cpp": "01c2a9f7f9f7cfa4f759be56770178f32a71a28667d4ac6ab390e03ff7a95814",
+    "tests/cpp/vst3_expression_audio_test.cpp": "a69eb13a7adb03c2d69783d936862563ae37ede806e30a8d6ce2f2a02c18ded5",
+    "tests/cpp/vst3_expression_fault_test.cpp": "718ffc2989d53606a4c3a36a8f5173bebc920fe31364a6590ce1b222c4d45f08",
+    "tests/cpp/vst3_test_support.hpp": "184b4c3d9efaaaf84ab33818485279633bfd03b9aad8c42d18e0634e41254f4d"
+  },
+  "source_files_unchanged_after": true,
+  "binary_sha256_after_execution": {
+    "rhodes_vst3_expression_fault_tests": "c96ee3d17af2058eb67cb6485f5ec725ebb3f58bd2ae15e6456b7dcc23f0fdc8",
+    "rhodes_vst3_filtered_expression_fault_tests": "59ac5bca78f29c35c725ce44c9c078e8623d71b2b1e0850e50047e7d4db98a64",
+    "rhodes_vst3_quadrature_expression_fault_tests": "d0afe551a050e3a1d56116977e0fe7e60c04cc7926a829f2b3b71f9d85fcd4db",
+    "rhodes_vst3_expression_audio_tests": "839ab0df9623282620e9f99f66bd84ae8c4ab0cf81df12897d95b90bea23c951",
+    "rhodes_vst3_filtered_expression_audio_tests": "11d53af8fb60cd37c542072d107e0e75f103e2299a86aea5d363841980aad32b",
+    "rhodes_vst3_quadrature_expression_audio_tests": "08f5ed1980b064b43b58792f83107157cc3cc7776799ae9fba1670667f6643b8"
+  },
+  "observations": [
+    {
+      "label": "fault",
+      "passed": 18,
+      "failed": 0,
+      "skipped": 0,
+      "names": [
+        "vst3.expression_fault_interception",
+        "vst3.filtered_expression_fault_interception",
+        "vst3.quadrature_expression_fault_interception",
+        "vst3.expression_fault_engine_failure",
+        "vst3.filtered_expression_fault_engine_failure",
+        "vst3.quadrature_expression_fault_engine_failure",
+        "vst3.expression_fault_monitor_fault",
+        "vst3.filtered_expression_fault_monitor_fault",
+        "vst3.quadrature_expression_fault_monitor_fault",
+        "vst3.expression_fault_float_conversion",
+        "vst3.filtered_expression_fault_float_conversion",
+        "vst3.quadrature_expression_fault_float_conversion",
+        "vst3.expression_fault_fault_state",
+        "vst3.filtered_expression_fault_fault_state",
+        "vst3.quadrature_expression_fault_fault_state",
+        "vst3.expression_fault_reset_recovery",
+        "vst3.filtered_expression_fault_reset_recovery",
+        "vst3.quadrature_expression_fault_reset_recovery"
+      ]
+    },
+    {
+      "label": "rate",
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0,
+      "names": [
+        "vst3.expression_audio_rate_matrix",
+        "vst3.filtered_expression_audio_rate_matrix",
+        "vst3.quadrature_expression_audio_rate_matrix"
+      ]
+    }
+  ],
+  "archive": {
+    "path": "docs/validation/host-expression-wave3-targeted-linux-20261124.tar.gz",
+    "sha256": "993714b5799f7053b2000a5d6394448bb6f325c3d28221a210d95ba988211966",
+    "bytes": 4946,
+    "members": {
+      "wave3-configure.log": {
+        "bytes": 618,
+        "sha256": "450e4a67724072ab72f2334ecb687fb846d1541070d64bef84b9f02356a2e0a3"
+      },
+      "wave3-fault-build.log": {
+        "bytes": 2247,
+        "sha256": "1392d35a23be753c91e61f174ed1acf4801ee8dd398a6cd1148bcdfc63a5693b"
+      },
+      "wave3-rate-build.log": {
+        "bytes": 1221,
+        "sha256": "e7e70668262f23f1208919d8855e2d1195dafe27e7f2a56111bab918181093e8"
+      },
+      "wave3-targeted-source-before.json": {
+        "bytes": 2937,
+        "sha256": "bcfad10f701f5c39da9d762564c10df0a8e0c24db24b355d017c27e2e7b89855"
+      },
+      "wave3-fault-ctest.log": {
+        "bytes": 2956,
+        "sha256": "c70604e7a6de3be8304a644e1c6bcabefb237687bc9c981ae3a1094211290be3"
+      },
+      "wave3-fault-ctest.xml": {
+        "bytes": 25544,
+        "sha256": "6343224a119eac98114f55710962e5ca5b6bb649f698ebd9a5b7f7194df37451"
+      },
+      "wave3-rate-ctest.log": {
+        "bytes": 520,
+        "sha256": "a20aad47cae26fc0665a6911cd6fee16a7df7f4d66c4b5590c3ae029b432857a"
+      },
+      "wave3-rate-ctest.xml": {
+        "bytes": 1084,
+        "sha256": "fd52753a67e6951c6fec839c63fddba26472d26faa3eac95bfe37352d16dc57b"
+      }
+    }
+  },
+  "limits": [
+    "Working-tree focused build and execution, not a new full-suite or clean native-platform claim.",
+    "Fault wrappers execute real production engine methods and then alter their public outputs in test-only executables; production modules are not instrumented.",
+    "Fault targets are limited to supported 64-bit Linux ELF/libstdc++ GNU-compatible --wrap linkage; no Windows/macOS fault injection is claimed.",
+    "Rate comparisons share the production DSP engine with a unity-expression peer; they do not establish physical fidelity or device deadlines.",
+    "First private fault-oracle fixture failures are recorded in worker W3-041; they preceded this integrator run."
+  ]
+}

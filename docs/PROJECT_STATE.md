@@ -6,9 +6,9 @@
 
 **Fidelity status:** `unvalidated`. Task completion is not a realism percentage.
 
-**State revision:** 44 · **Last state change:** 2026-11-24T13:06:23Z
+**State revision:** 45 · **Last state change:** 2026-11-24T13:32:18Z
 
-blocked: **2** | done: **3** | in_progress: **4** | todo: **7**
+blocked: **2** | done: **4** | in_progress: **3** | todo: **7**
 
 ## Task ledger
 
@@ -21,7 +21,7 @@ blocked: **2** | done: **3** | in_progress: **4** | todo: **7**
 | PHY-002 | Implement finite-mass hammer and damper contact reference | in_progress | PHY-001 | — |
 | RT-001 | Measure runtime cost and numerical approximation errors | in_progress | PHY-001 | — |
 | HOST-001 | Build and validate an experimental VST3 instrument adapter | done | PHY-001 | HOST-20261124-current-native, HOST-20261124-final-review |
-| HOST-002 | Improve VST3 MIDI interoperability and generic control validation | in_progress | HOST-001 | HOST-002-20261124-linux-integration, HOST-002-20261124-legacy-compatibility, HOST-002-20261124-native-linux-windows, HOST-002-20261124-native-platform-observation, HOST-002-20261124-criterion-review |
+| HOST-002 | Improve VST3 MIDI interoperability and generic control validation | done | HOST-001 | HOST-002-20261124-linux-integration, HOST-002-20261124-legacy-compatibility, HOST-002-20261124-native-linux-windows, HOST-002-20261124-macos-recovered, HOST-002-20261124-final-criterion-review |
 | HOST-003 | Add global expression and flexible VST3 output layouts | in_progress | HOST-001 | — |
 | MAG-001 | Identify magnetic linkage and reciprocal force reference | todo | SPEC-001, DATA-001 | — |
 | ELEC-001 | Identify and solve the specimen pickup network | todo | SPEC-001, DATA-001 | — |
@@ -37,7 +37,6 @@ Run `python3 tools/project.py next` for lease-aware available work. The list bel
 
 - **PHY-002 — Implement finite-mass hammer and damper contact reference**. Claimed by `continuation-b-root` until `2026-11-24T11:25:28Z`; check current lease before starting.
 - **RT-001 — Measure runtime cost and numerical approximation errors**. Claimed by `continuation-b-root` until `2026-11-24T11:25:28Z`; check current lease before starting.
-- **HOST-002 — Improve VST3 MIDI interoperability and generic control validation**. Claimed by `continuation-d-root` until `2026-11-24T17:06:23Z`; check current lease before starting.
 - **HOST-003 — Add global expression and flexible VST3 output layouts**. Claimed by `continuation-d-root` until `2026-11-24T16:22:10Z`; check current lease before starting.
 
 ## Explicit blockers

@@ -237,13 +237,21 @@ class ContinuationDTests(unittest.TestCase):
     def test_reparse_attribute_rejects_a_report_parent_before_report_read(self):
         data = self.fixture(1, completed=(1,))
         self.write(data)
-        parent = (self.root / data["agents"][0]["report"]).parent
+        # The validator resolves its root before lstat. Temporary-directory names
+        # can change on resolution; force a different spelling on every platform.
+        root_argument = self.root / ".." / self.root.name
+        resolved_root = root_argument.resolve(strict=True)
+        self.assertNotEqual(root_argument, resolved_root)
+        self.assertTrue(root_argument.samefile(resolved_root))
+        parent = (resolved_root / data["agents"][0]["report"]).parent
+        ledger = self.ledger.resolve(strict=True)
         original_lstat, original_read = Path.lstat, Path.read_bytes
-        reads = []
+        reads, reparse_paths = [], []
 
         def reparse_lstat(path, *args, **kwargs):
             info = original_lstat(path, *args, **kwargs)
             if path == parent:
+                reparse_paths.append(path)
                 return SimpleNamespace(st_mode=info.st_mode, st_file_attributes=0x400)
             return info
 
@@ -255,8 +263,9 @@ class ContinuationDTests(unittest.TestCase):
         with patch.object(stat, "FILE_ATTRIBUTE_REPARSE_POINT", 0x400, create=True), \
                 patch.object(Path, "lstat", reparse_lstat), patch.object(Path, "read_bytes", record_read):
             with self.assertRaisesRegex(ValueError, "symlink or reparse"):
-                campaign.validate(self.root)
-        self.assertEqual(reads, [self.ledger])
+                campaign.validate(root_argument)
+        self.assertEqual(reparse_paths, [parent], "synthetic reparse parent was not checked exactly once")
+        self.assertEqual(reads, [ledger])
 
     def test_missing_and_nonregular_reports_fail_without_blocking(self):
         data = self.fixture(1, completed=(1,))

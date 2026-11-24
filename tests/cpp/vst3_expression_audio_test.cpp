@@ -189,11 +189,12 @@ struct Fixture {
     std::map<std::pair<sdk::int16, sdk::int32>, sdk::int16> owners;
     std::size_t narrowing_witnesses = 0;
 
-    explicit Fixture(bool check_gain = false) {
+    explicit Fixture(bool check_gain = false, double rate = 48000.0)
+        : target(rate), monitored(rate) {
         expression.id = kExpressionId;
         pedal.id = kSustainId;
         if (check_gain) {
-            unity_gain = std::make_unique<ProcessorHost<double, capacity>>();
+            unity_gain = std::make_unique<ProcessorHost<double, capacity>>(rate);
             points(gain, {{0, 1.0}});
             unity_parameters.set({&gain});
             unity_gain->data.numSamples = 0;
@@ -653,6 +654,97 @@ void partition_curves_for() {
     }
 }
 
+template<class Sample>
+void rate_matrix_for() {
+    // Include both public bounds and all filtered oversampling branches. The
+    // fractional rate is valid in the continuous public setup range and falls
+    // immediately above the 96 kHz branch boundary.
+    constexpr std::array rates{32000.0, 44100.0, 88200.0, 96000.0,
+                               96000.5, 176400.0, 192000.0};
+    for (const double rate : rates) {
+        try {
+            auto fixture = std::make_unique<Fixture<Sample>>(false, rate);
+            auto& test = *fixture;
+            require(test.target.processor.engine_processor().engine().sample_rate_hz() == rate,
+                    "setup did not retain the requested sample rate");
+            test.warm();
+
+            points(test.expression, {{63, 0.25}, {127, 0.75}});
+            test.parameters.set({&test.expression});
+            test.accepted(128);
+            for (const std::size_t endpoint : {63U, 127U}) {
+                require(test.monitored.left[endpoint] != 0.0 &&
+                        !same_bits(test.target.left[endpoint],
+                                   static_cast<Sample>(test.monitored.left[endpoint])),
+                        "rate ramp endpoint cannot distinguish attenuation from unity");
+            }
+
+            test.clear();
+            const double before_energy =
+                test.target.processor.engine_processor().engine().mechanical_energy_joules();
+            points(test.expression, {{0, 0.0}});
+            test.parameters.set({&test.expression});
+            test.accepted(64);
+            require(!any_audio(test.target, 64) && any_audio(test.monitored, 64),
+                    "rate mute is not audibly discriminating");
+            require(test.target.processor.note_tracker().active_count() == 1 &&
+                    test.target.processor.engine_processor().engine().mechanical_energy_joules() !=
+                        before_energy, "rate mute discarded ownership or froze mechanics");
+
+            test.clear();
+            points(test.pedal, {{0, 1.0}, {96, 0.0}});
+            test.parameters.set({&test.pedal});
+            test.events.count = 3;
+            test.events.values[0] = note_on(17, 20, 72, 0.625F, 4);
+            test.events.values[1] = note_off(63, 10, 68);
+            test.events.values[2] = note_off(95, 20, 72, 4);
+            test.accepted(256);
+            require(!any_audio(test.target, 256) && any_audio(test.monitored, 256),
+                    "rate muted release is not audibly discriminating");
+            require(test.target.processor.note_tracker().active_count() == 0 &&
+                    !test.target.processor.current_state().sustain,
+                    "rate muted release retained ownership or sustain");
+            test.same_future_filter_audio();
+
+            test.clear();
+            points(test.expression, {{0, 1.0}});
+            test.parameters.set({&test.expression});
+            test.accepted(128);
+            require(any_audio(test.target, 128), "rate unmute lost the released tail");
+            test.clear();
+            test.accepted(128);
+            require(any_audio(test.target, 128), "rate resumed continuation is silent");
+            test.same_future_filter_audio();
+
+            test.clear();
+            test.recall({0.625F, false, 0.25F});
+            points(test.expression, {{127, 0.75}});
+            const Curve stale_anchor{1.0F, &test.expression};
+            test.parameters.set({&test.expression});
+            test.events.count = 1;
+            test.events.values[0] = note_on(0, 30, 65, 0.625F);
+            test.accepted(128);
+            bool recall_witness = false;
+            for (sdk::int32 frame = 0; frame < 127; ++frame) {
+                const auto index = static_cast<std::size_t>(frame);
+                const auto stale = static_cast<Sample>(test.monitored.left[index] * stale_anchor.at(frame));
+                recall_witness = recall_witness || !same_bits(test.target.left[index], stale);
+            }
+            require(any_audio(test.target, 128) && recall_witness,
+                    "rate recall cannot distinguish the recalled interpolation anchor");
+            require(test.target.processor.engine_processor().engine().sample_rate_hz() == rate,
+                    "recall changed the requested sample rate");
+            test.clear();
+            test.accepted(64);
+            require(any_audio(test.target, 64), "rate recalled continuation is silent");
+            test.same_future_filter_audio();
+        } catch (const std::exception& error) {
+            throw std::runtime_error("rate " + std::to_string(rate) + " Hz, " +
+                (std::is_same_v<Sample, float> ? "float: " : "double: ") + error.what());
+        }
+    }
+}
+
 void default_queues() { default_queues_for<float>(); default_queues_for<double>(); }
 void anchor_duplicates() { anchor_duplicates_for<float>(); anchor_duplicates_for<double>(); }
 void combined_curves() { combined_curves_for<float>(); combined_curves_for<double>(); }
@@ -660,13 +752,14 @@ void nondyadic_curve() { nondyadic_curve_for<float>(); nondyadic_curve_for<doubl
 void muted_resume() { muted_resume_for<float>(); muted_resume_for<double>(); }
 void flush_recall() { flush_recall_for<float>(); flush_recall_for<double>(); }
 void partition_curves() { partition_curves_for<float>(); partition_curves_for<double>(); }
+void rate_matrix() { rate_matrix_for<float>(); rate_matrix_for<double>(); }
 
 using Selector = std::pair<std::string_view, void (*)()>;
-constexpr std::array<Selector, 7> selectors{{
+constexpr std::array<Selector, 8> selectors{{
     {"default_queues", default_queues}, {"anchor_duplicates", anchor_duplicates},
     {"combined_curves", combined_curves}, {"nondyadic_curve", nondyadic_curve},
     {"muted_resume", muted_resume}, {"flush_recall", flush_recall},
-    {"partition_curves", partition_curves}
+    {"partition_curves", partition_curves}, {"rate_matrix", rate_matrix}
 }};
 
 struct RoundToNearest {

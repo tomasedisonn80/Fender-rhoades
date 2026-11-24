@@ -22,8 +22,9 @@ adaptive state codec preserves legacy bytes at unity and saves non-unity
 expression explicitly. Public MIDI Association and Steinberg documentation
 support the host design; no physical measurements are inferred from them.
 
-The prior HOST-002 macOS blocker is being checked independently using its frozen
-definition. Prior inconclusive observations remain immutable. PHY-002 and
+The prior HOST-002 macOS blocker was closed after an independent review of its
+frozen historical definition and recovered native results. Prior inconclusive
+observations remain immutable. PHY-002 and
 RT-001 retain their separate ownership; this campaign does not replace their
 numerical work or promote the project's unvalidated fidelity status.
 
@@ -46,8 +47,9 @@ A new local Linux/GCC Release build against the pinned SDK passed 327 of 327
 CTests, with no skips. The integrator retained original module binaries for
 later comparisons. Native macOS VST3 and core job logs have been obtained;
 the previously missing macOS Python execution has now completed with 888
-reported tests, including 51 skips. These older-source observations still
-require a supplemental criterion review before closing HOST-002.
+reported tests, including 51 skips. Those older-source observations subsequently passed the
+[historical criterion review](../validation/host-midi-final-criterion-review-20261124.json),
+and HOST-002 is now complete.
 Final platform conclusions require the later source-bound evidence, not this
 progress note. No new feature acceptance or physical fidelity is claimed here.
 
@@ -78,7 +80,7 @@ metadata defect and then passed after its correction.
 Current-source native gates and concrete host arithmetic-failure witnesses
 remain open. The next wave targets those gaps and independent integration
 review. The historical HOST-002 macOS evidence has been recovered and registered;
-its separate criterion review remains pending. Neither activity changes the
+its separate criterion review passed and closed the historical task. Neither activity changes the
 physical-fidelity or device deadline status.
 
 ## Worker boundaries

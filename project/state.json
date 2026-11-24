@@ -4,8 +4,8 @@
   "goal": "Physically model a Fender Rhodes Mark I from evolving mechanical, electromagnetic and circuit states without recorded-note playback.",
   "target": "One documented 73-key Mark I Stage specimen at its specified loaded electrical output; identity and measurements pending.",
   "fidelity_status": "unvalidated",
-  "revision": 44,
-  "updated_at": "2026-11-24T13:06:23Z",
+  "revision": 45,
+  "updated_at": "2026-11-24T13:32:18Z",
   "tasks": [
     {
       "id": "FND-001",
@@ -475,7 +475,7 @@
       "id": "HOST-002",
       "title": "Improve VST3 MIDI interoperability and generic control validation",
       "milestone": "Host interoperability",
-      "status": "in_progress",
+      "status": "done",
       "priority": 47,
       "dependencies": [
         "HOST-001"
@@ -494,16 +494,11 @@
         "HOST-002-20261124-linux-integration",
         "HOST-002-20261124-legacy-compatibility",
         "HOST-002-20261124-native-linux-windows",
-        "HOST-002-20261124-native-platform-observation",
-        "HOST-002-20261124-criterion-review"
+        "HOST-002-20261124-macos-recovered",
+        "HOST-002-20261124-final-criterion-review"
       ],
       "owner": "continuation-d-root",
-      "claim": {
-        "owner": "continuation-d-root",
-        "token": "973f3f9c25d4a2dd686d11cca4827213",
-        "claimed_at": "2026-11-24T13:06:23Z",
-        "expires_at": "2026-11-24T17:06:23Z"
-      },
+      "claim": null,
       "blockers": [],
       "paths": [
         "plugins/vst3",
@@ -917,6 +912,14 @@
       "task": "HOST-002",
       "owner": "continuation-d-root",
       "detail": "Lease until 2026-11-24T17:06:23Z"
+    },
+    {
+      "revision": 45,
+      "at": "2026-11-24T13:32:18Z",
+      "action": "complete",
+      "task": "HOST-002",
+      "owner": "continuation-d-root",
+      "detail": "Evidence: HOST-002-20261124-linux-integration, HOST-002-20261124-legacy-compatibility, HOST-002-20261124-native-linux-windows, HOST-002-20261124-macos-recovered, HOST-002-20261124-final-criterion-review"
     }
   ]
 }

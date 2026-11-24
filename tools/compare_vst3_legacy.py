@@ -377,15 +377,20 @@ def one_capture(capture: Path, bundle_root: Path, run_directory: Path, key: tupl
         record["exit_code"] = code
         require(error is None, error or "capture error")
         require(code == 0, f"capture exited {code}; see {stderr.name}")
-        metadata = strict_json(read_bounded(stdout, MAX_METADATA_BYTES))
+        metadata_bytes = read_bounded(stdout, MAX_METADATA_BYTES)
+        # Bind retained evidence to the byte snapshots actually parsed and
+        # compared. Rehashing files after validation could bless a replacement.
+        record.update(stdout_sha256=sha256(metadata_bytes).hexdigest(), stdout_bytes=len(metadata_bytes))
+        metadata = strict_json(metadata_bytes)
         audio = read_bounded(trace, TOTAL_FRAMES * 2 * (format_bits // 8))
+        record.update(trace_sha256=sha256(audio).hexdigest(), trace_bytes=len(audio))
         record.update(validate_capture(metadata, audio, capture_id=capture_id, mode=mode, variant=variant,
                                        format_bits=format_bits, rate=rate, partition=partition, workload=workload))
         record["passed"] = True
     except (OSError, ValueError, subprocess.SubprocessError) as error:
         record["error"] = str(error)
     for kind, path in (("stdout", stdout), ("stderr", stderr), ("trace", trace)):
-        if path.is_file():
+        if path.is_file() and kind + "_sha256" not in record:
             record[kind + "_sha256"] = file_hash(path)
             record[kind + "_bytes"] = path.stat().st_size
     return record, metadata, audio
@@ -434,7 +439,6 @@ def parser() -> argparse.ArgumentParser:
 
 def main(argv: list[str] | None = None) -> int:
     args = parser().parse_args(argv)
-    require(math.isfinite(args.timeout) and 1 <= args.timeout <= 60, "timeout must be finite and in 1..60")
     for name in ("capture", "baseline_root", "current_root", "output_dir", "source_root", "sdk_root"):
         path = getattr(args, name)
         if path is not None:
@@ -447,7 +451,7 @@ def main(argv: list[str] | None = None) -> int:
         "schema_version": 1, "status": "incomplete", "run_id": run_id, "started_utc": utc_now(),
         "scope": "Native SDK-hosted exact legacy stereo compatibility; separate same-FUID module processes",
         "baseline_revision": BASELINE_REVISION, "raw_directory": run_directory.name,
-        "environment": {"platform": platform.platform(), "machine": platform.machine(), "python": platform.python_version(),
+        "environment": {"platform": None, "machine": platform.machine(), "python": platform.python_version(),
                         "byte_order": sys.byteorder, "host_linkage": "SDK hosting/loader only; no instrument implementation headers or linkage"},
         "inputs": {"variants": VARIANTS, "formats_bits": FORMATS, "sample_rates_hz": RATES,
                    "partitions": PARTITIONS, "gain_workloads": WORKLOADS, "modes": MODES,
@@ -456,7 +460,8 @@ def main(argv: list[str] | None = None) -> int:
                    "notes_per_capture": 44, "pressure_events_per_capture": 16, "cc123_points_per_capture": 48,
                    "raw_sample_encoding": "interleaved stereo native-endian IEEE binary32/binary64",
                    "sparse_partition_scope": "Sparse gain endpoints depend on callback size; compare only matching partitions.",
-                   "full_timeline": "tests/cpp/vst3_legacy_capture.cpp (source hash retained)", "per_capture_timeout_seconds": args.timeout},
+                   "full_timeline": "tests/cpp/vst3_legacy_capture.cpp (source hash retained)",
+                   "per_capture_timeout_seconds": args.timeout if math.isfinite(args.timeout) else None},
         "summary": {"passed": False, "complete": False}, "captures": [], "cases": [], "dense_partition_comparisons": [],
         "limitations": [
             "Baseline source provenance is supplied by its manifest; the driver verifies actual native module hashes.",
@@ -466,10 +471,16 @@ def main(argv: list[str] | None = None) -> int:
             "Nonzero digital sample evidence does not establish playback-device audibility, a named DAW pass or measured physical fidelity.",
         ],
     }
+    if not math.isfinite(args.timeout):
+        report["inputs"]["invalid_timeout_argument"] = str(args.timeout)
     write_json(args.output_dir / "report.json", report)
     write_json(run_directory / "report.json", report)
     runs = {}
     try:
+        require(math.isfinite(args.timeout) and 1 <= args.timeout <= 60, "timeout must be finite and in 1..60")
+        # platform.platform() may spawn a host-information subprocess. Keep
+        # invalid attempts free of child execution, including that probe.
+        report["environment"]["platform"] = platform.platform()
         require(args.capture.is_file(), f"missing capture executable: {args.capture}")
         require(args.baseline_root != args.current_root, "baseline and current roots must be distinct")
         modules_before = {"baseline": bundle_inventory(args.baseline_root), "current": bundle_inventory(args.current_root)}

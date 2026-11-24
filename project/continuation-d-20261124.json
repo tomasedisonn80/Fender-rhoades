@@ -6,7 +6,7 @@
   "requested_waves": 5,
   "concurrency_limit_including_integrator": 4,
   "status": "in_progress",
-  "completed_agents": 40,
+  "completed_agents": 53,
   "agents": [
     {
       "assignment": 1,
@@ -332,18 +332,122 @@
       "assignment": 41,
       "wave": 3,
       "agent_task_name": "/root/w3_041_host_faults",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-d/w3-041.md",
+      "sha256": "44e38792dfecc7f4497ff7fed9c9aa45d13a95317eaa925a11c31f700b262d8e"
     },
     {
       "assignment": 42,
       "wave": 3,
       "agent_task_name": "/root/w3_042_host2_closure",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-d/w3-042.md",
+      "sha256": "10d27b1c560ec78185f24a886bbd5588f671337d17d939f45b77426255eca9e7"
     },
     {
       "assignment": 43,
       "wave": 3,
       "agent_task_name": "/root/w3_043_native_portability",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-d/w3-043.md",
+      "sha256": "fe0a09b839d6eb3da0e35a20a8d33ac82fe4e66353f5843f8ceed535ae4d25cf"
+    },
+    {
+      "assignment": 44,
+      "wave": 3,
+      "agent_task_name": "/root/w3_044_windows_ledger_test",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-d/w3-044.md",
+      "sha256": "d9d613944469c1b264191209e336165899d931bfc35e63bdb0d637a43bb64a89"
+    },
+    {
+      "assignment": 45,
+      "wave": 3,
+      "agent_task_name": "/root/w3_045_rate_matrix",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-d/w3-045.md",
+      "sha256": "042b78782a7ff8fd13e6d7685d5e8d679e3ee2c74721f1ec813daf9eb9a37a2b"
+    },
+    {
+      "assignment": 46,
+      "wave": 3,
+      "agent_task_name": "/root/w3_046_host_sanitizers",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-d/w3-046.md",
+      "sha256": "eb2a0f67c94caab434cbd1515b469982b2e5a89a7c51e4d487dc7d79ffc744ae"
+    },
+    {
+      "assignment": 47,
+      "wave": 3,
+      "agent_task_name": "/root/w3_047_native_checkpoint",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-d/w3-047.md",
+      "sha256": "404e46357390a726108d7b76eccc2713b777910029fffcbf8d59c939cf704604"
+    },
+    {
+      "assignment": 48,
+      "wave": 3,
+      "agent_task_name": "/root/w3_048_fault_oracle_review",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-d/w3-048.md",
+      "sha256": "3d3cdef7cbc3e1655667b3e6b7049132fc29d5f668fe749a56e3690ac8406143"
+    },
+    {
+      "assignment": 49,
+      "wave": 3,
+      "agent_task_name": "/root/w3_049_ci_failure_review",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-d/w3-049.md",
+      "sha256": "bb918f775e054637e9bb7ff70d4c852b1504eb8f1e43c25b5a9319b6e39dd88e"
+    },
+    {
+      "assignment": 50,
+      "wave": 3,
+      "agent_task_name": "/root/w3_050_legacy_comparator_review",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-d/w3-050.md",
+      "sha256": "9833f2929e156a88dce06daedf30faaabbd65a2a9e2369d2306167df08a80770"
+    },
+    {
+      "assignment": 51,
+      "wave": 3,
+      "agent_task_name": "/root/w3_051_macos_native_checkpoint",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-d/w3-051.md",
+      "sha256": "3b586b4e1fdaa2d503ceeb857d735cef5f13e76b120c53a9cfd910faa276e89c"
+    },
+    {
+      "assignment": 52,
+      "wave": 3,
+      "agent_task_name": "/root/w3_052_state_interop_review",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-d/w3-052.md",
+      "sha256": "e221403e34311077dc5377cef08ab2ece3e8b9e5af3fb52e9c6c00cf0387d6ad"
+    },
+    {
+      "assignment": 53,
+      "wave": 3,
+      "agent_task_name": "/root/w3_053_fp_coverage_review",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-d/w3-053.md",
+      "sha256": "c60c6a2f9888a4c04dcb3e7727f16c8f480342221552839cac5bd855af80b0b6"
+    },
+    {
+      "assignment": 54,
+      "wave": 3,
+      "agent_task_name": "/root/w3_054_legacy_v2_rejection",
+      "status": "running"
+    },
+    {
+      "assignment": 55,
+      "wave": 3,
+      "agent_task_name": "/root/w3_055_verification_guide_update",
+      "status": "running"
+    },
+    {
+      "assignment": 56,
+      "wave": 3,
+      "agent_task_name": "/root/w3_056_user_documentation_sync",
       "status": "running"
     }
   ]

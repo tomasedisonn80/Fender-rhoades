@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "task_id": "HOST-003",
+  "status": "pass",
+  "scope": "Private strict-GCC compile/symbol review plus integrator18/18 subsequent CTests and full474/474 gate after removing six unnecessary extern-C qualifiers; no observed Clang execution.",
+  "source": "tests/cpp/vst3_expression_fault_test.cpp",
+  "source_sha256": "04c33ef7899f00830c5e83f7f64ca22a9befc237ff3e11147ed2c55b42ce9f0a",
+  "report": "docs/agents/reports/continuation-d/w3-048.md",
+  "report_sha256": "3d3cdef7cbc3e1655667b3e6b7049132fc29d5f668fe749a56e3690ac8406143",
+  "archive": {
+    "path": "docs/validation/host-expression-fault-linkage-review-20261124.tar.xz",
+    "sha256": "b9ecc8c1b030496e4ec17545fed8bbc278fe45fd8e3b15d3efbe3d495efcc460",
+    "bytes": 21592,
+    "members": {
+      "archive-members.json": {
+        "bytes": 1272,
+        "sha256": "ad3703d12756ac45cc14b532e9744798b03d106f7dce3ab08a434acc4627e699"
+      },
+      "binary-nm.log": {
+        "bytes": 112821,
+        "sha256": "6bb348a1c7be6c3392291ca3931050d92379c297755e8000829f16e2ff5dc7d5"
+      },
+      "build-0.log": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "build-1.log": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "build-2.log": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "build-3.log": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "build-4.log": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "build.json": {
+        "bytes": 10922,
+        "sha256": "2e682f92c67647d7169c446896a6338ba8b219a286a8e99dec4ed1e1827d617a"
+      },
+      "initial-symbol-audit-failure.log": {
+        "bytes": 440,
+        "sha256": "5f367e4ea5421f935e48f7c35d9313559cf378dbbc4b808a4320ce521ab971ea"
+      },
+      "processor_object-nm.log": {
+        "bytes": 4783,
+        "sha256": "e7094f069d3b7f5f49aa1b759cd8f77fbc9dc7cf4c6ce360ff8571796bae2b1c"
+      },
+      "test_object-nm.log": {
+        "bytes": 29043,
+        "sha256": "7d05df9672c2e1988fe2c74867b68ed4125be768858fbc1fea0b3622e4d6a29e"
+      }
+    }
+  },
+  "integrator_execution_record": "docs/validation/host-expression-wave3-full-linux-20261124.json"
+}

@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "task_id": "HOST-003",
+  "status": "pass",
+  "observed_at_utc": "2026-11-24T13:53:49.443118+00:00",
+  "scope": "Fresh actual loaded-module legacy matrix in full474-test run after comparator stale-report and validated-byte snapshot fixes.",
+  "driver_sha256": "b0f97f7ee8ef989a16cd15ea92fc54939bbd9cf2677dd313cea377df50af8754",
+  "report": {
+    "path": "docs/validation/host-expression-legacy-fixed-driver-linux-20261124.json",
+    "sha256": "e879e9d6dd6414d3397277c1c5948e6569b3f449cf0f5fded9cd50838673699a"
+  },
+  "archive": {
+    "path": "docs/validation/host-expression-legacy-fixed-driver-linux-20261124.tar.xz",
+    "bytes": 578860,
+    "sha256": "d7a6477ba07bc529dac8ec7d1aee90d17c23d9a7f1c107a555d56da38c6ec663",
+    "members": 651
+  },
+  "all649manifest_members_verified_before_and_after_archiving": true,
+  "summary": {
+    "baseline_current_pairs": 144,
+    "complete": true,
+    "dense_partition_groups": 36,
+    "dense_partition_groups_passed": 36,
+    "expected_fixtures": 72,
+    "expected_loaded_processes": 216,
+    "fixtures": 72,
+    "loaded_callbacks_total": 7992,
+    "loaded_processes": 216,
+    "modules_recorder_manifest_and_relevant_sources_unchanged": true,
+    "paired_stereo_frames": 608256,
+    "passed": true,
+    "passed_pairs": 144,
+    "valid_captures": 216
+  },
+  "limits": [
+    "Baseline source provenance is supplied by its manifest; the driver verifies actual native module hashes.",
+    "Current source hashes describe the observed worktree, not an attestation that it produced a binary; module and recorder hashes bind the executed comparison.",
+    "Exact comparisons are within one native platform/compiler build pair, not between different platforms.",
+    "Only the recorded valid stereo timelines are replayed; malformed input, mono, allocation, concurrency and CPU deadlines are separate tests.",
+    "Nonzero digital sample evidence does not establish playback-device audibility, a named DAW pass or measured physical fidelity."
+  ]
+}

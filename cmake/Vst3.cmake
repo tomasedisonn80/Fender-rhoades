@@ -204,7 +204,7 @@ if(BUILD_TESTING)
     rhodes_add_vst3_test(rhodes_vst3_filtered_expression_audio_tests tests/cpp/vst3_expression_audio_test.cpp TRUE)
     rhodes_add_vst3_test(rhodes_vst3_quadrature_expression_audio_tests tests/cpp/vst3_expression_audio_test.cpp FALSE TRUE)
     foreach(test_name IN ITEMS default_queues anchor_duplicates combined_curves nondyadic_curve
-            muted_resume flush_recall partition_curves)
+            muted_resume flush_recall partition_curves rate_matrix)
         add_test(NAME vst3.expression_audio_${test_name} COMMAND rhodes_vst3_expression_audio_tests ${test_name})
         add_test(NAME vst3.filtered_expression_audio_${test_name} COMMAND rhodes_vst3_filtered_expression_audio_tests ${test_name})
         add_test(NAME vst3.quadrature_expression_audio_${test_name} COMMAND rhodes_vst3_quadrature_expression_audio_tests ${test_name})
@@ -401,6 +401,42 @@ if(BUILD_TESTING)
             vst3.filtered_expression_concurrency_${test_name}
             vst3.quadrature_expression_concurrency_${test_name} PROPERTIES TIMEOUT 60)
     endforeach()
+    # Fault injection belongs only to these test executables. Keep the shipped
+    # processor/core unmodified and require the 64-bit ELF ABI used by the
+    # explicitly named GNU-compatible linker symbols below.
+    if(CMAKE_SYSTEM_NAME STREQUAL "Linux" AND CMAKE_SIZEOF_VOID_P EQUAL 8
+            AND CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang")
+        include(CheckLinkerFlag)
+        include(CheckCXXSourceCompiles)
+        check_linker_flag(CXX "LINKER:--wrap=rhodes_test_linker_probe" RHODES_HAS_LINKER_WRAP)
+        check_cxx_source_compiles("#include <cstddef>
+#ifndef __GLIBCXX__
+#error The fault wrapper symbols require libstdc++
+#endif
+int main() { return 0; }" RHODES_FAULT_LIBSTDCXX)
+        if(RHODES_HAS_LINKER_WRAP AND RHODES_FAULT_LIBSTDCXX)
+            rhodes_add_vst3_test(rhodes_vst3_expression_fault_tests tests/cpp/vst3_expression_fault_test.cpp)
+            rhodes_add_vst3_test(rhodes_vst3_filtered_expression_fault_tests tests/cpp/vst3_expression_fault_test.cpp TRUE)
+            rhodes_add_vst3_test(rhodes_vst3_quadrature_expression_fault_tests tests/cpp/vst3_expression_fault_test.cpp FALSE TRUE)
+            foreach(target IN ITEMS rhodes_vst3_expression_fault_tests
+                    rhodes_vst3_filtered_expression_fault_tests rhodes_vst3_quadrature_expression_fault_tests)
+                target_link_options(${target} PRIVATE
+                    "LINKER:--wrap=_ZN6rhodes14ResearchEngine7processESt4spanIdLm18446744073709551615EE"
+                    "LINKER:--wrap=_ZNK6rhodes14ResearchEngine12observe_cellERKNS_25FractionalObservationPlanE")
+            endforeach()
+            foreach(test_name IN ITEMS interception engine_failure monitor_fault float_conversion fault_state reset_recovery)
+                add_test(NAME vst3.expression_fault_${test_name} COMMAND rhodes_vst3_expression_fault_tests ${test_name})
+                add_test(NAME vst3.filtered_expression_fault_${test_name} COMMAND rhodes_vst3_filtered_expression_fault_tests ${test_name})
+                add_test(NAME vst3.quadrature_expression_fault_${test_name} COMMAND rhodes_vst3_quadrature_expression_fault_tests ${test_name})
+                set_tests_properties(vst3.expression_fault_${test_name}
+                    vst3.filtered_expression_fault_${test_name}
+                    vst3.quadrature_expression_fault_${test_name}
+                    PROPERTIES TIMEOUT 60 LABELS "host-fault;linux-linker-wrap")
+            endforeach()
+        else()
+            message(STATUS "Expression host-fault tests omitted: libstdc++ and linker --wrap are required")
+        endif()
+    endif()
     add_dependencies(rhodes_vst3 validator)
     add_dependencies(rhodes_vst3_filtered validator)
     add_dependencies(rhodes_vst3_quadrature validator)

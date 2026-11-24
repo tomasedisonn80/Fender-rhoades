@@ -1,0 +1,1962 @@
+{
+  "schema_version": 1,
+  "kind": "documentary_acceptance_review",
+  "task_id": "HOST-002",
+  "evaluator": {
+    "assignment": "continuation-d/w3-042",
+    "worker": "w3_042_host2_closure",
+    "review_version": 1,
+    "integrator": "continuation-d-root",
+    "authority": "Independent documentary recommendation. Integrator owns registration and the final canonical completion decision."
+  },
+  "evaluated_at_utc": "2026-11-24T13:29:40.171193+00:00",
+  "result": "pass",
+  "decision": "Recommend completing the frozen historical HOST-002 scope after integrator acceptance and registration of this new passing documentary record.",
+  "acceptance_review_contract": {
+    "path": "docs/agents/ACCEPTANCE_REVIEW.md",
+    "sha256": "11bbc5feef1017fb99a60ae1967d8c8e775ddf029d981b6af37bed22b75eee85",
+    "bytes": 3960
+  },
+  "definition_sha256": "eefa42abc22e4a677e76f1968e9c1760650b1031496e795a2fd7d6219b59701c",
+  "frozen_definition": {
+    "task_id": "HOST-002",
+    "acceptance": [
+      "Deliver bounded channel-specific CC123 commands with chronological ownership preflight, retained sustain/tails, zero-frame handling and unchanged saved configuration.",
+      "Accept validated polyphonic pressure without dropping co-batched note events; reject malformed inputs atomically.",
+      "Reject malformed generic-control text and nonfinite conversions without changing output values or saved state.",
+      "Pass independent ownership/audio comparisons, compatibility checks and native SDK/module validation for the claimed platforms; document remaining DAW-specific verification."
+    ],
+    "dependencies": [
+      "HOST-001"
+    ],
+    "required_evidence": [
+      "numerical",
+      "documentary"
+    ],
+    "target": "One documented 73-key Mark I Stage specimen at its specified loaded electrical output; identity and measurements pending."
+  },
+  "criterion_numbering": "The canonical definition contains exactly four clauses, C01-C04. The MIDI specification has five supporting acceptance bullets; its fifth bullet is mapped below and is not a canonical HOST-002/C05.",
+  "definition_checks": {
+    "state_revision_observed": 44,
+    "historical_state_commit": "6c91dab00855b67a559e92edb79ae49e567be469",
+    "historical_and_current_HOST_002_definitions_equal": true,
+    "current_definition_digests": {
+      "HOST-001": "b5e43a5c4bfccd246d49bf60783b320a1629741489023757d01cb50207e48336",
+      "HOST-002": "eefa42abc22e4a677e76f1968e9c1760650b1031496e795a2fd7d6219b59701c",
+      "HOST-003": "f3054fce1854dfa16109e0d01f80b1aa8b4b6b71738fad5889de24e147977431"
+    },
+    "historical_definition_digests": {
+      "HOST-001": "b5e43a5c4bfccd246d49bf60783b320a1629741489023757d01cb50207e48336",
+      "HOST-002": "eefa42abc22e4a677e76f1968e9c1760650b1031496e795a2fd7d6219b59701c"
+    },
+    "HOST_003_exists_at_historical_baseline": false,
+    "dependency": {
+      "task_id": "HOST-001",
+      "observed_status": "done",
+      "passing_evidence_ids": [
+        "HOST-20261124-current-native",
+        "HOST-20261124-final-review"
+      ],
+      "artifact_hashes_checked": true
+    },
+    "required_evidence_kinds": [
+      "numerical",
+      "documentary"
+    ],
+    "fidelity_status_preserved": "unvalidated"
+  },
+  "historical_observations_preserved": {
+    "previous_review": {
+      "path": "docs/validation/host-midi-acceptance-20261124.md",
+      "sha256": "ebe19c43496081a5a060ec8cd25498545305974afb59a912af02cd883b0baf2e",
+      "bytes": 20748
+    },
+    "previous_decision": "C01-C03 passed; C04 incomplete at 2026-11-24T11:09:46.569Z, with later cancelled/queued status readbacks retained.",
+    "inconclusive_evidence_ids": [
+      "HOST-002-20261124-native-platform-observation",
+      "HOST-002-20261124-criterion-review"
+    ],
+    "treatment": "These records and their registered artifact bytes remain unchanged. Later terminal results resolve the missing evidence; the earlier observations remain correct for their recorded cutoffs.",
+    "no_suite_rerun": true,
+    "no_ci_mutation_or_network_fetch": true
+  },
+  "criterion_reviews": [
+    {
+      "criterion_id": "HOST-002/C01",
+      "exact_text": "Deliver bounded channel-specific CC123 commands with chronological ownership preflight, retained sustain/tails, zero-frame handling and unchanged saved configuration.",
+      "decision": "pass",
+      "evidence_ids": [
+        "HOST-002-20261124-linux-integration",
+        "HOST-002-20261124-native-linux-windows",
+        "HOST-002-20261124-macos-recovered"
+      ],
+      "supporting_reports": [
+        "docs/agents/reports/continuation-c/w5-082.md",
+        "docs/agents/reports/continuation-c/w3-041.md",
+        "docs/agents/reports/continuation-c/w3-048.md",
+        "docs/agents/reports/continuation-c/w3-050.md"
+      ],
+      "observed_coverage": [
+        "All three variants pass channel_commands, command_partition, command_bounds and command_atomicity in the retained Linux integration and native host jobs; recovered macOS raw log lines 876-886, 894-898 and 906-910 confirm the corresponding selectors.",
+        "The independent map/multiset ownership oracle bypasses production NoteTracker translation/dispatch and invokes scalar engines over a 769-frame timeline plus 129-frame continuation at 32000/48000/96000/192000 Hz, float/double, whole/one-frame/fixed-64/ragged partitions. Required agreement is exact stereo sample bits, ownership/identities, mechanics, frame cursor and configuration.",
+        "Separate fixtures exercise 18 queues, 256 raw commands, 585 expanded physical-note actions, and 256 accepted versus 257 rejected actions per sample including sustain. Atomicity checks cover chronological reuse, shared-holder survival, late rejection, pending-recall abort/retry, inactive outputs and zero-frame nonadvancement.",
+        "Historical processor source copies and validates syntax before mailbox.begin_block, translates ownership on a candidate, aborts selected recall on preflight failure, and installs persistent state only after success. Channel commands sort by offset/channel, precede notes at ties, and render applies sustain before physical actions.",
+        "Ordinary CC123 releases preserve sustain, mechanics and filter tails; selected recall intentionally resets history. Legacy RHST-v1 bytes remain 16 bytes and exclude commands. The repaired loaded-MIDI restrike case was demonstrated sensitive to wrong ordering in W3-048 and passes all three native platforms."
+      ],
+      "thresholds_and_inputs": {
+        "comparison": "Exact output/state/identity equality for the finite synthetic fixtures; no tolerance relaxation.",
+        "source_binding": [
+          "source_binding.local_cpp_99_files",
+          "source_binding.vst3",
+          "source_binding.foundation"
+        ],
+        "model_and_inputs": "model_and_input_binding"
+      },
+      "remaining_limitations": [
+        "Exact sustain/channel dispatch order also relies on source inspection because commuting audio operations cannot prove call order.",
+        "Generic release-port fault injection does not execute the combined host-publication failure. Accepted arithmetic failures retain partial accepted state and require reset; they are not preflight rollback.",
+        "Finite synthetic fixtures and fixed storage do not prove arbitrary foreign getters, native DAW delivery or a worst-case device deadline."
+      ]
+    },
+    {
+      "criterion_id": "HOST-002/C02",
+      "exact_text": "Accept validated polyphonic pressure without dropping co-batched note events; reject malformed inputs atomically.",
+      "decision": "pass",
+      "evidence_ids": [
+        "HOST-002-20261124-linux-integration",
+        "HOST-002-20261124-native-linux-windows",
+        "HOST-002-20261124-macos-recovered"
+      ],
+      "supporting_reports": [
+        "docs/agents/reports/continuation-c/w5-083.md"
+      ],
+      "observed_coverage": [
+        "Pressure-present/omitted pairs and atomic-rejection fixtures pass for all three variants. Recovered macOS VST3 raw lines 888-892 independently record all three pressure selectors as Passed.",
+        "Historical source validates bus 0, finite PPQ, in-block nondecreasing offsets, channels 0-15, pitches 0-127 and raw binary32 pressure in [0,1], while allowing every signed note ID. Pressure consumes input capacity and ordering but emits no physical action.",
+        "Retained per-variant Linux execution covers 288 calls, 110 paired comparisons and 68 rejections across both sample formats and supported floating environments, including 256/257-event boundaries, 255 pressures plus note/pedal, failed retrieval, late malformed pressure and zero-frame rejection before getters.",
+        "Saved/live/published configuration, holders, mechanics, cursor, pending recall, 129-frame continuation and audible reactivation are compared after rejection; valid co-batched note releases remain effective."
+      ],
+      "thresholds_and_inputs": {
+        "comparison": "Exact paired state and audio agreement; invalid inputs must reject before persistent mutation.",
+        "source_binding": [
+          "source_binding.local_cpp_99_files",
+          "source_binding.vst3"
+        ],
+        "model_and_inputs": "model_and_input_binding"
+      },
+      "remaining_limitations": [
+        "Pressure intentionally remains a synthesis no-op and does not establish acoustic pressure response.",
+        "Rejection may silence valid supplied audio buffers; unchanged conversion outputs are the distinct C03 requirement.",
+        "ARM64 recovered runs do not execute x86 FTZ/DAZ selectors; corresponding x86 coverage remains bound to Linux/Windows runs. No arbitrary host-memory or DAW-delivery guarantee."
+      ]
+    },
+    {
+      "criterion_id": "HOST-002/C03",
+      "exact_text": "Reject malformed generic-control text and nonfinite conversions without changing output values or saved state.",
+      "decision": "pass",
+      "evidence_ids": [
+        "HOST-002-20261124-linux-integration",
+        "HOST-002-20261124-native-linux-windows",
+        "HOST-002-20261124-macos-recovered"
+      ],
+      "supporting_reports": [
+        "docs/agents/reports/continuation-c/w5-084.md",
+        "docs/agents/reports/continuation-c/w4-064.md"
+      ],
+      "observed_coverage": [
+        "Historical baseline acceptance of nan/16junk is reproduced by retained review work; current frozen-source fixtures reject them. Both public conversion outputs stage until success, and conversion does not change saved configuration or execute commands.",
+        "The Linux integration executes six core selectors with 400 independent Decimal/Fraction vectors, each public variant records 41752 conversions over 16 floating environments, and loaded modules record 1002 rejected texts.",
+        "Recovered macOS core log lines 255-265 show all six control_text selectors passing, and VST3 log lines 900-904 show all three public text selectors passing. The loaded MIDI selector at line 1126 passes with its text-rejection checks.",
+        "Validation requires complete ASCII decimal consumption with NUL within 128 UTF-16 units, rejects nonfinite values, junk, nonzero underflow and invalid domains, and preserves caller outputs/configuration on failure. The d4 generated-literal repair leaves independent expected vector bits unchanged and is present in the recovered 6c91 core source."
+      ],
+      "thresholds_and_inputs": {
+        "comparison": "Exact rounded-bit oracle, unchanged caller-output sentinels and saved bytes after rejection.",
+        "fixture_path": "tests/fixtures/control_text_vectors.json",
+        "fixture_sha256": "da183a9b183f10d86a258b5aeee1ce4daae0af03099bab7e87c5ec1fecdb75e0",
+        "source_binding": [
+          "source_binding.local_cpp_99_files",
+          "source_binding.foundation",
+          "source_binding.vst3"
+        ]
+      },
+      "remaining_limitations": [
+        "The finite binary64 rounded value is range-checked; 32.000000000000000001 may round to 32 and pass. This is the frozen contract, not arbitrary-precision decimal-domain validation.",
+        "Gain then canonicalizes to binary32; commands retain binary64 round trips. SDK pointer/buffer preconditions remain.",
+        "Rounding/flush controls are preserved; all parser-library sticky status flags are not promised unchanged. No claim that x86 controls were tested on ARM64."
+      ]
+    },
+    {
+      "criterion_id": "HOST-002/C04",
+      "exact_text": "Pass independent ownership/audio comparisons, compatibility checks and native SDK/module validation for the claimed platforms; document remaining DAW-specific verification.",
+      "decision": "pass",
+      "evidence_ids": [
+        "HOST-002-20261124-linux-integration",
+        "HOST-002-20261124-legacy-compatibility",
+        "HOST-002-20261124-native-linux-windows",
+        "HOST-002-20261124-macos-recovered"
+      ],
+      "supporting_reports": [
+        "docs/agents/reports/continuation-c/w5-085.md",
+        "docs/agents/reports/continuation-c/w5-087.md",
+        "docs/agents/reports/continuation-c/w3-057.md"
+      ],
+      "observed_coverage": [
+        "C01 independent ownership/scalar checks provide the finite independent ownership/audio comparison. Legacy evidence separately retains 72 SDK-loaded baseline/current pairs, 304128 exactly equal paired stereo frames, 2952 configuration checkpoints and 24 dense partition groups; 24 direct/filtered WAV fixtures match 44160 frames of historical fingerprints.",
+        "Native VST3 Linux/GNU and Windows/MSVC each retain 157 passed selectors with zero skips at ce59; macOS/AppleClang now has 148 actual passes plus nine explicit x86-only skips across the same 157 selectors. All six SDK/module-info validators, loaded MIDI and dual/triple coexistence pass on every claimed platform.",
+        "Relevant Foundation/model-state/control-text completion is now present on macOS at actual 6c91: 161 passes plus six explicit x86-only skips across 167 selectors. Earlier retained d4 Linux core/sanitizer 170/170 and Windows core 167/167 remain distinct successful observations within the preserved inconclusive all-platform snapshot.",
+        "Recovered macOS Python terminates successfully with 888 reported tests: 837 ok and 51 skipped. The 50 optional numerical-dependency skips and one filename-filesystem skip are retained explicitly; partial/cancelled earlier jobs are not promoted to passes.",
+        "Frozen 6c91 DAW/user/build documents state the synthetic scope, exact source/environment limits, first/default-zero and repeated unchanged CC123, live/recorded routes, processor queue traces, pressure/releases and recall as unrun named-DAW work. These documents satisfy the continuation requirement without claiming DAW qualification.",
+        "The sole previously open canonical criterion now has source-applicable terminal macOS evidence. Its nine/six x86-selector skips are expected on ARM64 by the pre-existing return-77 guards; required validators and behavioral selectors were executed, and portable FP baselines passed."
+      ],
+      "thresholds_and_inputs": {
+        "compatibility": "Exact hashes/PCM/state equality over the declared finite legacy inputs; dense and sparse partitions retain their separate comparison rules.",
+        "native_gate": "Zero failed relevant selectors and all six SDK/module-info validators passing per platform; architecture/optional skips enumerated rather than counted as executed passes.",
+        "source_binding": [
+          "source_binding",
+          "recovered_native_verification"
+        ],
+        "model_and_inputs": "model_and_input_binding"
+      },
+      "remaining_limitations": [
+        "Loaded baseline build provenance remains integrator-supplied; historical raw WAVs are absent, so WAV equality is fingerprint-based. Q6 independent numerical-reference acceptance was not rerun.",
+        "A source bridge establishes code/input applicability, not a new clean build, independent binary provenance or authenticity attestation. macOS binary archives are not re-downloaded by this review.",
+        "Named-DAW execution, minimum-OS runtime, distribution/signing qualification, device deadlines, PHY-002/RT-001 completion and measured fidelity remain outside this historical acceptance.",
+        "This pass applies to historical HOST-002 through 6c91; current Expression/mono code differs and requires the separate HOST-003 platform and criterion decisions."
+      ]
+    }
+  ],
+  "specification_acceptance_coverage": [
+    {
+      "specification_bullet": 1,
+      "text": "Independent scalar ownership/audio comparisons cover all three variants, both host sample formats, channel sharing, sustain, retrigger ordering, repeated commands and partitioned blocks.",
+      "canonical_criteria": [
+        "HOST-002/C01",
+        "HOST-002/C04"
+      ],
+      "decision": "pass",
+      "note": "Supporting design-contract coverage, not an additional canonical criterion."
+    },
+    {
+      "specification_bullet": 2,
+      "text": "Malformed inputs, resource bounds, zero-frame flushes, pending recall and inactive output buses preserve the declared transaction rules.",
+      "canonical_criteria": [
+        "HOST-002/C01",
+        "HOST-002/C02"
+      ],
+      "decision": "pass",
+      "note": "Supporting design-contract coverage, not an additional canonical criterion."
+    },
+    {
+      "specification_bullet": 3,
+      "text": "Controller text tests reproduce and fix the baseline parser failure, cover complete input consumption and output preservation, and exercise all variants.",
+      "canonical_criteria": [
+        "HOST-002/C03"
+      ],
+      "decision": "pass",
+      "note": "Supporting design-contract coverage, not an additional canonical criterion."
+    },
+    {
+      "specification_bullet": 4,
+      "text": "Existing core/host/model-state checks and actual module validators pass. Replay legacy audio and record the tested source, environment and any limits.",
+      "canonical_criteria": [
+        "HOST-002/C04"
+      ],
+      "decision": "pass",
+      "note": "Supporting design-contract coverage, not an additional canonical criterion."
+    },
+    {
+      "specification_bullet": 5,
+      "text": "Update user-facing controls/build documentation and leave precise continuation notes. Agent counts and test totals do not replace criterion review.",
+      "canonical_criteria": [
+        "HOST-002/C04"
+      ],
+      "decision": "pass",
+      "note": "Supporting design-contract coverage, not an additional canonical criterion."
+    }
+  ],
+  "source_binding": {
+    "applicability_target_commit": "6c91dab00855b67a559e92edb79ae49e567be469",
+    "observed_review_head_commit": "19b566acf77bf5b2df489353cc0d66fd9cb0c248",
+    "working_tree_is_claimed_clean": false,
+    "scope": "Source applicability is restricted to the pre-Expression baseline. Tested commits remain distinct from the current checkout and from this review publication.",
+    "vst3": {
+      "manifest_sha256": "4346f55625331bb05221ae298241960f18adbf9805f068dbe90fd0b0e3d92eb6",
+      "file_count": 91,
+      "manifest_encoding": "UTF-8 JSON file_sha256 object; sort_keys=True, separators=(comma, colon), ensure_ascii=False; no trailing newline.",
+      "manifest_source": "docs/validation/host-midi-macos-recovered-20261124.json#/source_bridges/vst3/file_sha256",
+      "inventory_scope": [
+        "include",
+        "src",
+        "plugins",
+        "cmake",
+        "tests/cpp",
+        "apps/vst3_benchmark.cpp",
+        "CMakeLists.txt",
+        ".github/workflows/vst3.yml",
+        "docs/DEPENDENCIES.md",
+        "LICENSE",
+        "THIRD_PARTY_NOTICES.md"
+      ],
+      "comparisons": [
+        {
+          "source_commit": "6c91dab00855b67a559e92edb79ae49e567be469",
+          "inventory_file_count": 91,
+          "matching_file_count": 91,
+          "mismatches": []
+        },
+        {
+          "source_commit": "ce59b0c254ab99b399f03e63094b10ce10933e71",
+          "inventory_file_count": 91,
+          "matching_file_count": 91,
+          "mismatches": []
+        }
+      ],
+      "current_worktree_mismatch_count": 24,
+      "current_worktree_mismatches": [
+        ".github/workflows/vst3.yml",
+        "CMakeLists.txt",
+        "cmake/Vst3.cmake",
+        "include/rhodes/instrument_state.hpp",
+        "plugins/vst3/controller.cpp",
+        "plugins/vst3/controller.hpp",
+        "plugins/vst3/factory.cpp",
+        "plugins/vst3/plugin_ids.hpp",
+        "plugins/vst3/processor.cpp",
+        "plugins/vst3/processor.hpp",
+        "plugins/vst3/state_stream.cpp",
+        "plugins/vst3/state_stream.hpp",
+        "tests/cpp/vst3_automation_contract_test.cpp",
+        "tests/cpp/vst3_buffer_contract_test.cpp",
+        "tests/cpp/vst3_command_atomicity_test.cpp",
+        "tests/cpp/vst3_command_bounds_test.cpp",
+        "tests/cpp/vst3_command_partition_test.cpp",
+        "tests/cpp/vst3_command_test_support.hpp",
+        "tests/cpp/vst3_control_text_test.cpp",
+        "tests/cpp/vst3_host_test.cpp",
+        "tests/cpp/vst3_loaded_midi_test.cpp",
+        "tests/cpp/vst3_stream_contract_test.cpp",
+        "tests/cpp/vst3_test_support.hpp",
+        "tests/cpp/vst3_triple_module_test.cpp"
+      ]
+    },
+    "foundation": {
+      "manifest_sha256": "03d031c839285781f593787cd0d7311db6ce6712d03ab9eff9e96228b3414867",
+      "file_count": 195,
+      "manifest_encoding": "UTF-8 JSON file_sha256 object; sort_keys=True, separators=(comma, colon), ensure_ascii=False; no trailing newline.",
+      "manifest_source": "docs/validation/host-midi-macos-recovered-20261124.json#/source_bridges/foundation/file_sha256",
+      "inventory_scope": [
+        "include",
+        "src",
+        "plugins",
+        "cmake",
+        "tests",
+        "apps",
+        "tools",
+        "schemas",
+        "profiles",
+        "CMakeLists.txt",
+        "CMakePresets.json",
+        ".github/workflows"
+      ],
+      "comparisons": [
+        {
+          "source_commit": "6c91dab00855b67a559e92edb79ae49e567be469",
+          "inventory_file_count": 195,
+          "matching_file_count": 195,
+          "mismatches": []
+        },
+        {
+          "source_commit": "d4c8a6b2668e478f48facd2eeb146aff0f551506",
+          "inventory_file_count": 195,
+          "matching_file_count": 195,
+          "mismatches": []
+        }
+      ],
+      "current_worktree_mismatch_count": 26,
+      "current_worktree_mismatches": [
+        ".github/workflows/ci.yml",
+        ".github/workflows/vst3.yml",
+        "CMakeLists.txt",
+        "cmake/Vst3.cmake",
+        "include/rhodes/instrument_state.hpp",
+        "plugins/vst3/controller.cpp",
+        "plugins/vst3/controller.hpp",
+        "plugins/vst3/factory.cpp",
+        "plugins/vst3/plugin_ids.hpp",
+        "plugins/vst3/processor.cpp",
+        "plugins/vst3/processor.hpp",
+        "plugins/vst3/state_stream.cpp",
+        "plugins/vst3/state_stream.hpp",
+        "tests/cpp/vst3_automation_contract_test.cpp",
+        "tests/cpp/vst3_buffer_contract_test.cpp",
+        "tests/cpp/vst3_command_atomicity_test.cpp",
+        "tests/cpp/vst3_command_bounds_test.cpp",
+        "tests/cpp/vst3_command_partition_test.cpp",
+        "tests/cpp/vst3_command_test_support.hpp",
+        "tests/cpp/vst3_control_text_test.cpp",
+        "tests/cpp/vst3_host_test.cpp",
+        "tests/cpp/vst3_loaded_midi_test.cpp",
+        "tests/cpp/vst3_stream_contract_test.cpp",
+        "tests/cpp/vst3_test_support.hpp",
+        "tests/cpp/vst3_triple_module_test.cpp",
+        "tools/validate_continuation_c.py"
+      ]
+    },
+    "local_cpp_99_files": {
+      "file_count": 99,
+      "manifest_sha256": "e3d94b5f9c8d3bb259311ca43e79164f1e65bdd3f6409a5af2746c2eea6786c1",
+      "manifest_encoding": "SHA-256 of sorted UTF-8 records: <file_sha256><two spaces><relative_path><LF>.",
+      "before_after_build_after_ctest_equal": true,
+      "matches_d4_and_6c91": true,
+      "actual_execution": "Existing incremental Release tree at dirty ce59 with the fixture/generator repairs; not a clean d4/6c91 execution.",
+      "manifest_source": "docs/validation/host-midi-linux-final-20261124.json#/source_freeze"
+    },
+    "local_python_89_files": {
+      "file_count": 89,
+      "matches_d4_and_6c91": true,
+      "manifest_source": "docs/validation/host-midi-python-final-20261124.json#/source_binding/files",
+      "limitation": "Original local Python binding was after-run readback, without a before/after freeze or complete non-Python input binding."
+    },
+    "compatibility_source_checks": [
+      {
+        "capture": "loaded033",
+        "file_count": 23,
+        "matching_file_count": 22,
+        "differences": [
+          {
+            "path": "docs/specs/HOST_MIDI_20261124.md",
+            "captured_sha256": "458183a7a6927ce40589473b0538fa5385cf0abbcab412da349b2e2627b5b52e",
+            "baseline_sha256": "2f4afc91a91c626a1b144a98c87823a9b7c4673b88cd665f04f6fdcabe780505"
+          }
+        ]
+      },
+      {
+        "capture": "wav036",
+        "file_count": 33,
+        "matching_file_count": 32,
+        "differences": [
+          {
+            "path": "cmake/Vst3.cmake",
+            "captured_sha256": "dfdec23f5b4cff8580082c90d8344f739a900ab5402be5eccfa131acb1f2073d",
+            "baseline_sha256": "cfdeb2978cdfb626ae31cf911fa37bb31077d41ed40b0483b9f60c70287e86f2"
+          }
+        ]
+      }
+    ],
+    "compatibility_difference_review": [
+      "Removing exactly the later 428-byte Roland-reference bullet from the 6c91 MIDI specification reproduces loaded033's captured specification hash.",
+      "The sole WAV-source mismatch is cmake/Vst3.cmake. Read-only a06-to-6c91 diff shows only BUILD_TESTING partition/loaded-MIDI registration and native test-loader support; production render targets are unchanged. W3-057 preserves the earlier review."
+    ],
+    "historical_source_diff": {
+      "ce59_to_6c91_changed_code_input_paths": [
+        "tests/fixtures/control_text_vectors.hpp",
+        "tests/python/test_callback_compare.py",
+        "tests/python/test_contact_extrema_raw.py",
+        "tools/compare_vst3_callbacks.py",
+        "tools/generate_control_text_vectors.py"
+      ],
+      "d4_to_6c91_code_build_test_tool_changes": [],
+      "interpretation": "VST3-scoped code is unchanged from ce59. Foundation/local integration use repaired d4-or-6c91 inputs; the ce59 VST3 job is not claimed to execute the later core fixture or Python repairs."
+    }
+  },
+  "model_and_input_binding": {
+    "model_scope": "Synthetic direct/filtered/quadrature instruments, model IDs 1/2/3, preserved class identities, gain/sustain IDs 0/1, transient CC123 IDs 0x1000-0x100f, legacy 16-byte RHST-v1 configuration, latency 0/48/48 frames.",
+    "physical_assets": "No calibrated specimen or acquired model assets; DSP equations, fixed coefficients, state format and fixture inputs are bound by the source manifests.",
+    "reviewed_historical_source_inputs": [
+      {
+        "path": "plugins/vst3/processor.cpp",
+        "source_commit": "6c91dab00855b67a559e92edb79ae49e567be469",
+        "sha256": "b51faecea5a80415b80b27551fd6b399669448aedb8a660a480d3f1a5ab90447",
+        "bytes": 24230
+      },
+      {
+        "path": "plugins/vst3/controller.cpp",
+        "source_commit": "6c91dab00855b67a559e92edb79ae49e567be469",
+        "sha256": "620e981fa26247ac7b46ce6fe0caeb901c45b197f978e847607e61056bd238b7",
+        "bytes": 11753
+      },
+      {
+        "path": "plugins/vst3/plugin_ids.hpp",
+        "source_commit": "6c91dab00855b67a559e92edb79ae49e567be469",
+        "sha256": "6f0929f00edf3103707443c98a6f91a68cda0b05b78b34895b65f24fd6c57d39",
+        "bytes": 3236
+      },
+      {
+        "path": "include/rhodes/instrument_state.hpp",
+        "source_commit": "6c91dab00855b67a559e92edb79ae49e567be469",
+        "sha256": "c11c9d982887f4228c76c3ee9e10fe5627c2dc0f1053ad531cfd316285a65616",
+        "bytes": 6985
+      },
+      {
+        "path": "include/rhodes/control_text.hpp",
+        "source_commit": "6c91dab00855b67a559e92edb79ae49e567be469",
+        "sha256": "de28474739274f4fac20dc1d3d5602cb63c62ddd04a33202cb5375985086e63d",
+        "bytes": 17207
+      },
+      {
+        "path": "include/rhodes/control_value.hpp",
+        "source_commit": "6c91dab00855b67a559e92edb79ae49e567be469",
+        "sha256": "d7c282afdcffaef90f7872f97b37bfb34671448da64376d3439649c052d4d48d",
+        "bytes": 5479
+      },
+      {
+        "path": "include/rhodes/audio_filter_coefficients.hpp",
+        "source_commit": "6c91dab00855b67a559e92edb79ae49e567be469",
+        "sha256": "c1ab39356d7e44348f9dc56f9120ff2598889d1fa144e5294b084585655eb76d",
+        "bytes": 17719
+      },
+      {
+        "path": "include/rhodes/quadrature_filter_coefficients.hpp",
+        "source_commit": "6c91dab00855b67a559e92edb79ae49e567be469",
+        "sha256": "3cca4ea6553ceb01810a6230f2144491364fa48af7d6cfbc43a8e3dcf5d08b51",
+        "bytes": 16603
+      },
+      {
+        "path": "tests/fixtures/control_text_vectors.hpp",
+        "source_commit": "6c91dab00855b67a559e92edb79ae49e567be469",
+        "sha256": "6dc6602e4831932dfa586accb1fe26c15d93a9128ab420d07989b18b015387d7",
+        "bytes": 53534
+      },
+      {
+        "path": "tests/fixtures/control_text_vectors.json",
+        "source_commit": "6c91dab00855b67a559e92edb79ae49e567be469",
+        "sha256": "da183a9b183f10d86a258b5aeee1ce4daae0af03099bab7e87c5ec1fecdb75e0",
+        "bytes": 79330
+      },
+      {
+        "path": "tests/cpp/vst3_command_partition_test.cpp",
+        "source_commit": "6c91dab00855b67a559e92edb79ae49e567be469",
+        "sha256": "e1ab16cb702fc953bb0ff24977460b3d84cc7d928ce22709f9732867e195052f",
+        "bytes": 31637
+      },
+      {
+        "path": "tests/cpp/vst3_command_atomicity_test.cpp",
+        "source_commit": "6c91dab00855b67a559e92edb79ae49e567be469",
+        "sha256": "747e43164e91cfede8277a86fac4f387dbd265a755e93e12d7c2b3beeb6a9755",
+        "bytes": 38690
+      },
+      {
+        "path": "tests/cpp/vst3_command_bounds_test.cpp",
+        "source_commit": "6c91dab00855b67a559e92edb79ae49e567be469",
+        "sha256": "1840571beb533754602b76704730d09113b6fbc8f4e2c00a7be603f7345a6faf",
+        "bytes": 15173
+      },
+      {
+        "path": "tests/cpp/vst3_pressure_test.cpp",
+        "source_commit": "6c91dab00855b67a559e92edb79ae49e567be469",
+        "sha256": "e6d5f64946cf7f580427d5056e856ccaa6f2d700d9d4e5ff3a2d5281e849f4ba",
+        "bytes": 21055
+      },
+      {
+        "path": "tests/cpp/vst3_control_text_test.cpp",
+        "source_commit": "6c91dab00855b67a559e92edb79ae49e567be469",
+        "sha256": "31dd56132a8d678f942633ff027ca95a2ea9580f1495d09b4d7169dd7ca6a6e4",
+        "bytes": 27877
+      },
+      {
+        "path": "tests/cpp/vst3_loaded_midi_test.cpp",
+        "source_commit": "6c91dab00855b67a559e92edb79ae49e567be469",
+        "sha256": "ded02dec0a9db5764e84371ebbdcc4b3492514a41a789491a9593400c511d327",
+        "bytes": 25948
+      },
+      {
+        "path": "tests/cpp/vst3_fp_environment_test.cpp",
+        "source_commit": "6c91dab00855b67a559e92edb79ae49e567be469",
+        "sha256": "05303cc961e4eef33adb2d846e5289922cd77ee5ab09d4f6f2e1f0ec74995136",
+        "bytes": 18308
+      },
+      {
+        "path": "tests/cpp/state_fp_environment_test.cpp",
+        "source_commit": "6c91dab00855b67a559e92edb79ae49e567be469",
+        "sha256": "90e29f5903c3b67afd5f28f0b8958cf2c6bca04a3f2420655296b6fd7ab81a4d",
+        "bytes": 10050
+      },
+      {
+        "path": "tests/cpp/control_fp_environment_test.cpp",
+        "source_commit": "6c91dab00855b67a559e92edb79ae49e567be469",
+        "sha256": "ce9dd0cdd386d9e5f84622c131202de4bf4ec8c9bd5d78ce85acb6a1683e8b3a",
+        "bytes": 12938
+      },
+      {
+        "path": "cmake/Vst3.cmake",
+        "source_commit": "6c91dab00855b67a559e92edb79ae49e567be469",
+        "sha256": "cfdeb2978cdfb626ae31cf911fa37bb31077d41ed40b0483b9f60c70287e86f2",
+        "bytes": 31501
+      },
+      {
+        "path": "CMakeLists.txt",
+        "source_commit": "6c91dab00855b67a559e92edb79ae49e567be469",
+        "sha256": "dab767c4bd08e7d509e530a3381c25a872e2d77cdcdbccf13578f5e4c9d4e033",
+        "bytes": 22009
+      }
+    ],
+    "documentation_inputs_at_applicable_revision": [
+      {
+        "path": "docs/specs/HOST_MIDI_20261124.md",
+        "source_commit": "6c91dab00855b67a559e92edb79ae49e567be469",
+        "sha256": "2f4afc91a91c626a1b144a98c87823a9b7c4673b88cd665f04f6fdcabe780505",
+        "bytes": 7743
+      },
+      {
+        "path": "docs/DAW_VALIDATION.md",
+        "source_commit": "6c91dab00855b67a559e92edb79ae49e567be469",
+        "sha256": "c7789c75ab435b0dfe130943e03481c6ec32b4846e61f22c13b2fd7a29035fb6",
+        "bytes": 20623
+      },
+      {
+        "path": "docs/VST3.md",
+        "source_commit": "6c91dab00855b67a559e92edb79ae49e567be469",
+        "sha256": "13d8befa7be8a2fe4b5746796155ca44f171a9e363c413a3cce6801a475bcbb4",
+        "bytes": 33849
+      },
+      {
+        "path": "docs/DEVELOPMENT.md",
+        "source_commit": "6c91dab00855b67a559e92edb79ae49e567be469",
+        "sha256": "7761d929fff1b9f3d5c7f4956c869f9b806dd0793ebc100f44cd8eb71b91b419",
+        "bytes": 10821
+      },
+      {
+        "path": "docs/HOST_MIDI_VERIFICATION.md",
+        "source_commit": "6c91dab00855b67a559e92edb79ae49e567be469",
+        "sha256": "b12ef0324c6b48994ff2ef28da533bc9472a120b931ff072ad561608fd0cd3a4",
+        "bytes": 9643
+      },
+      {
+        "path": "README.md",
+        "source_commit": "6c91dab00855b67a559e92edb79ae49e567be469",
+        "sha256": "c3ffb0d46574b97796be4ce459a97ac2e586256f7486a3db3516a7d351be8ddd",
+        "bytes": 15403
+      }
+    ],
+    "legacy_loaded": {
+      "baseline_commit": "20a77e8b2033d435839df594c783837befb07938",
+      "current_capture_label": "a06d2cd60bc53e3939e89f64254aed7ed5586e7c",
+      "inputs": {
+        "formats_bits": [
+          32,
+          64
+        ],
+        "sample_rates_hz": [
+          48000,
+          192000
+        ],
+        "epoch_frames": 2048,
+        "epochs": 2,
+        "post_recall_silence_frames": 128,
+        "partitions": {
+          "whole": [
+            2048
+          ],
+          "fixed64": [
+            64
+          ],
+          "ragged": [
+            1,
+            7,
+            31,
+            128,
+            3,
+            257,
+            64,
+            509,
+            2,
+            100
+          ]
+        },
+        "gain_dense": "At each sample f in each epoch: 0 if 1750 <= f < 1780, else (32+(13*f)%193)/256.",
+        "gain_sparse": "Per callback, points at 0, floor(n/2) if n>2, n-1 if n>1; values from gain_dense at global epoch frame. Compare only identical partitions.",
+        "events_and_recall_schedule": "Complete explicit notes, sustain and recall/flush schedule retained in reproduction.harness_source.",
+        "excluded": "No CC123, polyphonic pressure, malformed input, resource saturation or native DAW/device trial."
+      },
+      "summary": {
+        "passed": true,
+        "baseline_current_pairs": 72,
+        "passed_pairs": 72,
+        "loaded_processes": 144,
+        "paired_stereo_frames": 304128,
+        "loaded_callbacks_total": 5328,
+        "paired_state_checkpoints": 2952,
+        "dense_partition_groups": 24,
+        "dense_partition_groups_passed": 24,
+        "modules_and_relevant_sources_unchanged_during_run": true
+      },
+      "binary_and_harness_manifest": "docs/validation/host-midi-loaded-compatibility-20261124.json#/modules and /source_fingerprints",
+      "raw_integrity": {
+        "status": "verified",
+        "archive_sha256": "375ca56a2b0077a15aef1a74c797b8c42a380814479ac3a2cfd5bfb5e5b2e45a",
+        "manifest_sha256": "8edb8cb6928721bc29e80671c3274d645bb1a58058f8dcc9898dd6080e96b874",
+        "blob_count": 191,
+        "original_file_count": 612,
+        "original_bytes": 9219081,
+        "blob_bytes": 3671768,
+        "referenced_report_count": 9,
+        "limitation": "Byte integrity and manifest consistency only; no archived command is executed. Report experiment claims are not recomputed. Hashes do not authenticate execution, establish physical fidelity, or prove host/device deadlines."
+      }
+    },
+    "legacy_wav": {
+      "baseline_commit": "5aac654f8569aaa782e7bce58e82b3213b57da23",
+      "summary": {
+        "case_count": 24,
+        "exact_matches": 24,
+        "mismatches": [],
+        "total_frame_count": 44160,
+        "total_wav_bytes": 178032,
+        "q6_cases_executed": 0,
+        "render_attempts": 24
+      },
+      "renderer": {
+        "path": "/workspace/scratch/edddd917a86c/Fender-rhoades/build-host/rhodes_render",
+        "sha256": "44d32bd09440090aeff07ccb4784bdc3c7dd6db6e71fc3ca69b85f50dbedd9e2",
+        "bytes": 85144,
+        "build_action": "Used the pre-existing build-host/rhodes_render; no rebuild performed."
+      },
+      "input_output_hashes": "docs/validation/host-midi-legacy-wav-20261124.json#/cases",
+      "limitation": "Fingerprint comparison against retained historical direct/filtered hashes; no old raw WAVs and zero Q6 cases."
+    },
+    "sdk_commits": {
+      ".": "3cdf9ca5d1f5b1b21e0a86832aa4abe55607bd96",
+      "base": "fcf9da0bd27a16f7f03773a3a39822f28f5c8477",
+      "cmake": "054c9143cbb8d47fc4694e473f2ee3b4d951a8f5",
+      "pluginterfaces": "4f547e8e102b47de4a8b8aaf343c73b700786372",
+      "public.sdk": "586dc5e6c8012c3e4b01c79389375cbe96bdb1da"
+    },
+    "sdk_raw_log_pin_lines": [
+      {
+        "line": 258,
+        "component": ".",
+        "commit": "3cdf9ca5d1f5b1b21e0a86832aa4abe55607bd96"
+      },
+      {
+        "line": 259,
+        "component": "base",
+        "commit": "fcf9da0bd27a16f7f03773a3a39822f28f5c8477"
+      },
+      {
+        "line": 260,
+        "component": "cmake",
+        "commit": "054c9143cbb8d47fc4694e473f2ee3b4d951a8f5"
+      },
+      {
+        "line": 261,
+        "component": "pluginterfaces",
+        "commit": "4f547e8e102b47de4a8b8aaf343c73b700786372"
+      },
+      {
+        "line": 262,
+        "component": "public.sdk",
+        "commit": "586dc5e6c8012c3e4b01c79389375cbe96bdb1da"
+      }
+    ]
+  },
+  "recovered_native_verification": {
+    "retained_record": {
+      "path": "docs/validation/host-midi-macos-recovered-20261124.json",
+      "sha256": "a62a4c5fa63d3516e6840e02f4395512f0475832ea0eac8ce2d9a51771657c2c",
+      "bytes": 38262
+    },
+    "archive": {
+      "path": "docs/validation/host-midi-macos-recovered-20261124.tar.gz",
+      "sha256": "d83a793218b52db8319e21805bdf4ce0cc1642621cc079749ed55ab80553c768",
+      "bytes": 75406
+    },
+    "archive_members": {
+      "host002-terminal-metadata.json": {
+        "bytes": 68330,
+        "sha256": "ee294d466837ab841a3bf7e399cab1dcde29b24128bd7643de7c3c10296de48c"
+      },
+      "job-138433222551.log": {
+        "bytes": 142369,
+        "sha256": "9f030264d279a7326a7623dd4788f2dcf0deb1afb077a7ef08ab18bd98035499"
+      },
+      "job-138433242328.log": {
+        "bytes": 55076,
+        "sha256": "4f05381014d7aef5101d8791cac251c3c1d14e0d278c2a8b697f0ce011a43630"
+      },
+      "job-138445208261.log": {
+        "bytes": 227751,
+        "sha256": "62bff9664fcda55b4b99b9f1e6826d3fb30321481f6d47a9c8c9753b508ece60"
+      },
+      "host002-vst3-terminal-jobs.json": {
+        "bytes": 15750,
+        "sha256": "cc9fefb8a6ad23da696deb86f0bd92c200399b687fee03bb7395e8a8a2534cb4"
+      }
+    },
+    "archive_member_types": "Five unique regular files; no links or unexpected members.",
+    "environment": {
+      "os": "macOS 26 ARM64",
+      "image": "macos-26-arm64/20261117.0516",
+      "compiler": "AppleClang 21.0.0.21000101",
+      "python": "3.11.9 arm64"
+    },
+    "raw_log_results": [
+      {
+        "scope": "VST3 macOS",
+        "run_id": 45373649775,
+        "attempt": 3,
+        "job_id": 138433222551,
+        "source_commit": "ce59b0c254ab99b399f03e63094b10ce10933e71",
+        "registered": 157,
+        "passed": 148,
+        "skipped": 9,
+        "failed": 0,
+        "skip_scope": "x86-specific FTZ/DAZ selectors on ARM64",
+        "ctest_elapsed_seconds": 25.63,
+        "includes": "all three SDK validators, all three module-info validators, loaded MIDI and dual/triple module coexistence",
+        "skipped_tests": [
+          "vst3.fp_ftz",
+          "vst3.filtered_fp_ftz",
+          "vst3.quadrature_fp_ftz",
+          "vst3.fp_daz",
+          "vst3.filtered_fp_daz",
+          "vst3.quadrature_fp_daz",
+          "vst3.fp_ftz_daz",
+          "vst3.filtered_fp_ftz_daz",
+          "vst3.quadrature_fp_ftz_daz"
+        ],
+        "raw_log_member": "job-138433222551.log",
+        "raw_log_sha256": "9f030264d279a7326a7623dd4788f2dcf0deb1afb077a7ef08ab18bd98035499",
+        "raw_log_line_count": 1285,
+        "parsed_distinct_results": 157,
+        "verified_pass_count": 148,
+        "verified_skip_count": 9,
+        "verified_failure_count": 0,
+        "checkout_identity_lines": [
+          {
+            "line": 105,
+            "text": "2026-11-24T12:08:44.1247400Z ce59b0c254ab99b399f03e63094b10ce10933e71"
+          }
+        ],
+        "terminal_lines": [
+          {
+            "line": 1140,
+            "text": "2026-11-24T12:10:53.6728100Z 100% tests passed out of 157"
+          },
+          {
+            "line": 1142,
+            "text": "2026-11-24T12:10:53.6728340Z Total Test time (real) =  25.63 sec"
+          }
+        ],
+        "relevant_selector_results": [
+          {
+            "line": 826,
+            "ordinal": 1,
+            "registered": 157,
+            "ctest_id": 168,
+            "name": "vst3.model_stream_roundtrip",
+            "outcome": "Passed",
+            "duration_seconds": 0.0
+          },
+          {
+            "line": 828,
+            "ordinal": 2,
+            "registered": 157,
+            "ctest_id": 169,
+            "name": "vst3.model_stream_invalid_model",
+            "outcome": "Passed",
+            "duration_seconds": 0.0
+          },
+          {
+            "line": 830,
+            "ordinal": 3,
+            "registered": 157,
+            "ctest_id": 170,
+            "name": "vst3.model_stream_rejection",
+            "outcome": "Passed",
+            "duration_seconds": 0.0
+          },
+          {
+            "line": 832,
+            "ordinal": 4,
+            "registered": 157,
+            "ctest_id": 171,
+            "name": "vst3.model_stream_transfers",
+            "outcome": "Passed",
+            "duration_seconds": 0.0
+          },
+          {
+            "line": 876,
+            "ordinal": 26,
+            "registered": 157,
+            "ctest_id": 193,
+            "name": "vst3.channel_commands",
+            "outcome": "Passed",
+            "duration_seconds": 0.01
+          },
+          {
+            "line": 878,
+            "ordinal": 27,
+            "registered": 157,
+            "ctest_id": 194,
+            "name": "vst3.filtered_channel_commands",
+            "outcome": "Passed",
+            "duration_seconds": 0.01
+          },
+          {
+            "line": 880,
+            "ordinal": 28,
+            "registered": 157,
+            "ctest_id": 195,
+            "name": "vst3.quadrature_channel_commands",
+            "outcome": "Passed",
+            "duration_seconds": 0.01
+          },
+          {
+            "line": 882,
+            "ordinal": 29,
+            "registered": 157,
+            "ctest_id": 196,
+            "name": "vst3.command_partition",
+            "outcome": "Passed",
+            "duration_seconds": 0.06
+          },
+          {
+            "line": 884,
+            "ordinal": 30,
+            "registered": 157,
+            "ctest_id": 197,
+            "name": "vst3.filtered_command_partition",
+            "outcome": "Passed",
+            "duration_seconds": 0.14
+          },
+          {
+            "line": 886,
+            "ordinal": 31,
+            "registered": 157,
+            "ctest_id": 198,
+            "name": "vst3.quadrature_command_partition",
+            "outcome": "Passed",
+            "duration_seconds": 0.13
+          },
+          {
+            "line": 888,
+            "ordinal": 32,
+            "registered": 157,
+            "ctest_id": 199,
+            "name": "vst3.pressure",
+            "outcome": "Passed",
+            "duration_seconds": 0.02
+          },
+          {
+            "line": 890,
+            "ordinal": 33,
+            "registered": 157,
+            "ctest_id": 200,
+            "name": "vst3.filtered_pressure",
+            "outcome": "Passed",
+            "duration_seconds": 0.07
+          },
+          {
+            "line": 892,
+            "ordinal": 34,
+            "registered": 157,
+            "ctest_id": 201,
+            "name": "vst3.quadrature_pressure",
+            "outcome": "Passed",
+            "duration_seconds": 0.05
+          },
+          {
+            "line": 894,
+            "ordinal": 35,
+            "registered": 157,
+            "ctest_id": 202,
+            "name": "vst3.command_bounds",
+            "outcome": "Passed",
+            "duration_seconds": 0.01
+          },
+          {
+            "line": 896,
+            "ordinal": 36,
+            "registered": 157,
+            "ctest_id": 203,
+            "name": "vst3.filtered_command_bounds",
+            "outcome": "Passed",
+            "duration_seconds": 0.03
+          },
+          {
+            "line": 898,
+            "ordinal": 37,
+            "registered": 157,
+            "ctest_id": 204,
+            "name": "vst3.quadrature_command_bounds",
+            "outcome": "Passed",
+            "duration_seconds": 0.04
+          },
+          {
+            "line": 900,
+            "ordinal": 38,
+            "registered": 157,
+            "ctest_id": 205,
+            "name": "vst3.control_text",
+            "outcome": "Passed",
+            "duration_seconds": 0.04
+          },
+          {
+            "line": 902,
+            "ordinal": 39,
+            "registered": 157,
+            "ctest_id": 206,
+            "name": "vst3.filtered_control_text",
+            "outcome": "Passed",
+            "duration_seconds": 0.03
+          },
+          {
+            "line": 904,
+            "ordinal": 40,
+            "registered": 157,
+            "ctest_id": 207,
+            "name": "vst3.quadrature_control_text",
+            "outcome": "Passed",
+            "duration_seconds": 0.03
+          },
+          {
+            "line": 906,
+            "ordinal": 41,
+            "registered": 157,
+            "ctest_id": 208,
+            "name": "vst3.command_atomicity",
+            "outcome": "Passed",
+            "duration_seconds": 0.04
+          },
+          {
+            "line": 908,
+            "ordinal": 42,
+            "registered": 157,
+            "ctest_id": 209,
+            "name": "vst3.filtered_command_atomicity",
+            "outcome": "Passed",
+            "duration_seconds": 0.15
+          },
+          {
+            "line": 910,
+            "ordinal": 43,
+            "registered": 157,
+            "ctest_id": 210,
+            "name": "vst3.quadrature_command_atomicity",
+            "outcome": "Passed",
+            "duration_seconds": 0.11
+          },
+          {
+            "line": 984,
+            "ordinal": 80,
+            "registered": 157,
+            "ctest_id": 247,
+            "name": "vst3.fp_baseline",
+            "outcome": "Passed",
+            "duration_seconds": 0.01
+          },
+          {
+            "line": 986,
+            "ordinal": 81,
+            "registered": 157,
+            "ctest_id": 248,
+            "name": "vst3.filtered_fp_baseline",
+            "outcome": "Passed",
+            "duration_seconds": 0.01
+          },
+          {
+            "line": 988,
+            "ordinal": 82,
+            "registered": 157,
+            "ctest_id": 249,
+            "name": "vst3.quadrature_fp_baseline",
+            "outcome": "Passed",
+            "duration_seconds": 0.01
+          },
+          {
+            "line": 1116,
+            "ordinal": 146,
+            "registered": 157,
+            "ctest_id": 313,
+            "name": "vst3.sdk_validator",
+            "outcome": "Passed",
+            "duration_seconds": 1.06
+          },
+          {
+            "line": 1118,
+            "ordinal": 147,
+            "registered": 157,
+            "ctest_id": 314,
+            "name": "vst3.dual_module_coexist",
+            "outcome": "Passed",
+            "duration_seconds": 0.01
+          },
+          {
+            "line": 1120,
+            "ordinal": 148,
+            "registered": 157,
+            "ctest_id": 315,
+            "name": "vst3.dual_module_duplicate_guard",
+            "outcome": "Passed",
+            "duration_seconds": 0.03
+          },
+          {
+            "line": 1122,
+            "ordinal": 149,
+            "registered": 157,
+            "ctest_id": 316,
+            "name": "vst3.triple_module_coexist",
+            "outcome": "Passed",
+            "duration_seconds": 0.31
+          },
+          {
+            "line": 1124,
+            "ordinal": 150,
+            "registered": 157,
+            "ctest_id": 317,
+            "name": "vst3.triple_module_duplicate_guard",
+            "outcome": "Passed",
+            "duration_seconds": 0.01
+          },
+          {
+            "line": 1126,
+            "ordinal": 151,
+            "registered": 157,
+            "ctest_id": 318,
+            "name": "vst3.loaded_midi",
+            "outcome": "Passed",
+            "duration_seconds": 0.18
+          },
+          {
+            "line": 1128,
+            "ordinal": 152,
+            "registered": 157,
+            "ctest_id": 319,
+            "name": "vst3.filtered_sdk_validator",
+            "outcome": "Passed",
+            "duration_seconds": 4.56
+          },
+          {
+            "line": 1130,
+            "ordinal": 153,
+            "registered": 157,
+            "ctest_id": 320,
+            "name": "vst3.quadrature_sdk_validator",
+            "outcome": "Passed",
+            "duration_seconds": 2.64
+          },
+          {
+            "line": 1132,
+            "ordinal": 154,
+            "registered": 157,
+            "ctest_id": 321,
+            "name": "vst3.moduleinfo_validator",
+            "outcome": "Passed",
+            "duration_seconds": 0.01
+          },
+          {
+            "line": 1134,
+            "ordinal": 155,
+            "registered": 157,
+            "ctest_id": 322,
+            "name": "vst3.filtered_moduleinfo_validator",
+            "outcome": "Passed",
+            "duration_seconds": 0.01
+          },
+          {
+            "line": 1136,
+            "ordinal": 156,
+            "registered": 157,
+            "ctest_id": 323,
+            "name": "vst3.quadrature_moduleinfo_validator",
+            "outcome": "Passed",
+            "duration_seconds": 0.01
+          }
+        ]
+      },
+      {
+        "scope": "Foundation C++ macOS",
+        "run_id": 45384092226,
+        "job_id_when_logs_fetched": 138433242328,
+        "latest_relisted_job_id": 138445290247,
+        "source_commit": "6c91dab00855b67a559e92edb79ae49e567be469",
+        "execution_started_utc": "2026-11-24T11:40:27Z",
+        "registered": 167,
+        "passed": 161,
+        "skipped": 6,
+        "failed": 0,
+        "skip_scope": "x86-specific state/control FTZ/DAZ selectors on ARM64",
+        "ctest_elapsed_seconds": 3.85,
+        "note": "Successful original execution re-listed in later attempts; not counted as a new execution.",
+        "skipped_tests": [
+          "state_fp.ftz",
+          "state_fp.daz",
+          "state_fp.ftz_daz",
+          "control_fp.ftz",
+          "control_fp.daz",
+          "control_fp.ftz_daz"
+        ],
+        "raw_log_member": "job-138433242328.log",
+        "raw_log_sha256": "4f05381014d7aef5101d8791cac251c3c1d14e0d278c2a8b697f0ce011a43630",
+        "raw_log_line_count": 612,
+        "parsed_distinct_results": 167,
+        "verified_pass_count": 161,
+        "verified_skip_count": 6,
+        "verified_failure_count": 0,
+        "checkout_identity_lines": [
+          {
+            "line": 103,
+            "text": "2026-11-24T11:40:29.8366970Z 6c91dab00855b67a559e92edb79ae49e567be469"
+          }
+        ],
+        "terminal_lines": [
+          {
+            "line": 589,
+            "text": "2026-11-24T11:40:54.2630480Z 100% tests passed out of 167"
+          },
+          {
+            "line": 591,
+            "text": "2026-11-24T11:40:54.2630780Z Total Test time (real) =   3.85 sec"
+          }
+        ],
+        "relevant_selector_results": [
+          {
+            "line": 255,
+            "ordinal": 1,
+            "registered": 167,
+            "ctest_id": 1,
+            "name": "control_text.oracle",
+            "outcome": "Passed",
+            "duration_seconds": 0.0
+          },
+          {
+            "line": 257,
+            "ordinal": 2,
+            "registered": 167,
+            "ctest_id": 2,
+            "name": "control_text.bounds",
+            "outcome": "Passed",
+            "duration_seconds": 0.0
+          },
+          {
+            "line": 259,
+            "ordinal": 3,
+            "registered": 167,
+            "ctest_id": 3,
+            "name": "control_text.formatting",
+            "outcome": "Passed",
+            "duration_seconds": 0.01
+          },
+          {
+            "line": 261,
+            "ordinal": 4,
+            "registered": 167,
+            "ctest_id": 4,
+            "name": "control_text.roundtrip",
+            "outcome": "Passed",
+            "duration_seconds": 0.25
+          },
+          {
+            "line": 263,
+            "ordinal": 5,
+            "registered": 167,
+            "ctest_id": 5,
+            "name": "control_text.environments",
+            "outcome": "Passed",
+            "duration_seconds": 0.07
+          },
+          {
+            "line": 265,
+            "ordinal": 6,
+            "registered": 167,
+            "ctest_id": 6,
+            "name": "control_text.locale",
+            "outcome": "Passed",
+            "duration_seconds": 0.01
+          },
+          {
+            "line": 323,
+            "ordinal": 35,
+            "registered": 167,
+            "ctest_id": 35,
+            "name": "model_state.model1_golden",
+            "outcome": "Passed",
+            "duration_seconds": 0.0
+          },
+          {
+            "line": 325,
+            "ordinal": 36,
+            "registered": 167,
+            "ctest_id": 36,
+            "name": "model_state.model2_roundtrip",
+            "outcome": "Passed",
+            "duration_seconds": 0.0
+          },
+          {
+            "line": 327,
+            "ordinal": 37,
+            "registered": 167,
+            "ctest_id": 37,
+            "name": "model_state.model3_roundtrip",
+            "outcome": "Passed",
+            "duration_seconds": 0.0
+          },
+          {
+            "line": 329,
+            "ordinal": 38,
+            "registered": 167,
+            "ctest_id": 38,
+            "name": "model_state.cross_model_rejection",
+            "outcome": "Passed",
+            "duration_seconds": 0.0
+          },
+          {
+            "line": 331,
+            "ordinal": 39,
+            "registered": 167,
+            "ctest_id": 39,
+            "name": "model_state.invalid_model",
+            "outcome": "Passed",
+            "duration_seconds": 0.0
+          },
+          {
+            "line": 333,
+            "ordinal": 40,
+            "registered": 167,
+            "ctest_id": 40,
+            "name": "model_state.malformed_models",
+            "outcome": "Passed",
+            "duration_seconds": 0.0
+          },
+          {
+            "line": 535,
+            "ordinal": 141,
+            "registered": 167,
+            "ctest_id": 141,
+            "name": "state_fp.baseline",
+            "outcome": "Passed",
+            "duration_seconds": 0.0
+          },
+          {
+            "line": 551,
+            "ordinal": 149,
+            "registered": 167,
+            "ctest_id": 149,
+            "name": "control_fp.baseline",
+            "outcome": "Passed",
+            "duration_seconds": 0.0
+          }
+        ]
+      },
+      {
+        "scope": "Foundation Python macOS",
+        "run_id": 45384092226,
+        "attempt": 3,
+        "job_id": 138445208261,
+        "source_commit": "6c91dab00855b67a559e92edb79ae49e567be469",
+        "execution_started_utc": "2026-11-24T12:35:14Z",
+        "reported": 888,
+        "passed": 837,
+        "skipped": 51,
+        "failed": 0,
+        "unittest_elapsed_seconds": 44.844,
+        "skip_reasons": {
+          "'Optional independent Q6 audit needs NumPy/SciPy'": 1,
+          "'Optional independent audit needs installed NumPy/SciPy'": 1,
+          "'Optional numerical assessment/NPZ checks need NumPy/SciPy'": 3,
+          "'Optional offline bridge checks need NumPy/SciPy'": 8,
+          "'Optional offline numerical selfchecks need NumPy/SciPy'": 14,
+          "'Optional retained-array checks need NumPy/SciPy'": 3,
+          "'filesystem rejects undecodable filename bytes'": 1,
+          "'optional NumPy not installed'": 13,
+          "'optional NumPy not installed; stdlib raw inspection remains covered'": 4,
+          "'optional NumPy/SciPy not installed'": 2,
+          "'optional SciPy not installed'": 1
+        },
+        "raw_log_member": "job-138445208261.log",
+        "raw_log_sha256": "62bff9664fcda55b4b99b9f1e6826d3fb30321481f6d47a9c8c9753b508ece60",
+        "raw_log_line_count": 1507,
+        "verified_ok_line_count": 837,
+        "verified_skip_line_count": 51,
+        "verified_failure_or_error_lines": [],
+        "verified_skip_reasons": {
+          "'Optional independent Q6 audit needs NumPy/SciPy'": 1,
+          "'Optional independent audit needs installed NumPy/SciPy'": 1,
+          "'Optional numerical assessment/NPZ checks need NumPy/SciPy'": 3,
+          "'Optional offline bridge checks need NumPy/SciPy'": 8,
+          "'Optional offline numerical selfchecks need NumPy/SciPy'": 14,
+          "'Optional retained-array checks need NumPy/SciPy'": 3,
+          "'filesystem rejects undecodable filename bytes'": 1,
+          "'optional NumPy not installed'": 13,
+          "'optional NumPy not installed; stdlib raw inspection remains covered'": 4,
+          "'optional NumPy/SciPy not installed'": 2,
+          "'optional SciPy not installed'": 1
+        },
+        "terminal_lines": [
+          {
+            "line": 1488,
+            "text": "2026-11-24T12:36:07.1398740Z Ran 888 tests in 44.844s"
+          },
+          {
+            "line": 1490,
+            "text": "2026-11-24T12:36:07.1398900Z OK (skipped=51)"
+          }
+        ],
+        "skip_classification": {
+          "optional_numpy_or_scipy_dependency": 50,
+          "filesystem_undecodable_filename": 1
+        }
+      }
+    ],
+    "metadata_mac_jobs": [
+      {
+        "id": 138433222551,
+        "run_id": 45373649775,
+        "run_attempt": 3,
+        "name": "VST3 prototype / macos-latest",
+        "head_sha": "ce59b0c254ab99b399f03e63094b10ce10933e71",
+        "status": "completed",
+        "conclusion": "success",
+        "started_at": "2026-11-24T12:08:41Z",
+        "completed_at": "2026-11-24T12:11:00Z"
+      },
+      {
+        "id": 138445208261,
+        "run_id": 45384092226,
+        "run_attempt": 3,
+        "name": "Project state / macos-latest",
+        "head_sha": "6c91dab00855b67a559e92edb79ae49e567be469",
+        "status": "completed",
+        "conclusion": "success",
+        "started_at": "2026-11-24T12:35:14Z",
+        "completed_at": "2026-11-24T12:36:10Z"
+      },
+      {
+        "id": 138445290247,
+        "run_id": 45384092226,
+        "run_attempt": 3,
+        "name": "C++20 / macos-latest",
+        "head_sha": "6c91dab00855b67a559e92edb79ae49e567be469",
+        "status": "completed",
+        "conclusion": "success",
+        "started_at": "2026-11-24T11:40:27Z",
+        "completed_at": "2026-11-24T11:40:57Z"
+      }
+    ],
+    "terminal_runs": [
+      {
+        "id": 45373649775,
+        "head_sha": "ce59b0c254ab99b399f03e63094b10ce10933e71",
+        "run_attempt": 3,
+        "status": "completed",
+        "conclusion": "success",
+        "updated_at": "2026-11-24T12:11:00Z"
+      },
+      {
+        "id": 45384092226,
+        "head_sha": "6c91dab00855b67a559e92edb79ae49e567be469",
+        "run_attempt": 3,
+        "status": "completed",
+        "conclusion": "success",
+        "updated_at": "2026-11-24T12:36:10Z"
+      }
+    ],
+    "relisted_execution_rule": "Foundation core job 138433242328 is the retained fetched log; later job 138445290247 has the same 2026-11-24T11:40:27Z execution start. It is counted once. Re-listed original Linux/Windows VST3 successes are likewise not new executions.",
+    "skip_assessment": "Nine VST3 and six state/control core skips are exactly the x86 MXCSR FTZ/DAZ selectors. Historical source returns 77 when those controls are unavailable, and CMake declares SKIP_RETURN_CODE 77. Portable baselines, all validators, loaded MIDI and required control/model-state tests pass on ARM64. Fifty Python skips require optional NumPy/SciPy and one concerns undecodable filenames; none substitutes for a required executed host validator.",
+    "log_integrity_limit": "These are retained connector-decoded UTF-8 job logs and metadata. Hash agreement binds their fetched bytes, not an original provider compressed payload, independently authenticated execution or binary rebuild."
+  },
+  "other_retained_results": {
+    "local_linux_cpp": {
+      "registered": 327,
+      "passed": 327,
+      "skipped": 0,
+      "failed": 0,
+      "actual_environment": "Linux x86_64, GCC 14.2.0, CMake 4.4.5, Release, pinned SDK.",
+      "source_record": "docs/validation/host-midi-linux-final-20261124.json"
+    },
+    "local_python": {
+      "reported": 888,
+      "passed": 887,
+      "skipped": 1,
+      "failed": 0,
+      "skip": "Optional RHODES_AUDIO_PROBE comparison",
+      "source_record": "docs/validation/host-midi-python-final-20261124.json"
+    },
+    "native_linux_windows_and_sanitizer": [
+      {
+        "job_id": 138374005076,
+        "run_id": 45373649775,
+        "source_commit": "ce59b0c254ab99b399f03e63094b10ce10933e71",
+        "compiler": "GNU 15.2.0",
+        "architecture": "x86_64",
+        "operating_system_image": "ubuntu-26.04",
+        "ctest": {
+          "total": 157,
+          "passed": 157,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 46.96,
+          "parsed_result_line_count": 157
+        }
+      },
+      {
+        "job_id": 138374004751,
+        "run_id": 45373649775,
+        "source_commit": "ce59b0c254ab99b399f03e63094b10ce10933e71",
+        "compiler": "MSVC 19.52.37029.0",
+        "architecture": "x64",
+        "operating_system_image": "windows-2025-vs2026",
+        "ctest": {
+          "total": 157,
+          "passed": 157,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 43.83,
+          "parsed_result_line_count": 157
+        }
+      },
+      {
+        "job_id": 138383891694,
+        "run_id": 45376430320,
+        "source_commit": "d4c8a6b2668e478f48facd2eeb146aff0f551506",
+        "compiler": "GNU 15.2.0",
+        "architecture": null,
+        "operating_system_image": "ubuntu-26.04",
+        "ctest": {
+          "total": 170,
+          "passed": 170,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 5.1,
+          "parsed_result_line_count": 170
+        }
+      },
+      {
+        "job_id": 138383892161,
+        "run_id": 45376430320,
+        "source_commit": "d4c8a6b2668e478f48facd2eeb146aff0f551506",
+        "compiler": "MSVC 19.52.37029.0",
+        "architecture": "x64",
+        "operating_system_image": "windows-2025-vs2026",
+        "ctest": {
+          "total": 167,
+          "passed": 167,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 7.93,
+          "parsed_result_line_count": 167
+        }
+      },
+      {
+        "job_id": 138383892155,
+        "run_id": 45376430320,
+        "source_commit": "d4c8a6b2668e478f48facd2eeb146aff0f551506",
+        "compiler": "GNU 15.2.0",
+        "architecture": null,
+        "operating_system_image": "ubuntu-26.04",
+        "ctest": {
+          "total": 170,
+          "passed": 170,
+          "failed": 0,
+          "skipped": 0,
+          "duration_seconds": 83.24,
+          "parsed_result_line_count": 170
+        }
+      },
+      {
+        "job_id": 138383892070,
+        "run_id": 45376430320,
+        "source_commit": "d4c8a6b2668e478f48facd2eeb146aff0f551506",
+        "compiler": null,
+        "architecture": "x64",
+        "operating_system_image": "ubuntu-26.04",
+        "unittest": {
+          "reported_ran": 888,
+          "passed_excluding_skips": 838,
+          "skipped": 50,
+          "failures": 0,
+          "errors": 0,
+          "duration_seconds": 37.654,
+          "skip_reason_counts": {
+            "Optional independent Q6 audit needs NumPy/SciPy": 1,
+            "Optional independent audit needs installed NumPy/SciPy": 1,
+            "Optional numerical assessment/NPZ checks need NumPy/SciPy": 3,
+            "Optional offline bridge checks need NumPy/SciPy": 8,
+            "Optional offline numerical selfchecks need NumPy/SciPy": 14,
+            "Optional retained-array checks need NumPy/SciPy": 3,
+            "optional NumPy not installed": 13,
+            "optional NumPy not installed; stdlib raw inspection remains covered": 4,
+            "optional NumPy/SciPy not installed": 2,
+            "optional SciPy not installed": 1
+          },
+          "count_note": "unittest Ran includes skipped tests; skipped tests are not counted as executed passes."
+        }
+      },
+      {
+        "job_id": 138383892223,
+        "run_id": 45376430320,
+        "source_commit": "d4c8a6b2668e478f48facd2eeb146aff0f551506",
+        "compiler": null,
+        "architecture": "x64",
+        "operating_system_image": "windows-2025-vs2026",
+        "unittest": {
+          "reported_ran": 888,
+          "passed_excluding_skips": 830,
+          "skipped": 58,
+          "failures": 0,
+          "errors": 0,
+          "duration_seconds": 80.339,
+          "skip_reason_counts": {
+            "FIFO creation requires a POSIX-like platform": 2,
+            "FIFO creation unavailable": 1,
+            "FIFO unavailable": 1,
+            "Host cannot replace an open file": 1,
+            "Optional independent Q6 audit needs NumPy/SciPy": 1,
+            "Optional independent audit needs installed NumPy/SciPy": 1,
+            "Optional numerical assessment/NPZ checks need NumPy/SciPy": 3,
+            "Optional offline bridge checks need NumPy/SciPy": 8,
+            "Optional offline numerical selfchecks need NumPy/SciPy": 14,
+            "Optional retained-array checks need NumPy/SciPy": 3,
+            "native replacement of a read-only open file is unavailable: [WinError 5] Access is denied: 'C:\\\\Users\\\\runneradmin\\\\AppData\\\\Local\\\\Temp\\\\tmpmfeh3y7z\\\\replacement.npz' -> 'C:\\\\Users\\\\runneradmin\\\\AppData\\\\Local\\\\Temp\\\\tmpmfeh3y7z\\\\retained.npz'": 1,
+            "optional NumPy not installed": 13,
+            "optional NumPy not installed; stdlib raw inspection remains covered": 4,
+            "optional NumPy/SciPy not installed": 2,
+            "optional SciPy not installed": 1,
+            "requires POSIX FIFO support": 1,
+            "surrogate-escaped filenames are POSIX-specific": 1
+          },
+          "count_note": "unittest Ran includes skipped tests; skipped tests are not counted as executed passes."
+        }
+      }
+    ],
+    "native_selected_log_checked": {
+      "path": "docs/validation/host-midi-native-final-selected-20261124.log",
+      "sha256": "708032a6cf10a431f00a8042148e59f5b03b3eb793b08109be89456c623e22ed",
+      "bytes": 46724
+    },
+    "limits": "Earlier native snapshot remains registered inconclusive for its then-missing macOS scope. Its successful components are retained observations, not a rewritten all-platform result. SDK internal checks are included within CTest selectors and are not added to selector totals."
+  },
+  "registered_input_integrity": {
+    "HOST_002_record_count": 6,
+    "artifact_reference_count": 40,
+    "unique_artifact_count": 40,
+    "mismatches": [],
+    "records": [
+      {
+        "id": "HOST-002-20261124-linux-integration",
+        "kind": "numerical",
+        "result": "pass",
+        "source_commit": null,
+        "artifact_count": 9,
+        "artifacts": [
+          {
+            "path": "docs/validation/host-midi-linux-final-20261124.json",
+            "sha256": "d1e662ee01f59e947c6391248b787c0d62e3a622983a8a43e933f96df4f960e3",
+            "bytes": 166731
+          },
+          {
+            "path": "docs/validation/host-midi-linux-final-20261124-build.log",
+            "sha256": "6f7ceafa47897ead193d12346c29fa1b2656135ef96a292255f7d83441636081",
+            "bytes": 10094
+          },
+          {
+            "path": "docs/validation/host-midi-linux-final-20261124-ctest.log",
+            "sha256": "b44435dc2c59accdb606b8bb84f31335c8ede6c39821d869876817a283416ee0",
+            "bytes": 45236
+          },
+          {
+            "path": "docs/validation/host-midi-linux-final-20261124-ctest-detail.log",
+            "sha256": "e24b5ec8cb75f9bc26967d9de1e2fe24e9689991122ebfce7bd8553c77815dce",
+            "bytes": 319469
+          },
+          {
+            "path": "docs/validation/host-midi-linux-final-20261124-source-bridge.log",
+            "sha256": "6cc32d506d8b43533f9e24b219ddb2355affd7dd3bd430cda360af3f151cedef",
+            "bytes": 31865
+          },
+          {
+            "path": "docs/validation/host-midi-python-final-20261124.json",
+            "sha256": "8d62352d334217dcf6b1788af73d140b6dd99631370f6324558e2a5c16a0a928",
+            "bytes": 16508
+          },
+          {
+            "path": "docs/validation/host-midi-python-final-20261124.log",
+            "sha256": "e3cf1f2f47e8e6f0bfae63bd4f3791a984af75d00794832bd90785b9bf0837b0",
+            "bytes": 153282
+          },
+          {
+            "path": "docs/agents/reports/continuation-c/w4-067.md",
+            "sha256": "b058b9cdb4a266e031e9b09ca0e7b10a396270e6580188660294e473e5883d1e",
+            "bytes": 2271
+          },
+          {
+            "path": "docs/agents/reports/continuation-c/w4-073.md",
+            "sha256": "dfb1f9af163cd946b711c2418c31ba6cc7e110c7f4f7f64c8de2a191f85bcf98",
+            "bytes": 2658
+          }
+        ]
+      },
+      {
+        "id": "HOST-002-20261124-legacy-compatibility",
+        "kind": "numerical",
+        "result": "pass",
+        "source_commit": "a06d2cd60bc53e3939e89f64254aed7ed5586e7c",
+        "artifact_count": 10,
+        "artifacts": [
+          {
+            "path": "docs/validation/host-midi-loaded-compatibility-20261124.json",
+            "sha256": "8fadfb8558f77d815a3a54ea7990cfeee7de559c04082d0e71b9770808528a14",
+            "bytes": 122490
+          },
+          {
+            "path": "docs/validation/host-midi-legacy-wav-20261124.json",
+            "sha256": "f4758fc1ab4bcb8bf00c517b877b9f2eea78d7976f3847190af1659ff77e3b13",
+            "bytes": 44288
+          },
+          {
+            "path": "docs/validation/legacy-audio-baseline-20261123.json",
+            "sha256": "436244553d4462eab4452a3b318864840f31b41fcf06cf3c8f0978d9a841e914",
+            "bytes": 42300
+          },
+          {
+            "path": "docs/validation/host-midi-raw-20261124.tar.gz",
+            "sha256": "375ca56a2b0077a15aef1a74c797b8c42a380814479ac3a2cfd5bfb5e5b2e45a",
+            "bytes": 1315289
+          },
+          {
+            "path": "docs/validation/host-midi-raw-20261124-manifest.json",
+            "sha256": "8edb8cb6928721bc29e80671c3274d645bb1a58058f8dcc9898dd6080e96b874",
+            "bytes": 313552
+          },
+          {
+            "path": "docs/validation/host-midi-source-binding-20261124.json",
+            "sha256": "43d82ec639f8bcaa7af0c6692f323bec36169e1c6ce50627bf2040f7c7de1fde",
+            "bytes": 20459
+          },
+          {
+            "path": "docs/agents/reports/continuation-c/w2-033.md",
+            "sha256": "71c64e1177cd9dbcdf5602dfa86ff6b9df752a399c531052bab7181eb967d06a",
+            "bytes": 2221
+          },
+          {
+            "path": "docs/agents/reports/continuation-c/w2-036.md",
+            "sha256": "c3d9d0eeb2b15b028b968333bdfcfb4af2ee3ad9cca327472dc06663ec7b6bd8",
+            "bytes": 1854
+          },
+          {
+            "path": "docs/agents/reports/continuation-c/w3-044.md",
+            "sha256": "65d37fbe5c3a78029cb80e15ed9cd9f08657c1b824f52bafe90a716928033595",
+            "bytes": 2186
+          },
+          {
+            "path": "docs/agents/reports/continuation-c/w3-057.md",
+            "sha256": "d9578c89b4716e5438d7a862c5b17c9e83072e587bde5ddcf1d61a210f40c2f0",
+            "bytes": 2299
+          }
+        ]
+      },
+      {
+        "id": "HOST-002-20261124-native-linux-windows",
+        "kind": "numerical",
+        "result": "pass",
+        "source_commit": "ce59b0c254ab99b399f03e63094b10ce10933e71",
+        "artifact_count": 4,
+        "artifacts": [
+          {
+            "path": "docs/validation/host-midi-native-snapshot-20261124.json",
+            "sha256": "1a5be0bedfab8efdfbb7270eedb56289db7fbfcad859c52b352e204334bc9783",
+            "bytes": 39354
+          },
+          {
+            "path": "docs/validation/host-midi-native-fix-snapshot-20261124.json",
+            "sha256": "a98c233b04af89308a79b6e78f12b764067b07c8f7f9209be54b6db82370b97a",
+            "bytes": 125989
+          },
+          {
+            "path": "docs/agents/reports/continuation-c/w4-061.md",
+            "sha256": "29aaeabe646b672bdb139b81ad5b21a9fe22d8fbc56b159682990b16c1778ba5",
+            "bytes": 2104
+          },
+          {
+            "path": "docs/agents/reports/continuation-c/w4-071.md",
+            "sha256": "434a949d1a79d1cada9619619bbc3a9b5b131cc7c01daa97a82c33fd9c4a54d0",
+            "bytes": 2157
+          }
+        ]
+      },
+      {
+        "id": "HOST-002-20261124-native-platform-observation",
+        "kind": "numerical",
+        "result": "inconclusive",
+        "source_commit": null,
+        "artifact_count": 4,
+        "artifacts": [
+          {
+            "path": "docs/validation/host-midi-native-final-20261124.json",
+            "sha256": "00baf5673293c3aba43e1ae059fa0870fa9587f374d77adafaead73896f8443d",
+            "bytes": 116936
+          },
+          {
+            "path": "docs/validation/host-midi-native-final-selected-20261124.log",
+            "sha256": "708032a6cf10a431f00a8042148e59f5b03b3eb793b08109be89456c623e22ed",
+            "bytes": 46724
+          },
+          {
+            "path": "docs/agents/reports/continuation-c/w5-087.md",
+            "sha256": "f91f453f6d9ed03c2cc508d977f35c2cf3b21d2bed0a4f5ad0f870ecca3fc774",
+            "bytes": 2523
+          },
+          {
+            "path": "docs/agents/reports/continuation-c/w5-081.md",
+            "sha256": "e2127f255c4b7c4f3c25d9b72e2084690189be354401f26016a16df427788f55",
+            "bytes": 2152
+          }
+        ]
+      },
+      {
+        "id": "HOST-002-20261124-criterion-review",
+        "kind": "documentary",
+        "result": "inconclusive",
+        "source_commit": null,
+        "artifact_count": 11,
+        "artifacts": [
+          {
+            "path": "docs/validation/host-midi-acceptance-20261124.md",
+            "sha256": "ebe19c43496081a5a060ec8cd25498545305974afb59a912af02cd883b0baf2e",
+            "bytes": 20748
+          },
+          {
+            "path": "docs/validation/host-midi-native-latest-20261124.json",
+            "sha256": "c4c1ded20ae0c092d0f642b83c8a37ba58cf661bf566ca9663889aa33a9779b2",
+            "bytes": 14394
+          },
+          {
+            "path": "docs/validation/host-midi-native-closure-20261124.json",
+            "sha256": "28e58817c491dddb0c54f0da94819baacf7e4562a462f53ca8e0afea9b11cf7f",
+            "bytes": 40431
+          },
+          {
+            "path": "docs/agents/reports/continuation-c/w5-082.md",
+            "sha256": "d96ff96d58a5f5cae305db21c137a314e6d75f5d9bd10a7943b572b90103076f",
+            "bytes": 3370
+          },
+          {
+            "path": "docs/agents/reports/continuation-c/w5-083.md",
+            "sha256": "fc91be878609230571b3c6fe1dc70cc131f4a5f13f88f7b93918192a479c2505",
+            "bytes": 2956
+          },
+          {
+            "path": "docs/agents/reports/continuation-c/w5-084.md",
+            "sha256": "f355ce2bcd134c3d32eb2fde7ec201168f7e33cc2b97c826f6d158e667a00e20",
+            "bytes": 2928
+          },
+          {
+            "path": "docs/agents/reports/continuation-c/w5-085.md",
+            "sha256": "524f5e9386e9fc7daefd665e896ae98034b65582c607a04c8f511032b1396d20",
+            "bytes": 3151
+          },
+          {
+            "path": "docs/agents/reports/continuation-c/w5-091.md",
+            "sha256": "1abe606931702c11228e6dbd68bc3aa92116060ee1c1ca32f8ce32adaa42e157",
+            "bytes": 2681
+          },
+          {
+            "path": "docs/agents/reports/continuation-c/w5-092.md",
+            "sha256": "846e9d7950e05e1567af546c4d44c3da382986b49e53719e3e505b47b41e22b7",
+            "bytes": 2507
+          },
+          {
+            "path": "docs/agents/reports/continuation-c/w5-093.md",
+            "sha256": "afb10c805fc7d503d168074afc613bc6ec4250269ce9505f4bd989fc97b8c82c",
+            "bytes": 1759
+          },
+          {
+            "path": "docs/agents/reports/continuation-c/w5-097.md",
+            "sha256": "9da6420b1979efb2baa3ef74744d3e377ef9467086d97f9c5fbb348bce5c524a",
+            "bytes": 2217
+          }
+        ]
+      },
+      {
+        "id": "HOST-002-20261124-macos-recovered",
+        "kind": "numerical",
+        "result": "pass",
+        "source_commit": "6c91dab00855b67a559e92edb79ae49e567be469",
+        "artifact_count": 2,
+        "artifacts": [
+          {
+            "path": "docs/validation/host-midi-macos-recovered-20261124.json",
+            "sha256": "a62a4c5fa63d3516e6840e02f4395512f0475832ea0eac8ce2d9a51771657c2c",
+            "bytes": 38262
+          },
+          {
+            "path": "docs/validation/host-midi-macos-recovered-20261124.tar.gz",
+            "sha256": "d83a793218b52db8319e21805bdf4ce0cc1642621cc079749ed55ab80553c768",
+            "bytes": 75406
+          }
+        ]
+      }
+    ]
+  },
+  "additional_review_inputs": [
+    {
+      "path": "docs/agents/reports/continuation-c/w3-041.md",
+      "sha256": "a8926cb977b4da81dea4a1de4ed604953aa1e543aa0188e1eb5060f59c44a017",
+      "bytes": 2063
+    },
+    {
+      "path": "docs/agents/reports/continuation-c/w3-048.md",
+      "sha256": "49c2dff164b8bef61571f536723ea4a6d281d5a08efb269b6f4d0d962380ecbf",
+      "bytes": 2178
+    },
+    {
+      "path": "docs/agents/reports/continuation-c/w3-050.md",
+      "sha256": "f7606145a4ab498f330927e8210cfbbf33a0d3b914f7e3033845f841818e28fe",
+      "bytes": 2328
+    },
+    {
+      "path": "docs/agents/reports/continuation-c/w4-064.md",
+      "sha256": "f1a2dc330232ae36fd6b94badeaf2f99a5fc16e80a3b23b2e2cbbfb5c0870c2d",
+      "bytes": 1544
+    },
+    {
+      "path": "docs/agents/reports/continuation-c/w4-079.md",
+      "sha256": "2869093b958a62dc0362b7d7b8662bd7bbe45bbd9562e762b0d1beb1542f0f2e",
+      "bytes": 2949
+    }
+  ],
+  "review_procedure": {
+    "executed_commands": [
+      "python3 tools/project.py validate",
+      "python3 tools/project.py sync --check",
+      "python3 tools/project.py next --json",
+      "python3 tools/verify_host_midi_archive.py",
+      "git show REVISION:PATH; git ls-tree -r --name-only REVISION -- SCOPES; git diff ce59..6c91 and d4..6c91 -- include src plugins apps tests cmake CMakeLists.txt CMakePresets.json .github tools",
+      "python3 /tmp/rhodes-w3-042-review.py"
+    ],
+    "results": "Project prerequisite checks returned zero; artifact/archive/definition/source and raw-log assertions passed. No CTest/build/Python suite or experiment was rerun by this review.",
+    "raw_ctest_parser": "\\s(\\d+)/(\\d+) Test\\s+#(\\d+): (\\S+)\\s+\\.+\\s*(Passed|\\*\\*\\*Skipped|\\*\\*\\*Failed)\\s+([0-9.]+) sec",
+    "raw_python_parser": "Count line-ending ok statuses, explicit ... skipped reasons, terminal Ran 888 tests in 44.844s / OK (skipped=51), and reject FAIL/ERROR/unexpected-success status lines.",
+    "method_limits": "Read-only evidence/source inspection verifies consistency and relevance within the frozen scope. It cannot independently authenticate acquisition or manufacture unexecuted coverage."
+  },
+  "remaining_limits": [
+    "This recommendation is historical HOST-002 acceptance at source-applicable 6c91. Current HOST-003 Expression/mono code has 24 mismatching paths in the VST3 historical map and 26 in the Foundation map at this review; none of its native behavior is accepted here.",
+    "No native DAW session, arbitrary foreign-host behavior, minimum deployment OS, plugin distribution/signing qualification, measured physical fidelity, PHY-002/RT-001 completion, WCRT or audio-device deadline is established.",
+    "Synthetic scalar comparisons share production DSP equations. Compatibility is finite and baseline provenance is integrator-supplied. Original incremental-binary and local Python after-run-binding limits remain unchanged.",
+    "Explicit architecture and optional-dependency skips remain skips. Prior failures, cancelled/queued observations and inconclusive registrations remain intact."
+  ],
+  "integrator_recommendation": {
+    "proposed_documentary_evidence_id": "HOST-002-20261124-final-criterion-review",
+    "kind": "documentary",
+    "result": "pass",
+    "source_commit": "6c91dab00855b67a559e92edb79ae49e567be469",
+    "artifacts_to_register": [
+      "docs/validation/host-midi-final-criterion-review-20261124.json",
+      "docs/agents/reports/continuation-d/w3-042.md"
+    ],
+    "summary": "Independent frozen HOST-002 review passes C01-C04 for the pre-Expression 6c91 source scope after verifying recovered macOS terminal logs, source/input bridges, explicit skips and retained compatibility evidence.",
+    "omit_independent_flag": "No held-out specimen-validation independence is declared; this is an independent documentary worker review.",
+    "complete_evidence_ids": [
+      "HOST-002-20261124-linux-integration",
+      "HOST-002-20261124-legacy-compatibility",
+      "HOST-002-20261124-native-linux-windows",
+      "HOST-002-20261124-macos-recovered",
+      "HOST-002-20261124-final-criterion-review"
+    ],
+    "preserve_but_do_not_supply_as_passing_completion_ids": [
+      "HOST-002-20261124-native-platform-observation",
+      "HOST-002-20261124-criterion-review"
+    ],
+    "cli_semantics": "project.py complete replaces task.evidence with the supplied passing IDs and appends history. Do not delete or edit earlier inconclusive registry records, immutable artifacts or state history.",
+    "authority_and_gate": "Only continuation-d-root may register or complete. Verify the unchanged definition and active lease, accept this review, register it, then complete using the five IDs and run validate/sync --check. No worker canonical-state or Git mutation was performed."
+  }
+}

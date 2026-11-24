@@ -1,0 +1,305 @@
+{
+  "schema_version": 1,
+  "created_at_utc": "2026-11-24T13:36:44.918261+00:00",
+  "task_id": "HOST-003",
+  "status": "partial",
+  "scope": "Retained native Windows Python fixture failure and worker-verified local correction; new native Windows pass remains pending.",
+  "native_observation": {
+    "source_commit": "19b566acf77bf5b2df489353cc0d66fd9cb0c248",
+    "run_id": 45403288256,
+    "run_attempt": 1,
+    "job_id": 138477187986,
+    "artifact_id": 14923683811,
+    "reported_tests": 929,
+    "passed": 869,
+    "failed": 1,
+    "skipped": 59,
+    "elapsed_seconds": 110.783,
+    "command_record": {
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests/python",
+        "-v"
+      ],
+      "cwd": "D:\\a\\Fender-rhoades\\Fender-rhoades",
+      "elapsed_seconds": 112.17199999999997,
+      "ended_at": "2026-11-24T13:27:52.733578+00:00",
+      "log": "python-tests.log",
+      "log_bytes": 165425,
+      "log_sha256": "56c80de045178babaf34bac3040a5f7e547dfe09ab4f1b64226c11bb95c3afa5",
+      "returncode": 1,
+      "started_at": "2026-11-24T13:26:00.564506+00:00",
+      "status": "completed",
+      "wrapper_returncode": 1
+    },
+    "environment": {
+      "github": {
+        "CI_JOB_STATUS": "failure",
+        "GITHUB_EVENT_NAME": "push",
+        "GITHUB_JOB": "contracts",
+        "GITHUB_REF": "refs/heads/main",
+        "GITHUB_REPOSITORY": "baabi-boo/Fender-rhoades",
+        "GITHUB_RUN_ATTEMPT": "1",
+        "GITHUB_RUN_ID": "45403288256",
+        "GITHUB_RUN_NUMBER": "96",
+        "GITHUB_SERVER_URL": "https://github.com",
+        "GITHUB_SHA": "19b566acf77bf5b2df489353cc0d66fd9cb0c248",
+        "GITHUB_WORKFLOW": "Foundation CI",
+        "GITHUB_WORKFLOW_REF": "baabi-boo/Fender-rhoades/.github/workflows/ci.yml@refs/heads/main",
+        "GITHUB_WORKFLOW_SHA": "19b566acf77bf5b2df489353cc0d66fd9cb0c248",
+        "ImageOS": "win25-vs2026",
+        "ImageVersion": "20261116.315.1",
+        "RUNNER_ARCH": "X64",
+        "RUNNER_ENVIRONMENT": "github-hosted",
+        "RUNNER_OS": "Windows"
+      },
+      "machine": "AMD64",
+      "platform": "Windows-10-10.0.26100-SP0",
+      "process_bits": 64,
+      "python": "3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]",
+      "python_executable": "C:\\hostedtoolcache\\windows\\Python\\3.11.9\\x64\\python.exe",
+      "release": "10",
+      "system": "Windows",
+      "tools": {
+        "cmake": {
+          "command": [
+            "cmake",
+            "--version"
+          ],
+          "returncode": 0,
+          "stderr": "",
+          "stdout": "cmake version 4.5.0\n\nCMake suite maintained and supported by Kitware (kitware.com/cmake).\n"
+        },
+        "ctest": {
+          "command": [
+            "ctest",
+            "--version"
+          ],
+          "returncode": 0,
+          "stderr": "",
+          "stdout": "ctest version 4.5.0\n\nCMake suite maintained and supported by Kitware (kitware.com/cmake).\n"
+        },
+        "git": {
+          "command": [
+            "git",
+            "--version"
+          ],
+          "returncode": 0,
+          "stderr": "",
+          "stdout": "git version 2.56.1.windows.1\n"
+        }
+      }
+    },
+    "metadata_valid": true,
+    "failing_test": "test_continuation_d.ContinuationDTests.test_reparse_attribute_rejects_a_report_parent_before_report_read"
+  },
+  "correction": {
+    "file": "tests/python/test_continuation_d.py",
+    "sha256": "daa7230782e3bbf55a9262e62a579760828897b779c81c8da739061b65bdfb46",
+    "behavior": "Resolve the synthetic reparse parent and ledger path; exercise a deliberately noncanonical root and assert exactly one injection plus rejection before report reads. Production validator unchanged.",
+    "observed_local_reproduction": "Worker reproduced the original ValueError-not-raised failure by supplying a noncanonical .. root. Exact native temporary-path spelling was not retained.",
+    "local_validation": {
+      "attribution": "w3_044_windows_ledger_test",
+      "command": "python3 -B -m unittest discover -s tests/python -p 'test_continuation_[cd].py' -v",
+      "passed": 20,
+      "failed": 0,
+      "skipped": 0,
+      "elapsed_seconds": 2.515,
+      "report": "docs/agents/reports/continuation-d/w3-044.md",
+      "report_sha256": "d9d613944469c1b264191209e336165899d931bfc35e63bdb0d637a43bb64a89"
+    }
+  },
+  "archive": {
+    "path": "docs/validation/host-expression-windows-ledger-correction-20261124.tar.xz",
+    "bytes": 230220,
+    "sha256": "42dd687a59ca69dfd214f343e5c82f663ba7a753eb2d7d891072348a4b114d1f",
+    "members": {
+      "foundation-contracts-Windows-19b566a.zip": {
+        "bytes": 201347,
+        "sha256": "a6e7971e5ab23806a820fc8be354868e134f8047c4c492ef4755143a148eab52"
+      },
+      "windows-19b-python-failure.log": {
+        "bytes": 248441,
+        "sha256": "d25d2970900fd608077917dbd42956feaf0e8408c229abf493e7c8d9a44740ae"
+      }
+    }
+  },
+  "original_artifact_members": {
+    "audio-filter.command.json": {
+      "bytes": 504,
+      "sha256": "bf6d22dcbe71a4a057be0b22e82e08180e92a3e265c293e03229be65bb5daa3c"
+    },
+    "audio-filter.log": {
+      "bytes": 113,
+      "sha256": "3eb34c0de0f3277f188bf0706eba557b3f2c9d2f7e863fa381b1183314773de4"
+    },
+    "campaign-sync.command.json": {
+      "bytes": 504,
+      "sha256": "3f95434e16d6d94554565fe83f03f87c73ba9abdbfe5d18778bd2a60d6847049"
+    },
+    "campaign-sync.log": {
+      "bytes": 36,
+      "sha256": "566be010a8bfebb756fad3500f4492072308ee751a2985ef6bbbb680e6e6b702"
+    },
+    "campaign-validate.command.json": {
+      "bytes": 522,
+      "sha256": "b60328acc7b40f4b6f86be57b1e0300b9be594b08b33c635ac92ddf793d43a70"
+    },
+    "campaign-validate.log": {
+      "bytes": 36,
+      "sha256": "566be010a8bfebb756fad3500f4492072308ee751a2985ef6bbbb680e6e6b702"
+    },
+    "continuation.command.json": {
+      "bytes": 496,
+      "sha256": "0c66253549db8add177f78a05e7943c096fbb8d8df1803f7c5e39b1c3b79978f"
+    },
+    "continuation.log": {
+      "bytes": 87,
+      "sha256": "85c8d779eb8faf308585dafa02d14339cd82f1328e174d6d94b92f70f96fd6a6"
+    },
+    "control-text.command.json": {
+      "bytes": 511,
+      "sha256": "78214ab832c8307f0f9dfb16e82821f3947f8f9761fe812ced392ad781ec80e8"
+    },
+    "data.command.json": {
+      "bytes": 472,
+      "sha256": "73aeb668464b5c89f14410eed9804320326a815cf25037cd85b9ac71cb45146b"
+    },
+    "control-text.log": {
+      "bytes": 70,
+      "sha256": "b038ed7d5ab6183b168098a3440ce362b6ed5ed5656bf434b955e77353a73e28"
+    },
+    "data.log": {
+      "bytes": 112,
+      "sha256": "bdab8a9d5a8e6975ae511307b081975ce8bfeee6cc704362d80233ab6db6502c"
+    },
+    "development-sync.command.json": {
+      "bytes": 519,
+      "sha256": "885bf07c85d0372d3fefacd5808c04473531f92436b91abceda0c883803c8be0"
+    },
+    "development-sync.log": {
+      "bytes": 61,
+      "sha256": "d05730b7ef35f2d74ce311a0e3ccfd7a5f3eeb50720a192246cb2c3e7c5fd7f6"
+    },
+    "development-validate.command.json": {
+      "bytes": 511,
+      "sha256": "21ef55b1bb04173412456f9ca97573e4b57afc7b33b2fd452b68b17c1cec641f"
+    },
+    "development-validate.log": {
+      "bytes": 61,
+      "sha256": "d05730b7ef35f2d74ce311a0e3ccfd7a5f3eeb50720a192246cb2c3e7c5fd7f6"
+    },
+    "development-waves.command.json": {
+      "bytes": 524,
+      "sha256": "4bbaee90522f92275558377554ee0530d5ff0dadf35d7e7d58dc4dc072ab1a0f"
+    },
+    "development-waves.log": {
+      "bytes": 225,
+      "sha256": "11720cc9da7d7fe0c716dd77fe87fe89f72853cd5a4fcc793db108f0dd565e15"
+    },
+    "documentation.command.json": {
+      "bytes": 476,
+      "sha256": "d2e7f2ea849ff425370b8b39f953947369e849b43cd5188388ddf39f2cc7af4f"
+    },
+    "documentation.log": {
+      "bytes": 40,
+      "sha256": "fa1cad3a51fb1ced9de42a4583788f8ec1217053f54401a0ace40c3fb29a6fb9"
+    },
+    "expression-campaign.command.json": {
+      "bytes": 496,
+      "sha256": "47f1fbe8344e5534a93bee6d4c8c8d32a968f07d218074f69482c25034338d5c"
+    },
+    "expression-campaign.log": {
+      "bytes": 74,
+      "sha256": "0f766f0db864d2dd1cc3bf53cbb0103f3732525c6f87a07e98da37ab728c0f8c"
+    },
+    "host-interoperability.command.json": {
+      "bytes": 498,
+      "sha256": "e05d235d1ebf89dd0f0863a3d4786cc84e3c2acd6a11057fa60d0d394c964fc0"
+    },
+    "host-interoperability.log": {
+      "bytes": 76,
+      "sha256": "facf52f6d8dfc351267130dc2e97f755fcc508a19579dcec08dd42004e477eb5"
+    },
+    "host-midi-evidence.command.json": {
+      "bytes": 483,
+      "sha256": "a1526f52157270053f9758f6fe494cee57e9e78ba92c6b48a5b55bc7689e647b"
+    },
+    "host-midi-evidence.log": {
+      "bytes": 594,
+      "sha256": "10a1902f2c6f5b49d8f9bdddebee5accec7928fe567bd58da81f3dbeaed2327b"
+    },
+    "metadata-after.json": {
+      "bytes": 359777,
+      "sha256": "8209fc00536a105538e86f17c79fd04092a45c745ff3e7d98af5cd08b6c23a32"
+    },
+    "metadata-before.json": {
+      "bytes": 359646,
+      "sha256": "44014d5d0cabd6a5880fba8055a6c94b450daf339a5d950b50ee174a22e18bb8"
+    },
+    "python-tests.command.json": {
+      "bytes": 539,
+      "sha256": "665127618e079691028c56f2707f5c2c1e79f6f50711c6262ff7e191e84b820d"
+    },
+    "python-tests.log": {
+      "bytes": 165425,
+      "sha256": "56c80de045178babaf34bac3040a5f7e547dfe09ab4f1b64226c11bb95c3afa5"
+    },
+    "quadrature-filter.command.json": {
+      "bytes": 514,
+      "sha256": "729ed7c036f0e9c750c84e090070f254ec55bcdb777e1bc177974f804037524d"
+    },
+    "quadrature-filter.log": {
+      "bytes": 123,
+      "sha256": "d1cc9858db13120b4a56cf1cac79dcf9d761c359e12b04661f47b3e3b572be55"
+    },
+    "quadrature-sync.command.json": {
+      "bytes": 517,
+      "sha256": "c1701c51ff4ee29d9a3a58e87db05cdb40419b1408c059cd2eddd0053168d9c3"
+    },
+    "quadrature-sync.log": {
+      "bytes": 87,
+      "sha256": "cd61353fb263051cd2054192b9353945ab03499e7499b79aa40b19ecace915ef"
+    },
+    "quadrature-validate.command.json": {
+      "bytes": 509,
+      "sha256": "5e466a5321b8c9b9870cf6e2c00b0d33b30989f6edd83d4a4a71a28862d1d129"
+    },
+    "quadrature-validate.log": {
+      "bytes": 87,
+      "sha256": "cd61353fb263051cd2054192b9353945ab03499e7499b79aa40b19ecace915ef"
+    },
+    "state-sync.command.json": {
+      "bytes": 500,
+      "sha256": "c3fbc03ff678fc0ed1e14ce1779716de11cd4396ff482062588a3ab8b27b223f"
+    },
+    "state-sync.log": {
+      "bytes": 29,
+      "sha256": "72ee11c22a6adbe19a74a6f50bcc672f377c8529bac4de9011dd8f39b1883aad"
+    },
+    "state-validate.command.json": {
+      "bytes": 491,
+      "sha256": "b0e0a6d28de14b22003c40eedfae7faca3d1fd40feea87836628313e8cfc2fa7"
+    },
+    "state-validate.log": {
+      "bytes": 60,
+      "sha256": "de7bfeb361be79698abc2030a7a16ba954148047200a2c40ab8a6aa37c3362aa"
+    },
+    "vst3-timing-evidence.command.json": {
+      "bytes": 670,
+      "sha256": "310f6084b130be591eb1d54482b754c245e7760bea35a9542145500592aa5e62"
+    },
+    "vst3-timing-evidence.log": {
+      "bytes": 8412,
+      "sha256": "b35d1b242afa1da724cf6c9cf3ef489f95219c20fecab25a1dc294a35c6ad147"
+    }
+  },
+  "limits": [
+    "Native Windows Python result remains failed for 19b566a; a local fixture correction is not counted as a native pass.",
+    "This Python fixture failure is independent of the successful native Windows VST3 build/tests and legacy comparison at the same source."
+  ]
+}

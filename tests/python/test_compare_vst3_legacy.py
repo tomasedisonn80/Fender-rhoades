@@ -244,6 +244,80 @@ class DriverFailureTests(unittest.TestCase):
         self.assertNotEqual(code, 0)
         self.assertIn("timeout", error)
 
+    def check_raw_mutation_after_validation(self, kind):
+        metadata, audio, _ = fixture()
+        paths, snapshots = {}, {}
+        validate = comparison.validate_capture
+
+        def captured(command, stdout, stderr, trace, audio_limit, timeout):
+            metadata["capture_id"] = command[-1]
+            snapshots.update(stdout=json.dumps(metadata).encode(), trace=audio)
+            paths.update(stdout=stdout, trace=trace)
+            stdout.write_bytes(snapshots["stdout"])
+            stderr.write_bytes(b"")
+            trace.write_bytes(audio)
+            return 0, None
+
+        def validate_then_replace(metadata, audio, **options):
+            result = validate(metadata, audio, **options)
+            paths[kind].write_bytes(bytes(len(audio)) if kind == "trace" else b'{"complete":true}\n')
+            return result
+
+        with patch.object(comparison, "run_bounded", side_effect=captured), \
+                patch.object(comparison, "validate_capture", side_effect=validate_then_replace):
+            record, _, _ = comparison.one_capture(
+                Path(sys.executable), self.root / "bundles", self.root,
+                ("RhodesResearch", 32, 48000, "whole", "dense"), "baseline", 1)
+        self.assertTrue(record["passed"])
+        self.assertEqual(record[kind + "_sha256"], comparison.sha256(snapshots[kind]).hexdigest())
+        self.assertEqual(record[kind + "_bytes"], len(snapshots[kind]))
+        self.assertNotEqual(record[kind + "_sha256"], comparison.file_hash(paths[kind]))
+        (self.root / "commands.json").write_text(json.dumps([record]))
+        manifest = {"files": {path.name: {"bytes": path.stat().st_size, "sha256": comparison.file_hash(path)}
+                              for path in self.root.iterdir()}}
+        # main's final publication gate must reject the changed retained file,
+        # even though its earlier byte snapshot was a valid complete capture.
+        self.assertFalse(comparison.raw_records_match_manifest([record], manifest))
+
+    def test_retained_trace_is_bound_to_compared_bytes(self):
+        self.check_raw_mutation_after_validation("trace")
+
+    def test_retained_metadata_is_bound_to_parsed_bytes(self):
+        self.check_raw_mutation_after_validation("stdout")
+
+    def test_invalid_timeout_replaces_stale_pass_without_launching_children(self):
+        output = self.root / "results"
+        previous = output / "run-previous"
+        previous.mkdir(parents=True)
+        old_report = b'{"status":"passed","run_id":"previous-success"}'
+        (previous / "report.json").write_bytes(old_report)
+        run_ids = set()
+        for invalid in ("0", "61", "nan", "inf", "-inf"):
+            with self.subTest(timeout=invalid):
+                (output / "report.json").write_bytes(old_report)
+                with patch.object(comparison.subprocess, "Popen") as process, \
+                        patch.object(comparison, "one_capture") as capture, \
+                        redirect_stdout(io.StringIO()), redirect_stderr(io.StringIO()):
+                    code = comparison.main([
+                        "--capture", sys.executable, "--baseline-root", str(self.root / "old"),
+                        "--current-root", str(self.root / "new"), "--output-dir", str(output),
+                        "--timeout=" + invalid])
+                process.assert_not_called()
+                capture.assert_not_called()
+                report = json.loads((output / "report.json").read_text())
+                self.assertEqual(code, 1)
+                self.assertEqual(report["status"], "failed")
+                self.assertIn("timeout", report["error"])
+                self.assertFalse(report["summary"]["passed"])
+                self.assertFalse(report["summary"]["complete"])
+                self.assertEqual(report["captures"], [])
+                self.assertNotIn(report["run_id"], run_ids | {"previous-success"})
+                run_ids.add(report["run_id"])
+                raw = output / report["raw_directory"]
+                self.assertEqual(json.loads((raw / "report.json").read_text()), report)
+                self.assertTrue((raw / "manifest.json").is_file())
+                self.assertEqual((previous / "report.json").read_bytes(), old_report)
+
     def test_missing_inputs_replace_stale_pass_with_fresh_failure(self):
         output = self.root / "results"
         output.mkdir()
