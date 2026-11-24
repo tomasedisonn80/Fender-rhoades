@@ -2,7 +2,7 @@
   "requested_workers": 100,
   "requested_waves": 5,
   "workers_per_wave": 20,
-  "completed_report_count": 50,
+  "completed_report_count": 64,
   "workers": [
     {
       "agent": "w1_001",
@@ -305,6 +305,13 @@
       "status": "reported"
     },
     {
+      "agent": "w3_003",
+      "wave": 3,
+      "report": "w3-003.md",
+      "sha256": "21a7b2257b79483bb8e7403cf34b488668d762bf9f94d7249f1a50d450affd98",
+      "status": "reported"
+    },
+    {
       "agent": "w3_004",
       "wave": 3,
       "report": "w3-004.md",
@@ -358,6 +365,97 @@
       "wave": 3,
       "report": "w3-011.md",
       "sha256": "448e098cce45b0033ca10ce0a4600dd3d120809e0b2e55f7f6339e41f40c63c0",
+      "status": "reported"
+    },
+    {
+      "agent": "w3_012",
+      "wave": 3,
+      "report": "w3-012.md",
+      "sha256": "2edd51b46e84cc99963ab11a2f1c675c495263ba8b1e2adb8e374ecc31ec43ab",
+      "status": "reported"
+    },
+    {
+      "agent": "w3_013",
+      "wave": 3,
+      "report": "w3-013.md",
+      "sha256": "f0b477acb45beb75cec5d301ebe37e3ca242f613798c89497cf7786cc36087a4",
+      "status": "reported"
+    },
+    {
+      "agent": "w3_014",
+      "wave": 3,
+      "report": "w3-014.md",
+      "sha256": "183af11f5be683dad4b4e0cbd5e8443d95a7fd1264c268c4e9f001629aba36cf",
+      "status": "reported"
+    },
+    {
+      "agent": "w3_015",
+      "wave": 3,
+      "report": "w3-015.md",
+      "sha256": "7c80d0792f57178974ae837d6f0418170cfe8364fe8ab0b128c5368f67fa8d95",
+      "status": "reported"
+    },
+    {
+      "agent": "w3_016",
+      "wave": 3,
+      "report": "w3-016.md",
+      "sha256": "684febae66d37016838f02bdbefde6583ea7a278e660046611570aa82d501085",
+      "status": "reported"
+    },
+    {
+      "agent": "w3_017",
+      "wave": 3,
+      "report": "w3-017.md",
+      "sha256": "6274e246003b0817c581131d053f309611ad2b1e116222ddcc8cf5a17eac2ce5",
+      "status": "reported"
+    },
+    {
+      "agent": "w3_018",
+      "wave": 3,
+      "report": "w3-018.md",
+      "sha256": "d3170a0cf59e9ded4098c43d447ef9f8a93652efd588b8d61626348b38210edc",
+      "status": "reported"
+    },
+    {
+      "agent": "w3_019",
+      "wave": 3,
+      "report": "w3-019.md",
+      "sha256": "c77a9d20e4a8807f3becd378c1f60e62decad0285bffa3a709d3224127dfdfc5",
+      "status": "reported"
+    },
+    {
+      "agent": "w3_020",
+      "wave": 3,
+      "report": "w3-020.md",
+      "sha256": "b717e1109d3f864991c4bcfeeb1b67e7c1115bb97b5d585a0908cb835e215c21",
+      "status": "reported"
+    },
+    {
+      "agent": "w4_001",
+      "wave": 4,
+      "report": "w4-001.md",
+      "sha256": "2f428f1d89bf4ca9c72bcf08262bd7c95652051bcece7a07ce314270db1b9de5",
+      "status": "reported"
+    },
+    {
+      "agent": "w4_002",
+      "wave": 4,
+      "report": "w4-002.md",
+      "sha256": "2c3ed95c5d8c0dd85c819e9a9208fd1eed074d4311872803c2ed3ce880d97e3d",
+      "status": "reported"
+    },
+    {
+      "agent": "w4_003",
+      "wave": 4,
+      "report": "w4-003.md",
+      "sha256": "7ce006fddf61b5684c97579ba2924bd04b17480d6fb288febfb5c54f18e33001",
+      "status": "reported"
+    },
+    {
+      "agent": "w4_004",
+      "wave": 4,
+      "report": "w4-004.md",
+      "sha256": "f03867dfc21cd6dd6f1924716a6d57d26a314273b05fc612f944de2db7c19c57",
       "status": "reported"
     }
   ]

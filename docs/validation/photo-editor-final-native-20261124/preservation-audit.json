@@ -1,0 +1,53 @@
+{
+  "scope": "Preservation audit, not a new native-host run",
+  "staging_root": "/home/agent/rhodes-7a7c13ab7da3/w4-002",
+  "source_report": {
+    "original_path": "/workspace/scratch/7a7c13ab7da3/worklogs/w3-003-evidence.json",
+    "sha256": "04fecb400bb3406d0f16cb8bccbf340ffd135e8ecda377ddaf8dd35d35ae7438"
+  },
+  "all_original_files_rechecked_after_staging": 166,
+  "all_original_bytes_unchanged": true,
+  "fresh_materialization": {
+    "logical_files": 166,
+    "sha256sum_command": [
+      "sha256sum",
+      "--check",
+      "payload.sha256"
+    ],
+    "sha256sum_exit": 0,
+    "raw_check_log": "reconstruction-sha256-check.log"
+  },
+  "archive_reproduction": {
+    "method": "Rebuilt normalized sorted USTAR + LZMA2 from reconstructed original payload files; historical references excluded",
+    "sha256": "6facd7d532eba1d22096e5dcc2b624e4718eb45801afc2f5596014d651303c6f",
+    "bytes": 6473736,
+    "byte_identical": true
+  },
+  "verification_command": [
+    "python3",
+    "verify.py",
+    "--historical-dir",
+    "../photo-editor-native-20261124"
+  ],
+  "initial_materialization_command": [
+    "python3",
+    "verify.py",
+    "--historical-dir",
+    "/workspace/scratch/7a7c13ab7da3/Fender-rhoades/docs/validation/photo-editor-native-20261124",
+    "--output-dir",
+    "/home/agent/rhodes-7a7c13ab7da3/w4-002/reconstructed",
+    "--json-output",
+    "verification.json"
+  ],
+  "preservation_builder_sha256": "99215ef651acb1c93622f84d8cf601e03dc0fa4e1571772c9fabe0a3ce87d156",
+  "verifier_sha256": "24dd6c4b2d8910c4a7429261f32e89142af187d2d3f8513cfb5c2bab50da1440",
+  "binary_payloads": 0,
+  "git_or_canonical_state_mutations": false,
+  "capture_retention": {
+    "all_final_pngs": 42,
+    "exact_W2_references": 30,
+    "new_original_pngs": 12,
+    "png_reencoding": false
+  },
+  "size_note": "5 MB initial size target was advisory; integrator authorized up to 8 MB to preserve every original screenshot byte. Actual archive 6,473,736 bytes."
+}

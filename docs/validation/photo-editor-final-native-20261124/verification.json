@@ -1,0 +1,447 @@
+{
+  "status": "pass",
+  "verification_kind": "Preservation integrity and independent recomputation from retained records; no host/test rerun",
+  "manifest_sha256": "08115b007a1f440de837c59bff05d87d4226fefb9733fb8a4bbfdfb04a03c758",
+  "archive_sha256": "6facd7d532eba1d22096e5dcc2b624e4718eb45801afc2f5596014d651303c6f",
+  "archive_bytes": 6473736,
+  "logical_files_verified": 166,
+  "logical_bytes_verified": 51195715,
+  "unique_archive_members_verified": 108,
+  "historical_members_verified": 26,
+  "source_bindings_verified": 156,
+  "capture_file_and_rgb_records_verified": 42,
+  "capture_counts": {
+    "logical_files": 166,
+    "logical_bytes": 51195715,
+    "stored_unique_files": 108,
+    "stored_unique_bytes": 9074310,
+    "historical_references": 51,
+    "final_captures": 42,
+    "final_captures_reusing_historical_bytes": 30,
+    "new_unique_final_capture_files": 12
+  },
+  "native_check_counts": {
+    "sdk-native": {
+      "pass": 27
+    },
+    "focus-motion": {
+      "pass": 20
+    },
+    "reaper": {
+      "pass": 21
+    }
+  },
+  "callback_raw_sequences_verified": {
+    "sdk-native": 63,
+    "focus-motion": 28
+  },
+  "standalone_passing_assertions": 64,
+  "assigned_ctests": {
+    "selected": 32,
+    "passed": 32,
+    "skipped": 0,
+    "union_count_note": "Supplemental replay, not extra tests in the W3 union"
+  },
+  "reaper_assertion_call_asts_unchanged": true,
+  "reaper_final_probe_diagnostic_preload": false,
+  "cold_initial_focus": 1,
+  "cold_first_volume": {
+    "name": "native_volume_updates_host_parameter",
+    "status": "pass",
+    "index": 0,
+    "before": 0.5,
+    "held": 0.699999988079071,
+    "after": 0.699999988079071,
+    "expected": 0.7,
+    "changed_indices": [
+      0
+    ],
+    "formatted": "22.399999618530273"
+  },
+  "full_size_pixel_comparisons": {
+    "source/final/assets/reference/rhodes-suitcase-reference.webp": {
+      "pixels": 1769472,
+      "different_pixels": 0,
+      "bbox": null
+    },
+    "source/final/plugins/vst3/resources/rhodes-suitcase.png": {
+      "pixels": 1769472,
+      "different_pixels": 0,
+      "bbox": null
+    }
+  },
+  "reaper_cleanup_pixel_comparisons": {
+    "focus-volume-after-loss": {
+      "pixels": 786432,
+      "different_pixels": 0,
+      "bbox": null
+    },
+    "keyboard-focus-loss": {
+      "pixels": 786432,
+      "different_pixels": 0,
+      "bbox": null
+    },
+    "final-native-editor": {
+      "pixels": 786432,
+      "different_pixels": 0,
+      "bbox": null
+    }
+  },
+  "failed_attempt_counts": {
+    "w3-003-reaper": {
+      "pass": 20,
+      "fail": 1
+    },
+    "w3-003-reaper-run02": {
+      "pass": 20,
+      "fail": 1
+    },
+    "w3-003-reaper-trace": {
+      "pass": 20,
+      "fail": 1
+    },
+    "w3-003-focus-motion": {
+      "pass": 18,
+      "fail": 2
+    }
+  },
+  "captures": [
+    {
+      "path": "final/focus-motion/close-with-held-volume.png",
+      "file_sha256": "b8acb8f83f2d46e998df23b16b76705e0dfefec2ddf40fd059008ce8bed55e24",
+      "rgb_sha256": "3f1d6cba083fb61461c2f42e41d1fa61de8bf2cee42413dccabe160f1febcb6d",
+      "width": 1536,
+      "height": 1152,
+      "storage": "historical_archive"
+    },
+    {
+      "path": "final/focus-motion/external_focus_loss-after-held-motion.png",
+      "file_sha256": "5167f25366c8e5d8e7eda298bf089af18478ad5e28ccf78ae02531a2c7fff140",
+      "rgb_sha256": "9ca2f5bb49d0bebeb0f9d779753b7f5c357d8a76f6d995db75b528aca5f4cdd3",
+      "width": 1536,
+      "height": 1152,
+      "storage": "historical_archive"
+    },
+    {
+      "path": "final/focus-motion/idle-after-focus-motion.png",
+      "file_sha256": "5167f25366c8e5d8e7eda298bf089af18478ad5e28ccf78ae02531a2c7fff140",
+      "rgb_sha256": "9ca2f5bb49d0bebeb0f9d779753b7f5c357d8a76f6d995db75b528aca5f4cdd3",
+      "width": 1536,
+      "height": 1152,
+      "storage": "historical_archive"
+    },
+    {
+      "path": "final/focus-motion/idle-before-focus-motion.png",
+      "file_sha256": "5167f25366c8e5d8e7eda298bf089af18478ad5e28ccf78ae02531a2c7fff140",
+      "rgb_sha256": "9ca2f5bb49d0bebeb0f9d779753b7f5c357d8a76f6d995db75b528aca5f4cdd3",
+      "width": 1536,
+      "height": 1152,
+      "storage": "historical_archive"
+    },
+    {
+      "path": "final/focus-motion/quick_focus_out_back-after-held-motion.png",
+      "file_sha256": "5167f25366c8e5d8e7eda298bf089af18478ad5e28ccf78ae02531a2c7fff140",
+      "rgb_sha256": "9ca2f5bb49d0bebeb0f9d779753b7f5c357d8a76f6d995db75b528aca5f4cdd3",
+      "width": 1536,
+      "height": 1152,
+      "storage": "historical_archive"
+    },
+    {
+      "path": "final/focus-motion/volume-double-click-reset-2.png",
+      "file_sha256": "59c5ca067fce3fc429a0fbf7bd9399e16d6d160ba9d174216566dc5a767144ff",
+      "rgb_sha256": "f3ddb7178d3951fc845b4dfac8cca90e984127c6a8986d16112049ffd505dca4",
+      "width": 1536,
+      "height": 1152,
+      "storage": "historical_archive"
+    },
+    {
+      "path": "final/focus-motion/volume-double-click-reset-3.png",
+      "file_sha256": "59c5ca067fce3fc429a0fbf7bd9399e16d6d160ba9d174216566dc5a767144ff",
+      "rgb_sha256": "f3ddb7178d3951fc845b4dfac8cca90e984127c6a8986d16112049ffd505dca4",
+      "width": 1536,
+      "height": 1152,
+      "storage": "historical_archive"
+    },
+    {
+      "path": "final/focus-motion/volume-double-click-reset.png",
+      "file_sha256": "59c5ca067fce3fc429a0fbf7bd9399e16d6d160ba9d174216566dc5a767144ff",
+      "rgb_sha256": "f3ddb7178d3951fc845b4dfac8cca90e984127c6a8986d16112049ffd505dca4",
+      "width": 1536,
+      "height": 1152,
+      "storage": "historical_archive"
+    },
+    {
+      "path": "final/reaper/captures/bass-feedback.png",
+      "file_sha256": "bd927219fcb0637bcc9ab38092f106d78841e685cc892250f208938498511b85",
+      "rgb_sha256": "da085b153cdc3873fbc36874417d3d058c167322262509acf79617284e6867b5",
+      "width": 1024,
+      "height": 768,
+      "storage": "archive"
+    },
+    {
+      "path": "final/reaper/captures/final-native-editor.png",
+      "file_sha256": "b1d47718b4741a472bff5a99039c3df32c61facc2904298980ee42663975b054",
+      "rgb_sha256": "6477d60c542a97ae7b5b48191b696d70b1fb3880bcf532cfe3a4e7a999f06f93",
+      "width": 1024,
+      "height": 768,
+      "storage": "historical_archive"
+    },
+    {
+      "path": "final/reaper/captures/focus-volume-after-held-motion.png",
+      "file_sha256": "b1d47718b4741a472bff5a99039c3df32c61facc2904298980ee42663975b054",
+      "rgb_sha256": "6477d60c542a97ae7b5b48191b696d70b1fb3880bcf532cfe3a4e7a999f06f93",
+      "width": 1024,
+      "height": 768,
+      "storage": "historical_archive"
+    },
+    {
+      "path": "final/reaper/captures/focus-volume-after-loss.png",
+      "file_sha256": "b1d47718b4741a472bff5a99039c3df32c61facc2904298980ee42663975b054",
+      "rgb_sha256": "6477d60c542a97ae7b5b48191b696d70b1fb3880bcf532cfe3a4e7a999f06f93",
+      "width": 1024,
+      "height": 768,
+      "storage": "historical_archive"
+    },
+    {
+      "path": "final/reaper/captures/focus-volume-held.png",
+      "file_sha256": "f8ec3a49ebb9f036f10b3730ffe27f842d41a7dba0d88ead488357dc16447dd5",
+      "rgb_sha256": "e7ab40e4b00260233db8080ff3d6bb9d953f2e86218daa4e9e72f708efb22e45",
+      "width": 1024,
+      "height": 768,
+      "storage": "archive"
+    },
+    {
+      "path": "final/reaper/captures/idle-native-editor.png",
+      "file_sha256": "b1d47718b4741a472bff5a99039c3df32c61facc2904298980ee42663975b054",
+      "rgb_sha256": "6477d60c542a97ae7b5b48191b696d70b1fb3880bcf532cfe3a4e7a999f06f93",
+      "width": 1024,
+      "height": 768,
+      "storage": "historical_archive"
+    },
+    {
+      "path": "final/reaper/captures/intensity-feedback.png",
+      "file_sha256": "510589125dbdd936000b54b168777586f865c2f4c1e3e0c4bab5d782f8f9325e",
+      "rgb_sha256": "7ae359276bfe6160631a6aa1381a072010f6c56e5b1353dfa5016fe466a45df4",
+      "width": 1024,
+      "height": 768,
+      "storage": "archive"
+    },
+    {
+      "path": "final/reaper/captures/keyboard-focus-loss.png",
+      "file_sha256": "b1d47718b4741a472bff5a99039c3df32c61facc2904298980ee42663975b054",
+      "rgb_sha256": "6477d60c542a97ae7b5b48191b696d70b1fb3880bcf532cfe3a4e7a999f06f93",
+      "width": 1024,
+      "height": 768,
+      "storage": "historical_archive"
+    },
+    {
+      "path": "final/reaper/captures/keyboard-held.png",
+      "file_sha256": "6d71647b9c78434b7520dc0970c8009e5db7e99254237f6cdba5df3ad0d47707",
+      "rgb_sha256": "fefed0654601e80825ad6d345487f2360c3ce7408a2f144440e16a5cbf8a2383",
+      "width": 1024,
+      "height": 768,
+      "storage": "archive"
+    },
+    {
+      "path": "final/reaper/captures/pedal-feedback.png",
+      "file_sha256": "610d8b590809854a82c05b37ec0dcdc40d49c81eec98fa8c8c3aa072469c1de4",
+      "rgb_sha256": "ff483b55614cd9c429c9f026aa2c6e13e4e4962070f8db4a6de4809959f8439d",
+      "width": 1024,
+      "height": 768,
+      "storage": "archive"
+    },
+    {
+      "path": "final/reaper/captures/reaper-context.png",
+      "file_sha256": "d02f25161763adf6e669902b4a62106d6d3316425fcbc7b202f7ec07c6054146",
+      "rgb_sha256": "0358f9e2619c70e285f63dfc42182bb72b9eccdfa0c0ba909b81eea3a5ae2c31",
+      "width": 1280,
+      "height": 900,
+      "storage": "archive"
+    },
+    {
+      "path": "final/reaper/captures/speed-feedback.png",
+      "file_sha256": "62329a6b18682fd057faa284bd65a47a2ba8cc78489f84cf395f4450c0846a9c",
+      "rgb_sha256": "a1d0ea706ed1eb5962a77cbe26d068cfb887ba2bc93d9156bbefa9b61aaa30b7",
+      "width": 1024,
+      "height": 768,
+      "storage": "archive"
+    },
+    {
+      "path": "final/reaper/captures/startup-dialog-4194367-attempt-1.png",
+      "file_sha256": "60b3049e6cb6f6f9e971a33141a7c59787a08467eef1f4952f5ab38502ebb560",
+      "rgb_sha256": "705564fc1ffa2701e0f98d7922d58d549a37313ce9de8c3aacf043be9d213f8d",
+      "width": 1280,
+      "height": 900,
+      "storage": "archive"
+    },
+    {
+      "path": "final/reaper/captures/startup-dialog-4194390-attempt-1.png",
+      "file_sha256": "47ebed6c86db0c1dacf11db25aa5459cdda9796cd0a1cc795f5e260928a4f06a",
+      "rgb_sha256": "37c92c04c6d3c2b55e52b6717ff5d27e8acca1fcbd434c481f0f086a89412e1a",
+      "width": 1280,
+      "height": 900,
+      "storage": "archive"
+    },
+    {
+      "path": "final/reaper/captures/treble-feedback.png",
+      "file_sha256": "c27462efccc56ea1b18d7f2ce86af8ed5b97c2de7600d8cbbb439f66e71ec63d",
+      "rgb_sha256": "28483ab892d1c97ac00a515fa19656c1f4264b146231ad020f331dac521c2884",
+      "width": 1024,
+      "height": 768,
+      "storage": "archive"
+    },
+    {
+      "path": "final/reaper/captures/vibrato-feedback.png",
+      "file_sha256": "9c526bc8914b0e6d5112b51bd89c95ca96f7e503712425c097939743a6b8f689",
+      "rgb_sha256": "6d0bbc710849e2587258793de33747f795470dbd7b36d6b376cafe2b8d662ed5",
+      "width": 1024,
+      "height": 768,
+      "storage": "archive"
+    },
+    {
+      "path": "final/reaper/captures/volume-feedback.png",
+      "file_sha256": "38b97a908fc7fe99e2d9e1ecd38f4baf871589baeb82e4283e289ddd79eaeaa8",
+      "rgb_sha256": "40a96d47516dcc6b0ab545e9a2cdf940b87479f8452fa15035eef57952099e8f",
+      "width": 1024,
+      "height": 768,
+      "storage": "historical_archive"
+    },
+    {
+      "path": "final/sdk-native/close-with-held-volume.png",
+      "file_sha256": "b8acb8f83f2d46e998df23b16b76705e0dfefec2ddf40fd059008ce8bed55e24",
+      "rgb_sha256": "3f1d6cba083fb61461c2f42e41d1fa61de8bf2cee42413dccabe160f1febcb6d",
+      "width": 1536,
+      "height": 1152,
+      "storage": "historical_archive"
+    },
+    {
+      "path": "final/sdk-native/direct-xembed-keyboard-deactivation.png",
+      "file_sha256": "5167f25366c8e5d8e7eda298bf089af18478ad5e28ccf78ae02531a2c7fff140",
+      "rgb_sha256": "9ca2f5bb49d0bebeb0f9d779753b7f5c357d8a76f6d995db75b528aca5f4cdd3",
+      "width": 1536,
+      "height": 1152,
+      "storage": "historical_archive"
+    },
+    {
+      "path": "final/sdk-native/direct-xembed-volume-deactivation.png",
+      "file_sha256": "5167f25366c8e5d8e7eda298bf089af18478ad5e28ccf78ae02531a2c7fff140",
+      "rgb_sha256": "9ca2f5bb49d0bebeb0f9d779753b7f5c357d8a76f6d995db75b528aca5f4cdd3",
+      "width": 1536,
+      "height": 1152,
+      "storage": "historical_archive"
+    },
+    {
+      "path": "final/sdk-native/focus-loss-during-drag.png",
+      "file_sha256": "5167f25366c8e5d8e7eda298bf089af18478ad5e28ccf78ae02531a2c7fff140",
+      "rgb_sha256": "9ca2f5bb49d0bebeb0f9d779753b7f5c357d8a76f6d995db75b528aca5f4cdd3",
+      "width": 1536,
+      "height": 1152,
+      "storage": "historical_archive"
+    },
+    {
+      "path": "final/sdk-native/idle-1024x768.png",
+      "file_sha256": "40551e5d1e7dd4d8665332c3683039bf2565f89901cc7474d43205e0373a048f",
+      "rgb_sha256": "f6500a7bc05c0a36acb41c07d9a6e60e3a18a0a8d40faf7e62c107f26da038dd",
+      "width": 1024,
+      "height": 768,
+      "storage": "archive"
+    },
+    {
+      "path": "final/sdk-native/idle-1536x1152.png",
+      "file_sha256": "5167f25366c8e5d8e7eda298bf089af18478ad5e28ccf78ae02531a2c7fff140",
+      "rgb_sha256": "9ca2f5bb49d0bebeb0f9d779753b7f5c357d8a76f6d995db75b528aca5f4cdd3",
+      "width": 1536,
+      "height": 1152,
+      "storage": "historical_archive"
+    },
+    {
+      "path": "final/sdk-native/idle-after-interactions.png",
+      "file_sha256": "5167f25366c8e5d8e7eda298bf089af18478ad5e28ccf78ae02531a2c7fff140",
+      "rgb_sha256": "9ca2f5bb49d0bebeb0f9d779753b7f5c357d8a76f6d995db75b528aca5f4cdd3",
+      "width": 1536,
+      "height": 1152,
+      "storage": "historical_archive"
+    },
+    {
+      "path": "final/sdk-native/keyboard-focus-loss.png",
+      "file_sha256": "5167f25366c8e5d8e7eda298bf089af18478ad5e28ccf78ae02531a2c7fff140",
+      "rgb_sha256": "9ca2f5bb49d0bebeb0f9d779753b7f5c357d8a76f6d995db75b528aca5f4cdd3",
+      "width": 1536,
+      "height": 1152,
+      "storage": "historical_archive"
+    },
+    {
+      "path": "final/sdk-native/keyboard-held.png",
+      "file_sha256": "8a23e6f3b62ae850e9fd355cefe797d4175d5aee0ccb9c078a44535bcb90dd9a",
+      "rgb_sha256": "1f3b6de233fd60e57a5589e3dd2d9f087b28fd3968765d8dd81ae91375385cdb",
+      "width": 1536,
+      "height": 1152,
+      "storage": "historical_archive"
+    },
+    {
+      "path": "final/sdk-native/keyboard-hover.png",
+      "file_sha256": "6f2e0e1a838d7887594be20c82c66967c532bbd262365817ec76293bb580ec95",
+      "rgb_sha256": "9899d7fd117b350b5f35fc25fcba2cc863c11fcbd2e3c4ea7021adb3cbe153d8",
+      "width": 1536,
+      "height": 1152,
+      "storage": "historical_archive"
+    },
+    {
+      "path": "final/sdk-native/keyboard-released.png",
+      "file_sha256": "6f2e0e1a838d7887594be20c82c66967c532bbd262365817ec76293bb580ec95",
+      "rgb_sha256": "9899d7fd117b350b5f35fc25fcba2cc863c11fcbd2e3c4ea7021adb3cbe153d8",
+      "width": 1536,
+      "height": 1152,
+      "storage": "historical_archive"
+    },
+    {
+      "path": "final/sdk-native/volume-double-click-reset-2.png",
+      "file_sha256": "59c5ca067fce3fc429a0fbf7bd9399e16d6d160ba9d174216566dc5a767144ff",
+      "rgb_sha256": "f3ddb7178d3951fc845b4dfac8cca90e984127c6a8986d16112049ffd505dca4",
+      "width": 1536,
+      "height": 1152,
+      "storage": "historical_archive"
+    },
+    {
+      "path": "final/sdk-native/volume-double-click-reset-3.png",
+      "file_sha256": "59c5ca067fce3fc429a0fbf7bd9399e16d6d160ba9d174216566dc5a767144ff",
+      "rgb_sha256": "f3ddb7178d3951fc845b4dfac8cca90e984127c6a8986d16112049ffd505dca4",
+      "width": 1536,
+      "height": 1152,
+      "storage": "historical_archive"
+    },
+    {
+      "path": "final/sdk-native/volume-double-click-reset-4.png",
+      "file_sha256": "59c5ca067fce3fc429a0fbf7bd9399e16d6d160ba9d174216566dc5a767144ff",
+      "rgb_sha256": "f3ddb7178d3951fc845b4dfac8cca90e984127c6a8986d16112049ffd505dca4",
+      "width": 1536,
+      "height": 1152,
+      "storage": "historical_archive"
+    },
+    {
+      "path": "final/sdk-native/volume-double-click-reset.png",
+      "file_sha256": "7876c0b7d9eeb782b040b7a591169fc4146961a83c072a455e1e632228ad78cf",
+      "rgb_sha256": "b4930b8eaf6990763ddabd136cbc213e1bca95a68ecf1d4fd5ae62cf4343058b",
+      "width": 1024,
+      "height": 768,
+      "storage": "historical_archive"
+    },
+    {
+      "path": "final/sdk-native/volume-drag-held-2.png",
+      "file_sha256": "87cff01d2ace784938763dac065d672d15b9d17b4eae28f1b1634e0719eea018",
+      "rgb_sha256": "3888191e8d658faba15dbe8cb824f16bbf5eeb92d21ed15873f9760f89b2d709",
+      "width": 1536,
+      "height": 1152,
+      "storage": "historical_archive"
+    },
+    {
+      "path": "final/sdk-native/volume-drag-held.png",
+      "file_sha256": "38b97a908fc7fe99e2d9e1ecd38f4baf871589baeb82e4283e289ddd79eaeaa8",
+      "rgb_sha256": "40a96d47516dcc6b0ab545e9a2cdf940b87479f8452fa15035eef57952099e8f",
+      "width": 1024,
+      "height": 768,
+      "storage": "historical_archive"
+    }
+  ],
+  "scope": "Linux/X11/Xvfb without WM; SDK no audio loop; REAPER device closed; no direct REAPER endEdit or processor note-off observation"
+}
