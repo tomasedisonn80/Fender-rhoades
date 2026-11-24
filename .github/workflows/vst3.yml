@@ -48,7 +48,7 @@ jobs:
         shell: bash
     steps:
       - name: Check out project
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           path: source
           persist-credentials: false
@@ -56,14 +56,14 @@ jobs:
         with:
           python-version: '3.11'
       - name: Check out the fixed same-repository legacy source
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: ${{ github.repository }}
           ref: 6c91dab00855b67a559e92edb79ae49e567be469
           path: legacy-source
           persist-credentials: false
       - name: Check out the pinned official SDK
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           repository: steinbergmedia/vst3sdk
           ref: 3cdf9ca5d1f5b1b21e0a86832aa4abe55607bd96
