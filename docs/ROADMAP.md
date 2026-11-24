@@ -35,6 +35,7 @@ the one-note physical-model milestone.
 | `RT-001` | Representative runtime benchmark and numerical error budget | `PHY-001` | Reproducible workload/hardware record, timing distribution/maxima, deadline accounting, reference-error report |
 | `HOST-001` | Experimental synthetic VST3 instrument | `PHY-001` | Bounded event/ownership/state behavior, pinned SDK module build and validator, explicit tested-platform and synthetic scope |
 | `HOST-002` | MIDI interoperability and generic control validation | `HOST-001` | Bounded channel CC123, validated pressure no-op, strict control text, independent ownership/audio and compatibility checks, native SDK/module validation for each claimed platform |
+| `HOST-003` | Global expression and flexible output layouts | `HOST-001` | Bounded independent CC11 automation, compatible versioned recall, mono/stereo and inactive-output behavior, loaded-module and native platform verification |
 | `STG-001` | Connected passive Stage output controls | `VAL-001` | Verified volume/bass graph, measured tapers/endpoints, loaded transfer and held-out control/load validation |
 | `CIR-001` | Optional revision-specific Suitcase circuits | `STG-001` | Verified graph and identified device/supply dynamics for each explicitly named profile |
 | `ACO-001` | Optional acoustic output boundary | `CIR-001` | Defined driver/cabinet/listening geometry, terminal and acoustic validation, separate scope decision |
@@ -161,6 +162,17 @@ and saved configuration, and native SDK/module validation for the tested source.
 Repeated command delivery still needs named-DAW verification. Specimen,
 measurement, PHY-002 and RT-001 acceptance gates remain unchanged; work records
 are kept in the [separate continuation-C ledger](../project/continuation-c-20261124.json).
+
+`HOST-003` is the scoped [expression and output-layout continuation](specs/HOST_EXPRESSION_MONO_20261124.md).
+It adds a global digital CC11 control, compatible versioned configuration, mono
+negotiation and omitted-inactive-output handling to the same synthetic models.
+The acceptance gate requires independent control/audio references, exact legacy
+unity behavior, bounded recall/publication and actual native module results.
+This task depends on the accepted HOST-001 engineering foundation and is tracked
+separately from HOST-002's remaining platform evidence. It does not reopen or
+complete the other owners' physical and numerical tasks. The
+[five-wave campaign](agents/CONTINUATION_D_20261124.md) records its actual workers
+and current progress.
 
 **Exit:** documented reference error and aliasing bounds over the supported
 operating domain; callback timing and deadline behavior under recorded stress;

@@ -1,0 +1,144 @@
+{
+  "schema_version": 1,
+  "campaign": "continuation-d-20261124",
+  "baseline_commit": "6c91dab00855b67a559e92edb79ae49e567be469",
+  "requested_agents": 100,
+  "requested_waves": 5,
+  "concurrency_limit_including_integrator": 4,
+  "status": "in_progress",
+  "completed_agents": 15,
+  "agents": [
+    {
+      "assignment": 1,
+      "wave": 1,
+      "agent_task_name": "/root/w1_001_host_gate",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-d/w1-001.md",
+      "sha256": "e60c4ecd9f25341877f9e5905331066925109ec0e8a30bfe72c25107064f0a88"
+    },
+    {
+      "assignment": 2,
+      "wave": 1,
+      "agent_task_name": "/root/w1_002_product_next",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-d/w1-002.md",
+      "sha256": "9d5020a138ee11a3d178f7ee55bb0ea902c6b5292124661d0ca576e2bf30fa79"
+    },
+    {
+      "assignment": 3,
+      "wave": 1,
+      "agent_task_name": "/root/w1_003_dsp_next",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-d/w1-003.md",
+      "sha256": "1ca9e78bd84eb3f79f17cb2d2f3d0119a83684dca1274edaf62d00f64048f563"
+    },
+    {
+      "assignment": 4,
+      "wave": 1,
+      "agent_task_name": "/root/w1_004_expression_state",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-d/w1-004.md",
+      "sha256": "9dc3ff8083886b9fd9e7d0916225ade102a455e0823fcd222697f3aeeb36cc1d"
+    },
+    {
+      "assignment": 5,
+      "wave": 1,
+      "agent_task_name": "/root/w1_005_expression_audio",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-d/w1-005.md",
+      "sha256": "9546fcf4da5ca6da7b890892d4b1709817885acce46a1466a84784be336416e4"
+    },
+    {
+      "assignment": 6,
+      "wave": 1,
+      "agent_task_name": "/root/w1_006_mono_design",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-d/w1-006.md",
+      "sha256": "65b9c85e46f149c3cbb8fdfcad4435c07128060a0363b972d71b0216f1450d71"
+    },
+    {
+      "assignment": 7,
+      "wave": 1,
+      "agent_task_name": "/root/w1_007_public_midi",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-d/w1-007.md",
+      "sha256": "8dee86ea6161ced4d36b47938e282fb300764fbf5918d176015b28b4c5136ddb"
+    },
+    {
+      "assignment": 8,
+      "wave": 1,
+      "agent_task_name": "/root/w1_008_controller",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-d/w1-008.md",
+      "sha256": "3d5eace5faea0aeea47aaa648c443ba2c3ee3545b0b940d3bef7590d54a864f9"
+    },
+    {
+      "assignment": 9,
+      "wave": 1,
+      "agent_task_name": "/root/w1_009_legacy_inventory",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-d/w1-009.md",
+      "sha256": "f6843b3e868a6f4e5d67623c7d4de793a29f448051d819cf00733627fec88d89"
+    },
+    {
+      "assignment": 10,
+      "wave": 1,
+      "agent_task_name": "/root/w1_010_mailbox_review",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-d/w1-010.md",
+      "sha256": "c3a2c65874e21fe822cba1e61638079a39ccfaf7c845553f652e52780d4f2324"
+    },
+    {
+      "assignment": 11,
+      "wave": 1,
+      "agent_task_name": "/root/w1_011_loaded_modules",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-d/w1-011.md",
+      "sha256": "0591f7a0aa9429cc9b8f8d909842f99aa877f503346289e4f4c85f9da938230e"
+    },
+    {
+      "assignment": 12,
+      "wave": 1,
+      "agent_task_name": "/root/w1_012_fp_design",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-d/w1-012.md",
+      "sha256": "e203f5109c6017362640fc8a8ae5fd39d21770e3e21e7e32193782cc966d04c2"
+    },
+    {
+      "assignment": 13,
+      "wave": 1,
+      "agent_task_name": "/root/w1_013_bounds_memory",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-d/w1-013.md",
+      "sha256": "a50af3ef367e0676075f384c1b3f34af2f9d8f7614b6e1764519f8ece8d8edfe"
+    },
+    {
+      "assignment": 14,
+      "wave": 1,
+      "agent_task_name": "/root/w1_014_bus_sources",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-d/w1-014.md",
+      "sha256": "030596f1d039d1575d47817ba16049fa1b09d4d4ad6a96ec8ab3ab5c42091367"
+    },
+    {
+      "assignment": 15,
+      "wave": 1,
+      "agent_task_name": "/root/w1_015_ci_design",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-d/w1-015.md",
+      "sha256": "7612e9936050969a96b1e01f1ee61677df298bbb9d7d802c6b2b5607705bd851"
+    },
+    {
+      "assignment": 16,
+      "wave": 1,
+      "agent_task_name": "/root/w1_016_docs_plan",
+      "status": "running"
+    },
+    {
+      "assignment": 17,
+      "wave": 1,
+      "agent_task_name": "/root/w1_017_scalar_oracle",
+      "status": "running"
+    }
+  ]
+}

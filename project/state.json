@@ -4,8 +4,8 @@
   "goal": "Physically model a Fender Rhodes Mark I from evolving mechanical, electromagnetic and circuit states without recorded-note playback.",
   "target": "One documented 73-key Mark I Stage specimen at its specified loaded electrical output; identity and measurements pending.",
   "fidelity_status": "unvalidated",
-  "revision": 41,
-  "updated_at": "2026-11-24T11:21:24Z",
+  "revision": 42,
+  "updated_at": "2026-11-24T12:22:10Z",
   "tasks": [
     {
       "id": "FND-001",
@@ -518,6 +518,48 @@
         "tools/verify_host_midi_archive.py",
         "tools/compare_vst3_callbacks.py"
       ]
+    },
+    {
+      "id": "HOST-003",
+      "title": "Add global expression and flexible VST3 output layouts",
+      "milestone": "Host performance controls",
+      "status": "in_progress",
+      "priority": 48,
+      "dependencies": [
+        "HOST-001"
+      ],
+      "acceptance": [
+        "Global CC11 Expression has independent bounded sample-offset automation, strict control conversion, unity default and unchanged legacy-unity audio; mute preserves synthesis, and invalid transactions reject without live mutation.",
+        "Adaptive versioned configuration preserves exact 16-byte legacy unity states, supports validated 20-byte expression states and all model identities, and retains coherent bounded lock-free publication under concurrent recall.",
+        "Mono and stereo negotiation, exact scalar output, bounded buffer handling, omitted inactive outputs, silence masks and lifecycle behavior pass direct and actual loaded-module checks without changing existing stereo behavior.",
+        "Independent integration and legacy comparisons plus relevant core/host checks and all three SDK/module validators pass on Linux, Windows and macOS with source-bound results, explicit skips and no unsupported runtime claims.",
+        "User, state-format, build and named-DAW verification documents describe the observed feature scope, compatibility and remaining limits; physical calibration and separate numerical tasks are not promoted."
+      ],
+      "required_evidence": [
+        "numerical",
+        "documentary"
+      ],
+      "evidence": [],
+      "owner": "continuation-d-root",
+      "claim": {
+        "owner": "continuation-d-root",
+        "token": "5b939874c1a725e3c8b7b7a734d475ea",
+        "claimed_at": "2026-11-24T12:22:10Z",
+        "expires_at": "2026-11-24T16:22:10Z"
+      },
+      "blockers": [],
+      "paths": [
+        "plugins/vst3",
+        "include/rhodes/instrument_state.hpp",
+        "tests",
+        "cmake/Vst3.cmake",
+        "CMakeLists.txt",
+        ".github/workflows",
+        "tools",
+        "docs",
+        "project",
+        "README.md"
+      ]
     }
   ],
   "history": [
@@ -848,6 +890,14 @@
       "task": "HOST-002",
       "owner": "continuation-c-root",
       "detail": "C04 incomplete: applicable completed macOS SDK/module/loaded-MIDI, core and full Python results are unavailable. The 11:20:37 UTC closing readback records the VST3 retry cancelled without execution and Foundation macOS jobs queued. Retain the five attached scoped records; see docs/validation/host-midi-acceptance-20261124.md and docs/validation/host-midi-handoff-20261124.md. Preserve PHY-002/RT-001 ownership and unvalidated fidelity; append new native evidence and a reviewed acceptance decision before completion."
+    },
+    {
+      "revision": 42,
+      "at": "2026-11-24T12:22:10Z",
+      "action": "claim",
+      "task": "HOST-003",
+      "owner": "continuation-d-root",
+      "detail": "Lease until 2026-11-24T16:22:10Z"
     }
   ]
 }

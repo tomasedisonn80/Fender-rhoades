@@ -19,8 +19,9 @@ permissions:
   contents: read
 
 concurrency:
-  group: vst3-${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  # Keep explicitly requested verification independent of push supersession.
+  group: vst3-${{ github.workflow }}-${{ github.ref }}-${{ (github.event_name == 'workflow_dispatch' || github.run_attempt > 1) && github.run_id || 'automatic' }}
+  cancel-in-progress: ${{ github.event_name != 'workflow_dispatch' && github.run_attempt == 1 }}
 
 jobs:
   vst3:
