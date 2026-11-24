@@ -1,0 +1,93 @@
+Internal ctest changing into directory: /home/agent/rhoades-9a04c9726e31/build
+UpdateCTestConfiguration  from :/home/agent/rhoades-9a04c9726e31/build/DartConfiguration.tcl
+Parse Config file:/home/agent/rhoades-9a04c9726e31/build/DartConfiguration.tcl
+UpdateCTestConfiguration  from :/home/agent/rhoades-9a04c9726e31/build/DartConfiguration.tcl
+Parse Config file:/home/agent/rhoades-9a04c9726e31/build/DartConfiguration.tcl
+Test project /home/agent/rhoades-9a04c9726e31/build
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+Checking test dependency graph...
+Checking test dependency graph end
+test 553
+    Start 553: vst3.loaded_panel_audio
+
+553: Test command: /home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_loaded_panel_audio_tests "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3" "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3" "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3"
+553: Working Directory: /home/agent/rhoades-9a04c9726e31/build
+553: Test timeout computed to be: 120
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/float32 neutral_rms=0.0615134488602 neutral_peak=0.330963969231 effect_peak_limit=10.5908470154
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/float32 case=gain_8x delta_rms=0.0307567244301 relative_rms=0.5 delta_peak=0.165481984615
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/float32 case=bass_12dB delta_rms=0.1087304781 relative_rms=1.76758871621 delta_peak=0.424374550581
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/float32 case=treble_12dB delta_rms=0.0701345552473 relative_rms=1.14014994358 delta_peak=0.84681725502
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/float32 case=sustain_after_release delta_rms=0.0313563037364 relative_rms=4.76539174021 delta_peak=0.0911404280923
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/float32 case=vibrato_on_depth_025 delta_rms=0.00947547792563 relative_rms=0.154039126422 delta_peak=0.0722139328718
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/float32 case=vibrato_on_depth_075 delta_rms=0.0284264337945 relative_rms=0.462117379553 delta_peak=0.216641806066
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/float32 case=enabled_intensity_change delta_rms=0.0189509558689 relative_rms=0.350240909103 delta_peak=0.144427873194
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/float32 case=vibrato_on_then_off delta_rms=0.0272949073032 relative_rms=0.443722597399 delta_peak=0.216641806066
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/float32 case=vibrato_10_5625Hz delta_rms=0.0283120039923 relative_rms=0.460257139161 delta_peak=0.21192394942
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/float32 case=enabled_speed_change delta_rms=0.0232708789121 relative_rms=0.555639687372 delta_peak=0.185279227793
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/float64 neutral_rms=0.0615134488585 neutral_peak=0.330963973708 effect_peak_limit=10.5908471587
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/float64 case=gain_8x delta_rms=0.0307567244292 relative_rms=0.5 delta_peak=0.165481986854
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/float64 case=bass_12dB delta_rms=0.108730478076 relative_rms=1.76758871587 delta_peak=0.424374548005
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/float64 case=treble_12dB delta_rms=0.0701345552497 relative_rms=1.14014994365 delta_peak=0.846817244646
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/float64 case=sustain_after_release delta_rms=0.0313563037398 relative_rms=4.76539174401 delta_peak=0.0911404284865
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/float64 case=vibrato_on_depth_025 delta_rms=0.00947547793048 relative_rms=0.154039126505 delta_peak=0.0722139354098
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/float64 case=vibrato_on_depth_075 delta_rms=0.0284264337914 relative_rms=0.462117379515 delta_peak=0.216641806229
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/float64 case=enabled_intensity_change delta_rms=0.018950955861 relative_rms=0.350240909012 delta_peak=0.14442787082
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/float64 case=vibrato_on_then_off delta_rms=0.0272949073005 relative_rms=0.443722597367 delta_peak=0.216641806229
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/float64 case=vibrato_10_5625Hz delta_rms=0.0283120039939 relative_rms=0.4602571392 delta_peak=0.211923946625
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/float64 case=enabled_speed_change delta_rms=0.0232708789263 relative_rms=0.555639687687 delta_peak=0.185279228194
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3/float32 neutral_rms=0.0615088576073 neutral_peak=0.353314936161 effect_peak_limit=11.3060779572
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3/float32 case=gain_8x delta_rms=0.0307544288036 relative_rms=0.5 delta_peak=0.176657468081
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3/float32 case=bass_12dB delta_rms=0.10872402486 relative_rms=1.76761574006 delta_peak=0.424376145005
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3/float32 case=treble_12dB delta_rms=0.0701236064884 relative_rms=1.1400570457 delta_peak=0.765519320965
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3/float32 case=sustain_after_release delta_rms=0.0313347296327 relative_rms=4.69951360254 delta_peak=0.0911402022466
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3/float32 case=vibrato_on_depth_025 delta_rms=0.00947725767175 relative_rms=0.154079559277 delta_peak=0.0723687261343
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3/float32 case=vibrato_on_depth_075 delta_rms=0.0284317730389 relative_rms=0.462238678214 delta_peak=0.217106170952
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3/float32 case=enabled_intensity_change delta_rms=0.0189545153671 relative_rms=0.350330021521 delta_peak=0.144737444818
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3/float32 case=vibrato_on_then_off delta_rms=0.0272963842809 relative_rms=0.443779730965 delta_peak=0.217106170952
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3/float32 case=vibrato_10_5625Hz delta_rms=0.0283139792941 relative_rms=0.460323608591 delta_peak=0.211665764451
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3/float32 case=enabled_speed_change delta_rms=0.0232889107416 relative_rms=0.55604449749 delta_peak=0.185581214726
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3/float64 neutral_rms=0.0615088576159 neutral_peak=0.353314949767 effect_peak_limit=11.3060783926
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3/float64 case=gain_8x delta_rms=0.030754428808 relative_rms=0.5 delta_peak=0.176657474884
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3/float64 case=bass_12dB delta_rms=0.10872402487 relative_rms=1.76761573999 delta_peak=0.42437613653
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3/float64 case=treble_12dB delta_rms=0.0701236064986 relative_rms=1.14005704571 delta_peak=0.765519288837
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3/float64 case=sustain_after_release delta_rms=0.031334729636 relative_rms=4.69951360965 delta_peak=0.0911402004315
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3/float64 case=vibrato_on_depth_025 delta_rms=0.00947725768181 relative_rms=0.154079559419 delta_peak=0.0723687248652
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3/float64 case=vibrato_on_depth_075 delta_rms=0.0284317730454 relative_rms=0.462238678256 delta_peak=0.217106174596
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3/float64 case=enabled_intensity_change delta_rms=0.0189545153636 relative_rms=0.350330021493 delta_peak=0.14473744973
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3/float64 case=vibrato_on_then_off delta_rms=0.0272963842887 relative_rms=0.443779731029 delta_peak=0.217106174596
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3/float64 case=vibrato_10_5625Hz delta_rms=0.0283139793006 relative_rms=0.460323608632 delta_peak=0.211665771898
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3/float64 case=enabled_speed_change delta_rms=0.0232889107388 relative_rms=0.556044497615 delta_peak=0.185581212106
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3/float32 neutral_rms=0.0615076201526 neutral_peak=0.352550834417 effect_peak_limit=11.2816267014
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3/float32 case=gain_8x delta_rms=0.0307538100763 relative_rms=0.5 delta_peak=0.176275417209
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3/float32 case=bass_12dB delta_rms=0.108721921117 relative_rms=1.76761709926 delta_peak=0.424376785755
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3/float32 case=treble_12dB delta_rms=0.0701218125518 relative_rms=1.14005081611 delta_peak=0.793180972338
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3/float32 case=sustain_after_release delta_rms=0.0313347135241 relative_rms=4.69951360286 delta_peak=0.0911401528865
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3/float32 case=vibrato_on_depth_025 delta_rms=0.00947712136441 relative_rms=0.154080443056 delta_peak=0.0723686814308
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3/float32 case=vibrato_on_depth_075 delta_rms=0.028431364117 relative_rms=0.462241329554 delta_peak=0.217106059194
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3/float32 case=enabled_intensity_change delta_rms=0.0189542427526 relative_rms=0.350331969396 delta_peak=0.144737377763
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3/float32 case=vibrato_on_then_off delta_rms=0.0272959595429 relative_rms=0.443781753793 delta_peak=0.217106059194
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3/float32 case=vibrato_10_5625Hz delta_rms=0.0283134652995 relative_rms=0.460324513114 delta_peak=0.211208000779
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3/float32 case=enabled_speed_change delta_rms=0.0232888521226 relative_rms=0.556052815396 delta_peak=0.185581117868
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3/float64 neutral_rms=0.0615076201496 neutral_peak=0.352550838952 effect_peak_limit=11.2816268465
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3/float64 case=gain_8x delta_rms=0.0307538100748 relative_rms=0.5 delta_peak=0.176275419476
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3/float64 case=bass_12dB delta_rms=0.10872192114 relative_rms=1.76761709973 delta_peak=0.424376784818
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3/float64 case=treble_12dB delta_rms=0.0701218125652 relative_rms=1.14005081638 delta_peak=0.7931809084
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3/float64 case=sustain_after_release delta_rms=0.0313347135286 relative_rms=4.69951360204 delta_peak=0.0911401523732
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3/float64 case=vibrato_on_depth_025 delta_rms=0.00947712137052 relative_rms=0.154080443162 delta_peak=0.072368688326
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3/float64 case=vibrato_on_depth_075 delta_rms=0.0284313641115 relative_rms=0.462241329487 delta_peak=0.217106064978
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3/float64 case=enabled_intensity_change delta_rms=0.018954242741 relative_rms=0.350331969204 delta_peak=0.144737376652
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3/float64 case=vibrato_on_then_off delta_rms=0.0272959595358 relative_rms=0.443781753698 delta_peak=0.217106064978
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3/float64 case=vibrato_10_5625Hz delta_rms=0.0283134652933 relative_rms=0.460324513034 delta_peak=0.211208004386
+553: /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3/float64 case=enabled_speed_change delta_rms=0.0232888521273 relative_rms=0.556052815499 delta_peak=0.185581106045
+553: PASS loaded panel audio: renders=96 callbacks=36000 scalar_comparisons=20730240 checks=9255124
+1/1 Test #553: vst3.loaded_panel_audio ..........   Passed   22.40 sec
+
+The following tests passed:
+	vst3.loaded_panel_audio
+
+100% tests passed, 0 tests failed out of 1
+
+Total Test time (real) =  22.41 sec

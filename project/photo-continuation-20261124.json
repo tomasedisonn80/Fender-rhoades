@@ -729,9 +729,9 @@
       "wave": 5,
       "task_name": "/root/w5_81_loaded_audio_assertions",
       "scope": "tighten loaded-audio host setup and analytic assertions",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/reports/photo-continuation-20261124/w5-081.md",
-      "report_sha256": null
+      "report_sha256": "2f6850b9e1d606a7acf7ab8fb06bb9742a78fa80dfc299a0c8d3d5d251216284"
     },
     {
       "id": "A082",
@@ -756,17 +756,71 @@
       "wave": 5,
       "task_name": "/root/w5_84_controls_acceptance_review",
       "scope": "independent synthetic controls and legacy compatibility review",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/reports/photo-continuation-20261124/w5-084.md",
-      "report_sha256": null
+      "report_sha256": "a1bd4c7bb7cad739d626bc2e527e209244b0d3926a188f054b8872fdbecc3853"
     },
     {
       "id": "A085",
       "wave": 5,
       "task_name": "/root/w5_85_lifecycle_acceptance_review",
       "scope": "independent native lifecycle acceptance review",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/reports/photo-continuation-20261124/w5-085.md",
+      "report_sha256": "66729868829f0889a6312af95dc0de50a47be2c0f51d0d25c0120b2ccfa3cc1f"
+    },
+    {
+      "id": "A086",
+      "wave": 5,
+      "task_name": "/root/w5_86_capture_archive_review",
+      "scope": "independent native capture archive delivery review",
+      "status": "completed",
+      "report": "docs/agents/reports/photo-continuation-20261124/w5-086.md",
+      "report_sha256": "0bd7089bfd46700c63d7bc4d95ba244f909c85ce86ec60f270bac62b231355b6"
+    },
+    {
+      "id": "A087",
+      "wave": 5,
+      "task_name": "/root/w5_87_legacy_capture_review",
+      "scope": "independent fresh-versus-retained legacy capture review",
+      "status": "completed",
+      "report": "docs/agents/reports/photo-continuation-20261124/w5-087.md",
+      "report_sha256": "a874a768940f32b6c3cd770a552c8a3206905994967146bc8b5d3b6af7ac0a4f"
+    },
+    {
+      "id": "A088",
+      "wave": 5,
+      "task_name": "/root/w5_88_loaded_fixture_portability",
+      "scope": "independent loaded-audio ABI and portable source review",
+      "status": "completed",
+      "report": "docs/agents/reports/photo-continuation-20261124/w5-088.md",
+      "report_sha256": "7a0c4fd8ad6320ffe80f847d8b234076a9116cb443e9134b771c33f0e071844b"
+    },
+    {
+      "id": "A089",
+      "wave": 5,
+      "task_name": "/root/w5_89_capture_delivery_fix",
+      "scope": "repair retained capture delivery index and missing audit records",
+      "status": "running",
+      "report": "docs/agents/reports/photo-continuation-20261124/w5-089.md",
+      "report_sha256": null
+    },
+    {
+      "id": "A090",
+      "wave": 5,
+      "task_name": "/root/w5_90_final_audio_evidence_review",
+      "scope": "independent strengthened loaded-audio result review",
+      "status": "running",
+      "report": "docs/agents/reports/photo-continuation-20261124/w5-090.md",
+      "report_sha256": null
+    },
+    {
+      "id": "A091",
+      "wave": 5,
+      "task_name": "/root/w5_91_ci_fixture_registration",
+      "scope": "independent CI registration and optional-build review",
+      "status": "running",
+      "report": "docs/agents/reports/photo-continuation-20261124/w5-091.md",
       "report_sha256": null
     }
   ]

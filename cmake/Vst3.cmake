@@ -691,6 +691,19 @@ int main() { return 0; }" RHODES_FAULT_LIBSTDCXX)
         add_test(NAME vst3.loaded_midi COMMAND rhodes_vst3_loaded_midi_tests
             "${rhodes_plugin_bundle}" "${rhodes_filtered_bundle}" "${rhodes_quadrature_bundle}")
         set_tests_properties(vst3.loaded_midi PROPERTIES TIMEOUT 60)
+        add_executable(rhodes_vst3_loaded_panel_audio_tests
+            "${PROJECT_SOURCE_DIR}/tests/cpp/vst3_loaded_panel_audio_test.cpp")
+        target_compile_features(rhodes_vst3_loaded_panel_audio_tests PRIVATE cxx_std_20)
+        target_include_directories(rhodes_vst3_loaded_panel_audio_tests SYSTEM PRIVATE
+            "${RHODES_VST3_SDK_ROOT}")
+        target_link_libraries(rhodes_vst3_loaded_panel_audio_tests PRIVATE rhodes_vst3_loader_support)
+        rhodes_target_options(rhodes_vst3_loaded_panel_audio_tests)
+        add_dependencies(rhodes_vst3_loaded_panel_audio_tests
+            rhodes_vst3 rhodes_vst3_filtered rhodes_vst3_quadrature)
+        add_dependencies(rhodes_vst3_checks rhodes_vst3_loaded_panel_audio_tests)
+        add_test(NAME vst3.loaded_panel_audio COMMAND rhodes_vst3_loaded_panel_audio_tests
+            "${rhodes_plugin_bundle}" "${rhodes_filtered_bundle}" "${rhodes_quadrature_bundle}")
+        set_tests_properties(vst3.loaded_panel_audio PROPERTIES TIMEOUT 120)
         if(RHODES_BUILD_VST3_EDITOR)
             add_executable(rhodes_vst3_photo_editor_tests
                 "${PROJECT_SOURCE_DIR}/tests/cpp/vst3_photo_editor_test.cpp")
@@ -777,7 +790,8 @@ int main() { return 0; }" RHODES_FAULT_LIBSTDCXX)
         if(SMTG_MAC)
             foreach(target IN ITEMS rhodes_vst3_dual_module_tests
                     rhodes_vst3_triple_module_tests rhodes_vst3_loaded_midi_tests
-                    rhodes_vst3_loaded_expression_tests rhodes_vst3_legacy_capture)
+                    rhodes_vst3_loaded_expression_tests rhodes_vst3_loaded_panel_audio_tests
+                    rhodes_vst3_legacy_capture)
                 smtg_target_setup_universal_binary(${target})
                 smtg_target_codesign(${target})
             endforeach()

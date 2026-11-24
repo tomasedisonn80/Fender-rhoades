@@ -1,0 +1,14 @@
+-- [SMTG] SMTG_VSTGUI_SOURCE_DIR is set to: /home/agent/rhoades-9a04c9726e31/vst3sdk/vstgui4
+/home/agent/rhoades-9a04c9726e31/vst3sdk/vstgui4/vstgui/uidescription/editing
+-- VSTGUI will use the Expat library at /home/agent/rhoades-9a04c9726e31/sysroot/usr/lib/x86_64-linux-gnu/libexpat.so
+-- VSTGUI will use the Expat header found in /home/agent/rhoades-9a04c9726e31/sysroot/usr/include
+-- Could NOT find LIBJACK (missing: LIBJACK_LIBRARIES LIBJACK_INCLUDE_DIR) 
+-- [SMTG] Linux architecture name is x86_64-linux.
+-- [SMTG] Setup running moduleinfotool for rhodes_vst3
+-- [SMTG] Linux architecture name is x86_64-linux.
+-- [SMTG] Setup running moduleinfotool for rhodes_vst3_filtered
+-- [SMTG] Linux architecture name is x86_64-linux.
+-- [SMTG] Setup running moduleinfotool for rhodes_vst3_quadrature
+-- Configuring done (0.5s)
+-- Generating done (0.2s)
+-- Build files have been written to: /home/agent/rhoades-9a04c9726e31/build

@@ -1,0 +1,12 @@
+[1/9] Building C object vst3-sdk/VSTGUI.build/vstgui/CMakeFiles/vstgui_wayland_protocols.dir/wayland-protocols/linux-dmabuf-v1-protocol.c.o
+cc1: warning: command-line option ‘-Wsuggest-override’ is valid for C++/ObjC++ but not for C
+[2/9] Building C object vst3-sdk/VSTGUI.build/vstgui/CMakeFiles/vstgui_wayland_protocols.dir/wayland-protocols/xdg-shell-protocol.c.o
+cc1: warning: command-line option ‘-Wsuggest-override’ is valid for C++/ObjC++ but not for C
+[3/9] Building C object vst3-sdk/VSTGUI.build/vstgui/CMakeFiles/vstgui_wayland_protocols.dir/wayland-protocols/xdg-decoration-unstable-v1-protocol.c.o
+cc1: warning: command-line option ‘-Wsuggest-override’ is valid for C++/ObjC++ but not for C
+[4/9] Linking CXX static library lib/Release/libvstgui.a
+[5/9] Linking CXX shared module VST3/Release/RhodesResearch.vst3/Contents/x86_64-linux/RhodesResearch.so
+[6/9] Linking CXX shared module VST3/Release/RhodesResearchFiltered.vst3/Contents/x86_64-linux/RhodesResearchFiltered.so
+[7/9] Linking CXX shared module VST3/Release/RhodesResearchQuadrature.vst3/Contents/x86_64-linux/RhodesResearchQuadrature.so
+[8/9] Building CXX object CMakeFiles/rhodes_vst3_loaded_panel_audio_tests.dir/tests/cpp/vst3_loaded_panel_audio_test.cpp.o
+[9/9] Linking CXX executable rhodes_vst3_loaded_panel_audio_tests

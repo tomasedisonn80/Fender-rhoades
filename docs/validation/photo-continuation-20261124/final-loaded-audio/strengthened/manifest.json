@@ -1,0 +1,295 @@
+{
+  "started_utc": "2026-11-24T19:51:29.336796+00:00",
+  "git_head": "4f658c2fbfc350e1ac6db626a1328c1232b39178",
+  "scope": "Final Linux loaded-bundle nonneutral panel audio; source/hash bound, synthetic output",
+  "sources": {
+    "CMakeLists.txt": {
+      "sha256": "4619d0aa41be71b7946664ac07c5e381205afc901dcf15319f21ae4d42c07adc",
+      "bytes": 25550
+    },
+    "cmake/Vst3.cmake": {
+      "sha256": "d223ac5f42521ce3be0f72a0023e35e601ec737a1bd9e6123d530c92e0ad6959",
+      "bytes": 61093
+    },
+    "cmake/VstguiWin32Timer.cmake": {
+      "sha256": "211484666fff1fe57c8e442dbc98b3a0c76fd1119fbd21a5ce1d280368fd5c85",
+      "bytes": 2532
+    },
+    "cmake/VstguiX11ChildWindow.cmake": {
+      "sha256": "74ad962f03a3581fcc424d85a2a6f7bf836655843e858285609f087033754e3e",
+      "bytes": 3567
+    },
+    "cmake/VstguiX11Keyboard.cmake": {
+      "sha256": "3f1b1de7d27a74c1d6d2dae21152b125e4b5c1bf349a78f3aa4bfa3848a76a9c",
+      "bytes": 2424
+    },
+    "cmake/VstguiX11Lifetime.cmake": {
+      "sha256": "2b1291c584fc285d219a09b84a752b548b3085a0f7b725464a2806a21afffb60",
+      "bytes": 7796
+    },
+    "include/rhodes/audio_engine.hpp": {
+      "sha256": "10efac8150c07e69ef41eed415a6e7403b4339179af902f91cd17ef498da7b97",
+      "bytes": 4216
+    },
+    "include/rhodes/audio_filter_coefficients.hpp": {
+      "sha256": "c1ab39356d7e44348f9dc56f9120ff2598889d1fa144e5294b084585655eb76d",
+      "bytes": 17719
+    },
+    "include/rhodes/contact_reference.hpp": {
+      "sha256": "00b99e61dc73686c22675bedf647c3ad1b27ba13332180431f5a42e485057fda",
+      "bytes": 13870
+    },
+    "include/rhodes/control_text.hpp": {
+      "sha256": "de28474739274f4fac20dc1d3d5602cb63c62ddd04a33202cb5375985086e63d",
+      "bytes": 17207
+    },
+    "include/rhodes/control_value.hpp": {
+      "sha256": "d7c282afdcffaef90f7872f97b37bfb34671448da64376d3439649c052d4d48d",
+      "bytes": 5479
+    },
+    "include/rhodes/editor_audition.hpp": {
+      "sha256": "6c4ea15ddd2bb3c7498f848c5c123de8c69b28fe14aaa2aa694c5adcaf6442c9",
+      "bytes": 7536
+    },
+    "include/rhodes/event_processor.hpp": {
+      "sha256": "cbfebb44d5d7eee06ab6952209a4683c7a7da58c04ea81f6583b98cfb981517d",
+      "bytes": 7620
+    },
+    "include/rhodes/fir_decimator.hpp": {
+      "sha256": "e54faeb397bcbccb9ed9834cfc264d84550c4ef375d8e5273a720eb1f190071b",
+      "bytes": 2185
+    },
+    "include/rhodes/front_panel_effects.hpp": {
+      "sha256": "e8998a71f848a14b617317f88447a8655dde60fefb7981762fb15ad0de3fa7d0",
+      "bytes": 10035
+    },
+    "include/rhodes/front_panel_state.hpp": {
+      "sha256": "fe4181f15b328db42cec646a22de186636d0dfa27d4a384b016ad47e6d5a7a71",
+      "bytes": 2299
+    },
+    "include/rhodes/instrument_state.hpp": {
+      "sha256": "1550dbbd83ea20838a6cac1579c716f7d01a94429450c19b62d18df14d102043",
+      "bytes": 8896
+    },
+    "include/rhodes/note_tracker.hpp": {
+      "sha256": "76931b326daae3a112b56420f9be9ea5b03b1c30307f1dc68b6c13c710cd830f",
+      "bytes": 5432
+    },
+    "include/rhodes/plugin_state.hpp": {
+      "sha256": "973576bb1db6fe6830b60193065a3acd4d0522f45eb0e33ca8a26524726dab15",
+      "bytes": 11445
+    },
+    "include/rhodes/quadrature_engine.hpp": {
+      "sha256": "c625a82b61eb3e721061177654c12ffa6aac0049e026b9633ae53ea2abaa773d",
+      "bytes": 4801
+    },
+    "include/rhodes/quadrature_filter_coefficients.hpp": {
+      "sha256": "3cca4ea6553ceb01810a6230f2144491364fa48af7d6cfbc43a8e3dcf5d08b51",
+      "bytes": 16603
+    },
+    "include/rhodes/quadrature_fir.hpp": {
+      "sha256": "cf6c85e70036b3f1794ecf131a9db43bcb8da373e47c5335f56b1bb57559b45e",
+      "bytes": 2707
+    },
+    "include/rhodes/research_engine.hpp": {
+      "sha256": "2a6ba0483a010d9b7a44517c5ed7c215f05d57ed6e96bd6609127322092929e4",
+      "bytes": 8348
+    },
+    "plugins/vst3/THIRD_PARTY_NOTICES.md": {
+      "sha256": "f3ed30cd41b48ce88753de641057f51f51e78ea19b60a40e4398f29fe191f901",
+      "bytes": 8653
+    },
+    "plugins/vst3/controller.cpp": {
+      "sha256": "2c77542e1aeb58bceaab8e7d6dd59250d17b5e4bc8f7d489b367ea5e805a0e36",
+      "bytes": 25101
+    },
+    "plugins/vst3/controller.hpp": {
+      "sha256": "a0dcf316c8d6a013a7a8b6a75485b451e21b070e6b57f62ef52fdf605b252183",
+      "bytes": 3901
+    },
+    "plugins/vst3/factory.cpp": {
+      "sha256": "16e5da7194a8f548dd91b84e3c66ed81b5bdf5ff618e66dbafa3abdc1a16158c",
+      "bytes": 1037
+    },
+    "plugins/vst3/photo_editor.cpp": {
+      "sha256": "caf54d88c871bab05ec572904ef4e3de7c985c0b713e65c398e0010786679fcf",
+      "bytes": 43422
+    },
+    "plugins/vst3/photo_editor.hpp": {
+      "sha256": "0c421cae0d330f22b00bab37bb17e73cddd948dbd56a0834c6cb086d6cec97db",
+      "bytes": 383
+    },
+    "plugins/vst3/photo_geometry.hpp": {
+      "sha256": "77fe4f4ac93ee0b212ef3f5399eb5cfa8884076d8eef51d2adf2123e6d85e0bd",
+      "bytes": 11936
+    },
+    "plugins/vst3/photo_key_highlight.hpp": {
+      "sha256": "9302c59a677564253ea80fb92deeef811864def11a4fdd7e03b3a20c2477c58a",
+      "bytes": 16080
+    },
+    "plugins/vst3/photo_native_focus.cpp": {
+      "sha256": "c24f8d70731a193b0b7bf833984c00df5a60375d2d306986f1440757af938c5f",
+      "bytes": 11355
+    },
+    "plugins/vst3/photo_native_focus.hpp": {
+      "sha256": "9bf4553ec6a1418747d5379ba531bf15bbfb7e589f3923ff9c8131485704396a",
+      "bytes": 1697
+    },
+    "plugins/vst3/plugin_ids.hpp": {
+      "sha256": "558491751250799eadce1eb95ad1cf59cde728c8bf9490a2962aafeaa8ca128d",
+      "bytes": 3577
+    },
+    "plugins/vst3/processor.cpp": {
+      "sha256": "1ef121c4afb190c45fa1ff41a2127fb7487919dc69d8856c4a05e79844f760a9",
+      "bytes": 37967
+    },
+    "plugins/vst3/processor.hpp": {
+      "sha256": "5206559cf6a05e6b53e8f6d043a4860b1c4afb995ca8253ed1f75762a5270574",
+      "bytes": 6905
+    },
+    "plugins/vst3/resources/Expat-LICENSE.txt": {
+      "sha256": "f6eeb2310d0b00e5cecac39c73a0696a5bdbfb754b26325ed5a502fc1a6c338c",
+      "bytes": 1208
+    },
+    "plugins/vst3/resources/rhodes-suitcase.png": {
+      "sha256": "84e2d48fc0311eb923083cc3e1f96dc5fa1b3f8a6e085daee7c973e54d754d26",
+      "bytes": 1434362
+    },
+    "plugins/vst3/resources/rhodes-suitcase.uidesc": {
+      "sha256": "7554fecedf67cf744b3aa7f6cf12dc4f874d8b5e0b97ec66959ba2b42ea5825e",
+      "bytes": 651
+    },
+    "plugins/vst3/state_stream.cpp": {
+      "sha256": "30b057afe520c81bb87e0298b32835ea47957ff46b452cf417244dbb51b55051",
+      "bytes": 5052
+    },
+    "plugins/vst3/state_stream.hpp": {
+      "sha256": "a0885ed2c7a381fac06a65e37c02fa115f5c29930a7881ffd5186297fb9d3b28",
+      "bytes": 2227
+    },
+    "src/contact_reference.cpp": {
+      "sha256": "70dde1bfab9c2e35457da2ebf66ff4638cb6f56f1f19a84dbe55a1752d5166fd",
+      "bytes": 78110
+    },
+    "src/research_engine.cpp": {
+      "sha256": "01c2a9f7f9f7cfa4f759be56770178f32a71a28667d4ac6ab390e03ff7a95814",
+      "bytes": 20795
+    },
+    "tests/cpp/vst3_loaded_panel_audio_test.cpp": {
+      "sha256": "a76cba87f5682a53a4aca46911fe2be2d8824171fee6bc3de45c25566a56fac1",
+      "bytes": 25393
+    }
+  },
+  "modules_before": {
+    "RhodesResearch": {
+      "sha256": "5facf72c9367a5849c124833673d68e2d74b8b64c88b22e95d66663fa65d1959",
+      "bytes": 3204856
+    },
+    "RhodesResearchFiltered": {
+      "sha256": "aa698bc10af7df69bb7c8d1f5f16cbb3ff1472fa6794abc17316fc22e367f2cd",
+      "bytes": 3217144
+    },
+    "RhodesResearchQuadrature": {
+      "sha256": "d2213f5a635a2f819f8932c8cd18575ddd3c07bc3fdc386f99115ed72cd4078e",
+      "bytes": 3208952
+    }
+  },
+  "commands": [
+    {
+      "label": "configure",
+      "command": [
+        "cmake",
+        "-S",
+        "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades",
+        "-B",
+        "/home/agent/rhoades-9a04c9726e31/build"
+      ],
+      "started_utc": "2026-11-24T19:51:29.339269+00:00",
+      "seconds": 0.6978733730065869,
+      "exit_code": 0
+    },
+    {
+      "label": "build",
+      "command": [
+        "cmake",
+        "--build",
+        "/home/agent/rhoades-9a04c9726e31/build",
+        "--target",
+        "rhodes_vst3_loaded_panel_audio_tests",
+        "--parallel",
+        "2"
+      ],
+      "started_utc": "2026-11-24T19:51:30.037214+00:00",
+      "seconds": 3.357132940000156,
+      "exit_code": 0
+    },
+    {
+      "label": "ctest",
+      "command": [
+        "ctest",
+        "--test-dir",
+        "/home/agent/rhoades-9a04c9726e31/build",
+        "-R",
+        "^vst3.loaded_panel_audio$",
+        "-V",
+        "--output-junit",
+        "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/docs/validation/photo-continuation-20261124/final-loaded-audio/strengthened/ctest.xml"
+      ],
+      "started_utc": "2026-11-24T19:51:33.394674+00:00",
+      "seconds": 22.61096526300389,
+      "exit_code": 0
+    }
+  ],
+  "finished_utc": "2026-11-24T19:51:56.006593+00:00",
+  "source_changes": [],
+  "modules_after": {
+    "RhodesResearch": {
+      "sha256": "5facf72c9367a5849c124833673d68e2d74b8b64c88b22e95d66663fa65d1959",
+      "bytes": 3204856
+    },
+    "RhodesResearchFiltered": {
+      "sha256": "aa698bc10af7df69bb7c8d1f5f16cbb3ff1472fa6794abc17316fc22e367f2cd",
+      "bytes": 3217144
+    },
+    "RhodesResearchQuadrature": {
+      "sha256": "d2213f5a635a2f819f8932c8cd18575ddd3c07bc3fdc386f99115ed72cd4078e",
+      "bytes": 3208952
+    }
+  },
+  "module_bytes_unchanged": true,
+  "executable": {
+    "path": "/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_loaded_panel_audio_tests",
+    "sha256": "9af0033931f67833443cbbfb5790bb406b70b5278bc75ecde872461f6c86b263",
+    "bytes": 235504
+  },
+  "outputs": {
+    "ctest.xml": {
+      "sha256": "dc49446f21ab5f3bb36a23e33d3471680f0c8b9a381bb03a4160ccd12ca0f7b6",
+      "bytes": 1485
+    },
+    "ctest.stderr.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "ctest.stdout.log": {
+      "sha256": "ea33809fe038c3faec37cb25e9f86cff55e123f80b960dc7485952074cf0a23d",
+      "bytes": 20450
+    },
+    "build.stderr.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "build.stdout.log": {
+      "sha256": "c81193e58fe564a2d895ee0a2d11fb7c609da5927a153f919189fe0ba156b4ea",
+      "bytes": 1313
+    },
+    "configure.stderr.log": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "configure.stdout.log": {
+      "sha256": "932d31f7082d0cb9439222397a2ea45dc4629647558cfc1f74194c120a5ff4bf",
+      "bytes": 930
+    }
+  }
+}

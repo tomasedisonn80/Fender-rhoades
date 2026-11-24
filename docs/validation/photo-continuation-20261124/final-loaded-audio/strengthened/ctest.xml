@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Linux-c++"
+	tests="1"
+	failures="0"
+	disabled="0"
+	skipped="0"
+	hostname="4f398b69b6a5"
+	time="22"
+	timestamp="2026-11-24T12:51:33"
+	>
+	<testcase name="vst3.loaded_panel_audio" classname="vst3.loaded_panel_audio" time="22.5826" status="run">
+		<properties/>
+		<system-out>/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/float32 neutral_rms=0.0615134488602 neutral_peak=0.330963969231 effect_peak_limit=10.5908470154
+/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/float32 case=gain_8x delta_rms=0.0307567244301 relative_rms=0.5 delta_peak=0.165481984615
+/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/float32 case=bass_12dB delta_rms=0.1087304781 relative_rms=1.76758871621 delta_peak=0.424374550581
+/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/float32 case=bass_mapping low_gain=3.70198430008 high_gain=1.06427367605
+/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/float32 case=treble_12dB delta_rms=0.0701345552473 relative_rms=1.14014994358 delta_peak=0.84681725502
+/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/float32 case=treble_mapping low_gain=1.007734747 high_gain=2.66452822643
+/home/agent/rhoades-9a04c9726e31/build/VST3/Release/Rhodes...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+</testsuite>

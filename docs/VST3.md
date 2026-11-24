@@ -752,6 +752,19 @@ match exact sample bytes and legacy metadata/state checkpoints. Its
 [raw comparison record](validation/photo-continuation-20261124/final-legacy/fresh-comparison.json)
 covers the three variants at neutral panel/unity Expression in the recorded
 synthetic scenarios; the baseline captures were revalidated, not re-executed.
+Here, explicit unity means setting Expression to unity; this legacy fixture
+does not automate the new panel parameters and retains 16-byte state packets.
+The separate loaded-state and panel fixtures cover version-2/version-3 recall.
+
+The subsequent [loaded panel audio observation](validation/photo-continuation-20261124/final-loaded-audio/README.md)
+passes **96 fresh-instance renders and 36,000 audio callbacks** through the three
+final bundles, using float32/float64 stereo at 48 kHz. It verifies separate Bass
+and Treble spectral responses, Monitoring Gain, Sustain, Intensity and Speed,
+opposed stereo modulation, exact gated/zero-depth neutral output, and every
+sample of the 480-frame switch-off envelope. The change begins at offset 128
+inside a 256-frame callback. This SDK-only audio fixture runs independently of
+the editor host. Its source-bound manifest confirms all three plugin binaries
+are unchanged from the final native and legacy results above.
 
 The retained [CI status observation](validation/photo-continuation-20261124/ci-4369547.json)
 for commit `4369547`, collected at 19:30 UTC, records successful Ubuntu and

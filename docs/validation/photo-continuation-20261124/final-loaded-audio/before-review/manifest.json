@@ -1,0 +1,26 @@
+{
+  "README.md": {
+    "sha256": "5a525e956cb81b59a1004c4d4a3d61c3fc2d6b091b0668b9d45479c95f569833",
+    "bytes": 754
+  },
+  "configure-loaded-panel.log": {
+    "sha256": "29e4d4212e49504954fd8671d1cacf40d7af01e7f720f8cc4f951001f664beac",
+    "bytes": 930
+  },
+  "build-loaded-panel.log": {
+    "sha256": "c7c32d04e843bbbd08628398c2efefe23999722265c83ac31d146fbeb074825d",
+    "bytes": 1313
+  },
+  "loaded-panel.log": {
+    "sha256": "b2a699afaedb7dfdd6615f8f26d0a16e0007837cfdda518097ebf09707ac92be",
+    "bytes": 14081
+  },
+  "loaded-panel.xml": {
+    "sha256": "180b0fdaf48c570abf7a8815457737964156758df13acb8aafc2c8d42ce10103",
+    "bytes": 1485
+  },
+  "vst3_loaded_panel_audio_test.cpp": {
+    "sha256": "31b1eae892e441a924fca19bcba71206a2161749ea4e7177e9f0cd0f623599cb",
+    "bytes": 18007
+  }
+}

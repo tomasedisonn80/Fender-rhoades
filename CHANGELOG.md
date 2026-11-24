@@ -23,6 +23,11 @@
   paired stereo frames exact at neutral panel/unity Expression. These Linux
   research results establish no Windows/macOS native editor, named-DAW or
   physical-fidelity claim; no release has been published.
+- [Loaded front-panel audio checks](docs/validation/photo-continuation-20261124/final-loaded-audio/README.md)
+  pass 96 fresh-instance renders and 36,000 callbacks across the three Linux
+  bundles in float32/float64 stereo. Independent spectral probes distinguish
+  Bass from Treble; channel-sum/separation checks establish opposed modulation;
+  every switch-off ramp sample is checked at its in-block parameter offset.
 - Global digital CC11 **Expression** on all three instruments, with independent
   automation, continued mechanics at zero, and an unchanged exact-unity output
   path. The [frozen contract](docs/specs/HOST_EXPRESSION_MONO_20261124.md) retains
