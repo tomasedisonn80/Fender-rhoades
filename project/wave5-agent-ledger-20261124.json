@@ -82,7 +82,9 @@
       "wave": 5,
       "id": "W5-89",
       "agent_task_name": "/root/w5_89_final_artifact_audit",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w5-89-final-artifact-audit.md",
+      "sha256": "f9fb199036a28b0846cf1e965dd01f6a85b83eb55f2deadae2108b02027b5112"
     },
     {
       "assignment": 90,
@@ -98,15 +100,58 @@
       "wave": 5,
       "id": "W5-91",
       "agent_task_name": "/root/w5_91_host_final_review",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w5-91-host-final-review.md",
+      "sha256": "b7ed2c2b8a018d6a0ffdb045a9ec598c7f9669e5605a4e7f9cf761da7c01c375"
     },
     {
       "assignment": 92,
       "wave": 5,
       "id": "W5-92",
       "agent_task_name": "/root/w5_92_handoff_review",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w5-92-handoff-review.md",
+      "sha256": "67ef84b4d549ae4c146371bb65b1266f3bdaf0080144399b927311bacb109f49"
+    },
+    {
+      "assignment": 93,
+      "wave": 5,
+      "id": "W5-93",
+      "agent_task_name": "/root/w5_93_python_coverage",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w5-93-python-coverage.md",
+      "sha256": "38120b2521a47b9c8c860b6978619568019ac9b9f7dbeb7d75907ed5a77d5d54"
+    },
+    {
+      "assignment": 94,
+      "wave": 5,
+      "id": "W5-94",
+      "agent_task_name": "/root/w5_94_state_docs_consistency",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w5-94-state-docs-consistency.md",
+      "sha256": "a56e4b55c34f620490f785f8a46b0d73859b7fb8a226168810858e12ab0e224f"
+    },
+    {
+      "assignment": 95,
+      "wave": 5,
+      "id": "W5-95",
+      "agent_task_name": "/root/w5_95_ci_applicability",
+      "status": "running"
+    },
+    {
+      "assignment": 96,
+      "wave": 5,
+      "id": "W5-96",
+      "agent_task_name": "/root/w5_96_campaign_closure_contract",
+      "status": "running"
+    },
+    {
+      "assignment": 97,
+      "wave": 5,
+      "id": "W5-97",
+      "agent_task_name": "/root/w5_97_final_immutability",
       "status": "running"
     }
   ],
-  "completed_actual_agents": 9
+  "completed_actual_agents": 14
 }

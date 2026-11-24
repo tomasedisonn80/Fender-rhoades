@@ -6,6 +6,13 @@ repository checked out. Replace `YOUR_AGENT_ID` with a unique assignment ID,
 agent must use the live state; this prompt deliberately contains no hard-coded
 claim that the next scientific milestone is already complete.
 
+The [24 November host review](../validation/host-acceptance-20261124.md) and
+[contact/runtime handoff](../validation/research-gates-20261124.md) record the
+latest criterion decisions and two concrete next experiments. Use them as dated
+evidence alongside the live task graph; later source or evidence may supersede
+their applicability. The [campaign record](DEVELOPMENT_WAVES_20261124.md)
+links the actual assignments and immutable reports for that development pass.
+
 ---
 
 You are working in `baabi-boo/Fender-rhoades`. Your objective is a physically

@@ -4,8 +4,8 @@
   "goal": "Physically model a Fender Rhodes Mark I from evolving mechanical, electromagnetic and circuit states without recorded-note playback.",
   "target": "One documented 73-key Mark I Stage specimen at its specified loaded electrical output; identity and measurements pending.",
   "fidelity_status": "unvalidated",
-  "revision": 27,
-  "updated_at": "2026-11-24T05:26:53Z",
+  "revision": 30,
+  "updated_at": "2026-11-24T07:04:48Z",
   "tasks": [
     {
       "id": "FND-001",
@@ -150,7 +150,7 @@
       "id": "PHY-002",
       "title": "Implement finite-mass hammer and damper contact reference",
       "milestone": "One-note mechanics",
-      "status": "in_progress",
+      "status": "todo",
       "priority": 40,
       "dependencies": [
         "PHY-001"
@@ -164,13 +164,8 @@
         "numerical"
       ],
       "evidence": [],
-      "owner": "development-root",
-      "claim": {
-        "owner": "development-root",
-        "token": "6dabebffe18f7ab38eeebc9052d01dfc",
-        "claimed_at": "2026-11-23T13:06:34Z",
-        "expires_at": "2026-11-25T05:01:00Z"
-      },
+      "owner": null,
+      "claim": null,
       "blockers": [],
       "paths": [
         "include/rhodes",
@@ -304,7 +299,7 @@
       "id": "RT-001",
       "title": "Measure runtime cost and numerical approximation errors",
       "milestone": "Runtime engineering",
-      "status": "in_progress",
+      "status": "todo",
       "priority": 45,
       "dependencies": [
         "PHY-001"
@@ -319,13 +314,8 @@
         "numerical"
       ],
       "evidence": [],
-      "owner": "development-root",
-      "claim": {
-        "owner": "development-root",
-        "token": "bc88c7c1031310a98cdee53215295340",
-        "claimed_at": "2026-11-23T13:06:35Z",
-        "expires_at": "2026-11-25T05:01:00Z"
-      },
+      "owner": null,
+      "claim": null,
       "blockers": [],
       "paths": [
         "src",
@@ -434,7 +424,7 @@
       "id": "HOST-001",
       "title": "Build and validate an experimental VST3 instrument adapter",
       "milestone": "Host engineering prototype",
-      "status": "in_progress",
+      "status": "done",
       "priority": 46,
       "dependencies": [
         "PHY-001"
@@ -449,14 +439,12 @@
         "numerical",
         "documentary"
       ],
-      "evidence": [],
+      "evidence": [
+        "HOST-20261124-current-native",
+        "HOST-20261124-final-review"
+      ],
       "owner": "development-root",
-      "claim": {
-        "owner": "development-root",
-        "token": "d88330d6b1e5f189cdd744b2a8902596",
-        "claimed_at": "2026-11-23T13:08:44Z",
-        "expires_at": "2026-11-25T05:01:00Z"
-      },
+      "claim": null,
       "blockers": [],
       "paths": [
         "include/rhodes",
@@ -690,6 +678,30 @@
       "task": "RT-001",
       "owner": "development-root",
       "detail": "Authorized main-branch continuation: include offline diagnostic, reproducibility and verification paths required by the existing task. Preserve acceptance, dependencies, blockers and fidelity status."
+    },
+    {
+      "revision": 28,
+      "at": "2026-11-24T07:02:37Z",
+      "action": "complete",
+      "task": "HOST-001",
+      "owner": "development-root",
+      "detail": "Evidence: HOST-20261124-current-native, HOST-20261124-final-review"
+    },
+    {
+      "revision": 29,
+      "at": "2026-11-24T07:04:48Z",
+      "action": "release",
+      "task": "PHY-002",
+      "owner": "development-root",
+      "detail": "Handoff 2026-11-24: docs/validation/research-gates-20261124.md freezes the unchanged criteria and source-bound results. Keep the ten original-grid failures and missing general extrema visible. Next integrator: claim PHY-002, predeclare independent R0/R1/R2 extrema for supported_impact and supported_impact_scaled, then generate the specified 26 depth-1 candidates with the existing runner. Preserve original budgets, coordinate rescaling and offline-only contact scope."
+    },
+    {
+      "revision": 30,
+      "at": "2026-11-24T07:04:48Z",
+      "action": "release",
+      "task": "RT-001",
+      "owner": "development-root",
+      "detail": "Handoff 2026-11-24: docs/validation/research-gates-20261124.md retains all timings and incomplete convergence. Next integrator: claim RT-001 and freeze model-2 case r08-chord-all73-u10 for P-C=(P-S)+(S-C) decomposition using the existing Python APIs and a separately bounded driver. Preserve original onset, phase, 48-frame delay and numerical budgets. One diagnostic case does not close C03; retain historical filtered/direct limitations."
     }
   ]
 }

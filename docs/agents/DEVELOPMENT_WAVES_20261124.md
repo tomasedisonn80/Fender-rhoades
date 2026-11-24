@@ -41,6 +41,13 @@ identifies the tested compiler/platform revisions and explicit skips. The
 [contact diagnostic guide](../CONTACT_PEAK_DIAGNOSTIC.md) describes the bounded
 four-fixture slice, its byte-preserving workflow and incomplete timing cases.
 
+The [current host acceptance](../validation/host-acceptance-20261124.md) records
+the completed experimental VST3 milestone and its exact prototype scope. The
+[current native evidence](../validation/native-final-20261124.json) retains all
+ten jobs at the latest code/test checkpoint, including platform skips. The
+[contact/runtime handoff](../validation/research-gates-20261124.md) preserves
+their incomplete criteria and gives concrete next experiments.
+
 Changes to diagnostic tools receive later reports; historical archives and
 registered reports are not edited to erase earlier failures. The canonical
 [project state](../PROJECT_STATE.md) and criterion reviews determine milestone

@@ -773,6 +773,105 @@
         "Decoded logs are normalized UTF-8 text, not original server archive bytes. Uploaded bundle names/digests/expiry are API metadata, not locally downloaded binary verification.",
         "No DAW/device deadlines, calibrated specimen fidelity, minimum deployment baseline, publisher signing or product release is established."
       ]
+    },
+    {
+      "id": "HOST-20261124-final-review",
+      "kind": "documentary",
+      "result": "pass",
+      "summary": "All four unchanged HOST-001 clauses pass within the documented synthetic engineering-prototype scope, with independent event/state, platform/SDK, final artifact and final criterion reviews.",
+      "command": null,
+      "created_at": "2026-11-24T07:02:37Z",
+      "source_commit": "240170673983f9992e4657a2d96c2172ece1ac30",
+      "artifacts": [
+        {
+          "path": "docs/validation/host-acceptance-20261124.md",
+          "sha256": "6e1f884dcdcd42487a318abaadd018fc1f6f7d64aca1f61e2529625702215f86"
+        },
+        {
+          "path": "docs/validation/development-task-definitions-20261124.json",
+          "sha256": "bf352698c5b1c745ada8b6851231eb2104b772ebaca9d39a638cfcdd7ace7d45"
+        },
+        {
+          "path": "docs/validation/development-source-manifest-20261124.json",
+          "sha256": "f6e903a3f45b682b9f3c604ae0c49f84fd69419b8ee74ec390bf479905ff0263"
+        },
+        {
+          "path": "docs/agents/reports/20261124-w5-82-host-events-state.md",
+          "sha256": "7751208ad5ba1b56e316774eee97f9b5ac3d1438bc061ccce3df3fbe49dc00e7"
+        },
+        {
+          "path": "docs/agents/reports/20261124-w5-83-host-platform-contract.md",
+          "sha256": "7226ce36020db42e68b7df0328b1647ee8e3dac082a5614989a162a2c48c017f"
+        },
+        {
+          "path": "docs/agents/reports/20261124-w5-89-final-artifact-audit.md",
+          "sha256": "f9fb199036a28b0846cf1e965dd01f6a85b83eb55f2deadae2108b02027b5112"
+        },
+        {
+          "path": "docs/agents/reports/20261124-w5-91-host-final-review.md",
+          "sha256": "b7ed2c2b8a018d6a0ffdb045a9ec598c7f9669e5605a4e7f9cf761da7c01c375"
+        }
+      ],
+      "specimen_id": null,
+      "profile_path": null,
+      "session_paths": [],
+      "independent": false,
+      "reference_evidence": [],
+      "limitations": [
+        "The native tested code checkpoint is 2401706; reviewed documentation and tool inputs are separately bound to 766dd11, and the local Python run to its recorded 543 tracked plus one untracked input inventory.",
+        "Accepted host processing excludes arbitrary inaccessible storage and blocking foreign getters; allocation guards and finite concurrency fixtures have their stated limits.",
+        "This prototype acceptance does not complete PHY-002, RT-001, instrument identification, calibrated measurement, actual DAW/device qualification or product release."
+      ]
+    },
+    {
+      "id": "GATES-20261124-contact-runtime",
+      "kind": "documentary",
+      "result": "inconclusive",
+      "summary": "Criterion-bound current review keeps PHY-002 and RT-001 incomplete at C03, distinguishes historical and latest evidence, and specifies bounded contact-extrema and filtered-error continuation experiments.",
+      "command": null,
+      "created_at": "2026-11-24T07:04:48Z",
+      "source_commit": "93908da683abfb12979cac0044be27703cadec25",
+      "artifacts": [
+        {
+          "path": "docs/validation/research-gates-20261124.md",
+          "sha256": "eea944dd10d1a9b7f7d1d46c334074980c174af7ab62f3c9d7aac1c9a6501a8f"
+        },
+        {
+          "path": "docs/validation/development-task-definitions-20261124.json",
+          "sha256": "bf352698c5b1c745ada8b6851231eb2104b772ebaca9d39a638cfcdd7ace7d45"
+        },
+        {
+          "path": "docs/validation/development-source-manifest-20261124.json",
+          "sha256": "f6e903a3f45b682b9f3c604ae0c49f84fd69419b8ee74ec390bf479905ff0263"
+        },
+        {
+          "path": "docs/agents/reports/20261124-w5-84-contact-acceptance.md",
+          "sha256": "d4c6957ac0937113037f40b434ab7c8ebc217702ce475089584c8cda7ec27a71"
+        },
+        {
+          "path": "docs/agents/reports/20261124-w5-85-runtime-acceptance.md",
+          "sha256": "2715b1c86a4fea6ac3e816b302486a27f2c8df8c86b72356977747b49398442d"
+        },
+        {
+          "path": "docs/agents/reports/20261124-w5-87-specimen-data-gate.md",
+          "sha256": "b52cc2057dcd73e674d3b3f9cd10e94842190071a82247091a59d587b10009d1"
+        },
+        {
+          "path": "docs/agents/reports/20261124-w5-92-handoff-review.md",
+          "sha256": "67ef84b4d549ae4c146371bb65b1266f3bdaf0080144399b927311bacb109f49"
+        }
+      ],
+      "specimen_id": null,
+      "profile_path": null,
+      "session_paths": [],
+      "independent": false,
+      "reference_evidence": [],
+      "limitations": [
+        "This is a review of retained source-bound observations, not a new contact, audio-reference or timing experiment. Proposed next experiments are explicitly unexecuted.",
+        "The applicable branch-split contact record has ten original-grid failures and zero declared depth-1 failures; all 338 general continuous-extrema checks remain incomplete. Earlier 26 and five failure counts retain their historical identities.",
+        "Historical filtered comparison B retains 2085 failures; Q6 and limited legacy compatibility results do not close all retained paths convergence. Shared-host timings are observations, not device deadlines.",
+        "No authenticated physical specimen or calibrated measurement was acquired; fidelity remains unvalidated and the acquisition/schema gates stay open."
+      ]
     }
   ]
 }
