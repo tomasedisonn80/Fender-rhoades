@@ -52,7 +52,7 @@ jobs:
       - name: Reject stale quadrature campaign index
         run: python tools/quadrature_campaign.py sync --check
       - name: Validate current development waves and report hashes
-        run: python tools/validate_development_waves.py
+        run: python tools/validate_development_waves.py --require-complete
       - name: Verify retained VST3 timing archives
         run: >-
           python tools/verify_vst3_matrix_archive.py

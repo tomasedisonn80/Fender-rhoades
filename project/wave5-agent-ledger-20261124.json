@@ -2,7 +2,7 @@
   "schema_version": 1,
   "wave": 5,
   "requested_actual_agents": 20,
-  "status": "in_progress",
+  "status": "complete",
   "scope": "Bounded actual-agent development and independent review. Metadata does not attest scientific acceptance.",
   "agents": [
     {
@@ -136,22 +136,55 @@
       "wave": 5,
       "id": "W5-95",
       "agent_task_name": "/root/w5_95_ci_applicability",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w5-95-ci-applicability.md",
+      "sha256": "b2efe7daa51e5a50690a880650bd2a146ca0591d67fe993aad2b4d788ad040b2"
     },
     {
       "assignment": 96,
       "wave": 5,
       "id": "W5-96",
       "agent_task_name": "/root/w5_96_campaign_closure_contract",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w5-96-campaign-closure-contract.md",
+      "sha256": "fa5e0e04ccb9aa41be7a969522f91f61745cc34cf8bb6e46802c4c15b9023f7a"
     },
     {
       "assignment": 97,
       "wave": 5,
       "id": "W5-97",
       "agent_task_name": "/root/w5_97_final_immutability",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w5-97-final-immutability.md",
+      "sha256": "31e5163f3ebc1a5cc5d2ebdcac6755af258093eacc8b111908db61bd147160d8"
+    },
+    {
+      "assignment": 98,
+      "wave": 5,
+      "id": "W5-98",
+      "agent_task_name": "/root/w5_98_continuation_usability",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w5-98-continuation-usability.md",
+      "sha256": "0d432eefb9b34cc67e2690ee41847259eeaa02ede48534420a80f5727ef497a0"
+    },
+    {
+      "assignment": 99,
+      "wave": 5,
+      "id": "W5-99",
+      "agent_task_name": "/root/w5_99_crosswave_reconciliation",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w5-99-crosswave-reconciliation.md",
+      "sha256": "6efa5bba72361fb385b59da6240b93dffc438b2b7f5bef6e0ad176fd0515ab63"
+    },
+    {
+      "assignment": 100,
+      "wave": 5,
+      "id": "W5-100",
+      "agent_task_name": "/root/w5_100_closing_audit",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w5-100-closing-audit.md",
+      "sha256": "37c983a5fac0c6fc462bf98af8134c9d10e747989fc49b433d9ccce8e174747c"
     }
   ],
-  "completed_actual_agents": 14
+  "completed_actual_agents": 20
 }

@@ -15,21 +15,22 @@ participant. Every completed assignment has a separate immutable report.
 | 2 | 21–40 | Independent four-fixture contact peak diagnostic | [Completed ledger](../../project/wave2-agent-ledger-20261124.json) |
 | 3 | 41–60 | Runtime preservation, evidence verification and error handling | [Completed ledger](../../project/wave3-agent-ledger-20261124.json) |
 | 4 | 61–80 | Documentation, native fault coverage and evidence integration | [Completed ledger](../../project/wave4-agent-ledger-20261124.json) |
+| 5 | 81–100 | Final verification, criterion decisions and continuation handoffs | [Completed ledger](../../project/wave5-agent-ledger-20261124.json) |
 
-Wave 5 is in progress; its [live ledger](../../project/wave5-agent-ledger-20261124.json)
-records final verification, criterion reviews and actionable continuation work.
+All five waves are complete: **100 actual assigned workers and 100 completed
+reports**, with twenty workers in every wave.
 The ledgers contain only assigned agents. Their report digests
 bind the bytes reviewed; neither a populated ledger nor a matching digest can
 authenticate execution or establish scientific acceptance.
 
 ```sh
-python3 tools/validate_development_waves.py --json
+python3 tools/validate_development_waves.py --require-complete --json
 ```
 
 The validator checks sequential wave/assignment ranges, unique canonical task
 names and reports, schema, safe files, exact hashes, and declared completion.
 `--require-complete` additionally requires all five waves and 100 completed
-reports; it deliberately fails while the campaign is unfinished. Earlier setup,
+reports; CI now enforces that completed state. Earlier setup,
 development, continuation and quadrature campaign records remain separate.
 
 ## Engineering evidence and limits
