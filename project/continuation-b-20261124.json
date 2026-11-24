@@ -259,20 +259,44 @@
       "assignment": 32,
       "wave": 2,
       "agent_task_name": "/root/w2_032_direct_alias_driver",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/20261124b-w2-032-direct-alias-driver.md",
+      "sha256": "a5de023ff01a61c3fd73a538c1da231a976a67857df3218160a73ef6d6a33419"
     },
     {
       "assignment": 33,
       "wave": 2,
       "agent_task_name": "/root/w2_033_alias_oracle_tests",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/20261124b-w2-033-alias-oracle-tests.md",
+      "sha256": "84279566d89ed37f68f780f0df723930d921d5a45a1ae2590797fac30e26ef35"
     },
     {
       "assignment": 34,
       "wave": 2,
       "agent_task_name": "/root/w2_034_alias_driver_tests",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124b-w2-034-alias-driver-tests.md",
+      "sha256": "25768dd6df230af9b066de1fbf04022df52b27b282236d650ce44c2e0af31241"
+    },
+    {
+      "assignment": 35,
+      "wave": 2,
+      "agent_task_name": "/root/w2_035_callback_build_provenance",
+      "status": "running"
+    },
+    {
+      "assignment": 36,
+      "wave": 2,
+      "agent_task_name": "/root/w2_036_direct_alias_capture",
+      "status": "running"
+    },
+    {
+      "assignment": 37,
+      "wave": 2,
+      "agent_task_name": "/root/w2_037_grazing_refinement_slice",
       "status": "running"
     }
   ],
-  "completed_agents": 31
+  "completed_agents": 34
 }
