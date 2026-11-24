@@ -60,8 +60,9 @@ std::vector<long double> independent_coefficients(std::size_t factor) {
         const long double m = static_cast<long double>(k) -
                               static_cast<long double>(middle);
         const long double ratio = m / static_cast<long double>(middle);
-        const long double ideal = m == 0.0L ? 0.94L / factor :
-            std::sin(std::numbers::pi_v<long double> * 0.94L * m / factor) /
+        const long double ideal = m == 0.0L ? 0.94L / static_cast<long double>(factor) :
+            std::sin(std::numbers::pi_v<long double> * 0.94L * m /
+                     static_cast<long double>(factor)) /
                 (std::numbers::pi_v<long double> * m);
         coefficients[k] = ideal * bessel_i0(9.0L *
             std::sqrt(std::max(0.0L, 1.0L - ratio * ratio))) / i0_beta;
