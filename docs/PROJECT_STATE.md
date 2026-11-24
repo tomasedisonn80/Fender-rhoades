@@ -6,9 +6,9 @@
 
 **Fidelity status:** `unvalidated`. Task completion is not a realism percentage.
 
-**State revision:** 32 · **Last state change:** 2026-11-24T07:25:28Z
+**State revision:** 34 · **Last state change:** 2026-11-24T09:05:30Z
 
-blocked: **2** | done: **3** | in_progress: **2** | todo: **7**
+blocked: **2** | done: **3** | in_progress: **3** | todo: **7**
 
 ## Task ledger
 
@@ -21,6 +21,7 @@ blocked: **2** | done: **3** | in_progress: **2** | todo: **7**
 | PHY-002 | Implement finite-mass hammer and damper contact reference | in_progress | PHY-001 | — |
 | RT-001 | Measure runtime cost and numerical approximation errors | in_progress | PHY-001 | — |
 | HOST-001 | Build and validate an experimental VST3 instrument adapter | done | PHY-001 | HOST-20261124-current-native, HOST-20261124-final-review |
+| HOST-002 | Improve VST3 MIDI interoperability and generic control validation | in_progress | HOST-001 | — |
 | MAG-001 | Identify magnetic linkage and reciprocal force reference | todo | SPEC-001, DATA-001 | — |
 | ELEC-001 | Identify and solve the specimen pickup network | todo | SPEC-001, DATA-001 | — |
 | VAL-001 | Predict held-out behavior of one measured note | todo | PHY-002, MAG-001, ELEC-001 | — |
@@ -35,6 +36,7 @@ Run `python3 tools/project.py next` for lease-aware available work. The list bel
 
 - **PHY-002 — Implement finite-mass hammer and damper contact reference**. Claimed by `continuation-b-root` until `2026-11-24T11:25:28Z`; check current lease before starting.
 - **RT-001 — Measure runtime cost and numerical approximation errors**. Claimed by `continuation-b-root` until `2026-11-24T11:25:28Z`; check current lease before starting.
+- **HOST-002 — Improve VST3 MIDI interoperability and generic control validation**. Claimed by `continuation-c-root` until `2026-11-24T13:05:30Z`; check current lease before starting.
 
 ## Explicit blockers
 

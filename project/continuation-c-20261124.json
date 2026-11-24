@@ -1,0 +1,70 @@
+{
+  "schema_version": 1,
+  "campaign": "continuation-c-20261124",
+  "baseline_commit": "20a77e8b2033d435839df594c783837befb07938",
+  "status": "in_progress",
+  "requested_agents": 100,
+  "requested_waves": 5,
+  "concurrency_limit_including_integrator": 4,
+  "completed_agents": 5,
+  "agents": [
+    {
+      "assignment": 1,
+      "wave": 1,
+      "agent_task_name": "/root/w1_001_host_lifecycle",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w1-001.md",
+      "sha256": "2cb8ef012470868a817b6eacc0adbe8f62989c43254dd2a25e8817b9e2296b26"
+    },
+    {
+      "assignment": 2,
+      "wave": 1,
+      "agent_task_name": "/root/w1_002_host_state",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w1-002.md",
+      "sha256": "d5320231f8607e8d97a87658a05ed93f1e7ba3f51c3d8f378c9952ae06cc492a"
+    },
+    {
+      "assignment": 3,
+      "wave": 1,
+      "agent_task_name": "/root/w1_003_midi_playability",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w1-003.md",
+      "sha256": "99a7a38a5d518dc221f4f821d6e5e70db365d30609ef64bdbdc27a5fdc6bb593"
+    },
+    {
+      "assignment": 4,
+      "wave": 1,
+      "agent_task_name": "/root/w1_004_cc123_sources",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w1-004.md",
+      "sha256": "7a99ad4627d0c9b6a06bac0b24828935514b5466bc9efd835f9d7bbb9edff072"
+    },
+    {
+      "assignment": 5,
+      "wave": 1,
+      "agent_task_name": "/root/w1_005_text_contract",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w1-005.md",
+      "sha256": "fa5a0c55e3865314f40afe61e81796e34e3ccea795f1a54c0be2211d0a2578e1"
+    },
+    {
+      "assignment": 6,
+      "wave": 1,
+      "agent_task_name": "/root/w1_006_pressure_contract",
+      "status": "running"
+    },
+    {
+      "assignment": 7,
+      "wave": 1,
+      "agent_task_name": "/root/w1_007_command_order",
+      "status": "running"
+    },
+    {
+      "assignment": 8,
+      "wave": 1,
+      "agent_task_name": "/root/w1_008_capacity_proof",
+      "status": "running"
+    }
+  ]
+}

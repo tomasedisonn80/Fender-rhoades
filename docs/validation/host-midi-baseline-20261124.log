@@ -1,0 +1,607 @@
+Test project /workspace/scratch/edddd917a86c/Fender-rhoades/build-host
+        Start 127: midi.random_model
+        Start  97: core.pedal_release
+        Start 125: midi.boundary_model
+  1/301 Test #125: midi.boundary_model ...............................   Passed    0.01 sec
+        Start  28: model_state.model1_golden
+  2/301 Test  #28: model_state.model1_golden .........................   Passed    0.00 sec
+        Start 165: vst3.model_stream_invalid_model
+  3/301 Test #127: midi.random_model .................................   Passed    0.02 sec
+        Start 126: midi.capacity_model
+  4/301 Test #165: vst3.model_stream_invalid_model ...................   Passed    0.01 sec
+        Start 109: runtime.equal_offset_order
+  5/301 Test  #97: core.pedal_release ................................   Passed    0.02 sec
+        Start 117: runtime.transaction_rejection
+  6/301 Test #109: runtime.equal_offset_order ........................   Passed    0.00 sec
+        Start  33: model_state.malformed_models
+  7/301 Test #117: runtime.transaction_rejection .....................   Passed    0.00 sec
+        Start 118: runtime.capacity_and_cursor
+  8/301 Test #126: midi.capacity_model ...............................   Passed    0.01 sec
+        Start  90: core.retrigger
+  9/301 Test  #33: model_state.malformed_models ......................   Passed    0.00 sec
+        Start 110: runtime.preflight_atomicity
+ 10/301 Test  #90: core.retrigger ....................................   Passed    0.00 sec
+        Start  31: model_state.cross_model_rejection
+ 11/301 Test #110: runtime.preflight_atomicity .......................   Passed    0.00 sec
+ 12/301 Test #118: runtime.capacity_and_cursor .......................   Passed    0.00 sec
+        Start  29: model_state.model2_roundtrip
+        Start 122: midi.conflict_atomicity
+ 13/301 Test  #31: model_state.cross_model_rejection .................   Passed    0.00 sec
+        Start 119: midi.range_and_validation
+ 14/301 Test  #29: model_state.model2_roundtrip ......................   Passed    0.00 sec
+        Start  32: model_state.invalid_model
+ 15/301 Test #122: midi.conflict_atomicity ...........................   Passed    0.00 sec
+        Start 124: midi.channel_release_and_reset
+ 16/301 Test #119: midi.range_and_validation .........................   Passed    0.00 sec
+        Start  30: model_state.model3_roundtrip
+ 17/301 Test  #32: model_state.invalid_model .........................   Passed    0.00 sec
+        Start 120: midi.identified_overlap
+ 18/301 Test #124: midi.channel_release_and_reset ....................   Passed    0.00 sec
+        Start 123: midi.capacity_and_reuse
+ 19/301 Test  #30: model_state.model3_roundtrip ......................   Passed    0.00 sec
+        Start 166: vst3.model_stream_rejection
+ 20/301 Test #120: midi.identified_overlap ...........................   Passed    0.00 sec
+        Start 164: vst3.model_stream_roundtrip
+ 21/301 Test #123: midi.capacity_and_reuse ...........................   Passed    0.00 sec
+        Start 121: midi.anonymous_and_zero_velocity
+ 22/301 Test #166: vst3.model_stream_rejection .......................   Passed    0.00 sec
+        Start 167: vst3.model_stream_transfers
+ 23/301 Test #164: vst3.model_stream_roundtrip .......................   Passed    0.00 sec
+        Start   1: quadrature.analytic_nodes
+ 24/301 Test #121: midi.anonymous_and_zero_velocity ..................   Passed    0.01 sec
+ 25/301 Test #167: vst3.model_stream_transfers .......................   Passed    0.01 sec
+        Start   2: quadrature.plan_domains
+        Start   3: quadrature.observation_nonmutation
+ 26/301 Test   #2: quadrature.plan_domains ...........................   Passed    0.00 sec
+        Start   4: quadrature.damping_regimes
+ 27/301 Test   #3: quadrature.observation_nonmutation ................   Passed    0.02 sec
+        Start   5: quadrature.silent_plan_validation
+ 28/301 Test   #5: quadrature.silent_plan_validation .................   Passed    0.00 sec
+        Start   6: quadrature.silent_network
+ 29/301 Test   #6: quadrature.silent_network .........................   Passed    0.01 sec
+        Start   7: quadrature.silent_lifecycle
+ 30/301 Test   #1: quadrature.analytic_nodes .........................   Passed    0.04 sec
+        Start   8: quadrature.silent_transactions
+ 31/301 Test   #8: quadrature.silent_transactions ....................   Passed    0.00 sec
+        Start   9: quadrature.silent_fp_environment
+ 32/301 Test   #4: quadrature.damping_regimes ........................   Passed    0.04 sec
+        Start  10: quadrature.qfir_convolution
+ 33/301 Test  #10: quadrature.qfir_convolution .......................   Passed    0.00 sec
+        Start  11: quadrature.qfir_impulses
+ 34/301 Test   #7: quadrature.silent_lifecycle .......................   Passed    0.04 sec
+        Start  12: quadrature.qfir_delay
+ 35/301 Test   #9: quadrature.silent_fp_environment ..................   Passed    0.03 sec
+        Start  13: quadrature.qfir_rejection
+ 36/301 Test  #12: quadrature.qfir_delay .............................   Passed    0.01 sec
+        Start  14: quadrature.qfir_overflow
+ 37/301 Test  #14: quadrature.qfir_overflow ..........................   Passed    0.00 sec
+        Start  15: quadrature.qfir_ordered_history
+ 38/301 Test  #13: quadrature.qfir_rejection .........................   Passed    0.01 sec
+        Start  16: quadrature.qfir_prefix_overflow
+ 39/301 Test  #11: quadrature.qfir_impulses ..........................   Passed    0.05 sec
+        Start  17: quadrature.qengine_events
+ 40/301 Test  #16: quadrature.qfir_prefix_overflow ...................   Passed    0.00 sec
+        Start  18: quadrature.qengine_partitions
+ 41/301 Test  #15: quadrature.qfir_ordered_history ...................   Passed    0.03 sec
+        Start  19: quadrature.qengine_prepare
+ 42/301 Test  #17: quadrature.qengine_events .........................   Passed    0.05 sec
+        Start  20: quadrature.qengine_faults
+ 43/301 Test  #18: quadrature.qengine_partitions .....................   Passed    0.07 sec
+        Start  21: quadrature.qengine_allocations
+ 44/301 Test  #19: quadrature.qengine_prepare ........................   Passed    0.06 sec
+        Start  22: audio.fir_coefficients_dc
+ 45/301 Test  #22: audio.fir_coefficients_dc .........................   Passed    0.00 sec
+        Start  23: audio.fir_impulse_phases
+ 46/301 Test  #20: quadrature.qengine_faults .........................   Passed    0.03 sec
+        Start  24: audio.fir_direct_convolution
+ 47/301 Test  #21: quadrature.qengine_allocations ....................   Passed    0.03 sec
+        Start  25: audio.fir_group_delay
+ 48/301 Test  #25: audio.fir_group_delay .............................   Passed    0.00 sec
+        Start  26: audio.fir_transactional_rejection
+ 49/301 Test  #26: audio.fir_transactional_rejection .................   Passed    0.00 sec
+        Start  27: audio.fir_overflow_reset
+ 50/301 Test  #27: audio.fir_overflow_reset ..........................   Passed    0.00 sec
+        Start  34: audio.high_rate_oracle
+ 51/301 Test  #24: audio.fir_direct_convolution ......................   Passed    0.04 sec
+        Start  35: audio.rate_boundaries
+ 52/301 Test  #35: audio.rate_boundaries .............................   Passed    0.02 sec
+        Start  36: audio.persistent_events
+ 53/301 Test  #36: audio.persistent_events ...........................   Passed    0.01 sec
+        Start  37: audio.partition_invariance
+ 54/301 Test  #37: audio.partition_invariance ........................   Passed    0.05 sec
+        Start  38: audio.prepare_atomicity
+ 55/301 Test  #38: audio.prepare_atomicity ...........................   Passed    0.05 sec
+        Start  39: audio.reset_flush
+ 56/301 Test  #23: audio.fir_impulse_phases ..........................   Passed    0.18 sec
+        Start  40: audio.event_timing
+ 57/301 Test  #40: audio.event_timing ................................   Passed    0.02 sec
+        Start  41: audio.fault_substeps
+ 58/301 Test  #41: audio.fault_substeps ..............................   Passed    0.00 sec
+        Start  42: audio.probe_cli
+ 59/301 Test  #39: audio.reset_flush .................................   Passed    0.04 sec
+        Start  43: quadrature.cli
+ 60/301 Test  #42: audio.probe_cli ...................................   Passed    0.24 sec
+        Start  44: audio.probe_stdout
+ 61/301 Test  #44: audio.probe_stdout ................................   Passed    0.01 sec
+        Start  45: quadrature.probe_stdout
+ 62/301 Test  #45: quadrature.probe_stdout ...........................   Passed    0.01 sec
+        Start  46: contact.stdout
+ 63/301 Test  #46: contact.stdout ....................................   Passed    0.01 sec
+        Start  47: contact.conservative_impact
+ 64/301 Test  #47: contact.conservative_impact .......................   Passed    0.01 sec
+        Start  48: contact.damped_impact
+ 65/301 Test  #48: contact.damped_impact .............................   Passed    0.01 sec
+        Start  49: contact.forced_clamp
+ 66/301 Test  #49: contact.forced_clamp ..............................   Passed    0.00 sec
+        Start  50: contact.separated_oscillator
+ 67/301 Test  #43: quadrature.cli ....................................   Passed    0.44 sec
+        Start  51: contact.preload
+ 68/301 Test  #50: contact.separated_oscillator ......................   Passed    0.17 sec
+        Start  52: contact.moving_damper
+ 69/301 Test  #51: contact.preload ...................................   Passed    0.18 sec
+        Start  53: contact.relaunch
+ 70/301 Test  #52: contact.moving_damper .............................   Passed    0.15 sec
+        Start  54: contact.event_order
+ 71/301 Test  #53: contact.relaunch ..................................   Passed    0.03 sec
+        Start  55: contact.scaling
+ 72/301 Test  #54: contact.event_order ...............................   Passed    0.03 sec
+        Start  56: contact.invalid_inputs
+ 73/301 Test  #56: contact.invalid_inputs ............................   Passed    0.00 sec
+        Start  57: contact.cap_exhaustion
+ 74/301 Test  #57: contact.cap_exhaustion ............................   Passed    0.00 sec
+        Start  58: contact.grazing_miss
+ 75/301 Test  #58: contact.grazing_miss ..............................   Passed    0.00 sec
+        Start  59: contact.grazing_tangent
+ 76/301 Test  #59: contact.grazing_tangent ...........................   Passed    0.00 sec
+        Start  60: contact.grazing_contact
+ 77/301 Test  #60: contact.grazing_contact ...........................   Passed    0.00 sec
+        Start  61: contact.cli_help
+ 78/301 Test  #61: contact.cli_help ..................................   Passed    0.00 sec
+        Start  62: contact.cli_json
+ 79/301 Test  #34: audio.high_rate_oracle ............................   Passed    0.86 sec
+        Start  63: contact.peak_defaults
+ 80/301 Test  #63: contact.peak_defaults .............................   Passed    0.00 sec
+        Start  64: contact.peak_conservative
+ 81/301 Test  #64: contact.peak_conservative .........................   Passed    0.00 sec
+        Start  65: contact.peak_damped
+ 82/301 Test  #65: contact.peak_damped ...............................   Passed    0.01 sec
+        Start  66: contact.peak_damper_face
+ 83/301 Test  #66: contact.peak_damper_face ..........................   Passed    0.00 sec
+        Start  67: contact.peak_actions
+ 84/301 Test  #67: contact.peak_actions ..............................   Passed    0.00 sec
+        Start  68: contact.peak_rollback
+ 85/301 Test  #68: contact.peak_rollback .............................   Passed    0.01 sec
+        Start  69: contact.peak_cli
+ 86/301 Test  #69: contact.peak_cli ..................................   Passed    0.05 sec
+        Start  70: contact.event_split
+ 87/301 Test  #70: contact.event_split ...............................   Passed    0.01 sec
+        Start  71: contact.split_simultaneous
+ 88/301 Test  #71: contact.split_simultaneous ........................   Passed    0.01 sec
+        Start  72: contact.split_close_roots
+ 89/301 Test  #72: contact.split_close_roots .........................   Passed    0.02 sec
+        Start  73: contact.split_peak_rollback
+ 90/301 Test  #73: contact.split_peak_rollback .......................   Passed    0.00 sec
+        Start  74: grazing.generalized_harmonics
+ 91/301 Test  #74: grazing.generalized_harmonics .....................   Passed    0.03 sec
+        Start  75: grazing.envelope_sign
+ 92/301 Test  #75: grazing.envelope_sign .............................   Passed    0.00 sec
+        Start  76: grazing.partitions
+ 93/301 Test  #76: grazing.partitions ................................   Passed    0.00 sec
+        Start  77: grazing.relaunch_invalidation
+ 94/301 Test  #77: grazing.relaunch_invalidation .....................   Passed    0.00 sec
+        Start  78: grazing.anchor_steps
+ 95/301 Test  #62: contact.cli_json ..................................   Passed    0.24 sec
+        Start  79: grazing.anchor_geometry
+ 96/301 Test  #78: grazing.anchor_steps ..............................   Passed    0.12 sec
+        Start  80: grazing.anchor_partitions
+ 97/301 Test  #80: grazing.anchor_partitions .........................   Passed    0.04 sec
+        Start  81: grazing.anchor_boundaries
+ 98/301 Test  #79: grazing.anchor_geometry ...........................   Passed    0.55 sec
+        Start  82: grazing.anchor_rollback
+ 99/301 Test  #82: grazing.anchor_rollback ...........................   Passed    0.01 sec
+        Start  83: contact.configuration_bounds
+100/301 Test  #83: contact.configuration_bounds ......................   Passed    0.01 sec
+        Start  84: contact.settings_bounds
+101/301 Test  #55: contact.scaling ...................................   Passed    0.85 sec
+102/301 Test  #84: contact.settings_bounds ...........................   Passed    0.01 sec
+        Start  85: contact.state_actions
+        Start  86: contact.trajectory_guards
+103/301 Test  #85: contact.state_actions .............................   Passed    0.00 sec
+        Start  87: core.exact_solution
+104/301 Test  #86: contact.trajectory_guards .........................   Passed    0.00 sec
+        Start  88: core.energy_loss
+105/301 Test  #87: core.exact_solution ...............................   Passed    0.00 sec
+        Start  89: core.energy_conservation
+106/301 Test  #88: core.energy_loss ..................................   Passed    0.00 sec
+        Start  91: core.pickup_derivative
+107/301 Test  #89: core.energy_conservation ..........................   Passed    0.00 sec
+        Start  92: core.pickup_intermodulation
+108/301 Test  #91: core.pickup_derivative ............................   Passed    0.00 sec
+        Start  93: core.network_loading
+109/301 Test  #92: core.pickup_intermodulation .......................   Passed    0.00 sec
+        Start  94: core.invalid_input
+110/301 Test  #93: core.network_loading ..............................   Passed    0.00 sec
+        Start  95: core.silence
+111/301 Test  #94: core.invalid_input ................................   Passed    0.00 sec
+        Start  96: core.block_partition
+112/301 Test  #95: core.silence ......................................   Passed    0.01 sec
+113/301 Test  #96: core.block_partition ..............................   Passed    0.01 sec
+        Start  98: core.supported_rates
+        Start  99: review.modal_boundaries
+114/301 Test  #99: review.modal_boundaries ...........................   Passed    0.00 sec
+        Start 100: review.rejected_updates
+115/301 Test #100: review.rejected_updates ...........................   Passed    0.00 sec
+        Start 101: review.engine_controls
+116/301 Test  #98: core.supported_rates ..............................   Passed    0.01 sec
+        Start 102: review.engine_combined_pickup
+117/301 Test #101: review.engine_controls ............................   Passed    0.00 sec
+        Start 103: review.network_extreme_divider
+118/301 Test #102: review.engine_combined_pickup .....................   Passed    0.00 sec
+        Start 104: transition_cache.cached_vs_fresh
+119/301 Test #103: review.network_extreme_divider ....................   Passed    0.00 sec
+        Start 105: transition_cache.invalid_cache_updates
+120/301 Test #104: transition_cache.cached_vs_fresh ..................   Passed    0.00 sec
+        Start 106: transition_cache.reconfigure_cache
+121/301 Test #105: transition_cache.invalid_cache_updates ............   Passed    0.00 sec
+        Start 107: transition_cache.redundant_pedal
+122/301 Test #106: transition_cache.reconfigure_cache ................   Passed    0.00 sec
+        Start 108: runtime.scalar_partitions
+123/301 Test #108: runtime.scalar_partitions .........................   Passed    0.00 sec
+        Start 111: runtime.invalid_events
+124/301 Test #111: runtime.invalid_events ............................   Passed    0.00 sec
+        Start 112: runtime.block_limits
+125/301 Test #112: runtime.block_limits ..............................   Passed    0.00 sec
+        Start 113: runtime.sample_fault_reset
+126/301 Test #113: runtime.sample_fault_reset ........................   Passed    0.00 sec
+        Start 114: runtime.event_fault_reset
+127/301 Test #114: runtime.event_fault_reset .........................   Passed    0.00 sec
+        Start 115: runtime.control_order
+128/301 Test #115: runtime.control_order .............................   Passed    0.00 sec
+        Start 116: runtime.random_partitions
+129/301 Test #107: transition_cache.redundant_pedal ..................   Passed    0.03 sec
+        Start 128: state.codec_golden
+130/301 Test #128: state.codec_golden ................................   Passed    0.00 sec
+        Start 129: state.codec_rejection
+131/301 Test #129: state.codec_rejection .............................   Passed    0.00 sec
+        Start 130: state.mailbox_recall
+132/301 Test #130: state.mailbox_recall ..............................   Passed    0.00 sec
+        Start 131: state.mailbox_races
+133/301 Test #131: state.mailbox_races ...............................   Passed    0.00 sec
+        Start 132: state.mailbox_abort
+134/301 Test #132: state.mailbox_abort ...............................   Passed    0.00 sec
+        Start 133: state.gain_bit_domain
+135/301 Test #133: state.gain_bit_domain .............................   Passed    0.00 sec
+        Start 134: state.pedal_bit_domain
+136/301 Test #134: state.pedal_bit_domain ............................   Passed    0.00 sec
+        Start 135: state.header_lengths
+137/301 Test #135: state.header_lengths ..............................   Passed    0.00 sec
+        Start 136: state.invalid_recall
+138/301 Test #136: state.invalid_recall ..............................   Passed    0.00 sec
+        Start 137: state_fp.baseline
+139/301 Test #137: state_fp.baseline .................................   Passed    0.00 sec
+        Start 138: state_fp.ftz
+140/301 Test #138: state_fp.ftz ......................................   Passed    0.00 sec
+        Start 139: state_fp.daz
+141/301 Test #139: state_fp.daz ......................................   Passed    0.00 sec
+        Start 140: state_fp.ftz_daz
+142/301 Test #140: state_fp.ftz_daz ..................................   Passed    0.00 sec
+        Start 141: control.domains
+143/301 Test #141: control.domains ...................................   Passed    0.00 sec
+        Start 142: control.quantize
+144/301 Test #142: control.quantize ..................................   Passed    0.00 sec
+        Start 143: control.widen
+145/301 Test #143: control.widen .....................................   Passed    0.00 sec
+        Start 144: control.rounding_modes
+146/301 Test #116: runtime.random_partitions .........................   Passed    0.05 sec
+        Start 145: control_fp.baseline
+147/301 Test #145: control_fp.baseline ...............................   Passed    0.00 sec
+        Start 146: control_fp.ftz
+148/301 Test #146: control_fp.ftz ....................................   Passed    0.00 sec
+        Start 147: control_fp.daz
+149/301 Test #144: control.rounding_modes ............................   Passed    0.01 sec
+        Start 148: control_fp.ftz_daz
+150/301 Test #147: control_fp.daz ....................................   Passed    0.00 sec
+        Start 149: state.ordered_races
+151/301 Test #148: control_fp.ftz_daz ................................   Passed    0.00 sec
+        Start 150: state.concurrent_stress
+152/301 Test #149: state.ordered_races ...............................   Passed    0.00 sec
+        Start 151: cli.help
+153/301 Test #151: cli.help ..........................................   Passed    0.00 sec
+        Start 152: alias.primitive_help
+154/301 Test #150: state.concurrent_stress ...........................   Passed    0.00 sec
+        Start 153: benchmark.help
+155/301 Test #152: alias.primitive_help ..............................   Passed    0.00 sec
+        Start 154: runtime_benchmark.help
+156/301 Test #153: benchmark.help ....................................   Passed    0.00 sec
+        Start 155: runtime_benchmark.smoke
+157/301 Test #154: runtime_benchmark.help ............................   Passed    0.00 sec
+        Start 156: runtime_benchmark.json
+158/301 Test #155: runtime_benchmark.smoke ...........................   Passed    0.00 sec
+        Start 157: benchmark.smoke
+159/301 Test #157: benchmark.smoke ...................................   Passed    0.00 sec
+        Start 158: benchmark.json
+160/301 Test #158: benchmark.json ....................................   Passed    0.02 sec
+        Start 159: cli.render
+161/301 Test #159: cli.render ........................................   Passed    0.01 sec
+        Start 160: cli.render_output
+162/301 Test #160: cli.render_output .................................   Passed    0.03 sec
+        Start 161: cli.filtered_render
+163/301 Test #161: cli.filtered_render ...............................   Passed    0.09 sec
+        Start 162: cli.reject_nan
+164/301 Test #162: cli.reject_nan ....................................   Passed    0.01 sec
+        Start 163: cli.reject_unknown
+165/301 Test #163: cli.reject_unknown ................................   Passed    0.00 sec
+        Start 168: vst3.filtered_benchmark_smoke_32
+166/301 Test #168: vst3.filtered_benchmark_smoke_32 ..................   Passed    0.00 sec
+        Start 169: vst3.quadrature_benchmark_smoke_32
+167/301 Test #169: vst3.quadrature_benchmark_smoke_32 ................   Passed    0.00 sec
+        Start 170: vst3.filtered_benchmark_smoke_64
+168/301 Test #170: vst3.filtered_benchmark_smoke_64 ..................   Passed    0.00 sec
+        Start 171: vst3.quadrature_benchmark_smoke_64
+169/301 Test #171: vst3.quadrature_benchmark_smoke_64 ................   Passed    0.00 sec
+        Start 172: vst3.filtered_scalar_output
+170/301 Test #172: vst3.filtered_scalar_output .......................   Passed    0.02 sec
+        Start 173: vst3.filtered_rate_contract
+171/301 Test #173: vst3.filtered_rate_contract .......................   Passed    0.00 sec
+        Start 174: vst3.filtered_state_contract
+172/301 Test #174: vst3.filtered_state_contract ......................   Passed    0.01 sec
+        Start 175: vst3.filtered_reset_and_flush
+173/301 Test #175: vst3.filtered_reset_and_flush .....................   Passed    0.05 sec
+        Start 176: vst3.filtered_rejected_calls
+174/301 Test #156: runtime_benchmark.json ............................   Passed    0.27 sec
+        Start 177: vst3.quadrature_qhost_identity_delay
+175/301 Test #177: vst3.quadrature_qhost_identity_delay ..............   Passed    0.03 sec
+        Start 178: vst3.quadrature_qhost_foreign_recall
+176/301 Test #176: vst3.filtered_rejected_calls ......................   Passed    0.09 sec
+        Start 179: vst3.quadrature_qhost_recall_order
+177/301 Test #179: vst3.quadrature_qhost_recall_order ................   Passed    0.03 sec
+        Start 180: vst3.quadrature_qhost_reset_tail
+178/301 Test #180: vst3.quadrature_qhost_reset_tail ..................   Passed    0.10 sec
+        Start 181: vst3.benchmark_help
+179/301 Test #181: vst3.benchmark_help ...............................   Passed    0.00 sec
+        Start 182: vst3.benchmark_smoke_32
+180/301 Test #182: vst3.benchmark_smoke_32 ...........................   Passed    0.00 sec
+        Start 183: vst3.benchmark_smoke_64
+181/301 Test #183: vst3.benchmark_smoke_64 ...........................   Passed    0.00 sec
+        Start 184: vst3.benchmark_json
+182/301 Test #178: vst3.quadrature_qhost_foreign_recall ..............   Passed    0.23 sec
+        Start 185: vst3.filtered_benchmark_help
+183/301 Test #185: vst3.filtered_benchmark_help ......................   Passed    0.00 sec
+        Start 186: vst3.filtered_benchmark_json
+184/301 Test  #81: grazing.anchor_boundaries .........................   Passed    1.77 sec
+        Start 187: vst3.quadrature_benchmark_help
+185/301 Test #187: vst3.quadrature_benchmark_help ....................   Passed    0.00 sec
+        Start 188: vst3.quadrature_benchmark_json
+186/301 Test #184: vst3.benchmark_json ...............................   Passed    0.88 sec
+        Start 189: vst3.scalar_output
+187/301 Test #189: vst3.scalar_output ................................   Passed    0.01 sec
+        Start 190: vst3.filtered_regression_scalar_output
+188/301 Test #190: vst3.filtered_regression_scalar_output ............   Passed    0.01 sec
+        Start 191: vst3.quadrature_regression_scalar_output
+189/301 Test #191: vst3.quadrature_regression_scalar_output ..........   Passed    0.01 sec
+        Start 192: vst3.overlapping_notes
+190/301 Test #192: vst3.overlapping_notes ............................   Passed    0.00 sec
+        Start 193: vst3.filtered_regression_overlapping_notes
+191/301 Test #193: vst3.filtered_regression_overlapping_notes ........   Passed    0.00 sec
+        Start 194: vst3.quadrature_regression_overlapping_notes
+192/301 Test #194: vst3.quadrature_regression_overlapping_notes ......   Passed    0.00 sec
+        Start 195: vst3.linear_automation
+193/301 Test #195: vst3.linear_automation ............................   Passed    0.00 sec
+        Start 196: vst3.filtered_regression_linear_automation
+194/301 Test #196: vst3.filtered_regression_linear_automation ........   Passed    0.00 sec
+        Start 197: vst3.quadrature_regression_linear_automation
+195/301 Test #197: vst3.quadrature_regression_linear_automation ......   Passed    0.00 sec
+        Start 198: vst3.dense_automation
+196/301 Test #198: vst3.dense_automation .............................   Passed    0.02 sec
+        Start 199: vst3.filtered_regression_dense_automation
+197/301 Test #199: vst3.filtered_regression_dense_automation .........   Passed    0.05 sec
+        Start 200: vst3.quadrature_regression_dense_automation
+198/301 Test #200: vst3.quadrature_regression_dense_automation .......   Passed    0.03 sec
+        Start 201: vst3.invalid_atomicity
+199/301 Test #201: vst3.invalid_atomicity ............................   Passed    0.00 sec
+        Start 202: vst3.filtered_regression_invalid_atomicity
+200/301 Test #202: vst3.filtered_regression_invalid_atomicity ........   Passed    0.01 sec
+        Start 203: vst3.quadrature_regression_invalid_atomicity
+201/301 Test #203: vst3.quadrature_regression_invalid_atomicity ......   Passed    0.01 sec
+        Start 204: vst3.parameter_flush
+202/301 Test #204: vst3.parameter_flush ..............................   Passed    0.00 sec
+        Start 205: vst3.filtered_regression_parameter_flush
+203/301 Test #205: vst3.filtered_regression_parameter_flush ..........   Passed    0.00 sec
+        Start 206: vst3.quadrature_regression_parameter_flush
+204/301 Test #206: vst3.quadrature_regression_parameter_flush ........   Passed    0.00 sec
+        Start 207: vst3.lifecycle
+205/301 Test #207: vst3.lifecycle ....................................   Passed    0.00 sec
+        Start 208: vst3.filtered_regression_lifecycle
+206/301 Test #208: vst3.filtered_regression_lifecycle ................   Passed    0.00 sec
+        Start 209: vst3.quadrature_regression_lifecycle
+207/301 Test #209: vst3.quadrature_regression_lifecycle ..............   Passed    0.01 sec
+        Start 210: vst3.deferred_state
+208/301 Test #210: vst3.deferred_state ...............................   Passed    0.00 sec
+        Start 211: vst3.filtered_regression_deferred_state
+209/301 Test #211: vst3.filtered_regression_deferred_state ...........   Passed    0.00 sec
+        Start 212: vst3.quadrature_regression_deferred_state
+210/301 Test #212: vst3.quadrature_regression_deferred_state .........   Passed    0.00 sec
+        Start 213: vst3.recall_abort
+211/301 Test #213: vst3.recall_abort .................................   Passed    0.00 sec
+        Start 214: vst3.filtered_regression_recall_abort
+212/301 Test #214: vst3.filtered_regression_recall_abort .............   Passed    0.00 sec
+        Start 215: vst3.quadrature_regression_recall_abort
+213/301 Test #215: vst3.quadrature_regression_recall_abort ...........   Passed    0.00 sec
+        Start 216: vst3.stream_errors
+214/301 Test #216: vst3.stream_errors ................................   Passed    0.00 sec
+        Start 217: vst3.filtered_regression_stream_errors
+215/301 Test #217: vst3.filtered_regression_stream_errors ............   Passed    0.00 sec
+        Start 218: vst3.quadrature_regression_stream_errors
+216/301 Test #218: vst3.quadrature_regression_stream_errors ..........   Passed    0.00 sec
+        Start 219: vst3.controller_mapping
+217/301 Test #219: vst3.controller_mapping ...........................   Passed    0.00 sec
+        Start 220: vst3.filtered_regression_controller_mapping
+218/301 Test #220: vst3.filtered_regression_controller_mapping .......   Passed    0.00 sec
+        Start 221: vst3.quadrature_regression_controller_mapping
+219/301 Test #221: vst3.quadrature_regression_controller_mapping .....   Passed    0.00 sec
+        Start 222: vst3.allocation_guard
+220/301 Test #222: vst3.allocation_guard .............................   Passed    0.01 sec
+        Start 223: vst3.filtered_regression_allocation_guard
+221/301 Test #223: vst3.filtered_regression_allocation_guard .........   Passed    0.02 sec
+        Start 224: vst3.quadrature_regression_allocation_guard
+222/301 Test #224: vst3.quadrature_regression_allocation_guard .......   Passed    0.02 sec
+        Start 225: vst3.fp_baseline
+223/301 Test #225: vst3.fp_baseline ..................................   Passed    0.01 sec
+        Start 226: vst3.filtered_fp_baseline
+224/301 Test #226: vst3.filtered_fp_baseline .........................   Passed    0.01 sec
+        Start 227: vst3.quadrature_fp_baseline
+225/301 Test #227: vst3.quadrature_fp_baseline .......................   Passed    0.01 sec
+        Start 228: vst3.fp_ftz
+226/301 Test #228: vst3.fp_ftz .......................................   Passed    0.01 sec
+        Start 229: vst3.filtered_fp_ftz
+227/301 Test #229: vst3.filtered_fp_ftz ..............................   Passed    0.01 sec
+        Start 230: vst3.quadrature_fp_ftz
+228/301 Test #230: vst3.quadrature_fp_ftz ............................   Passed    0.02 sec
+        Start 231: vst3.fp_daz
+229/301 Test #231: vst3.fp_daz .......................................   Passed    0.01 sec
+        Start 232: vst3.filtered_fp_daz
+230/301 Test #232: vst3.filtered_fp_daz ..............................   Passed    0.01 sec
+        Start 233: vst3.quadrature_fp_daz
+231/301 Test #233: vst3.quadrature_fp_daz ............................   Passed    0.01 sec
+        Start 234: vst3.fp_ftz_daz
+232/301 Test #234: vst3.fp_ftz_daz ...................................   Passed    0.00 sec
+        Start 235: vst3.filtered_fp_ftz_daz
+233/301 Test #235: vst3.filtered_fp_ftz_daz ..........................   Passed    0.02 sec
+        Start 236: vst3.quadrature_fp_ftz_daz
+234/301 Test #236: vst3.quadrature_fp_ftz_daz ........................   Passed    0.02 sec
+        Start 237: vst3.inactive_buffers
+235/301 Test #237: vst3.inactive_buffers .............................   Passed    0.01 sec
+        Start 238: vst3.filtered_buffer_inactive_buffers
+236/301 Test #238: vst3.filtered_buffer_inactive_buffers .............   Passed    0.04 sec
+        Start 239: vst3.quadrature_buffer_inactive_buffers
+237/301 Test #239: vst3.quadrature_buffer_inactive_buffers ...........   Passed    0.04 sec
+        Start 240: vst3.flush_matrix
+238/301 Test #240: vst3.flush_matrix .................................   Passed    0.09 sec
+        Start 241: vst3.filtered_buffer_flush_matrix
+239/301 Test #241: vst3.filtered_buffer_flush_matrix .................   Passed    0.18 sec
+        Start 242: vst3.quadrature_buffer_flush_matrix
+240/301 Test #242: vst3.quadrature_buffer_flush_matrix ...............   Passed    0.13 sec
+        Start 243: vst3.rejected_buffers
+241/301 Test #243: vst3.rejected_buffers .............................   Passed    0.31 sec
+        Start 244: vst3.filtered_buffer_rejected_buffers
+242/301 Test #186: vst3.filtered_benchmark_json ......................   Passed    2.16 sec
+        Start 245: vst3.quadrature_buffer_rejected_buffers
+243/301 Test #188: vst3.quadrature_benchmark_json ....................   Passed    1.83 sec
+        Start 246: vst3.setup_rollback
+244/301 Test #246: vst3.setup_rollback ...............................   Passed    0.24 sec
+        Start 247: vst3.filtered_buffer_setup_rollback
+245/301 Test #245: vst3.quadrature_buffer_rejected_buffers ...........   Passed    0.66 sec
+        Start 248: vst3.quadrature_buffer_setup_rollback
+246/301 Test #244: vst3.filtered_buffer_rejected_buffers .............   Passed    0.76 sec
+        Start 249: vst3.partial_roundtrip
+247/301 Test #249: vst3.partial_roundtrip ............................   Passed    0.00 sec
+        Start 250: vst3.filtered_stream_partial_roundtrip
+248/301 Test #250: vst3.filtered_stream_partial_roundtrip ............   Passed    0.00 sec
+        Start 251: vst3.quadrature_stream_partial_roundtrip
+249/301 Test #251: vst3.quadrature_stream_partial_roundtrip ..........   Passed    0.01 sec
+        Start 252: vst3.read_failures
+250/301 Test #247: vst3.filtered_buffer_setup_rollback ...............   Passed    0.58 sec
+        Start 253: vst3.filtered_stream_read_failures
+251/301 Test #248: vst3.quadrature_buffer_setup_rollback .............   Passed    0.51 sec
+        Start 254: vst3.quadrature_stream_read_failures
+252/301 Test #252: vst3.read_failures ................................   Passed    0.68 sec
+        Start 255: vst3.write_failures
+253/301 Test #255: vst3.write_failures ...............................   Passed    0.55 sec
+        Start 256: vst3.filtered_stream_write_failures
+254/301 Test #254: vst3.quadrature_stream_read_failures ..............   Passed    1.15 sec
+        Start 257: vst3.quadrature_stream_write_failures
+255/301 Test #253: vst3.filtered_stream_read_failures ................   Passed    1.95 sec
+        Start 258: vst3.malformed_state
+256/301 Test #258: vst3.malformed_state ..............................   Passed    0.31 sec
+        Start 259: vst3.filtered_stream_malformed_state
+257/301 Test #257: vst3.quadrature_stream_write_failures .............   Passed    1.44 sec
+        Start 260: vst3.quadrature_stream_malformed_state
+258/301 Test #256: vst3.filtered_stream_write_failures ...............   Passed    2.07 sec
+        Start 261: vst3.automation_model
+259/301 Test #261: vst3.automation_model .............................   Passed    0.07 sec
+        Start 262: vst3.filtered_automation_automation_model
+260/301 Test #262: vst3.filtered_automation_automation_model .........   Passed    0.18 sec
+        Start 263: vst3.quadrature_automation_automation_model
+261/301 Test #263: vst3.quadrature_automation_automation_model .......   Passed    0.20 sec
+        Start 264: vst3.automation_ties
+262/301 Test #264: vst3.automation_ties ..............................   Passed    0.03 sec
+        Start 265: vst3.filtered_automation_automation_ties
+263/301 Test #265: vst3.filtered_automation_automation_ties ..........   Passed    0.10 sec
+        Start 266: vst3.quadrature_automation_automation_ties
+264/301 Test #260: vst3.quadrature_stream_malformed_state ............   Passed    0.84 sec
+        Start 267: vst3.automation_flush
+265/301 Test #267: vst3.automation_flush .............................   Passed    0.02 sec
+        Start 268: vst3.filtered_automation_automation_flush
+266/301 Test #268: vst3.filtered_automation_automation_flush .........   Passed    0.05 sec
+        Start 269: vst3.quadrature_automation_automation_flush
+267/301 Test #259: vst3.filtered_stream_malformed_state ..............   Passed    1.33 sec
+        Start 270: vst3.automation_rejection
+268/301 Test #266: vst3.quadrature_automation_automation_ties ........   Passed    0.11 sec
+        Start 271: vst3.filtered_automation_automation_rejection
+269/301 Test #269: vst3.quadrature_automation_automation_flush .......   Passed    0.10 sec
+        Start 272: vst3.quadrature_automation_automation_rejection
+270/301 Test #270: vst3.automation_rejection .........................   Passed    0.11 sec
+        Start 273: vst3.identity_model
+271/301 Test #273: vst3.identity_model ...............................   Passed    0.00 sec
+        Start 274: vst3.filtered_note_identity_model
+272/301 Test #274: vst3.filtered_note_identity_model .................   Passed    0.01 sec
+        Start 275: vst3.quadrature_note_identity_model
+273/301 Test #275: vst3.quadrature_note_identity_model ...............   Passed    0.01 sec
+        Start 276: vst3.capacity_model
+274/301 Test #276: vst3.capacity_model ...............................   Passed    0.01 sec
+        Start 277: vst3.filtered_note_capacity_model
+275/301 Test #277: vst3.filtered_note_capacity_model .................   Passed    0.01 sec
+        Start 278: vst3.quadrature_note_capacity_model
+276/301 Test #278: vst3.quadrature_note_capacity_model ...............   Passed    0.01 sec
+        Start 279: vst3.recall_model
+277/301 Test #279: vst3.recall_model .................................   Passed    0.00 sec
+        Start 280: vst3.filtered_note_recall_model
+278/301 Test #280: vst3.filtered_note_recall_model ...................   Passed    0.01 sec
+        Start 281: vst3.quadrature_note_recall_model
+279/301 Test #281: vst3.quadrature_note_recall_model .................   Passed    0.01 sec
+        Start 282: vst3.random_note_model
+280/301 Test #271: vst3.filtered_automation_automation_rejection .....   Passed    0.23 sec
+        Start 283: vst3.filtered_note_random_note_model
+281/301 Test #282: vst3.random_note_model ............................   Passed    0.10 sec
+        Start 284: vst3.quadrature_note_random_note_model
+282/301 Test #272: vst3.quadrature_automation_automation_rejection ...   Passed    0.34 sec
+        Start 285: vst3.state_preflight_race
+283/301 Test #285: vst3.state_preflight_race .........................   Passed    0.01 sec
+        Start 286: vst3.filtered_state_state_preflight_race
+284/301 Test #286: vst3.filtered_state_state_preflight_race ..........   Passed    0.01 sec
+        Start 287: vst3.quadrature_state_state_preflight_race
+285/301 Test #287: vst3.quadrature_state_state_preflight_race ........   Passed    0.01 sec
+        Start 288: vst3.state_callback_stress
+286/301 Test #288: vst3.state_callback_stress ........................   Passed    0.12 sec
+        Start 289: vst3.filtered_state_state_callback_stress
+287/301 Test #284: vst3.quadrature_note_random_note_model ............   Passed    0.32 sec
+        Start 290: vst3.quadrature_state_state_callback_stress
+288/301 Test #283: vst3.filtered_note_random_note_model ..............   Passed    0.36 sec
+        Start 291: vst3.sdk_validator
+289/301 Test #289: vst3.filtered_state_state_callback_stress .........   Passed    0.29 sec
+        Start 292: vst3.dual_module_coexist
+290/301 Test #292: vst3.dual_module_coexist ..........................   Passed    0.01 sec
+        Start 293: vst3.dual_module_duplicate_guard
+291/301 Test #293: vst3.dual_module_duplicate_guard ..................   Passed    0.00 sec
+        Start 294: vst3.triple_module_coexist
+292/301 Test #290: vst3.quadrature_state_state_callback_stress .......   Passed    0.32 sec
+        Start 295: vst3.triple_module_duplicate_guard
+293/301 Test #295: vst3.triple_module_duplicate_guard ................   Passed    0.00 sec
+        Start 296: vst3.filtered_sdk_validator
+294/301 Test #294: vst3.triple_module_coexist ........................   Passed    0.49 sec
+        Start 297: vst3.quadrature_sdk_validator
+295/301 Test #291: vst3.sdk_validator ................................   Passed    1.54 sec
+        Start 298: vst3.moduleinfo_validator
+296/301 Test #298: vst3.moduleinfo_validator .........................   Passed    0.00 sec
+        Start 299: vst3.filtered_moduleinfo_validator
+297/301 Test #299: vst3.filtered_moduleinfo_validator ................   Passed    0.00 sec
+        Start 300: vst3.quadrature_moduleinfo_validator
+298/301 Test #300: vst3.quadrature_moduleinfo_validator ..............   Passed    0.00 sec
+        Start 301: vst3.bundle_resources
+299/301 Test #301: vst3.bundle_resources .............................   Passed    0.03 sec
+300/301 Test #297: vst3.quadrature_sdk_validator .....................   Passed    3.36 sec
+301/301 Test #296: vst3.filtered_sdk_validator .......................   Passed    5.37 sec
+
+100% tests passed out of 301
+
+Total Test time (real) =  15.74 sec

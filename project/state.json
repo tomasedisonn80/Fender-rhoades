@@ -4,8 +4,8 @@
   "goal": "Physically model a Fender Rhodes Mark I from evolving mechanical, electromagnetic and circuit states without recorded-note playback.",
   "target": "One documented 73-key Mark I Stage specimen at its specified loaded electrical output; identity and measurements pending.",
   "fidelity_status": "unvalidated",
-  "revision": 32,
-  "updated_at": "2026-11-24T07:25:28Z",
+  "revision": 34,
+  "updated_at": "2026-11-24T09:05:30Z",
   "tasks": [
     {
       "id": "FND-001",
@@ -470,6 +470,45 @@
         "RIGHTS.md",
         "CHANGELOG.md"
       ]
+    },
+    {
+      "id": "HOST-002",
+      "title": "Improve VST3 MIDI interoperability and generic control validation",
+      "milestone": "Host interoperability",
+      "status": "in_progress",
+      "priority": 47,
+      "dependencies": [
+        "HOST-001"
+      ],
+      "acceptance": [
+        "Deliver bounded channel-specific CC123 commands with chronological ownership preflight, retained sustain/tails, zero-frame handling and unchanged saved configuration.",
+        "Accept validated polyphonic pressure without dropping co-batched note events; reject malformed inputs atomically.",
+        "Reject malformed generic-control text and nonfinite conversions without changing output values or saved state.",
+        "Pass independent ownership/audio comparisons, compatibility checks and native SDK/module validation for the claimed platforms; document remaining DAW-specific verification."
+      ],
+      "required_evidence": [
+        "numerical",
+        "documentary"
+      ],
+      "evidence": [],
+      "owner": "continuation-c-root",
+      "claim": {
+        "owner": "continuation-c-root",
+        "token": "8a81cd8aa9aa1252476ecb0fda65a65e",
+        "claimed_at": "2026-11-24T09:05:30Z",
+        "expires_at": "2026-11-24T13:05:30Z"
+      },
+      "blockers": [],
+      "paths": [
+        "plugins/vst3",
+        "include/rhodes/event_processor.hpp",
+        "tests",
+        "cmake/Vst3.cmake",
+        "docs",
+        "project/continuation-c-20261124.json",
+        "tools/validate_continuation_c.py",
+        "README.md"
+      ]
     }
   ],
   "history": [
@@ -728,6 +767,22 @@
       "task": "RT-001",
       "owner": "continuation-b-root",
       "detail": "Lease until 2026-11-24T11:25:28Z"
+    },
+    {
+      "revision": 33,
+      "at": "2026-11-24T09:05:30Z",
+      "action": "define_task",
+      "task": "HOST-002",
+      "owner": "continuation-c-root",
+      "detail": "Authorized main-branch continuation: independent host interoperability task based on controller and MIDI audits; preserve active contact/runtime ownership and all fidelity/measurement gates."
+    },
+    {
+      "revision": 34,
+      "at": "2026-11-24T09:05:30Z",
+      "action": "claim",
+      "task": "HOST-002",
+      "owner": "continuation-c-root",
+      "detail": "Lease until 2026-11-24T13:05:30Z"
     }
   ]
 }
