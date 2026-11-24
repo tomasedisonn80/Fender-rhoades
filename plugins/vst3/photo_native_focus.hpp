@@ -17,17 +17,18 @@ public:
 
     // Pass the public IPlatformFrame representation only for an X11 frame, or
     // zero for any other platform. A failed connection is not retried each idle.
+    // A known reparent refreshes its cached topology on the next attachment call.
     void attach(std::uintptr_t x11_window) noexcept;
     void reset() noexcept;
 
     // At most 64 queued events are consumed. The optional UI-thread round trip
     // orders already-generated focus events before a pointer event is handled;
-    // an incomplete cold host handoff can require one additional ordering fence.
+    // an incomplete focus event pair can require one additional ordering fence.
     // A real out/back transition still reports loss even when focus is restored.
     [[nodiscard]] bool poll(bool synchronize = false) noexcept;
 
 private:
-    enum class ColdFocus { disabled, pointer_root, pointer_out, editor_in };
+    enum class ColdFocus { disabled, waiting_pointer, pointer_out, editor_in };
 
     std::uintptr_t window_ = 0;
     void* connection_ = nullptr;
@@ -35,6 +36,7 @@ private:
     std::uintptr_t host_top_ = 0;
     std::uintptr_t focus_proxy_ = 0;
     ColdFocus cold_focus_ = ColdFocus::disabled;
+    bool topology_changed_ = false;
 };
 
 } // namespace rhodes::vst3

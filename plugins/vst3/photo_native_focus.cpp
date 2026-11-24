@@ -23,10 +23,11 @@ void PhotoNativeFocus::reset() noexcept {
     host_top_ = 0;
     focus_proxy_ = 0;
     cold_focus_ = ColdFocus::disabled;
+    topology_changed_ = false;
 }
 
 void PhotoNativeFocus::attach(std::uintptr_t x11_window) noexcept {
-    if (window_ == x11_window) { return; }
+    if (window_ == x11_window && !topology_changed_) { return; }
     reset();
     window_ = x11_window;
 #if defined(__linux__)
@@ -79,11 +80,9 @@ void PhotoNativeFocus::attach(std::uintptr_t x11_window) noexcept {
             host_top_ = 0;
         }
     }
-    auto* focus = xcb_get_input_focus_reply(connection, xcb_get_input_focus(connection), nullptr);
-    if (host_parent_ != 0 && focus != nullptr && focus->focus == XCB_INPUT_FOCUS_POINTER_ROOT) {
-        cold_focus_ = ColdFocus::pointer_root;
-    }
-    std::free(focus);
+    // Attachment may happen while a host startup dialog owns focus. Recognize
+    // the later PointerRoot acquisition by its events, not an attachment snapshot.
+    if (host_parent_ != 0) { cold_focus_ = ColdFocus::waiting_pointer; }
     connection_ = connection;
 #endif
 }
@@ -140,7 +139,10 @@ bool PhotoNativeFocus::poll(bool synchronize) noexcept {
         }
         if (changed_window != 0 && (changed_window == window_ || changed_window == host_parent_ ||
                                     changed_window == host_top_)) {
-            // A cached embedding relationship never survives reparent/removal.
+            // Cancel now; refresh a changed embedding once on the next attach.
+            // REAPER reparents its container after the observer first attaches.
+            // Destruction alone must not retry a stale handle on every idle.
+            topology_changed_ = type == XCB_REPARENT_NOTIFY;
             host_parent_ = 0;
             host_top_ = 0;
             lost = true;
@@ -154,7 +156,7 @@ bool PhotoNativeFocus::poll(bool synchronize) noexcept {
             if (actual && focus.event == window_) {
                 if (out) {
                     if (focus.detail == XCB_NOTIFY_DETAIL_POINTER) {
-                        if (normal && cold_focus_ == ColdFocus::pointer_root) {
+                        if (normal && cold_focus_ == ColdFocus::waiting_pointer) {
                             cold_focus_ = ColdFocus::pointer_out;
                         }
                     } else if (focus.detail == XCB_NOTIFY_DETAIL_INFERIOR) {
@@ -164,6 +166,12 @@ bool PhotoNativeFocus::poll(bool synchronize) noexcept {
                         // Only the first PointerRoot acquisition can negotiate
                         // focus back to the host, and only a matching event on
                         // the exact cached parent/top can complete that transfer.
+                        // This observed REAPER workaround does not infer logical
+                        // focus for arbitrary docked hosts from ancestry alone.
+                        // X11 defines the Ancestor/Virtual/Inferior event pair:
+                        // https://xorg.freedesktop.org/releases/current/doc/xproto/x11protocol.html
+                        // XEmbed separates logical focus from X input focus:
+                        // https://specifications.freedesktop.org/xembed/latest-single/
                         cold_focus_ = ColdFocus::disabled;
                         pending = Pending::cold_handoff;
                         through_parent = false;

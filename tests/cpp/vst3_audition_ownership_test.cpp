@@ -200,7 +200,7 @@ struct Recorder final : FixedObject<vst::IConnectionPoint> {
               value.velocity == velocity && value.accepted == accepted,
               "note message differs from literal wire sequence");
     }
-    void release(std::size_t index, bool accepted = true) const {
+    void expect_release(std::size_t index, bool accepted = true) const {
         check(!malformed && index < count, "missing or malformed emergency message");
         check(records[index].kind == Kind::release && records[index].accepted == accepted,
               "emergency message differs from literal wire sequence");
@@ -426,7 +426,7 @@ void failed_transport_cancels_all_owners() {
               "emergency left another view's held-key feedback stale");
         const std::size_t emergency_index = failure == 5 ? 3 : 2;
         if (failure == 5) { f.recorder.note(2, 40, false, 0.0, false); }
-        f.recorder.release(emergency_index);
+        f.recorder.expect_release(emergency_index);
         f.close(a);
         f.close(b);
         check(f.controller.retryAuditionRelease(), "successful emergency remained pending");
@@ -440,7 +440,7 @@ void failed_transport_cancels_all_owners() {
         f.recorder.fail_notes = 1;
         check(!f.controller.auditionNote(b, 41, true, 0.75F), "failed down reported success");
         f.recorder.note(1, 41, true, 0.75, false);
-        f.recorder.release(2);
+        f.recorder.expect_release(2);
         check(f.controller.heldAuditionKey(a) == -1 && f.controller.heldAuditionKey(b) == -1,
               "failed down retained a UI owner");
     }
@@ -456,11 +456,11 @@ void pending_emergency_retries_without_fresh_down() {
     f.recorder.fail_releases = 2;
     check(!f.controller.auditionNote(a, 40, false, 0.0F), "failed up reported success");
     f.recorder.note(2, 40, false, 0.0, false);
-    f.recorder.release(3, false);
+    f.recorder.expect_release(3, false);
     check(!f.controller.auditionNote(b, 42, true, 0.75F), "down bypassed failed emergency");
-    f.recorder.release(4, false);
+    f.recorder.expect_release(4, false);
     check(!f.controller.auditionNote(b, 42, true, 0.75F), "recovery call also queued a fresh down");
-    f.recorder.release(5);
+    f.recorder.expect_release(5);
     check(f.recorder.count == 6 && f.controller.heldAuditionKey(b) == -1,
           "pending emergency accepted fresh UI ownership");
     check(f.controller.retryAuditionRelease(), "completed emergency could not become idle");
@@ -476,7 +476,7 @@ void failed_final_close_retains_emergency() {
     check(f.controller.heldAuditionKey(owner) == -1 && f.recorder.count == 1,
           "closed owner survived failed cleanup");
     check(f.controller.retryAuditionRelease(), "failed final close forgot pending cleanup");
-    f.recorder.release(1);
+    f.recorder.expect_release(1);
     check(f.recorder.count == 2, "final-close emergency was not retried exactly once");
 }
 
