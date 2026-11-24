@@ -705,6 +705,40 @@
       "limitations": [
         "Local GCC test-fixture evidence, not a new full 2097-case replay or native DAW result. The temporary mutation was never published as production. Native compiler confirmation belongs to the subsequent CI checkpoint. RT-001 remains incomplete."
       ]
+    },
+    {
+      "id": "TOOLS-20261124-full-python",
+      "kind": "numerical",
+      "result": "pass",
+      "summary": "Single current full local Python suite: 584 tests reported, 583 unskipped passes and one explicit production-probe skip; available NumPy/SciPy numerical checks ran. All544 captured inputs stayed byte-identical.",
+      "command": "python3 -m unittest discover -s tests/python -v",
+      "created_at": "2026-11-24T06:53:52Z",
+      "source_commit": "420c4c76160b5f5c631cd5e4e21fd1875461c5f5",
+      "artifacts": [
+        {
+          "path": "docs/validation/python-final-20261124.json",
+          "sha256": "a1c5634bd91b1e8a59c2f63190753efa9d498153c1fcdbc54f4880466feec347"
+        },
+        {
+          "path": "docs/validation/python-final-20261124.log.gz",
+          "sha256": "eec045f340d3ede9f260e69874445233d34eb539b4fbb8e5263c6d4618e25e86"
+        },
+        {
+          "path": "docs/agents/reports/20261124-w5-81-final-python.md",
+          "sha256": "a95b0b4b762875e4252dc5c87029bd6c2b3c4e216d33ecb06a080e2b524dac48"
+        }
+      ],
+      "specimen_id": null,
+      "profile_path": null,
+      "session_paths": [],
+      "independent": false,
+      "reference_evidence": [],
+      "limitations": [
+        "One local Python3.12.14/Linux run; native Python3.11 results are separate.",
+        "The summary includes one skip: the three small filtered production-binary comparisons require RHODES_AUDIO_PROBE, which was unset.",
+        "This test run does not rerun the2097-case audio study, native C++ suites, timing matrices, DAWs or physical measurements.",
+        "The fixed input inventory excludes newly created untracked peer reports; exact source and before/after hashes are recorded."
+      ]
     }
   ]
 }

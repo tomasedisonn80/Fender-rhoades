@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "wave": 5,
+  "requested_actual_agents": 20,
+  "status": "in_progress",
+  "scope": "Bounded actual-agent development and independent review. Metadata does not attest scientific acceptance.",
+  "agents": [
+    {
+      "assignment": 81,
+      "wave": 5,
+      "id": "W5-81",
+      "agent_task_name": "/root/w5_81_final_python",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w5-81-final-python.md",
+      "sha256": "a95b0b4b762875e4252dc5c87029bd6c2b3c4e216d33ecb06a080e2b524dac48"
+    },
+    {
+      "assignment": 82,
+      "wave": 5,
+      "id": "W5-82",
+      "agent_task_name": "/root/w5_82_host_events_state",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w5-82-host-events-state.md",
+      "sha256": "7751208ad5ba1b56e316774eee97f9b5ac3d1438bc061ccce3df3fbe49dc00e7"
+    },
+    {
+      "assignment": 83,
+      "wave": 5,
+      "id": "W5-83",
+      "agent_task_name": "/root/w5_83_host_platform_contract",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w5-83-host-platform-contract.md",
+      "sha256": "7226ce36020db42e68b7df0328b1647ee8e3dac082a5614989a162a2c48c017f"
+    },
+    {
+      "assignment": 84,
+      "wave": 5,
+      "id": "W5-84",
+      "agent_task_name": "/root/w5_84_contact_acceptance",
+      "status": "completed",
+      "report": "docs/agents/reports/20261124-w5-84-contact-acceptance.md",
+      "sha256": "d4c6957ac0937113037f40b434ab7c8ebc217702ce475089584c8cda7ec27a71"
+    },
+    {
+      "assignment": 85,
+      "wave": 5,
+      "id": "W5-85",
+      "agent_task_name": "/root/w5_85_runtime_acceptance",
+      "status": "running"
+    },
+    {
+      "assignment": 86,
+      "wave": 5,
+      "id": "W5-86",
+      "agent_task_name": "/root/w5_86_registry_audit",
+      "status": "running"
+    },
+    {
+      "assignment": 87,
+      "wave": 5,
+      "id": "W5-87",
+      "agent_task_name": "/root/w5_87_specimen_data_gate",
+      "status": "running"
+    }
+  ],
+  "completed_actual_agents": 4
+}

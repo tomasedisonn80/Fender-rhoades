@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "kind": "frozen-acceptance-definitions",
+  "evaluator": "development-root",
+  "state_revision": 27,
+  "source_commit": "420c4c76160b5f5c631cd5e4e21fd1875461c5f5",
+  "definitions": [
+    {
+      "definition": {
+        "task_id": "HOST-001",
+        "acceptance": [
+          "Bounded sample-offset event processing preserves producer order and physical key state; invalid blocks reject without mutation.",
+          "An optional VST3 instrument builds against an explicitly identified public SDK and passes the available SDK validator with bounded audio processing and documented output scaling.",
+          "Host configuration round-trips through a versioned validated state format; MIDI range, sustain, overlapping notes, reset and unsupported host conditions are explicit and tested.",
+          "Document the actual tested platform and synthetic sound boundary without claiming measured fidelity or an untested release."
+        ],
+        "dependencies": [
+          "PHY-001"
+        ],
+        "required_evidence": [
+          "numerical",
+          "documentary"
+        ],
+        "target": "One documented 73-key Mark I Stage specimen at its specified loaded electrical output; identity and measurements pending."
+      },
+      "definition_sha256": "b5e43a5c4bfccd246d49bf60783b320a1629741489023757d01cb50207e48336",
+      "dependency_status_at_review": {
+        "PHY-001": "done"
+      }
+    },
+    {
+      "definition": {
+        "task_id": "PHY-002",
+        "acceptance": [
+          "Use finite hammer mass, reciprocal contact forces, separation and recontact with persistent resonator state.",
+          "Model damper/pedal contact and resting equilibrium; identify or label all assumed contact parameters.",
+          "Pass energy, timestep convergence, retrigger, release and pedal stress checks with explicit numerical tolerances."
+        ],
+        "dependencies": [
+          "PHY-001"
+        ],
+        "required_evidence": [
+          "numerical"
+        ],
+        "target": "One documented 73-key Mark I Stage specimen at its specified loaded electrical output; identity and measurements pending."
+      },
+      "definition_sha256": "e51dfa484a4a2f600fa3b6eaf357a8a2a85bfade777745ceb55fd0af8ba4ee03",
+      "dependency_status_at_review": {
+        "PHY-001": "done"
+      }
+    },
+    {
+      "definition": {
+        "task_id": "RT-001",
+        "acceptance": [
+          "Benchmark representative kernels with hardware, compiler, sample rate, block size, polyphony and stress conditions recorded.",
+          "Report maximum observed callback duration and deadline misses, plus optimized-versus-reference error.",
+          "Verify allocation/locking policy and timestep/antialiasing convergence; claim only measured performance."
+        ],
+        "dependencies": [
+          "PHY-001"
+        ],
+        "required_evidence": [
+          "performance",
+          "numerical"
+        ],
+        "target": "One documented 73-key Mark I Stage specimen at its specified loaded electrical output; identity and measurements pending."
+      },
+      "definition_sha256": "134aae8a07f36b75bc986390376f51ca5fbb8abc0955d57913dda04d1ad4f6b8",
+      "dependency_status_at_review": {
+        "PHY-001": "done"
+      }
+    }
+  ],
+  "note": "Exact unchanged acceptance projections; task status, owner and claims are outside the definition digest. This file records no acceptance decision."
+}

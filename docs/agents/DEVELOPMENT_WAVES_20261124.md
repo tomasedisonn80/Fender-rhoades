@@ -16,7 +16,8 @@ participant. Every completed assignment has a separate immutable report.
 | 3 | 41–60 | Runtime preservation, evidence verification and error handling | [Completed ledger](../../project/wave3-agent-ledger-20261124.json) |
 | 4 | 61–80 | Documentation, native fault coverage and evidence integration | [Completed ledger](../../project/wave4-agent-ledger-20261124.json) |
 
-Wave 5 remains planned until its actual participants are spawned and recorded.
+Wave 5 is in progress; its [live ledger](../../project/wave5-agent-ledger-20261124.json)
+records final verification, criterion reviews and actionable continuation work.
 The ledgers contain only assigned agents. Their report digests
 bind the bytes reviewed; neither a populated ledger nor a matching digest can
 authenticate execution or establish scientific acceptance.
