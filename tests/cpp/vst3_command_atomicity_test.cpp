@@ -44,6 +44,27 @@ void recall(RhodesProcessor& processor, InstrumentState state) {
     require(processor.published_state() == state, "requested command recall was not published");
 }
 
+vst::Event pressure(sdk::int32 offset) {
+    vst::Event event{};
+    event.type = vst::Event::kPolyPressureEvent;
+    event.sampleOffset = offset;
+    event.polyPressure.channel = 3;
+    event.polyPressure.pitch = 74;
+    event.polyPressure.noteId = 7;
+    event.polyPressure.pressure = 0.5F;
+    return event;
+}
+
+template<class Sample>
+void expect_frame(const ProcessorHost<Sample, frames>& host, std::size_t frame,
+                  Sample expected, std::string_view context) {
+    using Bits = std::conditional_t<std::is_same_v<Sample, float>, std::uint32_t, std::uint64_t>;
+    const auto left = host.channels[0] != nullptr ? expected : Sample{0.25};
+    const auto right = host.channels[1] != nullptr ? expected : Sample{0.25};
+    require(std::bit_cast<Bits>(host.left[frame]) == std::bit_cast<Bits>(left) &&
+            std::bit_cast<Bits>(host.right[frame]) == std::bit_cast<Bits>(right), context);
+}
+
 // Fixture actions supply physical strikes/releases directly. The oracle never
 // uses the adapter's command translation, event dispatcher, or NoteTracker.
 struct Oracle {
@@ -102,17 +123,15 @@ struct Oracle {
     template<class Sample, class Actions>
     void block(ProcessorHost<Sample, frames>& host, Actions actions) {
         require(host.data.numSamples == static_cast<sdk::int32>(frames), "invalid oracle block size");
+        host.fill(Sample{0.25});
         require(host.processor.process(host.data) == sdk::kResultOk, "valid command transaction rejected");
         bool nonzero = false;
-        using Bits = std::conditional_t<std::is_same_v<Sample, float>, std::uint32_t, std::uint64_t>;
         for (std::size_t frame = 0; frame < frames; ++frame) {
             actions(frame);
             double volts = 0.0;
             require(engine->process(std::span<double>(&volts, 1)), "command oracle rendering failed");
             const auto expected = static_cast<Sample>((32.0 * static_cast<double>(state.monitoring_gain)) * volts);
-            require(std::bit_cast<Bits>(host.left[frame]) == std::bit_cast<Bits>(expected) &&
-                    std::bit_cast<Bits>(host.right[frame]) == std::bit_cast<Bits>(expected),
-                    "command transaction stereo bits differ from scalar oracle");
+            expect_frame(host, frame, expected, "command transaction stereo bits differ from scalar oracle");
             nonzero = nonzero || expected != Sample{0};
         }
         cursor += frames;
@@ -173,7 +192,10 @@ void reject(ProcessorHost<Sample, frames>& host, const ProcessorSnapshot& before
                 std::all_of(host.right.begin(), host.right.end(), [](Sample value) { return value == Sample{0.25}; }),
                 "rejected zero-frame commands wrote samples");
     } else {
-        host.expect_silence();
+        for (std::size_t frame = 0; frame < frames; ++frame) {
+            expect_frame(host, frame, Sample{0}, "rejected command changed absent storage or failed to silence");
+        }
+        require(host.output.silenceFlags == 3, "rejected command silence flags");
     }
     before.expect_unchanged(host.processor);
     unchanged_identities(before, host.processor, owners);
@@ -659,11 +681,174 @@ void zero_frame_syntax_and_saved_state() {
 }
 
 template<class Sample>
+void inactive_commands_and_recall(unsigned mask) {
+    ProcessorHost<Sample, frames> host;
+    Oracle oracle;
+    seed(host, oracle);
+    const auto output_active = [&](bool active) {
+        require(host.processor.activateBus(vst::kAudio, vst::kOutput, 0, active) == sdk::kResultOk,
+                "command output bus activation failed");
+        host.channels = {host.left.data(), host.right.data()};
+        if (!active) {
+            if ((mask & 1U) == 0U) { host.channels[0] = nullptr; }
+            if ((mask & 2U) == 0U) { host.channels[1] = nullptr; }
+        }
+    };
+    const auto audible_tail = [&] {
+        output_active(true);
+        oracle.tail(host);
+        require(std::any_of(host.left.begin(), host.left.end(), [](Sample value) { return value != Sample{0}; }),
+                "reactivated command continuation has no audible history");
+    };
+
+    CommandQueue command, pedal, gain;
+    command.id = kAllNotesOffBaseId + 3;
+    command.count = 2;
+    command.values[0] = command.values[1] = {17, 0.0};
+    pedal.id = kSustainId;
+    pedal.count = 3;
+    pedal.values[0] = {0, 0.0};
+    pedal.values[1] = {17, 1.0};
+    pedal.values[2] = {50, 0.0};
+    gain.id = kGainId;
+    gain.count = 1;
+    gain.values[0] = {0, 0.875};
+    CommandChanges changes;
+    changes.count = 2;
+    changes.values[0] = &command;
+    changes.values[1] = &pedal;
+    EventList notes;
+    notes.count = 5;
+    notes.values[0] = pressure(0);
+    notes.values[1] = pressure(17);
+    notes.values[2] = note_on(17, 7, 74, 0.625F, 3);
+    notes.values[3] = pressure(17);
+    notes.values[4] = note_off(80, -2, 60, 9);
+    host.data.inputParameterChanges = &changes;
+    host.data.inputEvents = &notes;
+    output_active(false);
+    oracle.block(host, [&](std::size_t frame) {
+        if (frame == 0) { oracle.sustain(false); }
+        if (frame == 17) {
+            oracle.sustain(true);
+            oracle.release(60); oracle.release(72); oracle.release(72);
+            oracle.strike(74, 0.625F);
+        }
+        if (frame == 50) { oracle.sustain(false); }
+        if (frame == 80) { oracle.release(60); }
+    });
+    constexpr std::array<Owner, 3> remaining{{
+        {7, 74, 3, 0.625F}, {44, 84, 15, 0.625F}, {7, 65, 8, 0.5F}}};
+    audible_tail();
+
+    // Reject at the final command point and then after all queues plus a note
+    // have been staged. A clean inactive continuation must not replay scratch.
+    output_active(false);
+    const ProcessorSnapshot before(host.processor);
+    changes.count = 3;
+    changes.values[0] = &gain;
+    changes.values[1] = &pedal;
+    changes.values[2] = &command;
+    command.values[0] = {0, 0.0};
+    command.values[1] = {127, std::numeric_limits<double>::quiet_NaN()};
+    pedal.count = 1;
+    pedal.values[0] = {0, 1.0};
+    notes.count = 2;
+    notes.values[0] = note_on(0, 301, 80, 0.25F, 3);
+    notes.values[1] = pressure(127);
+    host.data.inputParameterChanges = &changes;
+    host.data.inputEvents = &notes;
+    gain.reads = pedal.reads = command.reads = notes.get_calls = 0;
+    reject(host, before, remaining, "inactive late malformed command");
+    require(gain.reads == 1 && pedal.reads == 1 && command.reads == 2 && notes.get_calls == 0,
+            "inactive command rejection did not finish earlier queues before rejecting");
+    command.values[1].value = 0.0;
+    notes.values[1].polyPressure.pressure = std::numeric_limits<float>::quiet_NaN();
+    gain.reads = pedal.reads = command.reads = notes.get_calls = 0;
+    reject(host, before, remaining, "inactive late malformed pressure");
+    require(gain.reads == 1 && pedal.reads == 1 && command.reads == 2 && notes.get_calls == 2,
+            "inactive pressure rejection skipped staged commands or the preceding note");
+    oracle.tail(host);
+    audible_tail();
+
+    // The first strike is legal only with the selected recall's empty owners.
+    // The second conflicts before CC123: abort must preserve the live owners,
+    // full history, and pending recall for the next inactive transaction.
+    output_active(false);
+    const InstrumentState pending{0.375F, true};
+    recall(host.processor, pending);
+    const ProcessorSnapshot pending_before(host.processor);
+    command.values[0] = command.values[1] = {17, 0.0};
+    pedal.count = 2;
+    pedal.values[0] = {17, 1.0};
+    pedal.values[1] = {50, 0.0};
+    notes.count = 3;
+    notes.values[0] = note_on(0, 7, 82, 0.5F, 3);
+    notes.values[1] = pressure(1);
+    notes.values[2] = note_on(2, 7, 83, 0.375F, 3);
+    host.data.inputParameterChanges = &changes;
+    host.data.inputEvents = &notes;
+    notes.get_calls = 0;
+    reject(host, pending_before, remaining, "inactive ownership abort with selected recall");
+    require(notes.get_calls == 3, "inactive ownership abort did not complete event syntax");
+    changes.count = 2;
+    changes.values[0] = &command;
+    changes.values[1] = &pedal;
+    notes.count = 4;
+    notes.values[1] = pressure(17);
+    notes.values[2] = note_on(17, 7, 83, 0.375F, 3);
+    notes.values[3] = pressure(127);
+    oracle.install(pending);
+    oracle.block(host, [&](std::size_t frame) {
+        if (frame == 0) { oracle.strike(82, 0.5F); }
+        if (frame == 17) {
+            oracle.sustain(true); oracle.release(82); oracle.strike(83, 0.375F);
+        }
+        if (frame == 50) { oracle.sustain(false); }
+    });
+    require(host.processor.engine_processor().frame_cursor() == frames,
+            "inactive accepted recall did not reset the cursor");
+    audible_tail();
+
+    // Leave every staging array populated again, then reset and strike afresh.
+    // A stale later command would release that new holder in this same block.
+    output_active(false);
+    const ProcessorSnapshot lifecycle_before(host.processor);
+    constexpr std::array<Owner, 1> recalled_owner{{{7, 83, 3, 0.375F}}};
+    changes.count = 3;
+    changes.values[0] = &gain;
+    changes.values[1] = &pedal;
+    changes.values[2] = &command;
+    command.values[0] = {0, 0.0};
+    command.values[1] = {64, 0.0};
+    pedal.count = 1;
+    pedal.values[0] = {0, 1.0};
+    notes.count = 2;
+    notes.values[0] = note_on(0, 301, 80, 0.25F, 3);
+    notes.values[1] = pressure(127);
+    notes.values[1].polyPressure.pressure = std::numeric_limits<float>::quiet_NaN();
+    host.data.inputParameterChanges = &changes;
+    host.data.inputEvents = &notes;
+    reject(host, lifecycle_before, recalled_owner, "inactive rejection before lifecycle reset");
+    require(host.processor.setProcessing(false) == sdk::kResultOk &&
+            host.processor.setProcessing(true) == sdk::kResultOk, "command lifecycle reset failed");
+    oracle.install(oracle.state);
+    host.data.inputParameterChanges = nullptr;
+    notes.count = 1;
+    notes.values[0] = note_on(0, 501, 82, 0.5F, 3);
+    oracle.block(host, [&](std::size_t frame) {
+        if (frame == 0) { oracle.strike(82, 0.5F); }
+    });
+    audible_tail();
+}
+
+template<class Sample>
 void run() {
     malformed_transactions_and_recall<Sample>();
     chronological_identity_reuse<Sample>();
     sixteen_channel_queue_order<Sample>();
     zero_frame_syntax_and_saved_state<Sample>();
+    for (unsigned mask = 0; mask < 4; ++mask) { inactive_commands_and_recall<Sample>(mask); }
 }
 } // namespace
 
@@ -673,7 +858,8 @@ int main() {
         run<double>();
         std::cout << kPluginName << ": command syntax/ownership rejection preserves live and pending state, "
                      "identities and full audio history; fresh recall, chronological reuse, "
-                     "16-channel queue permutations and transient zero-frame flush passed (both formats).\n";
+                     "16-channel queue permutations, transient zero-frame flush and inactive "
+                     "command/pressure recall/lifecycle crossproduct passed (both formats, four pointer masks).\n";
         return 0;
     } catch (const std::exception& error) {
         std::cerr << error.what() << '\n';

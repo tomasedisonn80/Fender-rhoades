@@ -106,10 +106,15 @@ ctest --test-dir build/vst3 -C Release -R '^vst3\.' \
 `rhodes_vst3_checks` exists when `BUILD_TESTING=ON` and builds all three bundles,
 all three callback benchmarks, the SDK validator, `moduleinfotool` and every
 retained host-test executable. The test command above runs both validators
-against each actual bundle and includes the Linux-only triple-module loader
-checks where available. The metadata checks compare generated `moduleinfo.json`
-with the loadable factory; resource-presence checks remain separate. For a
-plug-in-only build, select `--target rhodes_vst3`,
+against each actual bundle. Dual-/triple-module loader checks and
+`vst3.loaded_midi` are configured for Linux, Windows and macOS; the latter loads
+all three production bundles through SDK-only host linkage. Permanent command
+partitioning and inactive-output command/recall checks are also included for all
+three variants. See [HOST-MIDI verification](HOST_MIDI_VERIFICATION.md) for test
+selection and retained evidence. Native CI results for the current cross-platform
+loader changes remain pending. The metadata checks compare generated
+`moduleinfo.json` with the loadable factory; resource-presence checks remain
+separate. For a plug-in-only build, select `--target rhodes_vst3`,
 `--target rhodes_vst3_filtered` or `--target rhodes_vst3_quadrature`; tests can be
 disabled with `-DBUILD_TESTING=OFF`. To build the three modules without the
 test aggregate, pass all three target names after `--target`.
@@ -342,9 +347,9 @@ to their source hashes, job IDs and retained logs.
 | Linux address/undefined-behavior sanitizers | 150 | 0 | 150 |
 
 The macOS skips explicitly exclude x86 FTZ/DAZ environment modes. They are not
-passes. Linux additionally covers independently loaded module coexistence;
-the corresponding Windows/macOS real-host scenario remains unverified. The
-local Linux SDK-integrated run passed 288 of 288 CTests without skips.
+passes. At this checkpoint, Linux additionally covered independently loaded
+module coexistence; the corresponding Windows/macOS real-host scenario remains
+unverified. The local Linux SDK-integrated run passed 288 of 288 CTests without skips.
 
 All three platforms passed these six CTest entries:
 
@@ -389,8 +394,9 @@ The retained [three-module loader fixture](agents/transient-campaign/w2_a33.md)
 passed locally on Linux with all six load orders, both output formats and
 48/192 kHz rates. It checks six distinct FUIDs, independent output/state,
 all six cross-model recall directions and duplicate-module rejection. Its
-CTest registrations are Linux-only; Windows/macOS coexistence in a real host
-remains separate coverage. The [dedicated quadrature host fixture](agents/transient-campaign/w2_a32.md)
+CTest registrations were Linux-only at that checkpoint; the current three-platform
+registration does not extend that retained observation. Windows/macOS coexistence
+in a real host remains separate coverage. The [dedicated quadrature host fixture](agents/transient-campaign/w2_a32.md)
 records local observation/convolution, pending-recall, reset and lifecycle
 checks, with each report retaining the tested source and scope.
 

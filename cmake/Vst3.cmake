@@ -235,6 +235,12 @@ if(BUILD_TESTING)
     add_test(NAME vst3.channel_commands COMMAND rhodes_vst3_channel_commands_tests)
     add_test(NAME vst3.filtered_channel_commands COMMAND rhodes_vst3_filtered_channel_commands_tests)
     add_test(NAME vst3.quadrature_channel_commands COMMAND rhodes_vst3_quadrature_channel_commands_tests)
+    rhodes_add_vst3_test(rhodes_vst3_command_partition_tests tests/cpp/vst3_command_partition_test.cpp)
+    rhodes_add_vst3_test(rhodes_vst3_filtered_command_partition_tests tests/cpp/vst3_command_partition_test.cpp TRUE)
+    rhodes_add_vst3_test(rhodes_vst3_quadrature_command_partition_tests tests/cpp/vst3_command_partition_test.cpp FALSE TRUE)
+    add_test(NAME vst3.command_partition COMMAND rhodes_vst3_command_partition_tests)
+    add_test(NAME vst3.filtered_command_partition COMMAND rhodes_vst3_filtered_command_partition_tests)
+    add_test(NAME vst3.quadrature_command_partition COMMAND rhodes_vst3_quadrature_command_partition_tests)
     rhodes_add_vst3_test(rhodes_vst3_pressure_tests tests/cpp/vst3_pressure_test.cpp)
     rhodes_add_vst3_test(rhodes_vst3_filtered_pressure_tests tests/cpp/vst3_pressure_test.cpp TRUE)
     rhodes_add_vst3_test(rhodes_vst3_quadrature_pressure_tests tests/cpp/vst3_pressure_test.cpp FALSE TRUE)
@@ -333,14 +339,39 @@ if(BUILD_TESTING)
     set_tests_properties(vst3.sdk_validator PROPERTIES TIMEOUT 180)
     get_target_property(rhodes_filtered_bundle rhodes_vst3_filtered SMTG_PLUGIN_PACKAGE_PATH)
     get_target_property(rhodes_quadrature_bundle rhodes_vst3_quadrature SMTG_PLUGIN_PACKAGE_PATH)
-    if(SMTG_LINUX)
+    if(SMTG_LINUX OR SMTG_WIN OR SMTG_MAC)
         # The host exercises independently loaded production modules. Keep SDK
         # loader sources under SDK options and strict warnings on our test.
+        # Match the pinned validator/editorhost platform sources and ARC setup.
+        if(SMTG_MAC)
+            set(rhodes_module_loader "${RHODES_VST3_SDK_ROOT}/public.sdk/source/vst/hosting/module_mac.mm")
+            set_source_files_properties("${rhodes_module_loader}" PROPERTIES
+                COMPILE_FLAGS "-fobjc-arc")
+        elseif(SMTG_WIN)
+            set(rhodes_module_loader "${RHODES_VST3_SDK_ROOT}/public.sdk/source/vst/hosting/module_win32.cpp")
+        else()
+            set(rhodes_module_loader "${RHODES_VST3_SDK_ROOT}/public.sdk/source/vst/hosting/module_linux.cpp")
+        endif()
         add_library(rhodes_vst3_loader_support STATIC
-            "${RHODES_VST3_SDK_ROOT}/public.sdk/source/vst/hosting/module_linux.cpp"
+            "${rhodes_module_loader}"
             "${RHODES_VST3_SDK_ROOT}/public.sdk/source/common/memorystream.cpp")
         target_compile_features(rhodes_vst3_loader_support PRIVATE cxx_std_20)
         target_link_libraries(rhodes_vst3_loader_support PUBLIC sdk_hosting)
+        if(SMTG_WIN OR SMTG_MAC)
+            # SDK directory options do not propagate to targets created here.
+            # Reuse its host target's own options only for these SDK sources.
+            target_compile_options(rhodes_vst3_loader_support PRIVATE
+                "$<TARGET_PROPERTY:sdk_hosting,COMPILE_OPTIONS>")
+            target_compile_definitions(rhodes_vst3_loader_support PRIVATE
+                "$<TARGET_PROPERTY:sdk_hosting,COMPILE_DEFINITIONS>")
+        endif()
+        if(SMTG_MAC)
+            # Cocoa is used by module_mac.mm; the static archive must carry the
+            # framework to each host executable, including non-Xcode builds.
+            find_library(RHODES_COCOA_FRAMEWORK Cocoa REQUIRED)
+            target_link_libraries(rhodes_vst3_loader_support PUBLIC "${RHODES_COCOA_FRAMEWORK}")
+            smtg_target_setup_universal_binary(rhodes_vst3_loader_support)
+        endif()
         add_executable(rhodes_vst3_dual_module_tests
             "${PROJECT_SOURCE_DIR}/tests/cpp/vst3_dual_module_test.cpp")
         target_compile_features(rhodes_vst3_dual_module_tests PRIVATE cxx_std_20)
@@ -367,6 +398,24 @@ if(BUILD_TESTING)
                 ${test_name} "${rhodes_plugin_bundle}" "${rhodes_filtered_bundle}" "${rhodes_quadrature_bundle}")
             set_tests_properties(vst3.triple_module_${test_name} PROPERTIES TIMEOUT 60)
         endforeach()
+        add_executable(rhodes_vst3_loaded_midi_tests
+            "${PROJECT_SOURCE_DIR}/tests/cpp/vst3_loaded_midi_test.cpp")
+        target_compile_features(rhodes_vst3_loaded_midi_tests PRIVATE cxx_std_20)
+        target_include_directories(rhodes_vst3_loaded_midi_tests SYSTEM PRIVATE "${RHODES_VST3_SDK_ROOT}")
+        target_link_libraries(rhodes_vst3_loaded_midi_tests PRIVATE rhodes_vst3_loader_support)
+        rhodes_target_options(rhodes_vst3_loaded_midi_tests)
+        add_dependencies(rhodes_vst3_loaded_midi_tests rhodes_vst3 rhodes_vst3_filtered rhodes_vst3_quadrature)
+        add_dependencies(rhodes_vst3_checks rhodes_vst3_loaded_midi_tests)
+        add_test(NAME vst3.loaded_midi COMMAND rhodes_vst3_loaded_midi_tests
+            "${rhodes_plugin_bundle}" "${rhodes_filtered_bundle}" "${rhodes_quadrature_bundle}")
+        set_tests_properties(vst3.loaded_midi PROPERTIES TIMEOUT 60)
+        if(SMTG_MAC)
+            foreach(target IN ITEMS rhodes_vst3_dual_module_tests
+                    rhodes_vst3_triple_module_tests rhodes_vst3_loaded_midi_tests)
+                smtg_target_setup_universal_binary(${target})
+                smtg_target_codesign(${target})
+            endforeach()
+        endif()
     endif()
     add_test(NAME vst3.filtered_sdk_validator
         COMMAND $<TARGET_FILE:validator> "${rhodes_filtered_bundle}")

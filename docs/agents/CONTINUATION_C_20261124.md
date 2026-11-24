@@ -18,7 +18,7 @@ acceptance. `python3 tools/validate_continuation_c.py` checks ledger integrity.
 | --- | --- | --- | --- |
 | 1 | 001–020 | Complete | Recover context, reproduce host failures, review contracts and bounds |
 | 2 | 021–040 | Complete | Implement CC123, validated pressure and portable text; independent regression and compatibility checks |
-| 3 | 041–060 | Pending | Close integration gaps and establish portable, reproducible verification |
+| 3 | 041–060 | Active | Close integration gaps and establish portable, reproducible verification |
 | 4 | 061–080 | Pending | Review retained evidence and remaining implementation risks |
 | 5 | 081–100 | Pending | Complete acceptance review and source-bound continuation notes |
 
@@ -44,10 +44,27 @@ fidelity, native DAW, device deadline or worst-case execution-time claim.
 [Native CI run 45367133323](https://github.com/baabi-boo/Fender-rhoades/actions/runs/45367133323)
 passed all 153 Linux VST3 checks. Windows rejected a shadowed test-helper argument
 under MSVC's warning-as-error policy; renaming it preserves that policy and passes
-the nine affected local suites. Corrected native results and macOS execution are
-still required before claiming those platforms for this continuation.
+the nine affected local suites. At the corrected
+[75a444d checkpoint](https://github.com/baabi-boo/Fender-rhoades/commit/75a444df6e68b2d2ced14a4bd0772a6f7b1b914c),
+[native CI run 45369327428](https://github.com/baabi-boo/Fender-rhoades/actions/runs/45369327428)
+passed Linux and Windows; macOS execution remains pending.
 
 Wave 2's final review identified new-feature partition coverage and inactive
 output interactions as the next permanent regression work. The latter also has
-a passing 24-scenario temporary probe in worker 039's report. Durable raw replay
-data and final criterion review remain integration work.
+a passing 24-scenario temporary probe in worker 039's report. At that checkpoint,
+durable raw replay data and final criterion review were also outstanding.
+
+Wave 3 adds permanent scalar-oracle partition and inactive-output checks, plus
+an SDK-only loaded-MIDI test. All pass locally. A review found that sustain masked
+one loaded-test ordering assertion; ending sustain between the two commands
+makes the error audible, and a counterfactual oracle verifies that sensitivity.
+Loaded-module CMake coverage now includes Windows and macOS; those new branches
+still require their own native results.
+
+The [raw evidence archive](../validation/host-midi-raw-20261124.tar.gz) and
+[manifest](../validation/host-midi-raw-20261124-manifest.json) preserve 612 original
+files as 191 content blobs. `python3 tools/verify_host_midi_archive.py` verifies
+the archive, mappings and referenced reports without extracting or executing
+content. It checks byte integrity, not execution authenticity or fidelity. The
+[verification guide](../HOST_MIDI_VERIFICATION.md) explains the commands, frozen
+inputs and limits on reproduction.

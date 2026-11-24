@@ -4,8 +4,8 @@
   "goal": "Physically model a Fender Rhodes Mark I from evolving mechanical, electromagnetic and circuit states without recorded-note playback.",
   "target": "One documented 73-key Mark I Stage specimen at its specified loaded electrical output; identity and measurements pending.",
   "fidelity_status": "unvalidated",
-  "revision": 37,
-  "updated_at": "2026-11-24T09:35:20Z",
+  "revision": 38,
+  "updated_at": "2026-11-24T10:08:18Z",
   "tasks": [
     {
       "id": "FND-001",
@@ -511,7 +511,8 @@
         "include/rhodes/control_text.hpp",
         "tools/generate_control_text_vectors.py",
         "CMakeLists.txt",
-        ".github/workflows/ci.yml"
+        ".github/workflows/ci.yml",
+        "tools/verify_host_midi_archive.py"
       ]
     }
   ],
@@ -811,6 +812,14 @@
       "task": "HOST-002",
       "owner": "continuation-c-root",
       "detail": "Add CI regeneration check for independent control-text vectors; no platform baseline or dependency changes."
+    },
+    {
+      "revision": 38,
+      "at": "2026-11-24T10:08:18Z",
+      "action": "definition_updated",
+      "task": "HOST-002",
+      "owner": "continuation-c-root",
+      "detail": "Include read-only verification of retained host MIDI raw evidence and its CI gate; acceptance and dependencies unchanged."
     }
   ]
 }

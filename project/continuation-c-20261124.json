@@ -6,7 +6,7 @@
   "requested_agents": 100,
   "requested_waves": 5,
   "concurrency_limit_including_integrator": 4,
-  "completed_agents": 40,
+  "completed_agents": 55,
   "agents": [
     {
       "assignment": 1,
@@ -327,6 +327,144 @@
       "status": "completed",
       "report": "docs/agents/reports/continuation-c/w2-040.md",
       "sha256": "ac22c1b08feca6e587cbe7011da834d7ccced21826be014876d864230db00214"
+    },
+    {
+      "assignment": 41,
+      "wave": 3,
+      "agent_task_name": "/root/w3_041_command_partition_tests",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w3-041.md",
+      "sha256": "a8926cb977b4da81dea4a1de4ed604953aa1e543aa0188e1eb5060f59c44a017"
+    },
+    {
+      "assignment": 42,
+      "wave": 3,
+      "agent_task_name": "/root/w3_042_loaded_midi_tests",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w3-042.md",
+      "sha256": "7961ef17d8c373bda09d435f8242f6de806968d444b07420c9e49fee9108c6e5"
+    },
+    {
+      "assignment": 43,
+      "wave": 3,
+      "agent_task_name": "/root/w3_043_inactive_command_tests",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w3-043.md",
+      "sha256": "6a45c277f055186adf9ef8e6ff86301a945b19c69cc582b42bbce35e728538fe"
+    },
+    {
+      "assignment": 44,
+      "wave": 3,
+      "agent_task_name": "/root/w3_044_replay_archive",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w3-044.md",
+      "sha256": "65d37fbe5c3a78029cb80e15ed9cd9f08657c1b824f52bafe90a716928033595"
+    },
+    {
+      "assignment": 45,
+      "wave": 3,
+      "agent_task_name": "/root/w3_045_native_loader_build",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w3-045.md",
+      "sha256": "2b74db71ebc19c608a7551008a18db42059d04f5ff0e7f0a1504d7d57e3f35ca"
+    },
+    {
+      "assignment": 46,
+      "wave": 3,
+      "agent_task_name": "/root/w3_046_archive_verifier",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w3-046.md",
+      "sha256": "08e69f9ed117cd03d8dc272809a1337a2bde7abc8032ea26b3e72bc211c8d623"
+    },
+    {
+      "assignment": 47,
+      "wave": 3,
+      "agent_task_name": "/root/w3_047_archive_verifier_tests",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w3-047.md",
+      "sha256": "634bc37931f9212ea4d1abee37085f59c0935d9c826a528961f9f0e1bf664deb"
+    },
+    {
+      "assignment": 48,
+      "wave": 3,
+      "agent_task_name": "/root/w3_048_loaded_host_review",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w3-048.md",
+      "sha256": "49c2dff164b8bef61571f536723ea4a6d281d5a08efb269b6f4d0d962380ecbf"
+    },
+    {
+      "assignment": 49,
+      "wave": 3,
+      "agent_task_name": "/root/w3_049_reproduction_guide",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w3-049.md",
+      "sha256": "758d198f587808f7490385ee488df35ddf94dd921a058c377dbf40b0b7a5a863"
+    },
+    {
+      "assignment": 50,
+      "wave": 3,
+      "agent_task_name": "/root/w3_050_partition_oracle_review",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w3-050.md",
+      "sha256": "f7606145a4ab498f330927e8210cfbbf33a0d3b914f7e3033845f841818e28fe"
+    },
+    {
+      "assignment": 51,
+      "wave": 3,
+      "agent_task_name": "/root/w3_051_inactive_oracle_review",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w3-051.md",
+      "sha256": "91755a7cfe0ad241694ba25d54760145fef96e2fffaa36ad15bfb318b31909ee"
+    },
+    {
+      "assignment": 52,
+      "wave": 3,
+      "agent_task_name": "/root/w3_052_public_host_mapping",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w3-052.md",
+      "sha256": "950216a39cff1a6ada04cd4c0bb6d23a4f6ffe604a513de643096546451b4bbc"
+    },
+    {
+      "assignment": 53,
+      "wave": 3,
+      "agent_task_name": "/root/w3_053_ci_registration_audit",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w3-053.md",
+      "sha256": "6e4dce76a7135a6bd75f7b96390bd808763e7382404fb17ccefeb75d5ed641f8"
+    },
+    {
+      "assignment": 54,
+      "wave": 3,
+      "agent_task_name": "/root/w3_054_build_guide_update",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w3-054.md",
+      "sha256": "c982e96d1bfc0b34595da779e2d5aa685e620df3f3d44aa920ff8cea04827a77"
+    },
+    {
+      "assignment": 55,
+      "wave": 3,
+      "agent_task_name": "/root/w3_055_disabled_tests_config",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w3-055.md",
+      "sha256": "8e4398c8cd88cbb026f05329197600fbc8ce2ebddffbbd065ed1dfecc3fdd61c"
+    },
+    {
+      "assignment": 56,
+      "wave": 3,
+      "agent_task_name": "/root/w3_056_delivery_protocol_update",
+      "status": "running"
+    },
+    {
+      "assignment": 57,
+      "wave": 3,
+      "agent_task_name": "/root/w3_057_source_binding_audit",
+      "status": "running"
+    },
+    {
+      "assignment": 58,
+      "wave": 3,
+      "agent_task_name": "/root/w3_058_command_cost_audit",
+      "status": "running"
     }
   ]
 }
