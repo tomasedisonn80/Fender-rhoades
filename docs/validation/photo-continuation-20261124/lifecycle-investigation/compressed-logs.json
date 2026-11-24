@@ -1,0 +1,26 @@
+[
+  {
+    "original_path": "wheel-editorhost.log",
+    "original_bytes": 2879940,
+    "original_sha256": "38729dbbc81c53f23478b9554f8eb00f37c57c36bd66767e86863f7685ef7b44",
+    "compressed_path": "wheel-editorhost.log.gz",
+    "compressed_bytes": 11395,
+    "compressed_sha256": "a66ef41f200f4395f76bc5a4f4c2c2412d265e34566634d13aef0b943bc86659"
+  },
+  {
+    "original_path": "reentrant-editorhost.log",
+    "original_bytes": 3639840,
+    "original_sha256": "af8e1416a730fc54d9532839892a332923a8768db1ce4225f211ae877b7e29a7",
+    "compressed_path": "reentrant-editorhost.log.gz",
+    "compressed_bytes": 14343,
+    "compressed_sha256": "2d22258ed20d9ae0ef4dc76b2bd8c8f005eb59a23a450b358de967a8790a26bc"
+  },
+  {
+    "original_path": "control-editorhost.log",
+    "original_bytes": 3552657,
+    "original_sha256": "e20ea6686c304455165de96511305c530eb22be5f78746c9546d6608edca1c1d",
+    "compressed_path": "control-editorhost.log.gz",
+    "compressed_bytes": 14099,
+    "compressed_sha256": "3ba72b9f49374cbbcafe52c9bdbc06750c7c798be8a0bd32a56f4add3a7431a9"
+  }
+]

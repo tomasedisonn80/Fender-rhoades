@@ -1,0 +1,39 @@
+Internal ctest changing into directory: /home/agent/rhoades-9a04c9726e31/build
+Test project /home/agent/rhoades-9a04c9726e31/build
+      Start 554: vst3.photo_lifecycle.normal_close
+ 1/11 Test #554: vst3.photo_lifecycle.normal_close ..........................   Passed    0.17 sec
+      Start 555: vst3.photo_lifecycle.remove_begin
+ 2/11 Test #555: vst3.photo_lifecycle.remove_begin ..........................   Passed    0.16 sec
+      Start 556: vst3.photo_lifecycle.remove_perform
+ 3/11 Test #556: vst3.photo_lifecycle.remove_perform ........................   Passed    0.16 sec
+      Start 557: vst3.photo_lifecycle.remove_end
+ 4/11 Test #557: vst3.photo_lifecycle.remove_end ............................   Passed    0.16 sec
+      Start 558: vst3.photo_lifecycle.nested_pump
+ 5/11 Test #558: vst3.photo_lifecycle.nested_pump ...........................   Passed    0.21 sec
+      Start 559: vst3.photo_lifecycle.timer_refused
+ 6/11 Test #559: vst3.photo_lifecycle.timer_refused .........................   Passed    0.16 sec
+      Start 560: vst3.photo_lifecycle.repeated_remove
+ 7/11 Test #560: vst3.photo_lifecycle.repeated_remove .......................   Passed    0.16 sec
+      Start 561: vst3.photo_lifecycle.reopen
+ 8/11 Test #561: vst3.photo_lifecycle.reopen ................................***Failed    0.17 sec
+rhodes_vst3_photo_lifecycle_tests: ../../../src/cairo-xcb-screen.c:219: _get_screen_index: Assertion `!"reached"' failed.
+
+      Start 562: vst3.photo_lifecycle.parent_destroy_after_remove
+ 9/11 Test #562: vst3.photo_lifecycle.parent_destroy_after_remove ...........   Passed    0.17 sec
+      Start 563: vst3.photo_lifecycle.release_host_reference_after_remove
+10/11 Test #563: vst3.photo_lifecycle.release_host_reference_after_remove ...   Passed    0.16 sec
+      Start 564: vst3.photo_lifecycle.focus_remove
+11/11 Test #564: vst3.photo_lifecycle.focus_remove ..........................   Passed    0.17 sec
+
+91% tests passed, 1 tests failed out of 11
+
+Label Time Summary:
+editor       =   1.84 sec*proc (11 tests)
+lifecycle    =   1.84 sec*proc (11 tests)
+linux-xcb    =   1.84 sec*proc (11 tests)
+
+Total Test time (real) =   1.85 sec
+
+The following tests FAILED:
+	561 - vst3.photo_lifecycle.reopen (Failed)              editor lifecycle linux-xcb
+Errors while running CTest

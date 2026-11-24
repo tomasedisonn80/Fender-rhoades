@@ -1,0 +1,17 @@
+{
+  "worker": "w3-052",
+  "selector": "remove_begin",
+  "native_probe_count": 1,
+  "started_utc": "2026-11-24T19:00:14Z",
+  "finished_utc": "2026-11-24T19:00:15Z",
+  "actual_wrapper_exit_code": 139,
+  "signal_interpretation": "SIGSEGV (11), according to run_xvfb_test.py child-signal mapping; raw child wait status was not separately recorded",
+  "stdout_bytes": 0,
+  "stderr_bytes": 0,
+  "classification": "expected negative; not positive acceptance",
+  "native_command": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 /dev/shm/rhoades-9a04c9726e31/Fender-rhoades/tools/run_xvfb_test.py --xvfb /home/agent/rhoades-9a04c9726e31/gui-bin/Xvfb --xauth /home/agent/rhoades-9a04c9726e31/gui-bin/xauth --xdpyinfo /home/agent/rhoades-9a04c9726e31/gui-bin/xdpyinfo --startup-timeout 10 --test-timeout 30 -- /home/agent/rhoades-9a04c9726e31/w3-052/snapshot/rhodes_vst3_photo_lifecycle_tests /home/agent/rhoades-9a04c9726e31/w3-052/snapshot/RhodesResearch.vst3 remove_begin",
+  "input_manifest_sha256": "56bc4d6666096aad20594aca947b733020413848b37fed3fd66b49deb4a50e36",
+  "post_run_frozen_input_hashes_match": true,
+  "wrapper_setup_failure": false,
+  "reruns": 0
+}

@@ -1,0 +1,43 @@
+Internal ctest changing into directory: /home/agent/rhoades-9a04c9726e31/build
+Test project /home/agent/rhoades-9a04c9726e31/build
+      Start 554: vst3.photo_lifecycle.normal_close
+ 1/13 Test #554: vst3.photo_lifecycle.normal_close ..........................   Passed    0.27 sec
+      Start 555: vst3.photo_lifecycle.remove_begin
+ 2/13 Test #555: vst3.photo_lifecycle.remove_begin ..........................   Passed    0.41 sec
+      Start 556: vst3.photo_lifecycle.remove_perform
+ 3/13 Test #556: vst3.photo_lifecycle.remove_perform ........................   Passed    0.27 sec
+      Start 557: vst3.photo_lifecycle.remove_end
+ 4/13 Test #557: vst3.photo_lifecycle.remove_end ............................   Passed    0.26 sec
+      Start 558: vst3.photo_lifecycle.nested_pump
+ 5/13 Test #558: vst3.photo_lifecycle.nested_pump ...........................   Passed    0.27 sec
+      Start 559: vst3.photo_lifecycle.timer_refused
+ 6/13 Test #559: vst3.photo_lifecycle.timer_refused .........................   Passed    0.26 sec
+      Start 560: vst3.photo_lifecycle.repeated_remove
+ 7/13 Test #560: vst3.photo_lifecycle.repeated_remove .......................   Passed    0.27 sec
+      Start 561: vst3.photo_lifecycle.reopen
+ 8/13 Test #561: vst3.photo_lifecycle.reopen ................................   Passed    0.31 sec
+      Start 562: vst3.photo_lifecycle.parent_destroy_after_remove
+ 9/13 Test #562: vst3.photo_lifecycle.parent_destroy_after_remove ...........   Passed    0.46 sec
+      Start 563: vst3.photo_lifecycle.release_host_reference_after_remove
+10/13 Test #563: vst3.photo_lifecycle.release_host_reference_after_remove ...   Passed    0.29 sec
+      Start 564: vst3.photo_lifecycle.focus_remove
+11/13 Test #564: vst3.photo_lifecycle.focus_remove ..........................   Passed    0.27 sec
+      Start 565: vst3.photo_lifecycle.reopen_cycles
+12/13 Test #565: vst3.photo_lifecycle.reopen_cycles .........................   Passed    1.02 sec
+      Start 566: vst3.photo_lifecycle.sibling_survives
+13/13 Test #566: vst3.photo_lifecycle.sibling_survives ......................***Failed    2.51 sec
+FAIL native photo lifecycle: primary child survived removal with sibling open
+
+
+92% tests passed, 1 tests failed out of 13
+
+Label Time Summary:
+editor       =   6.86 sec*proc (13 tests)
+lifecycle    =   6.86 sec*proc (13 tests)
+linux-xcb    =   6.86 sec*proc (13 tests)
+
+Total Test time (real) =   6.87 sec
+
+The following tests FAILED:
+	566 - vst3.photo_lifecycle.sibling_survives (Failed)    editor lifecycle linux-xcb
+Errors while running CTest

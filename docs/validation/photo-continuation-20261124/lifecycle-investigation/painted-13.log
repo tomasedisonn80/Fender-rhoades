@@ -1,0 +1,68 @@
+Internal ctest changing into directory: /home/agent/rhoades-9a04c9726e31/build
+Test project /home/agent/rhoades-9a04c9726e31/build
+      Start 235: vst3.photo_x11_keyboard
+ 1/14 Test #235: vst3.photo_x11_keyboard ....................................   Passed    0.13 sec
+      Start 554: vst3.photo_lifecycle.normal_close
+ 2/14 Test #554: vst3.photo_lifecycle.normal_close ..........................***Failed    0.18 sec
+
+      Start 555: vst3.photo_lifecycle.remove_begin
+ 3/14 Test #555: vst3.photo_lifecycle.remove_begin ..........................***Failed    0.17 sec
+
+      Start 556: vst3.photo_lifecycle.remove_perform
+ 4/14 Test #556: vst3.photo_lifecycle.remove_perform ........................***Failed    0.16 sec
+
+      Start 557: vst3.photo_lifecycle.remove_end
+ 5/14 Test #557: vst3.photo_lifecycle.remove_end ............................***Failed    0.17 sec
+
+      Start 558: vst3.photo_lifecycle.nested_pump
+ 6/14 Test #558: vst3.photo_lifecycle.nested_pump ...........................***Failed    0.17 sec
+
+      Start 559: vst3.photo_lifecycle.timer_refused
+ 7/14 Test #559: vst3.photo_lifecycle.timer_refused .........................***Failed    0.16 sec
+
+      Start 560: vst3.photo_lifecycle.repeated_remove
+ 8/14 Test #560: vst3.photo_lifecycle.repeated_remove .......................***Failed    0.17 sec
+
+      Start 561: vst3.photo_lifecycle.reopen
+ 9/14 Test #561: vst3.photo_lifecycle.reopen ................................***Failed    0.18 sec
+
+      Start 562: vst3.photo_lifecycle.parent_destroy_after_remove
+10/14 Test #562: vst3.photo_lifecycle.parent_destroy_after_remove ...........***Failed    0.17 sec
+
+      Start 563: vst3.photo_lifecycle.release_host_reference_after_remove
+11/14 Test #563: vst3.photo_lifecycle.release_host_reference_after_remove ...***Failed    0.34 sec
+
+      Start 564: vst3.photo_lifecycle.focus_remove
+12/14 Test #564: vst3.photo_lifecycle.focus_remove ..........................***Failed    0.29 sec
+
+      Start 565: vst3.photo_lifecycle.reopen_cycles
+13/14 Test #565: vst3.photo_lifecycle.reopen_cycles .........................***Failed    0.17 sec
+
+      Start 566: vst3.photo_lifecycle.sibling_survives
+14/14 Test #566: vst3.photo_lifecycle.sibling_survives ......................***Failed    0.16 sec
+
+
+7% tests passed, 13 tests failed out of 14
+
+Label Time Summary:
+editor       =   2.62 sec*proc (14 tests)
+lifecycle    =   2.49 sec*proc (13 tests)
+linux-xcb    =   2.62 sec*proc (14 tests)
+
+Total Test time (real) =   2.64 sec
+
+The following tests FAILED:
+	554 - vst3.photo_lifecycle.normal_close (Failed)        editor lifecycle linux-xcb
+	555 - vst3.photo_lifecycle.remove_begin (Failed)        editor lifecycle linux-xcb
+	556 - vst3.photo_lifecycle.remove_perform (Failed)      editor lifecycle linux-xcb
+	557 - vst3.photo_lifecycle.remove_end (Failed)          editor lifecycle linux-xcb
+	558 - vst3.photo_lifecycle.nested_pump (Failed)         editor lifecycle linux-xcb
+	559 - vst3.photo_lifecycle.timer_refused (Failed)       editor lifecycle linux-xcb
+	560 - vst3.photo_lifecycle.repeated_remove (Failed)     editor lifecycle linux-xcb
+	561 - vst3.photo_lifecycle.reopen (Failed)              editor lifecycle linux-xcb
+	562 - vst3.photo_lifecycle.parent_destroy_after_remove (Failed) editor lifecycle linux-xcb
+	563 - vst3.photo_lifecycle.release_host_reference_after_remove (Failed) editor lifecycle linux-xcb
+	564 - vst3.photo_lifecycle.focus_remove (Failed)        editor lifecycle linux-xcb
+	565 - vst3.photo_lifecycle.reopen_cycles (Failed)       editor lifecycle linux-xcb
+	566 - vst3.photo_lifecycle.sibling_survives (Failed)    editor lifecycle linux-xcb
+Errors while running CTest

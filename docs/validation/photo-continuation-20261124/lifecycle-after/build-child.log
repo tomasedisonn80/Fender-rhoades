@@ -1,0 +1,17 @@
+[1/12] Building C object vst3-sdk/VSTGUI.build/vstgui/CMakeFiles/vstgui_wayland_protocols.dir/wayland-protocols/linux-dmabuf-v1-protocol.c.o
+cc1: warning: command-line option ‘-Wsuggest-override’ is valid for C++/ObjC++ but not for C
+[2/12] Building C object vst3-sdk/VSTGUI.build/vstgui/CMakeFiles/vstgui_wayland_protocols.dir/wayland-protocols/xdg-shell-protocol.c.o
+cc1: warning: command-line option ‘-Wsuggest-override’ is valid for C++/ObjC++ but not for C
+[3/12] Building C object vst3-sdk/VSTGUI.build/vstgui/CMakeFiles/vstgui_wayland_protocols.dir/wayland-protocols/xdg-decoration-unstable-v1-protocol.c.o
+cc1: warning: command-line option ‘-Wsuggest-override’ is valid for C++/ObjC++ but not for C
+[4/12] Building CXX object vst3-sdk/VSTGUI.build/vstgui/lib/CMakeFiles/vstgui.dir/__/__/__/__/rhodes-vstgui-overlay/x11utils.cpp.o
+[5/12] Linking CXX static library lib/Release/libvstgui.a
+[6/12] Generating VST3/Release/RhodesResearchQuadrature.vst3/Contents/Resources/THIRD_PARTY_NOTICES.md
+[SMTG] Copied /home/agent/rhoades-9a04c9726e31/build/rhodes-resources/rhodes_vst3_quadrature/THIRD_PARTY_NOTICES.md to /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3/Contents/Resources/THIRD_PARTY_NOTICES.md
+[7/12] Generating VST3/Release/RhodesResearchFiltered.vst3/Contents/Resources/THIRD_PARTY_NOTICES.md
+[SMTG] Copied /home/agent/rhoades-9a04c9726e31/build/rhodes-resources/rhodes_vst3_filtered/THIRD_PARTY_NOTICES.md to /home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3/Contents/Resources/THIRD_PARTY_NOTICES.md
+[8/12] Linking CXX shared module VST3/Release/RhodesResearch.vst3/Contents/x86_64-linux/RhodesResearch.so
+[9/12] Linking CXX shared module VST3/Release/RhodesResearchFiltered.vst3/Contents/x86_64-linux/RhodesResearchFiltered.so
+[10/12] Linking CXX shared module VST3/Release/RhodesResearchQuadrature.vst3/Contents/x86_64-linux/RhodesResearchQuadrature.so
+[11/12] Building CXX object CMakeFiles/rhodes_vst3_photo_lifecycle_tests.dir/tests/cpp/vst3_photo_lifecycle_test.cpp.o
+[12/12] Linking CXX executable rhodes_vst3_photo_lifecycle_tests

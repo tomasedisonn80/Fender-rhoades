@@ -1,0 +1,105 @@
+Internal ctest changing into directory: /home/agent/rhoades-9a04c9726e31/build
+Test project /home/agent/rhoades-9a04c9726e31/build
+      Start 208: vst3.photo_native_focus
+ 1/42 Test #208: vst3.photo_native_focus ................................***Failed    0.19 sec
+run_xvfb_test: [Errno 2] No such file or directory: '/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_photo_native_focus_tests'
+Xvfb output:
+Warning: getifaddrs returns Operation not permitted
+Warning: getifaddrs returns Operation not permitted
+
+
+      Start 209: vst3.photo_view.rapid_switches
+ 2/42 Test #209: vst3.photo_view.rapid_switches .........................   Passed    0.01 sec
+      Start 210: vst3.photo_view.continuous_reset
+ 3/42 Test #210: vst3.photo_view.continuous_reset .......................   Passed    0.01 sec
+      Start 211: vst3.photo_view.host_shortcuts
+ 4/42 Test #211: vst3.photo_view.host_shortcuts .........................   Passed    0.01 sec
+      Start 212: vst3.photo_view.fine_steps
+ 5/42 Test #212: vst3.photo_view.fine_steps .............................   Passed    0.01 sec
+      Start 213: vst3.photo_view.rejected_edits
+ 6/42 Test #213: vst3.photo_view.rejected_edits .........................   Passed    0.01 sec
+      Start 214: vst3.photo_view.end_cancel_idempotent
+ 7/42 Test #214: vst3.photo_view.end_cancel_idempotent ..................   Passed    0.01 sec
+      Start 215: vst3.photo_view.begin_cancel_drag
+ 8/42 Test #215: vst3.photo_view.begin_cancel_drag ......................   Passed    0.00 sec
+      Start 216: vst3.photo_view.begin_cancel_wheel
+ 9/42 Test #216: vst3.photo_view.begin_cancel_wheel .....................   Passed    0.01 sec
+      Start 217: vst3.photo_view.begin_cancel_switch
+10/42 Test #217: vst3.photo_view.begin_cancel_switch ....................   Passed    0.00 sec
+      Start 218: vst3.photo_view.end_cancel_new_press
+11/42 Test #218: vst3.photo_view.end_cancel_new_press ...................   Passed    0.01 sec
+      Start 219: vst3.photo_view.perform_cancel_drag
+12/42 Test #219: vst3.photo_view.perform_cancel_drag ....................   Passed    0.01 sec
+      Start 220: vst3.photo_view.perform_cancel_host_update
+13/42 Test #220: vst3.photo_view.perform_cancel_host_update .............   Passed    0.01 sec
+      Start 221: vst3.photo_view.audition_drag
+14/42 Test #221: vst3.photo_view.audition_drag ..........................   Passed    0.00 sec
+      Start 222: vst3.photo_view.audition_cancel_dispatch
+15/42 Test #222: vst3.photo_view.audition_cancel_dispatch ...............   Passed    0.01 sec
+      Start 223: vst3.photo_view.audition_cancel_allocation
+16/42 Test #223: vst3.photo_view.audition_cancel_allocation .............   Passed    0.01 sec
+      Start 224: vst3.photo_view.audition_cancel_sibling
+17/42 Test #224: vst3.photo_view.audition_cancel_sibling ................   Passed    0.01 sec
+      Start 225: vst3.photo_view.observer_cancel_rollback
+18/42 Test #225: vst3.photo_view.observer_cancel_rollback ...............   Passed    0.00 sec
+      Start 226: vst3.photo_view.observer_cancel_host_changed
+19/42 Test #226: vst3.photo_view.observer_cancel_host_changed ...........   Passed    0.01 sec
+      Start 227: vst3.photo_view.observer_cancel_host_equal
+20/42 Test #227: vst3.photo_view.observer_cancel_host_equal .............   Passed    0.00 sec
+      Start 228: vst3.photo_view.perform_reject_host_equal
+21/42 Test #228: vst3.photo_view.perform_reject_host_equal ..............   Passed    0.00 sec
+      Start 229: vst3.photo_view.perform_reject_other_parameter
+22/42 Test #229: vst3.photo_view.perform_reject_other_parameter .........   Passed    0.00 sec
+      Start 230: vst3.photo_view.keyboard_cancel_edit
+23/42 Test #230: vst3.photo_view.keyboard_cancel_edit ...................   Passed    0.00 sec
+      Start 231: vst3.photo_view.keyboard_cancel_tab
+24/42 Test #231: vst3.photo_view.keyboard_cancel_tab ....................   Passed    0.00 sec
+      Start 232: vst3.photo_view.keyboard_audition_cancel_edit
+25/42 Test #232: vst3.photo_view.keyboard_audition_cancel_edit ..........   Passed    0.00 sec
+      Start 233: vst3.photo_view.audition_glissando_cancel_dispatch
+26/42 Test #233: vst3.photo_view.audition_glissando_cancel_dispatch .....   Passed    0.01 sec
+      Start 234: vst3.photo_view.audition_glissando_cancel_allocation
+27/42 Test #234: vst3.photo_view.audition_glissando_cancel_allocation ...   Passed    0.01 sec
+      Start 236: vst3.controller_revision
+28/42 Test #236: vst3.controller_revision ...............................   Passed    0.00 sec
+      Start 237: vst3.audition_reentrancy.construction
+29/42 Test #237: vst3.audition_reentrancy.construction ..................   Passed    0.00 sec
+      Start 238: vst3.audition_reentrancy.notify
+30/42 Test #238: vst3.audition_reentrancy.notify ........................   Passed    0.00 sec
+      Start 239: vst3.audition_reentrancy.pending
+31/42 Test #239: vst3.audition_reentrancy.pending .......................   Passed    0.00 sec
+      Start 240: vst3.audition_reentrancy.siblings
+32/42 Test #240: vst3.audition_reentrancy.siblings ......................   Passed    0.00 sec
+      Start 241: vst3.audition_reentrancy.coalescing
+33/42 Test #241: vst3.audition_reentrancy.coalescing ....................   Passed    0.00 sec
+      Start 547: vst3.sdk_validator
+34/42 Test #547: vst3.sdk_validator .....................................   Passed    1.45 sec
+      Start 553: vst3.photo_editor_contract
+35/42 Test #553: vst3.photo_editor_contract .............................   Passed    0.07 sec
+      Start 567: vst3.loaded_expression_controls_state
+36/42 Test #567: vst3.loaded_expression_controls_state ..................   Passed    0.11 sec
+      Start 570: vst3.filtered_sdk_validator
+37/42 Test #570: vst3.filtered_sdk_validator ............................   Passed    5.44 sec
+      Start 571: vst3.quadrature_sdk_validator
+38/42 Test #571: vst3.quadrature_sdk_validator ..........................   Passed    3.53 sec
+      Start 572: vst3.moduleinfo_validator
+39/42 Test #572: vst3.moduleinfo_validator ..............................   Passed    0.03 sec
+      Start 573: vst3.filtered_moduleinfo_validator
+40/42 Test #573: vst3.filtered_moduleinfo_validator .....................   Passed    0.02 sec
+      Start 574: vst3.quadrature_moduleinfo_validator
+41/42 Test #574: vst3.quadrature_moduleinfo_validator ...................   Passed    0.01 sec
+      Start 575: vst3.bundle_resources
+42/42 Test #575: vst3.bundle_resources ..................................   Passed    0.10 sec
+
+98% tests passed, 1 tests failed out of 42
+
+Label Time Summary:
+editor         =   0.34 sec*proc (27 tests)
+interaction    =   0.15 sec*proc (26 tests)
+linux-xcb      =   0.19 sec*proc (1 test)
+
+Total Test time (real) =  11.14 sec
+
+The following tests FAILED:
+	208 - vst3.photo_native_focus (Failed)                  editor linux-xcb
+Errors while running CTest

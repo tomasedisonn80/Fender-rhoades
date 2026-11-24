@@ -1,0 +1,78 @@
+{
+  "original_inputs_unchanged": true,
+  "input_files": [
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/editorhost-accepting.cpp",
+      "sha256": "9869947a79e78bd175a2627624b0fcbf6bf9c2cb2d8c841db8d783d3b0e5dda2",
+      "bytes": 12329
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/commands.json",
+      "sha256": "7293d3063b2289cba550de0f3296de977b5bc0a5e06de847a00e5d310a4663d4",
+      "bytes": 30203
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/vst3sdk/public.sdk/samples/vst-hosting/editorhost/source/platform/linux/runloop.cpp",
+      "sha256": "e395e7a28723b04ce20a4931144ae5e9f12c0e9cb77e74f0193d1397927a82f4",
+      "bytes": 7417
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/build/lib/Release/libsdk_hosting.a",
+      "sha256": "b47b0163849345c4bc778a1bb2df0d1abcc2c2aef3da0c09b80d48a202910c6e",
+      "bytes": 186932
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/build/lib/Release/libsdk_common.a",
+      "sha256": "3cc95693f8c5b10c6bc05cfddb468d01b91cc8a5ed5274fe139d95655b9ca2b0",
+      "bytes": 87358
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/build/lib/Release/libbase.a",
+      "sha256": "8093dfa176eec5fa6a945878b339877a83c976afc9723ceffa0e4ab56a518971",
+      "bytes": 326442
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/build/lib/Release/libpluginterfaces.a",
+      "sha256": "ffc7f305b9586c3d45b3e85196e27c2f80135c8141b12b2c5ba3313403134473",
+      "bytes": 45324
+    }
+  ],
+  "output_files": [
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-030/editorhost-accepting",
+      "sha256": "a747bdb2cd1369d9b2bcbfa10ca02276b91409ad60c95ba6a6bb25c15c5df495",
+      "bytes": 275032
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-030/editorhost-accepting.cpp",
+      "sha256": "af078ecda9ec5103018bcfdbdf1640c2e1e4f367d8492286bbdc12e8467b9ac1",
+      "bytes": 13657
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-030/runloop.cpp",
+      "sha256": "2fa95edda014623f800b7b7fba1c0ea635ac9b0c1aa7452f499ef5e6c154fb36",
+      "bytes": 7628
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-030/host-removal.patch",
+      "sha256": "f996dd71832dfb607f2300b09ca2b0cf6a85dd20d9af647724139ece379c07cd",
+      "bytes": 3040
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-030/runloop-trace.patch",
+      "sha256": "c11c66f8800148b0ae741f1ffd0161e0069096c500aaf9e4d6e09d541dab3fb3",
+      "bytes": 453
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-030/RhodesResearch.vst3/Contents/x86_64-linux/RhodesResearch.so",
+      "sha256": "046bea61c956e31289e5cf07657c1c6a7e7451b83d3b53e91944c2b4b7e3f3e5",
+      "bytes": 3147512
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-030/photo_editor-frozen.cpp",
+      "sha256": "688de52a2e5add8b8f3289f518446ca4d4c6f56d73ca866eb9ad2d1fec606e4a",
+      "bytes": 37641
+    }
+  ],
+  "scope": "Only copied host source/runloop rebuilt. Host owns view throughout synchronous removed. Copied frozen Direct bundle; no SDK or production mutation."
+}

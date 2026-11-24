@@ -265,3 +265,105 @@ SDK remains clean, with all pin/content guards active. The generated copy retain
 the upstream license header and existing packaged VSTGUI license. Headless,
 Windows and macOS builds are unaffected. Arbitrary XKB modifier remapping and
 mouse-event translation remain outside this keyboard-only correction.
+
+### Local X11 Cairo connection lifetime adaptation
+
+Linux editor builds then apply the [lifetime helper](../cmake/VstguiX11Lifetime.cmake)
+to that verified Mod4 keyboard overlay and the pinned
+[`x11frame.cpp`](https://github.com/steinbergmedia/vstgui/blob/5db272256172557818b6158cf0bb2c4410bddb25/vstgui/lib/platform/linux/x11frame.cpp).
+Both original sources come from VSTGUI commit
+`5db272256172557818b6158cf0bb2c4410bddb25`, within the unchanged SDK root pin
+`3cdf9ca5d1f5b1b21e0a86832aa4abe55607bd96`. The helper generates two build-local
+sources in `rhodes-vstgui-overlay`: `x11platform-lifetime.cpp` and
+`x11frame-lifetime.cpp`.
+
+The frame registers its Cairo surface's device with the shared run loop. The
+platform retains a device reference and, when the final run-loop user exits,
+finishes and releases that device before disconnecting XCB. Teardown also
+clears released XKB/cursor pointers, cached cursor IDs and the connection
+pointer. The existing Mod4 mapping is retained. `ChildWindow` destruction is
+unchanged by this helper.
+
+| Source bytes | SHA-256 |
+|---|---|
+| Original `x11platform.cpp`, LF normalized | `7158057162bc716aeb52efc5e6744b9432ffb8b86e9e0a68895d9d340cc87bb3` |
+| Keyboard-adapted platform input, LF | `c186a90e423b3895347a676e07c6059accb3b9ab0c187a795d318a1f6af361be` |
+| Original `x11frame.cpp`, LF normalized | `8dc07b3212e9710d23ca5c960ace39900705aa8cb3c09f760ad78ea160200dd5` |
+| Generated `x11platform-lifetime.cpp`, LF | `e0c889e4efa8bf0b2f76feb5592084b64987ba2ae012de3a7afd889b131b87f2` |
+| Generated `x11frame-lifetime.cpp`, LF | `66fa490278825250966aad9f4a054942f3105ab131ff0cf45ba861c1b42dfd7c` |
+
+Configuration checks these hashes, exactly one replacement per target source,
+and each of the four transformation anchors. Both generated sources retain
+their upstream license headers; the existing packaged `VSTGUI-LICENSE.txt`
+applies. The external SDK remains unmodified with its pin/content guards active. No new
+runtime dependency is introduced. The [source and configure report](agents/reports/photo-continuation-20261124/w3-050.md)
+records 22 checks within that limited scope; it does not establish a native
+build, editor close/reopen result or platform acceptance. Those results require
+separate source-bound evidence.
+
+### Local X11 child-window destruction adaptation
+
+Linux editor builds also apply a separate
+[child-window helper](../cmake/VstguiX11ChildWindow.cmake) after the Cairo lifetime
+helper. It generates `rhodes-vstgui-overlay/x11utils.cpp` from the pinned
+[`x11utils.cpp`](https://github.com/steinbergmedia/vstgui/blob/5db272256172557818b6158cf0bb2c4410bddb25/vstgui/lib/platform/linux/x11utils.cpp).
+The SDK root pin `3cdf9ca5d1f5b1b21e0a86832aa4abe55607bd96` and VSTGUI pin
+`5db272256172557818b6158cf0bb2c4410bddb25` are unchanged. This separate helper
+changes `ChildWindow` destruction; the Cairo lifetime helper above does not.
+
+The generated source adds `<cstdlib>` and replaces the empty destructor with a
+connection-guarded `xcb_destroy_window_checked` request for the owned child ID,
+followed by `xcb_request_check` and release of its returned error. This consumes
+an expected `BadWindow` when the host has already destroyed the parent and its
+child. It does not destroy the borrowed host parent, finish the shared Cairo
+device or disconnect XCB, preserving the connection used by other editors.
+The checked request adds a synchronous UI teardown roundtrip without pumping
+events. Construction-failure recovery remains outside this adaptation's scope;
+the [ownership review](agents/reports/photo-continuation-20261124/w3-055.md)
+records that boundary.
+
+| Source bytes | SHA-256 |
+|---|---|
+| Original `x11utils.cpp`, LF normalized | `67c30ca1e6afa5905a5205a3b2d0dc82ca640728c5c77b3e0ae42a0b46a19bac` |
+| Generated `x11utils.cpp`, LF | `47554d4c4e7d330e3791a22f7920e7cfc214a84bff88b5493b4906e36b2a2eae` |
+
+Configuration checks both hashes, one occurrence of each include/destructor
+anchor and exactly one target-source replacement. It also tracks the original
+as a configure dependency and retains its Linux include directory. The upstream
+file starts with a blank line and has no leading license comment; all other
+source bytes are preserved after LF normalization. The existing top-level
+[VSTGUI license](https://github.com/steinbergmedia/vstgui/blob/5db272256172557818b6158cf0bb2c4410bddb25/LICENSE),
+packaged unmodified as `VSTGUI-LICENSE.txt`, applies. The external SDK and its
+license files remain unchanged, with the revision/content guards active; no new
+runtime dependency is introduced. Headless, Windows and macOS builds are unaffected.
+
+The [helper report](agents/reports/photo-continuation-20261124/w3-057.md) records
+13 isolated configure checks only. Those checks do not establish compilation,
+native child cleanup, sibling-editor survival or platform acceptance; such
+claims require separate source-bound results.
+
+### Local Win32 timer adaptation
+
+The [Win32 timer helper](../cmake/VstguiWin32Timer.cmake) generates a build copy
+at `rhodes-vstgui-overlay/wintimer.cpp` from the SDK-relative
+`vstgui4/vstgui/lib/platform/win32/wintimer.cpp`, at VSTGUI commit
+[`5db272256172557818b6158cf0bb2c4410bddb25`](https://github.com/steinbergmedia/vstgui/blob/5db272256172557818b6158cf0bb2c4410bddb25/vstgui/lib/platform/win32/wintimer.cpp).
+After CRLF-to-LF normalization, the only source change is the final return in
+`WinTimer::start()`: `return false;` becomes `return timer != 0;`, reporting
+whether `SetTimer` returned a nonzero timer. The earlier already-running
+rejection remains false; timer registration, callbacks and stop logic retain
+their upstream code.
+
+| Source bytes | SHA-256 |
+|---|---|
+| Original, LF normalized | `8fd9713b0adbdb8c3c5e049a87aaf2bab6d14e2e43f54293b10854942f62dadc` |
+| Adapted, LF | `2d7fbc18625171a4edd7861118b821d70b68f5eae520b53704c5d6b957df0191` |
+
+The helper checks both hashes and requires exactly one target source
+replacement. It leaves the external SDK unchanged and retains the upstream
+license header; the existing packaged `VSTGUI-LICENSE.txt` applies to this
+adaptation. This does not select a license for the project's original code.
+The [source and helper checks](agents/reports/photo-continuation-20261124/w2-033.md)
+do not establish Windows timer execution or editor-close behavior. No Windows
+runtime result for this adaptation is recorded yet; native verification remains
+pending.

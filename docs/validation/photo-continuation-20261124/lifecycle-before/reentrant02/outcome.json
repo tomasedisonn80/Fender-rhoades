@@ -1,0 +1,207 @@
+{
+  "mode": "reentrant",
+  "started_utc": "2026-11-24T18:22:24.163479+00:00",
+  "source_files": [
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-030/editorhost-no-runloop-trace",
+      "sha256": "d4681c418682704fde3335bb41e1ffd72180af06412310d4b83405f1bdfb2f5a",
+      "bytes": 275032
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-030/editorhost-accepting.cpp",
+      "sha256": "af078ecda9ec5103018bcfdbdf1640c2e1e4f367d8492286bbdc12e8467b9ac1",
+      "bytes": 13657
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-030/runloop.cpp",
+      "sha256": "2fa95edda014623f800b7b7fba1c0ea635ac9b0c1aa7452f499ef5e6c154fb36",
+      "bytes": 7628
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-030/RhodesResearch.vst3/Contents/x86_64-linux/RhodesResearch.so",
+      "sha256": "046bea61c956e31289e5cf07657c1c6a7e7451b83d3b53e91944c2b4b7e3f3e5",
+      "bytes": 3147512
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-030/verify_native_photo_editor.py",
+      "sha256": "ce0f2d5c3e74e34c478186bef80ee6879ab0a5328b45d682d9d34d45b6dfda47",
+      "bytes": 31258
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-030/native_close_probe.py",
+      "sha256": "624d70898a041e168f7e8b21a53a0185d2f2a6e4eaa17ec5073355cf2eccdb7a",
+      "bytes": 3888
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-030/crash_trace.so",
+      "sha256": "5af90fc5e29a84b0791465b50d674f7e5fc3b9f1b11e680bc63c21eb1573a6fa",
+      "bytes": 26592
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-030/crash_trace.cpp",
+      "sha256": "7c07f88a089c191d9a86b5a232ec50ecf8530f2f16fd9f0472b9dbf666fe8e73",
+      "bytes": 1617
+    }
+  ],
+  "checks": [
+    {
+      "name": "native_xembed_attachment",
+      "status": "pass",
+      "child_window": 6291457
+    }
+  ],
+  "actions": [],
+  "captures": {},
+  "host_callbacks": [
+    {
+      "kind": "beginEdit",
+      "parameter_id": 0,
+      "observed_seconds": 0.872334,
+      "raw": "beginEdit called (0)"
+    },
+    {
+      "kind": "endEdit",
+      "parameter_id": 0,
+      "observed_seconds": 0.872447,
+      "raw": "endEdit called (0)"
+    }
+  ],
+  "x11_focus_events": [],
+  "display": {
+    "name": "127.0.0.1:52779",
+    "width": 1920,
+    "height": 1440,
+    "depth": 24,
+    "xtest": true
+  },
+  "host_command": [
+    "/home/agent/rhoades-9a04c9726e31/w2-030/editorhost-no-runloop-trace",
+    "--componentHandler",
+    "/home/agent/rhoades-9a04c9726e31/w2-030/RhodesResearch.vst3"
+  ],
+  "attached_window_tree": [
+    {
+      "id": 543,
+      "parent": null,
+      "depth": 0,
+      "name": null,
+      "width": 1920,
+      "height": 1440,
+      "x": 0,
+      "y": 0,
+      "map_state": 2,
+      "xembed_info": null
+    },
+    {
+      "id": 4194306,
+      "parent": 543,
+      "depth": 1,
+      "name": "Editor",
+      "width": 1024,
+      "height": 768,
+      "x": 0,
+      "y": 0,
+      "map_state": 2,
+      "xembed_info": null
+    },
+    {
+      "id": 4194308,
+      "parent": 4194306,
+      "depth": 2,
+      "name": null,
+      "width": 1024,
+      "height": 768,
+      "x": 0,
+      "y": 0,
+      "map_state": 2,
+      "xembed_info": null
+    },
+    {
+      "id": 6291457,
+      "parent": 4194308,
+      "depth": 3,
+      "name": null,
+      "width": 1024,
+      "height": 768,
+      "x": 0,
+      "y": 0,
+      "map_state": 2,
+      "xembed_info": [
+        1,
+        1
+      ]
+    }
+  ],
+  "editor_window": {
+    "id": 6291457,
+    "parent": 4194308,
+    "depth": 3,
+    "name": null,
+    "width": 1024,
+    "height": 768,
+    "x": 0,
+    "y": 0,
+    "map_state": 2,
+    "xembed_info": [
+      1,
+      1
+    ]
+  },
+  "host_window_id": 4194306,
+  "input_seconds": 0.871904,
+  "post_input_returncode": -11,
+  "crash_before_ordinary_close": true,
+  "host_returncode": -11,
+  "finished_utc": "2026-11-24T18:22:25.092065+00:00",
+  "inputs_unchanged": true,
+  "trace": [
+    "PROBE attached host-owned view=0x560e15051060",
+    "beginEdit called (0)",
+    "PROBE before public removed view=0x560e15051060",
+    "PROBE after public removed result=0 retained host view=0x560e15051060",
+    "PROBE beginEdit returning kResultOk",
+    "endEdit called (0)",
+    "CRASH signal=11 address=0x560b75f78e25 PC=0x7fd65a624a27 module=/home/agent/rhoades-9a04c9726e31/w2-030/RhodesResearch.vst3/Contents/x86_64-linux/RhodesResearch.so offset=0x216a27",
+    "/home/agent/rhoades-9a04c9726e31/w2-030/crash_trace.so(+0x12c4) [0x7fd65d1c22c4]",
+    "/home/agent/rhoades-9a04c9726e31/sysroot/usr/lib/x86_64-linux-gnu/libc.so.6(+0x3fd70) [0x7fd65c5cdd70]",
+    "/home/agent/rhoades-9a04c9726e31/w2-030/RhodesResearch.vst3/Contents/x86_64-linux/RhodesResearch.so(+0x216a27) [0x7fd65a624a27]",
+    "/home/agent/rhoades-9a04c9726e31/w2-030/RhodesResearch.vst3/Contents/x86_64-linux/RhodesResearch.so(+0x216988) [0x7fd65a624988]",
+    "/home/agent/rhoades-9a04c9726e31/w2-030/RhodesResearch.vst3/Contents/x86_64-linux/RhodesResearch.so(+0x1b590b) [0x7fd65a5c390b]",
+    "/home/agent/rhoades-9a04c9726e31/w2-030/RhodesResearch.vst3/Contents/x86_64-linux/RhodesResearch.so(+0x1b9287) [0x7fd65a5c7287]",
+    "/home/agent/rhoades-9a04c9726e31/w2-030/RhodesResearch.vst3/Contents/x86_64-linux/RhodesResearch.so(+0x23a185) [0x7fd65a648185]",
+    "/home/agent/rhoades-9a04c9726e31/w2-030/RhodesResearch.vst3/Contents/x86_64-linux/RhodesResearch.so(+0x23de4c) [0x7fd65a64be4c]",
+    "/home/agent/rhoades-9a04c9726e31/w2-030/editorhost-no-runloop-trace(+0x1203b) [0x560e11f8603b]",
+    "/home/agent/rhoades-9a04c9726e31/w2-030/editorhost-no-runloop-trace(+0x12fb0) [0x560e11f86fb0]",
+    "/home/agent/rhoades-9a04c9726e31/w2-030/editorhost-no-runloop-trace(+0xe702) [0x560e11f82702]",
+    "/home/agent/rhoades-9a04c9726e31/w2-030/editorhost-no-runloop-trace(+0x7f32) [0x560e11f7bf32]",
+    "/home/agent/rhoades-9a04c9726e31/sysroot/usr/lib/x86_64-linux-gnu/libc.so.6(+0x29ca8) [0x7fd65c5b7ca8]",
+    "/home/agent/rhoades-9a04c9726e31/sysroot/usr/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0x85) [0x7fd65c5b7d65]",
+    "/home/agent/rhoades-9a04c9726e31/w2-030/editorhost-no-runloop-trace(+0x8d21) [0x560e11f7cd21]",
+    "FRAME 0 module=/home/agent/rhoades-9a04c9726e31/w2-030/crash_trace.so offset=0x12c4 symbol=?",
+    "FRAME 1 module=/home/agent/rhoades-9a04c9726e31/sysroot/usr/lib/x86_64-linux-gnu/libc.so.6 offset=0x3fd70 symbol=?",
+    "FRAME 2 module=/home/agent/rhoades-9a04c9726e31/w2-030/RhodesResearch.vst3/Contents/x86_64-linux/RhodesResearch.so offset=0x216a27 symbol=?",
+    "FRAME 3 module=/home/agent/rhoades-9a04c9726e31/w2-030/RhodesResearch.vst3/Contents/x86_64-linux/RhodesResearch.so offset=0x216988 symbol=?",
+    "FRAME 4 module=/home/agent/rhoades-9a04c9726e31/w2-030/RhodesResearch.vst3/Contents/x86_64-linux/RhodesResearch.so offset=0x1b590b symbol=?",
+    "FRAME 5 module=/home/agent/rhoades-9a04c9726e31/w2-030/RhodesResearch.vst3/Contents/x86_64-linux/RhodesResearch.so offset=0x1b9287 symbol=?",
+    "FRAME 6 module=/home/agent/rhoades-9a04c9726e31/w2-030/RhodesResearch.vst3/Contents/x86_64-linux/RhodesResearch.so offset=0x23a185 symbol=?",
+    "FRAME 7 module=/home/agent/rhoades-9a04c9726e31/w2-030/RhodesResearch.vst3/Contents/x86_64-linux/RhodesResearch.so offset=0x23de4c symbol=?",
+    "FRAME 8 module=/home/agent/rhoades-9a04c9726e31/w2-030/editorhost-no-runloop-trace offset=0x1203b symbol=?",
+    "FRAME 9 module=/home/agent/rhoades-9a04c9726e31/w2-030/editorhost-no-runloop-trace offset=0x12fb0 symbol=?",
+    "FRAME 10 module=/home/agent/rhoades-9a04c9726e31/w2-030/editorhost-no-runloop-trace offset=0xe702 symbol=?",
+    "FRAME 11 module=/home/agent/rhoades-9a04c9726e31/w2-030/editorhost-no-runloop-trace offset=0x7f32 symbol=?",
+    "FRAME 12 module=/home/agent/rhoades-9a04c9726e31/sysroot/usr/lib/x86_64-linux-gnu/libc.so.6 offset=0x29ca8 symbol=?",
+    "FRAME 13 module=/home/agent/rhoades-9a04c9726e31/sysroot/usr/lib/x86_64-linux-gnu/libc.so.6 offset=0x29d65 symbol=__libc_start_main",
+    "FRAME 14 module=/home/agent/rhoades-9a04c9726e31/w2-030/editorhost-no-runloop-trace offset=0x8d21 symbol=?"
+  ],
+  "native_callback_returned_after_begin": false,
+  "public_removed_returned": true,
+  "gesture": {
+    "callback_count": 2,
+    "completed_gestures": 1,
+    "values": [],
+    "last_value": null,
+    "errors": [],
+    "balanced": true
+  },
+  "host_signal": "SIGSEGV"
+}

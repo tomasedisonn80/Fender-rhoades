@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Linux-c++"
+	tests="11"
+	failures="1"
+	disabled="0"
+	skipped="0"
+	hostname="4f398b69b6a5"
+	time="1"
+	timestamp="2026-11-24T11:52:18"
+	>
+	<testcase name="vst3.photo_lifecycle.normal_close" classname="vst3.photo_lifecycle.normal_close" time="0.171103" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;lifecycle;linux-xcb"/>
+		</properties>
+		<system-out>PASS native photo lifecycle normal_close
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_lifecycle.remove_begin" classname="vst3.photo_lifecycle.remove_begin" time="0.15804" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;lifecycle;linux-xcb"/>
+		</properties>
+		<system-out>PASS native photo lifecycle remove_begin
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_lifecycle.remove_perform" classname="vst3.photo_lifecycle.remove_perform" time="0.157828" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;lifecycle;linux-xcb"/>
+		</properties>
+		<system-out>PASS native photo lifecycle remove_perform
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_lifecycle.remove_end" classname="vst3.photo_lifecycle.remove_end" time="0.156979" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;lifecycle;linux-xcb"/>
+		</properties>
+		<system-out>PASS native photo lifecycle remove_end
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_lifecycle.nested_pump" classname="vst3.photo_lifecycle.nested_pump" time="0.213128" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;lifecycle;linux-xcb"/>
+		</properties>
+		<system-out>PASS native photo lifecycle nested_pump
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_lifecycle.timer_refused" classname="vst3.photo_lifecycle.timer_refused" time="0.159486" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;lifecycle;linux-xcb"/>
+		</properties>
+		<system-out>PASS native photo lifecycle timer_refused
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_lifecycle.repeated_remove" classname="vst3.photo_lifecycle.repeated_remove" time="0.158987" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;lifecycle;linux-xcb"/>
+		</properties>
+		<system-out>PASS native photo lifecycle repeated_remove
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_lifecycle.reopen" classname="vst3.photo_lifecycle.reopen" time="0.165655" status="fail">
+		<failure message="Failed"/>
+		<properties>
+			<property name="cmake_labels" value="editor;lifecycle;linux-xcb"/>
+		</properties>
+		<system-out>rhodes_vst3_photo_lifecycle_tests: ../../../src/cairo-xcb-screen.c:219: _get_screen_index: Assertion `!"reached"' failed.
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_lifecycle.parent_destroy_after_remove" classname="vst3.photo_lifecycle.parent_destroy_after_remove" time="0.170928" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;lifecycle;linux-xcb"/>
+		</properties>
+		<system-out>PASS native photo lifecycle parent_destroy_after_remove
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_lifecycle.release_host_reference_after_remove" classname="vst3.photo_lifecycle.release_host_reference_after_remove" time="0.162354" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;lifecycle;linux-xcb"/>
+		</properties>
+		<system-out>PASS native photo lifecycle release_host_reference_after_remove
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_lifecycle.focus_remove" classname="vst3.photo_lifecycle.focus_remove" time="0.166855" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;lifecycle;linux-xcb"/>
+		</properties>
+		<system-out>PASS native photo lifecycle focus_remove
+</system-out>
+	</testcase>
+</testsuite>

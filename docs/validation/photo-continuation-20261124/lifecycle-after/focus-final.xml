@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Linux-c++"
+	tests="1"
+	failures="0"
+	disabled="0"
+	skipped="0"
+	hostname="4f398b69b6a5"
+	time="0"
+	timestamp="2026-11-24T12:02:43"
+	>
+	<testcase name="vst3.photo_native_focus" classname="vst3.photo_native_focus" time="0.148304" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;linux-xcb"/>
+		</properties>
+		<system-out>PASS initial focused editor has no loss
+PASS PointerRoot to explicit editor focus preserves first click
+PASS focus to native descendant is preserved
+PASS focus from descendant back to editor is preserved
+PASS second native descendant focus is preserved
+PASS focus from descendant to sibling cancels
+PASS loss is consumed once
+PASS focus gain alone does not cancel
+PASS out and back before polling retains loss
+PASS popup keyboard grab alone does not cancel
+PASS popup keyboard ungrab alone does not cancel
+PASS second popup grab alone does not cancel
+PASS actual focus loss while keyboard grabbed cancels
+PASS two observers preserve independent focus ownership
+PASS opposite editor transition cancels only losing observer
+PASS independent observer receives raw loss
+PASS original client event queue and subscription are preserved
+PASS bounded focus-event burst cancels conservatively
+PASS removed observer has no live connection
+PASS invalid native window degrades without termination
+PASS reattachment restores native monit...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+</testsuite>

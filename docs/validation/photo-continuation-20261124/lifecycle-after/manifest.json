@@ -1,0 +1,135 @@
+{
+  "parent_main": "4875d76ea949b17a7ae979c53c354b0da0612029",
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.41",
+  "source": [
+    {
+      "path": "plugins/vst3/photo_editor.cpp",
+      "bytes": 43422,
+      "sha256": "caf54d88c871bab05ec572904ef4e3de7c985c0b713e65c398e0010786679fcf"
+    },
+    {
+      "path": "plugins/vst3/photo_native_focus.cpp",
+      "bytes": 11355,
+      "sha256": "c24f8d70731a193b0b7bf833984c00df5a60375d2d306986f1440757af938c5f"
+    },
+    {
+      "path": "plugins/vst3/photo_key_highlight.hpp",
+      "bytes": 16080,
+      "sha256": "9302c59a677564253ea80fb92deeef811864def11a4fdd7e03b3a20c2477c58a"
+    },
+    {
+      "path": "plugins/vst3/controller.cpp",
+      "bytes": 25101,
+      "sha256": "2c77542e1aeb58bceaab8e7d6dd59250d17b5e4bc8f7d489b367ea5e805a0e36"
+    },
+    {
+      "path": "plugins/vst3/controller.hpp",
+      "bytes": 3901,
+      "sha256": "a0dcf316c8d6a013a7a8b6a75485b451e21b070e6b57f62ef52fdf605b252183"
+    },
+    {
+      "path": "plugins/vst3/processor.cpp",
+      "bytes": 37967,
+      "sha256": "1ef121c4afb190c45fa1ff41a2127fb7487919dc69d8856c4a05e79844f760a9"
+    },
+    {
+      "path": "plugins/vst3/state_stream.cpp",
+      "bytes": 5052,
+      "sha256": "30b057afe520c81bb87e0298b32835ea47957ff46b452cf417244dbb51b55051"
+    },
+    {
+      "path": "cmake/Vst3.cmake",
+      "bytes": 60032,
+      "sha256": "48715fcf593fbb0338a51fceb6f0edc106e227dc6725a57df5c024aac7a28fc4"
+    },
+    {
+      "path": "cmake/VstguiX11Keyboard.cmake",
+      "bytes": 2424,
+      "sha256": "3f1b1de7d27a74c1d6d2dae21152b125e4b5c1bf349a78f3aa4bfa3848a76a9c"
+    },
+    {
+      "path": "cmake/VstguiX11Lifetime.cmake",
+      "bytes": 7796,
+      "sha256": "2b1291c584fc285d219a09b84a752b548b3085a0f7b725464a2806a21afffb60"
+    },
+    {
+      "path": "cmake/VstguiX11ChildWindow.cmake",
+      "bytes": 3567,
+      "sha256": "74ad962f03a3581fcc424d85a2a6f7bf836655843e858285609f087033754e3e"
+    },
+    {
+      "path": "cmake/VstguiWin32Timer.cmake",
+      "bytes": 2532,
+      "sha256": "211484666fff1fe57c8e442dbc98b3a0c76fd1119fbd21a5ce1d280368fd5c85"
+    },
+    {
+      "path": "tests/cpp/vst3_photo_lifecycle_test.cpp",
+      "bytes": 37641,
+      "sha256": "b650178fa148db07faee9dfae14ac5e7fdb4215b9240d71c03a9c9011e883830"
+    },
+    {
+      "path": "tools/run_xvfb_test.py",
+      "bytes": 6139,
+      "sha256": "653ae79a00c3455511b7c89c3396044e70ca5a6e341781bf2c1d5a82f9850c4e"
+    }
+  ],
+  "modules": [
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/Contents/x86_64-linux/RhodesResearch.so",
+      "bytes": 3204856,
+      "sha256": "5facf72c9367a5849c124833673d68e2d74b8b64c88b22e95d66663fa65d1959"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3/Contents/x86_64-linux/RhodesResearchFiltered.so",
+      "bytes": 3217144,
+      "sha256": "aa698bc10af7df69bb7c8d1f5f16cbb3ff1472fa6794abc17316fc22e367f2cd"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3/Contents/x86_64-linux/RhodesResearchQuadrature.so",
+      "bytes": 3208952,
+      "sha256": "d2213f5a635a2f819f8932c8cd18575ddd3c07bc3fdc386f99115ed72cd4078e"
+    }
+  ],
+  "generated_sources": [
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/build/rhodes-vstgui-overlay/x11frame-lifetime.cpp",
+      "bytes": 23882,
+      "sha256": "66fa490278825250966aad9f4a054942f3105ab131ff0cf45ba861c1b42dfd7c"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/build/rhodes-vstgui-overlay/x11platform-lifetime.cpp",
+      "bytes": 17894,
+      "sha256": "e0c889e4efa8bf0b2f76feb5592084b64987ba2ae012de3a7afd889b131b87f2"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/build/rhodes-vstgui-overlay/x11platform.cpp",
+      "bytes": 17173,
+      "sha256": "c186a90e423b3895347a676e07c6059accb3b9ab0c187a795d318a1f6af361be"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/build/rhodes-vstgui-overlay/x11utils.cpp",
+      "bytes": 6523,
+      "sha256": "47554d4c4e7d330e3791a22f7920e7cfc214a84bff88b5493b4906e36b2a2eae"
+    }
+  ],
+  "executables": [
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_photo_lifecycle_tests",
+      "bytes": 236640,
+      "sha256": "72b53a662dd281d23f038e851783593a9d00218a7368cafdbe141ee3dd3f3236"
+    }
+  ],
+  "result": {
+    "native_lifecycle": {
+      "passed": 13,
+      "failed": 0
+    },
+    "selected_regression": {
+      "passed": 41,
+      "missing_executable": 1,
+      "subsequent_built_focus_passed": 1,
+      "source_stage": "Earlier intermediate build before the child-window adaptation; retained historical results, not final-module validation. Final-module checks are recorded separately."
+    }
+  },
+  "scope": "Final local Linux X11 loaded Direct-module lifecycle: 13/13. Three final module hashes are recorded as build outputs; this manifest does not qualify the other two variants or attach the earlier intermediate SDK checks to these hashes. No Windows/macOS native editor or named-DAW claim."
+}

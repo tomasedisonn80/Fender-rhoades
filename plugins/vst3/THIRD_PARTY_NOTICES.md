@@ -68,3 +68,72 @@ all other behavior are retained. The external SDK checkout is unchanged.
 See `docs/DEPENDENCIES.md` and `cmake/VstguiX11Keyboard.cmake` in the project
 source for exact input/output hashes and checks. The accompanying
 `VSTGUI-LICENSE.txt` covers this adaptation.
+
+## Local X11 Cairo connection lifetime adaptation
+
+Linux editor builds layer `cmake/VstguiX11Lifetime.cmake` after the Mod4
+keyboard adaptation. It generates build-local copies of
+[`x11platform.cpp`](https://github.com/steinbergmedia/vstgui/blob/5db272256172557818b6158cf0bb2c4410bddb25/vstgui/lib/platform/linux/x11platform.cpp)
+and [`x11frame.cpp`](https://github.com/steinbergmedia/vstgui/blob/5db272256172557818b6158cf0bb2c4410bddb25/vstgui/lib/platform/linux/x11frame.cpp)
+from VSTGUI commit `5db272256172557818b6158cf0bb2c4410bddb25`, under SDK root
+commit `3cdf9ca5d1f5b1b21e0a86832aa4abe55607bd96`. The frame registers the Cairo
+device; the shared run loop finishes and releases it before the final XCB
+disconnect and clears released connection resources. The existing Mod4 mapping
+and both upstream license headers are preserved. `ChildWindow` destruction is
+unchanged by this helper.
+
+The external SDK remains unmodified, and its exact revision/content guards
+remain active. `docs/DEPENDENCIES.md` records the original, keyboard-input and
+generated-source SHA-256 values checked by the helper. The accompanying
+`VSTGUI-LICENSE.txt` covers both generated adaptations; no new runtime dependency
+or license is introduced. The recorded configure/source-byte checks do not
+establish native editor or platform acceptance.
+
+## Local X11 child-window destruction adaptation
+
+A separate `cmake/VstguiX11ChildWindow.cmake` helper generates a build-local copy
+of [`x11utils.cpp`](https://github.com/steinbergmedia/vstgui/blob/5db272256172557818b6158cf0bb2c4410bddb25/vstgui/lib/platform/linux/x11utils.cpp)
+from the unchanged VSTGUI commit `5db272256172557818b6158cf0bb2c4410bddb25`, under
+SDK root commit `3cdf9ca5d1f5b1b21e0a86832aa4abe55607bd96`. This helper changes
+`ChildWindow` destruction; the Cairo lifetime helper above does not.
+
+The copy adds `<cstdlib>` and a connection-guarded checked XCB destruction request
+for the owned child. It consumes the expected error when the host parent and
+child have already been destroyed, without destroying the borrowed parent or
+disconnecting the shared connection used by other editors. Request checking adds
+a synchronous UI teardown roundtrip without pumping events.
+
+| Source bytes | SHA-256 |
+|---|---|
+| Original `x11utils.cpp`, LF normalized | `67c30ca1e6afa5905a5205a3b2d0dc82ca640728c5c77b3e0ae42a0b46a19bac` |
+| Generated `x11utils.cpp`, LF | `47554d4c4e7d330e3791a22f7920e7cfc214a84bff88b5493b4906e36b2a2eae` |
+
+The helper checks both hashes, both unique replacement anchors and exactly one
+target-source replacement. The upstream file has no leading license comment;
+all other source bytes are preserved after LF normalization. Its existing
+top-level [VSTGUI license](https://github.com/steinbergmedia/vstgui/blob/5db272256172557818b6158cf0bb2c4410bddb25/LICENSE)
+is packaged unmodified as the accompanying `VSTGUI-LICENSE.txt`. The external SDK
+source and license files remain untouched; no new runtime dependency or license
+is introduced. `docs/DEPENDENCIES.md` records provenance and the helper report's
+13 configure checks, which do not establish native runtime or platform acceptance.
+
+## Local Win32 timer adaptation
+
+The Win32 timer build copy derives from SDK-relative
+`vstgui4/vstgui/lib/platform/win32/wintimer.cpp` at VSTGUI commit
+[`5db272256172557818b6158cf0bb2c4410bddb25`](https://github.com/steinbergmedia/vstgui/blob/5db272256172557818b6158cf0bb2c4410bddb25/vstgui/lib/platform/win32/wintimer.cpp).
+After CRLF-to-LF normalization, only the final return in `WinTimer::start()`
+changes from `return false;` to `return timer != 0;` to report `SetTimer`
+success. The earlier already-running rejection remains false.
+
+| Source bytes | SHA-256 |
+|---|---|
+| Original, LF normalized | `8fd9713b0adbdb8c3c5e049a87aaf2bab6d14e2e43f54293b10854942f62dadc` |
+| Adapted, LF | `2d7fbc18625171a4edd7861118b821d70b68f5eae520b53704c5d6b957df0191` |
+
+`cmake/VstguiWin32Timer.cmake` checks these hashes and exactly one target source
+replacement. The external SDK checkout is unchanged. The generated source
+retains the upstream license header and is covered by the accompanying
+`VSTGUI-LICENSE.txt`; no additional license is asserted. See
+`docs/DEPENDENCIES.md` in the project source. No Windows runtime result for
+this adaptation is recorded yet.

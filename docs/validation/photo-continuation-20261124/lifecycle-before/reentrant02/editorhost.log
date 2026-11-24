@@ -1,0 +1,37 @@
+PROBE attached host-owned view=0x560e15051060
+beginEdit called (0)
+PROBE before public removed view=0x560e15051060
+PROBE after public removed result=0 retained host view=0x560e15051060
+PROBE beginEdit returning kResultOk
+endEdit called (0)
+CRASH signal=11 address=0x560b75f78e25 PC=0x7fd65a624a27 module=/home/agent/rhoades-9a04c9726e31/w2-030/RhodesResearch.vst3/Contents/x86_64-linux/RhodesResearch.so offset=0x216a27
+/home/agent/rhoades-9a04c9726e31/w2-030/crash_trace.so(+0x12c4) [0x7fd65d1c22c4]
+/home/agent/rhoades-9a04c9726e31/sysroot/usr/lib/x86_64-linux-gnu/libc.so.6(+0x3fd70) [0x7fd65c5cdd70]
+/home/agent/rhoades-9a04c9726e31/w2-030/RhodesResearch.vst3/Contents/x86_64-linux/RhodesResearch.so(+0x216a27) [0x7fd65a624a27]
+/home/agent/rhoades-9a04c9726e31/w2-030/RhodesResearch.vst3/Contents/x86_64-linux/RhodesResearch.so(+0x216988) [0x7fd65a624988]
+/home/agent/rhoades-9a04c9726e31/w2-030/RhodesResearch.vst3/Contents/x86_64-linux/RhodesResearch.so(+0x1b590b) [0x7fd65a5c390b]
+/home/agent/rhoades-9a04c9726e31/w2-030/RhodesResearch.vst3/Contents/x86_64-linux/RhodesResearch.so(+0x1b9287) [0x7fd65a5c7287]
+/home/agent/rhoades-9a04c9726e31/w2-030/RhodesResearch.vst3/Contents/x86_64-linux/RhodesResearch.so(+0x23a185) [0x7fd65a648185]
+/home/agent/rhoades-9a04c9726e31/w2-030/RhodesResearch.vst3/Contents/x86_64-linux/RhodesResearch.so(+0x23de4c) [0x7fd65a64be4c]
+/home/agent/rhoades-9a04c9726e31/w2-030/editorhost-no-runloop-trace(+0x1203b) [0x560e11f8603b]
+/home/agent/rhoades-9a04c9726e31/w2-030/editorhost-no-runloop-trace(+0x12fb0) [0x560e11f86fb0]
+/home/agent/rhoades-9a04c9726e31/w2-030/editorhost-no-runloop-trace(+0xe702) [0x560e11f82702]
+/home/agent/rhoades-9a04c9726e31/w2-030/editorhost-no-runloop-trace(+0x7f32) [0x560e11f7bf32]
+/home/agent/rhoades-9a04c9726e31/sysroot/usr/lib/x86_64-linux-gnu/libc.so.6(+0x29ca8) [0x7fd65c5b7ca8]
+/home/agent/rhoades-9a04c9726e31/sysroot/usr/lib/x86_64-linux-gnu/libc.so.6(__libc_start_main+0x85) [0x7fd65c5b7d65]
+/home/agent/rhoades-9a04c9726e31/w2-030/editorhost-no-runloop-trace(+0x8d21) [0x560e11f7cd21]
+FRAME 0 module=/home/agent/rhoades-9a04c9726e31/w2-030/crash_trace.so offset=0x12c4 symbol=?
+FRAME 1 module=/home/agent/rhoades-9a04c9726e31/sysroot/usr/lib/x86_64-linux-gnu/libc.so.6 offset=0x3fd70 symbol=?
+FRAME 2 module=/home/agent/rhoades-9a04c9726e31/w2-030/RhodesResearch.vst3/Contents/x86_64-linux/RhodesResearch.so offset=0x216a27 symbol=?
+FRAME 3 module=/home/agent/rhoades-9a04c9726e31/w2-030/RhodesResearch.vst3/Contents/x86_64-linux/RhodesResearch.so offset=0x216988 symbol=?
+FRAME 4 module=/home/agent/rhoades-9a04c9726e31/w2-030/RhodesResearch.vst3/Contents/x86_64-linux/RhodesResearch.so offset=0x1b590b symbol=?
+FRAME 5 module=/home/agent/rhoades-9a04c9726e31/w2-030/RhodesResearch.vst3/Contents/x86_64-linux/RhodesResearch.so offset=0x1b9287 symbol=?
+FRAME 6 module=/home/agent/rhoades-9a04c9726e31/w2-030/RhodesResearch.vst3/Contents/x86_64-linux/RhodesResearch.so offset=0x23a185 symbol=?
+FRAME 7 module=/home/agent/rhoades-9a04c9726e31/w2-030/RhodesResearch.vst3/Contents/x86_64-linux/RhodesResearch.so offset=0x23de4c symbol=?
+FRAME 8 module=/home/agent/rhoades-9a04c9726e31/w2-030/editorhost-no-runloop-trace offset=0x1203b symbol=?
+FRAME 9 module=/home/agent/rhoades-9a04c9726e31/w2-030/editorhost-no-runloop-trace offset=0x12fb0 symbol=?
+FRAME 10 module=/home/agent/rhoades-9a04c9726e31/w2-030/editorhost-no-runloop-trace offset=0xe702 symbol=?
+FRAME 11 module=/home/agent/rhoades-9a04c9726e31/w2-030/editorhost-no-runloop-trace offset=0x7f32 symbol=?
+FRAME 12 module=/home/agent/rhoades-9a04c9726e31/sysroot/usr/lib/x86_64-linux-gnu/libc.so.6 offset=0x29ca8 symbol=?
+FRAME 13 module=/home/agent/rhoades-9a04c9726e31/sysroot/usr/lib/x86_64-linux-gnu/libc.so.6 offset=0x29d65 symbol=__libc_start_main
+FRAME 14 module=/home/agent/rhoades-9a04c9726e31/w2-030/editorhost-no-runloop-trace offset=0x8d21 symbol=?

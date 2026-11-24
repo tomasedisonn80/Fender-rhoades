@@ -1,0 +1,87 @@
+--- editorhost-accepting.cpp
++++ editorhost-removal.cpp
+@@ -25,6 +25,7 @@
+ #include "pluginterfaces/vst/ivsteditcontroller.h"
+ #include "pluginterfaces/vst/vsttypes.h"
+ #include <cstdio>
++#include <cstdlib>
+ #include <iostream>
+ 
+ //------------------------------------------------------------------------
+@@ -64,6 +65,7 @@
+ 	tresult PLUGIN_API resizeView (IPlugView* view, ViewRect* newSize) override;
+ 
+ 	void closePlugView ();
++	void removeDuringBegin ();
+ 
+ private:
+ 	tresult PLUGIN_API queryInterface (const TUID _iid, void** obj) override
+@@ -87,15 +89,21 @@
+ 	IPtr<IPlugView> plugView;
+ 	IWindow* window {nullptr};
+ 	bool resizeViewRecursionGard {false};
++	bool probeRemoved {false};
+ };
+ 
+ //------------------------------------------------------------------------
++static WindowController* gAttachedWindowController = nullptr;
++
+ class ComponentHandler : public IComponentHandler
+ {
+ public:
+ 	tresult PLUGIN_API beginEdit (ParamID id) override
+ 	{
+ 		std::cout << "beginEdit called (" << id << ")" << std::endl;
++		if (std::getenv ("RHODES_REMOVE_DURING_BEGIN") && gAttachedWindowController)
++			gAttachedWindowController->removeDuringBegin ();
++		std::cout << "PROBE beginEdit returning kResultOk" << std::endl;
+ 		return kResultOk;
+ 	}
+ 	tresult PLUGIN_API performEdit (ParamID id, ParamValue valueNormalized) override
+@@ -293,6 +301,8 @@
+ //------------------------------------------------------------------------
+ WindowController::~WindowController () noexcept
+ {
++	std::cout << "PROBE WindowController destructor" << std::endl;
++	if (gAttachedWindowController == this) gAttachedWindowController = nullptr;
+ }
+ 
+ //------------------------------------------------------------------------
+@@ -317,6 +327,18 @@
+ 	{
+ 		IPlatform::instance ().kill (-1, "Attaching PlugView failed");
+ 	}
++	gAttachedWindowController = this;
++	std::cout << "PROBE attached host-owned view=" << plugView.get () << std::endl;
++}
++
++void WindowController::removeDuringBegin ()
++{
++	if (!plugView || probeRemoved) return;
++	probeRemoved = true;
++	std::cout << "PROBE before public removed view=" << plugView.get () << std::endl;
++	auto result = plugView->removed ();
++	std::cout << "PROBE after public removed result=" << result
++	          << " retained host view=" << plugView.get () << std::endl;
+ }
+ 
+ //------------------------------------------------------------------------
+@@ -324,12 +346,17 @@
+ {
+ 	if (plugView)
+ 	{
++		std::cout << "PROBE ordinary close enter retained view=" << plugView.get ()
++		          << " already_removed=" << probeRemoved << std::endl;
+ 		plugView->setFrame (nullptr);
+-		if (plugView->removed () != kResultTrue)
++		if (!probeRemoved && plugView->removed () != kResultTrue)
+ 		{
+ 			IPlatform::instance ().kill (-1, "Removing PlugView failed");
+ 		}
++		std::cout << "PROBE ordinary close removal complete" << std::endl;
++		if (gAttachedWindowController == this) gAttachedWindowController = nullptr;
+ 		plugView = nullptr;
++		std::cout << "PROBE ordinary close view released" << std::endl;
+ 	}
+ 	window = nullptr;
+ }

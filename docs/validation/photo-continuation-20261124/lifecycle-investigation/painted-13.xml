@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Linux-c++"
+	tests="14"
+	failures="13"
+	disabled="0"
+	skipped="0"
+	hostname="4f398b69b6a5"
+	time="2"
+	timestamp="2026-11-24T12:04:23"
+	>
+	<testcase name="vst3.photo_x11_keyboard" classname="vst3.photo_x11_keyboard" time="0.1297" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;linux-xcb"/>
+		</properties>
+		<system-out>PASS bare (2 native packets)
+PASS shift (2 native packets)
+PASS control (2 native packets)
+PASS mod1_alt (2 native packets)
+PASS mod5_alt (2 native packets)
+PASS mod4_super (2 native packets)
+PASS mod1_and_mod5 (2 native packets)
+PASS shift_control (2 native packets)
+PASS shift_mod4 (2 native packets)
+PASS control_mod4 (2 native packets)
+PASS mod1_mod4 (2 native packets)
+PASS mod5_mod4 (2 native packets)
+PASS all_modifiers (2 native packets)
+PASS ignore_lock (2 native packets)
+PASS ignore_mod2 (2 native packets)
+PASS ignore_mod3 (2 native packets)
+PASS ignore_buttons (2 native packets)
+PASS ignore_combined (2 native packets)
+PASS all_with_ignored_bits (2 native packets)
+PASS queued_mod4_then_plain (4 native packets)
+VSTGUI X11 keyboard: 20 cases, 42 native packets passed
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_lifecycle.normal_close" classname="vst3.photo_lifecycle.normal_close" time="0.181182" status="fail">
+		<failure message="Failed"/>
+		<properties>
+			<property name="cmake_labels" value="editor;lifecycle;linux-xcb"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="vst3.photo_lifecycle.remove_begin" classname="vst3.photo_lifecycle.remove_begin" time="0.171996" status="fail">
+		<failure message="Failed"/>
+		<properties>
+			<property name="cmake_labels" value="editor;lifecycle;linux-xcb"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="vst3.photo_lifecycle.remove_perform" classname="vst3.photo_lifecycle.remove_perform" time="0.163572" status="fail">
+		<failure message="Failed"/>
+		<properties>
+			<property name="cmake_labels" value="editor;lifecycle;linux-xcb"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="vst3.photo_lifecycle.remove_end" classname="vst3.photo_lifecycle.remove_end" time="0.168188" status="fail">
+		<failure message="Failed"/>
+		<properties>
+			<property name="cmake_labels" value="editor;lifecycle;linux-xcb"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="vst3.photo_lifecycle.nested_pump" classname="vst3.photo_lifecycle.nested_pump" time="0.166631" status="fail">
+		<failure message="Failed"/>
+		<properties>
+			<property name="cmake_labels" value="editor;lifecycle;linux-xcb"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="vst3.photo_lifecycle.timer_refused" classname="vst3.photo_lifecycle.timer_refused" time="0.163883" status="fail">
+		<failure message="Failed"/>
+		<properties>
+			<property name="cmake_labels" value="editor;lifecycle;linux-xcb"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="vst3.photo_lifecycle.repeated_remove" classname="vst3.photo_lifecycle.repeated_remove" time="0.170092" status="fail">
+		<failure message="Failed"/>
+		<properties>
+			<property name="cmake_labels" value="editor;lifecycle;linux-xcb"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="vst3.photo_lifecycle.reopen" classname="vst3.photo_lifecycle.reopen" time="0.176168" status="fail">
+		<failure message="Failed"/>
+		<properties>
+			<property name="cmake_labels" value="editor;lifecycle;linux-xcb"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="vst3.photo_lifecycle.parent_destroy_after_remove" classname="vst3.photo_lifecycle.parent_destroy_after_remove" time="0.170923" status="fail">
+		<failure message="Failed"/>
+		<properties>
+			<property name="cmake_labels" value="editor;lifecycle;linux-xcb"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="vst3.photo_lifecycle.release_host_reference_after_remove" classname="vst3.photo_lifecycle.release_host_reference_after_remove" time="0.344036" status="fail">
+		<failure message="Failed"/>
+		<properties>
+			<property name="cmake_labels" value="editor;lifecycle;linux-xcb"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="vst3.photo_lifecycle.focus_remove" classname="vst3.photo_lifecycle.focus_remove" time="0.289703" status="fail">
+		<failure message="Failed"/>
+		<properties>
+			<property name="cmake_labels" value="editor;lifecycle;linux-xcb"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="vst3.photo_lifecycle.reopen_cycles" classname="vst3.photo_lifecycle.reopen_cycles" time="0.166748" status="fail">
+		<failure message="Failed"/>
+		<properties>
+			<property name="cmake_labels" value="editor;lifecycle;linux-xcb"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="vst3.photo_lifecycle.sibling_survives" classname="vst3.photo_lifecycle.sibling_survives" time="0.161398" status="fail">
+		<failure message="Failed"/>
+		<properties>
+			<property name="cmake_labels" value="editor;lifecycle;linux-xcb"/>
+		</properties>
+		<system-out></system-out>
+	</testcase>
+</testsuite>

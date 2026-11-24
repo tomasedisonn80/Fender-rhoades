@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Linux-c++"
+	tests="42"
+	failures="1"
+	disabled="0"
+	skipped="0"
+	hostname="4f398b69b6a5"
+	time="11"
+	timestamp="2026-11-24T12:01:15"
+	>
+	<testcase name="vst3.photo_native_focus" classname="vst3.photo_native_focus" time="0.186551" status="fail">
+		<failure message="Failed"/>
+		<properties>
+			<property name="cmake_labels" value="editor;linux-xcb"/>
+		</properties>
+		<system-out>run_xvfb_test: [Errno 2] No such file or directory: '/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_photo_native_focus_tests'
+Xvfb output:
+Warning: getifaddrs returns Operation not permitted
+Warning: getifaddrs returns Operation not permitted
+
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_view.rapid_switches" classname="vst3.photo_view.rapid_switches" time="0.0106636" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;interaction"/>
+		</properties>
+		<system-out>PASS rapid_switches
+PhotoView interaction: 1 cases, 380 checks, 0 failures
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_view.continuous_reset" classname="vst3.photo_view.continuous_reset" time="0.00510002" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;interaction"/>
+		</properties>
+		<system-out>PASS continuous_reset
+PhotoView interaction: 1 cases, 280 checks, 0 failures
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_view.host_shortcuts" classname="vst3.photo_view.host_shortcuts" time="0.0104528" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;interaction"/>
+		</properties>
+		<system-out>PASS host_shortcuts
+PhotoView interaction: 1 cases, 203 checks, 0 failures
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_view.fine_steps" classname="vst3.photo_view.fine_steps" time="0.0065977" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;interaction"/>
+		</properties>
+		<system-out>PASS fine_steps
+PhotoView interaction: 1 cases, 88 checks, 0 failures
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_view.rejected_edits" classname="vst3.photo_view.rejected_edits" time="0.0094066" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;interaction"/>
+		</properties>
+		<system-out>PASS rejected_edits
+PhotoView interaction: 1 cases, 50 checks, 0 failures
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_view.end_cancel_idempotent" classname="vst3.photo_view.end_cancel_idempotent" time="0.00501968" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;interaction"/>
+		</properties>
+		<system-out>PASS end_cancel_idempotent
+PhotoView interaction: 1 cases, 22 checks, 0 failures
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_view.begin_cancel_drag" classname="vst3.photo_view.begin_cancel_drag" time="0.00477825" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;interaction"/>
+		</properties>
+		<system-out>PASS begin_cancel_drag
+PhotoView interaction: 1 cases, 27 checks, 0 failures
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_view.begin_cancel_wheel" classname="vst3.photo_view.begin_cancel_wheel" time="0.00524809" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;interaction"/>
+		</properties>
+		<system-out>PASS begin_cancel_wheel
+PhotoView interaction: 1 cases, 22 checks, 0 failures
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_view.begin_cancel_switch" classname="vst3.photo_view.begin_cancel_switch" time="0.00471959" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;interaction"/>
+		</properties>
+		<system-out>PASS begin_cancel_switch
+PhotoView interaction: 1 cases, 20 checks, 0 failures
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_view.end_cancel_new_press" classname="vst3.photo_view.end_cancel_new_press" time="0.00688157" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;interaction"/>
+		</properties>
+		<system-out>PASS end_cancel_new_press
+PhotoView interaction: 1 cases, 21 checks, 0 failures
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_view.perform_cancel_drag" classname="vst3.photo_view.perform_cancel_drag" time="0.00518755" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;interaction"/>
+		</properties>
+		<system-out>PASS perform_cancel_drag
+PhotoView interaction: 1 cases, 32 checks, 0 failures
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_view.perform_cancel_host_update" classname="vst3.photo_view.perform_cancel_host_update" time="0.00525225" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;interaction"/>
+		</properties>
+		<system-out>PASS perform_cancel_host_update
+PhotoView interaction: 1 cases, 25 checks, 0 failures
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_view.audition_drag" classname="vst3.photo_view.audition_drag" time="0.00496674" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;interaction"/>
+		</properties>
+		<system-out>PASS audition_drag
+PhotoView interaction: 1 cases, 93 checks, 0 failures
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_view.audition_cancel_dispatch" classname="vst3.photo_view.audition_cancel_dispatch" time="0.0098698" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;interaction"/>
+		</properties>
+		<system-out>PASS audition_cancel_dispatch
+PhotoView interaction: 1 cases, 87 checks, 0 failures
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_view.audition_cancel_allocation" classname="vst3.photo_view.audition_cancel_allocation" time="0.00514398" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;interaction"/>
+		</properties>
+		<system-out>PASS audition_cancel_allocation
+PhotoView interaction: 1 cases, 88 checks, 0 failures
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_view.audition_cancel_sibling" classname="vst3.photo_view.audition_cancel_sibling" time="0.00552386" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;interaction"/>
+		</properties>
+		<system-out>PASS audition_cancel_sibling
+PhotoView interaction: 1 cases, 92 checks, 0 failures
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_view.observer_cancel_rollback" classname="vst3.photo_view.observer_cancel_rollback" time="0.00493173" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;interaction"/>
+		</properties>
+		<system-out>PASS observer_cancel_rollback
+PhotoView interaction: 1 cases, 73 checks, 0 failures
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_view.observer_cancel_host_changed" classname="vst3.photo_view.observer_cancel_host_changed" time="0.00534015" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;interaction"/>
+		</properties>
+		<system-out>PASS observer_cancel_host_changed
+PhotoView interaction: 1 cases, 31 checks, 0 failures
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_view.observer_cancel_host_equal" classname="vst3.photo_view.observer_cancel_host_equal" time="0.00488446" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;interaction"/>
+		</properties>
+		<system-out>PASS observer_cancel_host_equal
+PhotoView interaction: 1 cases, 31 checks, 0 failures
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_view.perform_reject_host_equal" classname="vst3.photo_view.perform_reject_host_equal" time="0.0047079" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;interaction"/>
+		</properties>
+		<system-out>PASS perform_reject_host_equal
+PhotoView interaction: 1 cases, 61 checks, 0 failures
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_view.perform_reject_other_parameter" classname="vst3.photo_view.perform_reject_other_parameter" time="0.00495442" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;interaction"/>
+		</properties>
+		<system-out>PASS perform_reject_other_parameter
+PhotoView interaction: 1 cases, 55 checks, 0 failures
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_view.keyboard_cancel_edit" classname="vst3.photo_view.keyboard_cancel_edit" time="0.00452871" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;interaction"/>
+		</properties>
+		<system-out>PASS keyboard_cancel_edit
+PhotoView interaction: 1 cases, 90 checks, 0 failures
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_view.keyboard_cancel_tab" classname="vst3.photo_view.keyboard_cancel_tab" time="0.00453547" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;interaction"/>
+		</properties>
+		<system-out>PASS keyboard_cancel_tab
+PhotoView interaction: 1 cases, 106 checks, 0 failures
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_view.keyboard_audition_cancel_edit" classname="vst3.photo_view.keyboard_audition_cancel_edit" time="0.0047045" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;interaction"/>
+		</properties>
+		<system-out>PASS keyboard_audition_cancel_edit
+PhotoView interaction: 1 cases, 196 checks, 0 failures
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_view.audition_glissando_cancel_dispatch" classname="vst3.photo_view.audition_glissando_cancel_dispatch" time="0.00508382" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;interaction"/>
+		</properties>
+		<system-out>PASS audition_glissando_cancel_dispatch
+PhotoView interaction: 1 cases, 99 checks, 0 failures
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_view.audition_glissando_cancel_allocation" classname="vst3.photo_view.audition_glissando_cancel_allocation" time="0.00518147" status="run">
+		<properties>
+			<property name="cmake_labels" value="editor;interaction"/>
+		</properties>
+		<system-out>PASS audition_glissando_cancel_allocation
+PhotoView interaction: 1 cases, 97 checks, 0 failures
+</system-out>
+	</testcase>
+	<testcase name="vst3.controller_revision" classname="vst3.controller_revision" time="0.00136465" status="run">
+		<properties/>
+		<system-out>Controller mutation revision checks passed
+</system-out>
+	</testcase>
+	<testcase name="vst3.audition_reentrancy.construction" classname="vst3.audition_reentrancy.construction" time="0.00181368" status="run">
+		<properties/>
+		<system-out>{"suite":"vst3_audition_reentrancy","selector":"construction","scenarios":6,"checks":192,"result":"pass"}
+</system-out>
+	</testcase>
+	<testcase name="vst3.audition_reentrancy.notify" classname="vst3.audition_reentrancy.notify" time="0.00124604" status="run">
+		<properties/>
+		<system-out>{"suite":"vst3_audition_reentrancy","selector":"notify","scenarios":4,"checks":128,"result":"pass"}
+</system-out>
+	</testcase>
+	<testcase name="vst3.audition_reentrancy.pending" classname="vst3.audition_reentrancy.pending" time="0.00139921" status="run">
+		<properties/>
+		<system-out>{"suite":"vst3_audition_reentrancy","selector":"pending","scenarios":16,"checks":588,"result":"pass"}
+</system-out>
+	</testcase>
+	<testcase name="vst3.audition_reentrancy.siblings" classname="vst3.audition_reentrancy.siblings" time="0.00155601" status="run">
+		<properties/>
+		<system-out>{"suite":"vst3_audition_reentrancy","selector":"siblings","scenarios":16,"checks":448,"result":"pass"}
+</system-out>
+	</testcase>
+	<testcase name="vst3.audition_reentrancy.coalescing" classname="vst3.audition_reentrancy.coalescing" time="0.00164643" status="run">
+		<properties/>
+		<system-out>{"suite":"vst3_audition_reentrancy","selector":"coalescing","scenarios":6,"checks":177,"result":"pass"}
+</system-out>
+	</testcase>
+	<testcase name="vst3.sdk_validator" classname="vst3.sdk_validator" time="1.45016" status="run">
+		<properties/>
+		<system-out>* Loading module...
+
+	/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3
+
+* Check valid bundle structure...
+
+* Scanning classes...
+
+  Factory Info:
+	vendor = Rhodes Research
+	url = https://github.com/baabi-boo/Fender-rhoades
+	email = 
+
+  Class Info 0:
+	name = Rhodes Research Prototype
+	category = Audio Module Class
+	subCategories = Instrument|Synth
+	version = 0.1.0
+	sdkVersion = VST 3.8.1
+	cid = BDDA70F46F9244C1A5639EE371A0B804
+
+  Class Info 1:
+	name = Rhodes Research Controller
+	category = Component Controller Class
+	subCategories = 
+	version = 0.1.0
+	sdkVersion = VST 3.8.1
+	cid = EA801E8B97864ED9B3A0E6572D81CE61
+
+* Checking snapshots...
+
+Info: No snapshots in Bundle.
+
+* Creating tests...
+
+* Running tests...
+
+-------------------------------------------------------------
+TestSuite : Rhodes Research Prototype
+-------------------------------------------------------------
+
+-------------------------------------------------------------
+TestSuite : General Tests
+--------------------------------...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="vst3.photo_editor_contract" classname="vst3.photo_editor_contract" time="0.066908" status="run">
+		<properties/>
+		<system-out>PASS photo editor unattached contract: 5283 checks, 9 real controllers, 24 views created, 66 malformed scales rejected; 66 host resize requests; no native window attached or rendering assessed
+</system-out>
+	</testcase>
+	<testcase name="vst3.loaded_expression_controls_state" classname="vst3.loaded_expression_controls_state" time="0.108571" status="run">
+		<properties/>
+		<system-out>PASS loaded expression controls_state: 65644 checks, 621 loaded callbacks, 0 scalar samples, 162 rejected blocks, 12 foreign states, 105 guarded mono callbacks, 0 module load orders, 9/9 no-setup/stopped panel cases, 72 panel reopens, 108 atomic panel rejections, 36 foreign v3 states
+</system-out>
+	</testcase>
+	<testcase name="vst3.filtered_sdk_validator" classname="vst3.filtered_sdk_validator" time="5.43623" status="run">
+		<properties/>
+		<system-out>* Loading module...
+
+	/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3
+
+* Check valid bundle structure...
+
+* Scanning classes...
+
+  Factory Info:
+	vendor = Rhodes Research
+	url = https://github.com/baabi-boo/Fender-rhoades
+	email = 
+
+  Class Info 0:
+	name = Rhodes Research Filtered
+	category = Audio Module Class
+	subCategories = Instrument|Synth
+	version = 0.2.0
+	sdkVersion = VST 3.8.1
+	cid = 4C0E773A24FC4BE9B804BC71B8B98B33
+
+  Class Info 1:
+	name = Rhodes Filtered Controller
+	category = Component Controller Class
+	subCategories = 
+	version = 0.2.0
+	sdkVersion = VST 3.8.1
+	cid = 0569EDDBD21D4568A9ED52C3D8545B6D
+
+* Checking snapshots...
+
+Info: No snapshots in Bundle.
+
+* Creating tests...
+
+* Running tests...
+
+-------------------------------------------------------------
+TestSuite : Rhodes Research Filtered
+-------------------------------------------------------------
+
+-------------------------------------------------------------
+TestSuite : General Tests
+--------------------------...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="vst3.quadrature_sdk_validator" classname="vst3.quadrature_sdk_validator" time="3.52907" status="run">
+		<properties/>
+		<system-out>* Loading module...
+
+	/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3
+
+* Check valid bundle structure...
+
+* Scanning classes...
+
+  Factory Info:
+	vendor = Rhodes Research
+	url = https://github.com/baabi-boo/Fender-rhoades
+	email = 
+
+  Class Info 0:
+	name = Rhodes Research Quadrature
+	category = Audio Module Class
+	subCategories = Instrument|Synth
+	version = 0.3.0
+	sdkVersion = VST 3.8.1
+	cid = D73B886A72E04FC892435F1DC5F0B6A9
+
+  Class Info 1:
+	name = Rhodes Quadrature Controller
+	category = Component Controller Class
+	subCategories = 
+	version = 0.3.0
+	sdkVersion = VST 3.8.1
+	cid = A45F23E1B68A4D79AF31472C8E909D52
+
+* Checking snapshots...
+
+Info: No snapshots in Bundle.
+
+* Creating tests...
+
+* Running tests...
+
+-------------------------------------------------------------
+TestSuite : Rhodes Research Quadrature
+-------------------------------------------------------------
+
+-------------------------------------------------------------
+TestSuite : General Tests
+------------------...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="vst3.moduleinfo_validator" classname="vst3.moduleinfo_validator" time="0.0315832" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="vst3.filtered_moduleinfo_validator" classname="vst3.filtered_moduleinfo_validator" time="0.0228811" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="vst3.quadrature_moduleinfo_validator" classname="vst3.quadrature_moduleinfo_validator" time="0.00702277" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="vst3.bundle_resources" classname="vst3.bundle_resources" time="0.100497" status="run">
+		<properties/>
+		<system-out>-- All three VST3 bundles contain byte-identical SDK license and third-party notices
+</system-out>
+	</testcase>
+</testsuite>

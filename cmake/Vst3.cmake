@@ -58,9 +58,17 @@ set(SDK_ROOT "${RHODES_VST3_SDK_ROOT}")
 set(public_sdk_SOURCE_DIR "${RHODES_VST3_SDK_ROOT}/public.sdk")
 set(pluginterfaces_SOURCE_DIR "${RHODES_VST3_SDK_ROOT}/pluginterfaces")
 add_subdirectory("${RHODES_VST3_SDK_ROOT}" "${CMAKE_BINARY_DIR}/vst3-sdk" EXCLUDE_FROM_ALL)
+if(RHODES_BUILD_VST3_EDITOR AND WIN32)
+    include("${PROJECT_SOURCE_DIR}/cmake/VstguiWin32Timer.cmake")
+    rhodes_patch_vstgui_win32_timer()
+endif()
 if(RHODES_BUILD_VST3_EDITOR AND CMAKE_SYSTEM_NAME STREQUAL "Linux")
     include("${PROJECT_SOURCE_DIR}/cmake/VstguiX11Keyboard.cmake")
     rhodes_patch_vstgui_x11_keyboard()
+    include("${PROJECT_SOURCE_DIR}/cmake/VstguiX11Lifetime.cmake")
+    rhodes_patch_vstgui_x11_lifetime()
+    include("${PROJECT_SOURCE_DIR}/cmake/VstguiX11ChildWindow.cmake")
+    rhodes_patch_vstgui_x11_child_window()
     find_package(PkgConfig REQUIRED)
     pkg_check_modules(RHODES_EDITOR_XCB REQUIRED IMPORTED_TARGET xcb)
 endif()
@@ -695,6 +703,33 @@ int main() { return 0; }" RHODES_FAULT_LIBSTDCXX)
             add_test(NAME vst3.photo_editor_contract COMMAND rhodes_vst3_photo_editor_tests
                 "${rhodes_plugin_bundle}" "${rhodes_filtered_bundle}" "${rhodes_quadrature_bundle}")
             set_tests_properties(vst3.photo_editor_contract PROPERTIES TIMEOUT 60)
+            if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+                # Drive the public loaded editor through real native X11
+                # dispatch, without linking its implementation into the host.
+                add_executable(rhodes_vst3_photo_lifecycle_tests
+                    "${PROJECT_SOURCE_DIR}/tests/cpp/vst3_photo_lifecycle_test.cpp")
+                target_compile_features(rhodes_vst3_photo_lifecycle_tests PRIVATE cxx_std_20)
+                target_include_directories(rhodes_vst3_photo_lifecycle_tests SYSTEM PRIVATE
+                    "${RHODES_VST3_SDK_ROOT}")
+                target_link_libraries(rhodes_vst3_photo_lifecycle_tests PRIVATE
+                    rhodes_vst3_loader_support PkgConfig::RHODES_EDITOR_XCB)
+                rhodes_target_options(rhodes_vst3_photo_lifecycle_tests)
+                add_dependencies(rhodes_vst3_photo_lifecycle_tests rhodes_vst3)
+                add_dependencies(rhodes_vst3_checks rhodes_vst3_photo_lifecycle_tests)
+                foreach(test_name IN ITEMS normal_close remove_begin remove_perform remove_end
+                        nested_pump timer_refused repeated_remove reopen parent_destroy_after_remove
+                        release_host_reference_after_remove focus_remove reopen_cycles sibling_survives)
+                    add_test(NAME vst3.photo_lifecycle.${test_name}
+                        COMMAND "${Python3_EXECUTABLE}" "${PROJECT_SOURCE_DIR}/tools/run_xvfb_test.py"
+                            --xvfb "${RHODES_XVFB_EXECUTABLE}" --xauth "${RHODES_XAUTH_EXECUTABLE}"
+                            --xdpyinfo "${RHODES_XDPYINFO_EXECUTABLE}"
+                            --startup-timeout 10 --test-timeout 30 --
+                            $<TARGET_FILE:rhodes_vst3_photo_lifecycle_tests>
+                            "${rhodes_plugin_bundle}" ${test_name})
+                    set_tests_properties(vst3.photo_lifecycle.${test_name} PROPERTIES
+                        TIMEOUT 60 LABELS "editor;linux-xcb;lifecycle")
+                endforeach()
+            endif()
             if(SMTG_MAC)
                 smtg_target_setup_universal_binary(rhodes_vst3_photo_editor_tests)
                 smtg_target_codesign(rhodes_vst3_photo_editor_tests)

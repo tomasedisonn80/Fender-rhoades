@@ -1,0 +1,166 @@
+{
+  "mode": "reentrant",
+  "started_utc": "2026-11-24T18:21:08.887088+00:00",
+  "source_files": [
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-030/editorhost-accepting",
+      "sha256": "a747bdb2cd1369d9b2bcbfa10ca02276b91409ad60c95ba6a6bb25c15c5df495",
+      "bytes": 275032
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-030/editorhost-accepting.cpp",
+      "sha256": "af078ecda9ec5103018bcfdbdf1640c2e1e4f367d8492286bbdc12e8467b9ac1",
+      "bytes": 13657
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-030/runloop.cpp",
+      "sha256": "2fa95edda014623f800b7b7fba1c0ea635ac9b0c1aa7452f499ef5e6c154fb36",
+      "bytes": 7628
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-030/RhodesResearch.vst3/Contents/x86_64-linux/RhodesResearch.so",
+      "sha256": "046bea61c956e31289e5cf07657c1c6a7e7451b83d3b53e91944c2b4b7e3f3e5",
+      "bytes": 3147512
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-030/verify_native_photo_editor.py",
+      "sha256": "ce0f2d5c3e74e34c478186bef80ee6879ab0a5328b45d682d9d34d45b6dfda47",
+      "bytes": 31258
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-030/native_close_probe.py",
+      "sha256": "f3e8dccdbf5d724d956176ccdbaacab5add4c67c205e46a1d0c322c20052d221",
+      "bytes": 3658
+    }
+  ],
+  "checks": [
+    {
+      "name": "native_xembed_attachment",
+      "status": "pass",
+      "child_window": 6291457
+    }
+  ],
+  "actions": [],
+  "captures": {},
+  "host_callbacks": [
+    {
+      "kind": "beginEdit",
+      "parameter_id": 0,
+      "observed_seconds": 0.895021,
+      "raw": "beginEdit called (0)"
+    },
+    {
+      "kind": "endEdit",
+      "parameter_id": 0,
+      "observed_seconds": 0.89523,
+      "raw": "endEdit called (0)"
+    }
+  ],
+  "x11_focus_events": [],
+  "display": {
+    "name": "127.0.0.1:44851",
+    "width": 1920,
+    "height": 1440,
+    "depth": 24,
+    "xtest": true
+  },
+  "host_command": [
+    "/home/agent/rhoades-9a04c9726e31/w2-030/editorhost-accepting",
+    "--componentHandler",
+    "/home/agent/rhoades-9a04c9726e31/w2-030/RhodesResearch.vst3"
+  ],
+  "attached_window_tree": [
+    {
+      "id": 543,
+      "parent": null,
+      "depth": 0,
+      "name": null,
+      "width": 1920,
+      "height": 1440,
+      "x": 0,
+      "y": 0,
+      "map_state": 2,
+      "xembed_info": null
+    },
+    {
+      "id": 4194306,
+      "parent": 543,
+      "depth": 1,
+      "name": "Editor",
+      "width": 1024,
+      "height": 768,
+      "x": 0,
+      "y": 0,
+      "map_state": 2,
+      "xembed_info": null
+    },
+    {
+      "id": 4194308,
+      "parent": 4194306,
+      "depth": 2,
+      "name": null,
+      "width": 1024,
+      "height": 768,
+      "x": 0,
+      "y": 0,
+      "map_state": 2,
+      "xembed_info": null
+    },
+    {
+      "id": 6291457,
+      "parent": 4194308,
+      "depth": 3,
+      "name": null,
+      "width": 1024,
+      "height": 768,
+      "x": 0,
+      "y": 0,
+      "map_state": 2,
+      "xembed_info": [
+        1,
+        1
+      ]
+    }
+  ],
+  "editor_window": {
+    "id": 6291457,
+    "parent": 4194308,
+    "depth": 3,
+    "name": null,
+    "width": 1024,
+    "height": 768,
+    "x": 0,
+    "y": 0,
+    "map_state": 2,
+    "xembed_info": [
+      1,
+      1
+    ]
+  },
+  "host_window_id": 4194306,
+  "input_seconds": 0.887098,
+  "post_input_returncode": -11,
+  "crash_before_ordinary_close": true,
+  "host_returncode": -11,
+  "finished_utc": "2026-11-24T18:21:09.832242+00:00",
+  "inputs_unchanged": true,
+  "trace": [
+    "PROBE attached host-owned view=0x55ab3a6b9020",
+    "beginEdit called (0)",
+    "PROBE before public removed view=0x55ab3a6b9020",
+    "PROBE after public removed result=0 retained host view=0x55ab3a6b9020",
+    "PROBE beginEdit returning kResultOk",
+    "endEdit called (0)"
+  ],
+  "native_callback_returned_after_begin": false,
+  "public_removed_returned": true,
+  "gesture": {
+    "callback_count": 2,
+    "completed_gestures": 1,
+    "values": [],
+    "last_value": null,
+    "errors": [],
+    "balanced": true
+  },
+  "host_signal": "SIGSEGV"
+}

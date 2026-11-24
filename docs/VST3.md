@@ -123,6 +123,9 @@ also need `WAYLAND_PROTOCOLS_BASEDIR` pointing to its `share/wayland-protocols`
 directory. Xvfb is useful for automated Linux window tests; it is not part of the
 plug-in's audio engine. Windows/macOS use their platform SDKs and native VSTGUI
 backends; their editor builds need separate executed qualification.
+Linux editor builds with `BUILD_TESTING=ON` also require `Xvfb`, `xauth` and
+`xdpyinfo` at configure time (`sudo apt-get install -y xvfb xauth x11-utils` on
+Debian/Ubuntu).
 
 ### Linux or macOS
 
@@ -209,6 +212,87 @@ Use the full `^vst3\.` selection above to include legacy host behavior and all
 six SDK/module-info validators. Keep each run's source, registered count,
 failures and skips with its output; a focused run does not replace a complete
 current-source platform run. In PowerShell, put each wrapped command on one line.
+
+### Run Linux native photo-editor checks
+
+With the editor and testing enabled, `rhodes_vst3_checks` also builds the
+[native lifecycle fixture](../tests/cpp/vst3_photo_lifecycle_test.cpp). Its
+`vst3.photo_lifecycle.*` CTests load the Direct bundle and dispatch native X11
+events to exercise close, removal during edit callbacks, nested event pumping,
+timer refusal, repeated removal, reopening, parent destruction, host-reference
+release and focus-loss removal:
+
+```sh
+cmake --build build/vst3 --config Release \
+  --target rhodes_vst3_checks --parallel 2
+ctest --test-dir build/vst3 -C Release -N -R '^vst3\.photo_lifecycle\.'
+ctest --test-dir build/vst3 -C Release -R '^vst3\.photo_lifecycle\.' \
+  --output-on-failure --no-tests=error
+```
+
+CTest invokes [run_xvfb_test.py](../tools/run_xvfb_test.py) for each case on a
+private, cookie-authenticated display with startup and child-process timeouts.
+No pre-existing `DISPLAY` is needed. The retained
+[Linux Direct lifecycle run](validation/photo-continuation-20261124/NATIVE_LIFECYCLE_20261124.md)
+passed all 13 selectors, including ten painted reopen cycles and two editors
+sharing one native connection. Its manifest binds the tested source and binary.
+This Linux SDK fixture does not establish named-DAW behavior.
+
+The separate [interaction smoke tool](../tools/verify_photo_interactions.py)
+uses real XTEST pointer/keyboard input, native window captures and recorded host
+callbacks. It checks rapid switches, modified and fine arrows, feedback expiry,
+three editor sizes, all 43 white-key holds against black-key interior masks,
+exact full-size idle RGB pixels, and close during a held gesture. Use Python
+with Pillow and python-xlib, an isolated XTEST display of at least `1600 × 1200`,
+and a separately prepared SDK host that **accepts and logs** `beginEdit`,
+`performEdit` and `endEdit`. The stock Release `editorhost` cannot qualify these
+callback checks. The accepting host and provenance paths below are inputs to
+prepare separately; see the [retained host recipe](agents/reports/photo-continuation-20261124/w2-022.md#accepting-host-recovery-and-provenance).
+`rhodes_vst3_checks` does not build that diagnostic host:
+
+```sh
+xvfb-run -a -s '-screen 0 1920x1440x24 -nolisten tcp' \
+  python3 tools/verify_photo_interactions.py \
+  --editorhost build/accepting-host/editorhost-accepting \
+  --bundle build/vst3/VST3/Release/RhodesResearch.vst3 \
+  --output-dir build/photo-evidence/native-run01 \
+  --host-label accepting-sdk \
+  --source build/accepting-host/provenance.json
+```
+
+Choose a new or empty output directory. Retain `outcome.json`, `editorhost.log`,
+captures, masks and source/provenance records together. Exit codes are `0` for a
+pass, `1` for failure and `2` for incomplete callback evidence. This SDK host has
+no audio-processing loop; these UI observations establish neither audio behavior
+nor physical fidelity or named-DAW operation.
+
+### Pack and verify native photo captures
+
+The Pillow-based [evidence packer](../tools/pack_photo_evidence.py) creates a ZIP
+and an independent `.manifest.json`, preserving exact decoded **8-bit RGB pixels
+and dimensions**. It reconstructs PNGs with potentially different encoded bytes,
+metadata and image modes; grayscale masks reconstruct as RGB. Selected non-PNG
+files, including outcome JSON and host logs, remain byte-exact. Original PNG
+hashes stay in the manifest for comparison with the originals.
+
+```sh
+python3 tools/pack_photo_evidence.py pack build/photo-evidence \
+  build/photo-evidence-native-run01.zip --run native-run01
+python3 tools/pack_photo_evidence.py verify build/photo-evidence-native-run01.zip \
+  --manifest build/photo-evidence-native-run01.manifest.json \
+  --originals build/photo-evidence
+python3 tools/pack_photo_evidence.py unpack build/photo-evidence-native-run01.zip \
+  build/photo-evidence-restored \
+  --manifest build/photo-evidence-native-run01.manifest.json \
+  --originals build/photo-evidence
+```
+
+The archive and sidecar must be new files outside the input root; the unpack
+destination must not exist. Repeat `--run` or `--include` with paths relative to
+the input root to retain other runs or provenance files. Verification checks
+stored payloads and reconstructed RGB hashes; `--originals` additionally checks
+original file hashes and compares decoded RGB/raw bytes directly. Successful
+packing or verification preserves an observation without qualifying a new build.
 
 ### Retain diagnostics and compare legacy unity output
 
@@ -615,11 +699,23 @@ An initial attachment attempt failed in the SDK test host because the isolated
 X server lacked its expected `_XEMBED_INFO` atom; preparing that host prerequisite
 allowed the window to open without a plug-in code change.
 
-Gesture behavior, quantitative image comparison, resize/cleanup behavior of an
-attached view, editor-enabled Windows/macOS runs and named-DAW operation remain
-separate qualification gates. Earlier platform records below apply only to the
-revisions and feature scope they identify. Final editor acceptance needs retained
-source-bound screenshots, packaged-resource checks and executed platform results;
+The later [frozen Linux Direct interaction run](agents/reports/photo-continuation-20261124/w2-036.md)
+records **136/136 passes**, with no failures or incomplete checks, including all
+43 white-key holds, three editor sizes and exact initial/final full-size idle
+pixels. Its [capture-preservation audit](agents/reports/photo-continuation-20261124/w3-046.md)
+retains 66 captures plus one mask, with exact decoded RGB/dimensions and five
+byte-exact raw files. These observations apply to that frozen bundle; they do
+not qualify subsequent lifecycle changes, other variants or platforms, audio,
+physical fidelity or named-DAW operation. The subsequent
+[native lifecycle report](validation/photo-continuation-20261124/NATIVE_LIFECYCLE_20261124.md)
+records 13 passing Linux Direct cases for its own source-bound binary.
+
+Full current-source gesture behavior, quantitative image comparison,
+resize/cleanup behavior of an attached view, editor-enabled Windows/macOS runs
+and named-DAW operation remain separate qualification gates. Earlier platform
+records below apply only to the revisions and feature scope they identify. Final
+editor acceptance needs retained source-bound screenshots, packaged-resource
+checks and executed platform results;
 the unattached API result alone cannot establish those properties.
 
 ### Current Expression and output-layout verification — 24 November 2026

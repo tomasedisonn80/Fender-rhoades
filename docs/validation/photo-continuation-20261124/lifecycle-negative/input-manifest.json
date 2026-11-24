@@ -1,0 +1,37 @@
+{
+  "fixture_origin": "/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_photo_lifecycle_tests",
+  "fixture_frozen": "/home/agent/rhoades-9a04c9726e31/w3-052/snapshot/rhodes_vst3_photo_lifecycle_tests",
+  "fixture_sha256": "3b1268a386d8185d18a82996530f17882a83789bc3deaa659f528e6a71a32852",
+  "fixture_preserved_source": "/home/agent/rhoades-9a04c9726e31/w3-052/provenance/vst3_photo_lifecycle_pre_w3_051.cpp",
+  "fixture_preserved_source_sha256": "22af3ab0c4431c3a1dff329cb14cb90195f4767169eb0bb1f21370381799aa51",
+  "bundle_origin": "/home/agent/rhoades-9a04c9726e31/w2-036/snapshot/RhodesResearch.vst3",
+  "bundle_frozen": "/home/agent/rhoades-9a04c9726e31/w3-052/snapshot/RhodesResearch.vst3",
+  "bundle_files_sha256": {
+    "Contents/Resources/Expat-LICENSE.txt": "f6eeb2310d0b00e5cecac39c73a0696a5bdbfb754b26325ed5a502fc1a6c338c",
+    "Contents/Resources/LICENSE.txt": "e86d79e19e4a33ebc442d2e0d083887dfc75a2a8de9fe17eeddedb84810ad74e",
+    "Contents/Resources/RapidJSON-LICENSE.txt": "a140e5d46fe734a1c78f1a3c3ef207871dd75648be71fdda8e309b23ab8b1f32",
+    "Contents/Resources/THIRD_PARTY_NOTICES.md": "96a090dd7959f2ac94a5af316814db43f98f8e5fbbd70aca75c63f01b961fb53",
+    "Contents/Resources/VSTGUI-LICENSE.txt": "605bcd2152176b365cf0ba6cca331a988fa885b4f43f20ceff4e264e6576ca66",
+    "Contents/Resources/miniz-LICENSE.txt": "6f20fa7672b00e2e975c291df737cf227addf3ad32e36fef3fe0f416e4664d3d",
+    "Contents/Resources/moduleinfo.json": "28b44aaa74a32dbe415b3553b37b019440ebe17bad7708b217790d47bb6adfb9",
+    "Contents/Resources/rhodes-suitcase.png": "84e2d48fc0311eb923083cc3e1f96dc5fa1b3f8a6e085daee7c973e54d754d26",
+    "Contents/Resources/rhodes-suitcase.uidesc": "7554fecedf67cf744b3aa7f6cf12dc4f874d8b5e0b97ec66959ba2b42ea5825e",
+    "Contents/x86_64-linux/RhodesResearch.so": "51d31020c30165f82da63c9d97cc74ab86fa94fc1d2277e78d13a178dfc052da"
+  },
+  "production_before_manifest_sha256": "e473d6d00b9dad578f6c58204f5a64dd00967e696cb78090db8bdfb0bb938b38",
+  "production_before_source_files_sha256": {
+    "plugins/vst3/photo_editor.cpp": "2ecb0d5a6a383ff45ee40f0be6a819f9cfe540664cb1a83262eb05e3fbfec255",
+    "plugins/vst3/photo_editor.hpp": "0c421cae0d330f22b00bab37bb17e73cddd948dbd56a0834c6cb086d6cec97db",
+    "plugins/vst3/photo_geometry.hpp": "77fe4f4ac93ee0b212ef3f5399eb5cfa8884076d8eef51d2adf2123e6d85e0bd",
+    "plugins/vst3/photo_key_highlight.hpp": "9302c59a677564253ea80fb92deeef811864def11a4fdd7e03b3a20c2477c58a",
+    "plugins/vst3/photo_native_focus.cpp": "c24f8d70731a193b0b7bf833984c00df5a60375d2d306986f1440757af938c5f",
+    "plugins/vst3/photo_native_focus.hpp": "9bf4553ec6a1418747d5379ba531bf15bbfb7e589f3923ff9c8131485704396a",
+    "plugins/vst3/controller.cpp": "2c77542e1aeb58bceaab8e7d6dd59250d17b5e4bc8f7d489b367ea5e805a0e36",
+    "plugins/vst3/controller.hpp": "a0dcf316c8d6a013a7a8b6a75485b451e21b070e6b57f62ef52fdf605b252183",
+    "plugins/vst3/processor.cpp": "1ef121c4afb190c45fa1ff41a2127fb7487919dc69d8856c4a05e79844f760a9",
+    "tools/verify_photo_interactions.py": "ccfad904084c57a0870bd0c2ba10a1603421482547c2dee03f0c2a595cc7c3b5",
+    "tools/verify_native_photo_editor.py": "ce0f2d5c3e74e34c478186bef80ee6879ab0a5328b45d682d9d34d45b6dfda47",
+    "plugins/vst3/resources/rhodes-suitcase.png": "84e2d48fc0311eb923083cc3e1f96dc5fa1b3f8a6e085daee7c973e54d754d26"
+  },
+  "wrapper_sha256": "653ae79a00c3455511b7c89c3396044e70ca5a6e341781bf2c1d5a82f9850c4e"
+}

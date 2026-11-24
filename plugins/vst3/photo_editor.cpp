@@ -12,6 +12,8 @@
 #include "vstgui/lib/cgraphicspath.h"
 #include "vstgui/lib/events.h"
 #include "vstgui/lib/platform/iplatformframe.h"
+#include "vstgui/lib/platform/iplatformtimer.h"
+#include "vstgui/lib/platform/platformfactory.h"
 
 #include <algorithm>
 #include <array>
@@ -59,6 +61,16 @@ constexpr auto kFeedbackDuration = std::chrono::milliseconds{1700};
 [[nodiscard]] CRect as_rect(const photo::Rect& r) noexcept {
     return {r.left, r.top, r.right, r.bottom};
 }
+
+class CallbackScope final {
+public:
+    explicit CallbackScope(std::size_t& depth) noexcept : depth_(depth) { ++depth_; }
+    ~CallbackScope() { --depth_; }
+    CallbackScope(const CallbackScope&) = delete;
+    CallbackScope& operator=(const CallbackScope&) = delete;
+private:
+    std::size_t& depth_;
+};
 
 // Native event positions have already had the frame's zoom and device scaling
 // removed by VSTGUI. This final source-image transform is shared by painting,
@@ -118,12 +130,15 @@ public:
     }
 
     [[nodiscard]] int parameter_at(CPoint position, bool from_frame = false) const {
+        if (!interaction_enabled_) { return -1; }
         if (from_frame) { translateToLocal(position); }
         const auto point = source_position(position);
         return photo::hit_control(point.x, point.y);
     }
 
     void onMouseDownEvent(MouseDownEvent& event) override {
+        const CallbackScope callback{active_callbacks_};
+        if (!interaction_enabled_) { return; }
         if (!event.buttonState.isLeft()) { return; }
         // Discard any loss from the previous interaction before starting this
         // click. The platform assigns native focus after this callback returns.
@@ -165,6 +180,8 @@ public:
     }
 
     void onMouseMoveEvent(MouseMoveEvent& event) override {
+        const CallbackScope callback{active_callbacks_};
+        if (!interaction_enabled_) { return; }
         if ((dragging_control_ || dragging_keyboard_) && native_focus_lost(true)) {
             cancel_interaction();
             event.consumed = true;
@@ -200,6 +217,8 @@ public:
     }
 
     void onMouseUpEvent(MouseUpEvent& event) override {
+        const CallbackScope callback{active_callbacks_};
+        if (!interaction_enabled_) { return; }
         if (!dragging_control_ && !dragging_keyboard_) { return; }
         dragging_control_ = false;
         dragging_keyboard_ = false;
@@ -209,17 +228,22 @@ public:
     }
 
     void onMouseCancelEvent(MouseCancelEvent& event) override {
+        const CallbackScope callback{active_callbacks_};
         cancel_interaction();
         event.consumed = true;
     }
 
     void onMouseEnterEvent(MouseEnterEvent& event) override {
+        const CallbackScope callback{active_callbacks_};
+        if (!interaction_enabled_) { return; }
         if (!dragging_control_ && !dragging_keyboard_) {
             update_hover(source_position(event.mousePosition));
         }
     }
 
     void onMouseExitEvent(MouseExitEvent&) override {
+        const CallbackScope callback{active_callbacks_};
+        if (!interaction_enabled_) { return; }
         hover_parameter_ = -1;
         hover_key_ = -1;
         if (dragging_keyboard_) { release_key(); }
@@ -227,6 +251,8 @@ public:
     }
 
     void onMouseWheelEvent(MouseWheelEvent& event) override {
+        const CallbackScope callback{active_callbacks_};
+        if (!interaction_enabled_) { return; }
         const int id = parameter_at(event.mousePosition);
         if (id < 0) { return; }
         event.consumed = true;
@@ -239,6 +265,8 @@ public:
     }
 
     void onKeyboardEvent(KeyboardEvent& event) override {
+        const CallbackScope callback{active_callbacks_};
+        if (!interaction_enabled_) { return; }
         if (event.type != EventType::KeyDown || event.modifiers.has(ModifierKey::Control) ||
             event.modifiers.has(ModifierKey::Alt) || event.modifiers.has(ModifierKey::Super)) {
             return;
@@ -293,22 +321,27 @@ public:
     }
 
     void looseFocus() override {
+        const CallbackScope callback{active_callbacks_};
         cancel_interaction();
         CView::looseFocus();
     }
 
     bool wantsWindowActiveStateChangeNotification() const override { return true; }
     void onWindowActivate(bool active) override {
+        const CallbackScope callback{active_callbacks_};
         if (!active) { cancel_interaction(); }
     }
 
     bool removed(CView* parent) override {
+        const CallbackScope callback{active_callbacks_};
         cancel_interaction();
         native_focus_.reset();
         return CView::removed(parent);
     }
 
     void onIdle() override {
+        const CallbackScope callback{active_callbacks_};
+        if (!interaction_enabled_) { return; }
         if (native_focus_lost()) { cancel_interaction(); }
         (void)controller_.retryAuditionRelease();
         if (held_key_ >= 0 && controller_.heldAuditionKey(audition_owner_) != held_key_) {
@@ -334,6 +367,7 @@ public:
     }
 
     bool cancel_interaction() {
+        const CallbackScope callback{active_callbacks_};
         ++cancellation_generation_;
         dragging_control_ = false;
         dragging_keyboard_ = false;
@@ -343,6 +377,13 @@ public:
         hover_key_ = -1;
         clear_feedback();
         return released;
+    }
+
+    [[nodiscard]] bool has_active_callback() const noexcept { return active_callbacks_ != 0; }
+
+    void disable_interaction() {
+        interaction_enabled_ = false;
+        (void)cancel_interaction();
     }
 
 private:
@@ -654,6 +695,8 @@ private:
     SharedPointer<CBitmap> photograph_;
     PhotoNativeFocus native_focus_;
     std::uint64_t cancellation_generation_ = 0;
+    std::size_t active_callbacks_ = 0;
+    bool interaction_enabled_ = true;
     int gesture_parameter_ = -1;
     int focused_parameter_ = -1;
     int hover_parameter_ = -1;
@@ -673,7 +716,8 @@ private:
 // Keep limits in logical pixels. The SDK aspect-ratio class has no maximum
 // zoom, and its cached initial size may already contain the host's DPI factor.
 // These hooks instead derive every physical size from the fixed 1024x768 canvas.
-class PhotoEditor final : public AspectRatioVST3Editor, public VST3EditorDelegate {
+class PhotoEditor final : public AspectRatioVST3Editor, public VST3EditorDelegate,
+                          private IPlatformTimerCallback {
 public:
     explicit PhotoEditor(RhodesController& owner)
         : AspectRatioVST3Editor(&owner, "RhodesPhotoEditor", "rhodes-suitcase.uidesc"),
@@ -686,11 +730,45 @@ public:
     }
 
     ~PhotoEditor() override {
-        if (getFrame() != nullptr) { close(); }
+        // Pending completion owns a reference. Destructor cleanup must never
+        // retain this object or schedule work after its reference count is zero.
+        destroying_ = true;
+        if (close_timer_) { (void)close_timer_->stop(); close_timer_ = nullptr; }
+        close_now();
         setDelegate(nullptr);
     }
 
+    Steinberg::tresult PLUGIN_API attached(void* parent, Steinberg::FIDString type) override {
+        if (destroying_ || closing_ || close_pending_ || removal_depth_ != 0) {
+            return Steinberg::kResultFalse;
+        }
+        const CallbackScope callback{active_callbacks_};
+        const auto result = VST3Editor::attached(parent, type);
+        if (close_pending_) {
+            // A host may request removal from the SDK's resize callback before
+            // the enclosing attached() wrapper publishes its parent pointer.
+            (void)Steinberg::Vst::EditorView::removed();
+            return Steinberg::kResultFalse;
+        }
+        return result;
+    }
+
+    Steinberg::tresult PLUGIN_API removed() override {
+        if (destroying_) { return Steinberg::kResultFalse; }
+        const Steinberg::IPtr<PhotoEditor> keep_alive{this};
+        if (closing_) { return Steinberg::kResultTrue; }
+        if (removal_depth_ != 0) { return Steinberg::kResultFalse; }
+        const CallbackScope removal{removal_depth_};
+        if (!close_pending_ && getFrame() != nullptr && callbacks_active()) {
+            if (!defer_close()) { return Steinberg::kResultFalse; }
+        }
+        // Check scheduling before the SDK clears its parent association. The
+        // virtual close() below leaves structural teardown to our completion.
+        return VST3Editor::removed();
+    }
+
     Steinberg::tresult PLUGIN_API onFocus(Steinberg::TBool active) override {
+        const CallbackScope callback{active_callbacks_};
         if (!active) {
             if (view_) { view_->cancel_interaction(); }
         }
@@ -734,7 +812,7 @@ protected:
     }
 
     bool PLUGIN_API open(void* parent, const PlatformType& platform) override {
-        if (getFrame() != nullptr ||
+        if (destroying_ || closing_ || close_pending_ || getFrame() != nullptr ||
             !valid_bitmap(getUIDescription()->getBitmap("rhodes-suitcase"))) { return false; }
         // Our size hooks handle DPI and both limits; do not seed the SDK's
         // separate initial-size/zoom cache with an already scaled frame.
@@ -749,8 +827,7 @@ protected:
     }
 
     void PLUGIN_API close() override {
-        if (getFrame() != nullptr) { VST3Editor::close(); }
-        view_ = nullptr;
+        if (!close_pending_ && !closing_) { close_now(); }
     }
 
     Steinberg::tresult PLUGIN_API checkSizeConstraint(Steinberg::ViewRect* size) override {
@@ -764,6 +841,7 @@ protected:
     }
 
     Steinberg::tresult PLUGIN_API onSize(Steinberg::ViewRect* size) override {
+        const CallbackScope callback{active_callbacks_};
         if (size == nullptr) { return Steinberg::kInvalidArgument; }
         if (resizing_) { return Steinberg::kResultFalse; }
         auto constrained = *size;
@@ -799,6 +877,7 @@ protected:
 
 #ifdef VST3_CONTENT_SCALE_SUPPORT
     Steinberg::tresult PLUGIN_API setContentScaleFactor(ScaleFactor factor) override {
+        const CallbackScope callback{active_callbacks_};
         if (scaling_ || resizing_) { return Steinberg::kResultFalse; }
         Steinberg::ViewRect next{};
         if (!std::isfinite(factor) || factor <= 0.0F ||
@@ -839,6 +918,50 @@ protected:
 #endif
 
 private:
+    [[nodiscard]] bool callbacks_active() const noexcept {
+        return active_callbacks_ != 0 || (view_ && view_->has_active_callback()) ||
+               (getFrame() && getFrame()->inEventProcessing());
+    }
+
+    bool defer_close() {
+        close_pending_ = true;
+        deferred_close_owner_ = this;
+        close_timer_ = getPlatformFactory().createTimer(this);
+        // CVSTGUITimer::start discards registration failure. The platform API
+        // reports whether an actual UI timer was registered.
+        if (!close_timer_ || !close_timer_->start(1)) {
+            if (close_timer_) { (void)close_timer_->stop(); close_timer_ = nullptr; }
+            close_pending_ = false;
+            deferred_close_owner_ = nullptr;
+            if (view_) { (void)view_->cancel_interaction(); }
+            return false;
+        }
+        if (view_) { view_->disable_interaction(); }
+        return true;
+    }
+
+    void fire() override {
+        const Steinberg::IPtr<PhotoEditor> keep_alive{this};
+        if (!close_pending_ || removal_depth_ != 0 || callbacks_active()) { return; }
+        // Wait for a real UI timer turn, beyond the native event postamble.
+        // Nested message pumping keeps the periodic timer for another tick.
+        auto completing_timer = close_timer_;
+        close_timer_ = nullptr;
+        if (completing_timer) { (void)completing_timer->stop(); }
+        close_now();
+        close_pending_ = false;
+        deferred_close_owner_ = nullptr;
+    }
+
+    void close_now() {
+        if (closing_) { return; }
+        closing_ = true;
+        if (view_) { view_->disable_interaction(); }
+        if (getFrame() != nullptr) { VST3Editor::close(); }
+        view_ = nullptr;
+        closing_ = false;
+    }
+
     static bool valid_bitmap(CBitmap* bitmap) noexcept {
         return bitmap != nullptr && bitmap->isLoaded() &&
                bitmap->getWidth() == photo::kSourceWidth &&
@@ -871,6 +994,13 @@ private:
 
     RhodesController& rhodes_controller_;
     PhotoView* view_ = nullptr; // Owned by the editor frame, cleared before teardown.
+    PlatformTimerPtr close_timer_;
+    Steinberg::IPtr<PhotoEditor> deferred_close_owner_;
+    std::size_t active_callbacks_ = 0;
+    std::size_t removal_depth_ = 0;
+    bool close_pending_ = false;
+    bool closing_ = false;
+    bool destroying_ = false;
     bool resizing_ = false;
     bool scaling_ = false;
 };
