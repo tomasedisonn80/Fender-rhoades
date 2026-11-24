@@ -6,7 +6,7 @@
 
 **Fidelity status:** `unvalidated`. Task completion is not a realism percentage.
 
-**State revision:** 22 · **Last state change:** 2026-11-23T21:57:17Z
+**State revision:** 25 · **Last state change:** 2026-11-24T05:01:00Z
 
 blocked: **2** | done: **2** | in_progress: **3** | todo: **7**
 
@@ -33,9 +33,9 @@ blocked: **2** | done: **2** | in_progress: **3** | todo: **7**
 
 Run `python3 tools/project.py next` for lease-aware available work. The list below includes claimed work and is deterministic:
 
-- **PHY-002 — Implement finite-mass hammer and damper contact reference**. Claimed by `development-root` until `2026-11-24T21:57:16Z`; check current lease before starting.
-- **RT-001 — Measure runtime cost and numerical approximation errors**. Claimed by `development-root` until `2026-11-24T21:57:16Z`; check current lease before starting.
-- **HOST-001 — Build and validate an experimental VST3 instrument adapter**. Claimed by `development-root` until `2026-11-24T21:57:17Z`; check current lease before starting.
+- **PHY-002 — Implement finite-mass hammer and damper contact reference**. Claimed by `development-root` until `2026-11-25T05:01:00Z`; check current lease before starting.
+- **RT-001 — Measure runtime cost and numerical approximation errors**. Claimed by `development-root` until `2026-11-25T05:01:00Z`; check current lease before starting.
+- **HOST-001 — Build and validate an experimental VST3 instrument adapter**. Claimed by `development-root` until `2026-11-25T05:01:00Z`; check current lease before starting.
 
 ## Explicit blockers
 

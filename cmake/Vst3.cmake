@@ -50,6 +50,15 @@ set(public_sdk_SOURCE_DIR "${RHODES_VST3_SDK_ROOT}/public.sdk")
 set(pluginterfaces_SOURCE_DIR "${RHODES_VST3_SDK_ROOT}/pluginterfaces")
 add_subdirectory("${RHODES_VST3_SDK_ROOT}" "${CMAKE_BINARY_DIR}/vst3-sdk" EXCLUDE_FROM_ALL)
 
+# The pinned SDK's base archive uses CoreFoundation in fstring.cpp but does not
+# propagate that dependency. Plug-in helpers add platform frameworks themselves;
+# our plain benchmark/test executables also need the base archive's dependency.
+# Attach it once to the static archive's interface without editing the SDK.
+if(APPLE)
+    find_library(RHODES_COREFOUNDATION_FRAMEWORK CoreFoundation REQUIRED)
+    target_link_libraries(base INTERFACE "${RHODES_COREFOUNDATION_FRAMEWORK}")
+endif()
+
 # The optional fifth argument selects the quadrature variant.
 function(rhodes_add_plugin target package filtered bundle_id)
     if(ARGC GREATER 4 AND ARGV4)

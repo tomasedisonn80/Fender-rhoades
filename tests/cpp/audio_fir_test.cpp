@@ -140,7 +140,7 @@ void fir_group_delay() {
             mass += h[k];
             first_moment += static_cast<long double>(k) * h[k];
         }
-        require(std::abs(first_moment / mass / factor - 48.0L) <= 2e-12L,
+        require(std::abs(first_moment / mass / static_cast<long double>(factor) - 48.0L) <= 2e-12L,
                 "coefficient group delay is not 48 host frames");
         std::vector<double> host;
         for (std::size_t t = 0; t < h.size() + 3 * factor; ++t) {
