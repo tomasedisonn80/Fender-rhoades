@@ -549,26 +549,224 @@
       "wave": 4,
       "task_name": "/root/w4_61_final_native_replay",
       "scope": "final native replay",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/reports/photo-continuation-20261124/w4-061.md",
-      "report_sha256": null
+      "report_sha256": "c700eb980c53575305a196423e9ec8d2c813d21e2271348963e30e9f5dbeaa61"
     },
     {
       "id": "A062",
       "wave": 4,
       "task_name": "/root/w4_62_final_module_gates",
       "scope": "final module gates",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/reports/photo-continuation-20261124/w4-062.md",
-      "report_sha256": null
+      "report_sha256": "1eb0876817e4e52864ccef977e6c05576f12aa858099fdee36b81b7496c14f89"
     },
     {
       "id": "A063",
       "wave": 4,
       "task_name": "/root/w4_63_lease_handoff_review",
       "scope": "lease handoff review",
-      "status": "running",
+      "status": "completed",
       "report": "docs/agents/reports/photo-continuation-20261124/w4-063.md",
+      "report_sha256": "a925d7ef4b7037404e84dbfccdc385273f33e261a93ba98e0bc03fad7f0ee129"
+    },
+    {
+      "id": "A064",
+      "wave": 4,
+      "task_name": "/root/w4_64_final_legacy_audio",
+      "scope": "final legacy audio",
+      "status": "completed",
+      "report": "docs/agents/reports/photo-continuation-20261124/w4-064.md",
+      "report_sha256": "9fc8e044fcf458a318e656cb7bfc0f4aff3000bee7b26bae3c24a006b077e87d"
+    },
+    {
+      "id": "A065",
+      "wave": 4,
+      "task_name": "/root/w4_65_final_reference_assets",
+      "scope": "final reference assets",
+      "status": "completed",
+      "report": "docs/agents/reports/photo-continuation-20261124/w4-065.md",
+      "report_sha256": "6b54f1aadf16ddb7e2640dee30e33119ec6e36c23132e111a2e6b825397183fa"
+    },
+    {
+      "id": "A066",
+      "wave": 4,
+      "task_name": "/root/w4_66_final_capture_retention",
+      "scope": "final capture retention",
+      "status": "completed",
+      "report": "docs/agents/reports/photo-continuation-20261124/w4-066.md",
+      "report_sha256": "b61862fdf874942922df3ef6e53dea20d0f96e11e7b7dbb68198bcb73f976645"
+    },
+    {
+      "id": "A067",
+      "wave": 4,
+      "task_name": "/root/w4_67_campaign_regressions",
+      "scope": "campaign regressions",
+      "status": "completed",
+      "report": "docs/agents/reports/photo-continuation-20261124/w4-067.md",
+      "report_sha256": "d93ed7ae4e67a39fc58b1221c9f1610938cb7a35fe7da604fe8946becfe6f138"
+    },
+    {
+      "id": "A068",
+      "wave": 4,
+      "task_name": "/root/w4_68_changelog",
+      "scope": "changelog",
+      "status": "completed",
+      "report": "docs/agents/reports/photo-continuation-20261124/w4-068.md",
+      "report_sha256": "7047c0d408c068e7b9e1a80af1863d59481666bc361fbbb7e280e911724df62b"
+    },
+    {
+      "id": "A069",
+      "wave": 4,
+      "task_name": "/root/w4_69_final_panel_gate",
+      "scope": "final panel gate",
+      "status": "completed",
+      "report": "docs/agents/reports/photo-continuation-20261124/w4-069.md",
+      "report_sha256": "f4d5985c39006a7a18a0345a823b70e661a56a244ea44a094ecc08b0bfaf6e8f"
+    },
+    {
+      "id": "A070",
+      "wave": 4,
+      "task_name": "/root/w4_70_current_ci",
+      "scope": "current ci",
+      "status": "completed",
+      "report": "docs/agents/reports/photo-continuation-20261124/w4-070.md",
+      "report_sha256": "bd09d142a17edc3b50d2acc9c0d5d3b12d1eea120e89956fad618fac223ea297"
+    },
+    {
+      "id": "A071",
+      "wave": 4,
+      "task_name": "/root/w4_71_state_contract_review",
+      "scope": "state contract review",
+      "status": "completed",
+      "report": "docs/agents/reports/photo-continuation-20261124/w4-071.md",
+      "report_sha256": "af5b437a8a21bcbfcf73f4d44afd0a249ad9f7ed6d55735d0cab919f8bc33b45"
+    },
+    {
+      "id": "A072",
+      "wave": 4,
+      "task_name": "/root/w4_72_photo_ledger_ci",
+      "scope": "photo ledger ci",
+      "status": "completed",
+      "report": "docs/agents/reports/photo-continuation-20261124/w4-072.md",
+      "report_sha256": "31e47bf3d4464cdc9b14a100595a1c49d31f812e6b28247ccc47265f0d82d2bc"
+    },
+    {
+      "id": "A073",
+      "wave": 4,
+      "task_name": "/root/w4_73_parameter_docs",
+      "scope": "parameter docs",
+      "status": "completed",
+      "report": "docs/agents/reports/photo-continuation-20261124/w4-073.md",
+      "report_sha256": "e786d71935ccec8e3dfbfe7475c28828c6e5af8563e5375b26a531b24c118a83"
+    },
+    {
+      "id": "A074",
+      "wave": 4,
+      "task_name": "/root/w4_74_cross_platform_timer_review",
+      "scope": "cross platform timer review",
+      "status": "completed",
+      "report": "docs/agents/reports/photo-continuation-20261124/w4-074.md",
+      "report_sha256": "24304494c32c816e281f70312e177f7f0c20592697c20e41a61e28c97e69d153"
+    },
+    {
+      "id": "A075",
+      "wave": 4,
+      "task_name": "/root/w4_75_loaded_panel_audio",
+      "scope": "loaded panel audio",
+      "status": "completed",
+      "report": "docs/agents/reports/photo-continuation-20261124/w4-075.md",
+      "report_sha256": "c1dda3570a4e27669aac855b962a8128546917f7fafe0ba2ee8c4570b0676f94"
+    },
+    {
+      "id": "A076",
+      "wave": 4,
+      "task_name": "/root/w4_76_failure_preservation",
+      "scope": "failure preservation",
+      "status": "completed",
+      "report": "docs/agents/reports/photo-continuation-20261124/w4-076.md",
+      "report_sha256": "8e0f61515f34989585dc45f6275a64ea63c7634e296cb69e6b0340561e28ac26"
+    },
+    {
+      "id": "A077",
+      "wave": 4,
+      "task_name": "/root/w4_77_final_keyboard_contract",
+      "scope": "final keyboard contract",
+      "status": "completed",
+      "report": "docs/agents/reports/photo-continuation-20261124/w4-077.md",
+      "report_sha256": "41df58656429ad51b67e593b7cf33149f3ce5c201887bdf4f4c60fe93660e12f"
+    },
+    {
+      "id": "A078",
+      "wave": 4,
+      "task_name": "/root/w4_78_documentation_gate",
+      "scope": "documentation gate",
+      "status": "completed",
+      "report": "docs/agents/reports/photo-continuation-20261124/w4-078.md",
+      "report_sha256": "a12c96873f15a2b91694734fc7b10b5b628292354fa743ee5cb5621ab43e332a"
+    },
+    {
+      "id": "A079",
+      "wave": 4,
+      "task_name": "/root/w4_79_optional_build_review",
+      "scope": "optional build review",
+      "status": "completed",
+      "report": "docs/agents/reports/photo-continuation-20261124/w4-079.md",
+      "report_sha256": "b3de94c880964a28bcc98b1acf637deab8cb8442891489797fdea8d843514a37"
+    },
+    {
+      "id": "A080",
+      "wave": 4,
+      "task_name": "/root/w4_80_loaded_audio_review",
+      "scope": "loaded audio review",
+      "status": "completed",
+      "report": "docs/agents/reports/photo-continuation-20261124/w4-080.md",
+      "report_sha256": "e952a7f577ee48da085010e91ed3743079dc8ba02bc58e86afd9c9ee5ad4371c"
+    },
+    {
+      "id": "A081",
+      "wave": 5,
+      "task_name": "/root/w5_81_loaded_audio_assertions",
+      "scope": "tighten loaded-audio host setup and analytic assertions",
+      "status": "running",
+      "report": "docs/agents/reports/photo-continuation-20261124/w5-081.md",
+      "report_sha256": null
+    },
+    {
+      "id": "A082",
+      "wave": 5,
+      "task_name": "/root/w5_82_current_native_docs",
+      "scope": "refresh observed native platform documentation",
+      "status": "completed",
+      "report": "docs/agents/reports/photo-continuation-20261124/w5-082.md",
+      "report_sha256": "4e9ce30d96c9169e39cdb2cd1f150d1c4a00364942b37859692eafeef18d59a5"
+    },
+    {
+      "id": "A083",
+      "wave": 5,
+      "task_name": "/root/w5_83_photo_acceptance_review",
+      "scope": "independent photo-composition acceptance review",
+      "status": "completed",
+      "report": "docs/agents/reports/photo-continuation-20261124/w5-083.md",
+      "report_sha256": "ba9bcab107e84541b4fe1a852f2650ca1b60c6210fc63c6ae82caeac76f7fe57"
+    },
+    {
+      "id": "A084",
+      "wave": 5,
+      "task_name": "/root/w5_84_controls_acceptance_review",
+      "scope": "independent synthetic controls and legacy compatibility review",
+      "status": "running",
+      "report": "docs/agents/reports/photo-continuation-20261124/w5-084.md",
+      "report_sha256": null
+    },
+    {
+      "id": "A085",
+      "wave": 5,
+      "task_name": "/root/w5_85_lifecycle_acceptance_review",
+      "scope": "independent native lifecycle acceptance review",
+      "status": "running",
+      "report": "docs/agents/reports/photo-continuation-20261124/w5-085.md",
       "report_sha256": null
     }
   ]

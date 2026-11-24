@@ -79,6 +79,10 @@ jobs:
         run: >-
           python tools/capture_ci_diagnostics.py run --output-dir ci-evidence
           --label expression-campaign -- python tools/validate_continuation_d.py
+      - name: Validate photo continuation assignments and report hashes
+        run: >-
+          python tools/capture_ci_diagnostics.py run --output-dir ci-evidence
+          --label photo-continuation -- python tools/validate_photo_continuation.py
       - name: Verify retained host MIDI raw evidence
         run: >-
           python tools/capture_ci_diagnostics.py run --output-dir ci-evidence

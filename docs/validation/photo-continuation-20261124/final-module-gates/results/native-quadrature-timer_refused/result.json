@@ -1,0 +1,39 @@
+{
+  "name": "native-quadrature-timer_refused",
+  "kind": "native_lifecycle",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "/home/agent/rhoades-9a04c9726e31/w4-062/source/tools/run_xvfb_test.py",
+    "--xvfb",
+    "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/Xvfb",
+    "--xauth",
+    "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xauth",
+    "--xdpyinfo",
+    "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xdpyinfo",
+    "--startup-timeout",
+    "10",
+    "--test-timeout",
+    "30",
+    "--",
+    "/home/agent/rhoades-9a04c9726e31/w4-062/bin/rhodes_vst3_photo_lifecycle_tests",
+    "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchQuadrature.vst3",
+    "timer_refused"
+  ],
+  "cwd": "/home/agent/rhoades-9a04c9726e31/w4-062",
+  "started_utc": "2026-11-24T19:18:41.467600+00:00",
+  "timeout_seconds": 50,
+  "environment_file": "environment.json",
+  "exit_code": 0,
+  "finished_utc": "2026-11-24T19:18:41.783629+00:00",
+  "elapsed_seconds": 0.31599147399538197,
+  "stdout": {
+    "path": "results/native-quadrature-timer_refused/stdout.log",
+    "sha256": "5536fa47544c73e5aa1e7c29180a565f834e2665f2befd3d787451d5b49ab456",
+    "bytes": 42
+  },
+  "stderr": {
+    "path": "results/native-quadrature-timer_refused/stderr.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  }
+}

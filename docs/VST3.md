@@ -122,7 +122,9 @@ while its Wayland backend is disabled. A nonstandard dependency installation may
 also need `WAYLAND_PROTOCOLS_BASEDIR` pointing to its `share/wayland-protocols`
 directory. Xvfb is useful for automated Linux window tests; it is not part of the
 plug-in's audio engine. Windows/macOS use their platform SDKs and native VSTGUI
-backends; their editor builds need separate executed qualification.
+backends. Their native editor-window execution needs separate qualification;
+the [current checkpoint](#current-photo-editor-checkpoint--24-november-2026)
+records the observed CI build/test outcomes.
 Linux editor builds with `BUILD_TESTING=ON` also require `Xvfb`, `xauth` and
 `xdpyinfo` at configure time (`sudo apt-get install -y xvfb xauth x11-utils` on
 Debian/Ubuntu).
@@ -236,7 +238,10 @@ No pre-existing `DISPLAY` is needed. The retained
 [Linux Direct lifecycle run](validation/photo-continuation-20261124/NATIVE_LIFECYCLE_20261124.md)
 passed all 13 selectors, including ten painted reopen cycles and two editors
 sharing one native connection. Its manifest binds the tested source and binary.
-This Linux SDK fixture does not establish named-DAW behavior.
+The [final variant run](agents/reports/photo-continuation-20261124/w4-062.md)
+passed the same 13 selectors for Filtered and Quadrature, giving **39/39 native
+lifecycle cases** across the three variants. These Linux SDK fixtures do not
+establish named-DAW behavior.
 
 The separate [interaction smoke tool](../tools/verify_photo_interactions.py)
 uses real XTEST pointer/keyboard input, native window captures and recorded host
@@ -455,19 +460,22 @@ therefore needs a separate check in each native DAW.
 The editor uses the [full original reference](../assets/reference/rhodes-suitcase-reference.webp),
 converted losslessly for VSTGUI loading. The default view is `1024 × 768`, with
 `768 × 576` and `1536 × 1152` logical size limits and a fixed 4:3 aspect ratio.
-The intended idle surface contains the photograph alone. Transient highlights,
+The idle surface contains the photograph alone. Transient highlights,
 focus indicators and value readouts identify an interaction without replacing
 the photographed controls. Image drawing and hit testing share the same transform.
 
 Volume changes Monitoring Gain; click the pictured pedal to toggle Sustain.
 Drag a knob vertically or an EQ slider horizontally; Shift selects fine movement.
-Wheel input and keyboard focus provide alternate control editing, and a double
-click restores a control's default. The pictured keys send audition messages
+Wheel input and keyboard focus provide alternate control editing. A double
+click restores a continuous control's default; Sustain and Vibrato toggle on
+every click. The pictured keys send audition messages
 through the VST3 controller/processor connection, using the same 73-key range.
 The native host must provide that connection; failed delivery is shown as a
 connection status, not as a successful sounding key. Audition commands use a
 bounded audio-boundary queue and separate UI key ownership from host MIDI.
-Exact native gestures and audible host behavior remain qualification gates.
+The [current checkpoint](#current-photo-editor-checkpoint--24-november-2026)
+records the executed Linux gesture and rendering checks. Audible interaction in
+a named DAW remains unvalidated.
 
 The [digital effect](../include/rhodes/front_panel_effects.hpp) applies Bass and
 Treble after Monitoring Gain, followed by opposed left/right amplitude modulation.
@@ -687,36 +695,78 @@ configuration recall installed at an accepted audio boundary supplies that reset
 source photo and verified lossless PNG are committed; the
 [asset verifier](../tools/verify_editor_assets.py) checks encoded hashes, dimensions
 and the retained profile, with an optional decoded-pixel comparison. All three
-native GUI modules have built locally on Linux. The
+native GUI modules have built locally on Linux. The initial
 [SDK-only loaded editor fixture](../tests/cpp/vst3_photo_editor_test.cpp) passed
 3,855 unattached-interface checks across nine controllers and 24 created views,
-including 54 malformed content scales. Those checks do not open a native window.
+including 54 malformed content scales. The later
+[final bundle gate](agents/reports/photo-continuation-20261124/w4-062.md) records
+**5,283 unattached-interface checks**, again across nine controllers and 24 views.
+Neither unattached result opens a native window.
 
-The direct module has also attached in the official SDK `editorhost` on Linux
+An earlier Direct module attached in the official SDK `editorhost` on Linux
 under Xvfb and rendered a real `1024 × 768` native window. The captured idle
 window was visually inspected and shows the complete reference composition.
 An initial attachment attempt failed in the SDK test host because the isolated
 X server lacked its expected `_XEMBED_INFO` atom; preparing that host prerequisite
 allowed the window to open without a plug-in code change.
 
-The later [frozen Linux Direct interaction run](agents/reports/photo-continuation-20261124/w2-036.md)
-records **136/136 passes**, with no failures or incomplete checks, including all
-43 white-key holds, three editor sizes and exact initial/final full-size idle
-pixels. Its [capture-preservation audit](agents/reports/photo-continuation-20261124/w3-046.md)
-retains 66 captures plus one mask, with exact decoded RGB/dimensions and five
-byte-exact raw files. These observations apply to that frozen bundle; they do
-not qualify subsequent lifecycle changes, other variants or platforms, audio,
-physical fidelity or named-DAW operation. The subsequent
-[native lifecycle report](validation/photo-continuation-20261124/NATIVE_LIFECYCLE_20261124.md)
-records 13 passing Linux Direct cases for its own source-bound binary.
+The [earlier frozen interaction run](agents/reports/photo-continuation-20261124/w2-036.md)
+and its [capture-preservation audit](agents/reports/photo-continuation-20261124/w3-046.md)
+remain historical evidence. The subsequent
+[final Linux Direct XTEST replay](agents/reports/photo-continuation-20261124/w4-061.md)
+includes the lifecycle repairs and final X11/Cairo/child-window adaptations. It
+records **136/136 passes**, with no failures or incomplete checks:
 
-Full current-source gesture behavior, quantitative image comparison,
-resize/cleanup behavior of an attached view, editor-enabled Windows/macOS runs
-and named-DAW operation remain separate qualification gates. Earlier platform
-records below apply only to the revisions and feature scope they identify. Final
-editor acceptance needs retained source-bound screenshots, packaged-resource
-checks and executed platform results;
-the unattached API result alone cannot establish those properties.
+| Executed final Linux Direct check | Observed result |
+| --- | --- |
+| Full-photo idle pixels at `1536 × 1152` | Initial and final captures each match all **1,769,472 RGB pixels** exactly |
+| White-key geometry and highlights | All 43 held white keys visibly differ from hover while all 30 black-key interiors remain unchanged; **1,290 region comparisons**, zero changed pixels |
+| Pointer and keyboard interaction | Rapid pedal/Vibrato presses, ordinary/fine arrows, all 24 Ctrl/Alt/Super arrow combinations and feedback expiry pass |
+| Attached resizing and close | Minimum/default/maximum sizes pass; feedback title/help remain unclipped; closing during a held gesture balances its callbacks |
+
+The [raw result](validation/photo-continuation-20261124/final-native/outcome.json),
+[evidence summary](validation/photo-continuation-20261124/final-native/evidence-summary.json)
+and [input manifest](validation/photo-continuation-20261124/final-native/input-manifest.json)
+bind the final executed module, accepting SDK host and unchanged verifier. The
+[committed-source bridge](validation/photo-continuation-20261124/final-native/committed-source-bridge.json)
+matches all 48 recorded repository inputs to commit `4369547`. All 66 screenshots
+match the earlier run byte for byte; the
+[final capture archive](validation/photo-continuation-20261124/captures/final-native-pixels.zip)
+and [sidecar manifest](validation/photo-continuation-20261124/captures/final-native-pixels.manifest.json)
+preserve their decoded RGB pixels/dimensions and the mask.
+
+The [Direct lifecycle report](validation/photo-continuation-20261124/NATIVE_LIFECYCLE_20261124.md)
+records **13/13 passing selectors**. The final bundle run adds **13/13 each** for
+Filtered and Quadrature, giving **39/39 native lifecycle cases** across the three
+variants. It also records **47/47 SDK validator tests per variant** and all three
+module metadata validators passing. The
+[final module-gate summary and raw streams](validation/photo-continuation-20261124/final-module-gates/summary.json)
+retain each command, exit status and source/binary binding. Lifecycle paint-patch
+checks establish rendering readiness; exact whole-image equality is established
+by the separate Direct XTEST replay above.
+
+The [final legacy-audio replay](agents/reports/photo-continuation-20261124/w4-064.md)
+executed **144 fresh current-module captures** against **72 retained baseline
+captures**. All **144/144 pairs**, comprising **608,256 paired stereo frames**,
+match exact sample bytes and legacy metadata/state checkpoints. Its
+[raw comparison record](validation/photo-continuation-20261124/final-legacy/fresh-comparison.json)
+covers the three variants at neutral panel/unity Expression in the recorded
+synthetic scenarios; the baseline captures were revalidated, not re-executed.
+
+The retained [CI status observation](validation/photo-continuation-20261124/ci-4369547.json)
+for commit `4369547`, collected at 19:30 UTC, records successful Ubuntu and
+Windows VST3 jobs, successful Foundation jobs on those platforms and a successful
+sanitizer job. The macOS jobs were queued without an assigned runner or executed
+steps; there is no macOS execution result for this checkpoint. These build/test
+results do not establish Windows or macOS native editor-window interaction.
+
+Linux native mouse/keyboard behavior, geometry, pixels, attached resizing and
+lifecycle behavior have therefore been demonstrated within the recorded fixture
+scope. Windows/macOS native editor-window runs, non-unit device DPI and named-DAW
+operation remain unrun here; audio-device deadlines and physical fidelity remain
+unvalidated. The accepting SDK editor host has no audio-processing loop. These
+results do not complete HOST-004 acceptance or qualify later changed inputs;
+earlier platform records below retain their own revision and feature scope.
 
 ### Current Expression and output-layout verification — 24 November 2026
 

@@ -1,0 +1,30 @@
+{
+  "name": "ctest-command-discovery",
+  "kind": "discovery",
+  "command": [
+    "ctest",
+    "--test-dir",
+    "/home/agent/rhoades-9a04c9726e31/build",
+    "-N",
+    "-V",
+    "-R",
+    "validator|moduleinfo|loaded_expression_controls_state|photo_editor_contract|photo_lifecycle"
+  ],
+  "cwd": "/home/agent/rhoades-9a04c9726e31/w4-062",
+  "started_utc": "2026-11-24T19:18:37.463065+00:00",
+  "timeout_seconds": 30,
+  "environment_file": "environment.json",
+  "exit_code": 0,
+  "finished_utc": "2026-11-24T19:18:37.495874+00:00",
+  "elapsed_seconds": 0.032724469994718675,
+  "stdout": {
+    "path": "results/ctest-command-discovery/stdout.log",
+    "sha256": "e43d88bb9c4b740440526487a6f8de0ad65e4149ea8beb3f67d2cab75a32e191",
+    "bytes": 12459
+  },
+  "stderr": {
+    "path": "results/ctest-command-discovery/stderr.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  }
+}

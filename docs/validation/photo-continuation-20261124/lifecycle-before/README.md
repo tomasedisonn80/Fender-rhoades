@@ -11,5 +11,5 @@ For example, restore the original trace without altering the archive:
 gzip -dc reentrant01/editorhost.log.gz > build-reentrant01-editorhost.log
 ```
 
-The untraced `reentrant02` repetition remains separate. These are original failed
-observations, not positive acceptance for the subsequent repair.
+The untraced `reentrant02` repetition remains separate. These are original control
+and failure observations, not positive acceptance for the subsequent repair.

@@ -1,0 +1,314 @@
+* Loading module...
+
+	/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearch.vst3
+
+* Check valid bundle structure...
+
+* Scanning classes...
+
+  Factory Info:
+	vendor = Rhodes Research
+	url = https://github.com/baabi-boo/Fender-rhoades
+	email = 
+
+  Class Info 0:
+	name = Rhodes Research Prototype
+	category = Audio Module Class
+	subCategories = Instrument|Synth
+	version = 0.1.0
+	sdkVersion = VST 3.8.1
+	cid = BDDA70F46F9244C1A5639EE371A0B804
+
+  Class Info 1:
+	name = Rhodes Research Controller
+	category = Component Controller Class
+	subCategories = 
+	version = 0.1.0
+	sdkVersion = VST 3.8.1
+	cid = EA801E8B97864ED9B3A0E6572D81CE61
+
+* Checking snapshots...
+
+Info: No snapshots in Bundle.
+
+* Creating tests...
+
+* Running tests...
+
+-------------------------------------------------------------
+TestSuite : Rhodes Research Prototype
+-------------------------------------------------------------
+
+-------------------------------------------------------------
+TestSuite : General Tests
+-------------------------------------------------------------
+
+[Scan Editor Classes]
+Info:  ===Scan Editor Classes ====================================
+Info:  This component has an edit controller class
+Info:     Controller CID: {EA801E8B-9786-4ED9-B3A0-E6572D81CE61}
+[Succeeded]
+
+[Scan Buses]
+Info:  ===Scan Buses ====================================
+Info:  => Audio Buses: [0 In(s) => 1 Out(s)]
+Info:       Out[0]: "Stereo Out" (Main-Default Active) 
+Info:  => Event Buses: [1 In(s) => 0 Out(s)]
+Info:       In [0]: "MIDI In" (Main-Default Active) 
+[Succeeded]
+
+[Scan Parameters]
+Info:  ===Scan Parameters ====================================
+Info:  This component exports 24 parameter(s)
+Info:  Note: it could be better to use UnitInfo in order to sort Parameters (>20).
+Info:     Parameter 000 (id=0): [title="Monitoring Gain"] [unit="x"] [type = Float, default = 0.500000, unit = 0]
+Info:     Parameter 001 (id=1): [title="Sustain"] [unit=""] [type = Toggle, default = 0.000000, unit = 0]
+Info:     Parameter 002 (id=2): [title="Expression"] [unit="x"] [type = Float, default = 1.000000, unit = 0]
+Info:     Parameter 003 (id=4096): [title="All Notes Off Ch 1"] [unit=""] [type = Float, default = 0.000000, unit = 0]
+Info:     Parameter 004 (id=4097): [title="All Notes Off Ch 2"] [unit=""] [type = Float, default = 0.000000, unit = 0]
+Info:     Parameter 005 (id=4098): [title="All Notes Off Ch 3"] [unit=""] [type = Float, default = 0.000000, unit = 0]
+Info:     Parameter 006 (id=4099): [title="All Notes Off Ch 4"] [unit=""] [type = Float, default = 0.000000, unit = 0]
+Info:     Parameter 007 (id=4100): [title="All Notes Off Ch 5"] [unit=""] [type = Float, default = 0.000000, unit = 0]
+Info:     Parameter 008 (id=4101): [title="All Notes Off Ch 6"] [unit=""] [type = Float, default = 0.000000, unit = 0]
+Info:     Parameter 009 (id=4102): [title="All Notes Off Ch 7"] [unit=""] [type = Float, default = 0.000000, unit = 0]
+Info:     Parameter 010 (id=4103): [title="All Notes Off Ch 8"] [unit=""] [type = Float, default = 0.000000, unit = 0]
+Info:     Parameter 011 (id=4104): [title="All Notes Off Ch 9"] [unit=""] [type = Float, default = 0.000000, unit = 0]
+Info:     Parameter 012 (id=4105): [title="All Notes Off Ch 10"] [unit=""] [type = Float, default = 0.000000, unit = 0]
+Info:     Parameter 013 (id=4106): [title="All Notes Off Ch 11"] [unit=""] [type = Float, default = 0.000000, unit = 0]
+Info:     Parameter 014 (id=4107): [title="All Notes Off Ch 12"] [unit=""] [type = Float, default = 0.000000, unit = 0]
+Info:     Parameter 015 (id=4108): [title="All Notes Off Ch 13"] [unit=""] [type = Float, default = 0.000000, unit = 0]
+Info:     Parameter 016 (id=4109): [title="All Notes Off Ch 14"] [unit=""] [type = Float, default = 0.000000, unit = 0]
+Info:     Parameter 017 (id=4110): [title="All Notes Off Ch 15"] [unit=""] [type = Float, default = 0.000000, unit = 0]
+Info:     Parameter 018 (id=4111): [title="All Notes Off Ch 16"] [unit=""] [type = Float, default = 0.000000, unit = 0]
+Info:     Parameter 019 (id=3): [title="Bass"] [unit="dB"] [type = Float, default = 0.500000, unit = 0]
+Info:     Parameter 020 (id=4): [title="Treble"] [unit="dB"] [type = Float, default = 0.500000, unit = 0]
+Info:     Parameter 021 (id=5): [title="Intensity"] [unit="x"] [type = Float, default = 0.000000, unit = 0]
+Info:     Parameter 022 (id=6): [title="Speed"] [unit="Hz"] [type = Float, default = 0.500000, unit = 0]
+Info:     Parameter 023 (id=7): [title="Vibrato"] [unit=""] [type = Toggle, default = 0.000000, unit = 0]
+Info:  No bypass parameter found. This is an instrument.
+[Succeeded]
+
+[MIDI Mapping]
+Info:  ===MIDI Mapping ====================================
+[Succeeded]
+
+[MIDI Learn]
+Info:  ===MIDI Learn ====================================
+Info:  No MIDI Learn interface supplied!
+[Succeeded]
+
+[Scan Units]
+Info:  ===Scan Units ====================================
+Info:  This component has no units.
+[Succeeded]
+
+[Scan Programs]
+Info:  ===Scan Programs ====================================
+Info:  This component does not export any programs.
+[Succeeded]
+
+[Terminate/Initialize]
+Info:  ===Terminate/Initialize ====================================
+[Succeeded]
+
+[Check Unit Structure]
+Info:  ===Check Unit Structure ====================================
+Info:  This component does not support IUnitInfo!
+[Succeeded]
+
+[Valid State Transition 32bits]
+Info:  ===Valid State Transition 32bits ====================================
+[Succeeded]
+
+[Valid State Transition 64bits]
+Info:  ===Valid State Transition 64bits ====================================
+[Succeeded]
+
+[Bus Consistency]
+Info:  ===Bus Consistency ====================================
+[Succeeded]
+
+[Bus Activation]
+Info:  ===Bus Activation ====================================
+Info:     Bus Activation: Output Audio Bus (0) (kMain)
+Info:     Bus Activation: Input Event Bus (0) (kMain)
+[Succeeded]
+
+[Check Audio Bus Arrangement]
+Info:  ===Check Audio Bus Arrangement ====================================
+Info:     Check Output Audio Bus Arrangement (0)
+[Succeeded]
+
+[SideChain Arrangement]
+Info:  ===SideChain Arrangement ====================================
+[Succeeded]
+
+[Suspend/Resume]
+Info:  ===Suspend/Resume ====================================
+[Succeeded]
+
+[Note Expression]
+Info:  ===Note Expression ====================================
+Info:  No Note Expression interface supplied!
+[Succeeded]
+
+[Keyswitch]
+Info:  ===Keyswitch ====================================
+Info:  No Keyswitch interface supplied!
+[Succeeded]
+
+[ProcessContext Requirements]
+Info:  ===ProcessContext Requirements ====================================
+Info:  ProcessContextRequirements:
+Info:   - None
+[Succeeded]
+
+-------------------------------------------------------------
+TestSuite : Single Precision (32 bit) Tests
+-------------------------------------------------------------
+
+[Process Test]
+[Succeeded]
+
+[Process function running in another thread]
+Info:  ===Process function running in another thread ====================================
+[Succeeded]
+
+[Silence Flags]
+Info:  ===Silence Flags ====================================
+[Succeeded]
+
+[Silence Processing]
+Info:  ===Silence Processing ====================================
+[Succeeded]
+
+[Parameters Flush (no Buffer)]
+Info:  ===Parameters Flush (no Buffer) ====================================
+[Succeeded]
+
+[Parameters Flush 2 (only numChannel==0)]
+Info:  ===Parameters Flush 2 (only numChannel==0) ====================================
+[Succeeded]
+
+[Parameters Flush 2 (no Buffer, no parameter change)]
+Info:  ===Parameters Flush 2 (no Buffer, no parameter change) ====================================
+[Succeeded]
+
+[Variable Block Size]
+Info:  ===Variable Block Size ====================================
+[Succeeded]
+
+[Process Format]
+Info:  ===Process Format ====================================
+Info:  ***Tested Sample Rates***
+ERROR: IAudioProcessor::setupProcessing (..) failed for samplerate 22050.000 Hz! 
+Info:        32000 Hz - processed successfully!
+Info:        44100 Hz - processed successfully!
+Info:        48000 Hz - processed successfully!
+Info:        88200 Hz - processed successfully!
+Info:        96000 Hz - processed successfully!
+Info:       192000 Hz - processed successfully!
+ERROR: IAudioProcessor::setupProcessing (..) failed for samplerate 384000.000 Hz! 
+ERROR: IAudioProcessor::setupProcessing (..) failed for samplerate 1234.568 Hz! 
+ERROR: IAudioProcessor::setupProcessing (..) failed for samplerate 12345.678 Hz! 
+Info:    123456.78 Hz - processed successfully!
+ERROR: IAudioProcessor::setupProcessing (..) failed for samplerate 1234567.800 Hz! 
+[Succeeded]
+
+[Parameter Bypass persistence]
+Info:  ===Parameter Bypass persistence ====================================
+Info:  This plugin does not have a bypass parameter!!!
+[Succeeded]
+
+[In: Stereo: 2 Channels, Out: Stereo: 2 Channels]
+Info:  ===In: Stereo: 2 Channels, Out: Stereo: 2 Channels ====================================
+[Succeeded]
+
+[In: Mono: 1 Channels, Out: Mono: 1 Channels]
+Info:  ===In: Mono: 1 Channels, Out: Mono: 1 Channels ====================================
+[Succeeded]
+
+[Accuracy: Block, 1 Parameters, Change every100 Samples]
+Info:  ===Accuracy: Block, 1 Parameters, Change every100 Samples ====================================
+[Succeeded]
+
+[Accuracy: Sample, 1 Parameters, Change every100 Samples]
+Info:  ===Accuracy: Sample, 1 Parameters, Change every100 Samples ====================================
+[Succeeded]
+
+-------------------------------------------------------------
+TestSuite : Double Precision (64 bit) Tests
+-------------------------------------------------------------
+
+[Process Test]
+[Succeeded]
+
+[Process function running in another thread]
+Info:  ===Process function running in another thread ====================================
+[Succeeded]
+
+[Silence Flags]
+Info:  ===Silence Flags ====================================
+[Succeeded]
+
+[Silence Processing]
+Info:  ===Silence Processing ====================================
+[Succeeded]
+
+[Parameters Flush (no Buffer)]
+Info:  ===Parameters Flush (no Buffer) ====================================
+[Succeeded]
+
+[Parameters Flush 2 (only numChannel==0)]
+Info:  ===Parameters Flush 2 (only numChannel==0) ====================================
+[Succeeded]
+
+[Parameters Flush 2 (no Buffer, no parameter change)]
+Info:  ===Parameters Flush 2 (no Buffer, no parameter change) ====================================
+[Succeeded]
+
+[Variable Block Size]
+Info:  ===Variable Block Size ====================================
+[Succeeded]
+
+[Process Format]
+Info:  ===Process Format ====================================
+Info:  ***Tested Sample Rates***
+ERROR: IAudioProcessor::setupProcessing (..) failed for samplerate 22050.000 Hz! 
+Info:        32000 Hz - processed successfully!
+Info:        44100 Hz - processed successfully!
+Info:        48000 Hz - processed successfully!
+Info:        88200 Hz - processed successfully!
+Info:        96000 Hz - processed successfully!
+Info:       192000 Hz - processed successfully!
+ERROR: IAudioProcessor::setupProcessing (..) failed for samplerate 384000.000 Hz! 
+ERROR: IAudioProcessor::setupProcessing (..) failed for samplerate 1234.568 Hz! 
+ERROR: IAudioProcessor::setupProcessing (..) failed for samplerate 12345.678 Hz! 
+Info:    123456.78 Hz - processed successfully!
+ERROR: IAudioProcessor::setupProcessing (..) failed for samplerate 1234567.800 Hz! 
+[Succeeded]
+
+[Parameter Bypass persistence]
+Info:  ===Parameter Bypass persistence ====================================
+Info:  This plugin does not have a bypass parameter!!!
+[Succeeded]
+
+[In: Stereo: 2 Channels, Out: Stereo: 2 Channels]
+Info:  ===In: Stereo: 2 Channels, Out: Stereo: 2 Channels ====================================
+[Succeeded]
+
+[In: Mono: 1 Channels, Out: Mono: 1 Channels]
+Info:  ===In: Mono: 1 Channels, Out: Mono: 1 Channels ====================================
+[Succeeded]
+
+[Accuracy: Block, 1 Parameters, Change every100 Samples]
+Info:  ===Accuracy: Block, 1 Parameters, Change every100 Samples ====================================
+[Succeeded]
+
+[Accuracy: Sample, 1 Parameters, Change every100 Samples]
+Info:  ===Accuracy: Sample, 1 Parameters, Change every100 Samples ====================================
+[Succeeded]
+
+-------------------------------------------------------------
+Result: 47 tests passed, 0 tests failed
+-------------------------------------------------------------

@@ -1,0 +1,1 @@
+PASS loaded expression controls_state: 65644 checks, 621 loaded callbacks, 0 scalar samples, 162 rejected blocks, 12 foreign states, 105 guarded mono callbacks, 0 module load orders, 9/9 no-setup/stopped panel cases, 72 panel reopens, 108 atomic panel rejections, 36 foreign v3 states

@@ -1,0 +1,47 @@
+{
+  "result": "pass",
+  "explicit_roundtrip_invocations": 1,
+  "images": 67,
+  "recorded_captures": 66,
+  "held_white_key_images": 43,
+  "rgb_bytes_compared": 341803008,
+  "raw_files": 134,
+  "raw_file_bytes": 4677514,
+  "original_png_byte_streams_reproduced": 0,
+  "source_files_unchanged": 239,
+  "source_file_set_unchanged": true,
+  "source_original_total_bytes": 109157570,
+  "packing_tool_unchanged": true,
+  "input_copied_bindings_verified": 144,
+  "input_runtime_bindings_verified": 87,
+  "outcome_source_bindings_verified": 147,
+  "output_manifest_bindings_verified": 237,
+  "output_manifest_unlisted_present_paths": [
+    "frozenrepo/tools/__pycache__/verify_native_photo_editor.cpython-312.pyc",
+    "output-manifest.json"
+  ],
+  "outcome_checks_by_status": {
+    "pass": 136
+  },
+  "native_host_returncode": 0,
+  "actual_verifier_wrapper_exit_code": 0,
+  "outcome_sha256": "4cea37b19b127a7ef70aabaa4ab7f2aaf450248002dc1bbd5b8294400f6f6add",
+  "input_manifest_sha256": "8695d9046ce26f8caf7e38ca176213bdc3d58f8990e45be0784f7f767a42b86e",
+  "output_manifest_sha256": "9824155e66bacd9d8b909cb8a3bd0a9a315f6fcfcfdfaa76ab9992ed545a1a31",
+  "evidence_summary_sha256": "4df3088f3243f3df323a3894c632d02b2f40ae1181481f19b7c909596a97db26",
+  "archive_bytes": 6121474,
+  "archive_sha256": "ab307b838a3890ac737bbde15a72574b266dea46dd446cdeee3b7da388ee8d1c",
+  "manifest_bytes": 117060,
+  "manifest_sha256": "c489f699c2bc137980325d8250721192b5435f97998d35d781240f70734d6cd3",
+  "sidecar_matches_archive_manifest": true,
+  "selected_source_bytes": 98124198,
+  "zip_uncompressed_payload_bytes": 10750024,
+  "producer": {
+    "pillow_version": "13.0.0",
+    "python_version": "3.12.14",
+    "sha256": "3dc350c91307378b8baa5fe19e6e6b49bb5b5f96be6483e03ab99c333f5b4f61",
+    "tool": "tools/pack_photo_evidence.py"
+  },
+  "scope": "Exact decoded 8-bit RGB pixels and dimensions; reconstructed PNG bytes, metadata and original modes are not preserved. Non-PNG files are byte-exact.",
+  "archive_reduction_percent": 93.76150417045956
+}

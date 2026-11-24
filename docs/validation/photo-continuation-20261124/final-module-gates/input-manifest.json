@@ -1,0 +1,643 @@
+{
+  "worker": "w4-062",
+  "frozen_utc": "2026-11-24T19:17:42.639500+00:00",
+  "source_root": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades",
+  "build_root": "/home/agent/rhoades-9a04c9726e31/build",
+  "files": [
+    {
+      "source": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/Contents/Resources/Expat-LICENSE.txt",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearch.vst3/Contents/Resources/Expat-LICENSE.txt",
+      "role": "final_bundle",
+      "bytes": 1208,
+      "sha256": "f6eeb2310d0b00e5cecac39c73a0696a5bdbfb754b26325ed5a502fc1a6c338c"
+    },
+    {
+      "source": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/Contents/Resources/LICENSE.txt",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearch.vst3/Contents/Resources/LICENSE.txt",
+      "role": "final_bundle",
+      "bytes": 1094,
+      "sha256": "e86d79e19e4a33ebc442d2e0d083887dfc75a2a8de9fe17eeddedb84810ad74e"
+    },
+    {
+      "source": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/Contents/Resources/RapidJSON-LICENSE.txt",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearch.vst3/Contents/Resources/RapidJSON-LICENSE.txt",
+      "role": "final_bundle",
+      "bytes": 5152,
+      "sha256": "a140e5d46fe734a1c78f1a3c3ef207871dd75648be71fdda8e309b23ab8b1f32"
+    },
+    {
+      "source": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/Contents/Resources/THIRD_PARTY_NOTICES.md",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearch.vst3/Contents/Resources/THIRD_PARTY_NOTICES.md",
+      "role": "final_bundle",
+      "bytes": 8653,
+      "sha256": "f3ed30cd41b48ce88753de641057f51f51e78ea19b60a40e4398f29fe191f901"
+    },
+    {
+      "source": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/Contents/Resources/VSTGUI-LICENSE.txt",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearch.vst3/Contents/Resources/VSTGUI-LICENSE.txt",
+      "role": "final_bundle",
+      "bytes": 1858,
+      "sha256": "605bcd2152176b365cf0ba6cca331a988fa885b4f43f20ceff4e264e6576ca66"
+    },
+    {
+      "source": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/Contents/Resources/miniz-LICENSE.txt",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearch.vst3/Contents/Resources/miniz-LICENSE.txt",
+      "role": "final_bundle",
+      "bytes": 1162,
+      "sha256": "6f20fa7672b00e2e975c291df737cf227addf3ad32e36fef3fe0f416e4664d3d"
+    },
+    {
+      "source": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/Contents/Resources/moduleinfo.json",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearch.vst3/Contents/Resources/moduleinfo.json",
+      "role": "final_bundle",
+      "bytes": 1065,
+      "sha256": "28b44aaa74a32dbe415b3553b37b019440ebe17bad7708b217790d47bb6adfb9"
+    },
+    {
+      "source": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/Contents/Resources/rhodes-suitcase.png",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearch.vst3/Contents/Resources/rhodes-suitcase.png",
+      "role": "final_bundle",
+      "bytes": 1434362,
+      "sha256": "84e2d48fc0311eb923083cc3e1f96dc5fa1b3f8a6e085daee7c973e54d754d26"
+    },
+    {
+      "source": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/Contents/Resources/rhodes-suitcase.uidesc",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearch.vst3/Contents/Resources/rhodes-suitcase.uidesc",
+      "role": "final_bundle",
+      "bytes": 651,
+      "sha256": "7554fecedf67cf744b3aa7f6cf12dc4f874d8b5e0b97ec66959ba2b42ea5825e"
+    },
+    {
+      "source": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/Contents/x86_64-linux/RhodesResearch.so",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearch.vst3/Contents/x86_64-linux/RhodesResearch.so",
+      "role": "final_bundle",
+      "bytes": 3204856,
+      "sha256": "5facf72c9367a5849c124833673d68e2d74b8b64c88b22e95d66663fa65d1959"
+    },
+    {
+      "source": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3/Contents/Resources/Expat-LICENSE.txt",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchFiltered.vst3/Contents/Resources/Expat-LICENSE.txt",
+      "role": "final_bundle",
+      "bytes": 1208,
+      "sha256": "f6eeb2310d0b00e5cecac39c73a0696a5bdbfb754b26325ed5a502fc1a6c338c"
+    },
+    {
+      "source": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3/Contents/Resources/LICENSE.txt",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchFiltered.vst3/Contents/Resources/LICENSE.txt",
+      "role": "final_bundle",
+      "bytes": 1094,
+      "sha256": "e86d79e19e4a33ebc442d2e0d083887dfc75a2a8de9fe17eeddedb84810ad74e"
+    },
+    {
+      "source": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3/Contents/Resources/RapidJSON-LICENSE.txt",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchFiltered.vst3/Contents/Resources/RapidJSON-LICENSE.txt",
+      "role": "final_bundle",
+      "bytes": 5152,
+      "sha256": "a140e5d46fe734a1c78f1a3c3ef207871dd75648be71fdda8e309b23ab8b1f32"
+    },
+    {
+      "source": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3/Contents/Resources/THIRD_PARTY_NOTICES.md",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchFiltered.vst3/Contents/Resources/THIRD_PARTY_NOTICES.md",
+      "role": "final_bundle",
+      "bytes": 8653,
+      "sha256": "f3ed30cd41b48ce88753de641057f51f51e78ea19b60a40e4398f29fe191f901"
+    },
+    {
+      "source": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3/Contents/Resources/VSTGUI-LICENSE.txt",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchFiltered.vst3/Contents/Resources/VSTGUI-LICENSE.txt",
+      "role": "final_bundle",
+      "bytes": 1858,
+      "sha256": "605bcd2152176b365cf0ba6cca331a988fa885b4f43f20ceff4e264e6576ca66"
+    },
+    {
+      "source": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3/Contents/Resources/miniz-LICENSE.txt",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchFiltered.vst3/Contents/Resources/miniz-LICENSE.txt",
+      "role": "final_bundle",
+      "bytes": 1162,
+      "sha256": "6f20fa7672b00e2e975c291df737cf227addf3ad32e36fef3fe0f416e4664d3d"
+    },
+    {
+      "source": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3/Contents/Resources/moduleinfo.json",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchFiltered.vst3/Contents/Resources/moduleinfo.json",
+      "role": "final_bundle",
+      "bytes": 1072,
+      "sha256": "2fe60cbd8af98408de9ca23dfc68be089f0878ea832c8d1df9674e29d43eaaa5"
+    },
+    {
+      "source": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3/Contents/Resources/rhodes-suitcase.png",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchFiltered.vst3/Contents/Resources/rhodes-suitcase.png",
+      "role": "final_bundle",
+      "bytes": 1434362,
+      "sha256": "84e2d48fc0311eb923083cc3e1f96dc5fa1b3f8a6e085daee7c973e54d754d26"
+    },
+    {
+      "source": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3/Contents/Resources/rhodes-suitcase.uidesc",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchFiltered.vst3/Contents/Resources/rhodes-suitcase.uidesc",
+      "role": "final_bundle",
+      "bytes": 651,
+      "sha256": "7554fecedf67cf744b3aa7f6cf12dc4f874d8b5e0b97ec66959ba2b42ea5825e"
+    },
+    {
+      "source": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3/Contents/x86_64-linux/RhodesResearchFiltered.so",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchFiltered.vst3/Contents/x86_64-linux/RhodesResearchFiltered.so",
+      "role": "final_bundle",
+      "bytes": 3217144,
+      "sha256": "aa698bc10af7df69bb7c8d1f5f16cbb3ff1472fa6794abc17316fc22e367f2cd"
+    },
+    {
+      "source": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3/Contents/Resources/Expat-LICENSE.txt",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchQuadrature.vst3/Contents/Resources/Expat-LICENSE.txt",
+      "role": "final_bundle",
+      "bytes": 1208,
+      "sha256": "f6eeb2310d0b00e5cecac39c73a0696a5bdbfb754b26325ed5a502fc1a6c338c"
+    },
+    {
+      "source": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3/Contents/Resources/LICENSE.txt",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchQuadrature.vst3/Contents/Resources/LICENSE.txt",
+      "role": "final_bundle",
+      "bytes": 1094,
+      "sha256": "e86d79e19e4a33ebc442d2e0d083887dfc75a2a8de9fe17eeddedb84810ad74e"
+    },
+    {
+      "source": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3/Contents/Resources/RapidJSON-LICENSE.txt",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchQuadrature.vst3/Contents/Resources/RapidJSON-LICENSE.txt",
+      "role": "final_bundle",
+      "bytes": 5152,
+      "sha256": "a140e5d46fe734a1c78f1a3c3ef207871dd75648be71fdda8e309b23ab8b1f32"
+    },
+    {
+      "source": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3/Contents/Resources/THIRD_PARTY_NOTICES.md",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchQuadrature.vst3/Contents/Resources/THIRD_PARTY_NOTICES.md",
+      "role": "final_bundle",
+      "bytes": 8653,
+      "sha256": "f3ed30cd41b48ce88753de641057f51f51e78ea19b60a40e4398f29fe191f901"
+    },
+    {
+      "source": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3/Contents/Resources/VSTGUI-LICENSE.txt",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchQuadrature.vst3/Contents/Resources/VSTGUI-LICENSE.txt",
+      "role": "final_bundle",
+      "bytes": 1858,
+      "sha256": "605bcd2152176b365cf0ba6cca331a988fa885b4f43f20ceff4e264e6576ca66"
+    },
+    {
+      "source": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3/Contents/Resources/miniz-LICENSE.txt",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchQuadrature.vst3/Contents/Resources/miniz-LICENSE.txt",
+      "role": "final_bundle",
+      "bytes": 1162,
+      "sha256": "6f20fa7672b00e2e975c291df737cf227addf3ad32e36fef3fe0f416e4664d3d"
+    },
+    {
+      "source": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3/Contents/Resources/moduleinfo.json",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchQuadrature.vst3/Contents/Resources/moduleinfo.json",
+      "role": "final_bundle",
+      "bytes": 1078,
+      "sha256": "de4f71acdf1ade24acac28abe8b0f8997524fb025777cab2fdf0113fa2923b9f"
+    },
+    {
+      "source": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3/Contents/Resources/rhodes-suitcase.png",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchQuadrature.vst3/Contents/Resources/rhodes-suitcase.png",
+      "role": "final_bundle",
+      "bytes": 1434362,
+      "sha256": "84e2d48fc0311eb923083cc3e1f96dc5fa1b3f8a6e085daee7c973e54d754d26"
+    },
+    {
+      "source": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3/Contents/Resources/rhodes-suitcase.uidesc",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchQuadrature.vst3/Contents/Resources/rhodes-suitcase.uidesc",
+      "role": "final_bundle",
+      "bytes": 651,
+      "sha256": "7554fecedf67cf744b3aa7f6cf12dc4f874d8b5e0b97ec66959ba2b42ea5825e"
+    },
+    {
+      "source": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3/Contents/x86_64-linux/RhodesResearchQuadrature.so",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchQuadrature.vst3/Contents/x86_64-linux/RhodesResearchQuadrature.so",
+      "role": "final_bundle",
+      "bytes": 3208952,
+      "sha256": "d2213f5a635a2f819f8932c8cd18575ddd3c07bc3fdc386f99115ed72cd4078e"
+    },
+    {
+      "source": "/home/agent/rhoades-9a04c9726e31/build/bin/Release/validator",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/bin/validator",
+      "role": "test_executable",
+      "bytes": 935200,
+      "sha256": "56ec214242a2f5ab27a5dd279e20038a5c9a855e1644afe63daca00a8f539021"
+    },
+    {
+      "source": "/home/agent/rhoades-9a04c9726e31/build/bin/Release/moduleinfotool",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/bin/moduleinfotool",
+      "role": "test_executable",
+      "bytes": 274080,
+      "sha256": "cee393f3b24fa10ae73398471f5351350155c0bf98f3b137c064e3d400b0289d"
+    },
+    {
+      "source": "/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_photo_lifecycle_tests",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/bin/rhodes_vst3_photo_lifecycle_tests",
+      "role": "test_executable",
+      "bytes": 236640,
+      "sha256": "72b53a662dd281d23f038e851783593a9d00218a7368cafdbe141ee3dd3f3236"
+    },
+    {
+      "source": "/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_loaded_expression_tests",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/bin/rhodes_vst3_loaded_expression_tests",
+      "role": "test_executable",
+      "bytes": 353648,
+      "sha256": "57b76266ca45d964432d944bb64229d104ab90b47763f0d4f226a459745f1fea"
+    },
+    {
+      "source": "/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_photo_editor_tests",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/bin/rhodes_vst3_photo_editor_tests",
+      "role": "test_executable",
+      "bytes": 198864,
+      "sha256": "a24e450312d8ac570bf1349aee478d79a49a9e877480ba106f5562be7693698e"
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/plugins/vst3/THIRD_PARTY_NOTICES.md",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/source/plugins/vst3/THIRD_PARTY_NOTICES.md",
+      "role": "repository_source",
+      "bytes": 8653,
+      "sha256": "f3ed30cd41b48ce88753de641057f51f51e78ea19b60a40e4398f29fe191f901"
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/plugins/vst3/controller.cpp",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/source/plugins/vst3/controller.cpp",
+      "role": "repository_source",
+      "bytes": 25101,
+      "sha256": "2c77542e1aeb58bceaab8e7d6dd59250d17b5e4bc8f7d489b367ea5e805a0e36"
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/plugins/vst3/controller.hpp",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/source/plugins/vst3/controller.hpp",
+      "role": "repository_source",
+      "bytes": 3901,
+      "sha256": "a0dcf316c8d6a013a7a8b6a75485b451e21b070e6b57f62ef52fdf605b252183"
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/plugins/vst3/factory.cpp",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/source/plugins/vst3/factory.cpp",
+      "role": "repository_source",
+      "bytes": 1037,
+      "sha256": "16e5da7194a8f548dd91b84e3c66ed81b5bdf5ff618e66dbafa3abdc1a16158c"
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/plugins/vst3/photo_editor.cpp",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/source/plugins/vst3/photo_editor.cpp",
+      "role": "repository_source",
+      "bytes": 43422,
+      "sha256": "caf54d88c871bab05ec572904ef4e3de7c985c0b713e65c398e0010786679fcf"
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/plugins/vst3/photo_editor.hpp",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/source/plugins/vst3/photo_editor.hpp",
+      "role": "repository_source",
+      "bytes": 383,
+      "sha256": "0c421cae0d330f22b00bab37bb17e73cddd948dbd56a0834c6cb086d6cec97db"
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/plugins/vst3/photo_geometry.hpp",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/source/plugins/vst3/photo_geometry.hpp",
+      "role": "repository_source",
+      "bytes": 11936,
+      "sha256": "77fe4f4ac93ee0b212ef3f5399eb5cfa8884076d8eef51d2adf2123e6d85e0bd"
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/plugins/vst3/photo_key_highlight.hpp",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/source/plugins/vst3/photo_key_highlight.hpp",
+      "role": "repository_source",
+      "bytes": 16080,
+      "sha256": "9302c59a677564253ea80fb92deeef811864def11a4fdd7e03b3a20c2477c58a"
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/plugins/vst3/photo_native_focus.cpp",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/source/plugins/vst3/photo_native_focus.cpp",
+      "role": "repository_source",
+      "bytes": 11355,
+      "sha256": "c24f8d70731a193b0b7bf833984c00df5a60375d2d306986f1440757af938c5f"
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/plugins/vst3/photo_native_focus.hpp",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/source/plugins/vst3/photo_native_focus.hpp",
+      "role": "repository_source",
+      "bytes": 1697,
+      "sha256": "9bf4553ec6a1418747d5379ba531bf15bbfb7e589f3923ff9c8131485704396a"
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/plugins/vst3/plugin_ids.hpp",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/source/plugins/vst3/plugin_ids.hpp",
+      "role": "repository_source",
+      "bytes": 3577,
+      "sha256": "558491751250799eadce1eb95ad1cf59cde728c8bf9490a2962aafeaa8ca128d"
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/plugins/vst3/processor.cpp",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/source/plugins/vst3/processor.cpp",
+      "role": "repository_source",
+      "bytes": 37967,
+      "sha256": "1ef121c4afb190c45fa1ff41a2127fb7487919dc69d8856c4a05e79844f760a9"
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/plugins/vst3/processor.hpp",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/source/plugins/vst3/processor.hpp",
+      "role": "repository_source",
+      "bytes": 6905,
+      "sha256": "5206559cf6a05e6b53e8f6d043a4860b1c4afb995ca8253ed1f75762a5270574"
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/plugins/vst3/resources/Expat-LICENSE.txt",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/source/plugins/vst3/resources/Expat-LICENSE.txt",
+      "role": "repository_source",
+      "bytes": 1208,
+      "sha256": "f6eeb2310d0b00e5cecac39c73a0696a5bdbfb754b26325ed5a502fc1a6c338c"
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/plugins/vst3/resources/rhodes-suitcase.png",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/source/plugins/vst3/resources/rhodes-suitcase.png",
+      "role": "repository_source",
+      "bytes": 1434362,
+      "sha256": "84e2d48fc0311eb923083cc3e1f96dc5fa1b3f8a6e085daee7c973e54d754d26"
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/plugins/vst3/resources/rhodes-suitcase.uidesc",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/source/plugins/vst3/resources/rhodes-suitcase.uidesc",
+      "role": "repository_source",
+      "bytes": 651,
+      "sha256": "7554fecedf67cf744b3aa7f6cf12dc4f874d8b5e0b97ec66959ba2b42ea5825e"
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/plugins/vst3/state_stream.cpp",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/source/plugins/vst3/state_stream.cpp",
+      "role": "repository_source",
+      "bytes": 5052,
+      "sha256": "30b057afe520c81bb87e0298b32835ea47957ff46b452cf417244dbb51b55051"
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/plugins/vst3/state_stream.hpp",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/source/plugins/vst3/state_stream.hpp",
+      "role": "repository_source",
+      "bytes": 2227,
+      "sha256": "a0885ed2c7a381fac06a65e37c02fa115f5c29930a7881ffd5186297fb9d3b28"
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/src/contact_reference.cpp",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/source/src/contact_reference.cpp",
+      "role": "repository_source",
+      "bytes": 78110,
+      "sha256": "70dde1bfab9c2e35457da2ebf66ff4638cb6f56f1f19a84dbe55a1752d5166fd"
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/src/research_engine.cpp",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/source/src/research_engine.cpp",
+      "role": "repository_source",
+      "bytes": 20795,
+      "sha256": "01c2a9f7f9f7cfa4f759be56770178f32a71a28667d4ac6ab390e03ff7a95814"
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/include/rhodes/audio_engine.hpp",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/source/include/rhodes/audio_engine.hpp",
+      "role": "repository_source",
+      "bytes": 4216,
+      "sha256": "10efac8150c07e69ef41eed415a6e7403b4339179af902f91cd17ef498da7b97"
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/include/rhodes/audio_filter_coefficients.hpp",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/source/include/rhodes/audio_filter_coefficients.hpp",
+      "role": "repository_source",
+      "bytes": 17719,
+      "sha256": "c1ab39356d7e44348f9dc56f9120ff2598889d1fa144e5294b084585655eb76d"
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/include/rhodes/contact_reference.hpp",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/source/include/rhodes/contact_reference.hpp",
+      "role": "repository_source",
+      "bytes": 13870,
+      "sha256": "00b99e61dc73686c22675bedf647c3ad1b27ba13332180431f5a42e485057fda"
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/include/rhodes/control_text.hpp",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/source/include/rhodes/control_text.hpp",
+      "role": "repository_source",
+      "bytes": 17207,
+      "sha256": "de28474739274f4fac20dc1d3d5602cb63c62ddd04a33202cb5375985086e63d"
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/include/rhodes/control_value.hpp",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/source/include/rhodes/control_value.hpp",
+      "role": "repository_source",
+      "bytes": 5479,
+      "sha256": "d7c282afdcffaef90f7872f97b37bfb34671448da64376d3439649c052d4d48d"
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/include/rhodes/editor_audition.hpp",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/source/include/rhodes/editor_audition.hpp",
+      "role": "repository_source",
+      "bytes": 7536,
+      "sha256": "6c4ea15ddd2bb3c7498f848c5c123de8c69b28fe14aaa2aa694c5adcaf6442c9"
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/include/rhodes/event_processor.hpp",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/source/include/rhodes/event_processor.hpp",
+      "role": "repository_source",
+      "bytes": 7620,
+      "sha256": "cbfebb44d5d7eee06ab6952209a4683c7a7da58c04ea81f6583b98cfb981517d"
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/include/rhodes/fir_decimator.hpp",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/source/include/rhodes/fir_decimator.hpp",
+      "role": "repository_source",
+      "bytes": 2185,
+      "sha256": "e54faeb397bcbccb9ed9834cfc264d84550c4ef375d8e5273a720eb1f190071b"
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/include/rhodes/front_panel_effects.hpp",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/source/include/rhodes/front_panel_effects.hpp",
+      "role": "repository_source",
+      "bytes": 10035,
+      "sha256": "e8998a71f848a14b617317f88447a8655dde60fefb7981762fb15ad0de3fa7d0"
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/include/rhodes/front_panel_state.hpp",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/source/include/rhodes/front_panel_state.hpp",
+      "role": "repository_source",
+      "bytes": 2299,
+      "sha256": "fe4181f15b328db42cec646a22de186636d0dfa27d4a384b016ad47e6d5a7a71"
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/include/rhodes/instrument_state.hpp",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/source/include/rhodes/instrument_state.hpp",
+      "role": "repository_source",
+      "bytes": 8896,
+      "sha256": "1550dbbd83ea20838a6cac1579c716f7d01a94429450c19b62d18df14d102043"
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/include/rhodes/note_tracker.hpp",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/source/include/rhodes/note_tracker.hpp",
+      "role": "repository_source",
+      "bytes": 5432,
+      "sha256": "76931b326daae3a112b56420f9be9ea5b03b1c30307f1dc68b6c13c710cd830f"
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/include/rhodes/plugin_state.hpp",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/source/include/rhodes/plugin_state.hpp",
+      "role": "repository_source",
+      "bytes": 11445,
+      "sha256": "973576bb1db6fe6830b60193065a3acd4d0522f45eb0e33ca8a26524726dab15"
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/include/rhodes/quadrature_engine.hpp",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/source/include/rhodes/quadrature_engine.hpp",
+      "role": "repository_source",
+      "bytes": 4801,
+      "sha256": "c625a82b61eb3e721061177654c12ffa6aac0049e026b9633ae53ea2abaa773d"
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/include/rhodes/quadrature_filter_coefficients.hpp",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/source/include/rhodes/quadrature_filter_coefficients.hpp",
+      "role": "repository_source",
+      "bytes": 16603,
+      "sha256": "3cca4ea6553ceb01810a6230f2144491364fa48af7d6cfbc43a8e3dcf5d08b51"
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/include/rhodes/quadrature_fir.hpp",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/source/include/rhodes/quadrature_fir.hpp",
+      "role": "repository_source",
+      "bytes": 2707,
+      "sha256": "cf6c85e70036b3f1794ecf131a9db43bcb8da373e47c5335f56b1bb57559b45e"
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/include/rhodes/research_engine.hpp",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/source/include/rhodes/research_engine.hpp",
+      "role": "repository_source",
+      "bytes": 8348,
+      "sha256": "2a6ba0483a010d9b7a44517c5ed7c215f05d57ed6e96bd6609127322092929e4"
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/cmake/Vst3.cmake",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/source/cmake/Vst3.cmake",
+      "role": "repository_source",
+      "bytes": 60032,
+      "sha256": "48715fcf593fbb0338a51fceb6f0edc106e227dc6725a57df5c024aac7a28fc4"
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/cmake/VstguiWin32Timer.cmake",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/source/cmake/VstguiWin32Timer.cmake",
+      "role": "repository_source",
+      "bytes": 2532,
+      "sha256": "211484666fff1fe57c8e442dbc98b3a0c76fd1119fbd21a5ce1d280368fd5c85"
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/cmake/VstguiX11ChildWindow.cmake",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/source/cmake/VstguiX11ChildWindow.cmake",
+      "role": "repository_source",
+      "bytes": 3567,
+      "sha256": "74ad962f03a3581fcc424d85a2a6f7bf836655843e858285609f087033754e3e"
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/cmake/VstguiX11Keyboard.cmake",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/source/cmake/VstguiX11Keyboard.cmake",
+      "role": "repository_source",
+      "bytes": 2424,
+      "sha256": "3f1b1de7d27a74c1d6d2dae21152b125e4b5c1bf349a78f3aa4bfa3848a76a9c"
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/cmake/VstguiX11Lifetime.cmake",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/source/cmake/VstguiX11Lifetime.cmake",
+      "role": "repository_source",
+      "bytes": 7796,
+      "sha256": "2b1291c584fc285d219a09b84a752b548b3085a0f7b725464a2806a21afffb60"
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/CMakeLists.txt",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/source/CMakeLists.txt",
+      "role": "repository_source",
+      "bytes": 25550,
+      "sha256": "4619d0aa41be71b7946664ac07c5e381205afc901dcf15319f21ae4d42c07adc"
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/tools/run_xvfb_test.py",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/source/tools/run_xvfb_test.py",
+      "role": "repository_source",
+      "bytes": 6139,
+      "sha256": "653ae79a00c3455511b7c89c3396044e70ca5a6e341781bf2c1d5a82f9850c4e"
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/tests/cpp/vst3_loaded_expression_test.cpp",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/source/tests/cpp/vst3_loaded_expression_test.cpp",
+      "role": "repository_source",
+      "bytes": 71010,
+      "sha256": "c31de34334de4ec33fb3a2680520e6950956344ebe17cc5bc82cb363ccd813c5"
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/tests/cpp/vst3_photo_editor_test.cpp",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/source/tests/cpp/vst3_photo_editor_test.cpp",
+      "role": "repository_source",
+      "bytes": 30369,
+      "sha256": "4c2564d1606793371206889eea9e1c68f5b72a9599e05a6a9d52c6d8952bc9a8"
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/tests/cpp/vst3_photo_lifecycle_test.cpp",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/source/tests/cpp/vst3_photo_lifecycle_test.cpp",
+      "role": "repository_source",
+      "bytes": 37641,
+      "sha256": "b650178fa148db07faee9dfae14ac5e7fdb4215b9240d71c03a9c9011e883830"
+    },
+    {
+      "source": "/home/agent/rhoades-9a04c9726e31/gui-env.sh",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/provenance/gui-env.sh",
+      "role": "build_provenance",
+      "bytes": 1522,
+      "sha256": "3e20d1a5bb5b634e2e1e238876912e098367d66edabe9e5d8535755d42bf1830"
+    },
+    {
+      "source": "/home/agent/rhoades-9a04c9726e31/build-env.sh",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/provenance/build-env.sh",
+      "role": "build_provenance",
+      "bytes": 405,
+      "sha256": "4fac3e9222398134bcb088f918826bad757ab76df96cd6dc9ded1ab44e43651f"
+    },
+    {
+      "source": "/home/agent/rhoades-9a04c9726e31/build/CTestTestfile.cmake",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/provenance/CTestTestfile.cmake",
+      "role": "build_provenance",
+      "bytes": 279805,
+      "sha256": "a52954fc43077b26b61b682e33318e0a23bb1c25eb08dc88ecdb38eb1d3c7fc5"
+    },
+    {
+      "source": "/home/agent/rhoades-9a04c9726e31/build/CMakeCache.txt",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/provenance/CMakeCache.txt",
+      "role": "build_provenance",
+      "bytes": 881724,
+      "sha256": "dcae712bc6caa9d921ee5c5f74092e83085086e3bd2108e768c5cc43233cb15d"
+    },
+    {
+      "source": "/home/agent/rhoades-9a04c9726e31/build/compile_commands.json",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/provenance/compile_commands.json",
+      "role": "build_provenance",
+      "bytes": 607249,
+      "sha256": "bb43ca5011eec542ee336bebcaeb909cc11096577fe17e4010c2ffac242e7341"
+    },
+    {
+      "source": "/home/agent/rhoades-9a04c9726e31/gui-bin/Xvfb",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/Xvfb",
+      "role": "x11_command",
+      "bytes": 2131520,
+      "sha256": "16667b1eaafbe0b09527c2152e45f81b4b8e977012281062fc2fb2427afa66ce"
+    },
+    {
+      "source": "/home/agent/rhoades-9a04c9726e31/gui-bin/xauth",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xauth",
+      "role": "x11_command",
+      "bytes": 52736,
+      "sha256": "39e89b8530af1402b6b6f845309fc5a578c9ef9105412fa7198927ce92e7199d"
+    },
+    {
+      "source": "/home/agent/rhoades-9a04c9726e31/gui-bin/xdpyinfo",
+      "frozen": "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xdpyinfo",
+      "role": "x11_command",
+      "bytes": 40648,
+      "sha256": "a63ce707be3ebaefa1e87bd2666bf0f5530c50eff02ab60dce1b110f2bf9ebd3"
+    }
+  ],
+  "expected_module_sha256": {
+    "RhodesResearch": "5facf72c9367a5849c124833673d68e2d74b8b64c88b22e95d66663fa65d1959",
+    "RhodesResearchFiltered": "aa698bc10af7df69bb7c8d1f5f16cbb3ff1472fa6794abc17316fc22e367f2cd",
+    "RhodesResearchQuadrature": "d2213f5a635a2f819f8932c8cd18575ddd3c07bc3fdc386f99115ed72cd4078e"
+  }
+}

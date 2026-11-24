@@ -1,0 +1,25 @@
+{
+  "name": "sdk-validator-direct",
+  "kind": "sdk_validator",
+  "command": [
+    "/home/agent/rhoades-9a04c9726e31/w4-062/bin/validator",
+    "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearch.vst3"
+  ],
+  "cwd": "/home/agent/rhoades-9a04c9726e31/w4-062",
+  "started_utc": "2026-11-24T19:18:37.497745+00:00",
+  "timeout_seconds": 180,
+  "environment_file": "environment.json",
+  "exit_code": 0,
+  "finished_utc": "2026-11-24T19:18:38.974432+00:00",
+  "elapsed_seconds": 1.4766208610017202,
+  "stdout": {
+    "path": "results/sdk-validator-direct/stdout.log",
+    "sha256": "e64d1524736926ff369cee152a7b36383be3d27a2d966106c5599e632071f5a9",
+    "bytes": 12371
+  },
+  "stderr": {
+    "path": "results/sdk-validator-direct/stderr.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  }
+}

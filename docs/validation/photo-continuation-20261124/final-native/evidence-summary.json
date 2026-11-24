@@ -1,0 +1,96 @@
+{
+  "native_replay_count": 1,
+  "started_utc": "2026-11-24T19:18:39.893068+00:00",
+  "finished_utc": "2026-11-24T19:20:04.036377+00:00",
+  "actual_verifier_wrapper_exit_code": 0,
+  "report_result": {
+    "exit_code": 0,
+    "status": "pass"
+  },
+  "host_returncode": 0,
+  "checks": 136,
+  "check_status_counts": {
+    "pass": 136
+  },
+  "nonpassing_checks": [],
+  "held_white_keys": 43,
+  "black_regions_per_hold": [
+    30
+  ],
+  "white_press_changes": 43,
+  "black_interior_region_comparisons": 1290,
+  "black_interior_pixel_instances": 818978,
+  "changed_black_pixel_instances": 0,
+  "max_black_channel_error": 0,
+  "black_mask_pixels": 19046,
+  "black_mask_erosion_pixels": 3,
+  "screenshots": 66,
+  "png_files_with_mask": 67,
+  "capture_hash_readback_all_match": true,
+  "w2_036_same_capture_names": true,
+  "w2_036_equal_png_captures": 66,
+  "w2_036_equal_rgb_captures": 66,
+  "w2_036_capture_differences": [],
+  "w2_036_check_status_changes": [],
+  "host_callbacks": 98,
+  "w2_036_callback_sequence_equal": true,
+  "frozen_and_runtime_inputs_unchanged": true,
+  "frozen_and_runtime_input_count": 231,
+  "idle_checks": [
+    {
+      "name": "idle_1536x1152_exact_reference_pixels",
+      "status": "pass",
+      "comparison": {
+        "exact": true,
+        "pixels": 1769472,
+        "different_pixels": 0,
+        "different_pixel_fraction": 0.0,
+        "max_abs_channel_error": 0,
+        "mean_abs_channel_error": 0.0,
+        "rms_channel_error": 0.0,
+        "difference_bbox": null,
+        "psnr_db": null
+      }
+    },
+    {
+      "name": "final_idle_exact_reference_pixels",
+      "status": "pass",
+      "comparison": {
+        "exact": true,
+        "pixels": 1769472,
+        "different_pixels": 0,
+        "different_pixel_fraction": 0.0,
+        "max_abs_channel_error": 0,
+        "mean_abs_channel_error": 0.0,
+        "rms_channel_error": 0.0,
+        "difference_bbox": null,
+        "psnr_db": null
+      }
+    }
+  ],
+  "close_checks": [
+    {
+      "name": "native_close",
+      "status": "pass",
+      "returncode": 0,
+      "method": "WM_DELETE_WINDOW while XTEST button remains held; no window manager required"
+    },
+    {
+      "name": "close_ends_held_gesture",
+      "status": "pass",
+      "host_gesture": {
+        "callback_count": 3,
+        "completed_gestures": 1,
+        "values": [
+          0.6
+        ],
+        "last_value": 0.6,
+        "errors": [],
+        "balanced": true
+      }
+    }
+  ],
+  "outcome_sha256": "4cea37b19b127a7ef70aabaa4ab7f2aaf450248002dc1bbd5b8294400f6f6add",
+  "raw_host_log_sha256": "f69e526825cce8fe8ea83d91b3ac0037b47c4ba38dfd101e7b9aee4a12517112",
+  "input_manifest_sha256": "8695d9046ce26f8caf7e38ca176213bdc3d58f8990e45be0784f7f767a42b86e"
+}

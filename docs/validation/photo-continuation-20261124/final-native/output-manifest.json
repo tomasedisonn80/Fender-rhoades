@@ -1,0 +1,1191 @@
+{
+  "files": [
+    {
+      "relative_path": "build-inputs/CMakeCache.txt",
+      "bytes": 881724,
+      "sha256": "dcae712bc6caa9d921ee5c5f74092e83085086e3bd2108e768c5cc43233cb15d"
+    },
+    {
+      "relative_path": "build-inputs/build.ninja",
+      "bytes": 1121416,
+      "sha256": "5b7a3639046a243b51ee1d0c8eec5ceb8596f58dd125d985762b3f15120e77f3"
+    },
+    {
+      "relative_path": "build-inputs/compile_commands.json",
+      "bytes": 607249,
+      "sha256": "bb43ca5011eec542ee336bebcaeb909cc11096577fe17e4010c2ffac242e7341"
+    },
+    {
+      "relative_path": "build-inputs/rhodes-resources/rhodes_vst3/Expat-LICENSE.txt",
+      "bytes": 1208,
+      "sha256": "f6eeb2310d0b00e5cecac39c73a0696a5bdbfb754b26325ed5a502fc1a6c338c"
+    },
+    {
+      "relative_path": "build-inputs/rhodes-resources/rhodes_vst3/LICENSE.txt",
+      "bytes": 1094,
+      "sha256": "e86d79e19e4a33ebc442d2e0d083887dfc75a2a8de9fe17eeddedb84810ad74e"
+    },
+    {
+      "relative_path": "build-inputs/rhodes-resources/rhodes_vst3/RapidJSON-LICENSE.txt",
+      "bytes": 5152,
+      "sha256": "a140e5d46fe734a1c78f1a3c3ef207871dd75648be71fdda8e309b23ab8b1f32"
+    },
+    {
+      "relative_path": "build-inputs/rhodes-resources/rhodes_vst3/THIRD_PARTY_NOTICES.md",
+      "bytes": 8653,
+      "sha256": "f3ed30cd41b48ce88753de641057f51f51e78ea19b60a40e4398f29fe191f901"
+    },
+    {
+      "relative_path": "build-inputs/rhodes-resources/rhodes_vst3/VSTGUI-LICENSE.txt",
+      "bytes": 1858,
+      "sha256": "605bcd2152176b365cf0ba6cca331a988fa885b4f43f20ceff4e264e6576ca66"
+    },
+    {
+      "relative_path": "build-inputs/rhodes-resources/rhodes_vst3/miniz-LICENSE.txt",
+      "bytes": 1162,
+      "sha256": "6f20fa7672b00e2e975c291df737cf227addf3ad32e36fef3fe0f416e4664d3d"
+    },
+    {
+      "relative_path": "build-inputs/rhodes-resources/rhodes_vst3/rhodes-suitcase.png",
+      "bytes": 1434362,
+      "sha256": "84e2d48fc0311eb923083cc3e1f96dc5fa1b3f8a6e085daee7c973e54d754d26"
+    },
+    {
+      "relative_path": "build-inputs/rhodes-resources/rhodes_vst3/rhodes-suitcase.uidesc",
+      "bytes": 651,
+      "sha256": "7554fecedf67cf744b3aa7f6cf12dc4f874d8b5e0b97ec66959ba2b42ea5825e"
+    },
+    {
+      "relative_path": "build-inputs/rhodes-resources/rhodes_vst3_filtered/Expat-LICENSE.txt",
+      "bytes": 1208,
+      "sha256": "f6eeb2310d0b00e5cecac39c73a0696a5bdbfb754b26325ed5a502fc1a6c338c"
+    },
+    {
+      "relative_path": "build-inputs/rhodes-resources/rhodes_vst3_filtered/LICENSE.txt",
+      "bytes": 1094,
+      "sha256": "e86d79e19e4a33ebc442d2e0d083887dfc75a2a8de9fe17eeddedb84810ad74e"
+    },
+    {
+      "relative_path": "build-inputs/rhodes-resources/rhodes_vst3_filtered/RapidJSON-LICENSE.txt",
+      "bytes": 5152,
+      "sha256": "a140e5d46fe734a1c78f1a3c3ef207871dd75648be71fdda8e309b23ab8b1f32"
+    },
+    {
+      "relative_path": "build-inputs/rhodes-resources/rhodes_vst3_filtered/THIRD_PARTY_NOTICES.md",
+      "bytes": 8653,
+      "sha256": "f3ed30cd41b48ce88753de641057f51f51e78ea19b60a40e4398f29fe191f901"
+    },
+    {
+      "relative_path": "build-inputs/rhodes-resources/rhodes_vst3_filtered/VSTGUI-LICENSE.txt",
+      "bytes": 1858,
+      "sha256": "605bcd2152176b365cf0ba6cca331a988fa885b4f43f20ceff4e264e6576ca66"
+    },
+    {
+      "relative_path": "build-inputs/rhodes-resources/rhodes_vst3_filtered/miniz-LICENSE.txt",
+      "bytes": 1162,
+      "sha256": "6f20fa7672b00e2e975c291df737cf227addf3ad32e36fef3fe0f416e4664d3d"
+    },
+    {
+      "relative_path": "build-inputs/rhodes-resources/rhodes_vst3_filtered/rhodes-suitcase.png",
+      "bytes": 1434362,
+      "sha256": "84e2d48fc0311eb923083cc3e1f96dc5fa1b3f8a6e085daee7c973e54d754d26"
+    },
+    {
+      "relative_path": "build-inputs/rhodes-resources/rhodes_vst3_filtered/rhodes-suitcase.uidesc",
+      "bytes": 651,
+      "sha256": "7554fecedf67cf744b3aa7f6cf12dc4f874d8b5e0b97ec66959ba2b42ea5825e"
+    },
+    {
+      "relative_path": "build-inputs/rhodes-resources/rhodes_vst3_quadrature/Expat-LICENSE.txt",
+      "bytes": 1208,
+      "sha256": "f6eeb2310d0b00e5cecac39c73a0696a5bdbfb754b26325ed5a502fc1a6c338c"
+    },
+    {
+      "relative_path": "build-inputs/rhodes-resources/rhodes_vst3_quadrature/LICENSE.txt",
+      "bytes": 1094,
+      "sha256": "e86d79e19e4a33ebc442d2e0d083887dfc75a2a8de9fe17eeddedb84810ad74e"
+    },
+    {
+      "relative_path": "build-inputs/rhodes-resources/rhodes_vst3_quadrature/RapidJSON-LICENSE.txt",
+      "bytes": 5152,
+      "sha256": "a140e5d46fe734a1c78f1a3c3ef207871dd75648be71fdda8e309b23ab8b1f32"
+    },
+    {
+      "relative_path": "build-inputs/rhodes-resources/rhodes_vst3_quadrature/THIRD_PARTY_NOTICES.md",
+      "bytes": 8653,
+      "sha256": "f3ed30cd41b48ce88753de641057f51f51e78ea19b60a40e4398f29fe191f901"
+    },
+    {
+      "relative_path": "build-inputs/rhodes-resources/rhodes_vst3_quadrature/VSTGUI-LICENSE.txt",
+      "bytes": 1858,
+      "sha256": "605bcd2152176b365cf0ba6cca331a988fa885b4f43f20ceff4e264e6576ca66"
+    },
+    {
+      "relative_path": "build-inputs/rhodes-resources/rhodes_vst3_quadrature/miniz-LICENSE.txt",
+      "bytes": 1162,
+      "sha256": "6f20fa7672b00e2e975c291df737cf227addf3ad32e36fef3fe0f416e4664d3d"
+    },
+    {
+      "relative_path": "build-inputs/rhodes-resources/rhodes_vst3_quadrature/rhodes-suitcase.png",
+      "bytes": 1434362,
+      "sha256": "84e2d48fc0311eb923083cc3e1f96dc5fa1b3f8a6e085daee7c973e54d754d26"
+    },
+    {
+      "relative_path": "build-inputs/rhodes-resources/rhodes_vst3_quadrature/rhodes-suitcase.uidesc",
+      "bytes": 651,
+      "sha256": "7554fecedf67cf744b3aa7f6cf12dc4f874d8b5e0b97ec66959ba2b42ea5825e"
+    },
+    {
+      "relative_path": "build-inputs/rhodes-vstgui-overlay/x11frame-lifetime.cpp",
+      "bytes": 23882,
+      "sha256": "66fa490278825250966aad9f4a054942f3105ab131ff0cf45ba861c1b42dfd7c"
+    },
+    {
+      "relative_path": "build-inputs/rhodes-vstgui-overlay/x11platform-lifetime.cpp",
+      "bytes": 17894,
+      "sha256": "e0c889e4efa8bf0b2f76feb5592084b64987ba2ae012de3a7afd889b131b87f2"
+    },
+    {
+      "relative_path": "build-inputs/rhodes-vstgui-overlay/x11platform.cpp",
+      "bytes": 17173,
+      "sha256": "c186a90e423b3895347a676e07c6059accb3b9ab0c187a795d318a1f6af361be"
+    },
+    {
+      "relative_path": "build-inputs/rhodes-vstgui-overlay/x11utils.cpp",
+      "bytes": 6523,
+      "sha256": "47554d4c4e7d330e3791a22f7920e7cfc214a84bff88b5493b4906e36b2a2eae"
+    },
+    {
+      "relative_path": "capture-comparison-vs-w2-036.json",
+      "bytes": 34371,
+      "sha256": "d302b54fee6b2996c2b4de58194f95833c9aa7a7a00433bddfe5c70ae4b2e4f5"
+    },
+    {
+      "relative_path": "editorhost-accepting",
+      "bytes": 266152,
+      "sha256": "37f557e9863001b54b158482338ff66dcf9fb3934ba12d8ace0c9ddbbb0eebe9"
+    },
+    {
+      "relative_path": "environment/build-env.sh",
+      "bytes": 405,
+      "sha256": "4fac3e9222398134bcb088f918826bad757ab76df96cd6dc9ded1ab44e43651f"
+    },
+    {
+      "relative_path": "environment/fonts.conf",
+      "bytes": 379,
+      "sha256": "30786fb052db36754bf54aa8c4def90ad86423685272e8927fa5ebdb2dc379cc"
+    },
+    {
+      "relative_path": "environment/gui-cache.cmake",
+      "bytes": 870,
+      "sha256": "82d2f679d54633956fd57512631426ae58b74e0f1ffc35c06b557d4eb011c98e"
+    },
+    {
+      "relative_path": "environment/gui-env.sh",
+      "bytes": 1522,
+      "sha256": "3e20d1a5bb5b634e2e1e238876912e098367d66edabe9e5d8535755d42bf1830"
+    },
+    {
+      "relative_path": "evidence-summary.json",
+      "bytes": 2724,
+      "sha256": "4df3088f3243f3df323a3894c632d02b2f40ae1181481f19b7c909596a97db26"
+    },
+    {
+      "relative_path": "freeze-inputs.py",
+      "bytes": 5192,
+      "sha256": "21f87c6b7167128ce07e2e634d2f9ab6985775a4af3da13780802ae44ae75821"
+    },
+    {
+      "relative_path": "freeze.log",
+      "bytes": 597,
+      "sha256": "28670e0aee0c930f4d2f15278fc761de5c49a681ea136b1077538951133c71b8"
+    },
+    {
+      "relative_path": "frozenrepo/CMakeLists.txt",
+      "bytes": 25550,
+      "sha256": "4619d0aa41be71b7946664ac07c5e381205afc901dcf15319f21ae4d42c07adc"
+    },
+    {
+      "relative_path": "frozenrepo/CMakePresets.json",
+      "bytes": 1483,
+      "sha256": "a06e2a16dba0b4947352cbbcec2a7668d29b3f777c6f460f9d65f6bd0bb7f0aa"
+    },
+    {
+      "relative_path": "frozenrepo/assets/reference/rhodes-suitcase-reference.webp",
+      "bytes": 257616,
+      "sha256": "782b4c83a2bf827ed0d363bc567cdc2211485da6e650db4ae99448e78b7da24b"
+    },
+    {
+      "relative_path": "frozenrepo/cmake/Vst3.cmake",
+      "bytes": 60032,
+      "sha256": "48715fcf593fbb0338a51fceb6f0edc106e227dc6725a57df5c024aac7a28fc4"
+    },
+    {
+      "relative_path": "frozenrepo/cmake/VstguiWin32Timer.cmake",
+      "bytes": 2532,
+      "sha256": "211484666fff1fe57c8e442dbc98b3a0c76fd1119fbd21a5ce1d280368fd5c85"
+    },
+    {
+      "relative_path": "frozenrepo/cmake/VstguiX11ChildWindow.cmake",
+      "bytes": 3567,
+      "sha256": "74ad962f03a3581fcc424d85a2a6f7bf836655843e858285609f087033754e3e"
+    },
+    {
+      "relative_path": "frozenrepo/cmake/VstguiX11Keyboard.cmake",
+      "bytes": 2424,
+      "sha256": "3f1b1de7d27a74c1d6d2dae21152b125e4b5c1bf349a78f3aa4bfa3848a76a9c"
+    },
+    {
+      "relative_path": "frozenrepo/cmake/VstguiX11Lifetime.cmake",
+      "bytes": 7796,
+      "sha256": "2b1291c584fc285d219a09b84a752b548b3085a0f7b725464a2806a21afffb60"
+    },
+    {
+      "relative_path": "frozenrepo/docs/specs/PHOTO_EDITOR_20261124.md",
+      "bytes": 3329,
+      "sha256": "9b68c304da33113797543314fedc722db6da00ce981db28d7ab2742f5f955ed1"
+    },
+    {
+      "relative_path": "frozenrepo/include/rhodes/audio_engine.hpp",
+      "bytes": 4216,
+      "sha256": "10efac8150c07e69ef41eed415a6e7403b4339179af902f91cd17ef498da7b97"
+    },
+    {
+      "relative_path": "frozenrepo/include/rhodes/audio_filter_coefficients.hpp",
+      "bytes": 17719,
+      "sha256": "c1ab39356d7e44348f9dc56f9120ff2598889d1fa144e5294b084585655eb76d"
+    },
+    {
+      "relative_path": "frozenrepo/include/rhodes/contact_reference.hpp",
+      "bytes": 13870,
+      "sha256": "00b99e61dc73686c22675bedf647c3ad1b27ba13332180431f5a42e485057fda"
+    },
+    {
+      "relative_path": "frozenrepo/include/rhodes/control_text.hpp",
+      "bytes": 17207,
+      "sha256": "de28474739274f4fac20dc1d3d5602cb63c62ddd04a33202cb5375985086e63d"
+    },
+    {
+      "relative_path": "frozenrepo/include/rhodes/control_value.hpp",
+      "bytes": 5479,
+      "sha256": "d7c282afdcffaef90f7872f97b37bfb34671448da64376d3439649c052d4d48d"
+    },
+    {
+      "relative_path": "frozenrepo/include/rhodes/editor_audition.hpp",
+      "bytes": 7536,
+      "sha256": "6c4ea15ddd2bb3c7498f848c5c123de8c69b28fe14aaa2aa694c5adcaf6442c9"
+    },
+    {
+      "relative_path": "frozenrepo/include/rhodes/event_processor.hpp",
+      "bytes": 7620,
+      "sha256": "cbfebb44d5d7eee06ab6952209a4683c7a7da58c04ea81f6583b98cfb981517d"
+    },
+    {
+      "relative_path": "frozenrepo/include/rhodes/fir_decimator.hpp",
+      "bytes": 2185,
+      "sha256": "e54faeb397bcbccb9ed9834cfc264d84550c4ef375d8e5273a720eb1f190071b"
+    },
+    {
+      "relative_path": "frozenrepo/include/rhodes/front_panel_effects.hpp",
+      "bytes": 10035,
+      "sha256": "e8998a71f848a14b617317f88447a8655dde60fefb7981762fb15ad0de3fa7d0"
+    },
+    {
+      "relative_path": "frozenrepo/include/rhodes/front_panel_state.hpp",
+      "bytes": 2299,
+      "sha256": "fe4181f15b328db42cec646a22de186636d0dfa27d4a384b016ad47e6d5a7a71"
+    },
+    {
+      "relative_path": "frozenrepo/include/rhodes/instrument_state.hpp",
+      "bytes": 8896,
+      "sha256": "1550dbbd83ea20838a6cac1579c716f7d01a94429450c19b62d18df14d102043"
+    },
+    {
+      "relative_path": "frozenrepo/include/rhodes/note_tracker.hpp",
+      "bytes": 5432,
+      "sha256": "76931b326daae3a112b56420f9be9ea5b03b1c30307f1dc68b6c13c710cd830f"
+    },
+    {
+      "relative_path": "frozenrepo/include/rhodes/plugin_state.hpp",
+      "bytes": 11445,
+      "sha256": "973576bb1db6fe6830b60193065a3acd4d0522f45eb0e33ca8a26524726dab15"
+    },
+    {
+      "relative_path": "frozenrepo/include/rhodes/quadrature_engine.hpp",
+      "bytes": 4801,
+      "sha256": "c625a82b61eb3e721061177654c12ffa6aac0049e026b9633ae53ea2abaa773d"
+    },
+    {
+      "relative_path": "frozenrepo/include/rhodes/quadrature_filter_coefficients.hpp",
+      "bytes": 16603,
+      "sha256": "3cca4ea6553ceb01810a6230f2144491364fa48af7d6cfbc43a8e3dcf5d08b51"
+    },
+    {
+      "relative_path": "frozenrepo/include/rhodes/quadrature_fir.hpp",
+      "bytes": 2707,
+      "sha256": "cf6c85e70036b3f1794ecf131a9db43bcb8da373e47c5335f56b1bb57559b45e"
+    },
+    {
+      "relative_path": "frozenrepo/include/rhodes/research_engine.hpp",
+      "bytes": 8348,
+      "sha256": "2a6ba0483a010d9b7a44517c5ed7c215f05d57ed6e96bd6609127322092929e4"
+    },
+    {
+      "relative_path": "frozenrepo/plugins/vst3/THIRD_PARTY_NOTICES.md",
+      "bytes": 8653,
+      "sha256": "f3ed30cd41b48ce88753de641057f51f51e78ea19b60a40e4398f29fe191f901"
+    },
+    {
+      "relative_path": "frozenrepo/plugins/vst3/controller.cpp",
+      "bytes": 25101,
+      "sha256": "2c77542e1aeb58bceaab8e7d6dd59250d17b5e4bc8f7d489b367ea5e805a0e36"
+    },
+    {
+      "relative_path": "frozenrepo/plugins/vst3/controller.hpp",
+      "bytes": 3901,
+      "sha256": "a0dcf316c8d6a013a7a8b6a75485b451e21b070e6b57f62ef52fdf605b252183"
+    },
+    {
+      "relative_path": "frozenrepo/plugins/vst3/factory.cpp",
+      "bytes": 1037,
+      "sha256": "16e5da7194a8f548dd91b84e3c66ed81b5bdf5ff618e66dbafa3abdc1a16158c"
+    },
+    {
+      "relative_path": "frozenrepo/plugins/vst3/photo_editor.cpp",
+      "bytes": 43422,
+      "sha256": "caf54d88c871bab05ec572904ef4e3de7c985c0b713e65c398e0010786679fcf"
+    },
+    {
+      "relative_path": "frozenrepo/plugins/vst3/photo_editor.hpp",
+      "bytes": 383,
+      "sha256": "0c421cae0d330f22b00bab37bb17e73cddd948dbd56a0834c6cb086d6cec97db"
+    },
+    {
+      "relative_path": "frozenrepo/plugins/vst3/photo_geometry.hpp",
+      "bytes": 11936,
+      "sha256": "77fe4f4ac93ee0b212ef3f5399eb5cfa8884076d8eef51d2adf2123e6d85e0bd"
+    },
+    {
+      "relative_path": "frozenrepo/plugins/vst3/photo_key_highlight.hpp",
+      "bytes": 16080,
+      "sha256": "9302c59a677564253ea80fb92deeef811864def11a4fdd7e03b3a20c2477c58a"
+    },
+    {
+      "relative_path": "frozenrepo/plugins/vst3/photo_native_focus.cpp",
+      "bytes": 11355,
+      "sha256": "c24f8d70731a193b0b7bf833984c00df5a60375d2d306986f1440757af938c5f"
+    },
+    {
+      "relative_path": "frozenrepo/plugins/vst3/photo_native_focus.hpp",
+      "bytes": 1697,
+      "sha256": "9bf4553ec6a1418747d5379ba531bf15bbfb7e589f3923ff9c8131485704396a"
+    },
+    {
+      "relative_path": "frozenrepo/plugins/vst3/plugin_ids.hpp",
+      "bytes": 3577,
+      "sha256": "558491751250799eadce1eb95ad1cf59cde728c8bf9490a2962aafeaa8ca128d"
+    },
+    {
+      "relative_path": "frozenrepo/plugins/vst3/processor.cpp",
+      "bytes": 37967,
+      "sha256": "1ef121c4afb190c45fa1ff41a2127fb7487919dc69d8856c4a05e79844f760a9"
+    },
+    {
+      "relative_path": "frozenrepo/plugins/vst3/processor.hpp",
+      "bytes": 6905,
+      "sha256": "5206559cf6a05e6b53e8f6d043a4860b1c4afb995ca8253ed1f75762a5270574"
+    },
+    {
+      "relative_path": "frozenrepo/plugins/vst3/resources/Expat-LICENSE.txt",
+      "bytes": 1208,
+      "sha256": "f6eeb2310d0b00e5cecac39c73a0696a5bdbfb754b26325ed5a502fc1a6c338c"
+    },
+    {
+      "relative_path": "frozenrepo/plugins/vst3/resources/rhodes-suitcase.png",
+      "bytes": 1434362,
+      "sha256": "84e2d48fc0311eb923083cc3e1f96dc5fa1b3f8a6e085daee7c973e54d754d26"
+    },
+    {
+      "relative_path": "frozenrepo/plugins/vst3/resources/rhodes-suitcase.uidesc",
+      "bytes": 651,
+      "sha256": "7554fecedf67cf744b3aa7f6cf12dc4f874d8b5e0b97ec66959ba2b42ea5825e"
+    },
+    {
+      "relative_path": "frozenrepo/plugins/vst3/state_stream.cpp",
+      "bytes": 5052,
+      "sha256": "30b057afe520c81bb87e0298b32835ea47957ff46b452cf417244dbb51b55051"
+    },
+    {
+      "relative_path": "frozenrepo/plugins/vst3/state_stream.hpp",
+      "bytes": 2227,
+      "sha256": "a0885ed2c7a381fac06a65e37c02fa115f5c29930a7881ffd5186297fb9d3b28"
+    },
+    {
+      "relative_path": "frozenrepo/src/contact_reference.cpp",
+      "bytes": 78110,
+      "sha256": "70dde1bfab9c2e35457da2ebf66ff4638cb6f56f1f19a84dbe55a1752d5166fd"
+    },
+    {
+      "relative_path": "frozenrepo/src/research_engine.cpp",
+      "bytes": 20795,
+      "sha256": "01c2a9f7f9f7cfa4f759be56770178f32a71a28667d4ac6ab390e03ff7a95814"
+    },
+    {
+      "relative_path": "frozenrepo/tools/verify_native_photo_editor.py",
+      "bytes": 31258,
+      "sha256": "ce0f2d5c3e74e34c478186bef80ee6879ab0a5328b45d682d9d34d45b6dfda47"
+    },
+    {
+      "relative_path": "frozenrepo/tools/verify_photo_interactions.py",
+      "bytes": 23758,
+      "sha256": "ccfad904084c57a0870bd0c2ba10a1603421482547c2dee03f0c2a595cc7c3b5"
+    },
+    {
+      "relative_path": "input-manifest.json",
+      "bytes": 76673,
+      "sha256": "8695d9046ce26f8caf7e38ca176213bdc3d58f8990e45be0784f7f767a42b86e"
+    },
+    {
+      "relative_path": "native-process.json",
+      "bytes": 236,
+      "sha256": "b5e784c4a5fbd0a778c205affc814b2994b8832813f00f88e0aad0c1574c48e4"
+    },
+    {
+      "relative_path": "native-run01/black-interior-mask.png",
+      "bytes": 3142,
+      "sha256": "bbb8753f28198d55896e45e31970aebbad9ab276916f9a0a87bf73cf3af90fcf"
+    },
+    {
+      "relative_path": "native-run01/close-with-held-volume.png",
+      "bytes": 1480359,
+      "sha256": "75223fc23de0b05b5559e124b8265f8d0d147dad00c1a80a2474a197d3bbecc9"
+    },
+    {
+      "relative_path": "native-run01/editorhost.log",
+      "bytes": 2173,
+      "sha256": "f69e526825cce8fe8ea83d91b3ac0037b47c4ba38dfd101e7b9aee4a12517112"
+    },
+    {
+      "relative_path": "native-run01/feedback-default-1024x768.png",
+      "bytes": 794420,
+      "sha256": "5eacca0b825e4f756ad7b2b3fc69dc721496f65bfeaed5976f85ab2091900810"
+    },
+    {
+      "relative_path": "native-run01/feedback-maximum-1536x1152.png",
+      "bytes": 1479941,
+      "sha256": "6d0262baf29cbebcc3811cd735120c23bf6246b8cdb1713d1439c49700166501"
+    },
+    {
+      "relative_path": "native-run01/feedback-minimum-768x576.png",
+      "bytes": 492169,
+      "sha256": "5b442e04800b610105807e3f1a9a39d4376d6fd57e24e5c7fe7fa9dd887b351e"
+    },
+    {
+      "relative_path": "native-run01/idle-after-all-interactions-1536x1152.png",
+      "bytes": 1476171,
+      "sha256": "5167f25366c8e5d8e7eda298bf089af18478ad5e28ccf78ae02531a2c7fff140"
+    },
+    {
+      "relative_path": "native-run01/idle-default-1024x768.png",
+      "bytes": 794200,
+      "sha256": "40551e5d1e7dd4d8665332c3683039bf2565f89901cc7474d43205e0373a048f"
+    },
+    {
+      "relative_path": "native-run01/idle-maximum-1536x1152.png",
+      "bytes": 1476171,
+      "sha256": "5167f25366c8e5d8e7eda298bf089af18478ad5e28ccf78ae02531a2c7fff140"
+    },
+    {
+      "relative_path": "native-run01/idle-minimum-768x576.png",
+      "bytes": 493063,
+      "sha256": "68845d8d59cbb65f7b62e599ae25da1492d24f88048c3582d1acfc2c3c689cfa"
+    },
+    {
+      "relative_path": "native-run01/outcome.json",
+      "bytes": 385440,
+      "sha256": "4cea37b19b127a7ef70aabaa4ab7f2aaf450248002dc1bbd5b8294400f6f6add"
+    },
+    {
+      "relative_path": "native-run01/pedal_rapid_2_from_off.png",
+      "bytes": 1449989,
+      "sha256": "ff583d78219da451817f12c697e00cdfa3eb98d5cf339d84a91fa460449ea493"
+    },
+    {
+      "relative_path": "native-run01/pedal_rapid_2_from_on.png",
+      "bytes": 1449898,
+      "sha256": "aca13a06a9e0ccd1528cd9420b5907de83a3fc7994eee9c0647eda60c80e0be6"
+    },
+    {
+      "relative_path": "native-run01/pedal_rapid_3_from_off.png",
+      "bytes": 1449898,
+      "sha256": "aca13a06a9e0ccd1528cd9420b5907de83a3fc7994eee9c0647eda60c80e0be6"
+    },
+    {
+      "relative_path": "native-run01/pedal_rapid_3_from_on.png",
+      "bytes": 1449989,
+      "sha256": "ff583d78219da451817f12c697e00cdfa3eb98d5cf339d84a91fa460449ea493"
+    },
+    {
+      "relative_path": "native-run01/vibrato_rapid_2_from_off.png",
+      "bytes": 1476499,
+      "sha256": "f4698920df78fbe57467fe6ef518991f3b6ca4566b2c2ed9a5b380395c10c8f7"
+    },
+    {
+      "relative_path": "native-run01/vibrato_rapid_2_from_on.png",
+      "bytes": 1476320,
+      "sha256": "42000efafb90e77f7f7c6f9cd7bc321695e5990c36dfbf80b9d149421fb7e353"
+    },
+    {
+      "relative_path": "native-run01/vibrato_rapid_3_from_off.png",
+      "bytes": 1476320,
+      "sha256": "42000efafb90e77f7f7c6f9cd7bc321695e5990c36dfbf80b9d149421fb7e353"
+    },
+    {
+      "relative_path": "native-run01/vibrato_rapid_3_from_on.png",
+      "bytes": 1476499,
+      "sha256": "f4698920df78fbe57467fe6ef518991f3b6ca4566b2c2ed9a5b380395c10c8f7"
+    },
+    {
+      "relative_path": "native-run01/volume-double-click-reset.png",
+      "bytes": 1479941,
+      "sha256": "6d0262baf29cbebcc3811cd735120c23bf6246b8cdb1713d1439c49700166501"
+    },
+    {
+      "relative_path": "native-run01/volume-hover-before-timeout.png",
+      "bytes": 1479941,
+      "sha256": "6d0262baf29cbebcc3811cd735120c23bf6246b8cdb1713d1439c49700166501"
+    },
+    {
+      "relative_path": "native-run01/volume-hover-expired.png",
+      "bytes": 1476171,
+      "sha256": "5167f25366c8e5d8e7eda298bf089af18478ad5e28ccf78ae02531a2c7fff140"
+    },
+    {
+      "relative_path": "native-run01/volume-hover-renewed-by-motion.png",
+      "bytes": 1479941,
+      "sha256": "6d0262baf29cbebcc3811cd735120c23bf6246b8cdb1713d1439c49700166501"
+    },
+    {
+      "relative_path": "native-run01/white-held-midi-028.png",
+      "bytes": 1463281,
+      "sha256": "4020cb5a172555f6f09648a6fad5ff7326b60140b0a4aa2d50212f9faf288fe4"
+    },
+    {
+      "relative_path": "native-run01/white-held-midi-029.png",
+      "bytes": 1463178,
+      "sha256": "147601f99a943d271cef799ace030bfaadfcf90c9c3479c41b54509f3249055c"
+    },
+    {
+      "relative_path": "native-run01/white-held-midi-031.png",
+      "bytes": 1462974,
+      "sha256": "509d1fb910e63465cb439358319e80790d06209fc8b55d0aef2be688297b350e"
+    },
+    {
+      "relative_path": "native-run01/white-held-midi-033.png",
+      "bytes": 1463266,
+      "sha256": "8cb4c2ce7104e2d87f7bb4c52e5af0fc944f097dcbf56951eaa83c4c4eff9393"
+    },
+    {
+      "relative_path": "native-run01/white-held-midi-035.png",
+      "bytes": 1462842,
+      "sha256": "028156a96ec24a5e4f93e8610bebcd7d7bfe89cd5d60d67190c940b1de3d8bf9"
+    },
+    {
+      "relative_path": "native-run01/white-held-midi-036.png",
+      "bytes": 1461160,
+      "sha256": "57410a6295b1f964335b9ef3fd490bf1fd0ec1ee6c28c9053470aec0519a6fd8"
+    },
+    {
+      "relative_path": "native-run01/white-held-midi-038.png",
+      "bytes": 1460191,
+      "sha256": "3bb0795eda54303dcc8d535715a3ee1ac0be65465a65d09675cb218e284a3553"
+    },
+    {
+      "relative_path": "native-run01/white-held-midi-040.png",
+      "bytes": 1459429,
+      "sha256": "ac096e7eb28e2cd1e90469e5fac42f7198c2b85f92a7e5634ab2cffffa666abd"
+    },
+    {
+      "relative_path": "native-run01/white-held-midi-041.png",
+      "bytes": 1458788,
+      "sha256": "54ae71be58ac331e28538c8f40d73defb4755b6b1d74314fc47de3581c5b1760"
+    },
+    {
+      "relative_path": "native-run01/white-held-midi-043.png",
+      "bytes": 1458994,
+      "sha256": "e4d8cb5c01f2709ccf3a9d526c053cc00dd02f62cb2670992452c880185c7829"
+    },
+    {
+      "relative_path": "native-run01/white-held-midi-045.png",
+      "bytes": 1459479,
+      "sha256": "aa119906f354123ace18ba7fd209ea97763dd93b51eee33aed556901597505e4"
+    },
+    {
+      "relative_path": "native-run01/white-held-midi-047.png",
+      "bytes": 1459610,
+      "sha256": "0a9fc5d631f266fd5e1e1394a11efa9a5b5648f86973350f06faa91069a93adf"
+    },
+    {
+      "relative_path": "native-run01/white-held-midi-048.png",
+      "bytes": 1460209,
+      "sha256": "01d58215f04b1551db1e39572e80607ec6f21fed7926359eca0f22c9b419b089"
+    },
+    {
+      "relative_path": "native-run01/white-held-midi-050.png",
+      "bytes": 1460444,
+      "sha256": "f88460e5794bd8b9df452fbc58d0dc82276c6c16df75dde8bbbab6b235a0885c"
+    },
+    {
+      "relative_path": "native-run01/white-held-midi-052.png",
+      "bytes": 1461353,
+      "sha256": "5de2611d6cab5bc672cd4d7dfedf52a0144741f20ba9a05d62cfb8c1fc2ad2e3"
+    },
+    {
+      "relative_path": "native-run01/white-held-midi-053.png",
+      "bytes": 1460913,
+      "sha256": "68b0be93f4238e39a7680a0111d684de95615ce9b13ba3da8b8b517b021e0b92"
+    },
+    {
+      "relative_path": "native-run01/white-held-midi-055.png",
+      "bytes": 1461428,
+      "sha256": "6238f55783df331f00aee48b189c89e24fc1c8ac089a2217d3bfbbd0cc118e1b"
+    },
+    {
+      "relative_path": "native-run01/white-held-midi-057.png",
+      "bytes": 1461898,
+      "sha256": "aa92207f7c0d3809e960a5f74c8ef97a9a9ebc9f0aa65c8ea802c6e9c8857824"
+    },
+    {
+      "relative_path": "native-run01/white-held-midi-059.png",
+      "bytes": 1462616,
+      "sha256": "d7dc99efc5f3aed9e4cb6a89586233757f4d3e758eeb91c5935fee0c9ad0c62d"
+    },
+    {
+      "relative_path": "native-run01/white-held-midi-060.png",
+      "bytes": 1462615,
+      "sha256": "8c1cd7dd1ac8d60ce46ddd7d1c67d656200587071e36c0618dffd90984cdac3f"
+    },
+    {
+      "relative_path": "native-run01/white-held-midi-062.png",
+      "bytes": 1463085,
+      "sha256": "821f967731891f6bd081d465ba08f1a041740f2719b0566aa3fcdce3dd47e523"
+    },
+    {
+      "relative_path": "native-run01/white-held-midi-064.png",
+      "bytes": 1463583,
+      "sha256": "b3fa94bae2801eb1fef65f53ca06eee810aac6ef507ee5d2dc952c1c1d0066c6"
+    },
+    {
+      "relative_path": "native-run01/white-held-midi-065.png",
+      "bytes": 1463839,
+      "sha256": "201ef695c51ab89d1c0277262a11c778983ca59dde6f95987d7336393d4359f2"
+    },
+    {
+      "relative_path": "native-run01/white-held-midi-067.png",
+      "bytes": 1464580,
+      "sha256": "c344c85e28254a86fbca1f176895e4eca8cffe79b702422360665ed1795e7cd4"
+    },
+    {
+      "relative_path": "native-run01/white-held-midi-069.png",
+      "bytes": 1465151,
+      "sha256": "7687c4d7e215f58b245e5a0d15f9ae4313d7d8adca3f1d25daeebfa2f2a89606"
+    },
+    {
+      "relative_path": "native-run01/white-held-midi-071.png",
+      "bytes": 1465063,
+      "sha256": "c2fdee5e50677abf980991ddb4e7ae07f3cfcd792925fa86925e4e0e74449266"
+    },
+    {
+      "relative_path": "native-run01/white-held-midi-072.png",
+      "bytes": 1465139,
+      "sha256": "6637a4f83486ef7839f0943c60377a45a74cc9b5e17f6a8916a9c085b8db1159"
+    },
+    {
+      "relative_path": "native-run01/white-held-midi-074.png",
+      "bytes": 1465073,
+      "sha256": "ad667b216a80e914faa6589752482c36e53c0b0fee59131ec254dd64fc3b5b67"
+    },
+    {
+      "relative_path": "native-run01/white-held-midi-076.png",
+      "bytes": 1465424,
+      "sha256": "fc971cf04529be260cf2a3accab4dcfd2885748e51f59d51b8049a3562d290ac"
+    },
+    {
+      "relative_path": "native-run01/white-held-midi-077.png",
+      "bytes": 1465181,
+      "sha256": "618d0888f2300fd58c8dd71f8793bb1d1d2f1318668dded1f2dfd61d69952b54"
+    },
+    {
+      "relative_path": "native-run01/white-held-midi-079.png",
+      "bytes": 1465393,
+      "sha256": "ab89c04a0899eb52c7d6d510d8ac50f140167cb43b972539aa06a901d4d68330"
+    },
+    {
+      "relative_path": "native-run01/white-held-midi-081.png",
+      "bytes": 1465535,
+      "sha256": "256155ae1c5391dff91e1132612417003598db5c14bf57d02976357106792126"
+    },
+    {
+      "relative_path": "native-run01/white-held-midi-083.png",
+      "bytes": 1465803,
+      "sha256": "a090a61de02cb4f3043c0d7df8b1d75819155b9b6173aa3e5fa304dfc99118ad"
+    },
+    {
+      "relative_path": "native-run01/white-held-midi-084.png",
+      "bytes": 1465728,
+      "sha256": "72b7d889b1fdb4bd6eee5ab6057baa50a3345978c6b81dd91aaace0f953bc5cc"
+    },
+    {
+      "relative_path": "native-run01/white-held-midi-086.png",
+      "bytes": 1465880,
+      "sha256": "d67d1be45f3f0f9090350346b7ea480f59f58fef4bcbb698f22517106f75bab1"
+    },
+    {
+      "relative_path": "native-run01/white-held-midi-088.png",
+      "bytes": 1465976,
+      "sha256": "163bb05f6579eb2e82d7225851c8d627e1e6c4b48bc4ff2b2d1fb0a8e87fa982"
+    },
+    {
+      "relative_path": "native-run01/white-held-midi-089.png",
+      "bytes": 1466313,
+      "sha256": "73b0bde53dea4188839078331f31d9b1e8e5c877b358013432e243778a83820b"
+    },
+    {
+      "relative_path": "native-run01/white-held-midi-091.png",
+      "bytes": 1466191,
+      "sha256": "80eb7e5b1add45dacaaa14cdb6204df5288dd403c77123a12db21a64670f951d"
+    },
+    {
+      "relative_path": "native-run01/white-held-midi-093.png",
+      "bytes": 1467205,
+      "sha256": "3a8759bf574fc456ff22a977e5064ac1ba35909e5f1915f400a9ea42fbb96e0f"
+    },
+    {
+      "relative_path": "native-run01/white-held-midi-095.png",
+      "bytes": 1467262,
+      "sha256": "aab8c7a81cfda28cc8665afb93c9981b5c3c702c3312dde768254c6ca065ddd4"
+    },
+    {
+      "relative_path": "native-run01/white-held-midi-096.png",
+      "bytes": 1467206,
+      "sha256": "648a6c28b152a3f27186faa605ac517948402d989bda1e6dc8c93d2e327ee0a8"
+    },
+    {
+      "relative_path": "native-run01/white-held-midi-098.png",
+      "bytes": 1467348,
+      "sha256": "5523af56cd7aa9ec4af45e9f1edf07c0700f37d206092c298f6623b72e784e4b"
+    },
+    {
+      "relative_path": "native-run01/white-held-midi-100.png",
+      "bytes": 1467299,
+      "sha256": "3b631f00c4901f39e46c8a1877920ac8874f66aa8e8c4fe19f2e5df5971fad09"
+    },
+    {
+      "relative_path": "native-run01/white_key-hover-before-timeout.png",
+      "bytes": 1462773,
+      "sha256": "e19ae8e88eea92f81b2da84826229736c2eda1ed8e325a6d68c72f7d801550a9"
+    },
+    {
+      "relative_path": "native-run01/white_key-hover-expired.png",
+      "bytes": 1476171,
+      "sha256": "5167f25366c8e5d8e7eda298bf089af18478ad5e28ccf78ae02531a2c7fff140"
+    },
+    {
+      "relative_path": "native-run01/white_key-hover-renewed-by-motion.png",
+      "bytes": 1462773,
+      "sha256": "e19ae8e88eea92f81b2da84826229736c2eda1ed8e325a6d68c72f7d801550a9"
+    },
+    {
+      "relative_path": "native-started.json",
+      "bytes": 18046,
+      "sha256": "8fb7ec564b8f7af0f274c5982e031daa7b18456993acba885675e9534f2dff2c"
+    },
+    {
+      "relative_path": "native.stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "relative_path": "native.stdout.log",
+      "bytes": 5895,
+      "sha256": "319512816bbe8cb80554d90e77d79f492510611dde33f17ec21bc95376aee9be"
+    },
+    {
+      "relative_path": "original-input-readback.json",
+      "bytes": 45209,
+      "sha256": "c4259d8534c1c81cf4548af08e7846e98f3f4f4a0bbdf9d68b705befe89f555e"
+    },
+    {
+      "relative_path": "preparation-notes.json",
+      "bytes": 524,
+      "sha256": "691a82e2a0a9a3060a8a6b95ce49069a9a2fe9e65669b59953c3c6da4fcbdf59"
+    },
+    {
+      "relative_path": "prior-provenance/w2-022/provenance.json",
+      "bytes": 5250,
+      "sha256": "f9689ed3761846c1365950a3665cd0563f7775aa53f0fe57b20a872630c98f9c"
+    },
+    {
+      "relative_path": "prior-provenance/w2-022/python-provenance.json",
+      "bytes": 1276,
+      "sha256": "dd294179e6dbf55793554e58872a12300f64f8cbea46aba70190022e3d4e413a"
+    },
+    {
+      "relative_path": "prior-provenance/w2-022/recovery.json",
+      "bytes": 2329,
+      "sha256": "004e1e17519c1265b514ef5e6b962429b3a15e20ef6ecfcbde1a02f1b0fdbd9f"
+    },
+    {
+      "relative_path": "prior-provenance/w2-036/manifest.json",
+      "bytes": 1277,
+      "sha256": "e473d6d00b9dad578f6c58204f5a64dd00967e696cb78090db8bdfb0bb938b38"
+    },
+    {
+      "relative_path": "prior-provenance/w2-036/outcome.json",
+      "bytes": 358295,
+      "sha256": "78c251f5abba315b17cc6ba4f1f280d04e1824ccdbee4e2caa440710b0a4dc1a"
+    },
+    {
+      "relative_path": "project-next-json.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "relative_path": "project-next-json.stdout",
+      "bytes": 4974,
+      "sha256": "1deba62bf691683aa03ec7da3a95dd948834f92011ad382c4e46c0ff265d4617"
+    },
+    {
+      "relative_path": "project-preflight.json",
+      "bytes": 739,
+      "sha256": "15a1a1b89566cfe24ceb87239f5028e375a2e4bab86bd8ecb50a34a1f9364f04"
+    },
+    {
+      "relative_path": "project-sync-check.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "relative_path": "project-sync-check.stdout",
+      "bytes": 28,
+      "sha256": "c12e780f2a1a15c90a6d501dfecabab0d47d98a75abbe9c3e8939353ba9612e9"
+    },
+    {
+      "relative_path": "project-validate.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "relative_path": "project-validate.stdout",
+      "bytes": 59,
+      "sha256": "aa6df853b72da183d4dbf7371097e825c752801259a1878dc30807231ff71d06"
+    },
+    {
+      "relative_path": "run-once.py",
+      "bytes": 3588,
+      "sha256": "f4e69df5fc859e8c93279301468366dbe6a4f79deaca4c7d33cbda261552f9b1"
+    },
+    {
+      "relative_path": "sdk-inputs/vstgui/lib/cframe.cpp",
+      "bytes": 55710,
+      "sha256": "2805d87f8df5e97e4071eaabb4a7e7ca110cc8cbfb9ab1e71e6d2a804f91b7a3"
+    },
+    {
+      "relative_path": "sdk-inputs/vstgui/lib/cframe.h",
+      "bytes": 14425,
+      "sha256": "fab8dfe651efe9aa14befa25954d002c7ca14932dcafe84bc0ba81287756465a"
+    },
+    {
+      "relative_path": "sdk-inputs/vstgui/lib/cview.cpp",
+      "bytes": 44014,
+      "sha256": "e3058875031c6e5f8f060b58c11b67a5b4539058dfa9150232aae1b1384cf25d"
+    },
+    {
+      "relative_path": "sdk-inputs/vstgui/lib/cview.h",
+      "bytes": 20988,
+      "sha256": "956187dfd84f3486847ce56716d379fdb9ec1a5113bc81d2f3d5bb789c514d1f"
+    },
+    {
+      "relative_path": "sdk-inputs/vstgui/lib/cvstguitimer.cpp",
+      "bytes": 2812,
+      "sha256": "1a56abdbb744730ee2a169012cf7fbbe28aa521a0107b4c24909dd475e91f109"
+    },
+    {
+      "relative_path": "sdk-inputs/vstgui/lib/cvstguitimer.h",
+      "bytes": 2180,
+      "sha256": "0edad4e0c0c82141f93c406d78d01ee1240ec03150bcd54f45f84757f4e5da62"
+    },
+    {
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/cairobitmap.cpp",
+      "bytes": 8342,
+      "sha256": "3dd4748c06563ca5530fdb97156f2ed34d8cf67a4a4576ab752d98d719dd50a2"
+    },
+    {
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/cairobitmap.h",
+      "bytes": 1659,
+      "sha256": "0d4294c95fefe9c2c66a5259593fe6bd5b3df5324f44d09acd9da1a11f9da3e8"
+    },
+    {
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/cairofont.cpp",
+      "bytes": 9118,
+      "sha256": "049e642e494a25fa90ba9de5439f5906408fbdb91ccd57cb6f3f54ddaa23351e"
+    },
+    {
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/cairofont.h",
+      "bytes": 1405,
+      "sha256": "0c8312e833623eb141ff5d9273109235ff5eae418a363484e8053d0450d41675"
+    },
+    {
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/cairogradient.cpp",
+      "bytes": 2089,
+      "sha256": "5697d03dd2f609ec9a42bed27d053ad5679ca6a01c6da66fd0407d7898cdc97d"
+    },
+    {
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/cairogradient.h",
+      "bytes": 1150,
+      "sha256": "dea7b83dde8b4fc0cc204fcea9f4da711c9185d5467bb4914c02b36dabf84879"
+    },
+    {
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/cairographicscontext.cpp",
+      "bytes": 22842,
+      "sha256": "a1c773dda1b46d717d88d402d56c10b7883bfc6baf436e485bc98e0187967881"
+    },
+    {
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/cairographicscontext.h",
+      "bytes": 4028,
+      "sha256": "7fa9f15d17c41cf410a0a7ceb31d27ca7d42116853decb7c866e3ab477b9943d"
+    },
+    {
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/cairopath.cpp",
+      "bytes": 5933,
+      "sha256": "61ed147407d303315835657182ea5129157af346eabe20d93d6d646eff297269"
+    },
+    {
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/cairopath.h",
+      "bytes": 2174,
+      "sha256": "1fa27fcbc1cdc860d8456a7fa361d0b8da122147a8d3a2a8aa796990821b6b95"
+    },
+    {
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/cairoutils.h",
+      "bytes": 2099,
+      "sha256": "0aff2f1d26beec70bf89a36135fa37da1f52c511b52ceb5897dd45f5bef3cb65"
+    },
+    {
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/irunloop.h",
+      "bytes": 246,
+      "sha256": "8afb0390abe24fe7fb27d0b04ce04070ea85ba0c45449e9ad13d83f932ed8e7c"
+    },
+    {
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/linuxfactory.cpp",
+      "bytes": 10469,
+      "sha256": "85ea54da5a39ff18e401f00a03cd5b03d5a0f9646fd16f2d4504476152468151"
+    },
+    {
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/linuxfactory.h",
+      "bytes": 5706,
+      "sha256": "5285fe9b06cf3db2189099e4f661fcc8b1d2885784f9d2c828a21264303b6f87"
+    },
+    {
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/linuxstring.cpp",
+      "bytes": 755,
+      "sha256": "a3af0d67f20ecde7f81bea3cadbfad7bd575fef29605ba2e0ceeb3786dd844e5"
+    },
+    {
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/linuxstring.h",
+      "bytes": 756,
+      "sha256": "6a6a0653836910dfc223c54aed17215bff41cefe524c4ed033fae72b6811141b"
+    },
+    {
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/linuxtaskexecutor.cpp",
+      "bytes": 4305,
+      "sha256": "25f3ff1af672ce3261a3444313b73a56baa476ec8bdacfc1af9f6f04b3d653b9"
+    },
+    {
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/linuxtaskexecutor.h",
+      "bytes": 1280,
+      "sha256": "ad0d527fae00620233b32064feb4f015e50701f56e311e299eef5a4fcf498593"
+    },
+    {
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/waylandclientcontext.cpp",
+      "bytes": 16336,
+      "sha256": "aae5c518f29d42d785f4a9a666e264a0c6a9e6180a8da737a4cec58e1c324f5c"
+    },
+    {
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/waylandclientcontext.h",
+      "bytes": 1837,
+      "sha256": "90bc0983a8ad4442e005b25e45460ffd303e1cd62fde817d63c32623ea838a17"
+    },
+    {
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/waylandframe.cpp",
+      "bytes": 12064,
+      "sha256": "c1a7346e67dcc2598341a3a699764aad9b6e8d5d077838777e2ca5b7318ce257"
+    },
+    {
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/waylandframe.h",
+      "bytes": 2736,
+      "sha256": "0630e13cc2704a9b5274a467261ce126b9dba1204eb7b069edab65cdeca026e4"
+    },
+    {
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/waylandplatform.cpp",
+      "bytes": 7153,
+      "sha256": "b20034e45b3ad3c8532db1399717d7b2b894c86a5ee2a804477336638b387edf"
+    },
+    {
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/waylandplatform.h",
+      "bytes": 1549,
+      "sha256": "008f2c94b259c75024e181aa0e75a137b784c6dca773ee3a82a59a570eb6949c"
+    },
+    {
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/waylandutils.cpp",
+      "bytes": 34400,
+      "sha256": "5b6433935f9d97a0f04a6471b12cb9e2fd03855e243c98ffe886fab66842592c"
+    },
+    {
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/waylandutils.h",
+      "bytes": 2148,
+      "sha256": "d996e7ec3eeaef1f1aa831a711a8e93ed82bb3a4c529c3fe17e776ad7006919a"
+    },
+    {
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/x11dragging.cpp",
+      "bytes": 14479,
+      "sha256": "3f380b8c100de9c65b55e30ac4db72243d1063d3361e850291c7c0fbb2255c6f"
+    },
+    {
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/x11dragging.h",
+      "bytes": 2810,
+      "sha256": "41d8674d25fe78b126a0b80bcce0845fdb9ace7b5aa8965f9cbdb0ec49112160"
+    },
+    {
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/x11fileselector.cpp",
+      "bytes": 6029,
+      "sha256": "8905ecc588fc7bb2cd0b09c86974dcfc3ba5df2b275a0e856f6ce25f925929ab"
+    },
+    {
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/x11fileselector.h",
+      "bytes": 668,
+      "sha256": "ffba84a9a575fcd896c1015df62412b12e8f5d14a82d3bcf7ca068c9972aab78"
+    },
+    {
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/x11frame.cpp",
+      "bytes": 23817,
+      "sha256": "8dc07b3212e9710d23ca5c960ace39900705aa8cb3c09f760ad78ea160200dd5"
+    },
+    {
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/x11frame.h",
+      "bytes": 2752,
+      "sha256": "de6277529f94304767469ca44f4c042fa8fcbf72067322f9fc4865b2948ddfff"
+    },
+    {
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/x11platform.cpp",
+      "bytes": 17089,
+      "sha256": "7158057162bc716aeb52efc5e6744b9432ffb8b86e9e0a68895d9d340cc87bb3"
+    },
+    {
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/x11platform.h",
+      "bytes": 2496,
+      "sha256": "d21c4ac518bda6d460eb8f0f702118f6389160c9dc65431f7755307d69f65334"
+    },
+    {
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/x11timer.cpp",
+      "bytes": 1436,
+      "sha256": "2b04e359d83ee4a9d5586f37bfad43f71dcf2dc8a28ea65bbb686c58e063f1ba"
+    },
+    {
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/x11timer.h",
+      "bytes": 843,
+      "sha256": "ced6605068b98bcf4a881db2843bc5415068416bf106c7d3e58d2c26a3b4ad05"
+    },
+    {
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/x11utils.cpp",
+      "bytes": 6156,
+      "sha256": "67c30ca1e6afa5905a5205a3b2d0dc82ca640728c5c77b3e0ae42a0b46a19bac"
+    },
+    {
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/x11utils.h",
+      "bytes": 2538,
+      "sha256": "893864a21d1ed73999b8b336384608aff7ee96db1ef86861ad533442b7b2ba9d"
+    },
+    {
+      "relative_path": "snapshot/RhodesResearch.vst3/Contents/Resources/Expat-LICENSE.txt",
+      "bytes": 1208,
+      "sha256": "f6eeb2310d0b00e5cecac39c73a0696a5bdbfb754b26325ed5a502fc1a6c338c"
+    },
+    {
+      "relative_path": "snapshot/RhodesResearch.vst3/Contents/Resources/LICENSE.txt",
+      "bytes": 1094,
+      "sha256": "e86d79e19e4a33ebc442d2e0d083887dfc75a2a8de9fe17eeddedb84810ad74e"
+    },
+    {
+      "relative_path": "snapshot/RhodesResearch.vst3/Contents/Resources/RapidJSON-LICENSE.txt",
+      "bytes": 5152,
+      "sha256": "a140e5d46fe734a1c78f1a3c3ef207871dd75648be71fdda8e309b23ab8b1f32"
+    },
+    {
+      "relative_path": "snapshot/RhodesResearch.vst3/Contents/Resources/THIRD_PARTY_NOTICES.md",
+      "bytes": 8653,
+      "sha256": "f3ed30cd41b48ce88753de641057f51f51e78ea19b60a40e4398f29fe191f901"
+    },
+    {
+      "relative_path": "snapshot/RhodesResearch.vst3/Contents/Resources/VSTGUI-LICENSE.txt",
+      "bytes": 1858,
+      "sha256": "605bcd2152176b365cf0ba6cca331a988fa885b4f43f20ceff4e264e6576ca66"
+    },
+    {
+      "relative_path": "snapshot/RhodesResearch.vst3/Contents/Resources/miniz-LICENSE.txt",
+      "bytes": 1162,
+      "sha256": "6f20fa7672b00e2e975c291df737cf227addf3ad32e36fef3fe0f416e4664d3d"
+    },
+    {
+      "relative_path": "snapshot/RhodesResearch.vst3/Contents/Resources/moduleinfo.json",
+      "bytes": 1065,
+      "sha256": "28b44aaa74a32dbe415b3553b37b019440ebe17bad7708b217790d47bb6adfb9"
+    },
+    {
+      "relative_path": "snapshot/RhodesResearch.vst3/Contents/Resources/rhodes-suitcase.png",
+      "bytes": 1434362,
+      "sha256": "84e2d48fc0311eb923083cc3e1f96dc5fa1b3f8a6e085daee7c973e54d754d26"
+    },
+    {
+      "relative_path": "snapshot/RhodesResearch.vst3/Contents/Resources/rhodes-suitcase.uidesc",
+      "bytes": 651,
+      "sha256": "7554fecedf67cf744b3aa7f6cf12dc4f874d8b5e0b97ec66959ba2b42ea5825e"
+    },
+    {
+      "relative_path": "snapshot/RhodesResearch.vst3/Contents/x86_64-linux/RhodesResearch.so",
+      "bytes": 3204856,
+      "sha256": "5facf72c9367a5849c124833673d68e2d74b8b64c88b22e95d66663fa65d1959"
+    },
+    {
+      "relative_path": "source-differences-vs-w2-036.diff",
+      "bytes": 12524,
+      "sha256": "3fe0a813093182304da57bf50f068ab308af616705ade4ed4fb5f44ed35f0bfb"
+    },
+    {
+      "relative_path": "source-differences-vs-w2-036.json",
+      "bytes": 3042,
+      "sha256": "b9eed90b291d4372c00da8080a194fc48ab75b0ca2a5569ea3af11dd5273ee72"
+    },
+    {
+      "relative_path": "summarize-replay.py",
+      "bytes": 5516,
+      "sha256": "3128f2b02f09c65ed0d224092315c91460ef2a95d96f9fcdddc07a3fcdbc87e9"
+    },
+    {
+      "relative_path": "w4-061.md",
+      "bytes": 2908,
+      "sha256": "c700eb980c53575305a196423e9ec8d2c813d21e2271348963e30e9f5dbeaa61"
+    },
+    {
+      "relative_path": "with-xvfb.py",
+      "bytes": 2835,
+      "sha256": "81230583df4f4a7c0e1a498faa8ee327c3027b35e7035d6d6aeb4eb3eb9898f7"
+    },
+    {
+      "relative_path": "xvfb-8.log",
+      "bytes": 104,
+      "sha256": "097ccb597eaf2ddecb1c88abec6348ff7c8fccc8c5e68514fa98783af97853bb"
+    }
+  ],
+  "file_count": 237,
+  "total_bytes": 109060161
+}

@@ -1,0 +1,28 @@
+{
+  "name": "loaded-expression-controls-state",
+  "kind": "loaded_contract",
+  "command": [
+    "/home/agent/rhoades-9a04c9726e31/w4-062/bin/rhodes_vst3_loaded_expression_tests",
+    "controls_state",
+    "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearch.vst3",
+    "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchFiltered.vst3",
+    "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchQuadrature.vst3"
+  ],
+  "cwd": "/home/agent/rhoades-9a04c9726e31/w4-062",
+  "started_utc": "2026-11-24T19:18:37.535076+00:00",
+  "timeout_seconds": 60,
+  "environment_file": "environment.json",
+  "exit_code": 0,
+  "finished_utc": "2026-11-24T19:18:37.649436+00:00",
+  "elapsed_seconds": 0.11433003199636005,
+  "stdout": {
+    "path": "results/loaded-expression-controls-state/stdout.log",
+    "sha256": "67f5f237148907513ca1205ffbcf3b6627f2ea35134630fad0125ca8dff0902f",
+    "bytes": 285
+  },
+  "stderr": {
+    "path": "results/loaded-expression-controls-state/stderr.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  }
+}

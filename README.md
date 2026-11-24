@@ -10,7 +10,7 @@ loaded output. The repository name is retained for existing links.
 **Current stage: experimental VST3 instrument and physical-model research.**
 The C++20 synthetic core now has bounded sample-offset events, MIDI note ownership,
 versioned state recall, and three optional VST3 variants with a native photo
-editor under qualification. All three retain their class identities, saved-state
+editor with recorded Linux verification. All three retain their class identities, saved-state
 model IDs and default neutral-panel/unity-expression rendering path.
 **Rhodes Research Quadrature** batches six prepared observations of
 the synthetic source inside each host-frame interval and reports 48 frames
@@ -85,8 +85,14 @@ while retaining the first 19 parameter positions. The tone shelves and opposed
 stereo amplitude modulation are explicitly synthetic digital effects. They do
 not identify the photographed instrument's electronics. Nondefault panel settings
 use a **40-byte version-3 state**; default panel settings retain legacy v1/v2
-exports. An actual Linux editor window has rendered the full photograph;
-gestures, visual comparison and platform acceptance remain under qualification; see the [current editor checkpoint](docs/VST3.md#current-photo-editor-checkpoint--24-november-2026).
+exports. The final Linux replay passes **136 interaction checks**, including
+exact reference pixels at the maximum-size idle view and resizing through all
+three supported sizes. The three variants pass **39 native lifecycle cases**,
+including removal inside host callbacks, repeated reopening and sibling windows.
+Fresh current-module captures preserve **608,256 paired legacy stereo frames**
+exactly. Native Windows/macOS editor behavior, non-unit display scaling and
+named-DAW operation remain unverified; see the
+[current editor checkpoint](docs/VST3.md#current-photo-editor-checkpoint--24-november-2026).
 
 The separate [four-fixture contact diagnostic](docs/CONTACT_PEAK_DIAGNOSTIC.md)
 compares synthetic compression and force maxima with independent references,
@@ -117,6 +123,7 @@ validation gates.
 | Audit current main-branch development | [24 November campaign and report ledgers](docs/agents/DEVELOPMENT_WAVES_20261124.md) |
 | Audit MIDI interoperability development | [Separate continuation-C ledger](project/continuation-c-20261124.json) |
 | Audit Expression and mono development | [Five-wave continuation-D campaign](docs/agents/CONTINUATION_D_20261124.md) |
+| Audit the reference-photo editor development | [Current five-wave agent ledger](project/photo-continuation-20261124.json) |
 | Inspect the filtered audio design | [Timing, response and compatibility contract](docs/specs/FILTERED_AUDIO_20261123.md) |
 | Inspect the quadrature audio design | [Frozen Q6 timing and verification contract](docs/specs/QUADRATURE_AUDIO_20261123.md) |
 | Inspect the original VST3 prototype contract | [Original host behavior and later overrides](docs/specs/HOST_PROTOTYPE_20261123.md) |

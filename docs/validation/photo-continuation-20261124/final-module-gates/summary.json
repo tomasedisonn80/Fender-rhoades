@@ -1,0 +1,1254 @@
+{
+  "worker": "w4-062",
+  "scope": "Final Linux binaries; module validators and public-host UI lifecycle fixtures; no native DAW/audio-device claim",
+  "gates": 34,
+  "passed": 34,
+  "failed": 0,
+  "native_cases": 26,
+  "validator_contract_commands": 8,
+  "selectors": [
+    "normal_close",
+    "remove_begin",
+    "remove_perform",
+    "remove_end",
+    "nested_pump",
+    "timer_refused",
+    "repeated_remove",
+    "reopen",
+    "parent_destroy_after_remove",
+    "release_host_reference_after_remove",
+    "focus_remove",
+    "reopen_cycles",
+    "sibling_survives"
+  ],
+  "input_manifest_sha256": "7c87777c7e5acb301a5e31067e86ac078f36060b5c87d5d74dceacf7dcd79c73",
+  "runner_sha256": "da4be7b7747549b31d381daab8c4f36fb3e01980d5216be366b33bc19c7780b1",
+  "frozen_input_mutations": [],
+  "results": [
+    {
+      "name": "loaded-expression-controls-state",
+      "kind": "loaded_contract",
+      "command": [
+        "/home/agent/rhoades-9a04c9726e31/w4-062/bin/rhodes_vst3_loaded_expression_tests",
+        "controls_state",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearch.vst3",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchFiltered.vst3",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchQuadrature.vst3"
+      ],
+      "cwd": "/home/agent/rhoades-9a04c9726e31/w4-062",
+      "started_utc": "2026-11-24T19:18:37.535076+00:00",
+      "timeout_seconds": 60,
+      "environment_file": "environment.json",
+      "exit_code": 0,
+      "finished_utc": "2026-11-24T19:18:37.649436+00:00",
+      "elapsed_seconds": 0.11433003199636005,
+      "stdout": {
+        "path": "results/loaded-expression-controls-state/stdout.log",
+        "sha256": "67f5f237148907513ca1205ffbcf3b6627f2ea35134630fad0125ca8dff0902f",
+        "bytes": 285
+      },
+      "stderr": {
+        "path": "results/loaded-expression-controls-state/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "moduleinfo-validator-direct",
+      "kind": "moduleinfo_validator",
+      "command": [
+        "/home/agent/rhoades-9a04c9726e31/w4-062/bin/moduleinfotool",
+        "-validate",
+        "-path",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearch.vst3"
+      ],
+      "cwd": "/home/agent/rhoades-9a04c9726e31/w4-062",
+      "started_utc": "2026-11-24T19:18:37.498419+00:00",
+      "timeout_seconds": 30,
+      "environment_file": "environment.json",
+      "exit_code": 0,
+      "finished_utc": "2026-11-24T19:18:37.516382+00:00",
+      "elapsed_seconds": 0.017069318993890192,
+      "stdout": {
+        "path": "results/moduleinfo-validator-direct/stdout.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "path": "results/moduleinfo-validator-direct/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "moduleinfo-validator-filtered",
+      "kind": "moduleinfo_validator",
+      "command": [
+        "/home/agent/rhoades-9a04c9726e31/w4-062/bin/moduleinfotool",
+        "-validate",
+        "-path",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchFiltered.vst3"
+      ],
+      "cwd": "/home/agent/rhoades-9a04c9726e31/w4-062",
+      "started_utc": "2026-11-24T19:18:37.499407+00:00",
+      "timeout_seconds": 30,
+      "environment_file": "environment.json",
+      "exit_code": 0,
+      "finished_utc": "2026-11-24T19:18:37.516670+00:00",
+      "elapsed_seconds": 0.01634679700509878,
+      "stdout": {
+        "path": "results/moduleinfo-validator-filtered/stdout.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "path": "results/moduleinfo-validator-filtered/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "moduleinfo-validator-quadrature",
+      "kind": "moduleinfo_validator",
+      "command": [
+        "/home/agent/rhoades-9a04c9726e31/w4-062/bin/moduleinfotool",
+        "-validate",
+        "-path",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchQuadrature.vst3"
+      ],
+      "cwd": "/home/agent/rhoades-9a04c9726e31/w4-062",
+      "started_utc": "2026-11-24T19:18:37.517809+00:00",
+      "timeout_seconds": 30,
+      "environment_file": "environment.json",
+      "exit_code": 0,
+      "finished_utc": "2026-11-24T19:18:37.534229+00:00",
+      "elapsed_seconds": 0.016244445003394503,
+      "stdout": {
+        "path": "results/moduleinfo-validator-quadrature/stdout.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "stderr": {
+        "path": "results/moduleinfo-validator-quadrature/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "native-filtered-focus_remove",
+      "kind": "native_lifecycle",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/source/tools/run_xvfb_test.py",
+        "--xvfb",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/Xvfb",
+        "--xauth",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xauth",
+        "--xdpyinfo",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xdpyinfo",
+        "--startup-timeout",
+        "10",
+        "--test-timeout",
+        "30",
+        "--",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/bin/rhodes_vst3_photo_lifecycle_tests",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchFiltered.vst3",
+        "focus_remove"
+      ],
+      "cwd": "/home/agent/rhoades-9a04c9726e31/w4-062",
+      "started_utc": "2026-11-24T19:18:40.039540+00:00",
+      "timeout_seconds": 50,
+      "environment_file": "environment.json",
+      "exit_code": 0,
+      "finished_utc": "2026-11-24T19:18:40.407373+00:00",
+      "elapsed_seconds": 0.36778791200049454,
+      "stdout": {
+        "path": "results/native-filtered-focus_remove/stdout.log",
+        "sha256": "e44ef8f2248d1586a4cc81a48868739e77088840969f2cf37e1ece33048d3916",
+        "bytes": 41
+      },
+      "stderr": {
+        "path": "results/native-filtered-focus_remove/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "native-filtered-nested_pump",
+      "kind": "native_lifecycle",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/source/tools/run_xvfb_test.py",
+        "--xvfb",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/Xvfb",
+        "--xauth",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xauth",
+        "--xdpyinfo",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xdpyinfo",
+        "--startup-timeout",
+        "10",
+        "--test-timeout",
+        "30",
+        "--",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/bin/rhodes_vst3_photo_lifecycle_tests",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchFiltered.vst3",
+        "nested_pump"
+      ],
+      "cwd": "/home/agent/rhoades-9a04c9726e31/w4-062",
+      "started_utc": "2026-11-24T19:18:38.975289+00:00",
+      "timeout_seconds": 50,
+      "environment_file": "environment.json",
+      "exit_code": 0,
+      "finished_utc": "2026-11-24T19:18:39.340304+00:00",
+      "elapsed_seconds": 0.364926515998377,
+      "stdout": {
+        "path": "results/native-filtered-nested_pump/stdout.log",
+        "sha256": "76de67fd1133f73dd9f2f0a47b915f36415e983e086c8d0b49b05d73f9d38dad",
+        "bytes": 40
+      },
+      "stderr": {
+        "path": "results/native-filtered-nested_pump/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "native-filtered-normal_close",
+      "kind": "native_lifecycle",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/source/tools/run_xvfb_test.py",
+        "--xvfb",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/Xvfb",
+        "--xauth",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xauth",
+        "--xdpyinfo",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xdpyinfo",
+        "--startup-timeout",
+        "10",
+        "--test-timeout",
+        "30",
+        "--",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/bin/rhodes_vst3_photo_lifecycle_tests",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchFiltered.vst3",
+        "normal_close"
+      ],
+      "cwd": "/home/agent/rhoades-9a04c9726e31/w4-062",
+      "started_utc": "2026-11-24T19:18:37.682786+00:00",
+      "timeout_seconds": 50,
+      "environment_file": "environment.json",
+      "exit_code": 0,
+      "finished_utc": "2026-11-24T19:18:38.147946+00:00",
+      "elapsed_seconds": 0.46506164399761474,
+      "stdout": {
+        "path": "results/native-filtered-normal_close/stdout.log",
+        "sha256": "8a1d49922f7afba036ef358482e9fb5615a6745c9ebf3f82a5753d09545eb4ec",
+        "bytes": 41
+      },
+      "stderr": {
+        "path": "results/native-filtered-normal_close/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "native-filtered-parent_destroy_after_remove",
+      "kind": "native_lifecycle",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/source/tools/run_xvfb_test.py",
+        "--xvfb",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/Xvfb",
+        "--xauth",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xauth",
+        "--xdpyinfo",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xdpyinfo",
+        "--startup-timeout",
+        "10",
+        "--test-timeout",
+        "30",
+        "--",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/bin/rhodes_vst3_photo_lifecycle_tests",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchFiltered.vst3",
+        "parent_destroy_after_remove"
+      ],
+      "cwd": "/home/agent/rhoades-9a04c9726e31/w4-062",
+      "started_utc": "2026-11-24T19:18:39.711483+00:00",
+      "timeout_seconds": 50,
+      "environment_file": "environment.json",
+      "exit_code": 0,
+      "finished_utc": "2026-11-24T19:18:40.026595+00:00",
+      "elapsed_seconds": 0.3150128799970844,
+      "stdout": {
+        "path": "results/native-filtered-parent_destroy_after_remove/stdout.log",
+        "sha256": "0cb304adfad3fd47d941108f8791684c0169f7bdb9b4117a1a11d0d5b83159cf",
+        "bytes": 56
+      },
+      "stderr": {
+        "path": "results/native-filtered-parent_destroy_after_remove/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "native-filtered-release_host_reference_after_remove",
+      "kind": "native_lifecycle",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/source/tools/run_xvfb_test.py",
+        "--xvfb",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/Xvfb",
+        "--xauth",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xauth",
+        "--xdpyinfo",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xdpyinfo",
+        "--startup-timeout",
+        "10",
+        "--test-timeout",
+        "30",
+        "--",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/bin/rhodes_vst3_photo_lifecycle_tests",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchFiltered.vst3",
+        "release_host_reference_after_remove"
+      ],
+      "cwd": "/home/agent/rhoades-9a04c9726e31/w4-062",
+      "started_utc": "2026-11-24T19:18:40.027245+00:00",
+      "timeout_seconds": 50,
+      "environment_file": "environment.json",
+      "exit_code": 0,
+      "finished_utc": "2026-11-24T19:18:40.342601+00:00",
+      "elapsed_seconds": 0.3152371440010029,
+      "stdout": {
+        "path": "results/native-filtered-release_host_reference_after_remove/stdout.log",
+        "sha256": "3a6b731e1a9db9c304c1aeaa84794f466dc2e3ce6383da3e7e1c68a75df876c3",
+        "bytes": 64
+      },
+      "stderr": {
+        "path": "results/native-filtered-release_host_reference_after_remove/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "native-filtered-remove_begin",
+      "kind": "native_lifecycle",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/source/tools/run_xvfb_test.py",
+        "--xvfb",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/Xvfb",
+        "--xauth",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xauth",
+        "--xdpyinfo",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xdpyinfo",
+        "--startup-timeout",
+        "10",
+        "--test-timeout",
+        "30",
+        "--",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/bin/rhodes_vst3_photo_lifecycle_tests",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchFiltered.vst3",
+        "remove_begin"
+      ],
+      "cwd": "/home/agent/rhoades-9a04c9726e31/w4-062",
+      "started_utc": "2026-11-24T19:18:38.148482+00:00",
+      "timeout_seconds": 50,
+      "environment_file": "environment.json",
+      "exit_code": 0,
+      "finished_utc": "2026-11-24T19:18:38.463325+00:00",
+      "elapsed_seconds": 0.31481485100084683,
+      "stdout": {
+        "path": "results/native-filtered-remove_begin/stdout.log",
+        "sha256": "b765fe7148e7c406501e6dbd6bae7fb39004a64675e0d45208bc26d544d21aed",
+        "bytes": 41
+      },
+      "stderr": {
+        "path": "results/native-filtered-remove_begin/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "native-filtered-remove_end",
+      "kind": "native_lifecycle",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/source/tools/run_xvfb_test.py",
+        "--xvfb",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/Xvfb",
+        "--xauth",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xauth",
+        "--xdpyinfo",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xdpyinfo",
+        "--startup-timeout",
+        "10",
+        "--test-timeout",
+        "30",
+        "--",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/bin/rhodes_vst3_photo_lifecycle_tests",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchFiltered.vst3",
+        "remove_end"
+      ],
+      "cwd": "/home/agent/rhoades-9a04c9726e31/w4-062",
+      "started_utc": "2026-11-24T19:18:38.829592+00:00",
+      "timeout_seconds": 50,
+      "environment_file": "environment.json",
+      "exit_code": 0,
+      "finished_utc": "2026-11-24T19:18:39.250840+00:00",
+      "elapsed_seconds": 0.42122076300438493,
+      "stdout": {
+        "path": "results/native-filtered-remove_end/stdout.log",
+        "sha256": "fd85aba258b51ed7aef88480fe86499e5a7577f4eb2e6275bef44f857311875d",
+        "bytes": 39
+      },
+      "stderr": {
+        "path": "results/native-filtered-remove_end/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "native-filtered-remove_perform",
+      "kind": "native_lifecycle",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/source/tools/run_xvfb_test.py",
+        "--xvfb",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/Xvfb",
+        "--xauth",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xauth",
+        "--xdpyinfo",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xdpyinfo",
+        "--startup-timeout",
+        "10",
+        "--test-timeout",
+        "30",
+        "--",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/bin/rhodes_vst3_photo_lifecycle_tests",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchFiltered.vst3",
+        "remove_perform"
+      ],
+      "cwd": "/home/agent/rhoades-9a04c9726e31/w4-062",
+      "started_utc": "2026-11-24T19:18:38.464055+00:00",
+      "timeout_seconds": 50,
+      "environment_file": "environment.json",
+      "exit_code": 0,
+      "finished_utc": "2026-11-24T19:18:38.829025+00:00",
+      "elapsed_seconds": 0.3649160659988411,
+      "stdout": {
+        "path": "results/native-filtered-remove_perform/stdout.log",
+        "sha256": "25ee86f1057e650f45daa81754cdabc0880d9432e164d74fdbfc262078d1ada4",
+        "bytes": 43
+      },
+      "stderr": {
+        "path": "results/native-filtered-remove_perform/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "native-filtered-reopen",
+      "kind": "native_lifecycle",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/source/tools/run_xvfb_test.py",
+        "--xvfb",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/Xvfb",
+        "--xauth",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xauth",
+        "--xdpyinfo",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xdpyinfo",
+        "--startup-timeout",
+        "10",
+        "--test-timeout",
+        "30",
+        "--",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/bin/rhodes_vst3_photo_lifecycle_tests",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchFiltered.vst3",
+        "reopen"
+      ],
+      "cwd": "/home/agent/rhoades-9a04c9726e31/w4-062",
+      "started_utc": "2026-11-24T19:18:39.671368+00:00",
+      "timeout_seconds": 50,
+      "environment_file": "environment.json",
+      "exit_code": 0,
+      "finished_utc": "2026-11-24T19:18:40.038986+00:00",
+      "elapsed_seconds": 0.367587660002755,
+      "stdout": {
+        "path": "results/native-filtered-reopen/stdout.log",
+        "sha256": "56668298433bc00ef1bfeca10e28d0b5f38c5885a701e1daf5c40f73198070da",
+        "bytes": 35
+      },
+      "stderr": {
+        "path": "results/native-filtered-reopen/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "native-filtered-reopen_cycles",
+      "kind": "native_lifecycle",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/source/tools/run_xvfb_test.py",
+        "--xvfb",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/Xvfb",
+        "--xauth",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xauth",
+        "--xdpyinfo",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xdpyinfo",
+        "--startup-timeout",
+        "10",
+        "--test-timeout",
+        "30",
+        "--",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/bin/rhodes_vst3_photo_lifecycle_tests",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchFiltered.vst3",
+        "reopen_cycles"
+      ],
+      "cwd": "/home/agent/rhoades-9a04c9726e31/w4-062",
+      "started_utc": "2026-11-24T19:18:40.343450+00:00",
+      "timeout_seconds": 50,
+      "environment_file": "environment.json",
+      "exit_code": 0,
+      "finished_utc": "2026-11-24T19:18:41.466660+00:00",
+      "elapsed_seconds": 1.1231350300004124,
+      "stdout": {
+        "path": "results/native-filtered-reopen_cycles/stdout.log",
+        "sha256": "d7e66f742f8523d034cd610601eff5fe2e47d4aaba67551d95171e0e83fac257",
+        "bytes": 42
+      },
+      "stderr": {
+        "path": "results/native-filtered-reopen_cycles/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "native-filtered-repeated_remove",
+      "kind": "native_lifecycle",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/source/tools/run_xvfb_test.py",
+        "--xvfb",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/Xvfb",
+        "--xauth",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xauth",
+        "--xdpyinfo",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xdpyinfo",
+        "--startup-timeout",
+        "10",
+        "--test-timeout",
+        "30",
+        "--",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/bin/rhodes_vst3_photo_lifecycle_tests",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchFiltered.vst3",
+        "repeated_remove"
+      ],
+      "cwd": "/home/agent/rhoades-9a04c9726e31/w4-062",
+      "started_utc": "2026-11-24T19:18:39.340910+00:00",
+      "timeout_seconds": 50,
+      "environment_file": "environment.json",
+      "exit_code": 0,
+      "finished_utc": "2026-11-24T19:18:39.711018+00:00",
+      "elapsed_seconds": 0.36999640900467057,
+      "stdout": {
+        "path": "results/native-filtered-repeated_remove/stdout.log",
+        "sha256": "52df61b00ade5afa693fc4ab0d06403f0cf72bc6499fd76ad7c4426c9d1acbd6",
+        "bytes": 44
+      },
+      "stderr": {
+        "path": "results/native-filtered-repeated_remove/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "native-filtered-sibling_survives",
+      "kind": "native_lifecycle",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/source/tools/run_xvfb_test.py",
+        "--xvfb",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/Xvfb",
+        "--xauth",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xauth",
+        "--xdpyinfo",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xdpyinfo",
+        "--startup-timeout",
+        "10",
+        "--test-timeout",
+        "30",
+        "--",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/bin/rhodes_vst3_photo_lifecycle_tests",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchFiltered.vst3",
+        "sibling_survives"
+      ],
+      "cwd": "/home/agent/rhoades-9a04c9726e31/w4-062",
+      "started_utc": "2026-11-24T19:18:40.407981+00:00",
+      "timeout_seconds": 50,
+      "environment_file": "environment.json",
+      "exit_code": 0,
+      "finished_utc": "2026-11-24T19:18:40.873186+00:00",
+      "elapsed_seconds": 0.4651156819963944,
+      "stdout": {
+        "path": "results/native-filtered-sibling_survives/stdout.log",
+        "sha256": "3bd654ea6647a3a4fb24a24214f461e8d7c016ff05c150469b414d5e09a933ca",
+        "bytes": 45
+      },
+      "stderr": {
+        "path": "results/native-filtered-sibling_survives/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "native-filtered-timer_refused",
+      "kind": "native_lifecycle",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/source/tools/run_xvfb_test.py",
+        "--xvfb",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/Xvfb",
+        "--xauth",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xauth",
+        "--xdpyinfo",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xdpyinfo",
+        "--startup-timeout",
+        "10",
+        "--test-timeout",
+        "30",
+        "--",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/bin/rhodes_vst3_photo_lifecycle_tests",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchFiltered.vst3",
+        "timer_refused"
+      ],
+      "cwd": "/home/agent/rhoades-9a04c9726e31/w4-062",
+      "started_utc": "2026-11-24T19:18:39.251419+00:00",
+      "timeout_seconds": 50,
+      "environment_file": "environment.json",
+      "exit_code": 0,
+      "finished_utc": "2026-11-24T19:18:39.670921+00:00",
+      "elapsed_seconds": 0.4194701270025689,
+      "stdout": {
+        "path": "results/native-filtered-timer_refused/stdout.log",
+        "sha256": "5536fa47544c73e5aa1e7c29180a565f834e2665f2befd3d787451d5b49ab456",
+        "bytes": 42
+      },
+      "stderr": {
+        "path": "results/native-filtered-timer_refused/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "native-quadrature-focus_remove",
+      "kind": "native_lifecycle",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/source/tools/run_xvfb_test.py",
+        "--xvfb",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/Xvfb",
+        "--xauth",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xauth",
+        "--xdpyinfo",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xdpyinfo",
+        "--startup-timeout",
+        "10",
+        "--test-timeout",
+        "30",
+        "--",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/bin/rhodes_vst3_photo_lifecycle_tests",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchQuadrature.vst3",
+        "focus_remove"
+      ],
+      "cwd": "/home/agent/rhoades-9a04c9726e31/w4-062",
+      "started_utc": "2026-11-24T19:18:42.140194+00:00",
+      "timeout_seconds": 50,
+      "environment_file": "environment.json",
+      "exit_code": 0,
+      "finished_utc": "2026-11-24T19:18:42.456063+00:00",
+      "elapsed_seconds": 0.31587965799553785,
+      "stdout": {
+        "path": "results/native-quadrature-focus_remove/stdout.log",
+        "sha256": "e44ef8f2248d1586a4cc81a48868739e77088840969f2cf37e1ece33048d3916",
+        "bytes": 41
+      },
+      "stderr": {
+        "path": "results/native-quadrature-focus_remove/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "native-quadrature-nested_pump",
+      "kind": "native_lifecycle",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/source/tools/run_xvfb_test.py",
+        "--xvfb",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/Xvfb",
+        "--xauth",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xauth",
+        "--xdpyinfo",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xdpyinfo",
+        "--startup-timeout",
+        "10",
+        "--test-timeout",
+        "30",
+        "--",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/bin/rhodes_vst3_photo_lifecycle_tests",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchQuadrature.vst3",
+        "nested_pump"
+      ],
+      "cwd": "/home/agent/rhoades-9a04c9726e31/w4-062",
+      "started_utc": "2026-11-24T19:18:41.408008+00:00",
+      "timeout_seconds": 50,
+      "environment_file": "environment.json",
+      "exit_code": 0,
+      "finished_utc": "2026-11-24T19:18:41.723792+00:00",
+      "elapsed_seconds": 0.3156736720047775,
+      "stdout": {
+        "path": "results/native-quadrature-nested_pump/stdout.log",
+        "sha256": "76de67fd1133f73dd9f2f0a47b915f36415e983e086c8d0b49b05d73f9d38dad",
+        "bytes": 40
+      },
+      "stderr": {
+        "path": "results/native-quadrature-nested_pump/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "native-quadrature-normal_close",
+      "kind": "native_lifecycle",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/source/tools/run_xvfb_test.py",
+        "--xvfb",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/Xvfb",
+        "--xauth",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xauth",
+        "--xdpyinfo",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xdpyinfo",
+        "--startup-timeout",
+        "10",
+        "--test-timeout",
+        "30",
+        "--",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/bin/rhodes_vst3_photo_lifecycle_tests",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchQuadrature.vst3",
+        "normal_close"
+      ],
+      "cwd": "/home/agent/rhoades-9a04c9726e31/w4-062",
+      "started_utc": "2026-11-24T19:18:40.873773+00:00",
+      "timeout_seconds": 50,
+      "environment_file": "environment.json",
+      "exit_code": 0,
+      "finished_utc": "2026-11-24T19:18:41.188748+00:00",
+      "elapsed_seconds": 0.3149448600015603,
+      "stdout": {
+        "path": "results/native-quadrature-normal_close/stdout.log",
+        "sha256": "8a1d49922f7afba036ef358482e9fb5615a6745c9ebf3f82a5753d09545eb4ec",
+        "bytes": 41
+      },
+      "stderr": {
+        "path": "results/native-quadrature-normal_close/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "native-quadrature-parent_destroy_after_remove",
+      "kind": "native_lifecycle",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/source/tools/run_xvfb_test.py",
+        "--xvfb",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/Xvfb",
+        "--xauth",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xauth",
+        "--xdpyinfo",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xdpyinfo",
+        "--startup-timeout",
+        "10",
+        "--test-timeout",
+        "30",
+        "--",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/bin/rhodes_vst3_photo_lifecycle_tests",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchQuadrature.vst3",
+        "parent_destroy_after_remove"
+      ],
+      "cwd": "/home/agent/rhoades-9a04c9726e31/w4-062",
+      "started_utc": "2026-11-24T19:18:41.784273+00:00",
+      "timeout_seconds": 50,
+      "environment_file": "environment.json",
+      "exit_code": 0,
+      "finished_utc": "2026-11-24T19:18:42.154605+00:00",
+      "elapsed_seconds": 0.37027506199956406,
+      "stdout": {
+        "path": "results/native-quadrature-parent_destroy_after_remove/stdout.log",
+        "sha256": "0cb304adfad3fd47d941108f8791684c0169f7bdb9b4117a1a11d0d5b83159cf",
+        "bytes": 56
+      },
+      "stderr": {
+        "path": "results/native-quadrature-parent_destroy_after_remove/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "native-quadrature-release_host_reference_after_remove",
+      "kind": "native_lifecycle",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/source/tools/run_xvfb_test.py",
+        "--xvfb",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/Xvfb",
+        "--xauth",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xauth",
+        "--xdpyinfo",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xdpyinfo",
+        "--startup-timeout",
+        "10",
+        "--test-timeout",
+        "30",
+        "--",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/bin/rhodes_vst3_photo_lifecycle_tests",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchQuadrature.vst3",
+        "release_host_reference_after_remove"
+      ],
+      "cwd": "/home/agent/rhoades-9a04c9726e31/w4-062",
+      "started_utc": "2026-11-24T19:18:41.966252+00:00",
+      "timeout_seconds": 50,
+      "environment_file": "environment.json",
+      "exit_code": 0,
+      "finished_utc": "2026-11-24T19:18:42.285821+00:00",
+      "elapsed_seconds": 0.3195208500037552,
+      "stdout": {
+        "path": "results/native-quadrature-release_host_reference_after_remove/stdout.log",
+        "sha256": "3a6b731e1a9db9c304c1aeaa84794f466dc2e3ce6383da3e7e1c68a75df876c3",
+        "bytes": 64
+      },
+      "stderr": {
+        "path": "results/native-quadrature-release_host_reference_after_remove/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "native-quadrature-remove_begin",
+      "kind": "native_lifecycle",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/source/tools/run_xvfb_test.py",
+        "--xvfb",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/Xvfb",
+        "--xauth",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xauth",
+        "--xdpyinfo",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xdpyinfo",
+        "--startup-timeout",
+        "10",
+        "--test-timeout",
+        "30",
+        "--",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/bin/rhodes_vst3_photo_lifecycle_tests",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchQuadrature.vst3",
+        "remove_begin"
+      ],
+      "cwd": "/home/agent/rhoades-9a04c9726e31/w4-062",
+      "started_utc": "2026-11-24T19:18:40.957848+00:00",
+      "timeout_seconds": 50,
+      "environment_file": "environment.json",
+      "exit_code": 0,
+      "finished_utc": "2026-11-24T19:18:41.276661+00:00",
+      "elapsed_seconds": 0.318674704998557,
+      "stdout": {
+        "path": "results/native-quadrature-remove_begin/stdout.log",
+        "sha256": "b765fe7148e7c406501e6dbd6bae7fb39004a64675e0d45208bc26d544d21aed",
+        "bytes": 41
+      },
+      "stderr": {
+        "path": "results/native-quadrature-remove_begin/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "native-quadrature-remove_end",
+      "kind": "native_lifecycle",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/source/tools/run_xvfb_test.py",
+        "--xvfb",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/Xvfb",
+        "--xauth",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xauth",
+        "--xdpyinfo",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xdpyinfo",
+        "--startup-timeout",
+        "10",
+        "--test-timeout",
+        "30",
+        "--",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/bin/rhodes_vst3_photo_lifecycle_tests",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchQuadrature.vst3",
+        "remove_end"
+      ],
+      "cwd": "/home/agent/rhoades-9a04c9726e31/w4-062",
+      "started_utc": "2026-11-24T19:18:41.277166+00:00",
+      "timeout_seconds": 50,
+      "environment_file": "environment.json",
+      "exit_code": 0,
+      "finished_utc": "2026-11-24T19:18:41.594598+00:00",
+      "elapsed_seconds": 0.3173966710019158,
+      "stdout": {
+        "path": "results/native-quadrature-remove_end/stdout.log",
+        "sha256": "fd85aba258b51ed7aef88480fe86499e5a7577f4eb2e6275bef44f857311875d",
+        "bytes": 39
+      },
+      "stderr": {
+        "path": "results/native-quadrature-remove_end/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "native-quadrature-remove_perform",
+      "kind": "native_lifecycle",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/source/tools/run_xvfb_test.py",
+        "--xvfb",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/Xvfb",
+        "--xauth",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xauth",
+        "--xdpyinfo",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xdpyinfo",
+        "--startup-timeout",
+        "10",
+        "--test-timeout",
+        "30",
+        "--",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/bin/rhodes_vst3_photo_lifecycle_tests",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchQuadrature.vst3",
+        "remove_perform"
+      ],
+      "cwd": "/home/agent/rhoades-9a04c9726e31/w4-062",
+      "started_utc": "2026-11-24T19:18:41.189866+00:00",
+      "timeout_seconds": 50,
+      "environment_file": "environment.json",
+      "exit_code": 0,
+      "finished_utc": "2026-11-24T19:18:41.407275+00:00",
+      "elapsed_seconds": 0.21713594299944816,
+      "stdout": {
+        "path": "results/native-quadrature-remove_perform/stdout.log",
+        "sha256": "25ee86f1057e650f45daa81754cdabc0880d9432e164d74fdbfc262078d1ada4",
+        "bytes": 43
+      },
+      "stderr": {
+        "path": "results/native-quadrature-remove_perform/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "native-quadrature-reopen",
+      "kind": "native_lifecycle",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/source/tools/run_xvfb_test.py",
+        "--xvfb",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/Xvfb",
+        "--xauth",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xauth",
+        "--xdpyinfo",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xdpyinfo",
+        "--startup-timeout",
+        "10",
+        "--test-timeout",
+        "30",
+        "--",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/bin/rhodes_vst3_photo_lifecycle_tests",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchQuadrature.vst3",
+        "reopen"
+      ],
+      "cwd": "/home/agent/rhoades-9a04c9726e31/w4-062",
+      "started_utc": "2026-11-24T19:18:41.724384+00:00",
+      "timeout_seconds": 50,
+      "environment_file": "environment.json",
+      "exit_code": 0,
+      "finished_utc": "2026-11-24T19:18:42.139650+00:00",
+      "elapsed_seconds": 0.4152385349952965,
+      "stdout": {
+        "path": "results/native-quadrature-reopen/stdout.log",
+        "sha256": "56668298433bc00ef1bfeca10e28d0b5f38c5885a701e1daf5c40f73198070da",
+        "bytes": 35
+      },
+      "stderr": {
+        "path": "results/native-quadrature-reopen/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "native-quadrature-reopen_cycles",
+      "kind": "native_lifecycle",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/source/tools/run_xvfb_test.py",
+        "--xvfb",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/Xvfb",
+        "--xauth",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xauth",
+        "--xdpyinfo",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xdpyinfo",
+        "--startup-timeout",
+        "10",
+        "--test-timeout",
+        "30",
+        "--",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/bin/rhodes_vst3_photo_lifecycle_tests",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchQuadrature.vst3",
+        "reopen_cycles"
+      ],
+      "cwd": "/home/agent/rhoades-9a04c9726e31/w4-062",
+      "started_utc": "2026-11-24T19:18:42.155272+00:00",
+      "timeout_seconds": 50,
+      "environment_file": "environment.json",
+      "exit_code": 0,
+      "finished_utc": "2026-11-24T19:18:43.395301+00:00",
+      "elapsed_seconds": 1.2398675700023887,
+      "stdout": {
+        "path": "results/native-quadrature-reopen_cycles/stdout.log",
+        "sha256": "d7e66f742f8523d034cd610601eff5fe2e47d4aaba67551d95171e0e83fac257",
+        "bytes": 42
+      },
+      "stderr": {
+        "path": "results/native-quadrature-reopen_cycles/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "native-quadrature-repeated_remove",
+      "kind": "native_lifecycle",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/source/tools/run_xvfb_test.py",
+        "--xvfb",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/Xvfb",
+        "--xauth",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xauth",
+        "--xdpyinfo",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xdpyinfo",
+        "--startup-timeout",
+        "10",
+        "--test-timeout",
+        "30",
+        "--",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/bin/rhodes_vst3_photo_lifecycle_tests",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchQuadrature.vst3",
+        "repeated_remove"
+      ],
+      "cwd": "/home/agent/rhoades-9a04c9726e31/w4-062",
+      "started_utc": "2026-11-24T19:18:41.595154+00:00",
+      "timeout_seconds": 50,
+      "environment_file": "environment.json",
+      "exit_code": 0,
+      "finished_utc": "2026-11-24T19:18:41.965606+00:00",
+      "elapsed_seconds": 0.3704251400049543,
+      "stdout": {
+        "path": "results/native-quadrature-repeated_remove/stdout.log",
+        "sha256": "52df61b00ade5afa693fc4ab0d06403f0cf72bc6499fd76ad7c4426c9d1acbd6",
+        "bytes": 44
+      },
+      "stderr": {
+        "path": "results/native-quadrature-repeated_remove/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "native-quadrature-sibling_survives",
+      "kind": "native_lifecycle",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/source/tools/run_xvfb_test.py",
+        "--xvfb",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/Xvfb",
+        "--xauth",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xauth",
+        "--xdpyinfo",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xdpyinfo",
+        "--startup-timeout",
+        "10",
+        "--test-timeout",
+        "30",
+        "--",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/bin/rhodes_vst3_photo_lifecycle_tests",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchQuadrature.vst3",
+        "sibling_survives"
+      ],
+      "cwd": "/home/agent/rhoades-9a04c9726e31/w4-062",
+      "started_utc": "2026-11-24T19:18:42.286345+00:00",
+      "timeout_seconds": 50,
+      "environment_file": "environment.json",
+      "exit_code": 0,
+      "finished_utc": "2026-11-24T19:18:42.907575+00:00",
+      "elapsed_seconds": 0.6201183180019143,
+      "stdout": {
+        "path": "results/native-quadrature-sibling_survives/stdout.log",
+        "sha256": "3bd654ea6647a3a4fb24a24214f461e8d7c016ff05c150469b414d5e09a933ca",
+        "bytes": 45
+      },
+      "stderr": {
+        "path": "results/native-quadrature-sibling_survives/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "native-quadrature-timer_refused",
+      "kind": "native_lifecycle",
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/source/tools/run_xvfb_test.py",
+        "--xvfb",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/Xvfb",
+        "--xauth",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xauth",
+        "--xdpyinfo",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xdpyinfo",
+        "--startup-timeout",
+        "10",
+        "--test-timeout",
+        "30",
+        "--",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/bin/rhodes_vst3_photo_lifecycle_tests",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchQuadrature.vst3",
+        "timer_refused"
+      ],
+      "cwd": "/home/agent/rhoades-9a04c9726e31/w4-062",
+      "started_utc": "2026-11-24T19:18:41.467600+00:00",
+      "timeout_seconds": 50,
+      "environment_file": "environment.json",
+      "exit_code": 0,
+      "finished_utc": "2026-11-24T19:18:41.783629+00:00",
+      "elapsed_seconds": 0.31599147399538197,
+      "stdout": {
+        "path": "results/native-quadrature-timer_refused/stdout.log",
+        "sha256": "5536fa47544c73e5aa1e7c29180a565f834e2665f2befd3d787451d5b49ab456",
+        "bytes": 42
+      },
+      "stderr": {
+        "path": "results/native-quadrature-timer_refused/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "photo-editor-contract",
+      "kind": "photo_contract",
+      "command": [
+        "/home/agent/rhoades-9a04c9726e31/w4-062/bin/rhodes_vst3_photo_editor_tests",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearch.vst3",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchFiltered.vst3",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchQuadrature.vst3"
+      ],
+      "cwd": "/home/agent/rhoades-9a04c9726e31/w4-062",
+      "started_utc": "2026-11-24T19:18:37.649955+00:00",
+      "timeout_seconds": 60,
+      "environment_file": "environment.json",
+      "exit_code": 0,
+      "finished_utc": "2026-11-24T19:18:37.682137+00:00",
+      "elapsed_seconds": 0.03215464799723122,
+      "stdout": {
+        "path": "results/photo-editor-contract/stdout.log",
+        "sha256": "b6302fbcd5178c0153ac12e6eecc44e546ab50ece65501f0ff3ec9a0839fc1e9",
+        "bytes": 193
+      },
+      "stderr": {
+        "path": "results/photo-editor-contract/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "sdk-validator-direct",
+      "kind": "sdk_validator",
+      "command": [
+        "/home/agent/rhoades-9a04c9726e31/w4-062/bin/validator",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearch.vst3"
+      ],
+      "cwd": "/home/agent/rhoades-9a04c9726e31/w4-062",
+      "started_utc": "2026-11-24T19:18:37.497745+00:00",
+      "timeout_seconds": 180,
+      "environment_file": "environment.json",
+      "exit_code": 0,
+      "finished_utc": "2026-11-24T19:18:38.974432+00:00",
+      "elapsed_seconds": 1.4766208610017202,
+      "stdout": {
+        "path": "results/sdk-validator-direct/stdout.log",
+        "sha256": "e64d1524736926ff369cee152a7b36383be3d27a2d966106c5599e632071f5a9",
+        "bytes": 12371
+      },
+      "stderr": {
+        "path": "results/sdk-validator-direct/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "sdk-validator-filtered",
+      "kind": "sdk_validator",
+      "command": [
+        "/home/agent/rhoades-9a04c9726e31/w4-062/bin/validator",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchFiltered.vst3"
+      ],
+      "cwd": "/home/agent/rhoades-9a04c9726e31/w4-062",
+      "started_utc": "2026-11-24T19:18:37.499253+00:00",
+      "timeout_seconds": 180,
+      "environment_file": "environment.json",
+      "exit_code": 0,
+      "finished_utc": "2026-11-24T19:18:43.566323+00:00",
+      "elapsed_seconds": 6.066054622999218,
+      "stdout": {
+        "path": "results/sdk-validator-filtered/stdout.log",
+        "sha256": "8a61122907b469196a4d87d98ae50a9af7f65824dbf8e510c365af1bc0e3d8c1",
+        "bytes": 12377
+      },
+      "stderr": {
+        "path": "results/sdk-validator-filtered/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "sdk-validator-quadrature",
+      "kind": "sdk_validator",
+      "command": [
+        "/home/agent/rhoades-9a04c9726e31/w4-062/bin/validator",
+        "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchQuadrature.vst3"
+      ],
+      "cwd": "/home/agent/rhoades-9a04c9726e31/w4-062",
+      "started_utc": "2026-11-24T19:18:37.517601+00:00",
+      "timeout_seconds": 180,
+      "environment_file": "environment.json",
+      "exit_code": 0,
+      "finished_utc": "2026-11-24T19:18:40.957296+00:00",
+      "elapsed_seconds": 3.4394290140044177,
+      "stdout": {
+        "path": "results/sdk-validator-quadrature/stdout.log",
+        "sha256": "072d70fbb5bec6cdba0bc667ed588dc61059b9a1d565cc2d2da921cf3830b4d6",
+        "bytes": 12385
+      },
+      "stderr": {
+        "path": "results/sdk-validator-quadrature/stderr.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  ]
+}

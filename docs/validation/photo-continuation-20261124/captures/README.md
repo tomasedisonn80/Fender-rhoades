@@ -9,10 +9,16 @@ outcomes; failed observations remain failed.
 | --- | --- | ---: | --- |
 | `native-replay-pixels.zip` | Worker 022 runs 01 and 02 | 131 | Before the visible-contour correction: respectively 96 passes / 36 failures / 1 incomplete and 127 passes / 9 failures. |
 | `passing-native-pixels.zip` | Worker 036 run 01 | 67 | After the contour and help-text corrections: 136 passes, including 43 held white keys and exact full-size idle reference comparisons. |
+| `final-native-pixels.zip` | Worker 061 run 01 | 67 | After the native lifecycle and X11 graphics repairs: 136 passes, actual host exit zero, exact full-size idle reference pixels and unchanged black-key interiors. |
 
 The adjacent manifests are copies of each archive's internal manifest. Worker
 029 and worker 046 performed original-to-reconstruction comparisons. The latter
 audit's `roundtrip-summary.json` and `roundtrip-audit.json` are retained here.
+Worker 066 independently archived the fresh final run with 134 raw records and
+source/configuration files; `final-roundtrip-summary.json` records its exact RGB
+and raw-byte comparison. `delivery-manifest.json` binds its delivered files.
+The companion `VSTGUI-LICENSE.txt` covers the retained upstream VSTGUI source
+and generated adaptations in that archive.
 
 From the repository root, with Python and Pillow installed:
 

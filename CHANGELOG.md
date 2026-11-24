@@ -2,11 +2,32 @@
 
 ## Unreleased — experimental VST3 and research foundation
 
+- Continued [native photo editor](docs/specs/PHOTO_EDITOR_20261124.md) preserves
+  the original full photograph and exposes 24 host parameters (eight persistent
+  controls and sixteen CC123 commands), with rapid pedal/Vibrato toggles,
+  host-shortcut pass-through and fine input. White-key feedback follows visible
+  contours while preserving black-key interiors; help remains unclipped at the
+  minimum size. The
+  [final Linux Direct replay](docs/agents/reports/photo-continuation-20261124/w4-061.md)
+  passes 136/136 interaction and visual checks.
+- [Callback cancellation](docs/validation/photo-continuation-20261124/CALLBACK_STATE_20261124.md)
+  preserves newer host updates, and
+  [audition-release handling](docs/agents/reports/photo-continuation-20261124/w2-034.md)
+  suppresses stale notes and retains pending recovery on transport failure.
+  Deferred native close/reopen and shared-connection child cleanup pass 39/39
+  Linux lifecycle cases across all three variants:
+  [13 Direct](docs/validation/photo-continuation-20261124/NATIVE_LIFECYCLE_20261124.md)
+  and [26 Filtered/Quadrature](docs/agents/reports/photo-continuation-20261124/w4-062.md).
+- [Fresh final-bundle PCM replay](docs/agents/reports/photo-continuation-20261124/w4-064.md)
+  records 144 captures against 72 retained baseline captures, with all 608,256
+  paired stereo frames exact at neutral panel/unity Expression. These Linux
+  research results establish no Windows/macOS native editor, named-DAW or
+  physical-fidelity claim; no release has been published.
 - Global digital CC11 **Expression** on all three instruments, with independent
   automation, continued mechanics at zero, and an unchanged exact-unity output
   path. The [frozen contract](docs/specs/HOST_EXPRESSION_MONO_20261124.md) retains
   existing control/class/model identities and latencies while adding parameter
-  ID 2, for nineteen host parameters.
+  ID 2, bringing that pre-panel stage to nineteen host parameters.
 - Adaptive RHST configuration: unity Expression preserves exact 16-byte v1
   bytes; non-unity uses 20-byte v2. Own-model legacy loads restore unity and
   valid v2 unity loads save canonically as v1; strict lengths and transactional

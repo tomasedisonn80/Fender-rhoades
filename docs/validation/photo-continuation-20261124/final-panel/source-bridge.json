@@ -1,0 +1,239 @@
+{
+  "worker": "w4-069",
+  "kind": "source inspection bridging separate component and loaded-state fixtures",
+  "source_matches_with_worker62": [
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/CMakeLists.txt",
+      "sha256_w4_069": "4619d0aa41be71b7946664ac07c5e381205afc901dcf15319f21ae4d42c07adc",
+      "sha256_w4_062": "4619d0aa41be71b7946664ac07c5e381205afc901dcf15319f21ae4d42c07adc",
+      "equal": true
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/cmake/Vst3.cmake",
+      "sha256_w4_069": "48715fcf593fbb0338a51fceb6f0edc106e227dc6725a57df5c024aac7a28fc4",
+      "sha256_w4_062": "48715fcf593fbb0338a51fceb6f0edc106e227dc6725a57df5c024aac7a28fc4",
+      "equal": true
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/include/rhodes/audio_engine.hpp",
+      "sha256_w4_069": "10efac8150c07e69ef41eed415a6e7403b4339179af902f91cd17ef498da7b97",
+      "sha256_w4_062": "10efac8150c07e69ef41eed415a6e7403b4339179af902f91cd17ef498da7b97",
+      "equal": true
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/include/rhodes/audio_filter_coefficients.hpp",
+      "sha256_w4_069": "c1ab39356d7e44348f9dc56f9120ff2598889d1fa144e5294b084585655eb76d",
+      "sha256_w4_062": "c1ab39356d7e44348f9dc56f9120ff2598889d1fa144e5294b084585655eb76d",
+      "equal": true
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/include/rhodes/contact_reference.hpp",
+      "sha256_w4_069": "00b99e61dc73686c22675bedf647c3ad1b27ba13332180431f5a42e485057fda",
+      "sha256_w4_062": "00b99e61dc73686c22675bedf647c3ad1b27ba13332180431f5a42e485057fda",
+      "equal": true
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/include/rhodes/control_text.hpp",
+      "sha256_w4_069": "de28474739274f4fac20dc1d3d5602cb63c62ddd04a33202cb5375985086e63d",
+      "sha256_w4_062": "de28474739274f4fac20dc1d3d5602cb63c62ddd04a33202cb5375985086e63d",
+      "equal": true
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/include/rhodes/control_value.hpp",
+      "sha256_w4_069": "d7c282afdcffaef90f7872f97b37bfb34671448da64376d3439649c052d4d48d",
+      "sha256_w4_062": "d7c282afdcffaef90f7872f97b37bfb34671448da64376d3439649c052d4d48d",
+      "equal": true
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/include/rhodes/editor_audition.hpp",
+      "sha256_w4_069": "6c4ea15ddd2bb3c7498f848c5c123de8c69b28fe14aaa2aa694c5adcaf6442c9",
+      "sha256_w4_062": "6c4ea15ddd2bb3c7498f848c5c123de8c69b28fe14aaa2aa694c5adcaf6442c9",
+      "equal": true
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/include/rhodes/event_processor.hpp",
+      "sha256_w4_069": "cbfebb44d5d7eee06ab6952209a4683c7a7da58c04ea81f6583b98cfb981517d",
+      "sha256_w4_062": "cbfebb44d5d7eee06ab6952209a4683c7a7da58c04ea81f6583b98cfb981517d",
+      "equal": true
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/include/rhodes/fir_decimator.hpp",
+      "sha256_w4_069": "e54faeb397bcbccb9ed9834cfc264d84550c4ef375d8e5273a720eb1f190071b",
+      "sha256_w4_062": "e54faeb397bcbccb9ed9834cfc264d84550c4ef375d8e5273a720eb1f190071b",
+      "equal": true
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/include/rhodes/front_panel_effects.hpp",
+      "sha256_w4_069": "e8998a71f848a14b617317f88447a8655dde60fefb7981762fb15ad0de3fa7d0",
+      "sha256_w4_062": "e8998a71f848a14b617317f88447a8655dde60fefb7981762fb15ad0de3fa7d0",
+      "equal": true
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/include/rhodes/front_panel_state.hpp",
+      "sha256_w4_069": "fe4181f15b328db42cec646a22de186636d0dfa27d4a384b016ad47e6d5a7a71",
+      "sha256_w4_062": "fe4181f15b328db42cec646a22de186636d0dfa27d4a384b016ad47e6d5a7a71",
+      "equal": true
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/include/rhodes/instrument_state.hpp",
+      "sha256_w4_069": "1550dbbd83ea20838a6cac1579c716f7d01a94429450c19b62d18df14d102043",
+      "sha256_w4_062": "1550dbbd83ea20838a6cac1579c716f7d01a94429450c19b62d18df14d102043",
+      "equal": true
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/include/rhodes/note_tracker.hpp",
+      "sha256_w4_069": "76931b326daae3a112b56420f9be9ea5b03b1c30307f1dc68b6c13c710cd830f",
+      "sha256_w4_062": "76931b326daae3a112b56420f9be9ea5b03b1c30307f1dc68b6c13c710cd830f",
+      "equal": true
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/include/rhodes/plugin_state.hpp",
+      "sha256_w4_069": "973576bb1db6fe6830b60193065a3acd4d0522f45eb0e33ca8a26524726dab15",
+      "sha256_w4_062": "973576bb1db6fe6830b60193065a3acd4d0522f45eb0e33ca8a26524726dab15",
+      "equal": true
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/include/rhodes/quadrature_engine.hpp",
+      "sha256_w4_069": "c625a82b61eb3e721061177654c12ffa6aac0049e026b9633ae53ea2abaa773d",
+      "sha256_w4_062": "c625a82b61eb3e721061177654c12ffa6aac0049e026b9633ae53ea2abaa773d",
+      "equal": true
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/include/rhodes/quadrature_filter_coefficients.hpp",
+      "sha256_w4_069": "3cca4ea6553ceb01810a6230f2144491364fa48af7d6cfbc43a8e3dcf5d08b51",
+      "sha256_w4_062": "3cca4ea6553ceb01810a6230f2144491364fa48af7d6cfbc43a8e3dcf5d08b51",
+      "equal": true
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/include/rhodes/quadrature_fir.hpp",
+      "sha256_w4_069": "cf6c85e70036b3f1794ecf131a9db43bcb8da373e47c5335f56b1bb57559b45e",
+      "sha256_w4_062": "cf6c85e70036b3f1794ecf131a9db43bcb8da373e47c5335f56b1bb57559b45e",
+      "equal": true
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/include/rhodes/research_engine.hpp",
+      "sha256_w4_069": "2a6ba0483a010d9b7a44517c5ed7c215f05d57ed6e96bd6609127322092929e4",
+      "sha256_w4_062": "2a6ba0483a010d9b7a44517c5ed7c215f05d57ed6e96bd6609127322092929e4",
+      "equal": true
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/plugins/vst3/controller.cpp",
+      "sha256_w4_069": "2c77542e1aeb58bceaab8e7d6dd59250d17b5e4bc8f7d489b367ea5e805a0e36",
+      "sha256_w4_062": "2c77542e1aeb58bceaab8e7d6dd59250d17b5e4bc8f7d489b367ea5e805a0e36",
+      "equal": true
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/plugins/vst3/controller.hpp",
+      "sha256_w4_069": "a0dcf316c8d6a013a7a8b6a75485b451e21b070e6b57f62ef52fdf605b252183",
+      "sha256_w4_062": "a0dcf316c8d6a013a7a8b6a75485b451e21b070e6b57f62ef52fdf605b252183",
+      "equal": true
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/plugins/vst3/factory.cpp",
+      "sha256_w4_069": "16e5da7194a8f548dd91b84e3c66ed81b5bdf5ff618e66dbafa3abdc1a16158c",
+      "sha256_w4_062": "16e5da7194a8f548dd91b84e3c66ed81b5bdf5ff618e66dbafa3abdc1a16158c",
+      "equal": true
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/plugins/vst3/photo_editor.cpp",
+      "sha256_w4_069": "caf54d88c871bab05ec572904ef4e3de7c985c0b713e65c398e0010786679fcf",
+      "sha256_w4_062": "caf54d88c871bab05ec572904ef4e3de7c985c0b713e65c398e0010786679fcf",
+      "equal": true
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/plugins/vst3/photo_editor.hpp",
+      "sha256_w4_069": "0c421cae0d330f22b00bab37bb17e73cddd948dbd56a0834c6cb086d6cec97db",
+      "sha256_w4_062": "0c421cae0d330f22b00bab37bb17e73cddd948dbd56a0834c6cb086d6cec97db",
+      "equal": true
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/plugins/vst3/photo_geometry.hpp",
+      "sha256_w4_069": "77fe4f4ac93ee0b212ef3f5399eb5cfa8884076d8eef51d2adf2123e6d85e0bd",
+      "sha256_w4_062": "77fe4f4ac93ee0b212ef3f5399eb5cfa8884076d8eef51d2adf2123e6d85e0bd",
+      "equal": true
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/plugins/vst3/photo_key_highlight.hpp",
+      "sha256_w4_069": "9302c59a677564253ea80fb92deeef811864def11a4fdd7e03b3a20c2477c58a",
+      "sha256_w4_062": "9302c59a677564253ea80fb92deeef811864def11a4fdd7e03b3a20c2477c58a",
+      "equal": true
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/plugins/vst3/photo_native_focus.cpp",
+      "sha256_w4_069": "c24f8d70731a193b0b7bf833984c00df5a60375d2d306986f1440757af938c5f",
+      "sha256_w4_062": "c24f8d70731a193b0b7bf833984c00df5a60375d2d306986f1440757af938c5f",
+      "equal": true
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/plugins/vst3/photo_native_focus.hpp",
+      "sha256_w4_069": "9bf4553ec6a1418747d5379ba531bf15bbfb7e589f3923ff9c8131485704396a",
+      "sha256_w4_062": "9bf4553ec6a1418747d5379ba531bf15bbfb7e589f3923ff9c8131485704396a",
+      "equal": true
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/plugins/vst3/plugin_ids.hpp",
+      "sha256_w4_069": "558491751250799eadce1eb95ad1cf59cde728c8bf9490a2962aafeaa8ca128d",
+      "sha256_w4_062": "558491751250799eadce1eb95ad1cf59cde728c8bf9490a2962aafeaa8ca128d",
+      "equal": true
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/plugins/vst3/processor.cpp",
+      "sha256_w4_069": "1ef121c4afb190c45fa1ff41a2127fb7487919dc69d8856c4a05e79844f760a9",
+      "sha256_w4_062": "1ef121c4afb190c45fa1ff41a2127fb7487919dc69d8856c4a05e79844f760a9",
+      "equal": true
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/plugins/vst3/processor.hpp",
+      "sha256_w4_069": "5206559cf6a05e6b53e8f6d043a4860b1c4afb995ca8253ed1f75762a5270574",
+      "sha256_w4_062": "5206559cf6a05e6b53e8f6d043a4860b1c4afb995ca8253ed1f75762a5270574",
+      "equal": true
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/plugins/vst3/state_stream.cpp",
+      "sha256_w4_069": "30b057afe520c81bb87e0298b32835ea47957ff46b452cf417244dbb51b55051",
+      "sha256_w4_062": "30b057afe520c81bb87e0298b32835ea47957ff46b452cf417244dbb51b55051",
+      "equal": true
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/plugins/vst3/state_stream.hpp",
+      "sha256_w4_069": "a0885ed2c7a381fac06a65e37c02fa115f5c29930a7881ffd5186297fb9d3b28",
+      "sha256_w4_062": "a0885ed2c7a381fac06a65e37c02fa115f5c29930a7881ffd5186297fb9d3b28",
+      "equal": true
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/src/contact_reference.cpp",
+      "sha256_w4_069": "70dde1bfab9c2e35457da2ebf66ff4638cb6f56f1f19a84dbe55a1752d5166fd",
+      "sha256_w4_062": "70dde1bfab9c2e35457da2ebf66ff4638cb6f56f1f19a84dbe55a1752d5166fd",
+      "equal": true
+    },
+    {
+      "source": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/src/research_engine.cpp",
+      "sha256_w4_069": "01c2a9f7f9f7cfa4f759be56770178f32a71a28667d4ac6ab390e03ff7a95814",
+      "sha256_w4_062": "01c2a9f7f9f7cfa4f759be56770178f32a71a28667d4ac6ab390e03ff7a95814",
+      "equal": true
+    }
+  ],
+  "source_match_count": 35,
+  "processor_path": "plugins/vst3/processor.cpp",
+  "observations": [
+    "setupProcessing prepares an effect copy at the host sample rate before installing it.",
+    "setState queues decoded PluginState in the mailbox; install_recall copies panel state and resets FrontPanelEffects with it.",
+    "render interpolates and canonicalizes continuous panel parameters per sample and applies the vibrato point at its exact frame.",
+    "The sample path is engine volts, monitoring gain, FrontPanelEffects.process(monitored,live_panel_), optional mono fold, Expression, output conversion."
+  ],
+  "related_loaded_contract": {
+    "producer": "w4-062",
+    "command": [
+      "/home/agent/rhoades-9a04c9726e31/w4-062/bin/rhodes_vst3_loaded_expression_tests",
+      "controls_state",
+      "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearch.vst3",
+      "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchFiltered.vst3",
+      "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchQuadrature.vst3"
+    ],
+    "exit_code": 0,
+    "stdout_path": "/home/agent/rhoades-9a04c9726e31/w4-062/results/loaded-expression-controls-state/stdout.log",
+    "stdout_sha256": "67f5f237148907513ca1205ffbcf3b6627f2ea35134630fad0125ca8dff0902f",
+    "stdout": "PASS loaded expression controls_state: 65644 checks, 621 loaded callbacks, 0 scalar samples, 162 rejected blocks, 12 foreign states, 105 guarded mono callbacks, 0 module load orders, 9/9 no-setup/stopped panel cases, 72 panel reopens, 108 atomic panel rejections, 36 foreign v3 states\n"
+  },
+  "scope_boundary": "The 26 w4-069 runs are component effects/controller/stream fixtures. The source inspection connects those components to RhodesProcessor. Worker62 observed loaded-module state behavior with zero scalar samples. No loaded native nonneutral audio waveform comparison is claimed."
+}

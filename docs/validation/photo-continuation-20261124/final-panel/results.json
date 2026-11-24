@@ -1,0 +1,496 @@
+[
+  {
+    "ordinal": 1,
+    "group": "front_panel",
+    "selector": "identity",
+    "command": [
+      "/home/agent/rhoades-9a04c9726e31/w4-069/bin/rhodes_front_panel_effects_tests",
+      "identity"
+    ],
+    "cwd": "/home/agent/rhoades-9a04c9726e31/build",
+    "started_utc": "2026-11-24T19:30:25.741496+00:00",
+    "duration_seconds": 0.004489480998017825,
+    "exit_code": 0,
+    "timed_out": false,
+    "reported_checks": 4102,
+    "stdout": "/home/agent/rhoades-9a04c9726e31/w4-069/results/01-front_panel-identity.stdout.txt",
+    "stderr": "/home/agent/rhoades-9a04c9726e31/w4-069/results/01-front_panel-identity.stderr.txt",
+    "stdout_sha256": "2c595ed5c71ec4e56c5d989f0cdef8d50b21237159065882df9e6e29e5c63140",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "ordinal": 2,
+    "group": "front_panel",
+    "selector": "frequency_response",
+    "command": [
+      "/home/agent/rhoades-9a04c9726e31/w4-069/bin/rhodes_front_panel_effects_tests",
+      "frequency_response"
+    ],
+    "cwd": "/home/agent/rhoades-9a04c9726e31/build",
+    "started_utc": "2026-11-24T19:30:25.746357+00:00",
+    "duration_seconds": 0.4039906879988848,
+    "exit_code": 0,
+    "timed_out": false,
+    "reported_checks": 2223845,
+    "stdout": "/home/agent/rhoades-9a04c9726e31/w4-069/results/02-front_panel-frequency_response.stdout.txt",
+    "stderr": "/home/agent/rhoades-9a04c9726e31/w4-069/results/02-front_panel-frequency_response.stderr.txt",
+    "stdout_sha256": "2011bc35e70409c29bcb799923cc5992491bf1f6bbfd2ac4dee733f6b394ecd3",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "ordinal": 3,
+    "group": "front_panel",
+    "selector": "tremolo",
+    "command": [
+      "/home/agent/rhoades-9a04c9726e31/w4-069/bin/rhodes_front_panel_effects_tests",
+      "tremolo"
+    ],
+    "cwd": "/home/agent/rhoades-9a04c9726e31/build",
+    "started_utc": "2026-11-24T19:30:26.150806+00:00",
+    "duration_seconds": 0.6999823529986315,
+    "exit_code": 0,
+    "timed_out": false,
+    "reported_checks": 13736697,
+    "stdout": "/home/agent/rhoades-9a04c9726e31/w4-069/results/03-front_panel-tremolo.stdout.txt",
+    "stderr": "/home/agent/rhoades-9a04c9726e31/w4-069/results/03-front_panel-tremolo.stderr.txt",
+    "stdout_sha256": "cb9347ba4eb29cfc147b6fb806e4754df39bb3e73585456186e4abfbf76b1697",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "ordinal": 4,
+    "group": "front_panel",
+    "selector": "transitions",
+    "command": [
+      "/home/agent/rhoades-9a04c9726e31/w4-069/bin/rhodes_front_panel_effects_tests",
+      "transitions"
+    ],
+    "cwd": "/home/agent/rhoades-9a04c9726e31/build",
+    "started_utc": "2026-11-24T19:30:26.853773+00:00",
+    "duration_seconds": 0.00482030599960126,
+    "exit_code": 0,
+    "timed_out": false,
+    "reported_checks": 20652,
+    "stdout": "/home/agent/rhoades-9a04c9726e31/w4-069/results/04-front_panel-transitions.stdout.txt",
+    "stderr": "/home/agent/rhoades-9a04c9726e31/w4-069/results/04-front_panel-transitions.stderr.txt",
+    "stdout_sha256": "74b591d448e196a37cc559896c7736a5eafae59310f81c81d4d0db99047c3051",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "ordinal": 5,
+    "group": "front_panel",
+    "selector": "prepare_atomicity",
+    "command": [
+      "/home/agent/rhoades-9a04c9726e31/w4-069/bin/rhodes_front_panel_effects_tests",
+      "prepare_atomicity"
+    ],
+    "cwd": "/home/agent/rhoades-9a04c9726e31/build",
+    "started_utc": "2026-11-24T19:30:26.859185+00:00",
+    "duration_seconds": 0.0025780619980650954,
+    "exit_code": 0,
+    "timed_out": false,
+    "reported_checks": 4648,
+    "stdout": "/home/agent/rhoades-9a04c9726e31/w4-069/results/05-front_panel-prepare_atomicity.stdout.txt",
+    "stderr": "/home/agent/rhoades-9a04c9726e31/w4-069/results/05-front_panel-prepare_atomicity.stderr.txt",
+    "stdout_sha256": "91e33edbbc203d5e7563a42739af44688e8679af65ecb42cc24467bca9052d7d",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "ordinal": 6,
+    "group": "front_panel",
+    "selector": "reset_replay",
+    "command": [
+      "/home/agent/rhoades-9a04c9726e31/w4-069/bin/rhodes_front_panel_effects_tests",
+      "reset_replay"
+    ],
+    "cwd": "/home/agent/rhoades-9a04c9726e31/build",
+    "started_utc": "2026-11-24T19:30:26.862082+00:00",
+    "duration_seconds": 0.0028607810018002056,
+    "exit_code": 0,
+    "timed_out": false,
+    "reported_checks": 20495,
+    "stdout": "/home/agent/rhoades-9a04c9726e31/w4-069/results/06-front_panel-reset_replay.stdout.txt",
+    "stderr": "/home/agent/rhoades-9a04c9726e31/w4-069/results/06-front_panel-reset_replay.stderr.txt",
+    "stdout_sha256": "eb59372c6e0776c7854a23aef3ea3fd8213ee2f57921987fa71d19524ab17742",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "ordinal": 7,
+    "group": "front_panel",
+    "selector": "faults",
+    "command": [
+      "/home/agent/rhoades-9a04c9726e31/w4-069/bin/rhodes_front_panel_effects_tests",
+      "faults"
+    ],
+    "cwd": "/home/agent/rhoades-9a04c9726e31/build",
+    "started_utc": "2026-11-24T19:30:26.865185+00:00",
+    "duration_seconds": 0.0017119469994213432,
+    "exit_code": 0,
+    "timed_out": false,
+    "reported_checks": 87,
+    "stdout": "/home/agent/rhoades-9a04c9726e31/w4-069/results/07-front_panel-faults.stdout.txt",
+    "stderr": "/home/agent/rhoades-9a04c9726e31/w4-069/results/07-front_panel-faults.stderr.txt",
+    "stdout_sha256": "a99c42a52c2986946e01e38e72434a51ef2b8c48ffef50ce68306d07c05ce7db",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "ordinal": 8,
+    "group": "front_panel",
+    "selector": "allocation_free",
+    "command": [
+      "/home/agent/rhoades-9a04c9726e31/w4-069/bin/rhodes_front_panel_effects_tests",
+      "allocation_free"
+    ],
+    "cwd": "/home/agent/rhoades-9a04c9726e31/build",
+    "started_utc": "2026-11-24T19:30:26.867328+00:00",
+    "duration_seconds": 0.004453872999874875,
+    "exit_code": 0,
+    "timed_out": false,
+    "reported_checks": 2,
+    "stdout": "/home/agent/rhoades-9a04c9726e31/w4-069/results/08-front_panel-allocation_free.stdout.txt",
+    "stderr": "/home/agent/rhoades-9a04c9726e31/w4-069/results/08-front_panel-allocation_free.stderr.txt",
+    "stdout_sha256": "e7a57b67e810a17a858e5ba830b70eeac644d378fca4b9656e8c4cbbf7c79bb4",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "ordinal": 9,
+    "group": "model1",
+    "selector": "metadata",
+    "command": [
+      "/home/agent/rhoades-9a04c9726e31/w4-069/bin/rhodes_vst3_panel_control_tests",
+      "metadata"
+    ],
+    "cwd": "/home/agent/rhoades-9a04c9726e31/build",
+    "started_utc": "2026-11-24T19:30:26.872061+00:00",
+    "duration_seconds": 0.0017825629984145053,
+    "exit_code": 0,
+    "timed_out": false,
+    "reported_checks": 129,
+    "stdout": "/home/agent/rhoades-9a04c9726e31/w4-069/results/09-model1-metadata.stdout.txt",
+    "stderr": "/home/agent/rhoades-9a04c9726e31/w4-069/results/09-model1-metadata.stderr.txt",
+    "stdout_sha256": "7e6c30d124a4a02f8a3988c405de8f9ec606d7803d65665aa0b0bd9d68876010",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "ordinal": 10,
+    "group": "model1",
+    "selector": "values",
+    "command": [
+      "/home/agent/rhoades-9a04c9726e31/w4-069/bin/rhodes_vst3_panel_control_tests",
+      "values"
+    ],
+    "cwd": "/home/agent/rhoades-9a04c9726e31/build",
+    "started_utc": "2026-11-24T19:30:26.874163+00:00",
+    "duration_seconds": 0.0020477549987845123,
+    "exit_code": 0,
+    "timed_out": false,
+    "reported_checks": 2910,
+    "stdout": "/home/agent/rhoades-9a04c9726e31/w4-069/results/10-model1-values.stdout.txt",
+    "stderr": "/home/agent/rhoades-9a04c9726e31/w4-069/results/10-model1-values.stderr.txt",
+    "stdout_sha256": "d50c9ae00deffffdcfda3035381c7e87c968941ce07d6997cdb439dd4fec190b",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "ordinal": 11,
+    "group": "model1",
+    "selector": "text",
+    "command": [
+      "/home/agent/rhoades-9a04c9726e31/w4-069/bin/rhodes_vst3_panel_control_tests",
+      "text"
+    ],
+    "cwd": "/home/agent/rhoades-9a04c9726e31/build",
+    "started_utc": "2026-11-24T19:30:26.876471+00:00",
+    "duration_seconds": 0.001510740003141109,
+    "exit_code": 0,
+    "timed_out": false,
+    "reported_checks": 473,
+    "stdout": "/home/agent/rhoades-9a04c9726e31/w4-069/results/11-model1-text.stdout.txt",
+    "stderr": "/home/agent/rhoades-9a04c9726e31/w4-069/results/11-model1-text.stderr.txt",
+    "stdout_sha256": "8505745ed5b54d85c943c705ad126490d726d45e84a90dc1a0f0336840bf09cd",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "ordinal": 12,
+    "group": "model1",
+    "selector": "stream",
+    "command": [
+      "/home/agent/rhoades-9a04c9726e31/w4-069/bin/rhodes_vst3_panel_control_tests",
+      "stream"
+    ],
+    "cwd": "/home/agent/rhoades-9a04c9726e31/build",
+    "started_utc": "2026-11-24T19:30:26.878318+00:00",
+    "duration_seconds": 0.001541967001685407,
+    "exit_code": 0,
+    "timed_out": false,
+    "reported_checks": 231,
+    "stdout": "/home/agent/rhoades-9a04c9726e31/w4-069/results/12-model1-stream.stdout.txt",
+    "stderr": "/home/agent/rhoades-9a04c9726e31/w4-069/results/12-model1-stream.stderr.txt",
+    "stdout_sha256": "97e73833dc1f55dc595ad5bf519a423cc3a546ed1c0d892a03dd1eeac11562ca",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "ordinal": 13,
+    "group": "model1",
+    "selector": "recall",
+    "command": [
+      "/home/agent/rhoades-9a04c9726e31/w4-069/bin/rhodes_vst3_panel_control_tests",
+      "recall"
+    ],
+    "cwd": "/home/agent/rhoades-9a04c9726e31/build",
+    "started_utc": "2026-11-24T19:30:26.880146+00:00",
+    "duration_seconds": 0.0018005599995376542,
+    "exit_code": 0,
+    "timed_out": false,
+    "reported_checks": 6475,
+    "stdout": "/home/agent/rhoades-9a04c9726e31/w4-069/results/13-model1-recall.stdout.txt",
+    "stderr": "/home/agent/rhoades-9a04c9726e31/w4-069/results/13-model1-recall.stderr.txt",
+    "stdout_sha256": "1236cdc746ad90eab818117c3d282492e8dafa27290ec81409665841146830b9",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "ordinal": 14,
+    "group": "model1",
+    "selector": "instances",
+    "command": [
+      "/home/agent/rhoades-9a04c9726e31/w4-069/bin/rhodes_vst3_panel_control_tests",
+      "instances"
+    ],
+    "cwd": "/home/agent/rhoades-9a04c9726e31/build",
+    "started_utc": "2026-11-24T19:30:26.882228+00:00",
+    "duration_seconds": 0.0019442220000200905,
+    "exit_code": 0,
+    "timed_out": false,
+    "reported_checks": 421,
+    "stdout": "/home/agent/rhoades-9a04c9726e31/w4-069/results/14-model1-instances.stdout.txt",
+    "stderr": "/home/agent/rhoades-9a04c9726e31/w4-069/results/14-model1-instances.stderr.txt",
+    "stdout_sha256": "59721470349334565a548a5c6b46fb032bd36bbdabf439ba548f332005b54e6f",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "ordinal": 15,
+    "group": "model2",
+    "selector": "metadata",
+    "command": [
+      "/home/agent/rhoades-9a04c9726e31/w4-069/bin/rhodes_vst3_filtered_panel_control_tests",
+      "metadata"
+    ],
+    "cwd": "/home/agent/rhoades-9a04c9726e31/build",
+    "started_utc": "2026-11-24T19:30:26.884515+00:00",
+    "duration_seconds": 0.0014198249991750345,
+    "exit_code": 0,
+    "timed_out": false,
+    "reported_checks": 129,
+    "stdout": "/home/agent/rhoades-9a04c9726e31/w4-069/results/15-model2-metadata.stdout.txt",
+    "stderr": "/home/agent/rhoades-9a04c9726e31/w4-069/results/15-model2-metadata.stderr.txt",
+    "stdout_sha256": "e2b116ec5c45bc84f2bf06b74989f69ae30aa790697c9267b5ac24424a62607a",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "ordinal": 16,
+    "group": "model2",
+    "selector": "values",
+    "command": [
+      "/home/agent/rhoades-9a04c9726e31/w4-069/bin/rhodes_vst3_filtered_panel_control_tests",
+      "values"
+    ],
+    "cwd": "/home/agent/rhoades-9a04c9726e31/build",
+    "started_utc": "2026-11-24T19:30:26.886239+00:00",
+    "duration_seconds": 0.0013553589960793033,
+    "exit_code": 0,
+    "timed_out": false,
+    "reported_checks": 2910,
+    "stdout": "/home/agent/rhoades-9a04c9726e31/w4-069/results/16-model2-values.stdout.txt",
+    "stderr": "/home/agent/rhoades-9a04c9726e31/w4-069/results/16-model2-values.stderr.txt",
+    "stdout_sha256": "687bbc2b5e152e3040669c8f8a15e4d0e573a1e83295f90bfe6bb4ced3924c18",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "ordinal": 17,
+    "group": "model2",
+    "selector": "text",
+    "command": [
+      "/home/agent/rhoades-9a04c9726e31/w4-069/bin/rhodes_vst3_filtered_panel_control_tests",
+      "text"
+    ],
+    "cwd": "/home/agent/rhoades-9a04c9726e31/build",
+    "started_utc": "2026-11-24T19:30:26.888121+00:00",
+    "duration_seconds": 0.0011232949982513674,
+    "exit_code": 0,
+    "timed_out": false,
+    "reported_checks": 473,
+    "stdout": "/home/agent/rhoades-9a04c9726e31/w4-069/results/17-model2-text.stdout.txt",
+    "stderr": "/home/agent/rhoades-9a04c9726e31/w4-069/results/17-model2-text.stderr.txt",
+    "stdout_sha256": "54c7fed2f78fdf7a9e67bc852c8bfc74d579c009a106b3acc3659ad2b754846c",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "ordinal": 18,
+    "group": "model2",
+    "selector": "stream",
+    "command": [
+      "/home/agent/rhoades-9a04c9726e31/w4-069/bin/rhodes_vst3_filtered_panel_control_tests",
+      "stream"
+    ],
+    "cwd": "/home/agent/rhoades-9a04c9726e31/build",
+    "started_utc": "2026-11-24T19:30:26.889589+00:00",
+    "duration_seconds": 0.001676455998676829,
+    "exit_code": 0,
+    "timed_out": false,
+    "reported_checks": 231,
+    "stdout": "/home/agent/rhoades-9a04c9726e31/w4-069/results/18-model2-stream.stdout.txt",
+    "stderr": "/home/agent/rhoades-9a04c9726e31/w4-069/results/18-model2-stream.stderr.txt",
+    "stdout_sha256": "f93c6eaa9ece87b6fad4b99f6e03787fe9abe2bcd88c32c344c438d05225ef84",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "ordinal": 19,
+    "group": "model2",
+    "selector": "recall",
+    "command": [
+      "/home/agent/rhoades-9a04c9726e31/w4-069/bin/rhodes_vst3_filtered_panel_control_tests",
+      "recall"
+    ],
+    "cwd": "/home/agent/rhoades-9a04c9726e31/build",
+    "started_utc": "2026-11-24T19:30:26.891604+00:00",
+    "duration_seconds": 0.00147876199480379,
+    "exit_code": 0,
+    "timed_out": false,
+    "reported_checks": 6475,
+    "stdout": "/home/agent/rhoades-9a04c9726e31/w4-069/results/19-model2-recall.stdout.txt",
+    "stderr": "/home/agent/rhoades-9a04c9726e31/w4-069/results/19-model2-recall.stderr.txt",
+    "stdout_sha256": "1d6574e1855275ef2684cb2c10539157a3c0b737a4d6b96bd2dc04ed9b219622",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "ordinal": 20,
+    "group": "model2",
+    "selector": "instances",
+    "command": [
+      "/home/agent/rhoades-9a04c9726e31/w4-069/bin/rhodes_vst3_filtered_panel_control_tests",
+      "instances"
+    ],
+    "cwd": "/home/agent/rhoades-9a04c9726e31/build",
+    "started_utc": "2026-11-24T19:30:26.893456+00:00",
+    "duration_seconds": 0.0012961210013600066,
+    "exit_code": 0,
+    "timed_out": false,
+    "reported_checks": 421,
+    "stdout": "/home/agent/rhoades-9a04c9726e31/w4-069/results/20-model2-instances.stdout.txt",
+    "stderr": "/home/agent/rhoades-9a04c9726e31/w4-069/results/20-model2-instances.stderr.txt",
+    "stdout_sha256": "29d0eb865adf430e2364bb72c70683f50d0e1b6a11ab1ff8bf40a25dc35a2917",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "ordinal": 21,
+    "group": "model3",
+    "selector": "metadata",
+    "command": [
+      "/home/agent/rhoades-9a04c9726e31/w4-069/bin/rhodes_vst3_quadrature_panel_control_tests",
+      "metadata"
+    ],
+    "cwd": "/home/agent/rhoades-9a04c9726e31/build",
+    "started_utc": "2026-11-24T19:30:26.895118+00:00",
+    "duration_seconds": 0.002288773001055233,
+    "exit_code": 0,
+    "timed_out": false,
+    "reported_checks": 129,
+    "stdout": "/home/agent/rhoades-9a04c9726e31/w4-069/results/21-model3-metadata.stdout.txt",
+    "stderr": "/home/agent/rhoades-9a04c9726e31/w4-069/results/21-model3-metadata.stderr.txt",
+    "stdout_sha256": "9f0ac23c2f1a0c99c5d1ea5a01c52c7f41c1a8f77afa366ca7e70521734d6770",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "ordinal": 22,
+    "group": "model3",
+    "selector": "values",
+    "command": [
+      "/home/agent/rhoades-9a04c9726e31/w4-069/bin/rhodes_vst3_quadrature_panel_control_tests",
+      "values"
+    ],
+    "cwd": "/home/agent/rhoades-9a04c9726e31/build",
+    "started_utc": "2026-11-24T19:30:26.897936+00:00",
+    "duration_seconds": 0.0017688420048216358,
+    "exit_code": 0,
+    "timed_out": false,
+    "reported_checks": 2910,
+    "stdout": "/home/agent/rhoades-9a04c9726e31/w4-069/results/22-model3-values.stdout.txt",
+    "stderr": "/home/agent/rhoades-9a04c9726e31/w4-069/results/22-model3-values.stderr.txt",
+    "stdout_sha256": "9afa670c7b070788eaf7728de6fdd87a1c38b03c71d6c5fae8ca6e04cf611a43",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "ordinal": 23,
+    "group": "model3",
+    "selector": "text",
+    "command": [
+      "/home/agent/rhoades-9a04c9726e31/w4-069/bin/rhodes_vst3_quadrature_panel_control_tests",
+      "text"
+    ],
+    "cwd": "/home/agent/rhoades-9a04c9726e31/build",
+    "started_utc": "2026-11-24T19:30:26.900304+00:00",
+    "duration_seconds": 0.0012293929976294748,
+    "exit_code": 0,
+    "timed_out": false,
+    "reported_checks": 473,
+    "stdout": "/home/agent/rhoades-9a04c9726e31/w4-069/results/23-model3-text.stdout.txt",
+    "stderr": "/home/agent/rhoades-9a04c9726e31/w4-069/results/23-model3-text.stderr.txt",
+    "stdout_sha256": "54d68908da8482579e3fea98070e42e39d7a13018538f12b9dcfe4a483b3271a",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "ordinal": 24,
+    "group": "model3",
+    "selector": "stream",
+    "command": [
+      "/home/agent/rhoades-9a04c9726e31/w4-069/bin/rhodes_vst3_quadrature_panel_control_tests",
+      "stream"
+    ],
+    "cwd": "/home/agent/rhoades-9a04c9726e31/build",
+    "started_utc": "2026-11-24T19:30:26.902184+00:00",
+    "duration_seconds": 0.002388150001934264,
+    "exit_code": 0,
+    "timed_out": false,
+    "reported_checks": 231,
+    "stdout": "/home/agent/rhoades-9a04c9726e31/w4-069/results/24-model3-stream.stdout.txt",
+    "stderr": "/home/agent/rhoades-9a04c9726e31/w4-069/results/24-model3-stream.stderr.txt",
+    "stdout_sha256": "f4857d74d880ffeac3149e6a4e24ffad86896a770a9a79a08b05998c54f83c6b",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "ordinal": 25,
+    "group": "model3",
+    "selector": "recall",
+    "command": [
+      "/home/agent/rhoades-9a04c9726e31/w4-069/bin/rhodes_vst3_quadrature_panel_control_tests",
+      "recall"
+    ],
+    "cwd": "/home/agent/rhoades-9a04c9726e31/build",
+    "started_utc": "2026-11-24T19:30:26.904994+00:00",
+    "duration_seconds": 0.0012545900026452728,
+    "exit_code": 0,
+    "timed_out": false,
+    "reported_checks": 6475,
+    "stdout": "/home/agent/rhoades-9a04c9726e31/w4-069/results/25-model3-recall.stdout.txt",
+    "stderr": "/home/agent/rhoades-9a04c9726e31/w4-069/results/25-model3-recall.stderr.txt",
+    "stdout_sha256": "3f193f01525e1414687821031ec88c0b4411e6bfa756126fc81ad17c28e17419",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "ordinal": 26,
+    "group": "model3",
+    "selector": "instances",
+    "command": [
+      "/home/agent/rhoades-9a04c9726e31/w4-069/bin/rhodes_vst3_quadrature_panel_control_tests",
+      "instances"
+    ],
+    "cwd": "/home/agent/rhoades-9a04c9726e31/build",
+    "started_utc": "2026-11-24T19:30:26.906779+00:00",
+    "duration_seconds": 0.0012397780010360293,
+    "exit_code": 0,
+    "timed_out": false,
+    "reported_checks": 421,
+    "stdout": "/home/agent/rhoades-9a04c9726e31/w4-069/results/26-model3-instances.stdout.txt",
+    "stderr": "/home/agent/rhoades-9a04c9726e31/w4-069/results/26-model3-instances.stderr.txt",
+    "stdout_sha256": "08c040c0f93cd93587653bab67b4849dc05057a4c83868e47a5ab9d2cbe62548",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+]

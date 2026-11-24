@@ -1,0 +1,109 @@
+Internal ctest changing into directory: /home/agent/rhoades-9a04c9726e31/build
+UpdateCTestConfiguration  from :/home/agent/rhoades-9a04c9726e31/build/DartConfiguration.tcl
+Parse Config file:/home/agent/rhoades-9a04c9726e31/build/DartConfiguration.tcl
+UpdateCTestConfiguration  from :/home/agent/rhoades-9a04c9726e31/build/DartConfiguration.tcl
+Parse Config file:/home/agent/rhoades-9a04c9726e31/build/DartConfiguration.tcl
+Test project /home/agent/rhoades-9a04c9726e31/build
+Constructing a list of tests
+Done constructing a list of tests
+Updating test list for fixtures
+Added 0 tests to meet fixture requirements
+
+547: Test command: /home/agent/rhoades-9a04c9726e31/build/bin/Release/validator "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3"
+547: Working Directory: /home/agent/rhoades-9a04c9726e31/build
+  Test #547: vst3.sdk_validator
+
+553: Test command: /home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_photo_editor_tests "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3" "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3" "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3"
+553: Working Directory: /home/agent/rhoades-9a04c9726e31/build
+  Test #553: vst3.photo_editor_contract
+
+554: Test command: /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/tools/run_xvfb_test.py" "--xvfb" "/home/agent/rhoades-9a04c9726e31/gui-bin/Xvfb" "--xauth" "/home/agent/rhoades-9a04c9726e31/gui-bin/xauth" "--xdpyinfo" "/home/agent/rhoades-9a04c9726e31/gui-bin/xdpyinfo" "--startup-timeout" "10" "--test-timeout" "30" "--" "/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_photo_lifecycle_tests" "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3" "normal_close"
+554: Working Directory: /home/agent/rhoades-9a04c9726e31/build
+Labels: editor lifecycle linux-xcb
+  Test #554: vst3.photo_lifecycle.normal_close
+
+555: Test command: /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/tools/run_xvfb_test.py" "--xvfb" "/home/agent/rhoades-9a04c9726e31/gui-bin/Xvfb" "--xauth" "/home/agent/rhoades-9a04c9726e31/gui-bin/xauth" "--xdpyinfo" "/home/agent/rhoades-9a04c9726e31/gui-bin/xdpyinfo" "--startup-timeout" "10" "--test-timeout" "30" "--" "/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_photo_lifecycle_tests" "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3" "remove_begin"
+555: Working Directory: /home/agent/rhoades-9a04c9726e31/build
+Labels: editor lifecycle linux-xcb
+  Test #555: vst3.photo_lifecycle.remove_begin
+
+556: Test command: /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/tools/run_xvfb_test.py" "--xvfb" "/home/agent/rhoades-9a04c9726e31/gui-bin/Xvfb" "--xauth" "/home/agent/rhoades-9a04c9726e31/gui-bin/xauth" "--xdpyinfo" "/home/agent/rhoades-9a04c9726e31/gui-bin/xdpyinfo" "--startup-timeout" "10" "--test-timeout" "30" "--" "/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_photo_lifecycle_tests" "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3" "remove_perform"
+556: Working Directory: /home/agent/rhoades-9a04c9726e31/build
+Labels: editor lifecycle linux-xcb
+  Test #556: vst3.photo_lifecycle.remove_perform
+
+557: Test command: /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/tools/run_xvfb_test.py" "--xvfb" "/home/agent/rhoades-9a04c9726e31/gui-bin/Xvfb" "--xauth" "/home/agent/rhoades-9a04c9726e31/gui-bin/xauth" "--xdpyinfo" "/home/agent/rhoades-9a04c9726e31/gui-bin/xdpyinfo" "--startup-timeout" "10" "--test-timeout" "30" "--" "/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_photo_lifecycle_tests" "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3" "remove_end"
+557: Working Directory: /home/agent/rhoades-9a04c9726e31/build
+Labels: editor lifecycle linux-xcb
+  Test #557: vst3.photo_lifecycle.remove_end
+
+558: Test command: /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/tools/run_xvfb_test.py" "--xvfb" "/home/agent/rhoades-9a04c9726e31/gui-bin/Xvfb" "--xauth" "/home/agent/rhoades-9a04c9726e31/gui-bin/xauth" "--xdpyinfo" "/home/agent/rhoades-9a04c9726e31/gui-bin/xdpyinfo" "--startup-timeout" "10" "--test-timeout" "30" "--" "/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_photo_lifecycle_tests" "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3" "nested_pump"
+558: Working Directory: /home/agent/rhoades-9a04c9726e31/build
+Labels: editor lifecycle linux-xcb
+  Test #558: vst3.photo_lifecycle.nested_pump
+
+559: Test command: /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/tools/run_xvfb_test.py" "--xvfb" "/home/agent/rhoades-9a04c9726e31/gui-bin/Xvfb" "--xauth" "/home/agent/rhoades-9a04c9726e31/gui-bin/xauth" "--xdpyinfo" "/home/agent/rhoades-9a04c9726e31/gui-bin/xdpyinfo" "--startup-timeout" "10" "--test-timeout" "30" "--" "/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_photo_lifecycle_tests" "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3" "timer_refused"
+559: Working Directory: /home/agent/rhoades-9a04c9726e31/build
+Labels: editor lifecycle linux-xcb
+  Test #559: vst3.photo_lifecycle.timer_refused
+
+560: Test command: /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/tools/run_xvfb_test.py" "--xvfb" "/home/agent/rhoades-9a04c9726e31/gui-bin/Xvfb" "--xauth" "/home/agent/rhoades-9a04c9726e31/gui-bin/xauth" "--xdpyinfo" "/home/agent/rhoades-9a04c9726e31/gui-bin/xdpyinfo" "--startup-timeout" "10" "--test-timeout" "30" "--" "/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_photo_lifecycle_tests" "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3" "repeated_remove"
+560: Working Directory: /home/agent/rhoades-9a04c9726e31/build
+Labels: editor lifecycle linux-xcb
+  Test #560: vst3.photo_lifecycle.repeated_remove
+
+561: Test command: /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/tools/run_xvfb_test.py" "--xvfb" "/home/agent/rhoades-9a04c9726e31/gui-bin/Xvfb" "--xauth" "/home/agent/rhoades-9a04c9726e31/gui-bin/xauth" "--xdpyinfo" "/home/agent/rhoades-9a04c9726e31/gui-bin/xdpyinfo" "--startup-timeout" "10" "--test-timeout" "30" "--" "/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_photo_lifecycle_tests" "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3" "reopen"
+561: Working Directory: /home/agent/rhoades-9a04c9726e31/build
+Labels: editor lifecycle linux-xcb
+  Test #561: vst3.photo_lifecycle.reopen
+
+562: Test command: /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/tools/run_xvfb_test.py" "--xvfb" "/home/agent/rhoades-9a04c9726e31/gui-bin/Xvfb" "--xauth" "/home/agent/rhoades-9a04c9726e31/gui-bin/xauth" "--xdpyinfo" "/home/agent/rhoades-9a04c9726e31/gui-bin/xdpyinfo" "--startup-timeout" "10" "--test-timeout" "30" "--" "/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_photo_lifecycle_tests" "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3" "parent_destroy_after_remove"
+562: Working Directory: /home/agent/rhoades-9a04c9726e31/build
+Labels: editor lifecycle linux-xcb
+  Test #562: vst3.photo_lifecycle.parent_destroy_after_remove
+
+563: Test command: /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/tools/run_xvfb_test.py" "--xvfb" "/home/agent/rhoades-9a04c9726e31/gui-bin/Xvfb" "--xauth" "/home/agent/rhoades-9a04c9726e31/gui-bin/xauth" "--xdpyinfo" "/home/agent/rhoades-9a04c9726e31/gui-bin/xdpyinfo" "--startup-timeout" "10" "--test-timeout" "30" "--" "/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_photo_lifecycle_tests" "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3" "release_host_reference_after_remove"
+563: Working Directory: /home/agent/rhoades-9a04c9726e31/build
+Labels: editor lifecycle linux-xcb
+  Test #563: vst3.photo_lifecycle.release_host_reference_after_remove
+
+564: Test command: /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/tools/run_xvfb_test.py" "--xvfb" "/home/agent/rhoades-9a04c9726e31/gui-bin/Xvfb" "--xauth" "/home/agent/rhoades-9a04c9726e31/gui-bin/xauth" "--xdpyinfo" "/home/agent/rhoades-9a04c9726e31/gui-bin/xdpyinfo" "--startup-timeout" "10" "--test-timeout" "30" "--" "/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_photo_lifecycle_tests" "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3" "focus_remove"
+564: Working Directory: /home/agent/rhoades-9a04c9726e31/build
+Labels: editor lifecycle linux-xcb
+  Test #564: vst3.photo_lifecycle.focus_remove
+
+565: Test command: /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/tools/run_xvfb_test.py" "--xvfb" "/home/agent/rhoades-9a04c9726e31/gui-bin/Xvfb" "--xauth" "/home/agent/rhoades-9a04c9726e31/gui-bin/xauth" "--xdpyinfo" "/home/agent/rhoades-9a04c9726e31/gui-bin/xdpyinfo" "--startup-timeout" "10" "--test-timeout" "30" "--" "/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_photo_lifecycle_tests" "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3" "reopen_cycles"
+565: Working Directory: /home/agent/rhoades-9a04c9726e31/build
+Labels: editor lifecycle linux-xcb
+  Test #565: vst3.photo_lifecycle.reopen_cycles
+
+566: Test command: /opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3 "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/tools/run_xvfb_test.py" "--xvfb" "/home/agent/rhoades-9a04c9726e31/gui-bin/Xvfb" "--xauth" "/home/agent/rhoades-9a04c9726e31/gui-bin/xauth" "--xdpyinfo" "/home/agent/rhoades-9a04c9726e31/gui-bin/xdpyinfo" "--startup-timeout" "10" "--test-timeout" "30" "--" "/home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_photo_lifecycle_tests" "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3" "sibling_survives"
+566: Working Directory: /home/agent/rhoades-9a04c9726e31/build
+Labels: editor lifecycle linux-xcb
+  Test #566: vst3.photo_lifecycle.sibling_survives
+
+567: Test command: /home/agent/rhoades-9a04c9726e31/build/rhodes_vst3_loaded_expression_tests "controls_state" "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3" "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3" "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3"
+567: Working Directory: /home/agent/rhoades-9a04c9726e31/build
+  Test #567: vst3.loaded_expression_controls_state
+
+570: Test command: /home/agent/rhoades-9a04c9726e31/build/bin/Release/validator "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3"
+570: Working Directory: /home/agent/rhoades-9a04c9726e31/build
+  Test #570: vst3.filtered_sdk_validator
+
+571: Test command: /home/agent/rhoades-9a04c9726e31/build/bin/Release/validator "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3"
+571: Working Directory: /home/agent/rhoades-9a04c9726e31/build
+  Test #571: vst3.quadrature_sdk_validator
+
+572: Test command: /home/agent/rhoades-9a04c9726e31/build/bin/Release/moduleinfotool "-validate" "-path" "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3"
+572: Working Directory: /home/agent/rhoades-9a04c9726e31/build
+  Test #572: vst3.moduleinfo_validator
+
+573: Test command: /home/agent/rhoades-9a04c9726e31/build/bin/Release/moduleinfotool "-validate" "-path" "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchFiltered.vst3"
+573: Working Directory: /home/agent/rhoades-9a04c9726e31/build
+  Test #573: vst3.filtered_moduleinfo_validator
+
+574: Test command: /home/agent/rhoades-9a04c9726e31/build/bin/Release/moduleinfotool "-validate" "-path" "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearchQuadrature.vst3"
+574: Working Directory: /home/agent/rhoades-9a04c9726e31/build
+  Test #574: vst3.quadrature_moduleinfo_validator
+
+Total Tests: 21

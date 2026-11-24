@@ -1,0 +1,39 @@
+{
+  "name": "native-quadrature-parent_destroy_after_remove",
+  "kind": "native_lifecycle",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "/home/agent/rhoades-9a04c9726e31/w4-062/source/tools/run_xvfb_test.py",
+    "--xvfb",
+    "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/Xvfb",
+    "--xauth",
+    "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xauth",
+    "--xdpyinfo",
+    "/home/agent/rhoades-9a04c9726e31/w4-062/gui-bin/xdpyinfo",
+    "--startup-timeout",
+    "10",
+    "--test-timeout",
+    "30",
+    "--",
+    "/home/agent/rhoades-9a04c9726e31/w4-062/bin/rhodes_vst3_photo_lifecycle_tests",
+    "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearchQuadrature.vst3",
+    "parent_destroy_after_remove"
+  ],
+  "cwd": "/home/agent/rhoades-9a04c9726e31/w4-062",
+  "started_utc": "2026-11-24T19:18:41.784273+00:00",
+  "timeout_seconds": 50,
+  "environment_file": "environment.json",
+  "exit_code": 0,
+  "finished_utc": "2026-11-24T19:18:42.154605+00:00",
+  "elapsed_seconds": 0.37027506199956406,
+  "stdout": {
+    "path": "results/native-quadrature-parent_destroy_after_remove/stdout.log",
+    "sha256": "0cb304adfad3fd47d941108f8791684c0169f7bdb9b4117a1a11d0d5b83159cf",
+    "bytes": 56
+  },
+  "stderr": {
+    "path": "results/native-quadrature-parent_destroy_after_remove/stderr.log",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "bytes": 0
+  }
+}

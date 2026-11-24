@@ -1,0 +1,14 @@
+{
+  "name": "moduleinfo-validator-direct",
+  "kind": "moduleinfo_validator",
+  "command": [
+    "/home/agent/rhoades-9a04c9726e31/w4-062/bin/moduleinfotool",
+    "-validate",
+    "-path",
+    "/home/agent/rhoades-9a04c9726e31/w4-062/VST3/Release/RhodesResearch.vst3"
+  ],
+  "cwd": "/home/agent/rhoades-9a04c9726e31/w4-062",
+  "started_utc": "2026-11-24T19:18:37.498419+00:00",
+  "timeout_seconds": 30,
+  "environment_file": "environment.json"
+}

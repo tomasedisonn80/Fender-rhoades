@@ -1,0 +1,1460 @@
+{
+  "schema_version": 1,
+  "frozen_utc": "2026-11-24T19:17:55.475908+00:00",
+  "worker": "w4-061",
+  "scope": "Final Linux Direct native XTEST replay after X11 Cairo and child-window lifecycle corrections; no rebuild.",
+  "expected_sha256": {
+    "module": "5facf72c9367a5849c124833673d68e2d74b8b64c88b22e95d66663fa65d1959",
+    "host": "37f557e9863001b54b158482338ff66dcf9fb3934ba12d8ace0c9ddbbb0eebe9",
+    "interactions": "ccfad904084c57a0870bd0c2ba10a1603421482547c2dee03f0c2a595cc7c3b5",
+    "native": "ce0f2d5c3e74e34c478186bef80ee6879ab0a5328b45d682d9d34d45b6dfda47",
+    "wrapper": "81230583df4f4a7c0e1a498faa8ee327c3027b35e7035d6d6aeb4eb3eb9898f7"
+  },
+  "copied_inputs": [
+    {
+      "origin": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/CMakeLists.txt",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/frozenrepo/CMakeLists.txt",
+      "relative_path": "frozenrepo/CMakeLists.txt",
+      "bytes": 25550,
+      "sha256": "4619d0aa41be71b7946664ac07c5e381205afc901dcf15319f21ae4d42c07adc"
+    },
+    {
+      "origin": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/CMakePresets.json",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/frozenrepo/CMakePresets.json",
+      "relative_path": "frozenrepo/CMakePresets.json",
+      "bytes": 1483,
+      "sha256": "a06e2a16dba0b4947352cbbcec2a7668d29b3f777c6f460f9d65f6bd0bb7f0aa"
+    },
+    {
+      "origin": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/assets/reference/rhodes-suitcase-reference.webp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/frozenrepo/assets/reference/rhodes-suitcase-reference.webp",
+      "relative_path": "frozenrepo/assets/reference/rhodes-suitcase-reference.webp",
+      "bytes": 257616,
+      "sha256": "782b4c83a2bf827ed0d363bc567cdc2211485da6e650db4ae99448e78b7da24b"
+    },
+    {
+      "origin": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/cmake/Vst3.cmake",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/frozenrepo/cmake/Vst3.cmake",
+      "relative_path": "frozenrepo/cmake/Vst3.cmake",
+      "bytes": 60032,
+      "sha256": "48715fcf593fbb0338a51fceb6f0edc106e227dc6725a57df5c024aac7a28fc4"
+    },
+    {
+      "origin": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/cmake/VstguiWin32Timer.cmake",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/frozenrepo/cmake/VstguiWin32Timer.cmake",
+      "relative_path": "frozenrepo/cmake/VstguiWin32Timer.cmake",
+      "bytes": 2532,
+      "sha256": "211484666fff1fe57c8e442dbc98b3a0c76fd1119fbd21a5ce1d280368fd5c85"
+    },
+    {
+      "origin": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/cmake/VstguiX11ChildWindow.cmake",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/frozenrepo/cmake/VstguiX11ChildWindow.cmake",
+      "relative_path": "frozenrepo/cmake/VstguiX11ChildWindow.cmake",
+      "bytes": 3567,
+      "sha256": "74ad962f03a3581fcc424d85a2a6f7bf836655843e858285609f087033754e3e"
+    },
+    {
+      "origin": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/cmake/VstguiX11Keyboard.cmake",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/frozenrepo/cmake/VstguiX11Keyboard.cmake",
+      "relative_path": "frozenrepo/cmake/VstguiX11Keyboard.cmake",
+      "bytes": 2424,
+      "sha256": "3f1b1de7d27a74c1d6d2dae21152b125e4b5c1bf349a78f3aa4bfa3848a76a9c"
+    },
+    {
+      "origin": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/cmake/VstguiX11Lifetime.cmake",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/frozenrepo/cmake/VstguiX11Lifetime.cmake",
+      "relative_path": "frozenrepo/cmake/VstguiX11Lifetime.cmake",
+      "bytes": 7796,
+      "sha256": "2b1291c584fc285d219a09b84a752b548b3085a0f7b725464a2806a21afffb60"
+    },
+    {
+      "origin": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/docs/specs/PHOTO_EDITOR_20261124.md",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/frozenrepo/docs/specs/PHOTO_EDITOR_20261124.md",
+      "relative_path": "frozenrepo/docs/specs/PHOTO_EDITOR_20261124.md",
+      "bytes": 3329,
+      "sha256": "9b68c304da33113797543314fedc722db6da00ce981db28d7ab2742f5f955ed1"
+    },
+    {
+      "origin": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/include/rhodes/audio_engine.hpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/frozenrepo/include/rhodes/audio_engine.hpp",
+      "relative_path": "frozenrepo/include/rhodes/audio_engine.hpp",
+      "bytes": 4216,
+      "sha256": "10efac8150c07e69ef41eed415a6e7403b4339179af902f91cd17ef498da7b97"
+    },
+    {
+      "origin": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/include/rhodes/audio_filter_coefficients.hpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/frozenrepo/include/rhodes/audio_filter_coefficients.hpp",
+      "relative_path": "frozenrepo/include/rhodes/audio_filter_coefficients.hpp",
+      "bytes": 17719,
+      "sha256": "c1ab39356d7e44348f9dc56f9120ff2598889d1fa144e5294b084585655eb76d"
+    },
+    {
+      "origin": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/include/rhodes/contact_reference.hpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/frozenrepo/include/rhodes/contact_reference.hpp",
+      "relative_path": "frozenrepo/include/rhodes/contact_reference.hpp",
+      "bytes": 13870,
+      "sha256": "00b99e61dc73686c22675bedf647c3ad1b27ba13332180431f5a42e485057fda"
+    },
+    {
+      "origin": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/include/rhodes/control_text.hpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/frozenrepo/include/rhodes/control_text.hpp",
+      "relative_path": "frozenrepo/include/rhodes/control_text.hpp",
+      "bytes": 17207,
+      "sha256": "de28474739274f4fac20dc1d3d5602cb63c62ddd04a33202cb5375985086e63d"
+    },
+    {
+      "origin": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/include/rhodes/control_value.hpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/frozenrepo/include/rhodes/control_value.hpp",
+      "relative_path": "frozenrepo/include/rhodes/control_value.hpp",
+      "bytes": 5479,
+      "sha256": "d7c282afdcffaef90f7872f97b37bfb34671448da64376d3439649c052d4d48d"
+    },
+    {
+      "origin": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/include/rhodes/editor_audition.hpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/frozenrepo/include/rhodes/editor_audition.hpp",
+      "relative_path": "frozenrepo/include/rhodes/editor_audition.hpp",
+      "bytes": 7536,
+      "sha256": "6c4ea15ddd2bb3c7498f848c5c123de8c69b28fe14aaa2aa694c5adcaf6442c9"
+    },
+    {
+      "origin": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/include/rhodes/event_processor.hpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/frozenrepo/include/rhodes/event_processor.hpp",
+      "relative_path": "frozenrepo/include/rhodes/event_processor.hpp",
+      "bytes": 7620,
+      "sha256": "cbfebb44d5d7eee06ab6952209a4683c7a7da58c04ea81f6583b98cfb981517d"
+    },
+    {
+      "origin": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/include/rhodes/fir_decimator.hpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/frozenrepo/include/rhodes/fir_decimator.hpp",
+      "relative_path": "frozenrepo/include/rhodes/fir_decimator.hpp",
+      "bytes": 2185,
+      "sha256": "e54faeb397bcbccb9ed9834cfc264d84550c4ef375d8e5273a720eb1f190071b"
+    },
+    {
+      "origin": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/include/rhodes/front_panel_effects.hpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/frozenrepo/include/rhodes/front_panel_effects.hpp",
+      "relative_path": "frozenrepo/include/rhodes/front_panel_effects.hpp",
+      "bytes": 10035,
+      "sha256": "e8998a71f848a14b617317f88447a8655dde60fefb7981762fb15ad0de3fa7d0"
+    },
+    {
+      "origin": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/include/rhodes/front_panel_state.hpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/frozenrepo/include/rhodes/front_panel_state.hpp",
+      "relative_path": "frozenrepo/include/rhodes/front_panel_state.hpp",
+      "bytes": 2299,
+      "sha256": "fe4181f15b328db42cec646a22de186636d0dfa27d4a384b016ad47e6d5a7a71"
+    },
+    {
+      "origin": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/include/rhodes/instrument_state.hpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/frozenrepo/include/rhodes/instrument_state.hpp",
+      "relative_path": "frozenrepo/include/rhodes/instrument_state.hpp",
+      "bytes": 8896,
+      "sha256": "1550dbbd83ea20838a6cac1579c716f7d01a94429450c19b62d18df14d102043"
+    },
+    {
+      "origin": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/include/rhodes/note_tracker.hpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/frozenrepo/include/rhodes/note_tracker.hpp",
+      "relative_path": "frozenrepo/include/rhodes/note_tracker.hpp",
+      "bytes": 5432,
+      "sha256": "76931b326daae3a112b56420f9be9ea5b03b1c30307f1dc68b6c13c710cd830f"
+    },
+    {
+      "origin": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/include/rhodes/plugin_state.hpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/frozenrepo/include/rhodes/plugin_state.hpp",
+      "relative_path": "frozenrepo/include/rhodes/plugin_state.hpp",
+      "bytes": 11445,
+      "sha256": "973576bb1db6fe6830b60193065a3acd4d0522f45eb0e33ca8a26524726dab15"
+    },
+    {
+      "origin": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/include/rhodes/quadrature_engine.hpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/frozenrepo/include/rhodes/quadrature_engine.hpp",
+      "relative_path": "frozenrepo/include/rhodes/quadrature_engine.hpp",
+      "bytes": 4801,
+      "sha256": "c625a82b61eb3e721061177654c12ffa6aac0049e026b9633ae53ea2abaa773d"
+    },
+    {
+      "origin": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/include/rhodes/quadrature_filter_coefficients.hpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/frozenrepo/include/rhodes/quadrature_filter_coefficients.hpp",
+      "relative_path": "frozenrepo/include/rhodes/quadrature_filter_coefficients.hpp",
+      "bytes": 16603,
+      "sha256": "3cca4ea6553ceb01810a6230f2144491364fa48af7d6cfbc43a8e3dcf5d08b51"
+    },
+    {
+      "origin": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/include/rhodes/quadrature_fir.hpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/frozenrepo/include/rhodes/quadrature_fir.hpp",
+      "relative_path": "frozenrepo/include/rhodes/quadrature_fir.hpp",
+      "bytes": 2707,
+      "sha256": "cf6c85e70036b3f1794ecf131a9db43bcb8da373e47c5335f56b1bb57559b45e"
+    },
+    {
+      "origin": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/include/rhodes/research_engine.hpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/frozenrepo/include/rhodes/research_engine.hpp",
+      "relative_path": "frozenrepo/include/rhodes/research_engine.hpp",
+      "bytes": 8348,
+      "sha256": "2a6ba0483a010d9b7a44517c5ed7c215f05d57ed6e96bd6609127322092929e4"
+    },
+    {
+      "origin": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/plugins/vst3/THIRD_PARTY_NOTICES.md",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/frozenrepo/plugins/vst3/THIRD_PARTY_NOTICES.md",
+      "relative_path": "frozenrepo/plugins/vst3/THIRD_PARTY_NOTICES.md",
+      "bytes": 8653,
+      "sha256": "f3ed30cd41b48ce88753de641057f51f51e78ea19b60a40e4398f29fe191f901"
+    },
+    {
+      "origin": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/plugins/vst3/controller.cpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/frozenrepo/plugins/vst3/controller.cpp",
+      "relative_path": "frozenrepo/plugins/vst3/controller.cpp",
+      "bytes": 25101,
+      "sha256": "2c77542e1aeb58bceaab8e7d6dd59250d17b5e4bc8f7d489b367ea5e805a0e36"
+    },
+    {
+      "origin": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/plugins/vst3/controller.hpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/frozenrepo/plugins/vst3/controller.hpp",
+      "relative_path": "frozenrepo/plugins/vst3/controller.hpp",
+      "bytes": 3901,
+      "sha256": "a0dcf316c8d6a013a7a8b6a75485b451e21b070e6b57f62ef52fdf605b252183"
+    },
+    {
+      "origin": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/plugins/vst3/factory.cpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/frozenrepo/plugins/vst3/factory.cpp",
+      "relative_path": "frozenrepo/plugins/vst3/factory.cpp",
+      "bytes": 1037,
+      "sha256": "16e5da7194a8f548dd91b84e3c66ed81b5bdf5ff618e66dbafa3abdc1a16158c"
+    },
+    {
+      "origin": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/plugins/vst3/photo_editor.cpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/frozenrepo/plugins/vst3/photo_editor.cpp",
+      "relative_path": "frozenrepo/plugins/vst3/photo_editor.cpp",
+      "bytes": 43422,
+      "sha256": "caf54d88c871bab05ec572904ef4e3de7c985c0b713e65c398e0010786679fcf"
+    },
+    {
+      "origin": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/plugins/vst3/photo_editor.hpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/frozenrepo/plugins/vst3/photo_editor.hpp",
+      "relative_path": "frozenrepo/plugins/vst3/photo_editor.hpp",
+      "bytes": 383,
+      "sha256": "0c421cae0d330f22b00bab37bb17e73cddd948dbd56a0834c6cb086d6cec97db"
+    },
+    {
+      "origin": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/plugins/vst3/photo_geometry.hpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/frozenrepo/plugins/vst3/photo_geometry.hpp",
+      "relative_path": "frozenrepo/plugins/vst3/photo_geometry.hpp",
+      "bytes": 11936,
+      "sha256": "77fe4f4ac93ee0b212ef3f5399eb5cfa8884076d8eef51d2adf2123e6d85e0bd"
+    },
+    {
+      "origin": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/plugins/vst3/photo_key_highlight.hpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/frozenrepo/plugins/vst3/photo_key_highlight.hpp",
+      "relative_path": "frozenrepo/plugins/vst3/photo_key_highlight.hpp",
+      "bytes": 16080,
+      "sha256": "9302c59a677564253ea80fb92deeef811864def11a4fdd7e03b3a20c2477c58a"
+    },
+    {
+      "origin": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/plugins/vst3/photo_native_focus.cpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/frozenrepo/plugins/vst3/photo_native_focus.cpp",
+      "relative_path": "frozenrepo/plugins/vst3/photo_native_focus.cpp",
+      "bytes": 11355,
+      "sha256": "c24f8d70731a193b0b7bf833984c00df5a60375d2d306986f1440757af938c5f"
+    },
+    {
+      "origin": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/plugins/vst3/photo_native_focus.hpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/frozenrepo/plugins/vst3/photo_native_focus.hpp",
+      "relative_path": "frozenrepo/plugins/vst3/photo_native_focus.hpp",
+      "bytes": 1697,
+      "sha256": "9bf4553ec6a1418747d5379ba531bf15bbfb7e589f3923ff9c8131485704396a"
+    },
+    {
+      "origin": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/plugins/vst3/plugin_ids.hpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/frozenrepo/plugins/vst3/plugin_ids.hpp",
+      "relative_path": "frozenrepo/plugins/vst3/plugin_ids.hpp",
+      "bytes": 3577,
+      "sha256": "558491751250799eadce1eb95ad1cf59cde728c8bf9490a2962aafeaa8ca128d"
+    },
+    {
+      "origin": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/plugins/vst3/processor.cpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/frozenrepo/plugins/vst3/processor.cpp",
+      "relative_path": "frozenrepo/plugins/vst3/processor.cpp",
+      "bytes": 37967,
+      "sha256": "1ef121c4afb190c45fa1ff41a2127fb7487919dc69d8856c4a05e79844f760a9"
+    },
+    {
+      "origin": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/plugins/vst3/processor.hpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/frozenrepo/plugins/vst3/processor.hpp",
+      "relative_path": "frozenrepo/plugins/vst3/processor.hpp",
+      "bytes": 6905,
+      "sha256": "5206559cf6a05e6b53e8f6d043a4860b1c4afb995ca8253ed1f75762a5270574"
+    },
+    {
+      "origin": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/plugins/vst3/resources/Expat-LICENSE.txt",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/frozenrepo/plugins/vst3/resources/Expat-LICENSE.txt",
+      "relative_path": "frozenrepo/plugins/vst3/resources/Expat-LICENSE.txt",
+      "bytes": 1208,
+      "sha256": "f6eeb2310d0b00e5cecac39c73a0696a5bdbfb754b26325ed5a502fc1a6c338c"
+    },
+    {
+      "origin": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/plugins/vst3/resources/rhodes-suitcase.png",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/frozenrepo/plugins/vst3/resources/rhodes-suitcase.png",
+      "relative_path": "frozenrepo/plugins/vst3/resources/rhodes-suitcase.png",
+      "bytes": 1434362,
+      "sha256": "84e2d48fc0311eb923083cc3e1f96dc5fa1b3f8a6e085daee7c973e54d754d26"
+    },
+    {
+      "origin": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/plugins/vst3/resources/rhodes-suitcase.uidesc",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/frozenrepo/plugins/vst3/resources/rhodes-suitcase.uidesc",
+      "relative_path": "frozenrepo/plugins/vst3/resources/rhodes-suitcase.uidesc",
+      "bytes": 651,
+      "sha256": "7554fecedf67cf744b3aa7f6cf12dc4f874d8b5e0b97ec66959ba2b42ea5825e"
+    },
+    {
+      "origin": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/plugins/vst3/state_stream.cpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/frozenrepo/plugins/vst3/state_stream.cpp",
+      "relative_path": "frozenrepo/plugins/vst3/state_stream.cpp",
+      "bytes": 5052,
+      "sha256": "30b057afe520c81bb87e0298b32835ea47957ff46b452cf417244dbb51b55051"
+    },
+    {
+      "origin": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/plugins/vst3/state_stream.hpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/frozenrepo/plugins/vst3/state_stream.hpp",
+      "relative_path": "frozenrepo/plugins/vst3/state_stream.hpp",
+      "bytes": 2227,
+      "sha256": "a0885ed2c7a381fac06a65e37c02fa115f5c29930a7881ffd5186297fb9d3b28"
+    },
+    {
+      "origin": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/src/contact_reference.cpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/frozenrepo/src/contact_reference.cpp",
+      "relative_path": "frozenrepo/src/contact_reference.cpp",
+      "bytes": 78110,
+      "sha256": "70dde1bfab9c2e35457da2ebf66ff4638cb6f56f1f19a84dbe55a1752d5166fd"
+    },
+    {
+      "origin": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/src/research_engine.cpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/frozenrepo/src/research_engine.cpp",
+      "relative_path": "frozenrepo/src/research_engine.cpp",
+      "bytes": 20795,
+      "sha256": "01c2a9f7f9f7cfa4f759be56770178f32a71a28667d4ac6ab390e03ff7a95814"
+    },
+    {
+      "origin": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/tools/verify_native_photo_editor.py",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/frozenrepo/tools/verify_native_photo_editor.py",
+      "relative_path": "frozenrepo/tools/verify_native_photo_editor.py",
+      "bytes": 31258,
+      "sha256": "ce0f2d5c3e74e34c478186bef80ee6879ab0a5328b45d682d9d34d45b6dfda47"
+    },
+    {
+      "origin": "/dev/shm/rhoades-9a04c9726e31/Fender-rhoades/tools/verify_photo_interactions.py",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/frozenrepo/tools/verify_photo_interactions.py",
+      "relative_path": "frozenrepo/tools/verify_photo_interactions.py",
+      "bytes": 23758,
+      "sha256": "ccfad904084c57a0870bd0c2ba10a1603421482547c2dee03f0c2a595cc7c3b5"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/Contents/Resources/Expat-LICENSE.txt",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/snapshot/RhodesResearch.vst3/Contents/Resources/Expat-LICENSE.txt",
+      "relative_path": "snapshot/RhodesResearch.vst3/Contents/Resources/Expat-LICENSE.txt",
+      "bytes": 1208,
+      "sha256": "f6eeb2310d0b00e5cecac39c73a0696a5bdbfb754b26325ed5a502fc1a6c338c"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/Contents/Resources/LICENSE.txt",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/snapshot/RhodesResearch.vst3/Contents/Resources/LICENSE.txt",
+      "relative_path": "snapshot/RhodesResearch.vst3/Contents/Resources/LICENSE.txt",
+      "bytes": 1094,
+      "sha256": "e86d79e19e4a33ebc442d2e0d083887dfc75a2a8de9fe17eeddedb84810ad74e"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/Contents/Resources/RapidJSON-LICENSE.txt",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/snapshot/RhodesResearch.vst3/Contents/Resources/RapidJSON-LICENSE.txt",
+      "relative_path": "snapshot/RhodesResearch.vst3/Contents/Resources/RapidJSON-LICENSE.txt",
+      "bytes": 5152,
+      "sha256": "a140e5d46fe734a1c78f1a3c3ef207871dd75648be71fdda8e309b23ab8b1f32"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/Contents/Resources/THIRD_PARTY_NOTICES.md",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/snapshot/RhodesResearch.vst3/Contents/Resources/THIRD_PARTY_NOTICES.md",
+      "relative_path": "snapshot/RhodesResearch.vst3/Contents/Resources/THIRD_PARTY_NOTICES.md",
+      "bytes": 8653,
+      "sha256": "f3ed30cd41b48ce88753de641057f51f51e78ea19b60a40e4398f29fe191f901"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/Contents/Resources/VSTGUI-LICENSE.txt",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/snapshot/RhodesResearch.vst3/Contents/Resources/VSTGUI-LICENSE.txt",
+      "relative_path": "snapshot/RhodesResearch.vst3/Contents/Resources/VSTGUI-LICENSE.txt",
+      "bytes": 1858,
+      "sha256": "605bcd2152176b365cf0ba6cca331a988fa885b4f43f20ceff4e264e6576ca66"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/Contents/Resources/miniz-LICENSE.txt",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/snapshot/RhodesResearch.vst3/Contents/Resources/miniz-LICENSE.txt",
+      "relative_path": "snapshot/RhodesResearch.vst3/Contents/Resources/miniz-LICENSE.txt",
+      "bytes": 1162,
+      "sha256": "6f20fa7672b00e2e975c291df737cf227addf3ad32e36fef3fe0f416e4664d3d"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/Contents/Resources/moduleinfo.json",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/snapshot/RhodesResearch.vst3/Contents/Resources/moduleinfo.json",
+      "relative_path": "snapshot/RhodesResearch.vst3/Contents/Resources/moduleinfo.json",
+      "bytes": 1065,
+      "sha256": "28b44aaa74a32dbe415b3553b37b019440ebe17bad7708b217790d47bb6adfb9"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/Contents/Resources/rhodes-suitcase.png",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/snapshot/RhodesResearch.vst3/Contents/Resources/rhodes-suitcase.png",
+      "relative_path": "snapshot/RhodesResearch.vst3/Contents/Resources/rhodes-suitcase.png",
+      "bytes": 1434362,
+      "sha256": "84e2d48fc0311eb923083cc3e1f96dc5fa1b3f8a6e085daee7c973e54d754d26"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/Contents/Resources/rhodes-suitcase.uidesc",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/snapshot/RhodesResearch.vst3/Contents/Resources/rhodes-suitcase.uidesc",
+      "relative_path": "snapshot/RhodesResearch.vst3/Contents/Resources/rhodes-suitcase.uidesc",
+      "bytes": 651,
+      "sha256": "7554fecedf67cf744b3aa7f6cf12dc4f874d8b5e0b97ec66959ba2b42ea5825e"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/build/VST3/Release/RhodesResearch.vst3/Contents/x86_64-linux/RhodesResearch.so",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/snapshot/RhodesResearch.vst3/Contents/x86_64-linux/RhodesResearch.so",
+      "relative_path": "snapshot/RhodesResearch.vst3/Contents/x86_64-linux/RhodesResearch.so",
+      "bytes": 3204856,
+      "sha256": "5facf72c9367a5849c124833673d68e2d74b8b64c88b22e95d66663fa65d1959"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/w2-022/editorhost-accepting",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/editorhost-accepting",
+      "relative_path": "editorhost-accepting",
+      "bytes": 266152,
+      "sha256": "37f557e9863001b54b158482338ff66dcf9fb3934ba12d8ace0c9ddbbb0eebe9"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/w2-022/with-xvfb.py",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/with-xvfb.py",
+      "relative_path": "with-xvfb.py",
+      "bytes": 2835,
+      "sha256": "81230583df4f4a7c0e1a498faa8ee327c3027b35e7035d6d6aeb4eb3eb9898f7"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/build/CMakeCache.txt",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/build-inputs/CMakeCache.txt",
+      "relative_path": "build-inputs/CMakeCache.txt",
+      "bytes": 881724,
+      "sha256": "dcae712bc6caa9d921ee5c5f74092e83085086e3bd2108e768c5cc43233cb15d"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/build/build.ninja",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/build-inputs/build.ninja",
+      "relative_path": "build-inputs/build.ninja",
+      "bytes": 1121416,
+      "sha256": "5b7a3639046a243b51ee1d0c8eec5ceb8596f58dd125d985762b3f15120e77f3"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/build/compile_commands.json",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/build-inputs/compile_commands.json",
+      "relative_path": "build-inputs/compile_commands.json",
+      "bytes": 607249,
+      "sha256": "bb43ca5011eec542ee336bebcaeb909cc11096577fe17e4010c2ffac242e7341"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/build/rhodes-vstgui-overlay/x11frame-lifetime.cpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/build-inputs/rhodes-vstgui-overlay/x11frame-lifetime.cpp",
+      "relative_path": "build-inputs/rhodes-vstgui-overlay/x11frame-lifetime.cpp",
+      "bytes": 23882,
+      "sha256": "66fa490278825250966aad9f4a054942f3105ab131ff0cf45ba861c1b42dfd7c"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/build/rhodes-vstgui-overlay/x11platform-lifetime.cpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/build-inputs/rhodes-vstgui-overlay/x11platform-lifetime.cpp",
+      "relative_path": "build-inputs/rhodes-vstgui-overlay/x11platform-lifetime.cpp",
+      "bytes": 17894,
+      "sha256": "e0c889e4efa8bf0b2f76feb5592084b64987ba2ae012de3a7afd889b131b87f2"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/build/rhodes-vstgui-overlay/x11platform.cpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/build-inputs/rhodes-vstgui-overlay/x11platform.cpp",
+      "relative_path": "build-inputs/rhodes-vstgui-overlay/x11platform.cpp",
+      "bytes": 17173,
+      "sha256": "c186a90e423b3895347a676e07c6059accb3b9ab0c187a795d318a1f6af361be"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/build/rhodes-vstgui-overlay/x11utils.cpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/build-inputs/rhodes-vstgui-overlay/x11utils.cpp",
+      "relative_path": "build-inputs/rhodes-vstgui-overlay/x11utils.cpp",
+      "bytes": 6523,
+      "sha256": "47554d4c4e7d330e3791a22f7920e7cfc214a84bff88b5493b4906e36b2a2eae"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/build/rhodes-resources/rhodes_vst3/Expat-LICENSE.txt",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/build-inputs/rhodes-resources/rhodes_vst3/Expat-LICENSE.txt",
+      "relative_path": "build-inputs/rhodes-resources/rhodes_vst3/Expat-LICENSE.txt",
+      "bytes": 1208,
+      "sha256": "f6eeb2310d0b00e5cecac39c73a0696a5bdbfb754b26325ed5a502fc1a6c338c"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/build/rhodes-resources/rhodes_vst3/LICENSE.txt",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/build-inputs/rhodes-resources/rhodes_vst3/LICENSE.txt",
+      "relative_path": "build-inputs/rhodes-resources/rhodes_vst3/LICENSE.txt",
+      "bytes": 1094,
+      "sha256": "e86d79e19e4a33ebc442d2e0d083887dfc75a2a8de9fe17eeddedb84810ad74e"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/build/rhodes-resources/rhodes_vst3/RapidJSON-LICENSE.txt",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/build-inputs/rhodes-resources/rhodes_vst3/RapidJSON-LICENSE.txt",
+      "relative_path": "build-inputs/rhodes-resources/rhodes_vst3/RapidJSON-LICENSE.txt",
+      "bytes": 5152,
+      "sha256": "a140e5d46fe734a1c78f1a3c3ef207871dd75648be71fdda8e309b23ab8b1f32"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/build/rhodes-resources/rhodes_vst3/THIRD_PARTY_NOTICES.md",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/build-inputs/rhodes-resources/rhodes_vst3/THIRD_PARTY_NOTICES.md",
+      "relative_path": "build-inputs/rhodes-resources/rhodes_vst3/THIRD_PARTY_NOTICES.md",
+      "bytes": 8653,
+      "sha256": "f3ed30cd41b48ce88753de641057f51f51e78ea19b60a40e4398f29fe191f901"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/build/rhodes-resources/rhodes_vst3/VSTGUI-LICENSE.txt",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/build-inputs/rhodes-resources/rhodes_vst3/VSTGUI-LICENSE.txt",
+      "relative_path": "build-inputs/rhodes-resources/rhodes_vst3/VSTGUI-LICENSE.txt",
+      "bytes": 1858,
+      "sha256": "605bcd2152176b365cf0ba6cca331a988fa885b4f43f20ceff4e264e6576ca66"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/build/rhodes-resources/rhodes_vst3/miniz-LICENSE.txt",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/build-inputs/rhodes-resources/rhodes_vst3/miniz-LICENSE.txt",
+      "relative_path": "build-inputs/rhodes-resources/rhodes_vst3/miniz-LICENSE.txt",
+      "bytes": 1162,
+      "sha256": "6f20fa7672b00e2e975c291df737cf227addf3ad32e36fef3fe0f416e4664d3d"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/build/rhodes-resources/rhodes_vst3/rhodes-suitcase.png",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/build-inputs/rhodes-resources/rhodes_vst3/rhodes-suitcase.png",
+      "relative_path": "build-inputs/rhodes-resources/rhodes_vst3/rhodes-suitcase.png",
+      "bytes": 1434362,
+      "sha256": "84e2d48fc0311eb923083cc3e1f96dc5fa1b3f8a6e085daee7c973e54d754d26"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/build/rhodes-resources/rhodes_vst3/rhodes-suitcase.uidesc",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/build-inputs/rhodes-resources/rhodes_vst3/rhodes-suitcase.uidesc",
+      "relative_path": "build-inputs/rhodes-resources/rhodes_vst3/rhodes-suitcase.uidesc",
+      "bytes": 651,
+      "sha256": "7554fecedf67cf744b3aa7f6cf12dc4f874d8b5e0b97ec66959ba2b42ea5825e"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/build/rhodes-resources/rhodes_vst3_filtered/Expat-LICENSE.txt",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/build-inputs/rhodes-resources/rhodes_vst3_filtered/Expat-LICENSE.txt",
+      "relative_path": "build-inputs/rhodes-resources/rhodes_vst3_filtered/Expat-LICENSE.txt",
+      "bytes": 1208,
+      "sha256": "f6eeb2310d0b00e5cecac39c73a0696a5bdbfb754b26325ed5a502fc1a6c338c"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/build/rhodes-resources/rhodes_vst3_filtered/LICENSE.txt",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/build-inputs/rhodes-resources/rhodes_vst3_filtered/LICENSE.txt",
+      "relative_path": "build-inputs/rhodes-resources/rhodes_vst3_filtered/LICENSE.txt",
+      "bytes": 1094,
+      "sha256": "e86d79e19e4a33ebc442d2e0d083887dfc75a2a8de9fe17eeddedb84810ad74e"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/build/rhodes-resources/rhodes_vst3_filtered/RapidJSON-LICENSE.txt",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/build-inputs/rhodes-resources/rhodes_vst3_filtered/RapidJSON-LICENSE.txt",
+      "relative_path": "build-inputs/rhodes-resources/rhodes_vst3_filtered/RapidJSON-LICENSE.txt",
+      "bytes": 5152,
+      "sha256": "a140e5d46fe734a1c78f1a3c3ef207871dd75648be71fdda8e309b23ab8b1f32"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/build/rhodes-resources/rhodes_vst3_filtered/THIRD_PARTY_NOTICES.md",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/build-inputs/rhodes-resources/rhodes_vst3_filtered/THIRD_PARTY_NOTICES.md",
+      "relative_path": "build-inputs/rhodes-resources/rhodes_vst3_filtered/THIRD_PARTY_NOTICES.md",
+      "bytes": 8653,
+      "sha256": "f3ed30cd41b48ce88753de641057f51f51e78ea19b60a40e4398f29fe191f901"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/build/rhodes-resources/rhodes_vst3_filtered/VSTGUI-LICENSE.txt",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/build-inputs/rhodes-resources/rhodes_vst3_filtered/VSTGUI-LICENSE.txt",
+      "relative_path": "build-inputs/rhodes-resources/rhodes_vst3_filtered/VSTGUI-LICENSE.txt",
+      "bytes": 1858,
+      "sha256": "605bcd2152176b365cf0ba6cca331a988fa885b4f43f20ceff4e264e6576ca66"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/build/rhodes-resources/rhodes_vst3_filtered/miniz-LICENSE.txt",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/build-inputs/rhodes-resources/rhodes_vst3_filtered/miniz-LICENSE.txt",
+      "relative_path": "build-inputs/rhodes-resources/rhodes_vst3_filtered/miniz-LICENSE.txt",
+      "bytes": 1162,
+      "sha256": "6f20fa7672b00e2e975c291df737cf227addf3ad32e36fef3fe0f416e4664d3d"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/build/rhodes-resources/rhodes_vst3_filtered/rhodes-suitcase.png",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/build-inputs/rhodes-resources/rhodes_vst3_filtered/rhodes-suitcase.png",
+      "relative_path": "build-inputs/rhodes-resources/rhodes_vst3_filtered/rhodes-suitcase.png",
+      "bytes": 1434362,
+      "sha256": "84e2d48fc0311eb923083cc3e1f96dc5fa1b3f8a6e085daee7c973e54d754d26"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/build/rhodes-resources/rhodes_vst3_filtered/rhodes-suitcase.uidesc",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/build-inputs/rhodes-resources/rhodes_vst3_filtered/rhodes-suitcase.uidesc",
+      "relative_path": "build-inputs/rhodes-resources/rhodes_vst3_filtered/rhodes-suitcase.uidesc",
+      "bytes": 651,
+      "sha256": "7554fecedf67cf744b3aa7f6cf12dc4f874d8b5e0b97ec66959ba2b42ea5825e"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/build/rhodes-resources/rhodes_vst3_quadrature/Expat-LICENSE.txt",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/build-inputs/rhodes-resources/rhodes_vst3_quadrature/Expat-LICENSE.txt",
+      "relative_path": "build-inputs/rhodes-resources/rhodes_vst3_quadrature/Expat-LICENSE.txt",
+      "bytes": 1208,
+      "sha256": "f6eeb2310d0b00e5cecac39c73a0696a5bdbfb754b26325ed5a502fc1a6c338c"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/build/rhodes-resources/rhodes_vst3_quadrature/LICENSE.txt",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/build-inputs/rhodes-resources/rhodes_vst3_quadrature/LICENSE.txt",
+      "relative_path": "build-inputs/rhodes-resources/rhodes_vst3_quadrature/LICENSE.txt",
+      "bytes": 1094,
+      "sha256": "e86d79e19e4a33ebc442d2e0d083887dfc75a2a8de9fe17eeddedb84810ad74e"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/build/rhodes-resources/rhodes_vst3_quadrature/RapidJSON-LICENSE.txt",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/build-inputs/rhodes-resources/rhodes_vst3_quadrature/RapidJSON-LICENSE.txt",
+      "relative_path": "build-inputs/rhodes-resources/rhodes_vst3_quadrature/RapidJSON-LICENSE.txt",
+      "bytes": 5152,
+      "sha256": "a140e5d46fe734a1c78f1a3c3ef207871dd75648be71fdda8e309b23ab8b1f32"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/build/rhodes-resources/rhodes_vst3_quadrature/THIRD_PARTY_NOTICES.md",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/build-inputs/rhodes-resources/rhodes_vst3_quadrature/THIRD_PARTY_NOTICES.md",
+      "relative_path": "build-inputs/rhodes-resources/rhodes_vst3_quadrature/THIRD_PARTY_NOTICES.md",
+      "bytes": 8653,
+      "sha256": "f3ed30cd41b48ce88753de641057f51f51e78ea19b60a40e4398f29fe191f901"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/build/rhodes-resources/rhodes_vst3_quadrature/VSTGUI-LICENSE.txt",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/build-inputs/rhodes-resources/rhodes_vst3_quadrature/VSTGUI-LICENSE.txt",
+      "relative_path": "build-inputs/rhodes-resources/rhodes_vst3_quadrature/VSTGUI-LICENSE.txt",
+      "bytes": 1858,
+      "sha256": "605bcd2152176b365cf0ba6cca331a988fa885b4f43f20ceff4e264e6576ca66"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/build/rhodes-resources/rhodes_vst3_quadrature/miniz-LICENSE.txt",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/build-inputs/rhodes-resources/rhodes_vst3_quadrature/miniz-LICENSE.txt",
+      "relative_path": "build-inputs/rhodes-resources/rhodes_vst3_quadrature/miniz-LICENSE.txt",
+      "bytes": 1162,
+      "sha256": "6f20fa7672b00e2e975c291df737cf227addf3ad32e36fef3fe0f416e4664d3d"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/build/rhodes-resources/rhodes_vst3_quadrature/rhodes-suitcase.png",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/build-inputs/rhodes-resources/rhodes_vst3_quadrature/rhodes-suitcase.png",
+      "relative_path": "build-inputs/rhodes-resources/rhodes_vst3_quadrature/rhodes-suitcase.png",
+      "bytes": 1434362,
+      "sha256": "84e2d48fc0311eb923083cc3e1f96dc5fa1b3f8a6e085daee7c973e54d754d26"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/build/rhodes-resources/rhodes_vst3_quadrature/rhodes-suitcase.uidesc",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/build-inputs/rhodes-resources/rhodes_vst3_quadrature/rhodes-suitcase.uidesc",
+      "relative_path": "build-inputs/rhodes-resources/rhodes_vst3_quadrature/rhodes-suitcase.uidesc",
+      "bytes": 651,
+      "sha256": "7554fecedf67cf744b3aa7f6cf12dc4f874d8b5e0b97ec66959ba2b42ea5825e"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/vst3sdk/vstgui4/vstgui/lib/cframe.cpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/sdk-inputs/vstgui/lib/cframe.cpp",
+      "relative_path": "sdk-inputs/vstgui/lib/cframe.cpp",
+      "bytes": 55710,
+      "sha256": "2805d87f8df5e97e4071eaabb4a7e7ca110cc8cbfb9ab1e71e6d2a804f91b7a3"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/vst3sdk/vstgui4/vstgui/lib/cframe.h",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/sdk-inputs/vstgui/lib/cframe.h",
+      "relative_path": "sdk-inputs/vstgui/lib/cframe.h",
+      "bytes": 14425,
+      "sha256": "fab8dfe651efe9aa14befa25954d002c7ca14932dcafe84bc0ba81287756465a"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/vst3sdk/vstgui4/vstgui/lib/cview.cpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/sdk-inputs/vstgui/lib/cview.cpp",
+      "relative_path": "sdk-inputs/vstgui/lib/cview.cpp",
+      "bytes": 44014,
+      "sha256": "e3058875031c6e5f8f060b58c11b67a5b4539058dfa9150232aae1b1384cf25d"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/vst3sdk/vstgui4/vstgui/lib/cview.h",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/sdk-inputs/vstgui/lib/cview.h",
+      "relative_path": "sdk-inputs/vstgui/lib/cview.h",
+      "bytes": 20988,
+      "sha256": "956187dfd84f3486847ce56716d379fdb9ec1a5113bc81d2f3d5bb789c514d1f"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/vst3sdk/vstgui4/vstgui/lib/cvstguitimer.cpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/sdk-inputs/vstgui/lib/cvstguitimer.cpp",
+      "relative_path": "sdk-inputs/vstgui/lib/cvstguitimer.cpp",
+      "bytes": 2812,
+      "sha256": "1a56abdbb744730ee2a169012cf7fbbe28aa521a0107b4c24909dd475e91f109"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/vst3sdk/vstgui4/vstgui/lib/cvstguitimer.h",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/sdk-inputs/vstgui/lib/cvstguitimer.h",
+      "relative_path": "sdk-inputs/vstgui/lib/cvstguitimer.h",
+      "bytes": 2180,
+      "sha256": "0edad4e0c0c82141f93c406d78d01ee1240ec03150bcd54f45f84757f4e5da62"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/vst3sdk/vstgui4/vstgui/lib/platform/linux/cairobitmap.cpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/sdk-inputs/vstgui/lib/platform/linux/cairobitmap.cpp",
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/cairobitmap.cpp",
+      "bytes": 8342,
+      "sha256": "3dd4748c06563ca5530fdb97156f2ed34d8cf67a4a4576ab752d98d719dd50a2"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/vst3sdk/vstgui4/vstgui/lib/platform/linux/cairobitmap.h",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/sdk-inputs/vstgui/lib/platform/linux/cairobitmap.h",
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/cairobitmap.h",
+      "bytes": 1659,
+      "sha256": "0d4294c95fefe9c2c66a5259593fe6bd5b3df5324f44d09acd9da1a11f9da3e8"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/vst3sdk/vstgui4/vstgui/lib/platform/linux/cairofont.cpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/sdk-inputs/vstgui/lib/platform/linux/cairofont.cpp",
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/cairofont.cpp",
+      "bytes": 9118,
+      "sha256": "049e642e494a25fa90ba9de5439f5906408fbdb91ccd57cb6f3f54ddaa23351e"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/vst3sdk/vstgui4/vstgui/lib/platform/linux/cairofont.h",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/sdk-inputs/vstgui/lib/platform/linux/cairofont.h",
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/cairofont.h",
+      "bytes": 1405,
+      "sha256": "0c8312e833623eb141ff5d9273109235ff5eae418a363484e8053d0450d41675"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/vst3sdk/vstgui4/vstgui/lib/platform/linux/cairogradient.cpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/sdk-inputs/vstgui/lib/platform/linux/cairogradient.cpp",
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/cairogradient.cpp",
+      "bytes": 2089,
+      "sha256": "5697d03dd2f609ec9a42bed27d053ad5679ca6a01c6da66fd0407d7898cdc97d"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/vst3sdk/vstgui4/vstgui/lib/platform/linux/cairogradient.h",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/sdk-inputs/vstgui/lib/platform/linux/cairogradient.h",
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/cairogradient.h",
+      "bytes": 1150,
+      "sha256": "dea7b83dde8b4fc0cc204fcea9f4da711c9185d5467bb4914c02b36dabf84879"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/vst3sdk/vstgui4/vstgui/lib/platform/linux/cairographicscontext.cpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/sdk-inputs/vstgui/lib/platform/linux/cairographicscontext.cpp",
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/cairographicscontext.cpp",
+      "bytes": 22842,
+      "sha256": "a1c773dda1b46d717d88d402d56c10b7883bfc6baf436e485bc98e0187967881"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/vst3sdk/vstgui4/vstgui/lib/platform/linux/cairographicscontext.h",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/sdk-inputs/vstgui/lib/platform/linux/cairographicscontext.h",
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/cairographicscontext.h",
+      "bytes": 4028,
+      "sha256": "7fa9f15d17c41cf410a0a7ceb31d27ca7d42116853decb7c866e3ab477b9943d"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/vst3sdk/vstgui4/vstgui/lib/platform/linux/cairopath.cpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/sdk-inputs/vstgui/lib/platform/linux/cairopath.cpp",
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/cairopath.cpp",
+      "bytes": 5933,
+      "sha256": "61ed147407d303315835657182ea5129157af346eabe20d93d6d646eff297269"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/vst3sdk/vstgui4/vstgui/lib/platform/linux/cairopath.h",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/sdk-inputs/vstgui/lib/platform/linux/cairopath.h",
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/cairopath.h",
+      "bytes": 2174,
+      "sha256": "1fa27fcbc1cdc860d8456a7fa361d0b8da122147a8d3a2a8aa796990821b6b95"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/vst3sdk/vstgui4/vstgui/lib/platform/linux/cairoutils.h",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/sdk-inputs/vstgui/lib/platform/linux/cairoutils.h",
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/cairoutils.h",
+      "bytes": 2099,
+      "sha256": "0aff2f1d26beec70bf89a36135fa37da1f52c511b52ceb5897dd45f5bef3cb65"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/vst3sdk/vstgui4/vstgui/lib/platform/linux/irunloop.h",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/sdk-inputs/vstgui/lib/platform/linux/irunloop.h",
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/irunloop.h",
+      "bytes": 246,
+      "sha256": "8afb0390abe24fe7fb27d0b04ce04070ea85ba0c45449e9ad13d83f932ed8e7c"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/vst3sdk/vstgui4/vstgui/lib/platform/linux/linuxfactory.cpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/sdk-inputs/vstgui/lib/platform/linux/linuxfactory.cpp",
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/linuxfactory.cpp",
+      "bytes": 10469,
+      "sha256": "85ea54da5a39ff18e401f00a03cd5b03d5a0f9646fd16f2d4504476152468151"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/vst3sdk/vstgui4/vstgui/lib/platform/linux/linuxfactory.h",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/sdk-inputs/vstgui/lib/platform/linux/linuxfactory.h",
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/linuxfactory.h",
+      "bytes": 5706,
+      "sha256": "5285fe9b06cf3db2189099e4f661fcc8b1d2885784f9d2c828a21264303b6f87"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/vst3sdk/vstgui4/vstgui/lib/platform/linux/linuxstring.cpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/sdk-inputs/vstgui/lib/platform/linux/linuxstring.cpp",
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/linuxstring.cpp",
+      "bytes": 755,
+      "sha256": "a3af0d67f20ecde7f81bea3cadbfad7bd575fef29605ba2e0ceeb3786dd844e5"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/vst3sdk/vstgui4/vstgui/lib/platform/linux/linuxstring.h",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/sdk-inputs/vstgui/lib/platform/linux/linuxstring.h",
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/linuxstring.h",
+      "bytes": 756,
+      "sha256": "6a6a0653836910dfc223c54aed17215bff41cefe524c4ed033fae72b6811141b"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/vst3sdk/vstgui4/vstgui/lib/platform/linux/linuxtaskexecutor.cpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/sdk-inputs/vstgui/lib/platform/linux/linuxtaskexecutor.cpp",
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/linuxtaskexecutor.cpp",
+      "bytes": 4305,
+      "sha256": "25f3ff1af672ce3261a3444313b73a56baa476ec8bdacfc1af9f6f04b3d653b9"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/vst3sdk/vstgui4/vstgui/lib/platform/linux/linuxtaskexecutor.h",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/sdk-inputs/vstgui/lib/platform/linux/linuxtaskexecutor.h",
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/linuxtaskexecutor.h",
+      "bytes": 1280,
+      "sha256": "ad0d527fae00620233b32064feb4f015e50701f56e311e299eef5a4fcf498593"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/vst3sdk/vstgui4/vstgui/lib/platform/linux/waylandclientcontext.cpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/sdk-inputs/vstgui/lib/platform/linux/waylandclientcontext.cpp",
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/waylandclientcontext.cpp",
+      "bytes": 16336,
+      "sha256": "aae5c518f29d42d785f4a9a666e264a0c6a9e6180a8da737a4cec58e1c324f5c"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/vst3sdk/vstgui4/vstgui/lib/platform/linux/waylandclientcontext.h",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/sdk-inputs/vstgui/lib/platform/linux/waylandclientcontext.h",
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/waylandclientcontext.h",
+      "bytes": 1837,
+      "sha256": "90bc0983a8ad4442e005b25e45460ffd303e1cd62fde817d63c32623ea838a17"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/vst3sdk/vstgui4/vstgui/lib/platform/linux/waylandframe.cpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/sdk-inputs/vstgui/lib/platform/linux/waylandframe.cpp",
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/waylandframe.cpp",
+      "bytes": 12064,
+      "sha256": "c1a7346e67dcc2598341a3a699764aad9b6e8d5d077838777e2ca5b7318ce257"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/vst3sdk/vstgui4/vstgui/lib/platform/linux/waylandframe.h",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/sdk-inputs/vstgui/lib/platform/linux/waylandframe.h",
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/waylandframe.h",
+      "bytes": 2736,
+      "sha256": "0630e13cc2704a9b5274a467261ce126b9dba1204eb7b069edab65cdeca026e4"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/vst3sdk/vstgui4/vstgui/lib/platform/linux/waylandplatform.cpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/sdk-inputs/vstgui/lib/platform/linux/waylandplatform.cpp",
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/waylandplatform.cpp",
+      "bytes": 7153,
+      "sha256": "b20034e45b3ad3c8532db1399717d7b2b894c86a5ee2a804477336638b387edf"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/vst3sdk/vstgui4/vstgui/lib/platform/linux/waylandplatform.h",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/sdk-inputs/vstgui/lib/platform/linux/waylandplatform.h",
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/waylandplatform.h",
+      "bytes": 1549,
+      "sha256": "008f2c94b259c75024e181aa0e75a137b784c6dca773ee3a82a59a570eb6949c"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/vst3sdk/vstgui4/vstgui/lib/platform/linux/waylandutils.cpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/sdk-inputs/vstgui/lib/platform/linux/waylandutils.cpp",
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/waylandutils.cpp",
+      "bytes": 34400,
+      "sha256": "5b6433935f9d97a0f04a6471b12cb9e2fd03855e243c98ffe886fab66842592c"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/vst3sdk/vstgui4/vstgui/lib/platform/linux/waylandutils.h",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/sdk-inputs/vstgui/lib/platform/linux/waylandutils.h",
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/waylandutils.h",
+      "bytes": 2148,
+      "sha256": "d996e7ec3eeaef1f1aa831a711a8e93ed82bb3a4c529c3fe17e776ad7006919a"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/vst3sdk/vstgui4/vstgui/lib/platform/linux/x11dragging.cpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/sdk-inputs/vstgui/lib/platform/linux/x11dragging.cpp",
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/x11dragging.cpp",
+      "bytes": 14479,
+      "sha256": "3f380b8c100de9c65b55e30ac4db72243d1063d3361e850291c7c0fbb2255c6f"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/vst3sdk/vstgui4/vstgui/lib/platform/linux/x11dragging.h",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/sdk-inputs/vstgui/lib/platform/linux/x11dragging.h",
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/x11dragging.h",
+      "bytes": 2810,
+      "sha256": "41d8674d25fe78b126a0b80bcce0845fdb9ace7b5aa8965f9cbdb0ec49112160"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/vst3sdk/vstgui4/vstgui/lib/platform/linux/x11fileselector.cpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/sdk-inputs/vstgui/lib/platform/linux/x11fileselector.cpp",
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/x11fileselector.cpp",
+      "bytes": 6029,
+      "sha256": "8905ecc588fc7bb2cd0b09c86974dcfc3ba5df2b275a0e856f6ce25f925929ab"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/vst3sdk/vstgui4/vstgui/lib/platform/linux/x11fileselector.h",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/sdk-inputs/vstgui/lib/platform/linux/x11fileselector.h",
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/x11fileselector.h",
+      "bytes": 668,
+      "sha256": "ffba84a9a575fcd896c1015df62412b12e8f5d14a82d3bcf7ca068c9972aab78"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/vst3sdk/vstgui4/vstgui/lib/platform/linux/x11frame.cpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/sdk-inputs/vstgui/lib/platform/linux/x11frame.cpp",
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/x11frame.cpp",
+      "bytes": 23817,
+      "sha256": "8dc07b3212e9710d23ca5c960ace39900705aa8cb3c09f760ad78ea160200dd5"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/vst3sdk/vstgui4/vstgui/lib/platform/linux/x11frame.h",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/sdk-inputs/vstgui/lib/platform/linux/x11frame.h",
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/x11frame.h",
+      "bytes": 2752,
+      "sha256": "de6277529f94304767469ca44f4c042fa8fcbf72067322f9fc4865b2948ddfff"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/vst3sdk/vstgui4/vstgui/lib/platform/linux/x11platform.cpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/sdk-inputs/vstgui/lib/platform/linux/x11platform.cpp",
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/x11platform.cpp",
+      "bytes": 17089,
+      "sha256": "7158057162bc716aeb52efc5e6744b9432ffb8b86e9e0a68895d9d340cc87bb3"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/vst3sdk/vstgui4/vstgui/lib/platform/linux/x11platform.h",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/sdk-inputs/vstgui/lib/platform/linux/x11platform.h",
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/x11platform.h",
+      "bytes": 2496,
+      "sha256": "d21c4ac518bda6d460eb8f0f702118f6389160c9dc65431f7755307d69f65334"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/vst3sdk/vstgui4/vstgui/lib/platform/linux/x11timer.cpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/sdk-inputs/vstgui/lib/platform/linux/x11timer.cpp",
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/x11timer.cpp",
+      "bytes": 1436,
+      "sha256": "2b04e359d83ee4a9d5586f37bfad43f71dcf2dc8a28ea65bbb686c58e063f1ba"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/vst3sdk/vstgui4/vstgui/lib/platform/linux/x11timer.h",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/sdk-inputs/vstgui/lib/platform/linux/x11timer.h",
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/x11timer.h",
+      "bytes": 843,
+      "sha256": "ced6605068b98bcf4a881db2843bc5415068416bf106c7d3e58d2c26a3b4ad05"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/vst3sdk/vstgui4/vstgui/lib/platform/linux/x11utils.cpp",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/sdk-inputs/vstgui/lib/platform/linux/x11utils.cpp",
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/x11utils.cpp",
+      "bytes": 6156,
+      "sha256": "67c30ca1e6afa5905a5205a3b2d0dc82ca640728c5c77b3e0ae42a0b46a19bac"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/vst3sdk/vstgui4/vstgui/lib/platform/linux/x11utils.h",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/sdk-inputs/vstgui/lib/platform/linux/x11utils.h",
+      "relative_path": "sdk-inputs/vstgui/lib/platform/linux/x11utils.h",
+      "bytes": 2538,
+      "sha256": "893864a21d1ed73999b8b336384608aff7ee96db1ef86861ad533442b7b2ba9d"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/gui-env.sh",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/environment/gui-env.sh",
+      "relative_path": "environment/gui-env.sh",
+      "bytes": 1522,
+      "sha256": "3e20d1a5bb5b634e2e1e238876912e098367d66edabe9e5d8535755d42bf1830"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/build-env.sh",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/environment/build-env.sh",
+      "relative_path": "environment/build-env.sh",
+      "bytes": 405,
+      "sha256": "4fac3e9222398134bcb088f918826bad757ab76df96cd6dc9ded1ab44e43651f"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/gui-cache.cmake",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/environment/gui-cache.cmake",
+      "relative_path": "environment/gui-cache.cmake",
+      "bytes": 870,
+      "sha256": "82d2f679d54633956fd57512631426ae58b74e0f1ffc35c06b557d4eb011c98e"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/w1-015/fonts.conf",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/environment/fonts.conf",
+      "relative_path": "environment/fonts.conf",
+      "bytes": 379,
+      "sha256": "30786fb052db36754bf54aa8c4def90ad86423685272e8927fa5ebdb2dc379cc"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/w2-022/provenance.json",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/prior-provenance/w2-022/provenance.json",
+      "relative_path": "prior-provenance/w2-022/provenance.json",
+      "bytes": 5250,
+      "sha256": "f9689ed3761846c1365950a3665cd0563f7775aa53f0fe57b20a872630c98f9c"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/w2-022/python-provenance.json",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/prior-provenance/w2-022/python-provenance.json",
+      "relative_path": "prior-provenance/w2-022/python-provenance.json",
+      "bytes": 1276,
+      "sha256": "dd294179e6dbf55793554e58872a12300f64f8cbea46aba70190022e3d4e413a"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/w2-022/recovery.json",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/prior-provenance/w2-022/recovery.json",
+      "relative_path": "prior-provenance/w2-022/recovery.json",
+      "bytes": 2329,
+      "sha256": "004e1e17519c1265b514ef5e6b962429b3a15e20ef6ecfcbde1a02f1b0fdbd9f"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/w2-036/frozenrepo/manifest.json",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/prior-provenance/w2-036/manifest.json",
+      "relative_path": "prior-provenance/w2-036/manifest.json",
+      "bytes": 1277,
+      "sha256": "e473d6d00b9dad578f6c58204f5a64dd00967e696cb78090db8bdfb0bb938b38"
+    },
+    {
+      "origin": "/home/agent/rhoades-9a04c9726e31/w2-036/native-run01/outcome.json",
+      "copy": "/home/agent/rhoades-9a04c9726e31/w4-061/prior-provenance/w2-036/outcome.json",
+      "relative_path": "prior-provenance/w2-036/outcome.json",
+      "bytes": 358295,
+      "sha256": "78c251f5abba315b17cc6ba4f1f280d04e1824ccdbee4e2caa440710b0a4dc1a"
+    }
+  ],
+  "external_runtime_inputs": [
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/X.py",
+      "bytes": 10687,
+      "sha256": "84a214be84339621204c0f025dc7e158312fc4a998e82be1b413ac6804231c0b"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/XK.py",
+      "bytes": 3299,
+      "sha256": "d6499ee973ebb90e57fbfae5eadefaa1350e7e35cdc3bbc60d9e575c895aad5b"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/Xatom.py",
+      "bytes": 2047,
+      "sha256": "551234bbc295f8bf834ae50749ec68161f0405bd089f603f92b92898e602b680"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/Xcursorfont.py",
+      "bytes": 2128,
+      "sha256": "9fe00c22a4c1661b8d552954e0517bf5eee9830616fe75fda90e09163cdf56bc"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/Xutil.py",
+      "bytes": 2298,
+      "sha256": "eb90c8ac810d8624b3fd57eea35d877fb74158934a8ed5bdc1d057bb87f072c9"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/__init__.py",
+      "bytes": 1223,
+      "sha256": "f585e519798e6c288b95f44b440e14d87b1a320a69b567f56322ec73798238b8"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/display.py",
+      "bytes": 38048,
+      "sha256": "36282189fe078f9a6770e67d53f74c8b9223f9567e7adaa40db995f6f4760d4b"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/error.py",
+      "bytes": 4911,
+      "sha256": "8b4941c9461d8177efba2b31fb686a8de736fcede3c1a9ea925cce84e099fccb"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/ext/__init__.py",
+      "bytes": 1679,
+      "sha256": "988b97f8be73c5b8068e076736577112d38c1bbe8ed735a4131c10abb8c3c785"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/ext/composite.py",
+      "bytes": 8861,
+      "sha256": "b3599b97682d7399eb808ff284e5bfd18ed2b7c4c051c51eb194fada1b98a94b"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/ext/damage.py",
+      "bytes": 5898,
+      "sha256": "6cbabe4ba8b31af7079bdb25dc191bd4cb9020d0c2d03359593d80428bf9166e"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/ext/dpms.py",
+      "bytes": 6948,
+      "sha256": "a124eef81d52934551152254c94366e1376b6b80e23cd0f63021a775d23e82f8"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/ext/ge.py",
+      "bytes": 3481,
+      "sha256": "ffc99877367268901e4d5e4b2b1b594123bed401f384e26aaa6cd172b5a6cd60"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/ext/nvcontrol.py",
+      "bytes": 191917,
+      "sha256": "bb285832bd89b0611bfb5bf874d0c0eb72c612a2fd0a4f70abe6a5fa6bb1ed4b"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/ext/randr.py",
+      "bytes": 38563,
+      "sha256": "1ccd5d084c14435697b554a944302f4f8740cc54f1fcf3b119925ddfa285fd3d"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/ext/record.py",
+      "bytes": 9664,
+      "sha256": "eea47d551ea434a351fdca3496d18793b88a3905bbe4be67c8daba0e700118f4"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/ext/res.py",
+      "bytes": 9244,
+      "sha256": "3464c86eafc8664fd76b43b0e80721b8974fea8a203852475b269f0a5e470a94"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/ext/screensaver.py",
+      "bytes": 6451,
+      "sha256": "03eec876b98f6395a3fb39ba3fe0e74e4ee88b1f42d01ae747b28fc9ec63c49b"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/ext/security.py",
+      "bytes": 5180,
+      "sha256": "91dc9685dc9de4a83c44986bed1680be513b325fb4b05c015aabca67b4335b68"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/ext/shape.py",
+      "bytes": 8147,
+      "sha256": "e17841ef065b741aed5546d6d4da53a78f6e251b45fadc7077e8cca56e4449b1"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/ext/xfixes.py",
+      "bytes": 7673,
+      "sha256": "0e75c693744d1aa4708110b446be354fcfaf4fa5119a6de2279791fb736681ea"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/ext/xinerama.py",
+      "bytes": 7134,
+      "sha256": "a9fd83ee618e08237b4d7856ea60882199b6e4c8aa913dbdc41b9d23173ac865"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/ext/xinput.py",
+      "bytes": 21369,
+      "sha256": "f0fd842ca2b4c3dd90555e921578beca26321d57c6e746ac140d0d9cd3fa7106"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/ext/xtest.py",
+      "bytes": 4686,
+      "sha256": "76bfa649b77a3dde19f1e59ee74e81a2792e32a91dd8acd9afefc4c14cf08611"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/keysymdef/__init__.py",
+      "bytes": 1171,
+      "sha256": "bfafb7efe0f800e59414c568579a9a1982c9d8f1ac66e71aeb5720a7d64b08f6"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/keysymdef/apl.py",
+      "bytes": 388,
+      "sha256": "6275c7b8efdcba2b249afce6255bc06afaaef6bce4967d5caa14f67b819a3dd0"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/keysymdef/arabic.py",
+      "bytes": 1271,
+      "sha256": "06fb5896eeba0a7334fd3b661aa43eda8c8481c963a1c47046a9cbc99a52bacc"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/keysymdef/cyrillic.py",
+      "bytes": 2647,
+      "sha256": "7748dbbc8ab99215bdfe35d3ca62df3a37b2ba7b6502baf69c586705eebd52cf"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/keysymdef/greek.py",
+      "bytes": 1914,
+      "sha256": "f0c32bb64de898feb254e304353391e867d4f5d0e213d1fc9d702be6da9a556e"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/keysymdef/hebrew.py",
+      "bytes": 997,
+      "sha256": "e9909cac9fcd3f291fab689cc66b5cd260e7f58cbb55f48cd2a4e09289118d5b"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/keysymdef/katakana.py",
+      "bytes": 1467,
+      "sha256": "3b74e28bb540c0a95b3ca2866db1f5a7726c61ee98a97c97e5394a8bce534d6c"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/keysymdef/korean.py",
+      "bytes": 2967,
+      "sha256": "726923b3d043387eb8bfa8fe4e1a562e51e12dcde7aace4fa1527cd89a041a56"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/keysymdef/latin1.py",
+      "bytes": 3621,
+      "sha256": "b5db01dadb78038206947a95ca5f6f6d7eb51e0f2fe4a4af4cfc2146713c0a66"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/keysymdef/latin2.py",
+      "bytes": 1132,
+      "sha256": "6f2ba0a0f7bdca4deb9b7f979ffbe1d39018c2c468fd534858c5faf5be1c0c3c"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/keysymdef/latin3.py",
+      "bytes": 487,
+      "sha256": "7406c5053295e1474a540fd7404989ca08cc47f8f4f2e2fbb7010900cb0826e3"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/keysymdef/latin4.py",
+      "bytes": 714,
+      "sha256": "73b50e264065497ed4ab8237a174814b98d9dc07bbc72544ca4e57bda7dc5755"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/keysymdef/miscellany.py",
+      "bytes": 3302,
+      "sha256": "f49e90a50682587144ab3ca615743c723aa2bfe7a0be9db6536856d868cab59a"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/keysymdef/publishing.py",
+      "bytes": 2060,
+      "sha256": "35b2686bfe74929548ab715c2add9d5fe9aa0967fb1c1ef16ac26c021d935203"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/keysymdef/special.py",
+      "bytes": 514,
+      "sha256": "17379e4dfb3ca7d1809802e38e709111ade3c4b64668bbbcdeb9d130a2c1a491"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/keysymdef/technical.py",
+      "bytes": 1252,
+      "sha256": "a8b39eaad7d125ce53f13914d3bf5f88ccf95a5ac2b5cc36180149f31232bda6"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/keysymdef/thai.py",
+      "bytes": 2088,
+      "sha256": "0696f11194546f667798a38da94cce7f51038d18b34854c931e085aec2842a1c"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/keysymdef/xf86.py",
+      "bytes": 7051,
+      "sha256": "9ee1d4994820cb04a54c31fce36a7ef7cdef0bfc09f0e2a4098cc3d234e8ceba"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/keysymdef/xk3270.py",
+      "bytes": 768,
+      "sha256": "a81b3bf0c3e2c6296f537de1b1353d2167024b00aa61933984adb15897b0b100"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/keysymdef/xkb.py",
+      "bytes": 3022,
+      "sha256": "4178f5465c0d3078439e54187e69cac24750a8fc78335db7032bccb982c61277"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/protocol/__init__.py",
+      "bytes": 979,
+      "sha256": "a1f0f5e67f1603f89245686cdeb8811444bf607e3fdccae03fbb413b2aa31eff"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/protocol/display.py",
+      "bytes": 37415,
+      "sha256": "bdbd503f1f523cda1244bead1c20c5a4bfe826669e1e1ee41fd1f3c8d32bdb13"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/protocol/event.py",
+      "bytes": 15816,
+      "sha256": "9523cfbfe3d3b4d635ca04e5414703ec947be6e7a14dc7b88f0acf952accd9de"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/protocol/request.py",
+      "bytes": 49468,
+      "sha256": "e3b39c5b617801a92fc1c7bf838b64c32acf1341754fd4180b165da6f308ce08"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/protocol/rq.py",
+      "bytes": 45036,
+      "sha256": "50dc0337a18cea67c8f5de9827c87e230d7d037e5de38687fc4ff05365ab4f51"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/protocol/structs.py",
+      "bytes": 5489,
+      "sha256": "574c5f1ce101fd963be433c4cc4143ef3383db6f39c8521b8c3614a760507536"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/rdb.py",
+      "bytes": 20673,
+      "sha256": "5a34fc29e9be597a973efd681f3d03ea55409e9bbf32c07fc71178168f6dba4b"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/support/__init__.py",
+      "bytes": 986,
+      "sha256": "c4f7b8c076a68a4def037aa8a73a2c2524cb6aa7fd8e83b394198856fd126503"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/support/connect.py",
+      "bytes": 3194,
+      "sha256": "017e4a24d882098b418ec80dc0de99cc817eb034c0b4301cb9475b74962afb31"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/support/lock.py",
+      "bytes": 1591,
+      "sha256": "546cefccf2544be76dfd6c16238b19a9d313311b9c450fffb6d1d91a739e33f6"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/support/unix_connect.py",
+      "bytes": 7357,
+      "sha256": "353a268e88270bdac07e986242a5d48947ba81bd37713259c3319be1cff23397"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/support/vms_connect.py",
+      "bytes": 2161,
+      "sha256": "828e65c524e38e91e1d9f4a2fb2b3c8f767e54744a4e446e424f344d8433a166"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/threaded.py",
+      "bytes": 1124,
+      "sha256": "0f9802ef171827a2a1af938a70c65d7969c3f5dda104d475de54605a2245c15e"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/xauth.py",
+      "bytes": 4483,
+      "sha256": "3a81d921a24c7133f5549de1da3dabca1f8b20ea8d3a9e5673a8c4dde625d2e2"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/xobject/__init__.py",
+      "bytes": 1001,
+      "sha256": "925c8f09d2856af0dcab82ebf7e1e1ae77e8ae0dfc1ecf02e19056163983f613"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/xobject/colormap.py",
+      "bytes": 5866,
+      "sha256": "b6e39db79a48981feb0f8dbc929eb79ec0d6797fb91ee3754b850698c1883140"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/xobject/cursor.py",
+      "bytes": 1896,
+      "sha256": "585f3eb2cc8375b7a3e6a53a365ad1005918afe19841bbc74e2ea0a2695670be"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/xobject/drawable.py",
+      "bytes": 35256,
+      "sha256": "deb06b1cf97e7db66afcecf621ba37538a4593ed7d4106b0a232a2bdfc2812b4"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/xobject/fontable.py",
+      "bytes": 4349,
+      "sha256": "e78c35acc60891a7137aff3f0b0f9e7dfae7508d960338aef508f9108fc9e036"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/xobject/icccm.py",
+      "bytes": 3441,
+      "sha256": "468ccafa0441b138936c74cc55bb9f35d65ba5f024d94b426678ac945199fff5"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/Xlib/xobject/resource.py",
+      "bytes": 1791,
+      "sha256": "7221672bfccfb6d51b98392d249214143b5ed097afe8f712e4a4ac7963a39007"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/python_xlib-0.33.dist-info/INSTALLER",
+      "bytes": 4,
+      "sha256": "ceebae7b8927a3227e5303cf5e0f1f7b34bb542ad7250ac03fbcde36ec2f1508"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/python_xlib-0.33.dist-info/LICENSE",
+      "bytes": 26965,
+      "sha256": "3bb6f6bec94b99e2927a8880bf49c401f5e8f48a20ddea96310860264cae20b0"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/python_xlib-0.33.dist-info/METADATA",
+      "bytes": 6249,
+      "sha256": "e1806c7a8346a15961b7d17ef5e03137d7b938b467139c7ac832aa44d9f7af99"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/python_xlib-0.33.dist-info/RECORD",
+      "bytes": 9049,
+      "sha256": "c35473cc2a29076065dd61e01cc8ec310506cc359b9fbb87227e2089ffe38073"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/python_xlib-0.33.dist-info/REQUESTED",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/python_xlib-0.33.dist-info/WHEEL",
+      "bytes": 110,
+      "sha256": "cfd8f4c406bf26650a3299b3ef62b464600b48cfe7fb04159866e5797c765478"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/python_xlib-0.33.dist-info/direct_url.json",
+      "bytes": 300,
+      "sha256": "3313b2f29f32af0c194ce1c6242377ff8a5d546fc443caa7996343ed27befbbc"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/python_xlib-0.33.dist-info/top_level.txt",
+      "bytes": 5,
+      "sha256": "2986aac48bdcee877cb42b89812d6ffe7afd4f83a35957ec2389466b7f08e6e5"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/six-1.17.0.dist-info/INSTALLER",
+      "bytes": 4,
+      "sha256": "ceebae7b8927a3227e5303cf5e0f1f7b34bb542ad7250ac03fbcde36ec2f1508"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/six-1.17.0.dist-info/LICENSE",
+      "bytes": 1066,
+      "sha256": "4375ba20e2b9c6c4e7cad2940a628fd90e95cc3d50ee92aae755715d8ba1fbd0"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/six-1.17.0.dist-info/METADATA",
+      "bytes": 1658,
+      "sha256": "562042078c2752549f6d8a7c86dbc5dd708088a7be6d80672ec7b07100b72468"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/six-1.17.0.dist-info/RECORD",
+      "bytes": 739,
+      "sha256": "d7c2e13ecc2e639213fcac83b380e2628a77880315a1ade56beae73b1b09f39d"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/six-1.17.0.dist-info/REQUESTED",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/six-1.17.0.dist-info/WHEEL",
+      "bytes": 109,
+      "sha256": "a7178d5f925db427b9f0f51260ff6ea6673b8dd44f82f4f41a6f646f5487955c"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/six-1.17.0.dist-info/direct_url.json",
+      "bytes": 294,
+      "sha256": "c3a03f93113088943b5cc91fb3079e1a2739299a7a119646234da4ef7d660964"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/six-1.17.0.dist-info/top_level.txt",
+      "bytes": 4,
+      "sha256": "fe2547fe2604b445e70fc9d819062960552f9145bdb043b51986e478a4806a2b"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w2-022/python/six.py",
+      "bytes": 34703,
+      "sha256": "c51c91f703d3d4b3696c923cb5fec213e05e75d9215393befac7f2fa6a3904df"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/gui-env.sh",
+      "bytes": 1522,
+      "sha256": "3e20d1a5bb5b634e2e1e238876912e098367d66edabe9e5d8535755d42bf1830"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/build-env.sh",
+      "bytes": 405,
+      "sha256": "4fac3e9222398134bcb088f918826bad757ab76df96cd6dc9ded1ab44e43651f"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/w1-015/fonts.conf",
+      "bytes": 379,
+      "sha256": "30786fb052db36754bf54aa8c4def90ad86423685272e8927fa5ebdb2dc379cc"
+    },
+    {
+      "path": "/home/agent/rhoades-9a04c9726e31/sysroot/usr/bin/Xvfb",
+      "bytes": 2131520,
+      "sha256": "16667b1eaafbe0b09527c2152e45f81b4b8e977012281062fc2fb2427afa66ce"
+    },
+    {
+      "path": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "bytes": 30894944,
+      "sha256": "fa67443527ed9647f760d807e2a38f26340757123e643c4639cf273ed15d5ea7"
+    }
+  ]
+}

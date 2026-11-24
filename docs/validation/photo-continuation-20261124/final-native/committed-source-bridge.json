@@ -1,0 +1,296 @@
+{
+  "commit": "4369547403735c957689b547f478540e3277a79c",
+  "source_count": 48,
+  "all_match": true,
+  "source_files": [
+    {
+      "path": "CMakeLists.txt",
+      "tested_sha256": "4619d0aa41be71b7946664ac07c5e381205afc901dcf15319f21ae4d42c07adc",
+      "committed_sha256": "4619d0aa41be71b7946664ac07c5e381205afc901dcf15319f21ae4d42c07adc",
+      "equal": true
+    },
+    {
+      "path": "CMakePresets.json",
+      "tested_sha256": "a06e2a16dba0b4947352cbbcec2a7668d29b3f777c6f460f9d65f6bd0bb7f0aa",
+      "committed_sha256": "a06e2a16dba0b4947352cbbcec2a7668d29b3f777c6f460f9d65f6bd0bb7f0aa",
+      "equal": true
+    },
+    {
+      "path": "assets/reference/rhodes-suitcase-reference.webp",
+      "tested_sha256": "782b4c83a2bf827ed0d363bc567cdc2211485da6e650db4ae99448e78b7da24b",
+      "committed_sha256": "782b4c83a2bf827ed0d363bc567cdc2211485da6e650db4ae99448e78b7da24b",
+      "equal": true
+    },
+    {
+      "path": "cmake/Vst3.cmake",
+      "tested_sha256": "48715fcf593fbb0338a51fceb6f0edc106e227dc6725a57df5c024aac7a28fc4",
+      "committed_sha256": "48715fcf593fbb0338a51fceb6f0edc106e227dc6725a57df5c024aac7a28fc4",
+      "equal": true
+    },
+    {
+      "path": "cmake/VstguiWin32Timer.cmake",
+      "tested_sha256": "211484666fff1fe57c8e442dbc98b3a0c76fd1119fbd21a5ce1d280368fd5c85",
+      "committed_sha256": "211484666fff1fe57c8e442dbc98b3a0c76fd1119fbd21a5ce1d280368fd5c85",
+      "equal": true
+    },
+    {
+      "path": "cmake/VstguiX11ChildWindow.cmake",
+      "tested_sha256": "74ad962f03a3581fcc424d85a2a6f7bf836655843e858285609f087033754e3e",
+      "committed_sha256": "74ad962f03a3581fcc424d85a2a6f7bf836655843e858285609f087033754e3e",
+      "equal": true
+    },
+    {
+      "path": "cmake/VstguiX11Keyboard.cmake",
+      "tested_sha256": "3f1b1de7d27a74c1d6d2dae21152b125e4b5c1bf349a78f3aa4bfa3848a76a9c",
+      "committed_sha256": "3f1b1de7d27a74c1d6d2dae21152b125e4b5c1bf349a78f3aa4bfa3848a76a9c",
+      "equal": true
+    },
+    {
+      "path": "cmake/VstguiX11Lifetime.cmake",
+      "tested_sha256": "2b1291c584fc285d219a09b84a752b548b3085a0f7b725464a2806a21afffb60",
+      "committed_sha256": "2b1291c584fc285d219a09b84a752b548b3085a0f7b725464a2806a21afffb60",
+      "equal": true
+    },
+    {
+      "path": "docs/specs/PHOTO_EDITOR_20261124.md",
+      "tested_sha256": "9b68c304da33113797543314fedc722db6da00ce981db28d7ab2742f5f955ed1",
+      "committed_sha256": "9b68c304da33113797543314fedc722db6da00ce981db28d7ab2742f5f955ed1",
+      "equal": true
+    },
+    {
+      "path": "include/rhodes/audio_engine.hpp",
+      "tested_sha256": "10efac8150c07e69ef41eed415a6e7403b4339179af902f91cd17ef498da7b97",
+      "committed_sha256": "10efac8150c07e69ef41eed415a6e7403b4339179af902f91cd17ef498da7b97",
+      "equal": true
+    },
+    {
+      "path": "include/rhodes/audio_filter_coefficients.hpp",
+      "tested_sha256": "c1ab39356d7e44348f9dc56f9120ff2598889d1fa144e5294b084585655eb76d",
+      "committed_sha256": "c1ab39356d7e44348f9dc56f9120ff2598889d1fa144e5294b084585655eb76d",
+      "equal": true
+    },
+    {
+      "path": "include/rhodes/contact_reference.hpp",
+      "tested_sha256": "00b99e61dc73686c22675bedf647c3ad1b27ba13332180431f5a42e485057fda",
+      "committed_sha256": "00b99e61dc73686c22675bedf647c3ad1b27ba13332180431f5a42e485057fda",
+      "equal": true
+    },
+    {
+      "path": "include/rhodes/control_text.hpp",
+      "tested_sha256": "de28474739274f4fac20dc1d3d5602cb63c62ddd04a33202cb5375985086e63d",
+      "committed_sha256": "de28474739274f4fac20dc1d3d5602cb63c62ddd04a33202cb5375985086e63d",
+      "equal": true
+    },
+    {
+      "path": "include/rhodes/control_value.hpp",
+      "tested_sha256": "d7c282afdcffaef90f7872f97b37bfb34671448da64376d3439649c052d4d48d",
+      "committed_sha256": "d7c282afdcffaef90f7872f97b37bfb34671448da64376d3439649c052d4d48d",
+      "equal": true
+    },
+    {
+      "path": "include/rhodes/editor_audition.hpp",
+      "tested_sha256": "6c4ea15ddd2bb3c7498f848c5c123de8c69b28fe14aaa2aa694c5adcaf6442c9",
+      "committed_sha256": "6c4ea15ddd2bb3c7498f848c5c123de8c69b28fe14aaa2aa694c5adcaf6442c9",
+      "equal": true
+    },
+    {
+      "path": "include/rhodes/event_processor.hpp",
+      "tested_sha256": "cbfebb44d5d7eee06ab6952209a4683c7a7da58c04ea81f6583b98cfb981517d",
+      "committed_sha256": "cbfebb44d5d7eee06ab6952209a4683c7a7da58c04ea81f6583b98cfb981517d",
+      "equal": true
+    },
+    {
+      "path": "include/rhodes/fir_decimator.hpp",
+      "tested_sha256": "e54faeb397bcbccb9ed9834cfc264d84550c4ef375d8e5273a720eb1f190071b",
+      "committed_sha256": "e54faeb397bcbccb9ed9834cfc264d84550c4ef375d8e5273a720eb1f190071b",
+      "equal": true
+    },
+    {
+      "path": "include/rhodes/front_panel_effects.hpp",
+      "tested_sha256": "e8998a71f848a14b617317f88447a8655dde60fefb7981762fb15ad0de3fa7d0",
+      "committed_sha256": "e8998a71f848a14b617317f88447a8655dde60fefb7981762fb15ad0de3fa7d0",
+      "equal": true
+    },
+    {
+      "path": "include/rhodes/front_panel_state.hpp",
+      "tested_sha256": "fe4181f15b328db42cec646a22de186636d0dfa27d4a384b016ad47e6d5a7a71",
+      "committed_sha256": "fe4181f15b328db42cec646a22de186636d0dfa27d4a384b016ad47e6d5a7a71",
+      "equal": true
+    },
+    {
+      "path": "include/rhodes/instrument_state.hpp",
+      "tested_sha256": "1550dbbd83ea20838a6cac1579c716f7d01a94429450c19b62d18df14d102043",
+      "committed_sha256": "1550dbbd83ea20838a6cac1579c716f7d01a94429450c19b62d18df14d102043",
+      "equal": true
+    },
+    {
+      "path": "include/rhodes/note_tracker.hpp",
+      "tested_sha256": "76931b326daae3a112b56420f9be9ea5b03b1c30307f1dc68b6c13c710cd830f",
+      "committed_sha256": "76931b326daae3a112b56420f9be9ea5b03b1c30307f1dc68b6c13c710cd830f",
+      "equal": true
+    },
+    {
+      "path": "include/rhodes/plugin_state.hpp",
+      "tested_sha256": "973576bb1db6fe6830b60193065a3acd4d0522f45eb0e33ca8a26524726dab15",
+      "committed_sha256": "973576bb1db6fe6830b60193065a3acd4d0522f45eb0e33ca8a26524726dab15",
+      "equal": true
+    },
+    {
+      "path": "include/rhodes/quadrature_engine.hpp",
+      "tested_sha256": "c625a82b61eb3e721061177654c12ffa6aac0049e026b9633ae53ea2abaa773d",
+      "committed_sha256": "c625a82b61eb3e721061177654c12ffa6aac0049e026b9633ae53ea2abaa773d",
+      "equal": true
+    },
+    {
+      "path": "include/rhodes/quadrature_filter_coefficients.hpp",
+      "tested_sha256": "3cca4ea6553ceb01810a6230f2144491364fa48af7d6cfbc43a8e3dcf5d08b51",
+      "committed_sha256": "3cca4ea6553ceb01810a6230f2144491364fa48af7d6cfbc43a8e3dcf5d08b51",
+      "equal": true
+    },
+    {
+      "path": "include/rhodes/quadrature_fir.hpp",
+      "tested_sha256": "cf6c85e70036b3f1794ecf131a9db43bcb8da373e47c5335f56b1bb57559b45e",
+      "committed_sha256": "cf6c85e70036b3f1794ecf131a9db43bcb8da373e47c5335f56b1bb57559b45e",
+      "equal": true
+    },
+    {
+      "path": "include/rhodes/research_engine.hpp",
+      "tested_sha256": "2a6ba0483a010d9b7a44517c5ed7c215f05d57ed6e96bd6609127322092929e4",
+      "committed_sha256": "2a6ba0483a010d9b7a44517c5ed7c215f05d57ed6e96bd6609127322092929e4",
+      "equal": true
+    },
+    {
+      "path": "plugins/vst3/THIRD_PARTY_NOTICES.md",
+      "tested_sha256": "f3ed30cd41b48ce88753de641057f51f51e78ea19b60a40e4398f29fe191f901",
+      "committed_sha256": "f3ed30cd41b48ce88753de641057f51f51e78ea19b60a40e4398f29fe191f901",
+      "equal": true
+    },
+    {
+      "path": "plugins/vst3/controller.cpp",
+      "tested_sha256": "2c77542e1aeb58bceaab8e7d6dd59250d17b5e4bc8f7d489b367ea5e805a0e36",
+      "committed_sha256": "2c77542e1aeb58bceaab8e7d6dd59250d17b5e4bc8f7d489b367ea5e805a0e36",
+      "equal": true
+    },
+    {
+      "path": "plugins/vst3/controller.hpp",
+      "tested_sha256": "a0dcf316c8d6a013a7a8b6a75485b451e21b070e6b57f62ef52fdf605b252183",
+      "committed_sha256": "a0dcf316c8d6a013a7a8b6a75485b451e21b070e6b57f62ef52fdf605b252183",
+      "equal": true
+    },
+    {
+      "path": "plugins/vst3/factory.cpp",
+      "tested_sha256": "16e5da7194a8f548dd91b84e3c66ed81b5bdf5ff618e66dbafa3abdc1a16158c",
+      "committed_sha256": "16e5da7194a8f548dd91b84e3c66ed81b5bdf5ff618e66dbafa3abdc1a16158c",
+      "equal": true
+    },
+    {
+      "path": "plugins/vst3/photo_editor.cpp",
+      "tested_sha256": "caf54d88c871bab05ec572904ef4e3de7c985c0b713e65c398e0010786679fcf",
+      "committed_sha256": "caf54d88c871bab05ec572904ef4e3de7c985c0b713e65c398e0010786679fcf",
+      "equal": true
+    },
+    {
+      "path": "plugins/vst3/photo_editor.hpp",
+      "tested_sha256": "0c421cae0d330f22b00bab37bb17e73cddd948dbd56a0834c6cb086d6cec97db",
+      "committed_sha256": "0c421cae0d330f22b00bab37bb17e73cddd948dbd56a0834c6cb086d6cec97db",
+      "equal": true
+    },
+    {
+      "path": "plugins/vst3/photo_geometry.hpp",
+      "tested_sha256": "77fe4f4ac93ee0b212ef3f5399eb5cfa8884076d8eef51d2adf2123e6d85e0bd",
+      "committed_sha256": "77fe4f4ac93ee0b212ef3f5399eb5cfa8884076d8eef51d2adf2123e6d85e0bd",
+      "equal": true
+    },
+    {
+      "path": "plugins/vst3/photo_key_highlight.hpp",
+      "tested_sha256": "9302c59a677564253ea80fb92deeef811864def11a4fdd7e03b3a20c2477c58a",
+      "committed_sha256": "9302c59a677564253ea80fb92deeef811864def11a4fdd7e03b3a20c2477c58a",
+      "equal": true
+    },
+    {
+      "path": "plugins/vst3/photo_native_focus.cpp",
+      "tested_sha256": "c24f8d70731a193b0b7bf833984c00df5a60375d2d306986f1440757af938c5f",
+      "committed_sha256": "c24f8d70731a193b0b7bf833984c00df5a60375d2d306986f1440757af938c5f",
+      "equal": true
+    },
+    {
+      "path": "plugins/vst3/photo_native_focus.hpp",
+      "tested_sha256": "9bf4553ec6a1418747d5379ba531bf15bbfb7e589f3923ff9c8131485704396a",
+      "committed_sha256": "9bf4553ec6a1418747d5379ba531bf15bbfb7e589f3923ff9c8131485704396a",
+      "equal": true
+    },
+    {
+      "path": "plugins/vst3/plugin_ids.hpp",
+      "tested_sha256": "558491751250799eadce1eb95ad1cf59cde728c8bf9490a2962aafeaa8ca128d",
+      "committed_sha256": "558491751250799eadce1eb95ad1cf59cde728c8bf9490a2962aafeaa8ca128d",
+      "equal": true
+    },
+    {
+      "path": "plugins/vst3/processor.cpp",
+      "tested_sha256": "1ef121c4afb190c45fa1ff41a2127fb7487919dc69d8856c4a05e79844f760a9",
+      "committed_sha256": "1ef121c4afb190c45fa1ff41a2127fb7487919dc69d8856c4a05e79844f760a9",
+      "equal": true
+    },
+    {
+      "path": "plugins/vst3/processor.hpp",
+      "tested_sha256": "5206559cf6a05e6b53e8f6d043a4860b1c4afb995ca8253ed1f75762a5270574",
+      "committed_sha256": "5206559cf6a05e6b53e8f6d043a4860b1c4afb995ca8253ed1f75762a5270574",
+      "equal": true
+    },
+    {
+      "path": "plugins/vst3/resources/Expat-LICENSE.txt",
+      "tested_sha256": "f6eeb2310d0b00e5cecac39c73a0696a5bdbfb754b26325ed5a502fc1a6c338c",
+      "committed_sha256": "f6eeb2310d0b00e5cecac39c73a0696a5bdbfb754b26325ed5a502fc1a6c338c",
+      "equal": true
+    },
+    {
+      "path": "plugins/vst3/resources/rhodes-suitcase.png",
+      "tested_sha256": "84e2d48fc0311eb923083cc3e1f96dc5fa1b3f8a6e085daee7c973e54d754d26",
+      "committed_sha256": "84e2d48fc0311eb923083cc3e1f96dc5fa1b3f8a6e085daee7c973e54d754d26",
+      "equal": true
+    },
+    {
+      "path": "plugins/vst3/resources/rhodes-suitcase.uidesc",
+      "tested_sha256": "7554fecedf67cf744b3aa7f6cf12dc4f874d8b5e0b97ec66959ba2b42ea5825e",
+      "committed_sha256": "7554fecedf67cf744b3aa7f6cf12dc4f874d8b5e0b97ec66959ba2b42ea5825e",
+      "equal": true
+    },
+    {
+      "path": "plugins/vst3/state_stream.cpp",
+      "tested_sha256": "30b057afe520c81bb87e0298b32835ea47957ff46b452cf417244dbb51b55051",
+      "committed_sha256": "30b057afe520c81bb87e0298b32835ea47957ff46b452cf417244dbb51b55051",
+      "equal": true
+    },
+    {
+      "path": "plugins/vst3/state_stream.hpp",
+      "tested_sha256": "a0885ed2c7a381fac06a65e37c02fa115f5c29930a7881ffd5186297fb9d3b28",
+      "committed_sha256": "a0885ed2c7a381fac06a65e37c02fa115f5c29930a7881ffd5186297fb9d3b28",
+      "equal": true
+    },
+    {
+      "path": "src/contact_reference.cpp",
+      "tested_sha256": "70dde1bfab9c2e35457da2ebf66ff4638cb6f56f1f19a84dbe55a1752d5166fd",
+      "committed_sha256": "70dde1bfab9c2e35457da2ebf66ff4638cb6f56f1f19a84dbe55a1752d5166fd",
+      "equal": true
+    },
+    {
+      "path": "src/research_engine.cpp",
+      "tested_sha256": "01c2a9f7f9f7cfa4f759be56770178f32a71a28667d4ac6ab390e03ff7a95814",
+      "committed_sha256": "01c2a9f7f9f7cfa4f759be56770178f32a71a28667d4ac6ab390e03ff7a95814",
+      "equal": true
+    },
+    {
+      "path": "tools/verify_native_photo_editor.py",
+      "tested_sha256": "ce0f2d5c3e74e34c478186bef80ee6879ab0a5328b45d682d9d34d45b6dfda47",
+      "committed_sha256": "ce0f2d5c3e74e34c478186bef80ee6879ab0a5328b45d682d9d34d45b6dfda47",
+      "equal": true
+    },
+    {
+      "path": "tools/verify_photo_interactions.py",
+      "tested_sha256": "ccfad904084c57a0870bd0c2ba10a1603421482547c2dee03f0c2a595cc7c3b5",
+      "committed_sha256": "ccfad904084c57a0870bd0c2ba10a1603421482547c2dee03f0c2a595cc7c3b5",
+      "equal": true
+    }
+  ],
+  "scope": "Actual frozen native inputs match committed repository bytes; external SDK/build/runtime hashes remain separately recorded."
+}

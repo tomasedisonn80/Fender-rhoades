@@ -1,0 +1,2 @@
+effects_bytes=208 monitored_cpp_allocations=0
+PASS allocation_free (2 checks)
