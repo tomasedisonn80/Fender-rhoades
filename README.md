@@ -37,7 +37,15 @@ The [native platform record](docs/validation/native-platforms-20261124.md)
 documents successful Linux, Windows and macOS builds and host tests. All three
 variants passed the SDK and module metadata validators on each platform at the
 recorded revision; exact test counts and platform-specific skips are listed.
-These results do not establish native DAW operation or audio-device deadlines.
+These retained results predate HOST-002 and do not validate its changes or
+establish native DAW operation or audio-device deadlines.
+
+The [HOST-002 MIDI continuation](docs/specs/HOST_MIDI_20261124.md) adds
+channel-specific CC123 release commands, validated polyphonic pressure as a
+no-op, and strict generic-control text conversion. Shared sustain and ringing
+tails are preserved; pressure does not alter synthesis. Acceptance, including
+native validation of the changed source, remains pending. The
+[VST3 guide](docs/VST3.md) explains the controls and host-delivery limits.
 
 The separate [four-fixture contact diagnostic](docs/CONTACT_PEAK_DIAGNOSTIC.md)
 compares synthetic compression and force maxima with independent references,
@@ -66,9 +74,11 @@ validation gates.
 | Audit the filtered-audio continuation | [Five-wave continuation](docs/agents/CONTINUATION_CAMPAIGN.md) |
 | Audit quadrature and portability development | [Quadrature campaign and report hashes](docs/agents/QUADRATURE_CAMPAIGN.md) |
 | Audit current main-branch development | [24 November campaign and report ledgers](docs/agents/DEVELOPMENT_WAVES_20261124.md) |
+| Audit MIDI interoperability development | [Separate continuation-C ledger](project/continuation-c-20261124.json) |
 | Inspect the filtered audio design | [Timing, response and compatibility contract](docs/specs/FILTERED_AUDIO_20261123.md) |
 | Inspect the quadrature audio design | [Frozen Q6 timing and verification contract](docs/specs/QUADRATURE_AUDIO_20261123.md) |
-| Inspect the VST3 prototype contract | [Host behavior and limits](docs/specs/HOST_PROTOTYPE_20261123.md) |
+| Inspect the original VST3 prototype contract | [Original host behavior and later overrides](docs/specs/HOST_PROTOTYPE_20261123.md) |
+| Inspect current MIDI and control behavior | [CC123, pressure and strict text contract](docs/specs/HOST_MIDI_20261124.md) |
 | Build and try the VST3 instrument | [VST3 setup and controls](docs/VST3.md) |
 | Evaluate a build in a named DAW | [Proposed manual evaluation protocol](docs/DAW_VALIDATION.md) |
 | Run the separate hammer/damper experiments | [Offline contact reference](docs/CONTACT_REFERENCE.md) |
@@ -161,7 +171,7 @@ the sanitizer preset excludes Windows. See
 | Stage controls | Architecture and component requirements | Revision-specific connected passive circuit |
 | Instrument identity | Unidentified profile with units and provenance fields | Actual specimen, construction revisions and measurements |
 | Runtime | Bounded events; direct, sampled-filtered and batched Q6 paths; full synthetic quadrature/reference matrix and exact retained replay | Remaining direct/filtered aliasing and convergence gates, future-model error budgets and representative host/device timing |
-| Host product | Three VST3 variants, isolated model states 1/2/3, generic controls, reported latency and bounded rejection cleanup; native CI on Linux, Windows and macOS | Native DAW/device validation, deployment baselines, product UI and release packaging |
+| Host product | Three VST3 variants, isolated model states 1/2/3, generic controls, reported latency, bounded rejection, channel CC123 and validated pressure no-op | HOST-002 acceptance, native DAW/device validation, deployment baselines, product UI and release packaging |
 
 Peterson/Janus Suitcase electronics, amplifiers, loudspeakers and room acoustics
 belong to separately identified future profiles. They do not silently become part

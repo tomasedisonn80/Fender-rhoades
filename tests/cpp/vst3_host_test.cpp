@@ -1105,12 +1105,167 @@ void allocation_guard_at_rate(double rate) {
     require(process(host.processor, host.data) == sdk::kResultOk, "guarded recall boundary failed");
 }
 
+template<class Sample>
+void allocation_guard_commands_at_rate(double rate) {
+    // Keep the existing two-queue fixture unchanged. This fixed host wrapper
+    // admits gain, sustain and all sixteen command queues without callback allocation.
+    struct CommandParameters final : FixedHostObject<vst::IParameterChanges> {
+        std::array<vst::IParamValueQueue*, 18> values{};
+        sdk::int32 PLUGIN_API getParameterCount() override { return 18; }
+        vst::IParamValueQueue* PLUGIN_API getParameterData(sdk::int32 index) override {
+            return index >= 0 && index < 18 ? values[static_cast<std::size_t>(index)] : nullptr;
+        }
+        vst::IParamValueQueue* PLUGIN_API addParameterData(const vst::ParamID&,
+                                                         sdk::int32&) override {
+            return nullptr;
+        }
+    } parameters;
+    ProcessorHost<Sample, 64> host{rate};
+    const auto queues = std::make_unique<std::array<ParameterQueue, 18>>();
+    auto& gain = (*queues)[0];
+    auto& pedal = (*queues)[1];
+    gain.count = pedal.count = 1;
+    gain.values[0] = {0, 0.25};
+    pedal.id = kSustainId;
+    pedal.values[0] = {0, 0.0};
+    for (std::size_t index = 0; index < queues->size(); ++index) {
+        parameters.values[index] = &(*queues)[index];
+    }
+    EventList events;
+    events.count = 256;
+    for (sdk::int16 channel = 0; channel < 16; ++channel) {
+        auto& command = (*queues)[2 + static_cast<std::size_t>(channel)];
+        command.id = vst::ParamID{0x1000} + static_cast<vst::ParamID>(channel);
+        command.count = 16;
+        for (sdk::int32 step = 0; step < 16; ++step) {
+            // Exactly 256 commands, all with the same zero value. Commands
+            // between strikes must still release holders on every channel.
+            command.values[static_cast<std::size_t>(step)] = {4 * step, 0.0};
+            auto& event = events.values[static_cast<std::size_t>(16 * step + channel)];
+            const auto pitch = static_cast<sdk::int16>(28 + channel);
+            if (step % 2 == 0 || step == 15) {
+                event = note_on(step == 15 ? 63 : 4 * step, channel, pitch, 0.25F, channel);
+            } else {
+                event.type = vst::Event::kPolyPressureEvent;
+                event.sampleOffset = 4 * step;
+                event.polyPressure.channel = channel;
+                event.polyPressure.pitch = pitch;
+                event.polyPressure.pressure = 0.5F;
+                event.polyPressure.noteId = -1;
+            }
+        }
+    }
+    host.data.inputEvents = &events;
+    host.data.inputParameterChanges = &parameters;
+    const auto reference_storage = std::make_unique<ScalarEngine>();
+    auto& reference = *reference_storage;
+    require(reference.prepare(rate), "command allocation reference prepare");
+    bool held = false;
+    for (int block = 0; block < 2; ++block) {
+        require(process(host.processor, host.data) == sdk::kResultOk,
+                "guarded dense channel commands failed");
+        // Independent schedule: pressure does nothing; each four-frame command
+        // releases the sixteen distinct keys before any simultaneous strike.
+        for (std::size_t frame = 0; frame < host.left.size(); ++frame) {
+            if (frame % 4 == 0 && held) {
+                for (std::size_t key = 0; key < 16; ++key) {
+                    require(reference.note_off(key), "command allocation reference release");
+                }
+                held = false;
+            }
+            if (frame % 8 == 0 || frame == 63) {
+                for (std::size_t key = 0; key < 16; ++key) {
+                    require(reference.note_on(key, 0.25), "command allocation reference strike");
+                }
+                held = true;
+            }
+            expect_sample(host, frame, 8.0 * scalar_sample(reference));
+        }
+        require(host.processor.note_tracker().active_count() == 16,
+                "dense commands lost the final channel holders");
+        for (std::size_t key = 0; key < 16; ++key) {
+            require(host.processor.note_tracker().held_count(key) == 1,
+                    "dense commands changed per-key ownership");
+        }
+        same_mechanics(host.processor.engine_processor().engine(), reference);
+    }
+
+    const ProcessorSnapshot before{host.processor};
+    const auto reject = [&]() {
+        host.fill(Sample{7});
+        require(process(host.processor, host.data) != sdk::kResultOk,
+                "guarded late malformed command traffic accepted");
+        before.expect_unchanged(host.processor);
+        host.expect_silence();
+    };
+    gain.values[0].value = 0.75;
+    pedal.values[0].value = 1.0;
+    auto& final_command = (*queues)[17];
+    const auto command_reads = final_command.get_calls;
+    final_command.values[15].value = std::numeric_limits<double>::quiet_NaN();
+    reject();
+    require(final_command.get_calls == command_reads + 16,
+            "malformed command did not reach the final command point");
+    final_command.values[15].value = 0.0;
+    const auto final_note = events.values[255];
+    events.values[255] = events.values[223]; // A valid pressure event, moved to the final offset.
+    events.values[255].sampleOffset = 63;
+    events.values[255].polyPressure.pressure = 1.25F;
+    const auto event_reads = events.get_calls;
+    reject();
+    require(events.get_calls == event_reads + 256,
+            "malformed pressure did not reach the final input event");
+    events.values[255] = final_note;
+    gain.values[0].value = 0.25;
+    pedal.values[0].value = 0.0;
+
+    events.count = 0;
+    for (std::size_t index = 2; index < queues->size(); ++index) {
+        for (std::size_t point = 0; point < 16; ++point) {
+            (*queues)[index].values[point].offset = 0;
+        }
+    }
+    host.data.numSamples = 0;
+    host.data.numOutputs = 0;
+    host.data.outputs = nullptr;
+    host.fill(Sample{7});
+    require(process(host.processor, host.data) == sdk::kResultOk,
+            "guarded dense command flush failed");
+    require(host.processor.note_tracker().active_count() == 0 &&
+            host.processor.current_state() == before.live &&
+            host.processor.published_state() == before.published &&
+            host.processor.engine_processor().frame_cursor() == before.engine.frame_cursor(),
+            "command flush retained holders or changed configuration/time");
+    same_mechanics(host.processor.engine_processor().engine(), before.engine.engine());
+    const auto untouched = [](Sample value) { return value == Sample{7}; };
+    require(std::all_of(host.left.begin(), host.left.end(), untouched) &&
+            std::all_of(host.right.begin(), host.right.end(), untouched),
+            "zero-frame command flush touched samples");
+    for (std::size_t key = 0; key < 16; ++key) {
+        require(reference.note_off(key), "command flush reference release");
+    }
+    host.data.numSamples = 64;
+    host.data.numOutputs = 1;
+    host.data.outputs = &host.output;
+    host.data.inputParameterChanges = nullptr;
+    require(process(host.processor, host.data) == sdk::kResultOk,
+            "guarded command flush continuation failed");
+    for (std::size_t frame = 0; frame < host.left.size(); ++frame) {
+        expect_sample(host, frame, 8.0 * scalar_sample(reference));
+    }
+    require(std::any_of(host.left.begin(), host.left.end(),
+                        [](Sample value) { return value != Sample{0}; }),
+            "command flush erased the ringing tail");
+}
+
 void allocation_guard() {
     // Exercise both negotiated output formats and every filtered rate branch.
     // Construction and stream I/O are outside the measured process() interval.
     for (double rate : {48000.0, 96000.0, 192000.0}) {
         allocation_guard_at_rate<float>(rate);
         allocation_guard_at_rate<double>(rate);
+        allocation_guard_commands_at_rate<float>(rate);
+        allocation_guard_commands_at_rate<double>(rate);
     }
 }
 

@@ -286,12 +286,12 @@ public:
     ProcessorHost& operator=(const ProcessorHost&) = delete;
 
     void fill(Sample value) { left.fill(value); right.fill(value); }
-    void expect_silence(std::size_t frames = Frames) const {
-        require(frames <= Frames, "invalid silence-check bound");
+    void expect_silence(std::size_t samples_to_check = Frames) const {
+        require(samples_to_check <= Frames, "invalid silence-check bound");
         const auto zero = [](Sample value) { return value == Sample{0}; };
-        require(std::all_of(left.begin(), left.begin() + static_cast<std::ptrdiff_t>(frames), zero)
+        require(std::all_of(left.begin(), left.begin() + static_cast<std::ptrdiff_t>(samples_to_check), zero)
                 && std::all_of(right.begin(), right.begin() +
-                               static_cast<std::ptrdiff_t>(frames), zero),
+                               static_cast<std::ptrdiff_t>(samples_to_check), zero),
                 "complete stereo output was not silenced");
         require(output.silenceFlags == 3, "silent stereo flags are incorrect");
     }

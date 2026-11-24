@@ -6,7 +6,7 @@
   "requested_agents": 100,
   "requested_waves": 5,
   "concurrency_limit_including_integrator": 4,
-  "completed_agents": 31,
+  "completed_agents": 40,
   "agents": [
     {
       "assignment": 1,
@@ -260,19 +260,73 @@
       "assignment": 32,
       "wave": 2,
       "agent_task_name": "/root/w2_032_command_allocation",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w2-032.md",
+      "sha256": "6b9658fa2f2dfeaffe2b94186fdda1af263d516136323a34b79f5d8790977e19"
     },
     {
       "assignment": 33,
       "wave": 2,
       "agent_task_name": "/root/w2_033_loaded_compatibility",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w2-033.md",
+      "sha256": "71c64e1177cd9dbcdf5602dfa86ff6b9df752a399c531052bab7181eb967d06a"
     },
     {
       "assignment": 34,
       "wave": 2,
       "agent_task_name": "/root/w2_034_campaign_validator",
-      "status": "running"
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w2-034.md",
+      "sha256": "9870de3d30e7b14a4a91378dbaa6c19f13ec2b6b4ed8bddef2f33d867983f0a5"
+    },
+    {
+      "assignment": 35,
+      "wave": 2,
+      "agent_task_name": "/root/w2_035_host_project_docs",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w2-035.md",
+      "sha256": "09e8af13243bb13e88a64bf1a1a3a77ebdad181f6647edf8c617b4ff695eead7"
+    },
+    {
+      "assignment": 36,
+      "wave": 2,
+      "agent_task_name": "/root/w2_036_legacy_wav_replay",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w2-036.md",
+      "sha256": "c3d9d0eeb2b15b028b968333bdfcfb4af2ee3ad9cca327472dc06663ec7b6bd8"
+    },
+    {
+      "assignment": 37,
+      "wave": 2,
+      "agent_task_name": "/root/w2_037_daw_protocol",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w2-037.md",
+      "sha256": "ac2c867a7aa0f13020525cae0e9456a4ea8909b7794b1d5cbb12fe93cd3f49a0"
+    },
+    {
+      "assignment": 38,
+      "wave": 2,
+      "agent_task_name": "/root/w2_038_command_cost",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w2-038.md",
+      "sha256": "0da1237dceb47478df3c7f42d6896c4c0c6fd54836d4e8e450c759001faf3b25"
+    },
+    {
+      "assignment": 39,
+      "wave": 2,
+      "agent_task_name": "/root/w2_039_final_adapter_review",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w2-039.md",
+      "sha256": "aae28607e1ee500afe9ec8eabec0e10d8679af9f4cf45e7a385274e60ab42595"
+    },
+    {
+      "assignment": 40,
+      "wave": 2,
+      "agent_task_name": "/root/w2_040_acceptance_gap_review",
+      "status": "completed",
+      "report": "docs/agents/reports/continuation-c/w2-040.md",
+      "sha256": "ac22c1b08feca6e587cbe7011da834d7ccced21826be014876d864230db00214"
     }
   ]
 }

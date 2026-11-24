@@ -3,7 +3,9 @@
 **This is a proposed protocol, not an executed DAW result.** It is intended to
 turn a trial of the three experimental instruments into a reproducible host
 observation. Existing [native CI results](validation/native-platforms-20261124.md)
-cover the stated harnesses and validators. A future session using this guide
+cover the stated harnesses and validators at their recorded source revisions;
+they predate the [MIDI continuation](specs/HOST_MIDI_20261124.md) and do not
+establish native acceptance of its changes. A future session using this guide
 covers its named DAW, machine, settings and build only; it does not establish
 measured Rhodes fidelity, complete RT-001, or qualify a release.
 
@@ -50,8 +52,20 @@ reported latency and any scan/load error. The current identities are defined in
 | Rhodes Research Quadrature | `RhodesResearchQuadrature.vst3` | 3 | 48 frames |
 
 Use the host's generic controls if it shows no custom editor. Monitoring Gain
-defaults to **16x** and spans **0–32x**; Sustain is **Off/On**. The output is the
-same synthetic mono signal on both stereo channels, with no audio input.
+defaults to **16x** and spans **0–32x**; Sustain is **Off/On**. Expect **18 host
+parameters**: those two controls plus `All Notes Off Ch 1` through
+`All Notes Off Ch 16`. Gain and sustain retain IDs `0` and `1`; the channel
+commands use `0x1000..0x100f`. Commands are writable and nonautomatable, with
+numeric normalized values `0..1`, and are not hidden or read-only. A host may
+omit them from its automation chooser while still exposing them in its generic
+parameter view. Record what each view actually shows. If discovery still shows
+only the old two-parameter inventory, use the host's documented rescan/refresh
+procedure and restart its plug-in-host process where available; retain the
+before/after inventory and loaded-build identity rather than assuming a rescan
+loaded the intended module.
+
+The output is the same synthetic mono signal on both stereo channels, with no
+audio input.
 An unequal post-fader capture can reflect host routing or pan law, so retain the
 capture point and routing before attributing it to the plug-in.
 
@@ -72,7 +86,50 @@ A host can merge channels, rewrite note identities or chase notes during seek.
 Retain its event display/export or trace when available. If it cannot deliver
 distinct overlapping holders, mark that exercise **inconclusive**, rather than
 claiming ownership coverage from a piano-roll drawing. The detailed bounds and
-ordering rules remain in the [host contract](specs/HOST_PROTOTYPE_20261123.md).
+ordering rules remain in the [host contract](specs/HOST_PROTOTYPE_20261123.md)
+and [MIDI continuation](specs/HOST_MIDI_20261124.md).
+
+### MIDI continuation cases — not run
+
+Repeat this small case set for each variant, using modest event counts and the
+same reset, gain, render interval and routing for each paired comparison.
+Channels below use MIDI labels 1–16 (SDK indices 0–15). Leave sustain Off except
+where stated. Keep ordinary note-offs later than the command under observation
+so they cannot explain an apparent CC123 release. Compare with a reference clip
+that replaces that command with ordinary note-offs for the same holders at the
+same times; release increases damping and need not produce instant silence.
+
+Separate **requested input**, **host delivery**, and **plug-in response** in the
+session record. A MIDI monitor upstream of the plug-in establishes only what
+was sent to the host. Where the host offers a diagnostic trace, retain the
+delivered parameter IDs/values and event types, channels, note identities,
+callback boundaries and sample offsets. Record the observation point and its
+limits. An unchanged generic-control display cannot establish that a second
+command point arrived. If delivery or callback grouping is unavailable, retain
+the audio/UI observation but mark the corresponding delivery or exact-ordering
+claim **inconclusive**.
+
+| Case | Procedure | Expected outcome if the stated input is delivered | Result |
+| --- | --- | --- | --- |
+| Parameter discovery | Record the generic parameter inventory, IDs/flags if exposed, and any rescan/restart used. | 18 parameters: gain `0`, sustain `1`, and 16 writable, nonautomatable channel commands `0x1000..0x100f`. Unknown host metadata remains unknown. | Not run |
+| Channel-specific CC123 | Hold pitch 64 on channel 1 and pitch 67 on channel 2; send CC123 only on channel 1, then on channel 2. | Each command removes only its channel's holders. The other channel remains held until its own release; existing mechanical motion and filter tails remain. | Not run |
+| Repeated unchanged / zero CC123 | Strike 64 on channel 1, send CC123 value 0, restrike, then send value 0 again. Repeat from reset with two identical nonzero values, such as MIDI 127. Retain both command deliveries and the intervening strike. | Every delivered point releases the current channel holders, including zero and unchanged repeats. Commands are not rising-edge controls and do not automatically return to zero. | Not run |
+| Shared key on two channels | Hold pitch 64 on channels 1 and 2. Send CC123 on channel 1, then channel 2; compare with the same ordinary-release sequence. | Releasing the first channel does not damp the still-held key. The last holder's removal causes ordinary release. | Not run |
+| Sustained release / CC120 | With CC64 down, strike 64, send CC123, then lift CC64. Separately send CC120 while a note remains held, recording any host panic translation. | CC123 preserves shared sustain; ringing may continue until pedal-up and decay afterward. CC120 is unmapped and has no advertised plug-in action; host-generated note-offs or resets are separate observations. | Not run |
+| Equal-offset ordering | If the host permits, place a sustain change, CC123 on channels 1 and 2, and a new strike at one sample offset. Retain actual delivered order/offsets; optionally duplicate one same-channel command at that offset. | Sustain applies first, channel releases in ascending channel order, then notes in input-list order. The new strike survives the prior channel release; duplicate same-channel/same-offset commands have one release effect. | Not run |
+| Pressure with releases | Compare a clip with and without valid polyphonic key-pressure events around note-offs. Where traces permit, verify pressure and releases share a callback; distinguish typed polyphonic pressure from channel pressure or note expression. | Pressure produces no synthesis or ownership response, and co-batched ordinary releases still take effect. The pressure traffic must not discard those releases or leave their holders stuck. | Not run |
+| Generic text and recall | Perform the text checks and own-variant/legacy preset recall in section 3, recording which input reaches the plug-in. | Strict text conversion, unchanged gain/sustain IDs, and the existing 16-byte configuration contract; transient commands are excluded. | Not run |
+
+Some hosts remove repeated unchanged controller values before producing VST3
+parameter points, including a zero matching the current/default value. The
+plug-in cannot recover an omitted command. A confirmed omission is a named-host
+delivery limitation, not proof that the plug-in ignored a delivered point.
+Conversely, a successful first CC123 release does not verify repeated delivery.
+The explicit restrike between identical commands makes each later release
+observable; retain the paired ordinary-release captures and any trace before
+assigning a result. A same-tick piano-roll position does not prove an equal
+sample offset or a shared callback. Exact ordering, channel-release order and
+pressure batching remain harness-only claims when the host cannot expose them.
 
 ## 3. Check latency and saved configuration
 
@@ -85,6 +142,24 @@ measurement, and cross-correlating different variants does not establish a
 [filtered](specs/FILTERED_AUDIO_20261123.md) and
 [quadrature](specs/QUADRATURE_AUDIO_20261123.md) numerical fixtures.
 
+Where the generic editor accepts typed text, record the exact entered string,
+displayed value, resulting gain/sustain and host validation message. Gain should
+accept `16x`, `+1.6e1 x`, `0` and `32`, but reject `nan`, `inf`, `16junk`, `0x10`,
+`1,5`, `-1`, `33`, `1e999` and `1e-999` without clamping or changing the previous
+configuration. Numeric text must be consumed completely; the parser uses a
+bounded ASCII decimal grammar independent of locale. Gain's optional unit is
+lowercase `x`. Sustain retains exactly `Off`/`On`. Channel-command text accepts
+normalized decimal `0..1` (for example `0`, `0.5`, `1`) without a unit suffix;
+`0.5x`, `On` and `2` are invalid. The complete limits and binary64 range-check
+qualification are in [generic parameter text](VST3.md#generic-parameter-text).
+
+Hosts can filter, rewrite or parse text themselves. Record that behavior
+separately: a host-side rejection does not establish the plug-in's parser result.
+Converting command text alone does not execute a release; committing a control
+edit may cause the host to deliver a command point. Treat any such delivery as
+part of the observation. Null pointers, invalid IDs, unterminated strings and
+caller-output preservation belong to the API harnesses, not this manual UI trial.
+
 Save a project or plug-in preset with distinctive gain and sustain settings,
 change them, then restore it. Check the controls and a fresh strike. Where the
 host supports saving during playback, record whether saving itself interrupts
@@ -93,6 +168,20 @@ Successful recall restores configuration and resets notes, mechanics and filter
 history; it does **not** resume the previously ringing waveform. Suppress or
 record host note chasing so a new note after recall is not misidentified as
 restored ringing state.
+
+When an authentic pre-continuation own-variant project or preset is available,
+retain its original source/version and bytes, then open it with the selected
+build. Otherwise mark legacy recall **not run**; do not manufacture a legacy
+artifact by relabeling a new preset. Gain/sustain IDs remain `0`/`1`, the class
+identities and model tags remain unchanged, and the plug-in configuration is
+still the version-1, 16-byte gain/sustain state. CC123 command values are
+transient and excluded from that state. Repeat the own-variant recall after
+using channel commands and verify restored gain/sustain and a fresh strike.
+Record any additional parameter replay, command delivery or note chasing by
+the DAW; its project/preset container may store more than the plug-in's state
+chunk. File size or a command's displayed value alone cannot prove the exact
+16-byte wire contract or that recall executed a command. Byte compatibility and
+all rejected-state paths remain harness checks.
 
 Exercise the host's documented deactivate/reactivate or unload/reload operation
 and record what it actually does. A transport stop or bypass button alone does
@@ -124,10 +213,12 @@ such as 22.05 kHz can be tried only through an ordinary host option: distinguish
 host refusal or internal resampling from an observed plug-in rejection, then
 return to the known-good configuration.
 
-Pitch bend, note expression, physical half-pedal, CC120/CC123 mappings, effects
+Pitch bend, note expression, physical half-pedal, CC120 mapping, effects
 and extra historical circuits are not advertised features. Record any host
-handling without requiring those controls to produce a musical effect. Do not
-inject malformed buffers, pointers, state bytes or event counts through the UI;
+handling without requiring those controls to produce a musical effect. CC123
+and validated polyphonic pressure follow the proposed observations in section 2;
+pressure is accepted without a synthesis response. Do not inject malformed
+buffers, pointers, state bytes or event counts through the UI;
 whole-block rejection, silence flags, fault latching and allocation/locking
 policy need the dedicated harnesses. A responsive UI does not verify them.
 
@@ -148,7 +239,9 @@ render. Preserve failures and the first attempt when repeating a case.
 
 Use one row per exercise and configuration: **observed pass**, **observed failure**,
 **inconclusive**, or **not run**, with the actual artifact and reason. Include
-reproduction steps, expected contract and observed behavior for a failure.
+separate host-delivery and plug-in-response findings wherever either is uncertain,
+plus reproduction steps, expected contract and observed behavior for a failure.
+The unrun table above is a template, not evidence of a native DAW session.
 The integrator can then review the session against
 [project acceptance](agents/ACCEPTANCE_REVIEW.md); following this protocol alone
 does not change canonical task status or authenticate a physical specimen.

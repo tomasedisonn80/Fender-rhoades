@@ -47,6 +47,8 @@ jobs:
         run: python tools/development_campaign.py sync --check
       - name: Validate continuation assignments and immutable report hashes
         run: python tools/validate_continuation_campaign.py
+      - name: Validate host interoperability assignments and report hashes
+        run: python tools/validate_continuation_c.py
       - name: Validate quadrature assignments and immutable report hashes
         run: python tools/quadrature_campaign.py validate
       - name: Reject stale quadrature campaign index

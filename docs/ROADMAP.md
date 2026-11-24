@@ -34,6 +34,7 @@ the one-note physical-model milestone.
 | `KEY-001` | Construction zones and full keyboard calibration | `VAL-001` | Per-key/zone provenance, register transition checks, held-out keys or explicitly limited coverage |
 | `RT-001` | Representative runtime benchmark and numerical error budget | `PHY-001` | Reproducible workload/hardware record, timing distribution/maxima, deadline accounting, reference-error report |
 | `HOST-001` | Experimental synthetic VST3 instrument | `PHY-001` | Bounded event/ownership/state behavior, pinned SDK module build and validator, explicit tested-platform and synthetic scope |
+| `HOST-002` | MIDI interoperability and generic control validation | `HOST-001` | Bounded channel CC123, validated pressure no-op, strict control text, independent ownership/audio and compatibility checks, native SDK/module validation for each claimed platform |
 | `STG-001` | Connected passive Stage output controls | `VAL-001` | Verified volume/bass graph, measured tapers/endpoints, loaded transfer and held-out control/load validation |
 | `CIR-001` | Optional revision-specific Suitcase circuits | `STG-001` | Verified graph and identified device/supply dynamics for each explicitly named profile |
 | `ACO-001` | Optional acoustic output boundary | `CIR-001` | Defined driver/cabinet/listening geometry, terminal and acoustic validation, separate scope decision |
@@ -147,10 +148,19 @@ and licenses. The initial dependency-free CLI does not select a final commercial
 framework or grant any SDK rights.
 
 `HOST-001` defines the optional synthetic VST3 engineering prototype separately
-from measured-model and runtime-error acceptance. Its [host contract](specs/HOST_PROTOTYPE_20261123.md)
+from measured-model and runtime-error acceptance. Its [original host contract](specs/HOST_PROTOTYPE_20261123.md)
 and [build guide](VST3.md) specify the selected SDK, events, state and controls.
 Distributable plug-ins need a separate release scope. Windows, Linux, and macOS
 claims require their own observed build/host results.
+
+`HOST-002` extends all three variants under the
+[MIDI interoperability contract](specs/HOST_MIDI_20261124.md): channel-specific
+CC123, validated pressure without synthesis response, and strict control text.
+Its gate requires independent ownership/audio comparisons, preserved identities
+and saved configuration, and native SDK/module validation for the tested source.
+Repeated command delivery still needs named-DAW verification. Specimen,
+measurement, PHY-002 and RT-001 acceptance gates remain unchanged; work records
+are kept in the [separate continuation-C ledger](../project/continuation-c-20261124.json).
 
 **Exit:** documented reference error and aliasing bounds over the supported
 operating domain; callback timing and deadline behavior under recorded stress;

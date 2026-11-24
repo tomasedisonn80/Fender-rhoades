@@ -5,6 +5,13 @@ measured physical-model acceptance. The contact reference is offline and is not
 silently substituted into the plug-in's real-time audio path. SDK provenance is
 recorded in [DEPENDENCIES.md](../DEPENDENCIES.md).
 
+This retains the original direct prototype contract. The
+[filtered](FILTERED_AUDIO_20261123.md) and
+[quadrature](QUADRATURE_AUDIO_20261123.md) contracts define the later audio
+variants. [HOST-002](HOST_MIDI_20261124.md) supersedes the MIDI/control rules
+identified below; its acceptance remains pending. Use the [VST3 guide](../VST3.md)
+for current controls and keep historical validation bound to its tested source.
+
 ## Audio and parameters
 
 Provide one MIDI event input, no audio input, and one stereo output carrying the
@@ -41,6 +48,12 @@ ordering. Parameter-only zero-frame flushes accept offset-zero points only, use
 the last point in each queue, and change configuration without advancing
 mechanics; note events in such a flush are rejected.
 
+**HOST-002 override:** strict text conversion and transient channel commands
+follow the [MIDI continuation](HOST_MIDI_20261124.md). At equal offsets, sustain
+precedes channel releases in ascending channel order, then notes retain their
+input order. Zero-frame flushes also apply staged channel releases without
+advancing mechanics; commands are excluded from saved configuration.
+
 ## MIDI ownership and bounds
 
 Adopt [A010's ownership contract](../agents/development-20261123/W1-A010.md):
@@ -50,12 +63,18 @@ the `-1` sentinel. Retrigger retains modal state. Only the last owner's release
 releases a key. Valid pitches outside the instrument range are ignored. Ordinary
 release never performs a hard reset.
 
-The first adapter maps CC64 only. Channel CC123 and CC120 mappings are not
+The original adapter mapped CC64 only. Channel CC123 and CC120 mappings were not
 advertised; lifecycle reset and successful state recall clear ownership and
 mechanics. The note-tracking helper may support channel release independently
 for future adapters. No unsupported MIDI event type is reinterpreted as a note.
 
-Preflight all bounded host input before mutating audio state: at most 256 input
+**HOST-002 override:** CC123 now maps to sixteen channel release commands,
+preserving other holders, shared sustain and ringing tails; CC120 remains
+unmapped. Well-formed polyphonic pressure is validated and ignored, so it no
+longer rejects accompanying note events. Other unsupported event kinds still
+reject the block; pressure does not produce a synthesis response.
+
+The original bounds require preflight before mutating audio state: at most 256 input
 events, two parameter queues, and at most 8192 points per queue. Validate every
 read, count, domain, offset, queue identity and ordering. Parameter points may be
 dense while mechanical events are dispatched in bounded groups. An individual
@@ -68,6 +87,13 @@ The physical event limit is per `EventProcessor::process` call; the host adapter
 may issue one such call per sample after preflighting the entire host block.
 Dense host automation does not need to fit a single 256-event array for all
 8192 samples. MIDI-to-key translation retains a separate 256-event cap.
+
+**HOST-002 override:** allow 18 unique parameter queues, 8192 raw points each
+for gain and sustain, and 256 total raw CC123 points. Pressure counts toward
+the unchanged 256-input-event cap. Command expansion has fixed capacity for
+585 physical note actions per block; the 256-action per-sample limit, including
+sustain, remains. See the [MIDI contract](HOST_MIDI_20261124.md) and
+[current bounds](../VST3.md) for the full preflight and zero-frame rules.
 
 The initial 4096-frame host proposal was expanded after the unmodified pinned
 SDK validator requested 8192-frame setup and processing. The fixed host arrays
