@@ -58,3 +58,13 @@ The repository's original code has no selected project-wide software license.
 The SDK notice does not license that original code or imply affiliation with
 Steinberg, Fender or Rhodes. NumPy and SciPy are optional external offline audit
 tools; their code and binary distributions are not included in this VST3 bundle.
+
+## Local VSTGUI adaptation
+
+Linux editor builds use a generated copy of the pinned VSTGUI
+`vstgui/lib/platform/linux/x11platform.cpp` with two additional lines mapping
+the original key event’s Mod4 state to Super. The original license header and
+all other behavior are retained. The external SDK checkout is unchanged.
+See `docs/DEPENDENCIES.md` and `cmake/VstguiX11Keyboard.cmake` in the project
+source for exact input/output hashes and checks. The accompanying
+`VSTGUI-LICENSE.txt` covers this adaptation.

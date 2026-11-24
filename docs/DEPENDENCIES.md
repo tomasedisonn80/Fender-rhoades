@@ -246,3 +246,22 @@ These hashes identify the observed notice bytes, not a wheel, source archive or
 all transitive dependencies. A new audit environment should record its actual
 versions and retain its distribution notices. The repository's original-code
 license remains a separate owner decision.
+
+### Local X11 keyboard adaptation
+
+Linux editor builds apply [a two-line adaptation](../cmake/VstguiX11Keyboard.cmake)
+to a generated copy of the pinned VSTGUI `x11platform.cpp`. It maps the original
+key packet’s Mod4 state to `ModifierKey::Super`, which the pinned keyboard
+converter omits. This preserves event-time state and the editor’s existing
+shortcut guard. Shift, Control, Alt, key mapping and event order are unchanged.
+
+The [original pinned source](https://github.com/steinbergmedia/vstgui/blob/5db272256172557818b6158cf0bb2c4410bddb25/vstgui/lib/platform/linux/x11platform.cpp)
+has LF-normalized SHA-256
+`7158057162bc716aeb52efc5e6744b9432ffb8b86e9e0a68895d9d340cc87bb3`.
+The adapted copy has SHA-256
+`c186a90e423b3895347a676e07c6059accb3b9ab0c187a795d318a1f6af361be`.
+Configuration checks both hashes and exactly one source replacement. The external
+SDK remains clean, with all pin/content guards active. The generated copy retains
+the upstream license header and existing packaged VSTGUI license. Headless,
+Windows and macOS builds are unaffected. Arbitrary XKB modifier remapping and
+mouse-event translation remain outside this keyboard-only correction.

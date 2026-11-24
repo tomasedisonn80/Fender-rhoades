@@ -2,6 +2,7 @@
 
 #include "controller.hpp"
 #include "photo_geometry.hpp"
+#include "photo_key_highlight.hpp"
 #include "photo_native_focus.hpp"
 
 #include "vstgui/plugin-bindings/vst3editor.h"
@@ -130,11 +131,13 @@ public:
         if (id >= 0) {
             focus_parameter(id);
             event.consumed = true;
-            if (event.clickCount >= 2) {
-                edit_once(id, default_value(id));
-                event.ignoreFollowUpMoveAndUpEvents(true);
-            } else if (is_switch(id)) {
+            // A switch toggles on every press, including rapid click sequences.
+            // Double-click reset belongs only to continuous controls.
+            if (is_switch(id)) {
                 edit_once(id, value(id) >= 0.5 ? 0.0 : 1.0);
+                event.ignoreFollowUpMoveAndUpEvents(true);
+            } else if (event.clickCount >= 2) {
+                edit_once(id, default_value(id));
                 event.ignoreFollowUpMoveAndUpEvents(true);
             } else if (begin_gesture(id)) {
                 dragging_control_ = true;
@@ -440,7 +443,8 @@ private:
     void update_hover(photo::Point position) {
         const int parameter = photo::hit_control(position.x, position.y);
         const int key = parameter < 0 ? photo::hit_key(position.x, position.y) : -1;
-        if (parameter == hover_parameter_ && key == hover_key_) { return; }
+        if (parameter == hover_parameter_ && key == hover_key_ &&
+            (feedback_visible() || (parameter < 0 && key < 0))) { return; }
         hover_parameter_ = parameter;
         hover_key_ = key;
         if (parameter >= 0) {
@@ -479,7 +483,8 @@ private:
     }
 
     static void draw_key(CDrawContext& context, int key, bool pressed) {
-        const auto& polygon = photo::key_polygon(key);
+        const auto& shape = photo::key_highlight(key);
+        const auto& polygon = shape.outline;
         if (polygon.size < 3) { return; }
         auto path = owned(context.createGraphicsPath());
         if (!path) { return; }
@@ -488,11 +493,24 @@ private:
             path->addLine(CPoint{polygon.points[index].x, polygon.points[index].y});
         }
         path->closeSubpath();
+        // The white hit polygon extends under neighboring black keys. Holes
+        // remove only those intersections from the transient painted region.
+        for (std::size_t hole = 0; hole < shape.cutout_count; ++hole) {
+            const auto& cutout = shape.cutouts[hole];
+            if (cutout.size < 3) { continue; }
+            path->beginSubpath(CPoint{cutout.points[0].x, cutout.points[0].y});
+            for (std::size_t index = 1; index < cutout.size; ++index) {
+                path->addLine(CPoint{cutout.points[index].x, cutout.points[index].y});
+            }
+            path->closeSubpath();
+        }
         context.setFillColor(CColor{245, 213, 150, static_cast<uint8_t>(pressed ? 80 : 28)});
         context.setFrameColor(CColor{255, 234, 190, 185});
         context.setLineWidth(1.5);
-        context.drawGraphicsPath(path, CDrawContext::kPathFilled);
-        context.drawGraphicsPath(path, CDrawContext::kPathStroked);
+        context.drawGraphicsPath(path, CDrawContext::kPathFilledEvenOdd);
+        if (shape.stroke_outline) {
+            context.drawGraphicsPath(path, CDrawContext::kPathStroked);
+        }
     }
 
     static void draw_control(CDrawContext& context, int id) {
@@ -508,7 +526,7 @@ private:
     void draw_feedback(CDrawContext& context) const {
         photo::Rect anchor{};
         std::array<char, 256> text{};
-        const char* help = "Click and drag to audition; release to stop";
+        const char* help = "Click and drag to audition; release the key";
         if (feedback_parameter_ >= 0) {
             const auto tag = static_cast<ParamID>(feedback_parameter_);
             const auto* control = photo::control_for_parameter(tag);
@@ -542,7 +560,7 @@ private:
             }
             (void)std::snprintf(text.data(), text.size(), "%s: %s",
                                 control_name(feedback_parameter_), ascii.data());
-            help = is_switch(feedback_parameter_) ? "Click / Space to switch; double-click to reset" :
+            help = is_switch(feedback_parameter_) ? "Click / Space to switch; Home off, End on" :
                 (is_slider(feedback_parameter_) ? "Drag horizontally; Shift for fine control" :
                                                 "Drag vertically; Shift for fine control");
         } else {
@@ -551,19 +569,26 @@ private:
                                 photo::kFirstMidiNote + feedback_key_);
         }
         if (!anchor.valid()) { return; }
-        const double left = std::clamp(anchor.center().x - 232.0, 12.0, photo::kSourceWidth - 476.0);
-        const double top = std::max(12.0, anchor.top - 78.0);
-        const CRect box{left, top, left + 464.0, top + 66.0};
+        // Keep transient help readable at the smallest logical editor size.
+        // The photograph and hit regions keep their original shared transform.
+        const double scale = std::clamp(0.75 / image_fit().scale, 1.0, 2.0);
+        const double width = 464.0 * scale;
+        const double left = std::clamp(anchor.center().x - width * 0.5,
+                                       12.0, photo::kSourceWidth - width - 12.0);
+        const double top = std::max(12.0, anchor.top - 78.0 * scale);
+        const CRect box{left, top, left + width, top + 66.0 * scale};
         context.setFillColor(CColor{28, 27, 25, 232});
         context.setFrameColor(CColor{231, 217, 187, 190});
         context.setLineWidth(1.0);
         context.drawRect(box, kDrawFilledAndStroked);
         context.setFontColor(CColor{255, 246, 225, 255});
-        context.setFont(kNormalFont, 21.0);
+        context.setFont(kNormalFont, 21.0 * scale);
         context.drawString(status_ == nullptr ? text.data() : status_,
-                           CRect{left + 12.0, top + 5.0, left + 452.0, top + 34.0}, kLeftText);
-        context.setFont(kNormalFont, 16.0);
-        context.drawString(help, CRect{left + 12.0, top + 34.0, left + 452.0, top + 60.0}, kLeftText);
+                           CRect{left + 12.0 * scale, top + 5.0 * scale,
+                                 left + 452.0 * scale, top + 34.0 * scale}, kLeftText);
+        context.setFont(kNormalFont, 16.0 * scale);
+        context.drawString(help, CRect{left + 12.0 * scale, top + 34.0 * scale,
+                                      left + 452.0 * scale, top + 60.0 * scale}, kLeftText);
     }
 
     RhodesController& controller_;
