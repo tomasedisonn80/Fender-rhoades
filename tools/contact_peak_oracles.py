@@ -319,8 +319,8 @@ def _run_damped_time(parameters):
     argv = [sys.executable, str(Path(__file__).resolve()), "--_damped-time-worker",
             json.dumps(parameters, allow_nan=False)]
     try:
-        process = subprocess.run(argv, capture_output=True, text=True, check=False,
-                                 timeout=WALL_SECONDS)
+        process = subprocess.run(argv, capture_output=True, text=True, encoding="utf-8",
+                                 check=False, timeout=WALL_SECONDS)
         if process.returncode != 0:
             return {"status": "inconclusive_reference", "reason": "reference worker failed",
                     "returncode": process.returncode, "stderr": process.stderr[:2048]}

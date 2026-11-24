@@ -1,6 +1,7 @@
 """Optional timing transport failures must preserve independent peak values."""
 import copy
 import json
+import os
 from pathlib import Path
 import subprocess
 import sys
@@ -76,6 +77,32 @@ class ContactPeakBackendBoundaryTests(unittest.TestCase):
                     if name == "nonzero_unicode":
                         self.assertEqual(timing["returncode"], 23)
                         self.assertIn("SciPy 加载失败 Ω", timing["stderr"])
+
+    def test_worker_utf8_survives_ascii_parent_locale(self):
+        # Run the real pipe boundary with Python UTF-8 mode and locale coercion
+        # disabled. POSIX C locales use ASCII; Windows retains its host locale.
+        source = "import sys\nsys.stderr.buffer.write(bytes.fromhex('e58aa0'))\nsys.exit(23)\n"
+        with tempfile.TemporaryDirectory() as directory:
+            worker = Path(directory) / "worker.py"
+            worker.write_text(source, encoding="ascii")
+            script = (
+                "import json,sys; sys.path.insert(0,sys.argv[1]); "
+                "import contact_peak_oracles as o; o.__file__=sys.argv[2]; "
+                "r=o.reference_peaks('damped_impact',damped_time=True); "
+                "print(json.dumps(r,ensure_ascii=True,allow_nan=False))"
+            )
+            environment = dict(os.environ, LC_ALL="C", LANG="C", PYTHONUTF8="0",
+                               PYTHONCOERCECLOCALE="0", PYTHONIOENCODING="ascii")
+            process = subprocess.run(
+                [sys.executable, "-c", script, str(ROOT / "tools"), str(worker)],
+                capture_output=True, env=environment, timeout=15, check=False,
+            )
+            self.assertEqual(process.returncode, 0, process.stderr)
+            result = json.loads(process.stdout)
+            self.assert_values_preserved(result)
+            timing = result["peaks"][HAMMER_KEYS[0]]["details"]["timing"]
+            self.assertEqual(timing["returncode"], 23)
+            self.assertEqual(timing["stderr"], "\u52a0")
 
     def test_malformed_earlier_refinement_does_not_claim_resolved_timing(self):
         original = successful_worker_payload()

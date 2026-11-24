@@ -1,0 +1,31 @@
+{
+  "argv": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "/workspace/scratch/d6370337c6a4/Fender-rhoades/tools/validate_contact_peaks.py",
+    "--candidate",
+    "/workspace/scratch/d6370337c6a4/contact-peaks-final-replay-20261124-0zolf4pv/inputs/damped_impact.json",
+    "--output",
+    "/workspace/scratch/d6370337c6a4/Fender-rhoades/build/contact-utf8-damped-20261124",
+    "--producer-binary",
+    "/workspace/scratch/d6370337c6a4/Fender-rhoades/build/vst3/rhodes_contact_reference",
+    "--with-damped-time"
+  ],
+  "environment_overrides": {
+    "LC_ALL": "C",
+    "LANG": "C",
+    "PYTHONUTF8": "0",
+    "PYTHONCOERCECLOCALE": "0",
+    "PYTHONIOENCODING": "ascii"
+  },
+  "returncode": 0,
+  "source_sha256": {
+    "tools/contact_peak_oracles.py": "e691093a11ef34ea68cbbe25614d42a2dbd4f4576535c2c35b289133e8fc2c50",
+    "tests/python/test_contact_peak_backend_boundaries.py": "cee18099f3f26a9e71b293b59307bce64e17638e2b3c7a04a5ef69493a4df2e1"
+  },
+  "sources_unchanged": true,
+  "stdout": "{\"status\": \"pass\", \"exit_code\": 0, \"cases\": 1, \"output\": \"/workspace/scratch/d6370337c6a4/Fender-rhoades/build/contact-utf8-damped-20261124\", \"phy002_acceptance\": \"incomplete\"}\n",
+  "stderr": "",
+  "manifest_sha256": "2e5254551c68a032d0b0e352ffeb6e2bfb709963a39b4cb7fd0dca3845827d4e",
+  "test_log_sha256": "af4bdf29dcd1a90496a662015dab4763bc0c11d0bc54c75afd66b0d2cf9a6297",
+  "scope": "Retained damped native input reused; producer not executed; transport-only verification; PHY-002 incomplete."
+}
