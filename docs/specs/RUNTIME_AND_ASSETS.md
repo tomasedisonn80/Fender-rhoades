@@ -2,11 +2,15 @@
 
 **Status: implemented synthetic host foundation, with open runtime and prepared
 asset requirements.** The current fixed-storage engine is wrapped by bounded
-sample-offset events, MIDI ownership, versioned configuration state and an
-optional VST3 instrument. A generalized prepared-asset loader and ringing-state
-checkpoint are not implemented. The [host contract](HOST_PROTOTYPE_20261123.md)
-defines the implemented adapter; [VST3.md](../VST3.md) records build instructions
-and actual verification. The separate [contact reference](../CONTACT_REFERENCE.md)
+sample-offset events, MIDI ownership, versioned configuration state and three
+optional VST3 instruments. A generalized prepared-asset loader and ringing-state
+checkpoint are not implemented. The [original host contract](HOST_PROTOTYPE_20261123.md),
+[MIDI continuation](HOST_MIDI_20261124.md) and current
+[Expression/mono contract](HOST_EXPRESSION_MONO_20261124.md) define the adapter's
+successive behavior. [VST3.md](../VST3.md) records build instructions and actual
+verification; the [Expression verification guide](../EXPRESSION_VERIFICATION.md)
+maps current fixtures and remaining acceptance work. The separate
+[contact reference](../CONTACT_REFERENCE.md)
 remains offline, with its own [frozen acceptance](CONTACT_ACCEPTANCE_20261123.md).
 
 This specification began with setup reviews A031–A039; their historical
@@ -14,7 +18,7 @@ observations remain in [the setup campaign](../agents/CAMPAIGN.md). The sections
 below distinguish implemented behavior from future requirements without changing
 RT-001's numerical-error, convergence or measured-performance gates.
 
-## Current verified boundary
+## Current implementation and evidence boundary
 
 The synthetic audio engine retains 73 physical keys with three modes each.
 Preparation warms both free/damped transition matrices; ordinary note, pedal and
@@ -48,6 +52,26 @@ through a compile-time substitute engine and verify prefix preservation, suffix
 silence and explicit recovery. This exercises adapter semantics without adding
 a production fault switch or claiming exhaustive physical arithmetic coverage.
 
+The optional instruments retain separate class identities and saved-state model
+numbers. Their engines, electrical constants and digital monitoring controls
+remain synthetic; the host extensions do not calibrate a physical instrument.
+
+| Instrument | State model | Audio path | Reported latency |
+| --- | ---: | --- | ---: |
+| Rhodes Research Prototype | 1 | Direct synthetic source | 0 frames |
+| Rhodes Research Filtered | 2 | Sampled internal-rate source and fixed FIR | 48 frames |
+| Rhodes Research Quadrature | 3 | Six prepared observations per host interval and fixed convolution | 48 frames |
+
+All three have no audio inputs and one output bus, stereo by default, with
+suspended negotiation of standard mono or stereo. Mono emits the existing
+scalar signal; stereo duplicates it. Negotiation updates bus name/count
+coherently and unsupported requests retain the last accepted arrangement.
+Layout does not alter model identity, latency, tail reporting or saved
+instrument configuration. The current factory category is `Instrument|Synth`.
+The [recorded metadata correction](../validation/host-expression-category-correction-20261124.json)
+removes the obsolete stereo-only classification; it is a separate Linux
+observation, not native-DAW acceptance.
+
 ## Current RT-001 handoff
 
 The synthetic full-call harnesses now include their declared event/control work
@@ -71,12 +95,16 @@ native host/device and release claims require their own actual evidence.
 
 The implemented physical `EventProcessor` accepts at most **4096 frames and 256
 ordered events per call**, with whole-block preflight. The VST3 adapter accepts
-up to **8192 host frames**, 256 raw note events, two parameter queues and 8192
-points per queue; it preflights the entire host block before issuing bounded
-one-sample physical dispatches. At most 256 combined physical note/pedal events
-may occur at one sample. These are storage/processing limits, not measured
-deadline guarantees. Any revised limits or future solver/coupling caps need
-updated tests and timing evidence; details remain in the host contract.
+up to **8192 host frames**, **256 input events** including validated pressure,
+**19 distinct parameter queues**, **8192 raw points each for gain, Expression
+and sustain**, and **256 raw CC123 points in total** across sixteen channel
+commands. Duplicate offsets still consume their raw-point budget. It preflights
+the entire host block before issuing bounded one-sample physical dispatches.
+Translation stores at most **585 physical note actions per block**, with a
+separate **256-action limit per sample including sustain**. These are
+storage/processing limits, not measured deadline guarantees. Any revised limits
+or future solver/coupling caps need
+updated tests and timing evidence; details remain in the current host contracts.
 
 Events have integer offsets `0 <= offset < N` and an explicit producer sequence.
 Preserve `(offset, sequence)` order; do not sort equal-time releases/retriggers by
@@ -111,10 +139,15 @@ are ignored. The [independent note model](../agents/development-20261123/W4-A074
 tests ownership, capacity, recall and randomized sequences.
 
 Core all-notes-off clears held flags while respecting sustain; hard reset clears
-mechanics, held flags and pedal state. The VST3 adapter maps CC64, not CC120 or
-CC123. Its lifecycle reset and successful state recall clear ownership/mechanics
-and reinstall the preserved or recalled configuration. Do not infer an external
-controller-message mapping from an internal helper operation.
+mechanics, held flags and pedal state. The VST3 adapter maps CC64 to shared
+sustain, CC11 to global Expression, and CC123 to sixteen channel-specific release
+commands. CC120 remains unmapped. Each accepted CC123 point removes that
+channel's holders while retaining other holders, sustain, motion and filter
+tails. At an equal offset, sustain changes precede ascending-channel releases,
+then note events keep their input-list order. Pressure is a validated no-op;
+it consumes event capacity without changing synthesis or ownership. Lifecycle
+reset and successful recall clear ownership/mechanics and reinstall the preserved
+or recalled configuration. These mappings are explicitly defined host behavior.
 
 Test pedal lift with one physically held and one released key. Check all modal
 coordinates across events. Reset during held/pedal activity and compare the next
@@ -123,6 +156,44 @@ phase impulses must account for `J*v_before+J^2/(2*m)`; a fixed per-strike energ
 increment is incorrect. Finite-hammer relaunch follows the separate contact spec.
 
 ## Live parameters and structural changes
+
+The current persistent configuration contains Monitoring Gain (ID 0, normalized
+`0..1`, default `0.5`), Sustain (ID 1, default off), and Expression (ID 2,
+normalized/displayed factor `0..1x`, default `1x`). The sixteen CC123 parameters
+at IDs `0x1000..0x100f` are transient commands. CC11 on any input channel addresses
+the same global Expression control; the adapter does not reconstruct 14-bit
+CC11/CC43 pairs. Expression multiplies digital output independently of Monitoring
+Gain and does not change velocity, mechanical parameters or historical circuitry.
+
+Gain and Expression interpolate independently from the audio owner's current
+canonical live value at offset `-1`, after any recall selected for the block.
+A mailbox snapshot may contain a newer UI recall and is not that anchor. Distinct
+points are canonical binary32 anchors; the last point at an equal offset wins,
+and the last value is held. Output uses binary64 interpolation; published
+configuration uses canonical binary32 values. Partition tests must deliver the
+same curve, including needed boundary anchors. Whole-block queue/event/ownership
+preflight precedes mutation; rejection preserves a pending valid recall as well
+as live configuration, mechanics and ownership.
+
+The output calculation first preserves and checks
+`monitored = (32 * gain) * volts`, then applies Expression before host-format
+conversion. Exact unity returns `monitored` directly through the legacy arithmetic
+path. Zero Expression continues mechanics, filtering, ownership and tails; it
+does not hide engine or nonfinite-monitoring faults. A finite double attenuated
+into the float32 range is valid, while failed final conversion still requires
+reset. These checks also run when a valid inactive output bus is omitted. A
+supplied inactive bus needs its negotiated-width pointer array but permits null
+individual sample pointers; an active bus may not be omitted. The
+[buffer rules](../VST3.md#output-layouts-and-buffer-handling) bound declared-width
+rejection cleanup to one bus, one/two channels and 8192 frames, with null-safe
+sample handling.
+
+A zero-frame VST3 flush accepts only offset-zero parameter points and no input
+events. It applies selected recall, then final gain/Expression/sustain and
+staged channel releases, without advancing audio time. It can omit buffers or
+supply a zero-channel or negotiated-width bus, and never accesses sample
+pointers. This parameter-flush behavior is distinct from the physical
+`EventProcessor`'s empty-block event rule.
 
 Whitelist any live controls and specify their physical units, ramps, timing,
 validity and input-work treatment. A smooth coordinate trajectory does not itself
@@ -174,12 +245,62 @@ substitution is permitted.
 
 ## Persistence and determinism
 
-The current host's sixteen-byte version-1/model-1 state restores monitoring gain
-and sustain with an explicit mechanical/ownership reset. Its validated numeric
-encoding and bounded stream handling are specified in the host contract;
-successful recall is not a ringing-state checkpoint. A future checkpoint
-additionally needs all dynamic mechanics, contact,
-electrical, thermal and scheduler states, event position, coordinate normalization,
+All three models use the same explicitly encoded **RHST configuration** with
+their own model number. The [codec](../../include/rhodes/instrument_state.hpp)
+appends `expression = 1.0F` after gain and sustain in `InstrumentState`, preserving
+the meaning of existing two-field aggregate initializers. Its object layout is
+not the wire format. Integer fields and binary32 bit patterns are little-endian:
+
+| Byte offsets | Width | Version 1, exactly 16 bytes | Version 2, exactly 20 bytes |
+| --- | ---: | --- | --- |
+| 0–3 | 4 bytes | ASCII `RHST` | ASCII `RHST` |
+| 4–5 | 2 bytes | Unsigned version `1` (`01 00`) | Unsigned version `2` (`02 00`) |
+| 6–7 | 2 bytes | Unsigned model `1`, `2` or `3`; must equal the requested model | Same model rule |
+| 8–11 | 4 bytes | Canonical normalized binary32 Monitoring Gain | Same gain field and offset |
+| 12–15 | 4 bytes | Binary32 Sustain: canonical `+0` or `1` | Same sustain field and offset |
+| 16–19 | 4 bytes | Absent; decode supplies Expression `1` | Canonical normalized binary32 Expression |
+
+Gain and Expression accept nonnegative finite binary32 encodings from `+0`
+through `1`, including positive subnormals, plus the `-0` encoding. In integer
+terms, accepted bits are `0x00000000..0x3f800000` or `0x80000000`; decode,
+publication and encoding canonicalize either signed zero to `0x00000000`.
+Negative nonzero, above-unity, infinity and NaN encodings reject. Sustain decode
+accepts only `0x00000000`, `0x80000000` and `0x3f800000`, mapping both zeros to
+false; writes use `+0` or `1`. Bitwise validation preserves the wire domain under
+host rounding and FTZ/DAZ modes instead of losing subnormals to arithmetic.
+
+The explicit v1 encoder **rejects non-unity Expression**. The host writer chooses
+v1 at canonical Expression `1` (`0x3f800000`) and preserves the exact legacy
+bytes; it chooses v2 for every other valid value. Own-model v1 loads with
+Expression `1`. A valid v2 packet with Expression `1` is accepted and subsequently
+saves as v1. Older v1-only builds cannot read v2. Both versions reject incorrect
+magic, version, model, control bits or length; all foreign-model recall directions
+reject. A 20-byte v1 packet and a 16-byte v2 packet are invalid even though both
+lengths exist in the codec.
+
+The [stream adapter](../../plugins/vst3/state_stream.cpp) requires the remaining
+extent from the current cursor to be exactly 16 or 20 bytes, then checks that it
+matches the decoded version. It accepts successful positive partial transfers,
+bounded by the selected packet's byte count; zero, negative, oversized or failed
+transfers reject. There is **no stream truncation**: writing a 16-byte v1 packet
+over a 20-byte v2 buffer can leave four stale bytes, so the caller must provide
+a fresh or correctly truncated output extent. A subsequent read rejects that
+stale 20-byte v1 extent. Stream I/O stays outside the audio callback.
+
+Processor saving reads one coherent configuration snapshot from the lock-free
+64-bit mailbox: gain occupies bits `0..31`, sustain bit `32`, pending-recall bit `33`,
+and the valid thirty-bit Expression encoding bits `34..63`. Bounded single
+compare/exchange attempts let newer UI recalls take precedence without retry
+spins, locks or allocation. Invalid recall preserves an already pending valid
+recall; rejected ownership preflight restores a selected recall only if a newer
+UI write has not replaced it. The audio owner applies accepted recall at a
+processing boundary and resets mechanical, note-ownership and filter state.
+
+Configuration excludes the host's output layout, transient CC123 commands,
+note ownership and all ringing/dynamic state. Successful recall is not a
+ringing-state checkpoint. A future checkpoint additionally needs all dynamic
+mechanics, contact, electrical, thermal and scheduler states, event position,
+coordinate normalization,
 sample rate and model identity. Do not serialize a C++ object memory layout.
 Use explicit numeric encoding and independently versioned configuration/state
 formats; validate before replacing a live instance.

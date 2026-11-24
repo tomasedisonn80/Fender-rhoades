@@ -284,6 +284,8 @@ public:
             if (info.category() == kVstAudioEffectClass) {
                 require(info.ID().toString() == identity.processor && component == nullptr,
                         "frozen unique processor class ID");
+                require(info.subCategoriesString() == "Instrument|Synth",
+                        "factory must not advertise a mono- or stereo-only restriction");
                 component = module_->getFactory().createInstance<vst::IComponent>(info.ID());
             } else if (info.category() == kVstComponentControllerClass) {
                 require(info.ID().toString() == identity.controller && controller == nullptr,

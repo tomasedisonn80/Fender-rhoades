@@ -10,7 +10,7 @@ BEGIN_FACTORY("Rhodes Research", "https://github.com/baabi-boo/Fender-rhoades", 
 DEF_CLASS2(INLINE_UID_FROM_FUID(rhodes::vst3::kProcessorUID),
            Steinberg::PClassInfo::kManyInstances, kVstAudioEffectClass,
            rhodes::vst3::kPluginName, Steinberg::Vst::kDistributable,
-           "Instrument|Synth|Stereo", rhodes::vst3::kPluginVersion,
+           "Instrument|Synth", rhodes::vst3::kPluginVersion,
            kVstVersionString, rhodes::vst3::RhodesProcessor::createInstance)
 
 DEF_CLASS2(INLINE_UID_FROM_FUID(rhodes::vst3::kControllerUID),

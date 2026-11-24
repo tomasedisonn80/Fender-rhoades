@@ -1,0 +1,13 @@
+Test project /tmp/rhodes-d-build
+    Start 444: vst3.loaded_expression_controls_state
+1/1 Test #444: vst3.loaded_expression_controls_state ...***Failed    0.00 sec
+FAIL loaded expression: direct/controls_state: factory must not advertise a mono- or stereo-only restriction
+
+
+0% tests passed, 1 tests failed out of 1
+
+Total Test time (real) =   0.01 sec
+
+The following tests FAILED:
+	444 - vst3.loaded_expression_controls_state (Failed)
+Errors while running CTest

@@ -217,6 +217,35 @@ if(BUILD_TESTING)
         add_test(NAME vst3.filtered_mono_${test_name} COMMAND rhodes_vst3_filtered_mono_tests ${test_name})
         add_test(NAME vst3.quadrature_mono_${test_name} COMMAND rhodes_vst3_quadrature_mono_tests ${test_name})
     endforeach()
+    rhodes_add_vst3_test(rhodes_vst3_expression_control_tests tests/cpp/vst3_expression_control_test.cpp FALSE FALSE TRUE)
+    rhodes_add_vst3_test(rhodes_vst3_filtered_expression_control_tests tests/cpp/vst3_expression_control_test.cpp TRUE FALSE TRUE)
+    rhodes_add_vst3_test(rhodes_vst3_quadrature_expression_control_tests tests/cpp/vst3_expression_control_test.cpp FALSE TRUE TRUE)
+    foreach(test_name IN ITEMS metadata conversion recall lifecycle fp_rounding fp_flush)
+        add_test(NAME vst3.expression_control_${test_name} COMMAND rhodes_vst3_expression_control_tests ${test_name})
+        add_test(NAME vst3.filtered_expression_control_${test_name} COMMAND rhodes_vst3_filtered_expression_control_tests ${test_name})
+        add_test(NAME vst3.quadrature_expression_control_${test_name} COMMAND rhodes_vst3_quadrature_expression_control_tests ${test_name})
+        if(test_name MATCHES "^fp_")
+            set_tests_properties(vst3.expression_control_${test_name}
+                vst3.filtered_expression_control_${test_name}
+                vst3.quadrature_expression_control_${test_name} PROPERTIES SKIP_RETURN_CODE 77)
+        endif()
+    endforeach()
+    rhodes_add_vst3_test(rhodes_vst3_expression_transaction_tests tests/cpp/vst3_expression_transaction_test.cpp)
+    rhodes_add_vst3_test(rhodes_vst3_filtered_expression_transaction_tests tests/cpp/vst3_expression_transaction_test.cpp TRUE)
+    rhodes_add_vst3_test(rhodes_vst3_quadrature_expression_transaction_tests tests/cpp/vst3_expression_transaction_test.cpp FALSE TRUE)
+    foreach(test_name IN ITEMS queue_shapes expression_points late_co_batches ownership_recall flush_recall inactive_transactions)
+        add_test(NAME vst3.expression_transaction_${test_name} COMMAND rhodes_vst3_expression_transaction_tests ${test_name})
+        add_test(NAME vst3.filtered_expression_transaction_${test_name} COMMAND rhodes_vst3_filtered_expression_transaction_tests ${test_name})
+        add_test(NAME vst3.quadrature_expression_transaction_${test_name} COMMAND rhodes_vst3_quadrature_expression_transaction_tests ${test_name})
+    endforeach()
+    rhodes_add_vst3_test(rhodes_vst3_expression_bounds_tests tests/cpp/vst3_expression_bounds_test.cpp)
+    rhodes_add_vst3_test(rhodes_vst3_filtered_expression_bounds_tests tests/cpp/vst3_expression_bounds_test.cpp TRUE)
+    rhodes_add_vst3_test(rhodes_vst3_quadrature_expression_bounds_tests tests/cpp/vst3_expression_bounds_test.cpp FALSE TRUE)
+    foreach(test_name IN ITEMS queue_limits persistent_limits maximum_points command_events dispatch allocations)
+        add_test(NAME vst3.expression_bounds_${test_name} COMMAND rhodes_vst3_expression_bounds_tests ${test_name})
+        add_test(NAME vst3.filtered_expression_bounds_${test_name} COMMAND rhodes_vst3_filtered_expression_bounds_tests ${test_name})
+        add_test(NAME vst3.quadrature_expression_bounds_${test_name} COMMAND rhodes_vst3_quadrature_expression_bounds_tests ${test_name})
+    endforeach()
     foreach(sample_format IN ITEMS 32 64)
         add_test(NAME vst3.filtered_benchmark_smoke_${sample_format}
             COMMAND rhodes_vst3_filtered_benchmark --blocks 5 --warmup-blocks 2
@@ -464,10 +493,36 @@ if(BUILD_TESTING)
                 ${test_name} "${rhodes_plugin_bundle}" "${rhodes_filtered_bundle}" "${rhodes_quadrature_bundle}")
             set_tests_properties(vst3.loaded_expression_${test_name} PROPERTIES TIMEOUT 60)
         endforeach()
+        add_executable(rhodes_vst3_legacy_capture
+            "${PROJECT_SOURCE_DIR}/tests/cpp/vst3_legacy_capture.cpp")
+        target_compile_features(rhodes_vst3_legacy_capture PRIVATE cxx_std_20)
+        target_include_directories(rhodes_vst3_legacy_capture SYSTEM PRIVATE "${RHODES_VST3_SDK_ROOT}")
+        target_link_libraries(rhodes_vst3_legacy_capture PRIVATE rhodes_vst3_loader_support)
+        rhodes_target_options(rhodes_vst3_legacy_capture)
+        add_dependencies(rhodes_vst3_legacy_capture rhodes_vst3 rhodes_vst3_filtered rhodes_vst3_quadrature)
+        add_dependencies(rhodes_vst3_checks rhodes_vst3_legacy_capture)
+        set(RHODES_VST3_LEGACY_BUNDLE_ROOT "" CACHE PATH
+            "Optional three-bundle baseline directory with a verified source/module manifest")
+        if(RHODES_VST3_LEGACY_BUNDLE_ROOT)
+            if(NOT IS_DIRECTORY "${RHODES_VST3_LEGACY_BUNDLE_ROOT}" OR
+                    NOT EXISTS "${RHODES_VST3_LEGACY_BUNDLE_ROOT}/manifest.json")
+                message(FATAL_ERROR "RHODES_VST3_LEGACY_BUNDLE_ROOT requires baseline bundles and manifest.json")
+            endif()
+            find_package(Python3 COMPONENTS Interpreter REQUIRED)
+            get_filename_component(rhodes_current_bundle_root "${rhodes_plugin_bundle}" DIRECTORY)
+            add_test(NAME vst3.legacy_unity_comparison
+                COMMAND "${Python3_EXECUTABLE}" "${PROJECT_SOURCE_DIR}/tools/compare_vst3_legacy.py"
+                    --capture $<TARGET_FILE:rhodes_vst3_legacy_capture>
+                    --baseline-root "${RHODES_VST3_LEGACY_BUNDLE_ROOT}"
+                    --current-root "${rhodes_current_bundle_root}"
+                    --output-dir "${PROJECT_BINARY_DIR}/legacy-comparison/$<CONFIG>"
+                    --sdk-root "${RHODES_VST3_SDK_ROOT}")
+            set_tests_properties(vst3.legacy_unity_comparison PROPERTIES TIMEOUT 300)
+        endif()
         if(SMTG_MAC)
             foreach(target IN ITEMS rhodes_vst3_dual_module_tests
                     rhodes_vst3_triple_module_tests rhodes_vst3_loaded_midi_tests
-                    rhodes_vst3_loaded_expression_tests)
+                    rhodes_vst3_loaded_expression_tests rhodes_vst3_legacy_capture)
                 smtg_target_setup_universal_binary(${target})
                 smtg_target_codesign(${target})
             endforeach()

@@ -11,9 +11,15 @@ complete; use [the generated project state](../PROJECT_STATE.md) for status.
 | [Runtime and assets](RUNTIME_AND_ASSETS.md) | Host events, prepared data, lifecycle, serialization and timing evidence |
 | [Original VST3 prototype](HOST_PROTOTYPE_20261123.md) | HOST-001 direct prototype contract, with later MIDI/control overrides identified |
 | [MIDI interoperability](HOST_MIDI_20261124.md) | HOST-002 channel CC123, validated pressure no-op, strict control text and acceptance gates |
+| [Expression and mono output](HOST_EXPRESSION_MONO_20261124.md) | Frozen HOST-003 global CC11 Expression, independent automation, adaptive RHST v1/v2 configuration, mono/stereo and inactive-output behavior |
 | [Specimen and acquisition](DATA_INGESTION.md) | Passport revisions, calibration validity, uncertainty, partitions and payload verification |
 | [Optional circuits and acoustics](OPTIONAL_CIRCUITS_AND_ACOUSTICS.md) | Revision-specific shared circuits, optical/thermal histories and receiver paths |
 | [Acceptance metrics](ACCEPTANCE_METRICS.md) | Level/timing, modal/transient metrics, identifiability, uncertainty and listening gates |
 
-The current implementation is described separately by [NUMERICS](../NUMERICS.md).
+The current numerical implementation is described separately by
+[NUMERICS](../NUMERICS.md). For current host behavior, read the original prototype
+with its later MIDI and Expression/mono contracts; historical two-control,
+18-control, stereo-only and fixed-v1 statements retain their dated scope.
+[Expression verification](../EXPRESSION_VERIFICATION.md) lists registered targets,
+reproduction commands, source-bound observations and remaining acceptance gates.
 Proposed fixtures and tolerances are clearly distinguished from executed tests.

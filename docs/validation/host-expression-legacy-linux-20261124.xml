@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Linux-c++"
+	tests="1"
+	failures="0"
+	disabled="0"
+	skipped="0"
+	hostname="4f398b69b6a5"
+	time="2"
+	timestamp="2026-11-24T06:04:34"
+	>
+	<testcase name="vst3.legacy_unity_comparison" classname="vst3.legacy_unity_comparison" time="2.53699" status="run">
+		<properties/>
+		<system-out>PASS RhodesResearch f32 48000 whole dense
+PASS RhodesResearch f32 48000 whole sparse
+PASS RhodesResearch f32 48000 fixed64 dense
+PASS RhodesResearch f32 48000 fixed64 sparse
+PASS RhodesResearch f32 48000 ragged dense
+PASS RhodesResearch f32 48000 ragged sparse
+PASS RhodesResearch f32 192000 whole dense
+PASS RhodesResearch f32 192000 whole sparse
+PASS RhodesResearch f32 192000 fixed64 dense
+PASS RhodesResearch f32 192000 fixed64 sparse
+PASS RhodesResearch f32 192000 ragged dense
+PASS RhodesResearch f32 192000 ragged sparse
+PASS RhodesResearch f64 48000 whole dense
+PASS RhodesResearch f64 48000 whole sparse
+PASS RhodesResearch f64 48000 fixed64 dense
+PASS RhodesResearch f64 48000 fixed64 sparse
+PASS RhodesResearch f64 48000 ragged dense
+PASS RhodesResearch f64 48000 ragged sparse
+PASS RhodesResearch f64 192000 whole dense
+PASS RhodesResearch f64 192000 whole sparse
+PASS RhodesResearch f64 192000 fixed64 dense
+PASS RhodesResearch f64 192000 fixed64 sparse
+PASS RhodesResearch f64 192000 ragged dense
+PASS RhodesRe...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+</testsuite>

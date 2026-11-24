@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "created_at_utc": "2026-11-24T13:23:59.522796+00:00",
+  "task_id": "HOST-003",
+  "status": "partial",
+  "scope": "Observed native Windows test-build failure, minimal portable boolean conversion, and local Linux regression verification. Native Windows correction remains to be executed.",
+  "failure": {
+    "source_commit": "3a2dbb7cfd2d0967abbab2b89929281ad53ac47d",
+    "workflow_run": 45397734210,
+    "job_id": 138457884481,
+    "platform": "windows-latest",
+    "stage": "build",
+    "diagnostic": "C4805 unsafe mix of Steinberg::TBool and bool, promoted to C2220 by /WX",
+    "file": "tests/cpp/vst3_mono_contract_test.cpp",
+    "original_lines": [
+      665,
+      671,
+      991
+    ]
+  },
+  "correction": "Normalize the SDK integer boolean with != 0 before comparing to C++ bool at all three test assertions. Production code and warning flags unchanged.",
+  "corrected_source_sha256": "b8049e1730548eb2f2de34ce8c5e5b7a5df245925555af7b15bfdc701db356f7",
+  "local_verification": {
+    "build_exit_code": 0,
+    "ctest_exit_codes": [
+      0,
+      0
+    ],
+    "ctest_counts": [
+      7,
+      14
+    ],
+    "ctests": 21,
+    "passed": 21,
+    "failed": 0,
+    "skipped": 0,
+    "scope": "All seven mono-contract selectors for each of three variants, Linux/GCC Release. First regex selected only the direct variant (7); second selected the other two variants (14)."
+  },
+  "archive": {
+    "path": "docs/validation/host-expression-mono-msvc-correction-20261124.tar.gz",
+    "bytes": 15842,
+    "sha256": "b3f9a3b060a50a7713778174f86478b710908a17fbe4fc8c8df46edd9c19db0c",
+    "members": {
+      "windows-3a2-build-failure.log": {
+        "bytes": 79929,
+        "sha256": "31a59b589a1c48ed63f7d83d5f6676e2701f685aa00bcaff5e3cd9cd6f2a90a9"
+      },
+      "mono-msvc-portability-build.log": {
+        "bytes": 1104,
+        "sha256": "b1702c4ad513eb7ddc1a53f75a2cc9001c5823e45420688842a52b4770aa588f"
+      },
+      "mono-msvc-portability.log": {
+        "bytes": 833,
+        "sha256": "73703f8f9177f8002f5f24b95c716b86fb6a0ddbb04786abc5c4483e31868a2a"
+      },
+      "mono-msvc-portability.xml": {
+        "bytes": 1958,
+        "sha256": "82407d1c8748e55a69dd09b70e1dc24a3689024c609e93b37096a20ed2c489a1"
+      },
+      "mono-msvc-portability-filtered.log": {
+        "bytes": 1793,
+        "sha256": "3302bc5ae6790f6ca362994f444967bb009b1f26be8b335a98f95159dab25fb2"
+      },
+      "mono-msvc-portability-filtered.xml": {
+        "bytes": 3990,
+        "sha256": "be883da4d876f5113fa1cafa4e9d575816677548d15bb22ecd85f88c0090cdec"
+      }
+    }
+  },
+  "limits": [
+    "The earlier 453-test source snapshot predates this fixture-only change and remains immutable.",
+    "No Windows or macOS pass is inferred from Linux."
+  ]
+}

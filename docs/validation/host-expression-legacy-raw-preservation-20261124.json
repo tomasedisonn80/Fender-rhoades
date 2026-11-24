@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "created_at_utc": "2026-11-24T13:20:53.153024+00:00",
+  "task_id": "HOST-003",
+  "status": "pass",
+  "scope": "Durable preservation of the first retained 216-process / 144-pair Linux legacy comparison, including every raw audio, metadata and stderr capture.",
+  "run_id": "b904cf03d58c4d58a048f3b212033294",
+  "archive": {
+    "path": "docs/validation/host-expression-legacy-linux-raw-20261124.tar.xz",
+    "bytes": 569696,
+    "sha256": "13f142d6d2ac6ccbd21d5d0e419a3ab50f7c24195c794238548fd1fe9ba507a6",
+    "member_count": 651
+  },
+  "original_manifest": {
+    "path": "docs/validation/host-expression-legacy-linux-manifest-20261124.json",
+    "sha256": "d5f86c8fa3b295f3a5f00515ef55ee069181ceed1f6025c72b2acf14607fefa6",
+    "listed_files": 649
+  },
+  "original_report": {
+    "path": "docs/validation/host-expression-legacy-linux-20261124.json",
+    "sha256": "dfbaf851954204bb42661daf8b8d2e14e9f031bac3ba880d40d4416b778862e0"
+  },
+  "all_manifest_files_rehashed_before_archiving": true,
+  "all_archived_manifest_members_rehashed_after_archiving": true,
+  "additional_members": {
+    "manifest.json": {
+      "bytes": 115355,
+      "sha256": "d5f86c8fa3b295f3a5f00515ef55ee069181ceed1f6025c72b2acf14607fefa6"
+    },
+    "report.json": {
+      "bytes": 537716,
+      "sha256": "dfbaf851954204bb42661daf8b8d2e14e9f031bac3ba880d40d4416b778862e0"
+    }
+  },
+  "limits": [
+    "Preserves the existing observed run; does not add new execution or platform coverage."
+  ]
+}

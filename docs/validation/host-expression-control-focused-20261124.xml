@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Linux-c++"
+	tests="18"
+	failures="0"
+	disabled="0"
+	skipped="0"
+	hostname="4f398b69b6a5"
+	time="0"
+	timestamp="2026-11-24T05:54:29"
+	>
+	<testcase name="vst3.expression_control_metadata" classname="vst3.expression_control_metadata" time="0.00391996" status="run">
+		<properties/>
+		<system-out>PASS Expression controller model=1 metadata (2230 always-active checks, 0 FP environments)
+</system-out>
+	</testcase>
+	<testcase name="vst3.filtered_expression_control_metadata" classname="vst3.filtered_expression_control_metadata" time="0.00410429" status="run">
+		<properties/>
+		<system-out>PASS Expression controller model=2 metadata (2230 always-active checks, 0 FP environments)
+</system-out>
+	</testcase>
+	<testcase name="vst3.quadrature_expression_control_metadata" classname="vst3.quadrature_expression_control_metadata" time="0.00447643" status="run">
+		<properties/>
+		<system-out>PASS Expression controller model=3 metadata (2230 always-active checks, 0 FP environments)
+</system-out>
+	</testcase>
+	<testcase name="vst3.expression_control_conversion" classname="vst3.expression_control_conversion" time="0.00200203" status="run">
+		<properties/>
+		<system-out>PASS Expression controller model=1 conversion (11036 always-active checks, 0 FP environments)
+</system-out>
+	</testcase>
+	<testcase name="vst3.filtered_expression_control_conversion" classname="vst3.filtered_expression_control_conversion" time="0.00190391" status="run">
+		<properties/>
+		<system-out>PASS Expression controller model=2 conversion (11036 always-active checks, 0 FP environments)
+</system-out>
+	</testcase>
+	<testcase name="vst3.quadrature_expression_control_conversion" classname="vst3.quadrature_expression_control_conversion" time="0.00320813" status="run">
+		<properties/>
+		<system-out>PASS Expression controller model=3 conversion (11036 always-active checks, 0 FP environments)
+</system-out>
+	</testcase>
+	<testcase name="vst3.expression_control_recall" classname="vst3.expression_control_recall" time="0.00300061" status="run">
+		<properties/>
+		<system-out>PASS Expression controller model=1 recall (6491 always-active checks, 0 FP environments)
+</system-out>
+	</testcase>
+	<testcase name="vst3.filtered_expression_control_recall" classname="vst3.filtered_expression_control_recall" time="0.00282756" status="run">
+		<properties/>
+		<system-out>PASS Expression controller model=2 recall (6491 always-active checks, 0 FP environments)
+</system-out>
+	</testcase>
+	<testcase name="vst3.quadrature_expression_control_recall" classname="vst3.quadrature_expression_control_recall" time="0.0029088" status="run">
+		<properties/>
+		<system-out>PASS Expression controller model=3 recall (6491 always-active checks, 0 FP environments)
+</system-out>
+	</testcase>
+	<testcase name="vst3.expression_control_lifecycle" classname="vst3.expression_control_lifecycle" time="0.00351667" status="run">
+		<properties/>
+		<system-out>PASS Expression controller model=1 lifecycle (642 always-active checks, 0 FP environments)
+</system-out>
+	</testcase>
+	<testcase name="vst3.filtered_expression_control_lifecycle" classname="vst3.filtered_expression_control_lifecycle" time="0.00166464" status="run">
+		<properties/>
+		<system-out>PASS Expression controller model=2 lifecycle (642 always-active checks, 0 FP environments)
+</system-out>
+	</testcase>
+	<testcase name="vst3.quadrature_expression_control_lifecycle" classname="vst3.quadrature_expression_control_lifecycle" time="0.00199273" status="run">
+		<properties/>
+		<system-out>PASS Expression controller model=3 lifecycle (642 always-active checks, 0 FP environments)
+</system-out>
+	</testcase>
+	<testcase name="vst3.expression_control_fp_rounding" classname="vst3.expression_control_fp_rounding" time="0.00385171" status="run">
+		<properties/>
+		<system-out>PASS Expression controller model=1 fp_rounding (70152 always-active checks, 4 FP environments)
+</system-out>
+	</testcase>
+	<testcase name="vst3.filtered_expression_control_fp_rounding" classname="vst3.filtered_expression_control_fp_rounding" time="0.00440359" status="run">
+		<properties/>
+		<system-out>PASS Expression controller model=2 fp_rounding (70152 always-active checks, 4 FP environments)
+</system-out>
+	</testcase>
+	<testcase name="vst3.quadrature_expression_control_fp_rounding" classname="vst3.quadrature_expression_control_fp_rounding" time="0.0038715" status="run">
+		<properties/>
+		<system-out>PASS Expression controller model=3 fp_rounding (70152 always-active checks, 4 FP environments)
+</system-out>
+	</testcase>
+	<testcase name="vst3.expression_control_fp_flush" classname="vst3.expression_control_fp_flush" time="0.00821172" status="run">
+		<properties/>
+		<system-out>PASS Expression controller model=1 fp_flush (210456 always-active checks, 12 FP environments)
+</system-out>
+	</testcase>
+	<testcase name="vst3.filtered_expression_control_fp_flush" classname="vst3.filtered_expression_control_fp_flush" time="0.00764666" status="run">
+		<properties/>
+		<system-out>PASS Expression controller model=2 fp_flush (210456 always-active checks, 12 FP environments)
+</system-out>
+	</testcase>
+	<testcase name="vst3.quadrature_expression_control_fp_flush" classname="vst3.quadrature_expression_control_fp_flush" time="0.00678282" status="run">
+		<properties/>
+		<system-out>PASS Expression controller model=3 fp_flush (210456 always-active checks, 12 FP environments)
+</system-out>
+	</testcase>
+</testsuite>

@@ -1,7 +1,11 @@
 # Development and verification
 
 The current equations, units and numerical failure behavior are specified in
-[NUMERICS.md](NUMERICS.md).
+[NUMERICS.md](NUMERICS.md). Current host extensions follow the frozen
+[Expression/mono contract](specs/HOST_EXPRESSION_MONO_20261124.md); the
+[Expression verification guide](EXPRESSION_VERIFICATION.md) provides all new
+test selectors and targets, the optional legacy-module comparison, diagnostics
+commands and the boundary between local observations and native acceptance.
 
 ## Local checks
 
@@ -114,6 +118,41 @@ VST3 runtime dependencies.
 
 ## Automated checks
 
+### Expression, state and output-layout checks
+
+After the [optional VST3 configuration](VST3.md#build-the-optional-adapter), build
+the complete host-check target and the independent core state target. For a
+build directory named `build/vst3`:
+
+```sh
+cmake --build build/vst3 --config Release --parallel 2 \
+  --target rhodes_vst3_checks rhodes_expression_state_tests
+ctest --test-dir build/vst3 -C Release --output-on-failure --no-tests=error \
+  -R '^(expression_state\.|vst3\.((filtered_|quadrature_)?(expression_|mono_)|loaded_expression_))'
+```
+
+The host aggregate includes direct, filtered and quadrature fixtures, the actual
+loaded-module harnesses, validators and the legacy recorder. Core
+`expression_state.*` tests require the separate core target shown above. Use
+the [selector map](EXPRESSION_VERIFICATION.md#registered-selectors-and-targets)
+to run a narrower change; retain the full affected core/host suite and all six
+validators for final acceptance. `vst3.legacy_unity_comparison` is registered
+only when `RHODES_VST3_LEGACY_BUNDLE_ROOT` names three frozen baseline bundles
+and their `manifest.json`; an unset option supplies no comparison coverage.
+The [baseline recipe](EXPRESSION_VERIFICATION.md#legacy-unity-comparison)
+specifies the exact revision, toolchain check and raw output locations.
+
+The standard-library [diagnostics helper](../tools/capture_ci_diagnostics.py)
+records command arguments/exit status, raw logs, matching CTest inventory and
+JUnit, and before/after source, SDK and build metadata. See
+[source-bound diagnostics](EXPRESSION_VERIFICATION.md#retain-source-bound-diagnostics)
+for its `metadata`, `run`, `ctest`, `baseline-manifest` and `verify-toolchains`
+commands. Missing logs, unregistered tests, skips and failed metadata are visible
+evidence gaps. Retain the first failure and use a new output directory/label for
+a retry; do not merge separate focused runs into one claimed full-suite pass.
+
+### Native workflows and observed results
+
 `.github/workflows/ci.yml` configures project/data/campaign validation and Python
 tests on Linux, Windows and macOS, C++ builds on the same three platforms, and an
 additional Linux sanitizer build. It also checks the current development-wave
@@ -129,8 +168,14 @@ GitHub Actions ecosystem because the initial runtime has no external packages.
 A separate `.github/workflows/vst3.yml` configures the optional module, retained
 host harness, all three official SDK validators and all three module metadata
 validators on the same three platforms. It checks
-the SDK root and all four initialized submodule revisions, and leaves plugin
-installation links disabled. The development campaign has its own ledger;
+the SDK root and all four initialized submodule revisions, builds the fixed
+legacy source with the same native toolchain, compares default/explicit-unity
+Expression against it, and leaves plugin installation links disabled. Both
+workflows retain raw diagnostics with source/run/attempt identity even when a
+job fails. This workflow configuration is a recipe for source-bound execution;
+the [current observation table](EXPRESSION_VERIFICATION.md#retained-observations--24-november-2026)
+keeps the first Linux full run, later focused checks and legacy replay separate.
+The development campaign has its own ledger;
 unfinished assignments remain visible until their actual reports are complete.
 
 A configured CI job is not a completed test result. Read the Actions run for the

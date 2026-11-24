@@ -4,6 +4,13 @@ This guide separates testing a build from inspecting retained HOST-002 evidence.
 The [MIDI contract](specs/HOST_MIDI_20261124.md) defines the behavior;
 [DAW validation](DAW_VALIDATION.md) remains a separate manual protocol.
 
+The later [HOST-003 contract](specs/HOST_EXPRESSION_MONO_20261124.md) adds global
+CC11 Expression, adaptive 16/20-byte configuration and mono/stereo negotiation.
+Use [Expression verification](EXPRESSION_VERIFICATION.md) for the current new
+selectors, frozen 18→19-control legacy comparison and source-bound native
+diagnostics. The dated HOST-002 observations below retain their original
+2→18-control comparison and source revisions; they do not validate HOST-003.
+
 ## Test the implementation
 
 Start at the repository root. Follow [development prerequisites](DEVELOPMENT.md)
@@ -27,10 +34,12 @@ Use the Windows generator instructions in [VST3 setup](VST3.md); substitute
 These are instructions, not new platform results.
 
 The selection includes the six `control_text.*` cases, `events.release_port`,
-and the new `vst3.channel_commands`, `command_partition`, `command_bounds`,
+and the HOST-002 `vst3.channel_commands`, `command_partition`, `command_bounds`,
 `command_atomicity`, `pressure`, and `control_text` suites with their
-`filtered_`/`quadrature_` counterparts. It also runs existing host regressions
-and validators. [Core](../CMakeLists.txt) and
+`filtered_`/`quadrature_` counterparts. It also runs the current host regressions,
+later Expression/mono suites and validators when registered in that build; it
+does not select the separate core `expression_state.*` family.
+[Core](../CMakeLists.txt) and
 [adapter registration](../cmake/Vst3.cmake) identify each target;
 most adapter suites compile processor code into their executables.
 [vst3.loaded_midi](../tests/cpp/vst3_loaded_midi_test.cpp) instead reaches all

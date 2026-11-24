@@ -1,0 +1,41 @@
+Test project /tmp/rhodes-d-build
+      Start 246: vst3.expression_transaction_queue_shapes
+      Start 247: vst3.filtered_expression_transaction_queue_shapes
+ 1/18 Test #246: vst3.expression_transaction_queue_shapes .......................   Passed    0.03 sec
+      Start 248: vst3.quadrature_expression_transaction_queue_shapes
+ 2/18 Test #247: vst3.filtered_expression_transaction_queue_shapes ..............   Passed    0.11 sec
+      Start 249: vst3.expression_transaction_expression_points
+ 3/18 Test #248: vst3.quadrature_expression_transaction_queue_shapes ............   Passed    0.08 sec
+      Start 250: vst3.filtered_expression_transaction_expression_points
+ 4/18 Test #249: vst3.expression_transaction_expression_points ..................   Passed    0.03 sec
+      Start 251: vst3.quadrature_expression_transaction_expression_points
+ 5/18 Test #250: vst3.filtered_expression_transaction_expression_points .........   Passed    0.09 sec
+      Start 252: vst3.expression_transaction_late_co_batches
+ 6/18 Test #251: vst3.quadrature_expression_transaction_expression_points .......   Passed    0.07 sec
+      Start 253: vst3.filtered_expression_transaction_late_co_batches
+ 7/18 Test #252: vst3.expression_transaction_late_co_batches ....................   Passed    0.01 sec
+      Start 254: vst3.quadrature_expression_transaction_late_co_batches
+ 8/18 Test #254: vst3.quadrature_expression_transaction_late_co_batches .........   Passed    0.03 sec
+      Start 255: vst3.expression_transaction_ownership_recall
+ 9/18 Test #253: vst3.filtered_expression_transaction_late_co_batches ...........   Passed    0.05 sec
+      Start 256: vst3.filtered_expression_transaction_ownership_recall
+10/18 Test #255: vst3.expression_transaction_ownership_recall ...................   Passed    0.02 sec
+      Start 257: vst3.quadrature_expression_transaction_ownership_recall
+11/18 Test #257: vst3.quadrature_expression_transaction_ownership_recall ........   Passed    0.06 sec
+      Start 258: vst3.expression_transaction_flush_recall
+12/18 Test #256: vst3.filtered_expression_transaction_ownership_recall ..........   Passed    0.07 sec
+      Start 259: vst3.filtered_expression_transaction_flush_recall
+13/18 Test #258: vst3.expression_transaction_flush_recall .......................   Passed    0.04 sec
+      Start 260: vst3.quadrature_expression_transaction_flush_recall
+14/18 Test #260: vst3.quadrature_expression_transaction_flush_recall ............   Passed    0.10 sec
+      Start 261: vst3.expression_transaction_inactive_transactions
+15/18 Test #259: vst3.filtered_expression_transaction_flush_recall ..............   Passed    0.14 sec
+      Start 262: vst3.filtered_expression_transaction_inactive_transactions
+16/18 Test #261: vst3.expression_transaction_inactive_transactions ..............   Passed    0.01 sec
+      Start 263: vst3.quadrature_expression_transaction_inactive_transactions
+17/18 Test #262: vst3.filtered_expression_transaction_inactive_transactions .....   Passed    0.05 sec
+18/18 Test #263: vst3.quadrature_expression_transaction_inactive_transactions ...   Passed    0.04 sec
+
+100% tests passed out of 18
+
+Total Test time (real) =   0.53 sec

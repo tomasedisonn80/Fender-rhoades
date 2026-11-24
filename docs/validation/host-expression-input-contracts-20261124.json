@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "task_id": "HOST-003",
+  "kind": "additional-control-transaction-boundary-checks",
+  "production_base": "41c9d85b1b5292297e66bcc476dae33cb85de79f",
+  "note": "Processor/controller/state production bytes unchanged; current later factory-category correction does not enter these directly linked tests. These are separate focused runs.",
+  "runs": [
+    {
+      "suite": "control",
+      "passed": 18,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 0.05
+    },
+    {
+      "suite": "transaction",
+      "passed": 18,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 0.53
+    },
+    {
+      "suite": "bounds",
+      "passed": 18,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 0.31
+    }
+  ],
+  "source_sha256": {
+    "tests/cpp/vst3_expression_control_test.cpp": "9a6a474bc0f5351c30051849e5e8138899577b656dd8b74fe464203f154d2f86",
+    "tests/cpp/vst3_expression_transaction_test.cpp": "befef2b0bf7a1fe7dbbe1ead528b5bc3291b93d0d7b2611075c88e2feadd6d2e",
+    "tests/cpp/vst3_expression_bounds_test.cpp": "7431478a580f32086c7a8dc02744895af7a7b9335c9a8ba8f0dfcb213c84aa43"
+  },
+  "artifacts": {
+    "docs/validation/host-expression-control-focused-20261124.log": {
+      "sha256": "c0de70d0ff24e7535cb020a94bcfee1a2cfe68c0e9465d205399226f6a32325b",
+      "bytes": 2733
+    },
+    "docs/validation/host-expression-control-focused-20261124.xml": {
+      "sha256": "7f4fb9c526129df1c06e27b3d4db53ee77a53fe6bb593c28c8c66407c7fcef74",
+      "bytes": 5458
+    },
+    "docs/validation/host-expression-transaction-focused-20261124.log": {
+      "sha256": "7661c8f9b556aa9f8487b7d09c400e47fd4e6ba465e3635f9e5efaffc1c2d641",
+      "bytes": 3180
+    },
+    "docs/validation/host-expression-transaction-focused-20261124.xml": {
+      "sha256": "8f68bfcf9a33e533a49c973360471eca9db1d38c4533554a19a22f02d0ed7767",
+      "bytes": 6876
+    },
+    "docs/validation/host-expression-bounds-focused-20261124.log": {
+      "sha256": "efcd9e2b3d0443d63f86614df969905b0e0a0aa62ec4b2402aacc109952240a4",
+      "bytes": 2877
+    },
+    "docs/validation/host-expression-bounds-focused-20261124.xml": {
+      "sha256": "839d79809e6b71dfef3d306a8a5afd833a7caf3a0d35b8b0f861b7e6075fccbf",
+      "bytes": 6990
+    }
+  },
+  "limitations": [
+    "Linux/GCC Release only.",
+    "No host arithmetic injection, named-DAW or physical-fidelity conclusion.",
+    "Allocation counters cover intercepted C++ operators within selected callbacks, not all C/foreign-host activity or deadlines."
+  ]
+}

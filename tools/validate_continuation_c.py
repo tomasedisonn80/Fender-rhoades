@@ -18,6 +18,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 LEDGER = "project/continuation-c-20261124.json"
 CAMPAIGN = "continuation-c-20261124"
+REPORT_PREFIX = "docs/agents/reports/continuation-c"
 WAVES, PER_WAVE = 5, 20
 TOTAL = WAVES * PER_WAVE
 
@@ -61,21 +62,30 @@ def strict_json(content: bytes) -> object:
                       parse_constant=invalid_number, parse_float=finite_float)
 
 
-def validate(root: Path = ROOT, require_complete: bool = False) -> tuple[int, int]:
+def validate(root: Path = ROOT, require_complete: bool = False, *,
+             ledger: str = LEDGER, campaign: str = CAMPAIGN,
+             report_prefix: str = REPORT_PREFIX,
+             ledger_label: str = "continuation-C") -> tuple[int, int]:
+    """Validate a five-wave ledger, retaining continuation-C defaults.
+
+    Campaign-specific entry points supply their fixed ledger path, campaign
+    identity, report directory and diagnostic label. These are trusted caller
+    configuration, never values selected from the untrusted ledger itself.
+    """
     root = root.resolve(strict=True)
     if not root.is_dir():
         raise ValueError("root must be a directory")
-    data = strict_json(read_regular(root, LEDGER))
+    data = strict_json(read_regular(root, ledger))
     fixed = {"schema_version": 1, "requested_agents": TOTAL, "requested_waves": WAVES,
              "concurrency_limit_including_integrator": 4}
     fields = {*fixed, "campaign", "baseline_commit", "status", "completed_agents", "agents"}
     if type(data) is not dict or set(data) != fields:
-        raise ValueError("invalid continuation-C ledger fields")
+        raise ValueError(f"invalid {ledger_label} ledger fields")
     for key, expected in fixed.items():
         if type(data[key]) is not int or data[key] != expected:
             raise ValueError(f"{key} must be the integer {expected}")
-    if data["campaign"] != CAMPAIGN:
-        raise ValueError(f"campaign must be {CAMPAIGN}")
+    if data["campaign"] != campaign:
+        raise ValueError(f"campaign must be {campaign}")
     if (type(data["baseline_commit"]) is not str or
             not re.fullmatch(r"[0-9a-f]{40}", data["baseline_commit"])):
         raise ValueError("baseline_commit must be 40 lowercase hexadecimal digits")
@@ -120,7 +130,7 @@ def validate(root: Path = ROOT, require_complete: bool = False) -> tuple[int, in
             raise ValueError(f"assignment {number}: report path must be a string")
         if report in reports:
             raise ValueError(f"assignment {number}: duplicate report path")
-        if report != f"docs/agents/reports/continuation-c/w{wave}-{number:03d}.md":
+        if report != f"{report_prefix}/w{wave}-{number:03d}.md":
             raise ValueError(f"assignment {number}: incorrect canonical report path")
         reports.add(report)
         digest = record["sha256"]

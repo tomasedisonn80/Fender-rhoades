@@ -2,6 +2,27 @@
 
 ## Unreleased — experimental VST3 and research foundation
 
+- Global digital CC11 **Expression** on all three instruments, with independent
+  automation, continued mechanics at zero, and an unchanged exact-unity output
+  path. The [frozen contract](docs/specs/HOST_EXPRESSION_MONO_20261124.md) retains
+  existing control/class/model identities and latencies while adding parameter
+  ID 2, for nineteen host parameters.
+- Adaptive RHST configuration: unity Expression preserves exact 16-byte v1
+  bytes; non-unity uses 20-byte v2. Own-model legacy loads restore unity and
+  valid v2 unity loads save canonically as v1; strict lengths and transactional
+  rejection remain. Output layout, transient commands and ringing state are
+  excluded. See the [wire-format table](docs/specs/RUNTIME_AND_ASSETS.md#persistence-and-determinism).
+- Default stereo with suspended mono/stereo negotiation, scalar mono output,
+  bounded one/two-channel rejection cleanup and omitted inactive-output
+  processing. Factory category is now `Instrument|Synth`; the
+  [category correction](docs/validation/host-expression-category-correction-20261124.json)
+  retains its first failure and nine passing targeted checks.
+- Independent state, stream, control/audio, transaction, capacity, concurrency,
+  mono and actual loaded-module fixtures, plus a reusable exact baseline replay
+  and source-bound native diagnostics. The
+  [verification guide](docs/EXPRESSION_VERIFICATION.md) separates the initial
+  Linux full run, later focused results and 216-process legacy matrix; native
+  feature acceptance and named-DAW verification remain separate gates.
 - Batched six-node quadrature observation with adjacent prepared coefficients.
   The [retained Linux/GCC replay](docs/validation/batched-quadrature-20261124.md)
   preserves all 2,097 Q6 outputs and 24 legacy WAVs exactly; model identities,

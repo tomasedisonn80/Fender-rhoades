@@ -57,6 +57,30 @@ variants. It used the current uncommitted implementation on the published
 `cba5eeb9faf106c38efa530e94036dc2db3836b2` base. Broader legacy, mono, concurrent,
 loaded-module and native verification remains in progress.
 
+## Wave-two integration checkpoint
+
+The integrated Linux Release tree passed 453 of 453 CTests, with no skipped
+selectors, including the three SDK and three module-information validators.
+The separate full Python suite ran 929 tests: 928 passed and one optional
+external audio-probe comparison was explicitly skipped. These are working-tree
+observations with retained source hashes, not claims about an unrun native
+platform. See the [C++ record](../validation/host-expression-wave2-linux-20261124.json)
+and [Python record](../validation/host-expression-wave2-python-20261124.json).
+
+An independent process loaded the retained baseline and current modules for
+216 captures. All 144 old/current pairs matched exactly across 608,256 paired
+stereo frames, and all 36 dense partition groups matched. The original raw
+captures are preserved with a [verified archive binding](../validation/host-expression-legacy-raw-preservation-20261124.json).
+The factory category now permits negotiated mono instead of advertising a
+stereo-only restriction; a loaded-factory assertion first reproduced that
+metadata defect and then passed after its correction.
+
+Current-source native gates and concrete host arithmetic-failure witnesses
+remain open. The next wave targets those gaps and independent integration
+review. The historical HOST-002 macOS evidence has been recovered and registered;
+its separate criterion review remains pending. Neither activity changes the
+physical-fidelity or device deadline status.
+
 ## Worker boundaries
 
 Read the operating contract and frozen feature specification before starting.

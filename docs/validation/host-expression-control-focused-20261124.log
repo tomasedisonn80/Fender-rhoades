@@ -1,0 +1,41 @@
+Test project /tmp/rhodes-d-build
+      Start 228: vst3.expression_control_metadata
+      Start 229: vst3.filtered_expression_control_metadata
+ 1/18 Test #228: vst3.expression_control_metadata .................   Passed    0.00 sec
+      Start 230: vst3.quadrature_expression_control_metadata
+ 2/18 Test #229: vst3.filtered_expression_control_metadata ........   Passed    0.00 sec
+      Start 231: vst3.expression_control_conversion
+ 3/18 Test #231: vst3.expression_control_conversion ...............   Passed    0.00 sec
+      Start 232: vst3.filtered_expression_control_conversion
+ 4/18 Test #230: vst3.quadrature_expression_control_metadata ......   Passed    0.00 sec
+      Start 233: vst3.quadrature_expression_control_conversion
+ 5/18 Test #232: vst3.filtered_expression_control_conversion ......   Passed    0.00 sec
+      Start 234: vst3.expression_control_recall
+ 6/18 Test #233: vst3.quadrature_expression_control_conversion ....   Passed    0.00 sec
+      Start 235: vst3.filtered_expression_control_recall
+ 7/18 Test #234: vst3.expression_control_recall ...................   Passed    0.00 sec
+      Start 236: vst3.quadrature_expression_control_recall
+ 8/18 Test #235: vst3.filtered_expression_control_recall ..........   Passed    0.00 sec
+      Start 237: vst3.expression_control_lifecycle
+ 9/18 Test #236: vst3.quadrature_expression_control_recall ........   Passed    0.00 sec
+      Start 238: vst3.filtered_expression_control_lifecycle
+10/18 Test #238: vst3.filtered_expression_control_lifecycle .......   Passed    0.00 sec
+      Start 239: vst3.quadrature_expression_control_lifecycle
+11/18 Test #237: vst3.expression_control_lifecycle ................   Passed    0.00 sec
+      Start 240: vst3.expression_control_fp_rounding
+12/18 Test #239: vst3.quadrature_expression_control_lifecycle .....   Passed    0.00 sec
+      Start 241: vst3.filtered_expression_control_fp_rounding
+13/18 Test #240: vst3.expression_control_fp_rounding ..............   Passed    0.00 sec
+      Start 242: vst3.quadrature_expression_control_fp_rounding
+14/18 Test #241: vst3.filtered_expression_control_fp_rounding .....   Passed    0.00 sec
+      Start 243: vst3.expression_control_fp_flush
+15/18 Test #242: vst3.quadrature_expression_control_fp_rounding ...   Passed    0.00 sec
+      Start 244: vst3.filtered_expression_control_fp_flush
+16/18 Test #243: vst3.expression_control_fp_flush .................   Passed    0.01 sec
+      Start 245: vst3.quadrature_expression_control_fp_flush
+17/18 Test #244: vst3.filtered_expression_control_fp_flush ........   Passed    0.01 sec
+18/18 Test #245: vst3.quadrature_expression_control_fp_flush ......   Passed    0.01 sec
+
+100% tests passed out of 18
+
+Total Test time (real) =   0.05 sec

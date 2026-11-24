@@ -15,11 +15,12 @@ any of these plug-ins. No specimen calibration or measured fidelity is establish
 | Quadrature research model | `RhodesResearchQuadrature.vst3` / `rhodes_vst3_quadrature` | Separate class IDs, model-3 state, six fractional observations per host cell, 48-frame delay |
 
 Each variant has its own processor/controller FUID pair, defined in
-[plugin_ids.hpp](../plugins/vst3/plugin_ids.hpp). The original model-1 and model-2
-identities and saved-state interpretation remain unchanged. The MIDI
-interoperability update also preserves all three variants' class IDs, model IDs
-and reported latencies. A project can load
-the three instruments together; there is no live sound-path or latency switch.
+[plugin_ids.hpp](../plugins/vst3/plugin_ids.hpp). The MIDI interoperability and
+Expression/mono updates preserve all six class identities, model IDs `1/2/3`
+and reported latencies `0/48/48` frames. Legacy configuration loads with Expression
+at unity; non-unity Expression uses the extended format described below. A
+project can load the three instruments together; there is no live sound-path
+or latency switch.
 
 The filtered variant uses 4x internal rate through 48 kHz, 2x above 48 through
 96 kHz, and 1x above 96 kHz. A 385/193/97-tap Kaiser FIR processes the combined
@@ -47,8 +48,11 @@ continuous-reference error was `8.318901123516298e-12 V`, against the unchanged
 synthetic matrix. The [legacy compatibility record](validation/quadrature-legacy-compatibility-20261123.json)
 also retains 24 byte-identical direct/filtered WAV reproductions.
 
-The implementation contracts are [HOST_PROTOTYPE_20261123](specs/HOST_PROTOTYPE_20261123.md)
-and its [MIDI interoperability continuation](specs/HOST_MIDI_20261124.md).
+The implementation contracts are [HOST_PROTOTYPE_20261123](specs/HOST_PROTOTYPE_20261123.md),
+its [MIDI interoperability continuation](specs/HOST_MIDI_20261124.md), and the
+reviewed [Expression and mono contract](specs/HOST_EXPRESSION_MONO_20261124.md).
+The last contract defines the current controls, adaptive state format and output
+layouts where it extends the earlier contracts.
 The [dependency inventory](DEPENDENCIES.md) records the official SDK revision,
 submodules and notices. [NUMERICS.md](NUMERICS.md) describes the underlying core.
 
@@ -106,14 +110,16 @@ ctest --test-dir build/vst3 -C Release -R '^vst3\.' \
 `rhodes_vst3_checks` exists when `BUILD_TESTING=ON` and builds all three bundles,
 all three callback benchmarks, the SDK validator, `moduleinfotool` and every
 retained host-test executable. The test command above runs both validators
-against each actual bundle. Dual-/triple-module loader checks and
-`vst3.loaded_midi` are configured for Linux, Windows and macOS; the latter loads
-all three production bundles through SDK-only host linkage. Permanent command
-partitioning and inactive-output command/recall checks are also included for all
-three variants. See [HOST-MIDI verification](HOST_MIDI_VERIFICATION.md) for test
-selection and retained evidence. Native CI results for the current cross-platform
-loader changes passed on Linux and Windows; current macOS execution remains
-pending in the [HOST-002 verification record](#current-host-002-verification--24-november-2026).
+against each actual bundle. Dual-/triple-module loader checks,
+`vst3.loaded_midi` and `vst3.loaded_expression_*` are configured for Linux,
+Windows and macOS. The loaded MIDI and Expression fixtures load all three
+production bundles through SDK-only host linkage. Direct host fixtures cover
+Expression automation, controls, transactions, bounds, concurrent recall and
+mono/stereo buffers alongside the existing MIDI checks. See
+[HOST-MIDI verification](HOST_MIDI_VERIFICATION.md) for the earlier scope and
+the [current Expression verification section](#current-expression-and-output-layout-verification--24-november-2026)
+for the new fixtures and acceptance boundary. A configured platform job or
+registered test is not an executed result.
 The metadata checks compare generated
 `moduleinfo.json` with the loadable factory; resource-presence checks remain
 separate. For a plug-in-only build, select `--target rhodes_vst3`,
@@ -149,6 +155,82 @@ generators in one build directory. The observed Windows CI result below is bound
 to a specific implementation commit and x64 build; actual DAW use still needs
 its own verification.
 
+### Select Expression and output-layout checks
+
+The optional host aggregate does not build the dependency-free state-codec
+executable. Build both targets to run that codec together with the current host
+fixtures:
+
+```sh
+cmake --build build/vst3 --config Release \
+  --target rhodes_expression_state_tests rhodes_vst3_checks --parallel 2
+ctest --test-dir build/vst3 -C Release -N \
+  -R '^(expression_state\.|vst3\..*(expression_|mono_))'
+ctest --test-dir build/vst3 -C Release \
+  -R '^(expression_state\.|vst3\..*(expression_|mono_))' \
+  --output-on-failure --no-tests=error
+```
+
+The `-N` invocation lists the tests in the configured checkout without running
+them. The focused command includes codec/stream, control/audio, malformed
+transaction, capacity, concurrency, mono-buffer and loaded-module fixtures.
+Use the full `^vst3\.` selection above to include legacy host behavior and all
+six SDK/module-info validators. Keep each run's source, registered count,
+failures and skips with its output; a focused run does not replace a complete
+current-source platform run. In PowerShell, put each wrapped command on one line.
+
+### Retain diagnostics and compare legacy unity output
+
+The [diagnostic helper](../tools/capture_ci_diagnostics.py) can retain the exact
+CTest inventory, complete console output, CTest's raw log, JUnit XML and command
+status. Choose a fresh output directory for each attempt; existing records are
+not overwritten. For example, a logged run of the complete host selection is:
+
+```sh
+python3 tools/capture_ci_diagnostics.py ctest \
+  --output-dir build/vst3/diagnostics-1 --label ctest -- \
+  ctest --test-dir build/vst3 -C Release -R '^vst3\.' \
+  --output-on-failure --no-tests=error
+```
+
+Native CI also captures `metadata-before.json` and `metadata-after.json`, binding
+source/SDK revisions, compiler and build settings, and available module hashes
+to the run. The [workflow](../.github/workflows/vst3.yml) contains the complete
+metadata and build commands. Diagnostics may describe a failed or incomplete
+attempt; check the command status, test failures and explicit skips.
+
+Legacy unity comparison is optional in a local configuration. Its baseline is
+the three complete bundles built from exactly
+`6c91dab00855b67a559e92edb79ae49e567be469`, using the same native toolchain and
+pinned SDK as the candidate. The baseline bundle root must also contain a
+`manifest.json` recording that source commit and all three module paths/hashes.
+The CI workflow builds this separate checkout with `BUILD_TESTING=OFF` and the
+three module targets, then creates the manifest with the helper's
+`baseline-manifest` subcommand. Do not identify a newer build as the baseline.
+
+After preparing that baseline and configuring the current build as above, add
+its absolute bundle-root path, build the checks and run the comparison:
+
+```sh
+cmake -S . -B build/vst3 \
+  -DRHODES_VST3_LEGACY_BUNDLE_ROOT=/absolute/baseline/bundle-root
+cmake --build build/vst3 --config Release \
+  --target rhodes_vst3_checks --parallel 2
+ctest --test-dir build/vst3 -C Release \
+  -R '^vst3\.legacy_unity_comparison$' --output-on-failure --no-tests=error
+```
+
+Replace the example path with the directory containing the three `.vst3`
+bundles and manifest. An empty `RHODES_VST3_LEGACY_BUNDLE_ROOT` means the comparison
+test is **not registered**; it is not a passing skip. An explicit directory
+without the manifest is a configure error. The
+[comparison driver](../tools/compare_vst3_legacy.py) runs isolated module captures
+for legacy, current default and current explicit-unity modes. With the build
+directory above, it writes `build/vst3/legacy-comparison/Release/report.json` and
+a unique run directory containing raw captures. Retain incomplete reports and
+first failures as well as completed comparisons. This command is a reproduction
+recipe, not a claim that the matrix has passed on any particular platform.
+
 ## Find and inspect the bundle
 
 With the Release configurations above, the complete bundles are:
@@ -169,29 +251,46 @@ The resources include the inspected SDK MIT notice. This does not select a
 project-wide license for this repository's original code; see [RIGHTS.md](../RIGHTS.md).
 
 The [VST3 CI workflow](../.github/workflows/vst3.yml) archives all three complete
-bundles after its host tests and validators succeed. Each platform artifact
+bundles after its host tests, configured legacy comparison and validators
+succeed. Each platform bundle artifact
 contains a `.tar.gz` archive inside GitHub's artifact ZIP. The archive check
 verifies every entry, file hash, mode and internal symlink; keep the complete
-bundle directories when extracting or installing. CI artifacts have a seven-day
-retention period and are experimental build outputs, not a published release.
+bundle directories when extracting or installing. Complete bundle artifacts
+have a seven-day retention period and are experimental build outputs, not a
+published release.
+
+Diagnostics upload is configured to run even after a failure and has a 90-day
+retention period. It includes `ci-evidence/` test/metadata records, available
+CTest/configure logs, the baseline manifest and legacy-comparison captures.
+An uploaded diagnostics artifact does not imply that a usable bundle was built
+or that any test passed.
 
 To find a tested build, open an
 [Experimental VST3 CI run](https://github.com/baabi-boo/Fender-rhoades/actions/workflows/vst3.yml),
 then check its source commit and the desired platform job, including successful
-archive/upload steps. In the run's artifacts, choose
-`experimental-vst3-<OS>-<architecture>-<full commit SHA>` for that platform.
-Match the SHA suffix to the run's tested commit; a later Foundation CI result or
+archive/upload steps. New runs use these names:
+
+| Artifact | Name | Retention |
+| --- | --- | --- |
+| Validated complete bundles | `experimental-vst3-<OS>-<architecture>-<full commit SHA>-<run ID>-<attempt>` | 7 days |
+| Raw test/build diagnostics | `vst3-diagnostics-<OS>-<architecture>-<full commit SHA>-<run ID>-<attempt>` | 90 days |
+
+Match the SHA, run ID and attempt to the job being evaluated; a later Foundation CI result or
 the current `main` revision does not change an older artifact's source identity.
 The [retained successful run](https://github.com/baabi-boo/Fender-rhoades/actions/runs/45334821145)
-is an example. If its artifacts have expired, use the source build instructions
-above and retain the commit and validation results for the new build.
+is an older example whose bundle artifact names predate the run/attempt suffix.
+If its artifacts have expired, use the source build instructions above and
+retain the commit and validation results for the new build.
 
 The build disables automatic links into user plug-in directories. To evaluate
 the result in a DAW, use that host's normal installation/scanning procedure for
 the complete bundle, then insert **Rhodes Research Prototype**,
 **Rhodes Research Filtered** or **Rhodes Research Quadrature** on an instrument
-track. Their category is `Instrument|Synth|Stereo`. A host may show its generic
-parameter editor because the prototype supplies no custom view.
+track. Their factory category is `Instrument|Synth`. The output defaults to
+stereo and may negotiate standard mono or stereo with the host.
+A host may show its generic parameter editor because the prototype supplies no
+custom view. Confirm that it lists Expression and 19 parameters when checking a
+new build; an older cached bundle may still expose only 18.
 
 For a reproducible host trial, use the proposed
 [manual DAW evaluation protocol](DAW_VALIDATION.md). It explains what to record
@@ -205,15 +304,17 @@ and which observations remain separate from the automated harness results.
 | MIDI input | One event bus accepting channels 1–16; channels share the same physical keys |
 | Note ownership | Up to 256 simultaneous holders; overlapping holders may address one key, so this is not 256 independent resonators |
 | Retrigger and release | Retrigger preserves mechanical state; only the last holder's release damps its key |
-| Output | One stereo bus with identical left/right signal; no audio input |
+| Output | One bus, stereo by default, with standard mono or stereo negotiation; mono is the scalar signal and stereo duplicates it; no audio input |
 | Processing | Float32 or float64; sample rates 32–192 kHz inclusive; at most **8192 frames** per host call |
 | Monitoring Gain | Host parameter `0`, displayed multiplier `0..32x`, default `16x`; normalized value `0..1`, default `0.5` |
 | Sustain | Host parameter `1`, `Off`/`On`; normalized values at least `0.5` select `On`; MIDI CC64 maps to it on all channels |
+| Expression | Automatable continuous host parameter `2`, displayed multiplier `0..1x`, normalized value `0..1`, default `1` (`1x`); MIDI CC11 on every input channel addresses this same global control |
 | All Notes Off | 16 writable, nonautomatable command parameters, `All Notes Off Ch 1` through `All Notes Off Ch 16`; IDs `0x1000..0x100f` map MIDI CC123 to the corresponding channel |
 | Polyphonic pressure | Well-formed typed pressure events are validated and ignored; there is no pressure-responsive synthesis |
 | Latency and tail | Direct: 0 frames; filtered and quadrature: 48 frames (1 ms at 48 kHz); all advertise an infinite asymptotic tail |
 
-There are **18 host parameters** in total. Every delivered CC123 parameter point
+There are **19 host parameters** in total: three persistent controls and sixteen
+channel release commands. Every delivered CC123 parameter point
 releases that channel's note holders, including zero and repeated unchanged
 values. Values must be finite and normalized to `0..1`; they are not interpolated,
 edge-triggered or automatically reset. Duplicate commands at the same channel
@@ -225,17 +326,50 @@ CC120 remains unmapped. A host may deduplicate unchanged controller values befor
 delivery, and the plug-in cannot recover omitted commands. Repeated CC123 delivery
 therefore needs a separate check in each native DAW.
 
-Monitoring gain multiplies synthetic harp voltage; it is not a calibrated
-instrument amplifier. Gain automation is linearly interpolated and sustain is
-stepped. Gain points are quantized to binary32 using nearest, ties-to-even;
-the preceding block's final gain anchors interpolation at offset `-1`, and the
-last duplicate gain/sustain point wins. At an equal sample offset, sustain takes
-effect first, CC123 releases follow in ascending channel order, then notes retain
-their input-list order. A new strike at that offset survives the channel release.
+### Use Expression for performance dynamics
 
-The adapter accepts at most **256 input events**, including pressure, **18 unique
-parameter queues**, **8192 raw points each for gain and sustain**, and **256 raw
-CC123 points in total across all channels**, including duplicates. Translation
+Set Monitoring Gain to the desired listening level, then automate Expression or
+send CC11 to vary the whole instrument's output. Both controls can be automated
+independently. Expression `1x` preserves the original unity-expression audio
+path; `0.5x` halves the monitored signal amplitude; `0x` silences the output.
+At zero, note ownership, mechanics, filtering and release tails keep advancing
+while the host continues processing. Returning to `1x` reveals the continuing
+sound. Expression changes neither note velocity nor the physical model and does
+not model a historical volume circuit. Monitoring Gain is also a digital
+multiplier of synthetic harp voltage, with no amplifier calibration.
+
+CC11 on channels 1–16 maps to the same global parameter, so a message from any
+channel affects notes held on every channel. The host delivers normalized
+parameter values to the plug-in; raw MIDI CC11 value 64 is not a guaranteed
+exact `0.5` fixture. CC43 is unmapped, and the plug-in performs no CC11/CC43 pairing
+or 14-bit reconstruction. Use direct host automation at `0.5` when an exact
+half-scale comparison is needed. Host MIDI-to-parameter delivery still needs
+checking in the [named-DAW protocol](DAW_VALIDATION.md).
+
+The adapter computes and checks `(32 * gain) * volts` before applying Expression.
+At exact unity it returns that monitored value directly. Engine failures and
+nonfinite monitored values fault even when Expression is zero. Expression is
+applied before the final float32/float64 output conversion, so attenuation may
+bring a finite double into the float32 output range. Conversion checks continue
+even when an inactive output is omitted.
+
+### Automation and bounded input
+
+Gain and Expression use independent linear interpolation; sustain is stepped.
+Gain/Expression points are canonical binary32 values, rounded to nearest with
+ties to even. Each control's offset `-1` anchor is the audio owner's current
+canonical live value after any recall selected for that block. A mailbox snapshot
+may contain a newer pending recall and is not the interpolation anchor. The last
+point at a duplicate offset wins, and the final value is held after the final
+point. Output interpolation uses binary64 values; saved configuration uses their
+canonical binary32 values. Equivalent curves split across blocks need the
+corresponding boundary anchors. At an equal sample offset, sustain takes effect
+first, CC123 releases follow in ascending channel order, then notes retain their
+input-list order. A new strike at that offset survives the channel release.
+
+The adapter accepts at most **256 input events**, including pressure, **19 unique
+parameter queues**, **8192 raw points each for gain, Expression and sustain**,
+and **256 raw CC123 points in total across all channels**, including duplicates. Translation
 uses fixed storage for at most **585 physical note actions per block**; each
 sample has a separate **256-action limit including sustain**. Pressure consumes
 the input-event budget and participates in offset ordering but emits no physical
@@ -245,21 +379,50 @@ pressure `0..1`; all signed note IDs are accepted. Other unsupported input event
 kinds still reject the block.
 
 Invalid or over-budget input rejects the block atomically, preserving
-configuration, mechanical state, ownership and any pending recall. With a
-supported output declaration (float32/float64, one stereo bus,
-1–8192 frames), rejection clears each supplied non-null channel buffer in full
-and sets stereo silence flags. This includes malformed events/automation and a
-configured-block-limit breach within the global 8192-frame limit. Unsupported
-output frame, bus or channel counts, or sample formats, leave samples and silence
-flags untouched. Zero-frame flushes access no sample pointers; an empty bus gets
-silence flags `0`, a stereo bus gets `3`, and no output bus requires no work.
-They accept only offset-zero parameter points and an empty event list. A selected
-recall is installed first, followed by final gain/sustain and staged CC123
-releases. Ordinary releases do not advance mechanics, frame cursors or filter
-history; an accepted recall intentionally resets them. The
-[host contract](specs/HOST_PROTOTYPE_20261123.md) and
-[MIDI continuation](specs/HOST_MIDI_20261124.md) specify full ordering, pointer
-requirements and rejection behavior.
+configuration, mechanical state, ownership and any pending valid recall. This
+includes duplicate parameter queues and malformed points discovered late in a
+queue. Accepted arithmetic faults retain the reset-required policy described
+under [Saving and resetting state](#saving-and-resetting-state).
+
+### Output layouts and buffer handling
+
+Select mono or stereo through the host's output configuration while processing
+is suspended. The accepted arrangement updates the bus name and channel count
+together: `Mono Out` has one channel and `Stereo Out` has two. Unsupported layout
+requests preserve the last accepted arrangement. Mono emits exactly the existing
+scalar left-channel signal; stereo duplicates it. There is no stereo sum or added
+pan-law gain. Host routing or panning may affect a later capture, so compare at
+the plug-in boundary when evaluating the layouts. Layout selection belongs to
+the host and is not saved in the instrument's state chunk; latency and tail
+reporting remain unchanged.
+
+For host implementers, positive-frame calls obey these buffer rules:
+
+| Output declaration | Required behavior |
+| --- | --- |
+| Active output supplied | One bus with the negotiated one/two-channel width, its channel-pointer array, and every declared sample pointer non-null |
+| Inactive output supplied | One bus with the negotiated width and its channel-pointer array; individual sample pointers may be null |
+| Inactive output omitted (`numOutputs = 0`) | Accept otherwise valid processing; continue mechanics, events, automation and fault checks without touching an output pointer or silence flag |
+| Active output omitted | Reject the block |
+
+For rejection cleanup, a supported declaration is float32/float64, one bus,
+one or two declared channels and 1–8192 frames. Each supplied non-null sample
+buffer is cleared in full, with silence flags `1` for mono or `3` for stereo.
+The declared cleanup width is recognized independently of the negotiated layout,
+so a rejected mono/stereo mismatch can still be cleared safely. Cleanup includes
+malformed events/automation and a configured-block-limit breach within the global
+8192-frame limit. Unsupported frame, bus or channel counts, or sample formats,
+leave samples and silence flags untouched.
+
+Zero-frame flushes may omit the output bus or supply a zero-channel or
+negotiated-width bus. They never inspect sample pointers. An empty bus gets
+silence flags `0`, mono gets `1`, and stereo gets `3`; omission touches no flags.
+Flushes accept only offset-zero parameter points and an empty event list. A
+selected recall is installed first, followed by final gain/Expression/sustain
+values and staged CC123 releases. Ordinary releases advance no mechanics, frame
+cursors or filter history; an accepted recall intentionally resets them. The
+[Expression and mono contract](specs/HOST_EXPRESSION_MONO_20261124.md) gives the
+full transaction and pointer requirements.
 
 Pitch bend, note expression, physical half-pedal, CC120 mapping, effects
 and additional historical circuits are outside this version. Host naming of
@@ -275,35 +438,64 @@ any whitespace and unit suffix in that limit.
 | --- | --- |
 | Monitoring Gain | Decimal multiplier `0..32`, optional leading sign, fraction and `e`/`E` exponent; surrounding ASCII whitespace and an optional lowercase `x` suffix are allowed, for example `16x` or `+1.6e1 x` |
 | Sustain | Exactly `Off` or `On`, case-sensitive, without extra whitespace; the normalized threshold remains `0.5` |
+| Expression | Decimal multiplier `0..1`, using the same signed decimal/exponent grammar, surrounding ASCII whitespace and optional lowercase `x`; examples: `0`, `0.5x`, `+5e-1 x`, `1` |
 | All Notes Off commands | Decimal normalized value `0..1`, using the gain decimal grammar and surrounding ASCII whitespace, with no unit suffix; numeric display retains enough digits for a binary64 round trip |
 
 Numeric input must be consumed completely. NaN, infinity, hexadecimal numbers,
 commas, trailing garbage, overflow, nonzero decimals that underflow to binary64
 zero, and out-of-range values are rejected without clamping. Range checks use
-the rounded finite binary64 value before gain normalization; for example,
-`32.000000000000000001` can round to 32 and be accepted. Negative nonzero values,
-including subnormals, are
-rejected; signed zero is canonicalized. Gain display is numeric, with `x` kept
-in the parameter's unit metadata; sustain retains its `Off`/`On` display.
+the rounded finite binary64 value before gain normalization or Expression
+canonicalization; for example, `32.000000000000000001` can round to 32 and be
+accepted for Monitoring Gain. Expression must be within `0..1` at that binary64
+stage, even if a value just outside the range would later round to binary32 unity.
+Negative nonzero values, including subnormals, are rejected; signed zero is
+canonicalized. Gain and Expression display canonical binary32 control values
+with enough digits to round-trip; `x` is kept in their unit metadata. Sustain
+retains its `Off`/`On` display.
 Invalid IDs, null pointers, uninitialized controllers and invalid normalized
 display values also fail conversion without changing caller output or saved
 configuration. Converting command text does not execute a channel release.
 
 ## Saving and resetting state
 
-The exact 16-byte version-1 state stores monitoring gain and sustain for
-synthetic model ID `1` in the direct variant, `2` in the filtered variant and `3`
-in the quadrature variant. Every variant rejects both other model IDs: all six
-ordered cross-model recalls are rejected without conversion. Rejection also
-preserves any valid own-model recall already waiting for an audio boundary.
-The format version remains 1; the model field
-identifies the separate sound path. It does not store ringing notes or transient
-CC123 command values. Gain and sustain retain parameter IDs `0` and `1`. A valid
-recall is queued through a lock-free mailbox and installed at a valid audio boundary:
-mechanics, note holders, cursor, FIR history when present, and interpolation history reset before the
-recalled configuration is applied. A malformed, short, extended or incompatible
-chunk is rejected. Saving takes a coherent configuration snapshot without
-resetting the sound.
+The `RHST` configuration chunk uses synthetic model ID `1` for the direct
+variant, `2` for filtered and `3` for quadrature. Those IDs remain unchanged;
+the format version describes the stored controls, not a different sound path.
+Gain/sustain retain parameter IDs `0/1`, and Expression uses `2`.
+
+| Chunk or saved setting | Current behavior |
+| --- | --- |
+| Own-model legacy version 1, exactly 16 bytes | Load Monitoring Gain and sustain; Expression defaults to `1x` |
+| Save with canonical Expression `1x` | Write version 1 with the exact legacy 16-byte encoding |
+| Save with non-unity Expression | Write version 2, exactly 20 bytes, including the canonical binary32 Expression value |
+| Valid own-model version 2 with Expression `1x` | Accept; a later save canonicalizes it to version 1 |
+| Wrong model, version, length or invalid control encoding | Reject without changing configuration or consuming an already pending valid recall |
+
+Version 2 retains the first sixteen bytes' field positions with version `2` in
+the header, then adds little-endian Expression at bytes 16–19. The explicit
+version-1 encoder refuses non-unity Expression rather than discarding it. The
+[state codec](../include/rhodes/instrument_state.hpp) and
+[frozen state contract](specs/HOST_EXPRESSION_MONO_20261124.md#saved-configuration-and-publication)
+define the exact wire format. These lengths describe the plug-in chunk, not a
+host preset or project container.
+
+**Rollback limit:** older version-1-only builds cannot load version-2 chunks.
+To prepare a legacy-compatible configuration, set Expression to `1x` in the new
+build and save a separate preset before returning to the older build. Its
+non-unity Expression setting cannot be represented in that legacy preset.
+Host projects can also retain automation, parameter inventory and output routing,
+so a compatible chunk alone does not guarantee project rollback. Keep the
+original project/preset and the build that created it when evaluating a newer
+prototype.
+
+Every variant rejects both other model IDs: all six ordered cross-model recalls
+are rejected without conversion. State stores neither ringing notes, transient
+CC123 command values nor the negotiated mono/stereo layout. A valid recall is
+queued through a lock-free mailbox and installed at a valid audio boundary:
+mechanics, note holders, cursor, FIR history when present, and interpolation
+history reset before the recalled configuration is applied. Malformed fields,
+incorrect lengths and incompatible models/versions are rejected. Saving takes
+one coherent gain/sustain/Expression snapshot without resetting the sound.
 
 Control-value conversion and state encoding preserve their bit-level contract
 under supported host rounding and FTZ/DAZ modes while preserving those controls.
@@ -321,6 +513,44 @@ configuration recall installed at an accepted audio boundary supplies that reset
 
 ## Observed verification and remaining gates
 
+### Current Expression and output-layout verification — 24 November 2026
+
+**HOST-003 remains under development and acceptance review.** Its
+[frozen contract](specs/HOST_EXPRESSION_MONO_20261124.md) requires independent
+audio/control references, state migration and concurrency checks, mono/stereo
+buffer checks, legacy unity replay and native module results for the executed
+source. Implementation began in
+[41c9d85](https://github.com/baabi-boo/Fender-rhoades/commit/41c9d85);
+the [campaign record](agents/CONTINUATION_D_20261124.md) and
+[live project state](PROJECT_STATE.md) track subsequent work and acceptance.
+
+The retained [initial Linux integration](validation/host-expression-initial-linux-20261124.json)
+and [additional host-fixture record](validation/host-expression-additional-host-fixtures-20261124.json)
+describe distinct executions, each with its own source and test scope. Focused
+passes added after a full-suite run are not one larger full-suite result. Final
+counts, skips and platform acceptance must remain tied to the integrator's
+source-bound acceptance record.
+
+| Current fixture scope | Source |
+| --- | --- |
+| Version-1 compatibility, version-2 domains, malformed packets, models and mailbox words | [State codec fixture](../tests/cpp/expression_state_test.cpp) |
+| Adaptive stream transfers, lengths and failure handling | [Stream fixture](../tests/cpp/vst3_expression_stream_test.cpp) |
+| Default/unity output, independent automation, mute/resume and partitioned curves | [Audio fixture](../tests/cpp/vst3_expression_audio_test.cpp) |
+| Metadata, strict text, recall/lifecycle and floating-point controls | [Control fixture](../tests/cpp/vst3_expression_control_test.cpp) |
+| Malformed queues, preflight atomicity, flushes and inactive transactions | [Transaction fixture](../tests/cpp/vst3_expression_transaction_test.cpp) |
+| Queue/point/event bounds and instrumented allocation checks | [Bounds fixture](../tests/cpp/vst3_expression_bounds_test.cpp) |
+| Coherent publication, live interpolation anchors and callback interleavings | [Concurrency fixture](../tests/cpp/vst3_expression_concurrency_test.cpp) |
+| Mono/stereo metadata, scalar output, pointers, omission, cleanup and lifecycle | [Mono fixture](../tests/cpp/vst3_mono_contract_test.cpp) |
+| Actual loaded modules, controls/state, audio/layout and coexistence | [Loaded-module fixture](../tests/cpp/vst3_loaded_expression_test.cpp) |
+
+The table identifies implemented checks, not an all-platform result. Earlier
+HOST-001/HOST-002 platform passes do not validate this extension. Current-source
+Linux, Windows and macOS evidence, including SDK/module validators and legacy
+audio comparison, must be reviewed for the new gate. A named-DAW result also
+requires the separate [manual protocol](DAW_VALIDATION.md); none follows from
+these harnesses. Device deadlines, release qualification and measured fidelity
+retain their own acceptance requirements.
+
 ### Current HOST-002 verification — 24 November 2026
 
 **HOST-002 remains incomplete.** The
@@ -328,9 +558,12 @@ configuration recall installed at an accepted audio boundary supplies that reset
 [pressure](agents/reports/continuation-c/w5-083.md) and
 [control-text](agents/reports/continuation-c/w5-084.md) criterion reviews pass
 within their frozen synthetic scope. The
-[final criterion review](validation/host-midi-acceptance-20261124.md) records
-C01–C03 as passed and C04 as incomplete. Current native macOS validation and a
-passing final acceptance decision remain pending under the
+[retained criterion review](validation/host-midi-acceptance-20261124.md) records
+C01–C03 as passed and C04 as incomplete at its cutoff. The previously missing
+macOS VST3, core and Python logs have since been retained in a
+[supplemental recovered-results record](validation/host-midi-macos-recovered-20261124.json).
+Those results cover sources from before HOST-003; they await a supplemental
+criterion review and passing final acceptance decision under the
 [MIDI continuation](specs/HOST_MIDI_20261124.md) and
 [canonical project state](PROJECT_STATE.md).
 
@@ -377,9 +610,10 @@ had seven queued jobs. The later
 **11:20:37 UTC** records the macOS VST3 retry as cancelled without execution,
 five successful Linux/Windows Foundation jobs, and both macOS Foundation jobs
 still queued without runners or steps. It adds status observations, not new test
-counts. See the [continuation handoff](validation/host-midi-handoff-20261124.md)
-for the missing results. These observations establish neither a current macOS pass
-nor an all-green current revision. Native DAW delivery, device deadlines,
+counts. The [dated continuation handoff](validation/host-midi-handoff-20261124.md)
+records the evidence missing at that cutoff; the recovered macOS supplement
+linked above is a later observation. The cutoff reports remain unchanged and
+do not establish an all-green current revision. Native DAW delivery, device deadlines,
 minimum-OS execution, signing/release and measured fidelity remain separate gates.
 
 The dated historical checkpoints below predate HOST-002 and retain their original

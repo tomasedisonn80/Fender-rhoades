@@ -662,13 +662,13 @@ void negotiation_cases() {
                 metadata(host->processor, width);
                 full_snapshot(before, host->processor);
                 expect_saved(host->processor, pending);
-                check(host->processor.getAudioOutput(0)->isActive() == prior_activity,
+                check((host->processor.getAudioOutput(0)->isActive() != 0) == prior_activity,
                       "rejected arrangement changed bus activation");
             }
             host->arrange(width == 1 ? 2 : 1);
             metadata(host->processor, host->width);
             full_snapshot(before, host->processor);
-            check(host->processor.getAudioOutput(0)->isActive() == active,
+            check((host->processor.getAudioOutput(0)->isActive() != 0) == active,
                   "accepted arrangement changed bus activation");
             expect_saved(host->processor, pending);
             check(host->processor.setActive(true) == sdk::kResultOk &&
@@ -988,7 +988,7 @@ void lifecycle_cases() {
             host->arrange(width == 1 ? 2 : 1);
             metadata(host->processor, host->width);
             model->verify(host->processor);
-            check(host->processor.getAudioOutput(0)->isActive() == active,
+            check((host->processor.getAudioOutput(0)->isActive() != 0) == active,
                   "suspended layout switch changed bus activation");
             check(host->processor.setActive(true) == sdk::kResultOk &&
                   host->processor.setProcessing(true) == sdk::kResultOk, "restart processor failed");

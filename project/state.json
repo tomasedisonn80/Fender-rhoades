@@ -4,8 +4,8 @@
   "goal": "Physically model a Fender Rhodes Mark I from evolving mechanical, electromagnetic and circuit states without recorded-note playback.",
   "target": "One documented 73-key Mark I Stage specimen at its specified loaded electrical output; identity and measurements pending.",
   "fidelity_status": "unvalidated",
-  "revision": 42,
-  "updated_at": "2026-11-24T12:22:10Z",
+  "revision": 44,
+  "updated_at": "2026-11-24T13:06:23Z",
   "tasks": [
     {
       "id": "FND-001",
@@ -475,7 +475,7 @@
       "id": "HOST-002",
       "title": "Improve VST3 MIDI interoperability and generic control validation",
       "milestone": "Host interoperability",
-      "status": "blocked",
+      "status": "in_progress",
       "priority": 47,
       "dependencies": [
         "HOST-001"
@@ -497,11 +497,14 @@
         "HOST-002-20261124-native-platform-observation",
         "HOST-002-20261124-criterion-review"
       ],
-      "owner": null,
-      "claim": null,
-      "blockers": [
-        "C04 incomplete: applicable completed macOS SDK/module/loaded-MIDI, core and full Python results are unavailable. The 11:20:37 UTC closing readback records the VST3 retry cancelled without execution and Foundation macOS jobs queued. Retain the five attached scoped records; see docs/validation/host-midi-acceptance-20261124.md and docs/validation/host-midi-handoff-20261124.md. Preserve PHY-002/RT-001 ownership and unvalidated fidelity; append new native evidence and a reviewed acceptance decision before completion."
-      ],
+      "owner": "continuation-d-root",
+      "claim": {
+        "owner": "continuation-d-root",
+        "token": "973f3f9c25d4a2dd686d11cca4827213",
+        "claimed_at": "2026-11-24T13:06:23Z",
+        "expires_at": "2026-11-24T17:06:23Z"
+      },
+      "blockers": [],
       "paths": [
         "plugins/vst3",
         "include/rhodes/event_processor.hpp",
@@ -898,6 +901,22 @@
       "task": "HOST-003",
       "owner": "continuation-d-root",
       "detail": "Lease until 2026-11-24T16:22:10Z"
+    },
+    {
+      "revision": 43,
+      "at": "2026-11-24T13:06:23Z",
+      "action": "unblock",
+      "task": "HOST-002",
+      "owner": "continuation-d-root",
+      "detail": "Source-applicable macOS VST3/core/Python terminal results are now retained and registered as HOST-002-20261124-macos-recovered. Earlier incomplete observations remain immutable; completion still requires a new criterion review."
+    },
+    {
+      "revision": 44,
+      "at": "2026-11-24T13:06:23Z",
+      "action": "claim",
+      "task": "HOST-002",
+      "owner": "continuation-d-root",
+      "detail": "Lease until 2026-11-24T17:06:23Z"
     }
   ]
 }

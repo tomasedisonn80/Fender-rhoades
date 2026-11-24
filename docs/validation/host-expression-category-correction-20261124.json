@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "task_id": "HOST-003",
+  "kind": "factory-category-correction",
+  "definition_sha256": "f3054fce1854dfa16109e0d01f80b1aa8b4b6b71738fad5889de24e147977431",
+  "base_commit": "3a2dbb7cfd2d0967abbab2b89929281ad53ac47d",
+  "finding": "Factory advertised optional Stereo although mono negotiation was now implemented. The pinned SDK defines that optional token for stereo-only plugins.",
+  "change": "Use Instrument|Synth for all three processor classes; retain identities, versions, default stereo, mono/stereo negotiation, models and latency. Assert the actual loaded factory category.",
+  "public_sources": [
+    "https://steinbergmedia.github.io/vst3_doc/vstinterfaces/group__plugType.html",
+    "https://steinbergmedia.github.io/vst3_dev_portal/pages/FAQ/Miscellaneous.html"
+  ],
+  "pinned_sdk_source": "pluginterfaces/vst/ivstaudioprocessor.h at 4f547e8e102b47de4a8b8aaf343c73b700786372, optional mono/stereo/surround category definitions",
+  "before": {
+    "test": "vst3.loaded_expression_controls_state",
+    "failed": 1,
+    "exit_code": 8,
+    "reason": "factory must not advertise a mono- or stereo-only restriction",
+    "scope": "The first direct-module instance failed before the selector could reach the other two variants; common factory source supplies all three."
+  },
+  "after": {
+    "passed": 9,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 5.82,
+    "scope": "Three loaded-expression selectors and three SDK plus three module-info validators, all variants."
+  },
+  "source_sha256": {
+    "plugins/vst3/factory.cpp": "0dafb9197ff58af621657c9f0f6bb1924dc491ad75661968634c6611b5b9e87d",
+    "tests/cpp/vst3_loaded_expression_test.cpp": "9ea445aaf2be3d3e079f3210856c9facb8b795fc6b891a0bb8ff2f6668c53012"
+  },
+  "artifacts": {
+    "docs/validation/host-expression-category-before-20261124.log": {
+      "sha256": "5d7c73c060a5c3cb841126d29dca5dab32195c96307ae3cd34c92d7aab607c7c",
+      "bytes": 463
+    },
+    "docs/validation/host-expression-category-corrected-20261124.log": {
+      "sha256": "ada754ae2b454c226fdbb4cb2292ea88e54f755465e12f2436f0ae4c43a1657f",
+      "bytes": 1215
+    },
+    "docs/validation/host-expression-category-corrected-20261124.xml": {
+      "sha256": "5689687788b0694f2664ce23bcdc5ab79ed3f547d28449b478f8e5f45fa13474",
+      "bytes": 5712
+    }
+  },
+  "limitations": [
+    "Linux GCC Release observation only; native platform gates will run on the corrected source.",
+    "Subcategory strings are host classification hints; no actual DAW filtering defect or named-DAW validation is claimed.",
+    "The frozen feature specification and previously recorded observations remain unchanged."
+  ]
+}

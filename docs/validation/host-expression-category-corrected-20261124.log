@@ -1,0 +1,23 @@
+Test project /tmp/rhodes-d-build
+    Start 444: vst3.loaded_expression_controls_state
+    Start 448: vst3.filtered_sdk_validator
+1/9 Test #444: vst3.loaded_expression_controls_state ...   Passed    0.05 sec
+    Start 449: vst3.quadrature_sdk_validator
+2/9 Test #449: vst3.quadrature_sdk_validator ...........   Passed    3.34 sec
+    Start 438: vst3.sdk_validator
+3/9 Test #438: vst3.sdk_validator ......................   Passed    1.39 sec
+    Start 445: vst3.loaded_expression_audio_layout
+4/9 Test #445: vst3.loaded_expression_audio_layout .....   Passed    0.25 sec
+    Start 446: vst3.loaded_expression_coexist
+5/9 Test #446: vst3.loaded_expression_coexist ..........   Passed    0.27 sec
+    Start 450: vst3.moduleinfo_validator
+6/9 Test #450: vst3.moduleinfo_validator ...............   Passed    0.00 sec
+    Start 452: vst3.quadrature_moduleinfo_validator
+7/9 Test #452: vst3.quadrature_moduleinfo_validator ....   Passed    0.00 sec
+    Start 451: vst3.filtered_moduleinfo_validator
+8/9 Test #451: vst3.filtered_moduleinfo_validator ......   Passed    0.00 sec
+9/9 Test #448: vst3.filtered_sdk_validator .............   Passed    5.81 sec
+
+100% tests passed out of 9
+
+Total Test time (real) =   5.82 sec

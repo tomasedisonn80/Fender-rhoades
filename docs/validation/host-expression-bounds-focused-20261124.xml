@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Linux-c++"
+	tests="18"
+	failures="0"
+	disabled="0"
+	skipped="0"
+	hostname="4f398b69b6a5"
+	time="0"
+	timestamp="2026-11-24T05:59:27"
+	>
+	<testcase name="vst3.expression_bounds_queue_limits" classname="vst3.expression_bounds_queue_limits" time="0.0179814" status="run">
+		<properties/>
+		<system-out>PASS queue_limits (model 1, float+double, 52 guarded callbacks: 8 accepted, 44 rejected; 152 point reads, 2 event reads; peaks 19/1; 0 C++ allocations/deallocations)
+</system-out>
+	</testcase>
+	<testcase name="vst3.filtered_expression_bounds_queue_limits" classname="vst3.filtered_expression_bounds_queue_limits" time="0.0582849" status="run">
+		<properties/>
+		<system-out>PASS queue_limits (model 2, float+double, 52 guarded callbacks: 8 accepted, 44 rejected; 152 point reads, 2 event reads; peaks 19/1; 0 C++ allocations/deallocations)
+</system-out>
+	</testcase>
+	<testcase name="vst3.quadrature_expression_bounds_queue_limits" classname="vst3.quadrature_expression_bounds_queue_limits" time="0.0423876" status="run">
+		<properties/>
+		<system-out>PASS queue_limits (model 3, float+double, 52 guarded callbacks: 8 accepted, 44 rejected; 152 point reads, 2 event reads; peaks 19/1; 0 C++ allocations/deallocations)
+</system-out>
+	</testcase>
+	<testcase name="vst3.expression_bounds_persistent_limits" classname="vst3.expression_bounds_persistent_limits" time="0.00997464" status="run">
+		<properties/>
+		<system-out>PASS persistent_limits (model 1, float+double, 36 guarded callbacks: 12 accepted, 24 rejected; 98304 point reads, 0 event reads; peaks 8192/0; 0 C++ allocations/deallocations)
+</system-out>
+	</testcase>
+	<testcase name="vst3.filtered_expression_bounds_persistent_limits" classname="vst3.filtered_expression_bounds_persistent_limits" time="0.0326791" status="run">
+		<properties/>
+		<system-out>PASS persistent_limits (model 2, float+double, 36 guarded callbacks: 12 accepted, 24 rejected; 98304 point reads, 0 event reads; peaks 8192/0; 0 C++ allocations/deallocations)
+</system-out>
+	</testcase>
+	<testcase name="vst3.quadrature_expression_bounds_persistent_limits" classname="vst3.quadrature_expression_bounds_persistent_limits" time="0.0225468" status="run">
+		<properties/>
+		<system-out>PASS persistent_limits (model 3, float+double, 36 guarded callbacks: 12 accepted, 24 rejected; 98304 point reads, 0 event reads; peaks 8192/0; 0 C++ allocations/deallocations)
+</system-out>
+	</testcase>
+	<testcase name="vst3.expression_bounds_maximum_points" classname="vst3.expression_bounds_maximum_points" time="0.0360707" status="run">
+		<properties/>
+		<system-out>PASS maximum_points (model 1, float+double, 14 guarded callbacks: 6 accepted, 8 rejected; 297984 point reads, 512 event reads; peaks 24832/256; 0 C++ allocations/deallocations)
+</system-out>
+	</testcase>
+	<testcase name="vst3.filtered_expression_bounds_maximum_points" classname="vst3.filtered_expression_bounds_maximum_points" time="0.0961544" status="run">
+		<properties/>
+		<system-out>PASS maximum_points (model 2, float+double, 14 guarded callbacks: 6 accepted, 8 rejected; 297984 point reads, 512 event reads; peaks 24832/256; 0 C++ allocations/deallocations)
+</system-out>
+	</testcase>
+	<testcase name="vst3.quadrature_expression_bounds_maximum_points" classname="vst3.quadrature_expression_bounds_maximum_points" time="0.0509561" status="run">
+		<properties/>
+		<system-out>PASS maximum_points (model 3, float+double, 14 guarded callbacks: 6 accepted, 8 rejected; 297984 point reads, 512 event reads; peaks 24832/256; 0 C++ allocations/deallocations)
+</system-out>
+	</testcase>
+	<testcase name="vst3.expression_bounds_command_events" classname="vst3.expression_bounds_command_events" time="0.00750331" status="run">
+		<properties/>
+		<system-out>PASS command_events (model 1, float+double, 20 guarded callbacks: 4 accepted, 16 rejected; 3606 point reads, 1170 event reads; peaks 259/256; 0 C++ allocations/deallocations)
+</system-out>
+	</testcase>
+	<testcase name="vst3.filtered_expression_bounds_command_events" classname="vst3.filtered_expression_bounds_command_events" time="0.0229355" status="run">
+		<properties/>
+		<system-out>PASS command_events (model 2, float+double, 20 guarded callbacks: 4 accepted, 16 rejected; 3606 point reads, 1170 event reads; peaks 259/256; 0 C++ allocations/deallocations)
+</system-out>
+	</testcase>
+	<testcase name="vst3.quadrature_expression_bounds_command_events" classname="vst3.quadrature_expression_bounds_command_events" time="0.0315802" status="run">
+		<properties/>
+		<system-out>PASS command_events (model 3, float+double, 20 guarded callbacks: 4 accepted, 16 rejected; 3606 point reads, 1170 event reads; peaks 259/256; 0 C++ allocations/deallocations)
+</system-out>
+	</testcase>
+	<testcase name="vst3.expression_bounds_dispatch" classname="vst3.expression_bounds_dispatch" time="0.00813514" status="run">
+		<properties/>
+		<system-out>PASS dispatch (model 1, float+double, 16 guarded callbacks: 14 accepted, 2 rejected; 38 point reads, 1900 event reads; peaks 8/256; 0 C++ allocations/deallocations)
+</system-out>
+	</testcase>
+	<testcase name="vst3.filtered_expression_bounds_dispatch" classname="vst3.filtered_expression_bounds_dispatch" time="0.0229393" status="run">
+		<properties/>
+		<system-out>PASS dispatch (model 2, float+double, 16 guarded callbacks: 14 accepted, 2 rejected; 38 point reads, 1900 event reads; peaks 8/256; 0 C++ allocations/deallocations)
+</system-out>
+	</testcase>
+	<testcase name="vst3.quadrature_expression_bounds_dispatch" classname="vst3.quadrature_expression_bounds_dispatch" time="0.0313263" status="run">
+		<properties/>
+		<system-out>PASS dispatch (model 3, float+double, 16 guarded callbacks: 14 accepted, 2 rejected; 38 point reads, 1900 event reads; peaks 8/256; 0 C++ allocations/deallocations)
+</system-out>
+	</testcase>
+	<testcase name="vst3.expression_bounds_allocations" classname="vst3.expression_bounds_allocations" time="0.0185285" status="run">
+		<properties/>
+		<system-out>PASS allocations (model 1, float+double, 56 guarded callbacks: 40 accepted, 16 rejected; 34816 point reads, 8192 event reads; peaks 640/256; 0 C++ allocations/deallocations)
+</system-out>
+	</testcase>
+	<testcase name="vst3.filtered_expression_bounds_allocations" classname="vst3.filtered_expression_bounds_allocations" time="0.0303147" status="run">
+		<properties/>
+		<system-out>PASS allocations (model 2, float+double, 56 guarded callbacks: 40 accepted, 16 rejected; 34816 point reads, 8192 event reads; peaks 640/256; 0 C++ allocations/deallocations)
+</system-out>
+	</testcase>
+	<testcase name="vst3.quadrature_expression_bounds_allocations" classname="vst3.quadrature_expression_bounds_allocations" time="0.0393265" status="run">
+		<properties/>
+		<system-out>PASS allocations (model 3, float+double, 56 guarded callbacks: 40 accepted, 16 rejected; 34816 point reads, 8192 event reads; peaks 640/256; 0 C++ allocations/deallocations)
+</system-out>
+	</testcase>
+</testsuite>

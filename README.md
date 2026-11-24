@@ -9,9 +9,9 @@ loaded output. The repository name is retained for existing links.
 
 **Current stage: experimental VST3 instrument and physical-model research.**
 The C++20 synthetic core now has bounded sample-offset events, MIDI note ownership,
-versioned state recall, and three optional headless VST3 variants. The direct and
-filtered instruments retain their identities, saved-state models and rendering
-behavior. **Rhodes Research Quadrature** batches six prepared observations of
+versioned state recall, and three optional headless VST3 variants. All three
+retain their class identities, saved-state model IDs and unity-expression stereo
+rendering path. **Rhodes Research Quadrature** batches six prepared observations of
 the synthetic source inside each host-frame interval and reports 48 frames
 of latency under its separate model-3 identity. All three use ordinary host
 parameter controls. A separate offline finite-mass hammer/damper reference
@@ -37,8 +37,23 @@ The historical [native platform record](docs/validation/native-platforms-2026112
 documents successful Linux, Windows and macOS builds and host tests. All three
 variants passed the SDK and module metadata validators on each platform at the
 recorded revision; exact test counts and platform-specific skips are listed.
-These retained results predate HOST-002 and do not validate its changes or
-establish native DAW operation or audio-device deadlines.
+These retained results predate HOST-002 and HOST-003 and do not validate their
+changes or establish native DAW operation or audio-device deadlines.
+
+The [HOST-003 expression and output-layout continuation](docs/specs/HOST_EXPRESSION_MONO_20261124.md)
+adds **Expression**, a global digital multiplier from `0..1x`, default `1x`,
+independent of Monitoring Gain. Automate it in the host or send MIDI CC11 on any
+of the sixteen input channels; each channel addresses the same control for the
+whole instrument. The plug-in does not pair CC11 with CC43. Expression at zero
+silences the output while notes, mechanics and release tails continue. All three
+variants now expose **19 host parameters** and one output that defaults to
+stereo and can negotiate mono. Mono emits the same scalar signal as either
+stereo channel. Saving at Expression `1x` retains the exact legacy 16-byte state;
+other values use a 20-byte version-2 state that older version-1-only builds cannot
+load. The [VST3 guide](docs/VST3.md) explains controls, output layouts and rollback
+limits. This engineering extension remains under
+[source-bound acceptance review](docs/VST3.md#current-expression-and-output-layout-verification--24-november-2026);
+its test fixtures do not establish measured fidelity or named-DAW results.
 
 The [HOST-002 MIDI continuation](docs/specs/HOST_MIDI_20261124.md) adds
 channel-specific CC123 release commands, validated polyphonic pressure as a
@@ -50,14 +65,16 @@ The [CC123](docs/agents/reports/continuation-c/w5-082.md),
 [pressure](docs/agents/reports/continuation-c/w5-083.md) and
 [control-text](docs/agents/reports/continuation-c/w5-084.md) criterion reviews
 pass within their frozen synthetic scope. **HOST-002 remains incomplete:**
-the [final criterion review](docs/validation/host-midi-acceptance-20261124.md)
-records C01–C03 as passed and C04 as incomplete. Current native macOS validation
-and a passing final acceptance decision remain pending.
+the [retained criterion review](docs/validation/host-midi-acceptance-20261124.md)
+records C01–C03 as passed and C04 as incomplete at its cutoff. The previously
+missing macOS results have since been
+[recovered](docs/validation/host-midi-macos-recovered-20261124.json); a supplemental
+criterion review and passing acceptance decision remain pending.
 The [current verification section](docs/VST3.md#current-host-002-verification--24-november-2026)
 records the executed source commits, core/sanitizer/Python results and dated macOS
-status observations. The [continuation handoff](docs/validation/host-midi-handoff-20261124.md)
-identifies the missing native results. The [VST3 guide](docs/VST3.md) also explains
-the existing 18 controls, unchanged saved configuration and host-delivery limits.
+status observations. The [dated continuation handoff](docs/validation/host-midi-handoff-20261124.md)
+preserves the earlier missing-evidence boundary. These HOST-002 results cover
+sources from before the Expression and mono extension.
 
 The separate [four-fixture contact diagnostic](docs/CONTACT_PEAK_DIAGNOSTIC.md)
 compares synthetic compression and force maxima with independent references,
@@ -87,10 +104,12 @@ validation gates.
 | Audit quadrature and portability development | [Quadrature campaign and report hashes](docs/agents/QUADRATURE_CAMPAIGN.md) |
 | Audit current main-branch development | [24 November campaign and report ledgers](docs/agents/DEVELOPMENT_WAVES_20261124.md) |
 | Audit MIDI interoperability development | [Separate continuation-C ledger](project/continuation-c-20261124.json) |
+| Audit Expression and mono development | [Five-wave continuation-D campaign](docs/agents/CONTINUATION_D_20261124.md) |
 | Inspect the filtered audio design | [Timing, response and compatibility contract](docs/specs/FILTERED_AUDIO_20261123.md) |
 | Inspect the quadrature audio design | [Frozen Q6 timing and verification contract](docs/specs/QUADRATURE_AUDIO_20261123.md) |
 | Inspect the original VST3 prototype contract | [Original host behavior and later overrides](docs/specs/HOST_PROTOTYPE_20261123.md) |
 | Inspect current MIDI and control behavior | [CC123, pressure and strict text contract](docs/specs/HOST_MIDI_20261124.md) |
+| Inspect Expression, state compatibility and mono output | [Frozen HOST-003 contract](docs/specs/HOST_EXPRESSION_MONO_20261124.md) |
 | Build and try the VST3 instrument | [VST3 setup and controls](docs/VST3.md) |
 | Evaluate a build in a named DAW | [Proposed manual evaluation protocol](docs/DAW_VALIDATION.md) |
 | Run the separate hammer/damper experiments | [Offline contact reference](docs/CONTACT_REFERENCE.md) |
@@ -183,7 +202,7 @@ the sanitizer preset excludes Windows. See
 | Stage controls | Architecture and component requirements | Revision-specific connected passive circuit |
 | Instrument identity | Unidentified profile with units and provenance fields | Actual specimen, construction revisions and measurements |
 | Runtime | Bounded events; direct, sampled-filtered and batched Q6 paths; full synthetic quadrature/reference matrix and exact retained replay | Remaining direct/filtered aliasing and convergence gates, future-model error budgets and representative host/device timing |
-| Host product | Three VST3 variants, isolated model states 1/2/3, generic controls, reported latency, bounded rejection, channel CC123 and validated pressure no-op | HOST-002 acceptance, native DAW/device validation, deployment baselines, product UI and release packaging |
+| Host product | Three VST3 variants, isolated model states 1/2/3, 19 generic controls including global CC11 Expression, adaptive v1/v2 configuration, mono/stereo output, reported latency, bounded rejection, channel CC123 and validated pressure no-op | HOST-002 supplemental acceptance, HOST-003 source-bound acceptance, native DAW/device validation, deployment baselines, product UI and release packaging |
 
 Peterson/Janus Suitcase electronics, amplifiers, loudspeakers and room acoustics
 belong to separately identified future profiles. They do not silently become part

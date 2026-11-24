@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Linux-c++"
+	tests="18"
+	failures="0"
+	disabled="0"
+	skipped="0"
+	hostname="4f398b69b6a5"
+	time="0"
+	timestamp="2026-11-24T05:57:50"
+	>
+	<testcase name="vst3.expression_transaction_queue_shapes" classname="vst3.expression_transaction_queue_shapes" time="0.0318446" status="run">
+		<properties/>
+		<system-out>PASS queue_shapes
+model=1 accepted=68 rejected=48 scalar_frames=8704 history_frames=6192 formats=2 layouts=2 host_arithmetic_injection=unavailable
+</system-out>
+	</testcase>
+	<testcase name="vst3.filtered_expression_transaction_queue_shapes" classname="vst3.filtered_expression_transaction_queue_shapes" time="0.110705" status="run">
+		<properties/>
+		<system-out>PASS queue_shapes
+model=2 accepted=68 rejected=48 scalar_frames=8704 history_frames=6192 formats=2 layouts=2 host_arithmetic_injection=unavailable
+</system-out>
+	</testcase>
+	<testcase name="vst3.quadrature_expression_transaction_queue_shapes" classname="vst3.quadrature_expression_transaction_queue_shapes" time="0.0829379" status="run">
+		<properties/>
+		<system-out>PASS queue_shapes
+model=3 accepted=68 rejected=48 scalar_frames=8704 history_frames=6192 formats=2 layouts=2 host_arithmetic_injection=unavailable
+</system-out>
+	</testcase>
+	<testcase name="vst3.expression_transaction_expression_points" classname="vst3.expression_transaction_expression_points" time="0.0259369" status="run">
+		<properties/>
+		<system-out>PASS expression_points
+model=1 accepted=16 rejected=76 scalar_frames=2048 history_frames=9804 formats=2 layouts=2 host_arithmetic_injection=unavailable
+</system-out>
+	</testcase>
+	<testcase name="vst3.filtered_expression_transaction_expression_points" classname="vst3.filtered_expression_transaction_expression_points" time="0.0884119" status="run">
+		<properties/>
+		<system-out>PASS expression_points
+model=2 accepted=16 rejected=76 scalar_frames=2048 history_frames=9804 formats=2 layouts=2 host_arithmetic_injection=unavailable
+</system-out>
+	</testcase>
+	<testcase name="vst3.quadrature_expression_transaction_expression_points" classname="vst3.quadrature_expression_transaction_expression_points" time="0.0669178" status="run">
+		<properties/>
+		<system-out>PASS expression_points
+model=3 accepted=16 rejected=76 scalar_frames=2048 history_frames=9804 formats=2 layouts=2 host_arithmetic_injection=unavailable
+</system-out>
+	</testcase>
+	<testcase name="vst3.expression_transaction_late_co_batches" classname="vst3.expression_transaction_late_co_batches" time="0.0140051" status="run">
+		<properties/>
+		<system-out>PASS late_co_batches
+model=1 accepted=16 rejected=32 scalar_frames=2048 history_frames=4128 formats=2 layouts=2 host_arithmetic_injection=unavailable
+</system-out>
+	</testcase>
+	<testcase name="vst3.filtered_expression_transaction_late_co_batches" classname="vst3.filtered_expression_transaction_late_co_batches" time="0.0500466" status="run">
+		<properties/>
+		<system-out>PASS late_co_batches
+model=2 accepted=16 rejected=32 scalar_frames=2048 history_frames=4128 formats=2 layouts=2 host_arithmetic_injection=unavailable
+</system-out>
+	</testcase>
+	<testcase name="vst3.quadrature_expression_transaction_late_co_batches" classname="vst3.quadrature_expression_transaction_late_co_batches" time="0.0320003" status="run">
+		<properties/>
+		<system-out>PASS late_co_batches
+model=3 accepted=16 rejected=32 scalar_frames=2048 history_frames=4128 formats=2 layouts=2 host_arithmetic_injection=unavailable
+</system-out>
+	</testcase>
+	<testcase name="vst3.expression_transaction_ownership_recall" classname="vst3.expression_transaction_ownership_recall" time="0.0192187" status="run">
+		<properties/>
+		<system-out>PASS ownership_recall
+model=1 accepted=48 rejected=24 scalar_frames=6144 history_frames=3096 formats=2 layouts=2 host_arithmetic_injection=unavailable
+</system-out>
+	</testcase>
+	<testcase name="vst3.filtered_expression_transaction_ownership_recall" classname="vst3.filtered_expression_transaction_ownership_recall" time="0.0725464" status="run">
+		<properties/>
+		<system-out>PASS ownership_recall
+model=2 accepted=48 rejected=24 scalar_frames=6144 history_frames=3096 formats=2 layouts=2 host_arithmetic_injection=unavailable
+</system-out>
+	</testcase>
+	<testcase name="vst3.quadrature_expression_transaction_ownership_recall" classname="vst3.quadrature_expression_transaction_ownership_recall" time="0.0565136" status="run">
+		<properties/>
+		<system-out>PASS ownership_recall
+model=3 accepted=48 rejected=24 scalar_frames=6144 history_frames=3096 formats=2 layouts=2 host_arithmetic_injection=unavailable
+</system-out>
+	</testcase>
+	<testcase name="vst3.expression_transaction_flush_recall" classname="vst3.expression_transaction_flush_recall" time="0.0365015" status="run">
+		<properties/>
+		<system-out>PASS flush_recall
+model=1 accepted=84 rejected=72 scalar_frames=7680 history_frames=9288 formats=2 layouts=2 host_arithmetic_injection=unavailable
+</system-out>
+	</testcase>
+	<testcase name="vst3.filtered_expression_transaction_flush_recall" classname="vst3.filtered_expression_transaction_flush_recall" time="0.142647" status="run">
+		<properties/>
+		<system-out>PASS flush_recall
+model=2 accepted=84 rejected=72 scalar_frames=7680 history_frames=9288 formats=2 layouts=2 host_arithmetic_injection=unavailable
+</system-out>
+	</testcase>
+	<testcase name="vst3.quadrature_expression_transaction_flush_recall" classname="vst3.quadrature_expression_transaction_flush_recall" time="0.103368" status="run">
+		<properties/>
+		<system-out>PASS flush_recall
+model=3 accepted=84 rejected=72 scalar_frames=7680 history_frames=9288 formats=2 layouts=2 host_arithmetic_injection=unavailable
+</system-out>
+	</testcase>
+	<testcase name="vst3.expression_transaction_inactive_transactions" classname="vst3.expression_transaction_inactive_transactions" time="0.0141533" status="run">
+		<properties/>
+		<system-out>PASS inactive_transactions
+model=1 accepted=32 rejected=16 scalar_frames=4096 history_frames=2580 formats=2 layouts=2 host_arithmetic_injection=unavailable
+</system-out>
+	</testcase>
+	<testcase name="vst3.filtered_expression_transaction_inactive_transactions" classname="vst3.filtered_expression_transaction_inactive_transactions" time="0.0517978" status="run">
+		<properties/>
+		<system-out>PASS inactive_transactions
+model=2 accepted=32 rejected=16 scalar_frames=4096 history_frames=2580 formats=2 layouts=2 host_arithmetic_injection=unavailable
+</system-out>
+	</testcase>
+	<testcase name="vst3.quadrature_expression_transaction_inactive_transactions" classname="vst3.quadrature_expression_transaction_inactive_transactions" time="0.0440518" status="run">
+		<properties/>
+		<system-out>PASS inactive_transactions
+model=3 accepted=32 rejected=16 scalar_frames=4096 history_frames=2580 formats=2 layouts=2 host_arithmetic_injection=unavailable
+</system-out>
+	</testcase>
+</testsuite>

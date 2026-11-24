@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Linux-c++"
+	tests="9"
+	failures="0"
+	disabled="0"
+	skipped="0"
+	hostname="4f398b69b6a5"
+	time="5"
+	timestamp="2026-11-24T06:03:53"
+	>
+	<testcase name="vst3.sdk_validator" classname="vst3.sdk_validator" time="1.3936" status="run">
+		<properties/>
+		<system-out>* Loading module...
+
+	/tmp/rhodes-d-build/VST3/Release/RhodesResearch.vst3
+
+* Check valid bundle structure...
+
+* Scanning classes...
+
+  Factory Info:
+	vendor = Rhodes Research
+	url = https://github.com/baabi-boo/Fender-rhoades
+	email = 
+
+  Class Info 0:
+	name = Rhodes Research Prototype
+	category = Audio Module Class
+	subCategories = Instrument|Synth
+	version = 0.1.0
+	sdkVersion = VST 3.8.1
+	cid = BDDA70F46F9244C1A5639EE371A0B804
+
+  Class Info 1:
+	name = Rhodes Research Controller
+	category = Component Controller Class
+	subCategories = 
+	version = 0.1.0
+	sdkVersion = VST 3.8.1
+	cid = EA801E8B97864ED9B3A0E6572D81CE61
+
+* Checking snapshots...
+
+Info: No snapshots in Bundle.
+
+* Creating tests...
+
+* Running tests...
+
+-------------------------------------------------------------
+TestSuite : Rhodes Research Prototype
+-------------------------------------------------------------
+
+-------------------------------------------------------------
+TestSuite : General Tests
+---------------------------------------------------...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="vst3.loaded_expression_controls_state" classname="vst3.loaded_expression_controls_state" time="0.0491998" status="run">
+		<properties/>
+		<system-out>PASS loaded expression controls_state: 52449 checks, 270 loaded callbacks, 0 scalar samples, 54 rejected blocks, 12 foreign states, 105 guarded mono callbacks, 0 module load orders
+</system-out>
+	</testcase>
+	<testcase name="vst3.loaded_expression_audio_layout" classname="vst3.loaded_expression_audio_layout" time="0.248128" status="run">
+		<properties/>
+		<system-out>PASS loaded expression audio_layout: 244742 checks, 840 loaded callbacks, 36864 scalar samples, 48 rejected blocks, 0 foreign states, 204 guarded mono callbacks, 0 module load orders
+</system-out>
+	</testcase>
+	<testcase name="vst3.loaded_expression_coexist" classname="vst3.loaded_expression_coexist" time="0.271695" status="run">
+		<properties/>
+		<system-out>PASS loaded expression coexist: 292622 checks, 864 loaded callbacks, 55296 scalar samples, 0 rejected blocks, 0 foreign states, 288 guarded mono callbacks, 24 module load orders
+</system-out>
+	</testcase>
+	<testcase name="vst3.filtered_sdk_validator" classname="vst3.filtered_sdk_validator" time="5.80613" status="run">
+		<properties/>
+		<system-out>* Loading module...
+
+	/tmp/rhodes-d-build/VST3/Release/RhodesResearchFiltered.vst3
+
+* Check valid bundle structure...
+
+* Scanning classes...
+
+  Factory Info:
+	vendor = Rhodes Research
+	url = https://github.com/baabi-boo/Fender-rhoades
+	email = 
+
+  Class Info 0:
+	name = Rhodes Research Filtered
+	category = Audio Module Class
+	subCategories = Instrument|Synth
+	version = 0.2.0
+	sdkVersion = VST 3.8.1
+	cid = 4C0E773A24FC4BE9B804BC71B8B98B33
+
+  Class Info 1:
+	name = Rhodes Filtered Controller
+	category = Component Controller Class
+	subCategories = 
+	version = 0.2.0
+	sdkVersion = VST 3.8.1
+	cid = 0569EDDBD21D4568A9ED52C3D8545B6D
+
+* Checking snapshots...
+
+Info: No snapshots in Bundle.
+
+* Creating tests...
+
+* Running tests...
+
+-------------------------------------------------------------
+TestSuite : Rhodes Research Filtered
+-------------------------------------------------------------
+
+-------------------------------------------------------------
+TestSuite : General Tests
+---------------------------------------------...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="vst3.quadrature_sdk_validator" classname="vst3.quadrature_sdk_validator" time="3.33707" status="run">
+		<properties/>
+		<system-out>* Loading module...
+
+	/tmp/rhodes-d-build/VST3/Release/RhodesResearchQuadrature.vst3
+
+* Check valid bundle structure...
+
+* Scanning classes...
+
+  Factory Info:
+	vendor = Rhodes Research
+	url = https://github.com/baabi-boo/Fender-rhoades
+	email = 
+
+  Class Info 0:
+	name = Rhodes Research Quadrature
+	category = Audio Module Class
+	subCategories = Instrument|Synth
+	version = 0.3.0
+	sdkVersion = VST 3.8.1
+	cid = D73B886A72E04FC892435F1DC5F0B6A9
+
+  Class Info 1:
+	name = Rhodes Quadrature Controller
+	category = Component Controller Class
+	subCategories = 
+	version = 0.3.0
+	sdkVersion = VST 3.8.1
+	cid = A45F23E1B68A4D79AF31472C8E909D52
+
+* Checking snapshots...
+
+Info: No snapshots in Bundle.
+
+* Creating tests...
+
+* Running tests...
+
+-------------------------------------------------------------
+TestSuite : Rhodes Research Quadrature
+-------------------------------------------------------------
+
+-------------------------------------------------------------
+TestSuite : General Tests
+-------------------------------------...
+[This part of the test output was removed since it exceeds the threshold of 1024 bytes.]
+</system-out>
+	</testcase>
+	<testcase name="vst3.moduleinfo_validator" classname="vst3.moduleinfo_validator" time="0.00494858" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="vst3.filtered_moduleinfo_validator" classname="vst3.filtered_moduleinfo_validator" time="0.00266697" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+	<testcase name="vst3.quadrature_moduleinfo_validator" classname="vst3.quadrature_moduleinfo_validator" time="0.00267901" status="run">
+		<properties/>
+		<system-out></system-out>
+	</testcase>
+</testsuite>
